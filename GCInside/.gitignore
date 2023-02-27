@@ -1,11 +1,15 @@
 HELP.md
-log
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-!**/src/main/resources/application.properties
+
+### 설정 파일 저장 안함 ###
+**/src/main/resources/application.properties
+
+### 로그 저장 안함 ###
+log
 
 ### STS ###
 .apt_generated
