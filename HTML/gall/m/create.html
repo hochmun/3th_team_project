@@ -1,10 +1,171 @@
+<!-- 2023/03/02 // 김동민 // 마이너 갤러리 생성페이지,css 작업 중 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="../../css/basic.css">
+    <link rel="stylesheet" href="../../css/create.css">
+    <link rel="stylesheet" href="../../css/popup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/navigation.js"></script>
+    <script type="text/javascript" src="../../js/common.js"></script>
 </head>
 <body>
-    
+    <div class="gcwrap">
+
+        <!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="../../img/gcinside_main_logo.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                              <li><a href="#">게임</a></li>
+                              <li><a href="#">연예/방송</a></li>
+                              <li><a href="#">스포츠</a></li>
+                              <li><a href="#">교육/금융/IT</a></li>
+                              <li><a href="#">여행/음식/생물</a></li>
+                              <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title 1_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">최근 방문</h3>
+                <button type="button" class="btn_open">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box"></div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
+            </div>
+        </div>
+
+        <main id="container" class="minor_make">
+            <header>
+                <div class="page_head clear">
+                    <div class="fl">
+                        <h2>
+                            <a href="#"><span class="fixtit">마이너 갤러리</span> 만들기</a><span class="stxt">(만들기는 6개까지 가능합니다.)</span>
+                        </h2>
+                    </div>
+                </div>
+            </header>
+            <div class="minor_make_wrap">
+                <section>
+                    <h2 class="make_guide_tit">마이너 갤러리는?</h2>
+                    <div class="minor_make_guide clear">
+                        <p class="make_guide_txt">누구나 갤러리를 개설할 수 있습니다. 갤러리의 운영 권한 및 의무가 개설자에게 부여됩니다.</p>
+                        <div class="fl">
+                            <img src="../../img/minor_infoimg2.png" alt="승격전 마이너 갤러리는 매니저(개설자)가 운영, 승격 후의 갤러리는 매지너 권한 회수 디시인사이드에서 직접 운영합니다.">
+                        </div>
+                        <div class="minor_make_info fl">
+                            <div>
+                                <strong class="tit">승격 안내</strong>
+                                <p>영화, 드라마 등 일부 마이너 갤러리는 심사 후 메인 갤러리로 승격됩니다.</p>
+                                <p>승격 여부는 전적으로 회사에 의해 결정되며, 승격 시 매니저 권한은 회수됩니다.</p>
+                            </div>
+                            <div class="txt_attention">
+                                <strong class="tit">유의 사항</strong>
+                                <p>메인 갤러리 승격을 위해서는 간결하고 정확한 단어형 이름을 입력하셔야 합니다.</p>
+                                <p>
+                                    동일한 주제의 메인 갤러리가 있을 경우 승격이 불가능합니다.
+                                    <button type="button" class="btn_guide_view" onclick="toggle_layer($('#elev_note'))">자세히보기</button>
+                                </p>
+                            </div>
+                            <div id="elev_note" class="pop_wrap type2" style="right: 0; top: 170px; display: none">
+                                <div class="pop_content attention_box">
+                                    <div class="pop_head dashed">
+                                        <strong>승격 유의사항</strong>
+                                    </div>
+                                    <div class="inner">
+                                        <b>다음과 같은 마이너 갤러리는 승격이 어렵습니다.</b>
+                                        <ol class="attention_list">
+                                            <li>1. 이름이 간결하지 않은 경우(서술형, 문장형 X)</li>
+                                            <li>2. 동일한 주제의 메인 갤러리가 있을 경우</li>
+                                            <li>3. 도배, 음란 등 부적절한 게시물이 많을 경우</li>
+                                            <li>4. 주소가 복잡하고 이름과 맞지 않는 경우</li>
+                                            <li>5. 이름에 맞지 않은 카테고리 선택 시</li>
+                                        </ol>
+                                        <p class="tiptxt">
+                                            <em class="sp_img tip_deco"></em>승격 시에 이름, 주소, 카테고리는 변경될 수 있습니다.
+                                        </p>
+                                    </div>
+                                </div>
+                                <button type="button" class="under poply_close" onclick="toggle_layer($('#elev_note'))">
+                                    <span class="blind">갤러리 전체보기 레이어 닫기</span>
+                                    <em class="sp_img icon_lyclose"></em>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </main>
+
+        <footer></footer>
+
+    </div>
 </body>
 </html>
