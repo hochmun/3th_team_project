@@ -397,6 +397,7 @@ article, aside, figcaption, figure, footer, header, nav, section, main {
     background-position: -56px -168px;
     vertical-align: top;
 }
+.newvisit_history .open .icon_listmore{background-position:-73px -168px }
 
 .bnt_newvisit_more {
     position: absolute;
