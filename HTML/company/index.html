@@ -1,10 +1,390 @@
+
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+<html lang="ko" class="no-js" id="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="title" content="국내 최대 커뮤니티 포털 지시인사이드 갤러리">
+    <meta name="description" content="국내 최대 커뮤니티 포털 지시인사이드. 힛갤러리, 유저이슈 등 인터넷 트렌드 총 집합">
+  
+    <!-- E: Open Graph Meta Tag -->
+    <title>지시인사이드</title>
+    <link rel="shortcut icon" href="/img/company/cp_logo_icon.ico">
+    <link rel="apple-touch-icon-precomposed" href="/img/company/cp_dcinside_icon.png">
+    <!-- S: CSS -->
+    <link rel="stylesheet" href="/css/company/animage.min.css"/>
+    <link rel="stylesheet" href="/css/company/common.css"/>
+    <!-- E: CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/company/common.ui.js"></script>
+    <script type="text/javascript" src="/js/company/ctr.cookie.min.js"></script>
+  
+    <script type="text/javascript" src="/js/company/company.js"></script>
     
-</body>
+  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+  <style>.js #fouc {display: none}</style>
+  <script>
+  function toggleLyr(type){
+          if($('.'+type+'_lyr').css('display') == 'none') {
+            $('.'+type+'_lyr').show();
+          }else{
+            $('.'+type+'_lyr').hide();
+          }
+        }
+        $(document).on('mouseup', function(e){
+          if(!$(e.target).hasClass('company_box') && !$(e.target).parents().hasClass('company_box') ) $('.business_lyr').hide();  	
+        });
+  </script>
+
+
+
+  </head>
+  <body>
+  <!--loading-->
+  <div class="loading">
+  <div class="spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+  </div>
+  </div>
+  <!--//.loading-->
+  <div class="wrap" id="fouc">
+    <header class="header">
+      <div class="lang-sel-box">
+        <div class="header-inner">
+          <div class="lang-sel-box">
+            <div class="lang-rt">      
+              <div class="lang-setting">
+                <a href="" class="language">KOREAN</a>
+                <ul class="lang-setting-lst">
+                  <li><a href="/company/index/ko">KOREAN</a></li>
+                  <li><a href="/company/index/en">ENGLISH</a></li>
+                  <li><a href="/company/index/ch">CHINESE</a></li>
+                  <li><a href="/company/index/ja">JAPANESE</a></li>
+                </ul>
+              </div>
+            </div> 
+          </div>
+          <h1 class="logo"><a href="http://www.gcinside.com/">지시인사이드</a></h1>
+        </div>
+      </div><!-- //.lang-sel-box -->
+        
+      <div class="header-inner full">
+        <div class="gnb-box">
+          <ul class="gnb">
+          
+                      <li class="m"><a href=""><span>회사소개</span></a></li>
+            <li class="m"><a href=""><span>제휴안내</span></a></li>
+                      
+          </ul>
+        </div><!-- //.gnb-box -->
+      </div>
+    </header>
+    
+      <div class="visual-group">
+      <div class="vsimg-m-wrap animated fadeInUp"><img src="/img/company/cp_vs_m1.png" alt="" class="vsimg-m"></div>   
+      <div class="vsimg-w-wrap animated fadeInUp"><div class="vsimg-w"></div></div>
+      <h2 class="vs-tit animated fadeInDown">인터넷 트렌드의 중심<br> <strong>지시인사이드</strong></h2>
+      <div class="wifi-wrap animated show delay-06s"><div class="wifiicon"></div></div>
+      <div class="wifi-wrap-m animated show delay-06s"><div class="wifiicon_m"></div></div>
+      <div class="txt-box">
+        <div class="txt1">일일 페이지 뷰</div>
+        <div class="txt2"><span id="counterKo"></span></div>
+      </div><!-- //.txt-box -->
+    </div><!-- //.visual-group -->
+      
+    <div class="container">
+    
+        <section class="grid" id="company">
+        <div class="intro-group">
+          <div class="company">
+            <div class="grid-inner">
+              <h3 class="tit">회사소개</h3>
+              <div class="txt brno">
+                커뮤니티 포털 지시인사이드는 대한민국 대표 커뮤니티로서 지금까지 인터넷 문화의 한 축을 담당해 왔습니다.<br>
+                현재 PC와 모바일을 통해 갤러리, 마이너 갤러리, 갤로그, 지시위키 등 다양한 서비스를 제공하고 있으며, 국내 최고 커뮤니티 사이트로 자리매김하고 있습니다.
+              </div>
+            </div><!-- //.company -->
+          </div><!-- //.grid-inner -->
+          <div class="service">
+            <div class="grid-inner">
+              <h3 class="tit">주요 서비스</h3>
+              <ul class="service-lst">
+                <li>
+                  <span class="icon gall"></span>
+                  <div class="caption">
+                    <span class="lst-tit">갤러리</span>
+                    <p class="lst-txt">이미지와 게시판이 결합된 커뮤니티 서비스입니다. 게임, 스포츠, 인물, 방송, 연예 등 사회 각 분야에 대한 3천여 개의 갤러리가 있습니다.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="icon mgall"></span>
+                  <div class="caption">
+                    <span class="lst-tit">마이너 갤러리</span>
+                    <p class="lst-txt">이용자가 직접 갤러리를 만들고 운영할 수 있는 갤러리의 서브 서비스입니다. 3만여 개의 마이너 갤러리가 운영되고 있습니다.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="icon mweb"></span>
+                  <div class="caption">
+                    <span class="lst-tit">모바일 웹/앱</span>
+                    <p class="lst-txt">모바일 웹/앱 서비스는 지시인사이드의 커뮤니티를 스마트폰, 태블릿 PC 등에서도 사용할 
+                    수 있게 제공하는 최적화 된 모바일 서비스입니다.  웹에서의 커뮤니티 운영 노하우와 
+                    모바일의 특성을 결합한 콘텐츠, 기능을 지속적으로 업데이트하고 있습니다.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span class="icon dccon"></span>
+                  <div class="caption">
+                    <span class="lst-tit">지시콘</span>
+                    <p class="lst-txt">지시콘은 이용자 누구나 자유롭게 제작하여 갤러리에서 무료로 이용할 수 있는 이모티콘 서비스입니다. 
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span class="icon wiki"></span>
+                  <div class="caption">
+                    <span class="lst-tit">지시위키</span>
+                    <p class="lst-txt">이용자가 함께 문서를 만들어가는 위키 서비스입니다.
+                    진지함과 지시식 유머가 담긴 창작 문서들이 업데이트 됩니다.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <span class="icon galloge"></span>
+                  <div class="caption">
+                    <span class="lst-tit">갤로그</span>
+                    <p class="lst-txt">갤로그는 갤러리와 블로그를 결합한 개인 미디어 서비스입니다. 자신의 갤러리 활동을 쉽게 확인할 수 있고, 다른 이용자와 교류할 수 있는 방명록 기능 등이 제공됩니다.</p>
+                  </div>
+                </li>
+              </ul>
+            </div><!-- //.grid-inner -->
+          </div><!-- //.service -->
+        </div><!-- //.intro-group -->
+      </section>
+      
+      <section class="grid" id="alliance">
+        <div class="alliance-group">
+          <div class="grid-inner">
+            <h3 class="tit">제휴안내</h3>
+            <p class="txt">업무 제휴와 관련하여 접촉을 원하신다면 아래 메뉴를 이용해 주세요.</p>
+            <div class="alliance-lst-wrap">
+              <ul class="alliance-lst">
+                <li>
+                  <div class="alliance-box">
+                    <div class="alliance-box-inner">
+                      <div class="lt">
+                        <span class="lst-tit">사업 제휴 문의</span>
+                        <p class="lst-txt">신규사업, 서비스 제휴</p>
+                      </div>
+                      <span class="rt">
+                        <button class="btn-suggest" type="button" onClick="parent.location='mailto:dcinside.aowlrxm14@gmail.com'"/>제안하기</button>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="alliance-box">
+                    <div class="alliance-box-inner">
+                    <div class="lt">
+                      <span class="lst-tit">광고, 마케팅 문의</span>
+                      <p class="lst-txt">디스플레이 광고, 이벤트,<br>공동 프로모션, 마케팅 제휴 등</p>
+                    </div>
+                    <span class="rt">
+                                          <a class="btn-suggest linkCh" href="mailto:dcinside.aowlrxm14@gmail.com">제안하기</a>
+                                        </span>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="alliance-box">
+                    <div class="alliance-box-inner">
+                    <div class="lt">
+                      <span class="lst-tit">콘텐츠 제휴 문의</span>
+                      <p class="lst-txt">뉴스, 지시콘 등<br>콘텐츠 관련 제휴</p>
+                    </div>
+                    <span class="rt">
+                      <button class="btn-suggest" type="button" onClick="parent.location='mailto:dcinside.aowlrxm14@gmail.com'"/>제안하기</button>
+                    </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div><!-- //.alliance-lst-wrap -->
+          </div><!-- //.grid-inner -->
+        </div><!-- //.alliance-group -->
+      </section>
+
+      <section class="grid" id="recruit">
+        <div class="people-group">
+          <div class="grid-inner">
+            <h3 class="tit">인재상</h3>
+            <div class="people-box">
+              <div class="people-img"><img src="/img/company/cp_incurute.png" alt=""></div>
+              <div class="people-top-img"><img src="/img/company/cp_m_people.png" alt="" class=""></div>
+              <ul class="people-lst">
+                <li class="blue">
+                  <span class="lst-tit">Frontier<em>개척자</em></span>
+                  <div class="lst-txt">
+                    급변하는 인터넷 환경에 대응하고<br>
+                    새로운 것에 도전하는 개척정신이<br> 
+                    자시인사이드인의 역량입니다.
+                  </div>
+                </li>
+                <li class="red">
+                  <span class="lst-tit">Passion<em>열정</em></span>
+                  <div class="lst-txt">
+                    세상을 바꾼 곳에는 모두 열정이<br> 
+                    있었습니다. 높은 열정이야말로<br> 
+                    지시인사이드인의 최고 자질입니다.<br> 
+                  </div>
+                </li>
+                <li class="skyblue">
+                  <span class="lst-tit">Fun<em>재미</em></span>
+                  <div class="lst-txt">
+                    이용자에게 즐거움을 주는 사이트,<br> 
+                    서로를 즐겁게 해주는 회사 구성원<br>
+                    이것이 지시인사이드인의 목표입니다.
+                  </div>
+                </li>
+                <li class="yellow">
+                  <span class="lst-tit">Freedom<em>자유</em></span>
+                  <div class="lst-txt">
+                    공유와 개방!<br>
+                    보다 자유로운 인터넷 세상을<br>
+                    만드는 것이 지시인사이드인의<br> 
+                    철학입니다. 
+                  </div>
+                </li>
+              </ul>
+            </div><!-- //.people-box -->
+          </div><!-- //.grid-inner -->
+        </div><!-- //.people-group -->
+      </section>
+
+  <script>document.getElementById("fouc").style.display="block";</script>
+  <script>
+                  $(document).ready(function() {
+                      $('.loading').show();
+                  });
+                  $(window).on('load', function() {
+                      $('.loading').hide();
+                  });
+                  //비쥬얼 숫자
+                  window.onload = function(){
+                      new numberCounter("counterKo", 100000000);
+                      
+                  }
+
+                  function numberCounter(target_frame, target_number) {
+                  this.count = 0; this.diff = 0;
+                  this.target_count = parseInt(target_number);
+                  this.target_frame = document.getElementById(target_frame);
+                  this.timer = null;
+                  this.counter();
+                  };
+                  numberCounter.prototype.counter = function() {
+                      var self = this;
+                      this.diff = this.target_count - this.count;
+
+                      if(this.diff > 0) {
+                          self.count += Math.ceil(this.diff / 5);
+                      }
+
+                      this.target_frame.innerHTML = this.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                      
+                      if(this.count < this.target_count) {
+                          this.timer = setTimeout(function() { self.counter(); }, 15);
+                      } else {
+                          clearTimeout(this.timer)
+                        
+                          $('#counterKo').css('display', 'none').fadeIn();
+                          var explode = function(){
+                              // alert('뿅');
+                              $('#counterKo').text('약 1억 7천만');
+                          };
+                          setTimeout(explode, 20);
+
+                      }
+                      
+                  };
+
+  </script>
+    
+    </div><!-- //.container -->
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="grid-inner">
+          <a href="javascript:;" class="gotop">맨위로</a>
+        </div>
+      </div><!-- //.footer-top -->
+      <div class="grid-inner">  
+        <div class="footer-box">
+          <ul class="footer-lst">
+            <li><a class="ftlnkcompany" href="https://www.gcinside.com/company/index/ko">회사소개</a></li>
+            <li><a class="ftlnkad" href="https://nstatic.gcinside.com/dc/dcad/w/index.html">광고안내</a></li>
+            <li><a class="ftlnkpolicy" href="https://nstatic.gcinside.com/dc/w/policy/policy_index.html">이용약관</a></li>
+            <li><a class="ftlnkprivacy" href="https://nstatic.gcinside.com/dc/w/policy/privacy_index.html">개인정보처리방침</a></li>
+            <li><a class="ftlnkyouth" href="https://nstatic.gcinside.com/dc/w/policy/youth_policy.html">청소년보호정책</a></li>   
+          </ul>
+          <p class="copy">Copyright ⓒ 1999 - 2023 dcinside. All rights reserved.</p>
+        </div>
+      </div><!-- //.grid-inner -->
+    </footer>
+    <!-- layer -->
+    
+    <div class="poply business_lyr company_lyr" style="display:none;">
+      <div class="popbox company_box">
+        <p class="txt">
+        사업 제휴 제안서 유형을 선택해 주세요.        <span class="sub">(파일 첨부 양식 이용 시 구글 로그인이 필요합니다.)</span>
+        </p>
+        <div class="btnbox">
+          <a href="https://forms.gle/3nqATLBUsZkcM3rLA" target="_blank" class="btn"><span>일반 양식</span></a>
+          <a href="https://forms.gle/Z6dmDrStKeskeKZe7" target="_blank" class="btn"><span>파일 첨부 양식<br><span class="sub">(구글 로그인 필요)</span></span></a>
+        </div>
+        <button type="button" class="btnclose" onclick="toggleLyr('company')">
+          <span class="blind">닫기</span>
+          <span class="line"></span><span class="line"></span>
+        </button>
+      </div>
+  </div>
+
+
+  <div class="poply business_lyr content_lyr" style="display:none;">
+      <div class="popbox company_box">
+          <p class="txt">
+            콘텐츠 제휴 제안서 유형을 선택해 주세요.          <span class="sub">(파일 첨부 양식 이용 시 구글 로그인이 필요합니다.)</span>
+          </p>
+          <div class="btnbox">
+            <a href="https://forms.gle/vYWemW7NmrXfbeCs5" target="_blank" class="btn"><span>일반 양식</span></a>
+            <a href="https://forms.gle/R2CkzVmYaK85i8Gn9" target="_blank" class="btn"><span>파일 첨부 양식<br><span class="sub">(구글 로그인 필요)</span></span></a>
+          </div>
+          <button type="button" class="btnclose" onclick="toggleLyr('content')">
+            <span class="blind">닫기</span>
+            <span class="line"></span><span class="line"></span>
+          </button>
+        </div>
+      <!-- //211108 레이어 추가-->
+    </div></div><!-- //.wrap -->
+
+
+  <script>document.getElementById("fouc").style.display="block";</script>
+  <script>
+      $(document).ready(function() {
+          $('.loading').show();
+      });
+      $(window).on('load', function() {
+          $('.loading').hide();
+      });
+  </script>
+
+
+  </body>
 </html>
+
