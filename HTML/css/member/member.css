@@ -1,0 +1,226 @@
+
+/* 헤더 */
+.gcheader.bg{background:#29367c}
+.gcheader.bg .gc_logo{top:30px}
+.gcheader.bg .area_links{top:47px}
+.gcheader.bg a{color:#fff}
+.gcheader.bg .gchead{height:85px}
+.width868 .gchead{width: 868px;}
+.gchead{position: relative; margin: 0 auto;}
+.gcheader.bg .gc_logo {top: 30px;}
+.gc_logo {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    text-align: center;
+}
+.gc_logo a {
+    display: block;
+    float: left;
+}
+/* 로그인 */
+.login_wrap #container{margin-top: 37px;}
+.content.login{margin: 205px auto 233px;}
+.login_wrap.login_page.kap_codewrap{height: 348px;}
+.login_wrap .login_page{
+    width: 700px; height: 300px; margin: 0 auto; 
+    border: 2px #29367c solid; border-radius: 3px;
+}
+.login_inputbox{float: left; background: #fff;}
+.login_inputbox .inner{width: 290px; padding: 25px 0px 0 56px;}
+.login_inputbox .inner input:first-of-type, .bg_box .form_box input:first-of-type {
+    margin-top: 0px;
+}
+.login_inputbox .inner input, .bg_box .form_box input {
+    margin-top: 7px;
+}
+.login_inputbox .inner input.id:first-of-type {
+    margin-top: 20px;
+}
+.login_inputbox .inner input:first-of-type, .bg_box .form_box input:first-of-type {
+    margin-top: 0px;
+}
+.login_inputbox .int.bg {
+    height: 41px;
+    border: none;
+    line-height: 41px;
+}
+.idip_checkbox {
+    margin-top: 10px;
+}
+.idip_checkbox .checkbox {
+    float: left;
+}
+.login_inputbox .inner input:first-of-type, .bg_box .form_box input:first-of-type {
+    margin-top: 0px;
+}
+.idip_checkbox .checkbox.type1 label {
+    vertical-align: -2px;
+}
+.chk_ip {
+    float: right;
+    margin: 0px 0 0 3px;
+    color: #555;
+}
+.chk_ip .ip.on {
+    background-position: 0px -73px;
+}
+.chk_ip .ip {
+    display: inline-block;
+    width: 17px;
+    height: 13px;
+    margin-right: 6px;
+    line-height: 11px;
+    vertical-align: -2px;
+    background-position: -27px -73px;
+}
+.logon_option {
+    border-top: 1px #aaa dashed;
+    margin-top: 16px;
+    padding-top: 15px;
+    text-align: center;
+}.logon_option a {
+    font-size: 14px;
+    color: #000;
+}
+.ban_box {
+    float: right;
+    width: 298px;
+    background: #f3f3f3;
+}
+.kap_codewrap .ban_box .inner {
+    height: 252px;
+    margin: 48px auto 48px;
+}
+.ban_box .inner {
+    width: 250px;
+    height: 250px;
+    margin: 25px auto 25px;
+}
+.login_wrap .login_page.kap_codewrap {
+    height: 348px;
+}
+/* 메인 */
+.width868 #container{width: 868px;}
+.blind {
+    position: absolute;
+    overflow: hidden;
+    visibility: hidden;
+    margin: -1px;
+    width: 0px;
+    height: 0px;
+    top: -9999px;
+    font-size: 0;
+}
+.int.bg {
+    background: #f3f3f3;
+}
+.int {
+    width: 100%;
+    height: 35px;
+    padding: 0px 9px 0 9px;
+    line-height: 35px;
+    border: 1px #dedcde solid;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #555;
+}
+.btn_blue.small.btn_wfull {
+    border-radius: 0;
+    width: 100%;
+    height: 41px;
+    line-height: 39px;
+    margin: 7px 0 0 0;
+    font-size: 14px;
+    overflow: hidden;
+}
+.btn_lightgreen.small, .btn_yeongrey.small, .btn_lightpurple.small, .btn_blue.small, .btn_lightblue.small, .btn_grey.small, .btn_jeangrey.small, .btn_white.small, .btn_red.small, .btn_lightgrey.small, .btn_red.small, .btn_green.small, .btn_yeonpurple.small, .btn_mediumblue.small, .btn_yeongreen.small, .btn_yeonblue.small, .btn_tyeonblue.small {
+    height: 31px;
+    line-height: 29px;
+    margin-left: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+}
+button.smaller, button.small {
+    overflow: hidden;
+}
+.btn_blue {
+    background: #3b4890;
+    border-color: #29367c;
+    text-shadow: 0px -1px #1d2761;
+    color: #fff;
+}
+.btn_whitepurple, .btn_lightpurple, .btn_lightgreen, .btn_yeongrey, .btn_white_ccc, .btn_yeongrey, .btn_blue, .btn_lightblue, .btn_grey, .btn_lightgrey, .btn_white, .btn_red, .btn_jeangrey, .btn_mediumgrey {
+    width: 85px;
+    height: 40px;
+    padding-right: 2px;
+    line-height: 36px;
+    margin-left: 3px;
+    border-width: 1px 1px 3px 1px;
+    border-style: solid;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.checkbox.type1 {
+    padding-left: 23px;
+}
+.checkbox {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 13px;
+    line-height: 14px;
+}
+.checkbox.type1 input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+}
+.checkbox input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+.checkbox.type1 input + .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-position: -197px -294px;
+}
+.checkmark {
+    background-image: url(https://nstatic.gcinside.com/gc/w/images/sp/sp_img.png);
+    background-repeat: no-repeat;
+}
+.ip {
+    font-family: tahoma,sans-serif;
+    font-size: 11px;
+    color: #999;
+}
+.sp_loginout {
+    background-image: url(https://nstatic.gcinside.com/gc/w/images/sp/sp_loginout.png?1);
+    background-repeat: no-repeat;
+}
+
+.clear:after {
+    clear: both;
+    display: block;
+    visibility: hidden;
+    content: "";
+}
+.gc_logo:after {
+    clear: both;
+    display: block;
+    visibility: hidden;
+    content: "";
+}
