@@ -6,9 +6,26 @@
     text-align: left;
 }
 .pop_wrap.gray1px {border: 1px solid #ccc;}
+.pop_content{overflow:hidden;position:relative}
 
 .visit_bookmark .pop_wrap.gray1px {
     width: 100%;
     box-sizing: border-box;
     z-index: 4000;
 }
+.visit_bookmark .pop_content{overflow:visible}
+.visit_bookmark .under_catelist{padding:0 8px 0px}
+
+.under_catelist{width:514px;height:auto;padding:12px}
+.under_catelist.newvisit_layer{width:702px;min-height:212px;font-size:12px;line-height:1.5}
+.under_catelist.newvisit_layer .under_listbox{margin-left:-19px;margin-top:10px}
+.under_catelist .under_listbox{overflow:hidden;min-height:66px;margin-top:9px}
+
+.visit_bookmark .tabcon_bottom{position:relative;height:20px;margin:5px 0 13px}
+.visit_bookmark .under_catelist.newvisit_layer{width:100%!important;min-height:197px;box-sizing:border-box}
+.visit_bookmark .under_catelist.newvisit_layer .under_listbox{min-height:123px;padding:0 10px;margin-left:-17px}
+.visit_bookmark .tabslist li{float:left;width:50%;text-align:center;border-bottom:1px #3b4890 solid }
+.visit_bookmark .tabslist li button{position:relative;width:100%;height:40px;font-size:14px;color:#333;font-weight:bold;}
+.visit_bookmark .tabslist li.on button{color:#3b4890}
+
+.visit_bookmark .list_modi{position:absolute;right:6px;bottom:-1px;color:#29367c;text-decoration:underline;padding:3px}

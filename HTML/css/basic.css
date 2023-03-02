@@ -16,6 +16,10 @@ a {
     text-decoration: none;
 }
 
+button{cursor: pointer;}
+
+input, select, textarea, button {border-radius: 0; vertical-align: middle;}
+
 body, button, input, select, table, textarea {
     font-size: 12px;
     font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", arial, Dotum, 돋움, sans-serif;
@@ -402,3 +406,12 @@ article, aside, figcaption, figure, footer, header, nav, section, main {
     color: #3b4890;
     text-decoration: underline;
 }
+
+.newvisit_list{position:relative;white-space:nowrap}
+.newvisit_list li{display:inline-block;margin-left:15px;font-size:12px}
+.newvisit_list li:first-child{margin-left:0px}
+.newvisit_list li a{display:inline-block;color:#444;letter-spacing:-0.075em}
+.newvisit_list li .icon_mini{vertical-align:text-top;margin-top:3px}
+.newvisit_list .btn_visit_del{position:inherit;margin-left:12px;line-height:38px}
+.newvisit_list .btn_visit_del .blind{display: none}
+.newvisit_list .icon_visit_del{background-position:-264px -961px }

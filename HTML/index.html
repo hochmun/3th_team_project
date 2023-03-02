@@ -7,8 +7,11 @@
     <link rel="stylesheet" href="./css/basic.css">
     <link rel="stylesheet" href="./css/popup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="./js/navigation.js"></script>
     <script type="text/javascript" src="./js/common.js"></script>
+    <script type="text/javascript" src="./js/lately_visit_new.js"></script>
+    <script type="text/javascript" src="./js/ctr_cookie.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -84,21 +87,48 @@
         <!-- 최근 방문 탭 -->
         <div class="visit_bookmark">
             <div class="newvisit_history vst">
-                <h3 class="tit vst_title 1_div_style">최근 방문</h3>
-                <h3 class="tit bookmark_title f_div_style" style="display: none;">최근 방문</h3>
-                <button type="button" class="btn_open">
+                <h3 class="tit vst_title l_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
+                <button type="button" class="btn_open" onclick="openLately()">
                     <em class="sp_img icon_listmore"></em>
                 </button>
                 <button type="button" class="bnt_visit_prev">
                     <em class="sp_img icon_prev"></em>
                 </button>
-                <div class="newvisit_box"></div>
+                <div class="newvisit_box">
+                    <!-- 최근방문 갤러리 리스트 -->
+                    <ul class="newvisit_list vst_listbox l_div_style"></ul>
+
+                    <!-- 즐겨찾기 갤러리 리스트 -->
+                    <ul class="newvisit_list bkmark_listbox f_div_style" style="display:none"></ul>
+                </div>
                 <button type="button" class="bnt_visit_next">
                     <em class="sp_img icon_next"></em>
                 </button>
-                <button type="button" class="bnt_newvisit_more">전체</button>
+                <button type="button" class="bnt_newvisit_more" onclick="openLately()">전체</button>
                 <!-- 최근방문 / 즐겨찾기 레이어 -->
-                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;" id="visit_history_lyr">
+                    <div class="pop_content under_catelist newvisit_layer">
+                        <div class="tabs">
+                            <ul class="tabslist clear">
+                                <li class="tab_l"><button type="button" onclick="tabLately('lately')">최근 방문</button></li>
+                                <li class="tab_f"><button type="button" onclick="tabLately('favorite')">즐겨찾기</button></li>
+                            </ul>
+                        </div>
+                        <div class="toptab_content">
+                            <div class="visit_div 1_div_style">
+                                <!-- 최근 방문 리스트  -->
+							    <div class="visit_tablist" style="display:block">
+                                    <ul class="under_listbox vst_list"></ul>
+                                    <div class="tabcon_bottom">
+                                        <button type="button" class="list_modi">전체 삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="favorite_div f_div_style"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
