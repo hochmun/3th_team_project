@@ -1,0 +1,14 @@
+@charset "utf-8";
+.pop_wrap {
+    position: absolute;
+    background: #fff;
+    z-index: 4001;
+    text-align: left;
+}
+.pop_wrap.gray1px {border: 1px solid #ccc;}
+
+.visit_bookmark .pop_wrap.gray1px {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 4000;
+}
