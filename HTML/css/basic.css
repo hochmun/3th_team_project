@@ -415,3 +415,18 @@ article, aside, figcaption, figure, footer, header, nav, section, main {
 .newvisit_list .btn_visit_del{position:inherit;margin-left:12px;line-height:38px}
 .newvisit_list .btn_visit_del .blind{display: none}
 .newvisit_list .icon_visit_del{background-position:-264px -961px }
+
+
+/*하단영역*/
+.gcfoot{padding-bottom:50px}
+.gc_all .tit{margin-right:22px;color:#29367c;letter-spacing:0.025em}
+.notice,.all_bottom{height:38px;padding:0 19px 0 16px;line-height:40px;color:#333}
+.notice{border-bottom:1px solid #ccc}
+.gc_all{width:998px;margin:23px auto 0;border-left:1px solid #ccc;border-top:2px solid #29367c;border-right:1px solid #ccc;border-bottom:1px solid #29367c}
+.info_policy{width:1000px;margin:28px auto 0;text-align:center}
+.copyright{width:1000px;margin:10px auto 0;text-align:center;font-family:tahoma,sans-serif;font-size:12px;color:#333}
+
+.info_policy a{color:#333}
+.info_policy a:hover{text-decoration:underline}
+.info_policy a:before{content:"";display:inline-block;width:1px;height:11px;margin:0 10px;vertical-align:-1px;background:#d7d7d7}
+.info_policy a:first-child:before{display:none}
