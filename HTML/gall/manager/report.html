@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/member/reset.css">
+    <link rel="stylesheet" href="/css/manager.css">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/sortable.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+
+        <!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcinside_main_logo.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                                <li><a href="#">게임</a></li>
+                                <li><a href="#">연예/방송</a></li>
+                                <li><a href="#">스포츠</a></li>
+                                <li><a href="#">교육/금융/IT</a></li>
+                                <li><a href="#">여행/음식/생물</a></li>
+                                <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title 1_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">최근 방문</h3>
+                <button type="button" class="btn_open">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box"></div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
+            </div>
+        </div>
+
+        <main>
+            <div class="gallery-setting-wrap">
+                <form action="gallery-setting">
+                    <div class="btns col-md-12">
+                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                        <input class="btn btn-gall" type="submit" value="저장">
+                    </div>
+                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                        <ul class="navbar-nav mr-auto mt-2">
+                            <li class="nav-item">
+                                <a href="manage.html">기본</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="permission.html">권한</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="category.html">글머리</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="report.html">신고</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="log.html">기록</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="blocks.html">제한</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="search.html">검색</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="notice.html">공지</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <h3 class="col-md-12 gall-settings-title">신고</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-4">
+                            <label for="id_report_public">모든 사용자의 신고 받기 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="[사용]으로 표시하는 경우 채널 내 콘텐츠 신고를 일반 유저에게 공개하고 채널 내 신고를 채널 매니저가 관리합니다. 매니저는 사용 유무와는 별도로 아카라이브 관리자에게 콘텐츠 신고가 가능합니다."></span></label>
+                            <select class="form-control" id="form.reportPublic" name="reportPublic">
+                                <option value="1" selected>사용</option>
+                                <option value="0">사용 안 함</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_report_alarm">신고 일 수 제한 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="현재 시점에서 지정된 기간 이전에 생성된 콘텐츠만 신고를 접수합니다. 0일, 혹은 지정되어있지 않은 경우 기간 제한이 적용되지 않습니다."></span> </label>
+                            <div class="input-group">
+                                <input class="form-control" type="number" id="id_reportAlarmCount" name="reportAlarmCount" value="1">
+                                <div class="input-group-text input-group-append">건 이상 신고시 알리기</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_report_alarm">신고 알림 기준</label>
+                            <div class="input-group">
+                                <input class="form-control" type="number" id="id_reportAlarmCount" name="reportAlarmCount" value="1">
+                                <div class="input-group-text input-group-append">건 이상 신고시 알리기</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="table-responsive">
+                                <table class="table align-middle horizontal-scrollable">
+                                    <colgroup>
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th title="주소에 표시되는 글머리의 이름입니다.">신고 접수 사유 카테고리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        <tr>
+                                            <input type="hidden" name="reportCategoryCodes" value="1677489049F922DB87">
+                                            <td nowrap>갤러리 공지 위반</td>
+                                            <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
+                                        </tr>
+                                        <tr>
+                                            <input type="hidden" name="reportCategoryCodes" value="16775735045009BA8F">
+                                            <td nowrap>도배</td>
+                                            <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="4" class="align-middle">
+                                            <a href="#" data-action="table-add-row">추가...</a>
+                                            </td>
+                                        </tr>
+                                        <tr class="hidden" data-action="table-sample" data-idx-from="1">
+                                            <td>
+                                            <input type="text" name="reportCategoryTitles" size="5" class="form-control form-control-static">
+                                            </td>
+                                            <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="col-md-12 gall-settings-title">신고 처리 템플릿</h3>
+                    <div class="form-group col-md-12">
+                        <div class="table-responsive">
+                            <table class="table align-middle horizontal-scrollable sortable-list-wrapper">
+                                <colgroup>
+                                    <col>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>사유</th>
+                                        <th>조치 내역</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sortable-list report-action-template" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
+                                    <tr class="sortable-list__item">
+                                        <td><span class="ion-android-menu sortable-list__handle"></span></td>
+                                        <td nowrap>
+                                        분탕
+                                            <input type="hidden" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].code" value="733d3813-99a4-4906-9971-343b1b842d2f">
+                                            <input type="hidden" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].title" value="분탕">
+                                        </td>
+                                        <td>
+                                            <label class="form-check-inline col-form-label mr-3">
+                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].is_should_be_delete" checked>
+                                                <span>삭제</span>
+                                            </label>
+                                            <label class="form-check-inline col-form-label mr-3">
+                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].is_should_be_block" checked>
+                                                <input class="form-control form-control-sm mr-2" type="number" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].block_duration" value="1" style="width: 10rem;">
+                                                <span>시간 차단</span>
+                                            </label>
+                                        </td>
+                                        <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4" class="align-middle">
+                                            <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.report-action-template">추가...</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="1">
+                                        <td class="ion-android-menu sortable-list__handle">
+                                            <input type="hidden" name="report_actions.new.order[]" value="new-%idx%">
+                                        </td>
+                                        <td>
+                                            <input type="text" name="report_actions.new.items[new-%idx%].title" size="5" class="form-control form-control-sm form-control-static">
+                                        </td>
+                                        <td>
+                                            <label class="form-check-inline col-form-label mr-3">
+                                                <input class="form-check-input" type="checkbox" name="report_actions.new.items[new-%idx%].is_should_be_delete">
+                                                <span>삭제</span>
+                                            </label>
+                                            <label class="form-check-inline col-form-label mr-3">
+                                                <input class="form-check-input" type="checkbox" name="report_actions.new.items[new-%idx%].is_should_be_block">
+                                                <input class="form-control form-control-sm mr-2" type="number" name="report_actions.new.items[new-%idx%].block_duration" style="width: 10rem;">
+                                                <span>시간 차단</span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <h3 class="col-md-12 gall-settings-title">안내 문구</h3>
+                    <div class="form-group col-md-12">
+                        <label>신고 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="신고 사유 작성 전 표시될 안내 문구를 지정합니다."></span></label>
+                        <textarea class="form-control" name="placeholderReport" rows="3">신고사유를 제대로 선택 해 주세요.</textarea>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer></footer>
+
+    </div>
+</body>
+</html>
