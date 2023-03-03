@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/member/reset.css">
     <link rel="stylesheet" href="./css/basic.css">
     <link rel="stylesheet" href="./css/popup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -132,8 +133,854 @@
             </div>
         </div>
 
-        <main></main>
+        <!-- 메인 -->
+        <main id="container">
+            <div class="main_content clear">
+                <!-- 왼쪽 -->
+                <section class="left_content">
+                    <!-- 내용 -->
+                    <article>
+                        <!--HIT 갤 -->
+                        <div class="content hit_con" id="hit_content">
+                            <header class="con_head">
+                                <h3 class="head_tit">
+                                    <a href="#">HIT 갤러리</a>
+                                </h3>
+                                <div class="pageing">
+                                    <div class="page_num">
+                                        <strong class="now_num" id="hitNum">1</strong>
+                                        /
+                                        <span class="total_num" id="hitTotal">3</span>
+                                    </div>
+                                    <div class="btn_box">
+                                        <button class="sp_main btn_prev" id="hit_prev"></button>
+                                        <button class="sp_main btn_next on" id="hit_next"></button>
+                                    </div>
+                                </div>
+                            </header>
+                            <ul class="con_list">
+                                <li class="hitL">
+                                    <a href="#" class="link_thumb main_logo">
+                                        <span class="img_box">
+                                            <img src="https://via.placeholder.com/173x127" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="hitL">
+                                    <a href="#" class="link_thumb main_logo">
+                                        <span class="img_box">
+                                            <img src="https://via.placeholder.com/173x127" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="hitL">
+                                    <a href="#" class="link_thumb main_logo">
+                                        <span class="img_box">
+                                            <img src="https://via.placeholder.com/173x127" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="hitL">
+                                    <a href="#" class="link_thumb main_logo">
+                                        <span class="img_box">
+                                            <img src="https://via.placeholder.com/173x127" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 메인 광고 배너1 -->
+                        <div class="leftbanner">
+                            <img src="https://via.placeholder.com/728x90" alt="">
+                        </div>
+                        <!-- 실시간 베스트 -->
+                        <div class="time_best">
+                            <header class="con_head">
+                                <div class="tablist">
+                                    <button type="button" class="tab_btn best main_tab_real_time_best on">실시간 베스트</button>
+                                </div>
+                                <a href="#" class="allview_go">실갤</a>
+                                <div class="pageing">
+                                    <div class="page_num">
+                                        <strong class="now_num realtimeNum">1</strong>
+                                        /
+                                        <span class="total_num realtimeTotal">6</span>
+                                    </div>
+                                    <div class="btn_box">
+                                        <button type="button" class="sp_main btn_prev realtime_prev"></button>
+                                        <button type="button" class="sp_main btn_next realtime_next on"></button>
+                                    </div>
+                                </div>
+                            </header>
+                            <!-- 실시간 베스트 기준 => 추천 수 100 이상? -->
+                            <!-- 최신순 25개씩 6페이지 -->
+                            <ul class="typet_list p_1">
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">17:30</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="main_log">
+                                        <div class="box bestimg">
+                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
+                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
+                                        </div>
+                                        <div class="box besttxt">
+                                            <p>제목</p>
+                                            <span class="num">[100]</span>
+                                        </div>
+                                        <div class="box best_info">
+                                            <span class="name">작성자 이름</span>
+                                            <span class="time">03-02</span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="typet_list p_2" style="display:none;"></ul>
+                            <ul class="typet_list p_3" style="display:none;"></ul>
+                            <ul class="typet_list p_4" style="display:none;"></ul>
+                            <ul class="typet_list p_5" style="display:none;"></ul>
+                            <ul class="typet_list p_6" style="display:none;"></ul>
+                            <div class="pageing">
+                                <div class="page_num">
+                                    <strong class="now_num realtimeNum">1</strong>
+                                    /
+                                    <span class="total_num realtimeTotal">6</span>
+                                </div>
+                                <div class="btn_box">
+                                    <button type="button" class="sp_main btn_prev realtime_prev"></button>
+                                    <button type="button" class="sp_main btn_next realtime_next on"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 메인 광고 배너2 -->
+                        <div class="leftbanner">
+                            <div class="ad_top">
+                                <img src="https://via.placeholder.com/728x90" alt="">
+                            </div>
+                        </div>
+                        <!-- 뉴스 -->
+                        <div class="content news_con" id="dna_content">
+                            <header class="con_head">
+                                <h3 class="head_tit">
+                                    <a href="#" target="_blank">뉴스</a>
+                                </h3>
+                            </header>
+                            <ul class="con_list">
+                                <li>
+                                    <a href="#" target="_blank" class="dna_thumb main_log">
+                                        <span class="img_box">
+                                            <!-- 가로 173 고정 -->
+                                            <img src="https://via.placeholder.com/173x116" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                            내용
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="dna_thumb main_log">
+                                        <span class="img_box">
+                                            <!-- 가로 173 고정 -->
+                                            <img src="https://via.placeholder.com/173x116" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                            내용
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="dna_thumb main_log">
+                                        <span class="img_box">
+                                            <!-- 가로 173 고정 -->
+                                            <img src="https://via.placeholder.com/173x116" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                            내용
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="dna_thumb main_log">
+                                        <span class="img_box">
+                                            <!-- 가로 173 고정 -->
+                                            <img src="https://via.placeholder.com/173x116" alt="">
+                                        </span>
+                                        <div class="txt_box">
+                                            <strong class="tit">제목</strong>
+                                            내용
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- 추천 글 -->
+                        <div class="content concept_con">
+                            <header class="con_head">
+                                <h3 class="head_tit">개념글</h3>
+                                <div class="clear">
+                                    <ul class="tab_comm">
+                                        <li><a href="javascript:void(0)" class="recomTab" data-cate_id="game">게임</a></li>
+                                        <li><a href="javascript:void(0)" class="recomTab" data-cate_id="enter">연예/방송</a></li>
+                                        <li><a href="javascript:void(0)" class="recomTab" data-cate_id="sports">스포츠</a></li>
+                                        <li><a href="javascript:void(0)" class="recomTab" data-cate_id="travel">여행/음식/생물</a></li>
+                                        <li><a href="javascript:void(0)" class="recomTab" data-cate_id="hobby">취미/생활</a></li>
+                                    </ul>
+                                    <div class="pageing">
+                                        <div class="page_num">
+                                            <strong class="now_num" id="recomNum">1</strong>
+                                            /
+                                            <span class="total_num" id="recomTotal">6</span>
+                                        </div>
+                                        <div class="btn_box">
+                                            <button type="button" class="sp_main btn_prev" id="recom_prev"></button>
+                                            <button type="button" class="sp_main btn_next on" id="recom_next"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </header>
+                            <section class="tab_container clear recomSection recom0">
+                                <h3 class="blind"></h3>
+                                <div class="wraping">
+                                    <div class="tab_content">
+                                        <div class="tab_header">
+                                            <h4 class="tit">
+                                                <a href="#" class="main_log" target="_blank">
+                                                    ㅁㅁ갤러리
+                                                    <span class="sp_img img_deco"></span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <ul class="con_list txt">
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="wraping">
+                                    <div class="tab_content">
+                                        <div class="tab_header">
+                                            <h4 class="tit">
+                                                <a href="#" class="main_log" target="_blank">
+                                                    ㅁㅁ갤러리
+                                                    <span class="sp_img img_deco"></span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <ul class="con_list txt">
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="wraping">
+                                    <div class="tab_content">
+                                        <div class="tab_header">
+                                            <h4 class="tit">
+                                                <a href="#" class="main_log" target="_blank">
+                                                    ㅁㅁ갤러리
+                                                    <span class="sp_img img_deco"></span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <ul class="con_list txt">
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="wraping">
+                                    <div class="tab_content">
+                                        <div class="tab_header">
+                                            <h4 class="tit">
+                                                <a href="#" class="main_log" target="_blank">
+                                                    ㅁㅁ갤러리
+                                                    <span class="sp_img img_deco"></span>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <ul class="con_list txt">
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                            <li><a href="#" target="_blank">게시글 제목</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </article>
+                    <!-- 갤시콘 배너 -->
+                    <article>
+                        <div class="content mall_con">
+                            <section class="tab_container clear">
+                                <div class="tab_content">
+                                    <a href="#">
+                                        <img src="https://via.placeholder.com/728x125" alt="">
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                </section>
+                <!-- 오른쪽 -->
+                <section class="right_content">
+                    <!-- 로그인 -->
+                    <div id="login" class="login_wrap mandudel">
+                        <div class="log_inr">
+                            <form id="login_process" autocomplete="off">
+                                <fieldset>
+                                    <div class="login_inp">
+                                        <div class="input_box">
+                                            <label for="user_id" id="idLabel" class="lab_login">아이디</label>
+                                            <input type="text" id="user_id" 
+                                            name="user_id" class="inp_txt" maxlength="50"
+                                            onfocus="$('#idLabel').html('');">
+                                        </div>
+                                        <div class="input_box">
+                                            <label for="pw" id="pwdLabel" class="lab_login">비밀번호</label>
+                                            <input type="password" id="pw" 
+                                            name="pw" class="inp_txt" maxlength="32"
+                                            onfocus="$('#pwdLabel').html('');">
+                                        </div>
+                                    </div>
+                                    <div class="login_set">
+                                        <button type="button" id="login_ok" class="btn_inout login">로그인</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                            <div class="options">
+                                <a href="#"><strong><em class="interval m">아이디</em>생성</strong></a>
+                                <a href="#" class="id">아이디찾기<em class="sp_img img_dot"></em></a>
+                                <a href="#" class="pw">비밀번호찾기</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 실시간 조회수 많은 갤 -->
+                    <article>
+                        <div class="content_box hotlive gall_rank" id="rank_gall">
+                            <div class="box_tit">
+                                <h3 class="tit">실북갤</h3>
+                                <span class="box_menu">
+                                    <a href="javacript:void(0)" class="rank_gall gallRankTab on">메인</a>
+                                    <a href="javacript:void(0)" class="rank_mgall mgallRankTab">마이너</a>
+                                    <a href="javacript:void(0)" class="rank_mini minigallRankTab">미니</a>
+                                </span>
+                            </div>
+                            <!-- 각 갤 마다 ol 5개 => 1위 부터 50위 까지 -->
+                            <!-- 각 ol마다 li 10개 -->
+                            <ol class="rank_list gall g_1">
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>1</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>2</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state">1</span>
+                                        <span class="sp_img ico_ranking up"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>3</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state">1</span>
+                                        <span class="sp_img ico_ranking up"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>4</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state">2</span>
+                                        <span class="sp_img ico_ranking down"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>5</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>6</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>7</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>8</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>9</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="busygall">
+                                        <span class="rank_num"><em>10</em></span>
+                                        <span class="rank_txt">갤러리 이름</span>
+                                        <span class="rank_state"> </span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                    </a>
+                                </li>
+                            </ol>
+                            <div class="box_bottom rank_more">11위 - 20위</div>
+                        </div>
+                    </article>
+                    <!-- 오른쪽 광고 배너 -->
+                    <div></div>
+                    <!-- 갤러리 랭킹 -->
+                    <article></article>
+                    <!-- 신생 갤 -->
+                    <article></article>
+                    <!-- 미디어 -->
+                    <article></article>
+                    <!-- 위키 -->
+                    <article></article>
+                    <!-- 오른쪽 하단 배너-->
+                    <article></article>
+                </section>
+            </div>
+        </main>
 
+        <!-- 푸터 -->
         <footer class="gcfoot">
             <div class="gc_all">
                 <div class="notice">
@@ -142,8 +989,42 @@
                 </div>
 
                 <div class="all_box mandudel">
-                    <div class="all_list"></div>
-                    <div class="all_bottom"></div>
+                    <div class="all_list">
+                        <dl>
+                            <dt><a href="#">갤러리</a></dt>
+                            <dd><a href="#">HIT 갤러리</a></dd>
+                            <dd><a href="#">실시간 베스트 갤러리</a></dd>
+                        </dl>
+                        <dl class="rankingGall">
+                            <dt>인기갤러리</dt>
+                        </dl>
+                        <dl>
+                            <dt>주요서비스</dt>
+                        </dl>
+                        <dl class="rollingGall">
+                            <dt><span>갤러리 순회</span></dt>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" target="_blank">갤시뉴스</a></dt>
+                        </dl>
+                        <dl>
+                            <dt><a href="#">디시미디어</a></dt>
+                        </dl>
+                    </div>
+                    <div class="all_bottom">
+                        <a href="#" target="_blank"><strong class="tit">광고안내</strong></a>
+                        <span class="list">
+                            <a href="#" target="_blank" class="link_info">디스플레이광고</a>
+                            <a href="#" target="_blank" class="link_info">프로모션</a>
+                            <a href="#" target="_blank" class="link_info">광고문의</a>
+                        </span>
+                        <span class="bottom_menu">
+                            <a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a>
+                            <a class="menu_link menu_fold" href="javascript:void(0);" style="display:block"><em class="sp_img icon_fold"></em>닫기</a>
+                            <a class="menu_link menu_open" href="javascript:void(0);" style="display:none"><em class="sp_img icon_open"></em>열기</a>
+                            <a class="menu_link" href="#top" ><em class="sp_img icon_up"></em>맨위로</a>
+                        </span>
+                    </div>
                 </div>
             </div>
 
