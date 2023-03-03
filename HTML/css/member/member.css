@@ -101,6 +101,17 @@
 .login_wrap .login_page.kap_codewrap {
     height: 348px;
 }
+.logon_option a::before {
+    content: "|";
+    display: inline-block;
+    font-size: 13px;
+    color: #d7d7d7;
+    padding: 0 4px 0 1px;
+    vertical-align: top;
+}
+.logon_option a:first-child::before {
+    display: none;
+}
 /* 메인 */
 .width868 #container{width: 868px;}
 .blind {
@@ -199,7 +210,7 @@ button.smaller, button.small {
     background-position: -197px -294px;
 }
 .checkmark {
-    background-image: url(https://nstatic.gcinside.com/gc/w/images/sp/sp_img.png);
+    background-image: url('/img/sp_img.png');
     background-repeat: no-repeat;
 }
 .ip {
@@ -208,7 +219,7 @@ button.smaller, button.small {
     color: #999;
 }
 .sp_loginout {
-    background-image: url(https://nstatic.gcinside.com/gc/w/images/sp/sp_loginout.png?1);
+    background-image: url('/img/sp_img.png');
     background-repeat: no-repeat;
 }
 
@@ -224,3 +235,59 @@ button.smaller, button.small {
     visibility: hidden;
     content: "";
 }
+.join_wrap .gcfoot, .login_wrap .gcfoot, .policy_wrap .gcfoot, .adult_wrap .gcfoot, .noaccess_wrap .gcfoot, .delet_wrap .gcfoot, .report_wrap .gcfoot, .woman_wrap .gcfoot, .pwcam_wrap .gcfoot {
+    margin-top: 80px;
+    border-top: 1px #29367c solid;
+}
+.gcfoot {
+    clear: both;
+    position: relative;
+    padding-bottom: 50px;
+    background: #fff;
+    /* z-index: 15; */
+}
+.width868 .gchead, .width868 #container, .width868 .info_policy, .width868 .copyright {
+    width: 868px;
+}
+.info_policy {
+    width: 1050px;
+    margin: 0px auto 0;
+    padding-top: 28px;
+    text-align: center;
+}
+.info_policy a {
+    color: #333;
+}
+.info_policy a:before {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 11px;
+    margin: 0 10px;
+    vertical-align: -1px;
+    background: #d7d7d7;
+}
+.copyright {
+    width: 1050px;
+    margin: 10px auto 0;
+    text-align: center;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-family: tahoma,sans-serif;
+    color: #333;
+}
+.info_policy a:first-child:before {
+    display: none;
+}
+.checkbox input + .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 14px;
+    height: 14px;
+    background-position: -264px -184px;
+}
+.checkmark{background-image:url('/img/sp_img.png');background-repeat:no-repeat}
+/*체크박스 선택시 디자인*/
+.checkbox.type1 input:checked + .checkmark{top:0;left:0px;width:17px;height:17px;background-position:-197px -275px;z-index:1}
