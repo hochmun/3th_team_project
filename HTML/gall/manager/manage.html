@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/member/reset.css">
     <link rel="stylesheet" href="/css/manager.css">
     <link rel="stylesheet" href="/css/basic.css">
     <link rel="stylesheet" href="/css/popup.css">
@@ -44,8 +45,8 @@
                     </form>
                 </div>
             </div>
-
-            <!-- gnb -->
+        </header>
+        <!-- gnb -->
         <div class="gnb_bar">
             <nav class="gnb clear">
                 <ul class="gnb_list clear">
@@ -56,12 +57,12 @@
                         <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
                             <span class="sp_img depth_bg"></span>
                             <ul class="depth2_list" >
-                              <li><a href="#">게임</a></li>
-                              <li><a href="#">연예/방송</a></li>
-                              <li><a href="#">스포츠</a></li>
-                              <li><a href="#">교육/금융/IT</a></li>
-                              <li><a href="#">여행/음식/생물</a></li>
-                              <li><a href="#">취미/생활</a></li>
+                                <li><a href="#">게임</a></li>
+                                <li><a href="#">연예/방송</a></li>
+                                <li><a href="#">스포츠</a></li>
+                                <li><a href="#">교육/금융/IT</a></li>
+                                <li><a href="#">여행/음식/생물</a></li>
+                                <li><a href="#">취미/생활</a></li>
                             </ul>
                         </div>
                     </li>
@@ -99,9 +100,6 @@
                 <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
             </div>
         </div>
-        </header>
-
-        
 
         <main>
             <div class="gallery-setting-wrap">
@@ -114,28 +112,28 @@
                     <nav class="navbar navbar-expand navbar-gall-settings mb-2">
                         <ul class="navbar-nav mr-auto mt-2">
                             <li class="nav-item active">
-                                <a href="#">기본</a>
+                                <a href="manage.html">기본</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">권한</a>
+                                <a href="permission.html">권한</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">글머리</a>
+                                <a href="category.html">글머리</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">신고</a>
+                                <a href="report.html">신고</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">기록</a>
+                                <a href="log.html">기록</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">제한</a>
+                                <a href="blocks.html">제한</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">검색</a>
+                                <a href="search.html">검색</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#">공지</a>
+                                <a href="notice.html">공지</a>
                             </li>
                         </ul>
                     </nav>
@@ -174,54 +172,71 @@
                         </div>
                         <h3 class="gall-settings-title mb-0">갤러리 기본 이미지 <small>(<strong class="default-images-count">0</strong>개)</p></small></h3>
                         <div class="form-group col-md-12 mb-0">
-                            <input class="form-control d-none" id="gall_image_upload" type="file" accept="image/*" data-purpose="defaultImage">
-                            <label for="gall_image_upload" class="image-upload-btn gall-image-upload-btn w-100 text-center">파일 선택 (600x400)</label>
-                            <div class="alert alert-warning image-upload-count-warring" style="display: none;" role="alert"></div>
-                            최대 업로드 가능수는 <strong>3</strong>개 입니다.
+                            <input class="form-control d-none" id="gallery_image_upload" type="file" accept="image/*" data-purpose="defaultImage">
+                            <label for="gallery_image_upload" class="image-upload-btn gallery-image-upload-btn w-100 text-center">파일 선택 (600x400)</label>
+                            <div class="alert alert-warning image-upload-count-warring" style="display: none;" role="alert">
+                                최대 업로드 가능수는 <strong>3</strong>개 입니다.
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group col-md-12 mb-0">
-                        <input type="hidden" name="defaultImageUrl">
-                        <div id="gall_image_preview">
+                        <div class="form-group col-md-12 mb-0">
+                            <input type="hidden" name="defaultImageUrl">
+                            <div id="gall_image_preview">
+                            </div>
                         </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">베스트</h3>
-                    <div class="form-group col-md-6">
-                        <label for="id_best_headline">종합 개념글 노출</label>
-                        <select class="form-control" name="best_headline" id="form.id_best_headline">
-                            <option value="on">사용</option>
-                            <option value="off">사용 안 함</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="id_best_time_limit">
-                            <span>개념글 제한 시간</span>
-                            <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="설정하신 604800초 이내 게시물만 개념글 반영이 가능합니다."></span>
-                        </label>
-                        <div class="input-group">
-                            <input class="form-control" type="number" id="id_best_time_limit" name="best_time_limit" value="604800">
-                            <div class="input-group-text input-group-append">초 이내 게시물만</div>
+                        <h3 class="col-md-12 gall-settings-title">베스트</h3>
+                        <div class="form-group col-md-6">
+                            <label for="id_best_headline">종합 개념글 노출</label>
+                            <select class="form-control" name="best_headline" id="form.id_best_headline">
+                                <option value="on">사용</option>
+                                <option value="off">사용 안 함</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="form.best_time_limit_per_user">
-                            <span>개념글 반영 제한</span>
-                            <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="한 사용자가 여러 게시물 연속 추천을 추천하는경우, 해당 설정 이후 시간 추천만 개념글 카운트로 반영됩니다."></span>
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-text input-group-prepend">추천</div>
-                            <input class="form-control" type="number" id="id_best_allBest" name="best_allBest" value="9999">
-                            <div class="input-group-text input-group-append">개</div>
+                        <div class="form-group col-md-6">
+                            <label for="id_best_time_limit">
+                                <span>개념글 제한 시간</span>
+                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="설정하신 604800초 이내 게시물만 개념글 반영이 가능합니다."></span>
+                            </label>
+                            <div class="input-group">
+                                <input class="form-control" type="number" id="id_best_time_limit" name="best_time_limit" value="604800">
+                                <div class="input-group-text input-group-append">초 이내 게시물만</div>
+                            </div>
                         </div>
-                    </div>
-                    <h3 class="col-md-12 arca-settings-title">안내 문구</h3>
-                    <div class="form-group col-md-12">
-                        <label>게시물 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="본문 작성 전 표시될 안내 문구를 지정합니다."></span></label>
-                        <textarea class="form-control" name="placeholderArticle" rows="3"></textarea>
-                    </div>
-                    <div class="form-group col-md-12">
-                        <label>댓글 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="댓글 작성 전 표시될 안내 문구를 지정합니다. 댓글 입력 공간의 크기가 좁으므로 채널 규칙 중 중요한 부분만 지정하는 것이 좋습니다."></span></label>
-                        <textarea class="form-control" name="placeholderComment" rows="3"></textarea>
+                        <div class="form-group col-md-4">
+                            <label for="id_best_selfBest">개념글 기준</label>
+                            <div class="input-group">
+                                <div class="input-group-text input-group-prepend">추천</div>
+                                <input class="form-control" type="number" id="id_best_selfBest" name="best_selfBest" value="10">
+                                <div class="input-group-text input-group-append">개</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="form.best_time_limit_per_user">
+                                <span>개념글 반영 제한</span>
+                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="한 사용자가 여러 게시물 연속 추천을 추천하는경우, 해당 설정 이후 시간 추천만 개념글 카운트로 반영됩니다."></span>
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-text input-group-prepend">추천</div>
+                                <input class="form-control" type="number" id="id_best_allBest" name="best_allBest" value="9999">
+                                <div class="input-group-text input-group-append">개</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_best_allBest">HIT 갤러리</label>
+                            <div class="input-group">
+                                <div class="input-group-text input-group-prepend">추천</div>
+                                <input class="form-control" type="number" id="id_best_allBest" name="best_allBest" value="9999">
+                                <div class="input-group-text input-group-append">개</div>
+                            </div>
+                        </div>
+                        <h3 class="col-md-12 arca-settings-title">안내 문구</h3>
+                        <div class="form-group col-md-12">
+                            <label>게시물 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="본문 작성 전 표시될 안내 문구를 지정합니다."></span></label>
+                            <textarea class="form-control" name="placeholderArticle" rows="3"></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>댓글 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="댓글 작성 전 표시될 안내 문구를 지정합니다. 댓글 입력 공간의 크기가 좁으므로 채널 규칙 중 중요한 부분만 지정하는 것이 좋습니다."></span></label>
+                            <textarea class="form-control" name="placeholderComment" rows="3"></textarea>
+                        </div>
                     </div>
                 </form>
             </div>
