@@ -38,7 +38,7 @@ var btnTop = $('.footer-top .grid-inner');
 });//??
 
 
-jQuery(window).load(function () {
+//jQuery(window).load(function () {
 
 
 	function goToByScroll(id) {
@@ -51,7 +51,7 @@ jQuery(window).load(function () {
 	}
 
 
-});//??
+//});//??
 
 
  $('html, body').animate({scrollTop:0},500) 
