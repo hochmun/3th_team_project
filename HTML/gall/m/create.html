@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="../../css/basic.css">
-    <link rel="stylesheet" href="../../css/minor/common.css">
-    <link rel="stylesheet" href="../../css/popup.css">
-    <link rel="stylesheet" href="../../css/member/reset.css">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/minor/common.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/member/reset.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/navigation.js"></script>
-    <script type="text/javascript" src="../../js/common.js"></script>
+    <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
 </head>
 <body>
-    <div class="gcwrap">
+    <div class="minorwrap">
 
         <!-- 헤더 -->
         <header class="gcheader typea">
@@ -22,7 +22,7 @@
                 <!-- 메인 로고 -->
                 <h1 class="gc_logo">
                     <div>
-                        <img src="../../img/gcinside_main_logo.png" alt="겔시인사이드">
+                        <img src="/img/gcinside_main_logo.png" alt="겔시인사이드">
                         <a class="_blank" href="#"></a>
                         <a class="_top" href="#"></a>
                     </div>
@@ -120,7 +120,7 @@
                     <div class="minor_make_guide clear">
                         <p class="make_guide_txt">누구나 갤러리를 개설할 수 있습니다. 갤러리의 운영 권한 및 의무가 개설자에게 부여됩니다.</p>
                         <div class="fl">
-                            <img src="https://nstatic.dcinside.com/dc/w/images/minor_infoimg2.png" alt="승격전 마이너 갤러리는 매니저(개설자)가 운영, 승격 후의 갤러리는 매지너 권한 회수 디시인사이드에서 직접 운영합니다.">
+                            <img src="/img/minor_infoimg2.png" alt="승격전 마이너 갤러리는 매니저(개설자)가 운영, 승격 후의 갤러리는 매지너 권한 회수 gcinside에서 직접 운영합니다.">
                         </div>
                         <div class="minor_make_info fl">
                             <div>
@@ -133,39 +133,15 @@
                                 <p>메인 갤러리 승격을 위해서는 간결하고 정확한 단어형 이름을 입력하셔야 합니다.</p>
                                 <p>
                                     동일한 주제의 메인 갤러리가 있을 경우 승격이 불가능합니다.
-                                    <button type="button" class="btn_guide_view" onclick="toggle_layer($('#elev_note'))">자세히보기</button>
+                                    <button type="button" class="btn_guide_view">자세히보기</button>
                                 </p>
-                            </div>
-                            <div id="elev_note" class="pop_wrap type2" style="right: 0; top: 170px; display: none">
-                                <div class="pop_content attention_box">
-                                    <div class="pop_head dashed">
-                                        <strong>승격 유의사항</strong>
-                                    </div>
-                                    <div class="inner">
-                                        <b>다음과 같은 마이너 갤러리는 승격이 어렵습니다.</b>
-                                        <ol class="attention_list">
-                                            <li>1. 이름이 간결하지 않은 경우(서술형, 문장형 X)</li>
-                                            <li>2. 동일한 주제의 메인 갤러리가 있을 경우</li>
-                                            <li>3. 도배, 음란 등 부적절한 게시물이 많을 경우</li>
-                                            <li>4. 주소가 복잡하고 이름과 맞지 않는 경우</li>
-                                            <li>5. 이름에 맞지 않은 카테고리 선택 시</li>
-                                        </ol>
-                                        <p class="tiptxt">
-                                            <em class="sp_img tip_deco"></em>승격 시에 이름, 주소, 카테고리는 변경될 수 있습니다.
-                                        </p>
-                                    </div>
-                                </div>
-                                <button type="button" class="under poply_close" onclick="toggle_layer($('#elev_note'))">
-                                    <span class="blind">갤러리 전체보기 레이어 닫기</span>
-                                    <em class="sp_img icon_lyclose"></em>
-                                </button>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section>
                     <h2 class="blind">마이너 갤러리 신청 정보입력</h2>
-                    <form method="post" id="frmCreate" name="frmCreate" action="/m/regist" onsubmit="return mgalleryCreate(this)">
+                    <form method="post" id="frmCreate" name="frmCreate">
                         <input type="hidden" name="ci_t" value="" />
                         <div class="minor_make_form clear">
                             <div id="make_form_wrap" class="make_form_cont">
@@ -178,7 +154,7 @@
                                             </div>
                                             <div class="cont_box clear">
                                                 <div class="cont_input_box">
-                                                    <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="마이너 갤러리 이름을 간단히 넣어주세요." onfocusout="return chk_create_name(false)"> <span class="basic_tit">마이너 갤러리</span>
+                                                    <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="마이너 갤러리 이름을 간단히 넣어주세요."> <span class="basic_tit">마이너 갤러리</span>
                                                 </div>
                                                 <span class="max_txt"><span>0</span>/<b>12</b></span>
                                                 <p class="tiptxt red mname_alert_txt_fix">
@@ -186,9 +162,6 @@
                                                 </p>
                                                 <p class="tiptxt red mname_alert_txt_fix">
                                                     <em class="sp_img tip_deco"></em>동일한 주제의 마이너 갤러리는 개설이 불가능합니다.
-                                                </p>
-                                                <p class="tiptxt mname_alert_txt">
-                                                    <b class="font_red"></b> <span class="alert_msg"></span> <a class="link_visit" target="_blank" href="" style="display: none;">방문하기></a>
                                                 </p>
                                             </div>
                                         </div>
@@ -199,7 +172,7 @@
                                                 <label for="mg_desc">설명</label>
                                             </div>
                                             <div class="cont_box">
-                                                <textarea class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="마이너 갤러리에 대한 설명을 넣어주세요." onfocusout="return chk_create_desc(false)"></textarea>
+                                                <textarea class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="마이너 갤러리에 대한 설명을 넣어주세요."></textarea>
                                                 <div class="clear">
                                                     <p class="tiptxt mdesc_alert_txt">
                                                         <b class="font_red"></b> <span class="alert_msg"></span>
@@ -216,8 +189,8 @@
                                             </div>
                                             <div class="cont_box clear">
                                                 <div class="cont_input_box">
-                                                    <span class="basic_adr">https://gall.dcinside.com/</span> 
-                                                    <input class="t_input chk_str_length" id="mg_id" name="mg_id" type="text" onfocusout="chk_create_id(false)">
+                                                    <span class="basic_adr">https://gall.gcinside.com/</span> 
+                                                    <input class="t_input chk_str_length" id="mg_id" name="mg_id" type="text">
                                                 </div>
                                                 <span class="max_txt"><span>0</span>/<b>20</b></span>
                                                 <p class="tiptxt red mid_alert_txt_fix">
@@ -233,54 +206,13 @@
                                     <div class="form_group">
                                         <div class="set_content category clear">
                                             <div class="set_tit">
-                                                <label for="mgallery_cate" onclick="$('#mgallery_cate').click()">카테고리</label><em class="required_input">*</em>
+                                                <label for="mgallery_cate">카테고리</label><em class="required_input">*</em>
                                             </div>
                                             <div class="cont_box">
                                                 <div class="select_box select_arraybox">
                                                     <div id="mgallery_cate" class="select_area select_Cate">
                                                         카테고리를 선택해주세요.<em class="sp_img icon_option_more"></em>
                                                     </div>
-                                                    <ul class="option_box select_Cate" select_Cate style="left: -1px; top: 22px; display: none">
-                                                        <li data-value="">카테고리를 선택해주세요.</li>
-                                                                                                <li data-value="26">연예</li>
-                                                                                                <li data-value="22">국내방송</li>
-                                                                                                <li data-value="31">해외방송</li>
-                                                                                                <li data-value="21">게임</li>
-                                                                                                <li data-value="12">취미</li>
-                                                                                                <li data-value="39">만화/애니</li>
-                                                                                                <li data-value="24">스포츠</li>
-                                                                                                <li data-value="25">스포츠스타</li>
-                                                                                                <li data-value="8">디지털/IT</li>
-                                                                                                <li data-value="15">교통/운송</li>
-                                                                                                <li data-value="7">음식</li>
-                                                                                                <li data-value="16">패션</li>
-                                                                                                <li data-value="23">음악</li>
-                                                                                                <li data-value="6">여행/풍경</li>
-                                                                                                <li data-value="9">합성</li>
-                                                                                                <li data-value="4">생물</li>
-                                                                                                <li data-value="40">건강/심리</li>
-                                                                                                <li data-value="13">학술</li>
-                                                                                                <li data-value="14">교육</li>
-                                                                                                <li data-value="42">공무원</li>
-                                                                                                <li data-value="27">대학</li>
-                                                                                                <li data-value="11">수능</li>
-                                                                                                <li data-value="20">직업</li>
-                                                                                                <li data-value="28">정치인/유명인</li>
-                                                                                                <li data-value="17">밀리터리</li>
-                                                                                                <li data-value="41">금융/재테크 </li>
-                                                                                                <li data-value="29">성공/계발</li>
-                                                                                                <li data-value="19">생활</li>
-                                                                                                <li data-value="30">지역</li>
-                                                                                                <li data-value="37">쇼핑/장터</li>
-                                                                                                <li data-value="10">정부/기관</li>
-                                                                                                <li data-value="35">기업</li>
-                                                                                                <li data-value="38">미디어</li>
-                                                                                                <li data-value="5">이슈</li>
-                                                                                                <li data-value="18">성인</li>
-                                                                                                <li data-value="34">기타</li>
-                                                                                                
-                                                </ul>
-                                                    <script>ul_selectric($('#make_form_wrap .select_box'), 'mg_category');</script>
                                                 </div>
                                             </div>
                                         </div>
@@ -342,13 +274,11 @@
                         <div class="fl agree_chk chk1">
                             <span class="checkbox"> 
                             <input type="checkbox" id="person_agree" name="person_agree" value="1"> <em class="checkmark"></em> <label for="person_agree">마이너 갤러리 개인정보보호정책에 동의합니다.</label>
-                            <!--em삭제-->
                             </span>
                             <!-- 매니저의 개인정보보호의무 -->
                             <div class="scroll privacy">
                                 <p>
                                     <em class="sp_img tip_deco"></em>
-                                    <!--190419 추가-->
                                     '마이너 갤러리 매니저'라 함은 마이너 갤러리 서비스 내 각 마이너 갤러리의 모든 운영권한을 갖는 '매니저'와 일부
                                     운영권한을 갖는＇부매니저'를 말합니다.
                                 </p>
@@ -357,7 +287,7 @@
                                 <dl>
                                     <dt>1. 부정한 목적으로의 개인정보 처리 금지</dt>
                                     <dd>금전적 이득 등을 위하여 부정한 목적으로 개인정보를 수집하거나 매매 등을 이용한 우회적인 개인정보 부정 판매
-                                        등이 적발될 경우, 디시인사이드는 관련 법령과 사이트 이용약관 및 마이너 갤러리 운영원칙 등에 따라 해당 마이너
+                                        등이 적발될 경우, 지시인사이드는 관련 법령과 사이트 이용약관 및 마이너 갤러리 운영원칙 등에 따라 해당 마이너
                                         갤러리에 대한 제재, 그리고 관련 법령에 따른 민형사상의 책임을 물을 수 있습니다.</dd>
         
                                     <dt>2. 불필요한 개인정보에 대한 수집 및 이용 금지</dt>
@@ -389,7 +319,7 @@
                                     <dd>상품판매, 공동구매, 수강생 모집 등 여타의 영리 목적을 목적으로 개인정보를 처리하는 것은 어떠한 경우에도
                                         금지됩니다.</dd>
                                 </dl>
-                                <p class="mt_5">그 밖에 위에 기재하지 않은 사항은 디시인사이드 개인정보처리방침, 이용약관, 마이너 갤러리
+                                <p class="mt_5">그 밖에 위에 기재하지 않은 사항은 지시인사이드 개인정보처리방침, 이용약관, 마이너 갤러리
                                     서비스 운영원칙 등에서 정한 바에 의합니다.</p>
         
                             </div>
@@ -399,19 +329,18 @@
                             <span class="checkbox"> <input type="checkbox" id="use_agree"
                                 name="use_agree" value="1"> <em class="checkmark"></em> <label
                                 for="use_agree">마이너 갤러리 운영원칙에 동의합니다.</label>
-                            <!--em삭제-->
                             </span>
                             <!-- 마이너 운영원칙-->
                             <div class="scroll operating">
                         <p>마이너 갤러리 서비스는 이용자분들이 직접 만들고 운영하는 커뮤니티 공간으로 모든 이용자들은 아래 운영원칙을 준수해야 합니다.</p>
                         <strong class="tit">[모든 이용자가 지켜야 하는 원칙]</strong> 
-                        <ul> <!--200722 문구 수정-->
+                        <ul>
                           <li>모든 이용자는 마이너 갤러리 주제에 맞는 정상적인 활동을 해주셔야 합니다.</li>
                           <li>마이너 갤러리 서비스에 등록하는 모든 콘텐츠의 저작권은 게시한 이용자 본인에게 있으며, 이로 인해 발생되는 문제에 대해서도 해당 게시물을 게시한 이용자에게 책임이 있습니다.</li>
                           <li>모든 이용자는 이용약관 및 운영원칙을 준수해야 하며, 이를 지키지 않아 발생하는 문제에 대해 일체의 책임을 져야 합니다.</li>
                         </ul>
                         <strong class="tit">[매니저가 지켜야 하는 원칙]</strong> 
-                        <ul> <!--200722 문구 수정-->
+                        <ul>
                             <li>
                               '매니저'란 마이너 갤러리의 운영 권한을 갖는 이용자를 가리키는 단어입니다.<br>
                               매니저는 마이너 갤러리를 최초 개설하였거나, 이전 매니저로부터 마이너 갤러리를 위임받은 이용자로서 해당 마이너 갤러리를 대표하며, 마이너 갤러리를 관리할 수 있는 모든 권한과 책임을 갖고 있습니다. 
@@ -450,7 +379,7 @@
                           <dd>차별/갈등 조장 활동</dd>
                           <dd>존속에 대한 상해 폭행 살인 등 전통적인 가족윤리를 훼손할 우려가 있는 내용</dd>
                           <dd>정상적인 활동으로 볼 수 없는 반복적인 마이너 갤러리 만들기, 폐쇄, 위임 등의 행위</dd>
-                          <dd>디시인사이드 회사 직원 또는 마이너 갤러리 서비스 운영진을 사칭하는 행위</dd>
+                          <dd>지시인사이드 회사 직원 또는 마이너 갤러리 서비스 운영진을 사칭하는 행위</dd>
                         </dl>
                         <strong class="tit">[이용제한 내용]</strong>
                         <dl>
@@ -474,7 +403,7 @@
                             <span class="checkbox"> 
                             <input type="checkbox" id="upgrade_agree" name="upgrade_agree" value="1"> <em class="checkmark"></em> <label for="upgrade_agree">메인 갤러리 승격에 동의합니다.</label>
                             </span>
-                            <p class="txt">신청하신 마이너 갤러리는 디시인사이드의 판단에 따라 메인 갤러리로 승격되고, 매니저 권한이 회수됩니다.</p>
+                            <p class="txt">신청하신 마이너 갤러리는 지시인사이드의 판단에 따라 메인 갤러리로 승격되고, 매니저 권한이 회수됩니다.</p>
                         </div>
                     </div>
                     <div class="make_guidetxt_box">
@@ -483,8 +412,8 @@
                         </p>
                     </div>
                     <div class="make_bottom_btnbox">
-                        <button type="button" class="list_bottom btn_grey" onclick="history.back()">취소</button>
-                        <button type="button" class="list_bottom btn_blue" onclick="$('#frmCreate').submit()">만들기</button>
+                        <button type="button" class="list_bottom btn_grey">취소</button>
+                        <button type="button" class="list_bottom btn_blue">만들기</button>
                     </div>
                 </section>
             </div>
