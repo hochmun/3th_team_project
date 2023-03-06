@@ -2,9 +2,9 @@ $(function(){
     $(".gmenu_list li").eq(gMenu).addClass('on');
   });
   
-//   $(function(){
-//     $(".left_menu .one_depth").eq(lnbMenu).addClass('on').find('.two_depth li').eq(lnbSubMenu).addClass('on');
-//   });
+  $(function(){
+    $(".left_menu .one_depth").eq(lnbMenu).addClass('on').find('.two_depth li').eq(lnbSubMenu).addClass('on');
+  });
   
 
   
