@@ -24,5 +24,10 @@ article,aside,embed, figure,figcaption,footer,header,nav,section,summary,audio,v
   textarea{resize:none}
   a{color:#333;text-decoration:none}
   a:active,a:hover{text-decoration:underline}
-  
+  li {text-align: -webkit-match-parent;}
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
   
