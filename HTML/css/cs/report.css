@@ -1,0 +1,129 @@
+@charset "utf-8";
+.sp_report{background-image:url(../../img/sp_report.png);background-repeat:no-repeat}
+
+.report_wrap #container{margin:37px auto 7px}
+.report_wrap .con_box{min-height:100%;margin-bottom:0}
+
+.top_box.con_box{margin:0}
+.top_box .con{padding:41px 38px 48px 71px}
+.rpt_top_leftbox{float:left}
+.top_left_bg{display:block;width:190px;height:170px;background-position:10px 0;margin-bottom:24px}
+.top_box .rpt_top_leftbox .btn_rpt_listgo{display:block;width:186px;height:34px;line-height:34px;border-width:1px;border-radius:50px;text-align:center;font-size:14px;font-weight:normal;margin:0}
+.top_box .rpt_top_leftbox .btn_rpt_listgo{margin-top:7px}
+.top_box .rpt_top_leftbox .btn_rpt_listgo:first-child{margin-top:0}
+.top_box .rpt_top_leftbox .btn_rpt_listgo:hover{text-decoration:none}
+.top_box .rpt_top_leftbox .btn_rpt_listgo.btn_mediumblue{width:188px}
+.top_box .rpt_top_leftbox .btn_rpt_listgo.btn_mediumblue::after{
+  content:"";display:inline-block;width:18px;height:18px;vertical-align:top;margin:8px 0 0 5px;
+  background-image:url(../../img/sp_img.png);background-repeat:no-repeat;background-position:-139px -935px
+}
+.top_box .rpt_top_leftbox .btn_rpt_listgo.btn_mediumblue.on::after{background-position:-119px -935px}
+
+.rpt_top_rightbox{float:right;width:638px}
+.rpt_info_txtbox{padding-top:9px}
+.rpt_info_txtbox .rpt_des_txt{margin-left:-1px;font-size:16px}
+.rpt_des_txt::before{content:"";display:inline-block;width:3px;height:3px;background:#29367c;vertical-align:5px;margin-right:5px}
+
+.info_txtlist{color:#333;line-height:23px}
+.info_txtlist.top{margin-top:13px;line-height:21px}
+.info_txtlist.bottom.line, .info_txtbox.bottom.line{padding-top:20px;margin-top:18px;border-top:1px #aaa dashed}
+.info_txtlist li{position:relative;padding-left:7px;/*letter-spacing:-0.025em*/}
+.info_txtlist.top li{margin-top:6px}
+.info_txtlist.top li:first-child{margin-top:0}
+
+.info_txtlist.bottom{margin-top:13px;line-height:21px}
+.info_txtlist.bottom li{margin-top:2px}
+.info_txtlist.bottom li:first-child{margin-top:0}
+.info_txtlist li::before, .rpt_info_txtbox .tit::before,  .illegality .tit::before{content:"";display:inline-block;position:absolute;left:0;top:8px;width:2px;height:2px;background:#333}/*210514*/
+.rpt_info_txtbox .tit::before{top:7px}
+.info_txtlist li.font_red::before{background:#d31900}
+.cont_report.choice .info_txtlist{margin-top:20px}
+
+.rpt_info_txtbox .tit, .illegality .tit{display:block;position:relative;font-size:14px;color:#333;padding-left:7px;margin-top:14px}
+.con.faq  .rpt_info_txtbox .info_txtlist{line-height:21px;margin-top:7px}
+.con.faq  .rpt_info_txtbox .info_txtlist li{padding-left:9px}
+.con.faq  .rpt_info_txtbox .info_txtlist li::before, .illegality .info_txtbox div .stit::before, .illegality .info_txtbox .deco::before,.rpt_info_txtbox .deco::before, .papers ul li::before,
+.illegality_cont .form_cont.privacy p::before{content:"";position:absolute;left:0;top:9px;width:5px;height:1px;background:#333}
+
+/*신고 분류*/
+.cont_report{margin-top:44px}
+.cont_report .cont_head{height:30px}
+.report_optgroup{width:100%;margin-top:18px;position:relative}
+.report_optbox{overflow:hidden;float:left;width:318px;height:318px;margin-left:20px;border:1px #29367c solid;border-radius:2px;position:relative}
+.report_optbox:first-child{margin-left:0}
+.report_opt{float:left;width:148px;min-height:100%;padding-top:23px;border:1px #fff solid;border-radius:2px 0 0 2px;background:#29367c;box-sizing:border-box}
+.report_opt h4.tit{font-size:14px;color:#fff;text-shadow: 0px -1px #2a326e;text-align:center}
+.opt_gall_report .group_tit_bg{float:none;display:block;width:88px;height:88px;margin:18px auto 0;background-position:0 -176px}
+.opt_service_report .group_tit_bg{display:block;width:88px;height:88px;margin:20px auto 0;background-position:-94px -176px}
+.opt_service_apply .group_tit_bg{display:block;width:88px;height:88px;margin:20px auto 0;background-position:0 -270px}
+.opt_list{float:left;min-height:100%;padding:18px 18px 0 18px;line-height:28px;font-size:14px;box-sizing:border-box;position:absolute;left:148px;top:0}
+.opt_list li a{white-space: nowrap}
+.opt_list li a:hover{color:#d31900;text-decoration:underline}
+.report_optbox.opt_service_apply{position:absolute;top:0;right:0}
+
+/*신고 폼*/
+.small_des{font-size:12px;letter-spacing:-0.025em;font-weight:normal;font-size:12px;color:#333;line-height:18px}
+.con.report_formbox{padding:37px 38px;color:#555}
+.report_formbox input{width:322px;border:1px #ccc solid;padding:0 8px;color:#555}
+.report_formbox input[type="text"],.report_formbox input[type="password"]{height:28px;line-height:29px}
+.report_formbox input.bg{border:1px #cecdce solid;background:#f3f3f3}
+.report_formbox input.bg:focus{background:#fff;border-color:#ccc}
+.checkbox input[type="checkbox"]{width:14px}
+.nick_checkbox, .illegality_des{font-size:14px}
+.nick_check{margin-top:13px;line-height:14px}
+.nick_check label{margin-left:6px}
+.rpt_form_group{margin-top:25px;padding-top:25px;border-top:1px #aaa dashed}
+.rpt_form_group:first-child{border-top:0;margin-top:0;padding-top:0}
+.form_cont{margin-top:20px}
+.form_cont:first-child{margin-top:0}
+.form_cont:after{clear:both;display:block;visibility:hidden;content:""}
+.form_cont .tit{position:relative;float:left;width:160px;font-weight:bold;font-size:12px;color:#333;line-height:18px;padding-top:4px}
+.essential{position:absolute;margin-top:-3px;color:#d31900}
+.form_cont .field{float:left;position:relative;width:760px}
+.gall_urlbox, .gallsel_box{width:758px;border:1px #ccc solid }
+.gall_urlbox input[type="text"], .gallsel_box input[type="text"]{width:648px;border:0} 
+.btn_urlup, .btn_minisel{width:94px;height:28px;line-height:29px;border-left:1px #ccc solid;color:#333}
+.in_urlbox{height:30px;vertical-align:0}
+.rpt_form_group .tip_txtbox{margin-top:13px;line-height:100%}
+.rpt_form_group .tip_txtbox p{margin-top:7px}
+.rpt_form_group .tip_txtbox p:first-child{margin-top:0}
+.rpt_reason{width:742px;height:42px;padding:10px 8px;border:1px #ccc solid;resize:none;color:#555}
+.rpt_filebox{width:758px;height:100%;border:1px #ccc solid}
+.file_urlbox{overflow-y:auto;width:647px;height:50px;padding:4px 8px 4px;border-right:1px #ccc solid}
+.rpt_filebox .file_bntup{margin:0}
+.rpt_filebox .btn_fileup{width:94px;height:58px;line-height:58px;background:#f3f3f3;font-weight:bold;color:#333;position:absolute;top:0;right:auto}
+.rpt_filebox .file_bntup > input[type="file"]{width:76px;height:58px}
+.url_list{overflow:hidden;margin-left:-20px}
+.url_list li{float:left;margin-left:20px;line-height:24px;letter-spacing:-0.01em}
+.gllword_box {position:absolute;overflow-y:scroll;width:311px;height:150px;padding:10px 17px 10px 10px;border:1px #ccc solid;background:#fff;z-index:10}
+.gllword_box .word_list{padding:0}
+.gllword_box .word_list li a{line-height:22px}
+.delegate_box,.kapcodeimg_box{width:457px;border:1px #ccc solid }
+.delegate_box input,.kapcodeimg_box input{width:326px;border:0;font-size:12px}
+.kapcodeimg_box{font-size:0}
+.kapcodeimg_box > img{border-left:1px #ccc solid;vertical-align:top}
+.btn_delegate_sch{width:115px;height:28px;line-height:28px;border-left:1px #ccc solid}
+.cont_report .con.center{padding:136px 0 176px}
+.form_box.rpt{margin-top:9px}
+.con.center .form_box.rpt .int[type="password"]{margin-top:7px}
+
+.checktxt_box .form_cont > p{margin-top:9px}
+.checktxt_box .form_cont > p:first-child{margin-top:0}
+.checktxt_box .checkbox label{margin-left:7px;color:#555}
+
+.rpt_btn_box{margin-top:30px}
+.rpt_btn_box button{width:100px}
+.rpt_listgo_btnbox{margin-top:10px;font-size:0}
+.rpt_listgo_btnbox button{width:140px}
+.rpt_listgo_btnbox .btn_grey.small,.rpt_listgo_btnbox .btn_blue.small{height:35px;line-height:33px;margin-left:0}
+.rpt_listgo_btnbox button:first-child{margin-right:10px}
+
+.rpt_form_group .kap_codeimg{display:inline-block;margin-top:0}
+.rpt_form_group .kap_codeimg {width:119px}
+.rpt_form_group .kap_codeimg img{height:30px}
+.kap_input input{vertical-align: top}
+
+/* 비공개 미니 갤러리 버튼 */
+.gallsel_box {width: 520px;font-size: 0}
+.gallsel_box input[type="text"]{width: 324px}
+.btn_minisel{width: 180px}
