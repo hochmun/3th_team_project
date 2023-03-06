@@ -858,7 +858,7 @@ position:absolute;top:-20px;left:50%;margin-left:-16px;}
 #ja .alliance-lst .lst-tit br{display:inline-block}
 
 /* 220310 추가*/
-.alliance-lst li:first-child .lst-txt{line-height:65px} 
+.alliance-lst li:first-child .lst-txt{line-height:25px} 
 #ja .alliance-lst li:first-child .lst-txt{line-height:50px}
 #en .alliance-lst li:first-child .lst-txt, #en .alliance-lst li:last-child .lst-txt{transform: translateY(7px)}
 }
