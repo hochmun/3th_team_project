@@ -29,3 +29,150 @@
 .visit_bookmark .tabslist li.on button{color:#3b4890}
 
 .visit_bookmark .list_modi{position:absolute;right:6px;bottom:-1px;color:#29367c;text-decoration:underline;padding:3px}
+/* 2023-03-06 추가 */
+.lyprivacy {
+    position: absolute;
+    width: 465px;
+    line-height: 1.5;
+    z-index: 1;
+}
+.lyprivacy .poply_close {
+    top: 11px;
+    right: 11px;
+}
+.poply_close {
+    position: absolute;
+    right: 14px;
+    top: 13px;
+}
+.policy_table.ly th:first-child, .policy_table.ly td:first-child {
+    border-width: 1px 1px 1px 0px;
+}
+.policy_table.ly th, .policy_table.ly td {
+    border-width: 1px 0 1px 1px;
+    font-size: 11px;
+}
+.policy_table.ly th {
+    height: 30px;
+}
+
+.policy_table.ly td {
+    padding: 10px;
+}
+.icon_tipclose {
+    display: block;
+    width: 11px;
+    height: 11px;
+    background-position: -126px -132px;
+}
+.pop_wrap.type2 {
+    border: 1px solid #29367c;
+}
+.pop_wrap {
+    position: absolute;
+    background: #fff;
+    z-index: 4001;
+    text-align: left;
+}
+.pw_seting {
+    width: 378px;
+    padding: 0 12px 15px;
+    box-sizing: border-box;
+}
+.pop_content {
+    overflow: hidden;
+    position: relative;
+}
+.pop_wrap .pop_head.dashed {
+    height: 38px;
+    line-height: 38px;
+    border-bottom: 1px dashed #aaa;
+    color: #29367c;
+}
+.pw_seting .pop_head strong {
+    padding-left: 3px;
+}
+.pw_seting .inner {
+    margin-top: 13px;
+    letter-spacing: -0.025em;
+}
+.pw_seting .pop_info {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    line-height: 20px;
+    height: 67px;
+    box-sizing: border-box;
+    padding: 15px 12px 9px 13px;
+}
+.pop_info {
+    clear: both;
+    padding: 13px 12px 9px;
+    background: #f3f3f3;
+    font-size: 12px;
+    color: #555;
+    line-height: 18px;
+}
+.pw_seting .step_info li {
+    clear: both;
+    display: inline-block;
+    content: "";
+    margin: 0;
+    line-height: 20px;
+}
+.pw_seting .step_info {
+    font-size: 12px;
+    color: #333;
+    margin-top: 13px;
+    padding-left: 9px;
+    box-sizing: border-box;
+}
+.pw_seting .step_info em, .pw_seting .step_info span {
+    float: left;
+}
+.pw_seting .tip_deco_dot {
+    margin: 10px 7px 0 0;
+}
+.tip_deco_dot {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    background: #333;
+    font-size: 0;
+    vertical-align: 4px;
+    margin-right: 6px;
+}
+.pw_seting .step_info .tit {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 0;
+}
+.pw_seting .impossible {
+    color: #d31900;
+}
+.pw_seting .step_info .txt {
+    margin-left: 5px;
+    display: inline-block;
+}
+.pw_seting .normal {
+    color: #ff9933;
+}
+.pw_seting .step_info li:nth-child(2) .txt {
+    width: 300px;
+    position: relative;
+    padding-left: 5px;
+}
+.pw_seting .safe {
+    color: #008140;
+}
+.under.poply_close {
+    top: 10px;
+}
+.icon_lyclose {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-position: -102px -135px;
+}
