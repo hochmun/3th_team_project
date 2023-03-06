@@ -28,6 +28,8 @@
     height: 105px;
 }
 
+.fl{float:left}
+
 /* 헤더 로고 */
 .gc_logo {
     overflow: hidden;
@@ -604,6 +606,81 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .ico_ranking.same{background-position:-158px 0}
 
 .box_bottom{height:38px;padding-right:12px;background:#f3f3f3;line-height:38px;text-align:right;font-size:11px;color:#555;width:236px;;position:absolute;left:0px;bottom:0}
+
+/* 흥한 갤 */
+.icon_hotgall{display:inline-block;width:25px;height:10px;margin:0 1px 0 0px;vertical-align:0px;background-position:-139px -225px}/*220303 수정*/
+.content_box.hot .rank_list{padding:14px 14px 3px}
+.content_box.hot{height:358px}
+.content_box.hot .rank_num{width:13px;height:13px;text-indent:-1px}
+
+/* 신설 갤 */
+.icon_newgall{display:inline-block;width:26px;height:10px;background-position:-230px -961px;margin:0 1px 0 0px;vertical-align:0px }
+.content_box.new_gall{height:338px;}
+.new_gall .box_bottom .btn_box,.new_gall .box_bottom .page_num{line-height:38px}
+.new_gall .box_bottom .page_num{margin-top:1px;font-size:12px;color:#555}
+.new_gall .box_bottom .btn_prev{width:18px;height:18px;background-position:0 -110px}
+.new_gall .box_bottom .btn_next{width:17px;height:18px;background-position:-18px -130px}
+.new_gall .box_bottom .btn_prev.on{background-position:0px -130px}
+.new_gall .box_bottom .btn_next.on{background-position:-18px -110px}
+
+/* 갤시미디어 */
+.dcmedia{height:279px}
+.dcmedia .box_tit{padding:16px 0 12px}
+.dcmedia .page_num{line-height:18px}
+.dcmedia .pageing{position:absolute;right:-1px;top:15px }
+.dcmedia .btn_prev{width:18px;height:18px;background-position:0 -110px}
+.dcmedia .btn_next{width:17px;height:18px;background-position:-18px -130px}
+.dcmedia .btn_prev.on{background-position:0px -130px}
+.dcmedia .btn_next.on{background-position:-18px -110px}
+
+.dcmedia .cont_imgtxt_box{padding:12px 0 14px 0}
+.dcmedia .img{margin-left:-8px;padding:0 5px 0 13px}
+.dcmedia .contimg_box a{display:block;margin-left:8px}
+.dcmedia .img_box{position:relative;width:107px;height:80px;background-size:cover}
+.dcmedia .img_box img{width:107px;min-height:80px}
+.dcmedia .img_box::after{width:105px;height:78px}
+.dcmedia .txt_box{
+	width:107px;height:43px;background:none;position:static;padding:7px 0 0;line-height:18px;
+	text-overflow:ellipsis;overflow:hidden;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+}
+.dcmedia .contimg_box{float:left}
+.dcmedia .txt_box strong{font-weight:normal}
+
+.dcmedia .txt{border-top:1px #eee solid;margin:8px  13px 0 13px;padding:11px 0 0}
+.dcmedia .txt li a{display:inline-block;width:100%;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;line-height:19px}
+.dcmedia .box_tit h3{vertical-align:top;line-height:17px }
+.dcmedia .box_tit h3::before{content:"|";display:inline-block;width:2px;height:13px;padding:0 10px 0 8px;color:#d7d7d7;font-size:13px;line-height:16px;vertical-align:top}
+.dcmedia .box_tit h3:first-child::before{display:none}
+.dcmedia .box_tit h3.on{text-decoration:underline}
+
+.dcmedia .dcissue .contimg_box a, .dcmedia .dcissue .txt li a{position:relative}
+.dcmedia .dcissue .txt_box{padding-left:13px}
+.dcmedia .dcissue .txt_box, .dcmedia .dcissue .txt li a{box-sizing:border-box}
+.dcmedia .dcissue .ranking{color:#3b4890;font-weight:bold}
+.dcmedia .dcissue .txt_box .ranking{position:absolute;left:0px}
+.dcmedia .dcissue .txt li .ranking{padding-right:2px}
+.dcmedia .dcissue .ranking.grey{color:#999}
+
+/* 갤시 위키 */
+.wikimore{position:absolute;right:0;top:19px;font-size:11px;color:#333}
+.icon_wikimore{display:inline-block;width:4px;height:7px;margin-left:4px;background-position:-28px -45px}
+.wk_content{padding:12px 14px 10px;text-align:center}
+.wk_box{margin-top:13px;background:#fff;border:1px #e8e8e8 solid;box-sizing:border-box;height:121px}
+.wk_box:first-child{margin-top:0}
+.wk_content .tit{position:relative;display:block;height:54px}
+.wk_content .tit > span{display:block;height:44px;line-height:44px;padding:0 13px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-weight:normal;;font-size:24px;background:#f3f3f3}
+.wk_content .tit:after{content:'';position:absolute;bottom:1px;left:50%;border-style:solid;border-width:9px 7px 0px 7px;border-color:#f3f3f3 transparent;display:block;margin-left:-7px}
+.wk_txt{overflow:hidden;height:50px;line-height:17px;margin:3px 13px 12px;font-size:12px;letter-spacing:-0.05em}
+
+.wk_content.list{text-align:left;padding:0 14px 15px}
+.wk_content.list .wk_box{height:100px;background:#f3f3f3;border:none;padding:11px 12px 13px 2px}
+
+.wk_content.list li{float:left;width:50%;padding-left:11px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;box-sizing:border-box }
+.wk_content.list li a{font-size:16px;font-weight:bold;letter-spacing:-0.025em;line-height:27px}
+
+/*이벤트*/
+.evt_content{overflow:hidden;margin-top:15px}
+.evt_box img{display:block;line-height:0}
 
 /*하단영역*/
 .gcfoot{padding-bottom:50px}
