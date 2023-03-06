@@ -2,14 +2,18 @@
 @import url("https://fonts.googleapis.com/earlyaccess/nanumgothic.css");/*나눔고딕 웹폰트*/
 /*공통*/
 .clear:after{clear:both;display:block;visibility:hidden;content:""}
-.blind{position:absolute;overflow:hidden;visibility:hidden;margin:-1px;width:0px;height:0px;top:-9999px;font-size:0}
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
 caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index:-1}
 .fl{float:left}
 .fr{float:right}
-.txtcut{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}/*말줄임*/
-.unerline{text-decoration:underline}
 /*폰트 컬러*/
-.font_blue{color:#29367c}
+.font_blue{color:#29367c}frame
 .font_lightblue{color:#3b4890}
 .font_jinlightblue{color:#0066cc}
 .font_red{color:#d31900}
@@ -18,29 +22,11 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 .font_yellow{color:#fff200}
 .font_lightpurple{color:#6f6dd9}
 .font_jinlightpurple{color:#4f4dc6}
-
 /*배경색*/
 .bg_grey{background-color:#f3f3f3}
 .bg_jingrey{background-color:#999}
-
-/*이미지 보더용 프레임*/
-.frame{position:absolute;left:0;top:0}
-
 /*레아아웃*/
-.list_wrap,.view_wrap{min-width:1515px}
-.width868 .dchead,.width868 #container,.width868 .info_policy,.width868 .copyright{width:868px}
-.width1000 .dchead,.width1000 #container,.width1000 .info_policy,.width1000 .copyright{width:1000px}
-.width1160 .dchead,.width1160 .gnb,.width1160 #container,.width1160 .info_policy,.width1160 .copyright{width:1160px}
-
-.dchead{position:relative;width:1050px;height:105px;margin:0 auto}
-.dcheader.bg .dchead{height:85px}
 .gnb{width:1050px;height:44px;margin:0 auto}
-.gnb_depth2_list .icon_new{margin-left:3px}
-.dc_all{width:1048px;margin:20px auto 0;border-left:1px solid #ccc;border-top:2px solid #29367c;border-right:1px solid #ccc;border-bottom:1px solid #29367c}
-.width1160 .dc_all{width:1158px}
-.info_policy{width:1050px;margin:0px auto 0;padding-top:28px;text-align:center}
-.mbl_info .info_policy{width:960px;padding-top:47px}
-.wrap_inner{position:relative;width:1450px;margin:0 auto}
 #container{width:1050px;margin:20px auto 0}
 .width1160 #container{margin:20px auto 0}
 .gallog_wrap.width1160 #container{margin:0 auto}
@@ -53,29 +39,6 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 .copyright{width:1050px;margin:10px auto 0;text-align:center;letter-spacing:0;font-size:12px;font-family:tahoma,sans-serif;color:#333}
 
 .integrate_schwrap .left_content{min-height:10px}
-
-/*상단*/
-.dcheader.bg{background:#29367c}
-.dc_logo{overflow:hidden;position:absolute;left:0;top:40px;text-align:center}
-.dcheader.bg .dc_logo{top:30px}
-.dc_logo a{display:block;float:left}
-.dc_logo:after{clear:both;display:block;visibility:hidden;content:""}
-.dc_logo a:hover{text-decoration:none}
-.area_links{position:absolute;top:9px;right:0}
-.dcheader.bg .area_links{top:47px}
-.area_links ul{overflow:hidden;line-height:17px}
-.area_links li{float:left}
-.area_links li::before{content:"|";color:#ccc;font-size:10px;line-height:10px;padding:0 5px 0 4px;vertical-align:1px}
-.area_links li:first-child:before{display:none}
-.area_links li:last-child:before{content:"";font-size:0px;padding:0 12px 0 0}
-.dcheader.bg .area_links li:last-child:before{content:"|";color:#ccc;font-size:10px;line-height:10px;padding:0 3px 0}
-.report_wrap .dcheader.bg .area_links li:last-child:before{content:"";font-size:0px;padding:0 12px 0 0}
-
-.area_links a{font-size:11px;color:#555}
-.dcheader.bg a{color:#fff}
-.area_links .btn_top_loginout{display:inline-block;background:#3b4890;padding:0 3px;height:16px;line-height:16px;vertical-align:top;border:1px solid #29367c;color:#fff;font-size:11px;text-shadow: 0px -1px #1d2761}/*211118 폰트 버그 line-height:18px;*/
-.area_links .btn_top_loginout:hover{text-decoration:none}
-.dcheader.bg .area_links .btn_top_loginout{background:#fff;padding:0 9px;border:1px solid #3b4890;color:#29367c;text-shadow:none}
 
 /*placeholder*/
 input::-webkit-input-placeholder{color:#aaa}
@@ -171,7 +134,7 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .rtg_img_box{font-size:0;line-height:0}
 .rtg_img{display:inline-block;width:7px;height:8px;background:#fff;border:1px #555 solid;margin-left:1px}
 .rtg_img:first-of-type{margin-left:0}
-.t_input{width:327px;height:22px;line-height:20px;padding:0 7px;border:1px #bbb solid;margin-bottom:5px}/*211118 폰트 버그 line-height:22px*/
+.t_input{width:327px;height:22px;line-height:20px;padding:0 7px;border:1px #bbb solid;margin-bottom:5px}
 
 .minor_make input::-webkit-input-placeholder{color:#999}
 .minor_make input:-moz-placeholder{color:#999}
@@ -181,7 +144,7 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .minor_make textarea:-moz-placeholder{color:#999}
 .minor_make textarea::-moz-placeholder {color:#999}
 .minor_make textarea:-ms-input-placeholder{color:#999}
-.form_group{padding:2px 0 14px 16px;border-top:1px #eee solid;color:#555}/*211118 폰트 버그 padding:2px 0 10px 16px; */
+.form_group{padding:2px 0 14px 16px;border-top:1px #eee solid;color:#555}
 .minor_uadmin_setting .form_group, .minor_make .form_group{margin-top:0}
 .form_group:first-of-type{border-top:none}
 .set_content{padding-top:11px}
@@ -192,13 +155,13 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .cont_boxtit{display:inline-block}
 .cont_inr.set .cont_boxtit{width:95px}
 .cont_inr.result .cont_boxtit{width:auto}
-.t_input{width:327px;height:22px;line-height:20px;padding:0 7px;border:1px #bbb solid;margin-bottom:5px}/*211118 폰트 버그 line-height:22px*/
+.t_input{width:327px;height:22px;line-height:20px;padding:0 7px;border:1px #bbb solid;margin-bottom:5px}
 .t_input.small{width:129px}
 .t_area{width:470px;height:54px;padding:7px;border:1px #bbb solid;margin-bottom:5px;resize:none}
 .set_content .cont_input_box{position:relative;display:inline-block}
 .tiptxt{line-height:18px;color:#555}
 .tiptxt.red{color:#d31900}
-.tiptxt.dot_line,.mini_slow div.dot_line{border-top:1px #d3d3d3 dashed;margin-top:11px;padding-top:12px}/*mini*/
+.tiptxt.dot_line,.mini_slow div.dot_line{border-top:1px #d3d3d3 dashed;margin-top:11px;padding-top:12px}
 
 .tiptxt .link_visit{color:#29367c;text-decoration:underline}
 .form_group:first-of-type .set_content{padding-top:0}
@@ -240,4 +203,65 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .checkbox.type1 input + .checkmark{position:absolute;top:0;left:0;display:block;width:17px;height:17px;background-position:-197px -294px}
 .checkbox.type1 input:checked + .checkmark{top:0;left:0px;width:17px;height:17px;background-position:-197px -275px;z-index:1}
 .minor_make_wrap .checkbox input[type="checkbox"]{width:298px;height:110px;left:-61px;top:-24px }
-/*//체크박스 디자인*/
+.checkmark{background-image:url("/img/sp_img.png");background-repeat:no-repeat}
+/* 팁 */
+.tip_deco_dot{content:"";display:inline-block;width:2px;height:2px;background:#333;font-size:0;vertical-align:4px;margin-right:6px}
+
+
+/* 미니 */
+.miniwrap .page_head h2 a{color:#6563d4}
+.miniwrap .page_head .fixtit{color:#6563d4}
+.miniwrap #container.minor_make{width:900px}
+.miniwrap .minor_make_wrap,.miniwrap .minor_make_form{border-color:#6f6dd9}
+.mini_openset{margin-top:22px}
+
+.mini_openset .box{overflow:hidden;float:left;width:290px;box-sizing:border-box;padding:5px;margin:0px 0 0 15px;border:2px solid #cecdce;border-radius:8px;color:#333;
+  transition:width 0.2s;-webkit-transition:width 0.2s
+}
+.mini_openset .box:first-child{margin-left:0}
+.mini_openset .box.sel{width:595px;;border:2px solid #6f6dd9;transition:width 0.2s;-webkit-transition:width 0.2s}
+.mini_openset .box:first-child{margin-left:0}
+.mini_openset .box .box_con{float:left;width:290px;height:100px;margin-right:0;box-sizing:border-box;padding:13px 14px 9px}
+.mini_openset .box .box_con:first-child{margin-left:0}
+.mini_openset .inner{width:1050px}
+.mini_openset .infotxt{margin:0 17px 0 34px;line-height:18px;letter-spacing:-0.025em;color:#333}
+.mini_openset .box_con.rd{background:#f3f3f3;border-radius:8px;display:table}
+
+.mini_openset .radiobox.middle{line-height:100%}
+.mini_openset .radiobox.middle label{line-height:30px}
+.mini_openset .rdbox{display:table-cell;vertical-align:middle}
+.mini_openset .box_con.rd{vertical-align:top;padding:0 15px 0px;}
+.mini_openset .box_con.rd.chk{background-color:#ebebff;}
+.mini_openset .box_con.rd .checkbox.round{margin:0 0 6px 43px;line-height:16px}
+.mini_openset .checkbox.round .round_label .inr{width:100%}
+.mini_openset .box_con.rd{width:290px;}
+
+.mini_openset .box_con.rd .infotxt{margin:0;padding-left:4px;}
+.mini_openset .box_con.rd .infotxt .gray{color:#777}
+.mini_openset .minimake_tip{margin:13px 0 25px 8px;color:#333}
+.miniwrap .make_form_cont{width:900px}
+.miniwrap .basic_tit{color:#6f6dd9}
+
+.miniwrap .make_guidetxt_box .tiptxt > .tip_deco_dot{margin-left:-8px}
+.miniwrap .set_content.category .select_arraybox{width:173px;border-color:#bbb}
+.miniwrap .set_content.category .option_box{width:170px}
+.miniwrap .minor_make_wrap .set_content.category .option_box{width:180px}
+.miniwrap .set_content.category .placeholder{font-size:12px}
+.miniwrap .makereason .t_input{width:424px}
+.miniwrap .make_form_cont .form_group .set_tit{color:#333}
+.miniwrap .minor_make_chk{padding:35px 0 40px}
+.miniwrap .minor_make_chk .scroll{width:397px}
+.miniwrap .minor_make_chk .agree_chk.chk1{padding:0 20px 0 15px}
+.miniwrap .make_guidetxt_box{padding-left:8px;padding-top:25px}
+.miniwrap .make_guidetxt_box .tiptxt{margin-top:4px}
+.miniwrap .make_guidetxt_box .tiptxt:first-child{margin-top:0}
+.miniwrap .make_bottom_btnbox{margin:27px 0 81px}
+.miniwrap .make_bottom_btnbox .btn_grey, .miniwrap .make_bottom_btnbox .btn_lightpurple{line-height:37px}
+.radiobox.middle label{font-size:16px;color:#333;font-weight:bold;margin-left:9px;vertical-align:top;line-height:28px}
+.radiobox input[type="radio"]{position:absolute;left:0;top:8px;margin:0;opacity:0;z-index:2;cursor:pointer}
+.minor_make_wrap .radiobox.middle input[type="radio"]{width:280px;height:110px;left:-18px;top:-19px}
+.radiobox input + .checkmark{position:absolute;top:8px;left:0;display:block;width:14px;height:14px;background-position:-193px -44px;border-radius:50%}
+.radiobox.middle input + .checkmark{left:0;top:2px;width:27px;height:27px;background-position:-234px -548px}
+.radiobox{position:relative;display:inline-block;line-height:31px;padding-left:23px}
+.tip_deco_black{display:inline-block;width:9px;height:9px;background-position:-177px -201px;margin-right:5px}
+.btn_lightpurple{background:#6f6dd9;text-shadow: 0px -1px #4d4cce;color:#fff;border-color:#4f4dc6}
