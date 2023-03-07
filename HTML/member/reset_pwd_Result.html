@@ -1,10 +1,114 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="content-language" content="kr">
+  <title>GCInside 입니다.</title>
+  <link rel="stylesheet" type="text/css" href="../css/member/reset.css"/>
+  <link rel="stylesheet" href="../css/member/member.css">
+  <link rel="stylesheet" href="../css/popup.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="/js/member/member.js"></script>
 </head>
 <body>
-    
-</body>
+    <div id="top" class="width868 login_wrap">
+        <header class="gcheader bg">
+            <div class="gchead">
+                <!-- 로고영역 -->
+                <h1 class="gc_logo">
+                  <a href="../index.html"><img src="../img/dcin_logo2.png" alt="GCInside"></a>
+                </h1>
+                <!-- //로고영역 -->
+                <div class="area_links">
+                    <ul>
+                      <li><a href="#">갤러리</a></li>
+                      <li><a href="#">마이너갤</a></li>
+                      <li><a href="#">미니갤</a></li>
+                      <li><a href="#">갤로그</a></li>
+                      <li><a href="#">지시뉴스</a></li>
+                      <li><a href="#">지시게임</a></li>
+                      <li><a href="#">지시위키</a></li>
+                      <li><a href="#">이벤트</a></li>
+                      <li><a href="#">지시콘</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main id="container">
+            <div class="content repw">
+              <article>
+                <h2 class="blind">아이디 찾기</h2>
+                <section id="pagemenu">
+                  <h2 class="blind">페이지 메뉴</h2>
+                  <ul class="page_menu clear">
+                  </ul>
+                </section>
+                <section>
+                  <div class="cont_head">
+                    <h3 class="head_tit">비밀번호 재설정</h3>
+                  </div>
+                  <div id="contbox" class="con_box brd">
+                    <!-- 정보 입력 -->
+		  <div class="con innerbox">
+        <h4 class="tit font_red">비밀번호 변경</h4>
+        <div class="info_txt">
+          <p><em class="tip_deco_dot"></em>변경하실 비밀번호를 입력해주세요.</p>
+          <p><em class="tip_deco_dot"></em>영문,숫자,특수문자 조합, 8~20자로 구성해주세요.</p>
+        </div>
+        <div class="bg_box">
+          <div class="form_box">
+          <form action="#" name='reset_pwd_Result' method="post" accept-charset="utf-8">
+          <input type="hidden" name="ci_t" value="b3c90d7b4c58b2f0f23e8c13006e4f0c" />                                                                  
+          <input type="hidden" id="encData" name="encData" value="">
+          <input type="hidden" id="vendor" name="vendor" value="">
+          <input type="hidden" id="reset_pw_fail" name="reset_pw_fail" value="0">
+          <input type="hidden" id="user_id" name="user_id" class="int" title="아이디" placeholder="아이디" maxlength="20">
+          <input type="hidden" id="security_code" name="security_code" class="int" title="이메일 입력" placeholder="이메일" maxlength="30">
+          <input type="text" id="user_pw1" name="user_pw1" class="int" title="비밀번호" placeholder="변경하실비밀번호" maxlength="20">
+          <input type="text" id="user_pw2" name="user_pw2" class="int" title="비밀번호 재입력" placeholder="변경하실비밀번호 재입력" maxlength="20">
+                  <button type="button" class="btn_blue small btn_wrfull" onclick="password_reset()">확인</button>
+          </form>
+          </div>
+        </div>
+          <div class="btn_box tcenter">
+          </div>
+        </div>
+        </div>
+        <!--//정보 입력 -->
+            <div id="other_auth_pop" class="pop_wrap type3" style="left:50%;top:50%;margin-left:-159px;margin-top:-100px;display:none;">
+                <div class="pop_content another_certify">
+                    <div class="pop_head bg"><h3>인증하기</h3></div>
+                    <div class="inr">
+                      <strong class="stit">휴대폰 인증</strong>
+                      <div class="txtbox">
+                        <p>본인 명의의 휴대폰을 통한 본인인증 서비스입니다.</p>
+                      </div>
+                      <div class="btn_box">
+                        <button type="button" class="btn_green small auto" onclick="open_mobile()">휴대폰 인증하기</button>
+                      </div>
+                    </div>
+                  </div>
+                    <button type="button" class="poply_whiteclose" onclick="open_other_auth('close')"><span class="blind">레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>
+                  </div>
+              </div>
+          </div>
+      </section>
+    </article>
+    </div>
+  </main>
+          <footer class="gcfoot">
+            <div class="info_policy">
+              <a href="#">회사소개</a>
+              <a href="#">제휴안내</a>
+              <a href="#">광고안내</a>
+              <a href="#">이용약관</a>
+              <a href="#"><b>개인정보처리방침</b></a>
+              <a href="#">청소년보호정책</a>
+            </div>
+            <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
+          </footer>
+          </div>
+  </body>
 </html>

@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../css/member/member.css">
   <link rel="stylesheet" href="../css/popup.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="/js/member/member.js"></script>
 </head>
 <body>
     <div id="top" class="width868 join_wrap">
@@ -56,9 +58,7 @@
                               <input type="text" class="int" id="user_id" name="user_id" maxlength="20" title="지시  아이디 입력" placeholder="아이디를 입력해 주세요.">
                               <div class="tip_msgbox">
                                 <p class="tip_msg">아이디는 로그인 시 사용됩니다.</p>
-                                <p class="tip_msg font_red mt6">쉬운 아이디로 변경이 필요한 경우 수정해 주시기 바랍니다.(현재 페이지에서만 수정 가능)</p>
-            
-                                <p id="id_tip_msg" class="tip_msg">5~20자 영문, 숫자로 입력해 주세요.</p>
+                                <p id="id_tip_msg" class="tip_msg">3~20자 영문, 숫자로 입력해 주세요.</p>
                                 <p class="tip_msg error" style="display:none">사용할 수 없는 아이디입니다. </p>
                                 <p id="id_unable" class="tip_msg error" style="display:none">이미 사용 중인 아이디입니다.</p>
                                 <p id="id_able" class="tip_msg ok" style="display:none">사용 가능한 아이디입니다.</p>
@@ -143,15 +143,14 @@
                                 <input type="text" class="int" id="user_nick" name="user_nick" maxlength="20" title="닉네임 입력" placeholder="닉네임을 입력해 주세요.">
                                 <div class="select_box subject_select nick_sel" onclick="showLayer(this, 'nick_type_lyr');return false;">
                                   <input type="hidden" name="nick_type" id="nick_type" value="1">
-                                  <div class="select_area"><span id="nick_type_txt">비고정닉</span><em class="sp_img icon_option_more"></em></div>
                                   <ul class="option_box subject_option white" style="left:0;top:34px;display:none" id="nick_type_lyr">
-                                    <li nick-type="1">비고정닉</li>
-                                    <li nick-type="2">고정닉</li>
+                                    <li nick-type="1"></li>
+                                    <li nick-type="2"></li>
                                   </ul>
                                 </div>
                               </div>
                               <div class="tip_msgbox">
-                                <p class="tip_msg" >2~20자 닉네임을 입력해 주세요.(띄어쓰기는 할 수 없습니다.)</p>
+                                <p class="tip_msg" >2~8자 닉네임을 입력해 주세요.(띄어쓰기는 할 수 없습니다.)</p>
                                 <p id="nick_able" class="tip_msg ok" style="display:none">사용 가능한 닉네임입니다.</p>
                                 <p id="nick_unable" class="tip_msg error" style="display:none">사용할 수 없는 닉네임입니다.</p>
                               </div>
@@ -160,7 +159,7 @@
             
                           <!-- .form_group.email -->
                           <div class="form_group email">
-                            <div class="form_tit">보안 코드 발급 이메일</div><!-- 210913 텍스트 수정-->
+                            <div class="form_tit">이메일 입력</div><!-- 210913 텍스트 수정-->
                             <!-- form_txt.id -->
                             <div class="form_txt">
                               <div class="clear">
@@ -191,29 +190,11 @@
                               <!-- tip_msgbox -->
                               <div class="tip_msgbox">
                                 <!-- 210913 텍스트 수정 -->
-                                <p class="tip_msg tip_deco_bar">보안 코드는 아이디 찾기/비밀번호 재설정 및 탈퇴 시 사용되므로 발급을 부탁드립니다.</p>
-                                <p class="tip_msg tip_deco_bar">인증 코드 발송 후 코드를 입력해 주시기 부탁드립니다.</p>
-                                <p class="tip_msg tip_deco_bar">발급된 인증 코드는  정보 보호를 위해 5분간만 유효합니다. 유효 시간이 경과할 경우 재발급을 받아주시기 바랍니다.</p>
+                                <p class="tip_msg tip_deco_bar">이메일은 아이디 찾기/비밀번호 재설정 및 탈퇴 시 사용되므로 사용하시는 이메일로 입력 부탁드립니다.</p>
+                                <p class="tip_msg tip_deco_bar">인증 코드 발송 후 코드를 입력해 주세요.</p>
                                 <!-- //210913 텍스트 수정 -->
                               </div>
                               <!-- //tip_msgbox -->
-            
-                              <!-- 210913 회원정보 개편-->
-                              <!-- email_agree 이메일 수집 동의 -->
-                              <div class="email_agree">
-                                <div class="bg_box">
-                                  <b>&#8251; 이메일 수집 동의</b>
-                                  <div class="agree_check">
-                                    <span class="checkbox">
-                                      <input type="checkbox" id="email_agree_chk">
-                                      <em class="checkmark"></em>
-                                      <label for="email_agree_chk">입력하신 이메일은 인증 및 보안 코드 전송을 위해 사용하며, 이메일 발송 후 즉시 파기됩니다.</label>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                              <!-- //email_agree 이메일 수집 동의 -->
-            
                               <!-- incode_wrap 인증코드 입력 -->
                               <div class="incode_wrap">
                                 <div class="code">
@@ -228,39 +209,25 @@
                                   <p class="email_agreemsg">&#8251; 이메일 제공 업체에 따라 수신 지연 또는 스팸으로 분류될 수 있으니 확인 바랍니다.</p>
                                 </div>
                               </div>
-                              <!-- //incode_wrap 인증코드 입력 -->
-                              <!-- //210913 회원정보 개편-->
-            
-            
                             </div>
-                            <!-- //form_txt -->
-            
                           </div>
                           <!-- //.form_group.email -->
-            
-                          <!-- 210913 캡차코드 입력-->
+                          <!-- 자동 입력 방지 -->
                           <div class="form_group kapcode">
-                            <div class="form_tit">자동 입력 방지 코드</div>
+                            <div class="form_tit">자동 입력 방지</div>
                             <!-- form_txt -->
                             <div class="form_txt">
-                  <script type="text/javascript" src="/_js/kcaptcha.js"></script>
-                              <div class="kaebcha_box">
-                                <div class="kap_codeimg">
-                                  <img src="" id="kcaptcha" alt="자동등록방지" style="visibility:hidden;">
-                                </div>
-                                <input type="text" id="kcaptcha_code" name="kcaptcha_code" title="코드 입력" placeholder="코드 입력" class="input_kapcode">
-                              </div>
+                                <div class="g-recaptcha" data-sitekey="6LeF09wkAAAAAIEZXKGZu0ZpwQixQ_0kQU8y6prR"></div>
                             </div>
+                            <!-- //자동 입력 방지 -->
                             <!-- //form_txt -->
                           </div>
-                          <!-- //210913 캡차코드 입력-->
                         </fieldset>
-              
                     </div>
                   </div>
                   <div class="btn_box clear">
                     <div class="fr">
-                      <button type="button" class="btn_grey small bnt_next" onclick="security_code_issue()">다음</button>
+                      <button type="button" class="btn_grey small bnt_next" onclick="return check_recaptcha()">다음</button>
                     </div>
                   </div>
                 </section>
@@ -268,16 +235,33 @@
               </form>
             </div>
             </main>
+            <script>
+                function check_recaptcha(){
+                  let v = grecaptcha.getResponse();
+                  if(v.length == 0){
+                    alert("'자동 입력 방지'를 체크해주세요.")
+                    return false;
+                  }else{
+                    location.reload();
+                    return true;
+                  }
+                }
+            </script>
+            <script>
+              $(function() {
+                formInit();
+              });
+            </script>
             <footer class="gcfoot">
-                <div class="info_policy">
-                <a href="https://www.gcinside.com/company">회사소개</a>
-                <a href="https://www.gcinside.com/company#alliance">제휴안내</a>
-                <a href="https://nstatic.gcinside.com/gc/gcad/w/index.html">광고안내</a>
-                <a href="https://nstatic.gcinside.com/gc/w/policy/policy_index.html">이용약관</a>
-                <a href="https://nstatic.gcinside.com/gc/w/policy/privacy_index.html"><b>정보처리방침</b></a>
-                <a href="https://nstatic.gcinside.com/gc/w/policy/youth_policy.html">청소년보호정책</a>
-                </div>
-                <div class="copyright">Copyright ⓒ 1999 - 2023 gcinside. All rights reserved.</div>
+              <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+              </div>
+              <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
             </footer>
             </div>
     </body>

@@ -29,7 +29,7 @@
 .visit_bookmark .tabslist li.on button{color:#3b4890}
 
 .visit_bookmark .list_modi{position:absolute;right:6px;bottom:-1px;color:#29367c;text-decoration:underline;padding:3px}
-/* 2023-03-06 추가 */
+/* member 2023-03-06 추가 */
 .lyprivacy {
     position: absolute;
     width: 465px;
@@ -175,4 +175,8 @@
     width: 17px;
     height: 17px;
     background-position: -102px -135px;
+}
+.pop_wrap.type3, .pop_wrap.file {
+    border: 1px solid #29367c;
+    border-width: 2px 1px 1px;
 }
