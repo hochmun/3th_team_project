@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/member/reset.css">
+    <link rel="stylesheet" href="/css/manager.css">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet preload" href="/css/ionicons/ionicons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/sortable.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+
+        <!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcinside_main_logo.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                                <li><a href="#">게임</a></li>
+                                <li><a href="#">연예/방송</a></li>
+                                <li><a href="#">스포츠</a></li>
+                                <li><a href="#">교육/금융/IT</a></li>
+                                <li><a href="#">여행/음식/생물</a></li>
+                                <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title 1_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">최근 방문</h3>
+                <button type="button" class="btn_open">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box"></div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
+            </div>
+        </div>
+
+        <main>
+            <div class="gallery-setting-wrap">
+                <form action="gallery-setting">
+                    <div class="btns col-md-12">
+                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                        <input class="btn btn-gall" type="submit" value="저장">
+                    </div>
+                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                        <ul class="navbar-nav mr-auto mt-2">
+                            <li class="nav-item">
+                                <a href="manage.html">기본</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="permission.html">권한</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="category.html">글머리</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="report.html">신고</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="log.html">기록</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a href="blocks.html">제한</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="search.html">검색</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="notice.html">공지</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <h3 class="col-md-12 gall-settings-title">금지어</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_restricted_keywords">게시물/댓글 금지어</label>
+                            <textarea class="form-control" name="restricted_keywords" id="id_restricted_keywords" rows="8" placeholder="금지어1&#13;&#10;금지어2&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                    <h3 class="col-md-12 gall-settings-title">이모티콘</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_restricted_emoticon_tags">
+                                금지할 이모티콘 태그
+                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 태그로 이모티콘을 차단합니다. 차단할 이모티콘의 태그를 입력해주세요. 최대 30개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
+                            </label>
+                            <textarea class="form-control" name="restricted_emoticon_tags" id="id_restricted_emoticon_tags" rows="8" placeholder="2D&#13;&#10;정치&#13;&#10;이상취향&#13;&#10;선정적&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_restricted_emoticon_ids">
+                                금지할 이모티콘 아이디
+                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 아이디로 차단합니다. 차단을 원하는 이모티콘 페이지 주소의 마지막 숫자를 입력해주세요. 최대 100개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
+                            </label>
+                            <textarea class="form-control" name="restricted_emoticon_ids" id="id_restricted_emoticon_ids" rows="8" placeholder="12345&#13;&#10;34567&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                    <h3 class="col-md-12 gall-settings-title">아이피</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_blocked_ip_blocks">아이피 대역 차단(임시)</label>
+                            <textarea class="form-control" name="blocked_ip_blocks" id="id_blocked_ip_blocks" rows="8" placeholder="111.111&#13;&#10;123.123&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <footer></footer>
+
+    </div>
+</body>
+</html>
