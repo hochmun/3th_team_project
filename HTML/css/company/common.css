@@ -8,117 +8,30 @@
  /* 중국어 (간체) */
 :lang(zh-Hans) {font-family: 'Noto Sans SC', sans-serif;}
 
-/*
-@font-face {
-  font-family:'Noto Sans KR';
-  src:url('https://www.dcinside.com/_js/font/notokr-light.eot');
-  src:url('https://www.dcinside.com/_js/font/notokr-light.eot?#iefix') format('embedded-opentype'),
-  url('https://www.dcinside.com/_js/font/notokr-light.woff2') format('woff2'),
-  url('https://www.dcinside.com/_js/font/notokr-light.woff') format('woff'),
-  url('https://www.dcinside.com/_js/font/notokr-light.ttf') format('truetype'),
-  url('https://www.dcinside.com/_js/font/notokr-light.svg#notokr-light') format('svg');
-  font-weight:100;font-style:normal
-}
-
-
-
-@font-face {
-  font-family:'Noto Sans KR';
-  src:url('https://www.dcinside.com/_js/font/notokr-regular.eot');
-  src:url('https://www.dcinside.com/_js/font/notokr-regular.eot?#iefix') format('embedded-opentype'),
-  url('https://www.dcinside.com/_js/font/notokr-regular.woff2') format('woff2'),
-  url('https://www.dcinside.com/_js/font/notokr-regular.woff') format('woff'),
-  url('https://www.dcinside.com/_js/font/notokr-regular.ttf') format('truetype'),
-  url('https://www.dcinside.com/_js/font/notokr-regular.svg#notokr-regular') format('svg');
-  font-weight:400;font-style:normal
-}
-@font-face {
-  font-family:'Noto Sans KR';
-  src:url('https://www.dcinside.com/_js/font/notokr-medium.eot');
-  src:url('https://www.dcinside.com/_js/font/notokr-medium.eot?#iefix') format('embedded-opentype'),
-  url('https://www.dcinside.com/_js/font/notokr-medium.woff2') format('woff2'),
-  url('https://www.dcinside.com/_js/font/notokr-medium.woff') format('woff'),
-  url('https://www.dcinside.com/_js/font/notokr-medium.ttf') format('truetype'),
-  url('https://www.dcinside.com/_js/font/notokr-medium.svg#notokr-medium') format('svg');
-  font-weight:500;font-style:normal
-}
-*/
-
-
-/*
-@font-face {
-  font-family:'Noto Sans JP';
-  src:url('https://www.dcinside.com/_js/font/NotoSansJP-Light.eot');
-  src:url('https://www.dcinside.com/_js/font/NotoSansJP-Light.eot?#iefix') format('embedded-opentype'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Light.woff2') format('woff2'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Light.woff') format('woff'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Light.ttf') format('truetype');
-  font-weight:100;font-style:normal
-}
-
-
-
-@font-face {
-  font-family:'Noto Sans JP';
-  src:url('https://www.dcinside.com/_js/font/NotoSansJP-Regular.eot');
-  src:url('https://www.dcinside.com/_js/font/NotoSansJP-Regular.eot?#iefix') format('embedded-opentype'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Regular.woff2') format('woff2'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Regular.woff') format('woff'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Regular.ttf') format('truetype');
-  font-weight:400;font-style:normal
-}
-@font-face {
-  font-family:'Noto Sans JP';
-  src:url('https://www.dcinside.com/_js/font/NotoSansJP-Medium.eot');
-  src:url('https://www.dcinside.com/_js/font/NotoSansJP-Medium.eot?#iefix') format('embedded-opentype'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Medium.woff2') format('woff2'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Medium.woff') format('woff'),
-  url('https://www.dcinside.com/_js/font/NotoSansJP-Medium.ttf') format('truetype');
-  font-weight:500;font-style:normal
-}
-*/
-
-/*
-@font-face {
-  font-family: 'Noto Sans SC';
-  font-style: normal;
-  font-weight: 100;
-  src: url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Thin.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Thin.woff) format('woff'),
-       url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Thin.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans SC';
-  font-style: normal;
-  font-weight: 300;
-  src: url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Light.woff2) format('woff2'),
-       url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Light.woff) format('woff'),
-       url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Light.otf) format('opentype');
-}
-@font-face {
-   font-family: 'Noto Sans SC';
-   font-style: normal;
-   font-weight: 400;
-   src: url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Regular.woff2) format('woff2'),
-        url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Regular.woff) format('woff'),
-        url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Regular.otf) format('opentype');
- }
-@font-face {
-   font-family: 'Noto Sans SC';
-   font-style: normal;
-   font-weight: 500;
-   src: url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Medium.woff2) format('woff2'),
-        url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Medium.woff) format('woff'),
-        url(https://fonts.gstatic.com/ea/notosanssc/v1/NotoSansSC-Medium.otf) format('opentype');
- }
-*/
-
 
 /* 홈페이지이지 리셋 */
-html {height:100%;min-width:320px;}
-body { min-width:320px;height:100%; color: #333;   font-weight:400;font-size: 14px;font-family: 'Noto Sans KR',sans-serif;}
-#ko body{word-break: keep-all; word-wrap: break-word;letter-spacing:-0.05em;}
-#en body{word-break: keep-all; word-wrap: break-word;letter-spacing:-0.03em;}
+html {
+  height:100%;
+  min-width:320px;
+}
+body {
+   min-width:320px;
+   height:100%;
+   color: #333;
+   font-weight:400;
+   font-size: 14px;
+   font-family: 'Noto Sans KR',sans-serif;
+}
+#ko body{
+  word-break: keep-all; 
+  word-wrap: break-word;
+  letter-spacing:-0.05em;
+}
+#en body{
+  word-break: keep-all; 
+  word-wrap: break-word;
+  letter-spacing:-0.03em;
+}
 
 
 
@@ -1245,8 +1158,6 @@ padding:20px;margin-top:30px;}
 
 }
 
-/*//210913*/
-
 
 /* ==========================================================================
 Waypoints
@@ -1420,11 +1331,3 @@ Waypoints
 @media (min-width:768px) and (max-width:769px) {
   .header-inner.full .gnb li{width: auto} /* 220310 추가*/
 } 
-/* mobile */
-@media screen and (max-width:480px) {
-  .poply .popbox{padding:10% 7%}
-  .poply .txt{font-size: 17px;line-height:1.4}
-  .poply .txt .sub{margin-top:2px}
-  .poply .btnbox .btn{width: 52%;height: 38px;font-size: 17px}
-  .poply .btnclose{width: 28px;height: 28px}
-}

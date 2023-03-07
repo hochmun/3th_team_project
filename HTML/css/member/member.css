@@ -926,3 +926,316 @@ button.smaller, button.small {
     font-size: 14px;
     color: #555;
 }
+
+
+/* 2023/03/07 /라성준 //이용약관 */
+/* 페이지 메뉴 */
+.page_menu{
+    margin:0 0 32px -8px
+}
+.page_menu li{
+    float:left;width:50%
+}
+.page_menu.three li{
+    width:33.3%
+}
+.page_menu.four li{
+    width:25%
+}
+.pmenu{
+    display:block;
+    height:56px;
+    line-height:56px;
+    margin-left:8px;
+    border:2px #aaabab solid;
+    border-radius:10px;
+    background:#aaabab;
+    font-size:16px;color:#fff;
+    text-align:center;
+    text-shadow: 0px -1px #909292
+}
+.pmenu.on{
+    border-color:#3a4892;
+    background:#fff;
+    color:#29367c;
+    font-weight:bold;
+    text-shadow:none
+}
+
+/* 약관 */
+.policy_wrap .bottom_btn_box{
+    padding-top:5px
+}
+.policy_wrap .cont_head{
+    position:relative
+}
+.policy_wrap .head_tit a, .policy_wrap .head_tit{
+    vertical-align:top
+}
+.head_tit .headmenu{
+    color:#999
+}
+.head_tit .headmenu:hover{
+    text-decoration:none
+}
+.head_tit .headmenu > span:hover{
+    text-decoration:underline
+}
+.head_tit .headmenu.on{
+    color:#29367c
+}
+.headmenu::before{
+    content:"|";
+    font-size:14px;
+    color:#ccc;
+    font-weight:normal;
+    margin:0 10px 0 8px
+}
+.headmenu:first-child::before{
+    display:none
+}
+.btn_blue.smallest.btn_prev_go{
+    display:inline-block;
+    height:16px;
+    padding:0 12px;
+    line-height:16px;
+    text-align:center;
+    margin-left:4px
+}
+.btn_blue.smallest.btn_prev_go:hover{
+    text-decoration:none
+}
+.start_date{
+    position:relative;
+    height:18px;
+    color:#555
+}
+.start_date .inner{
+    position:absolute;
+    top:12px;
+    right:0
+}
+.policy_cont{
+    padding:26px 23px;
+    color:#555;
+    line-height:18px
+}
+.policy_cont strong{
+    display:block;
+    margin-top:13px
+}
+.policy_cont strong:first-child{
+    margin-top:0
+}
+.policy_cont.privacy strong:first-child{
+    margin-top:13px
+}
+.policy_cont.privacy li:first-child strong{
+    margin-top:0
+}
+
+.policy_cont strong.stit{
+    margin-top:7px
+}
+.policy_cont ol > li > ol{
+    margin-left:5px
+}
+
+.navlist{
+    overflow:hidden;
+    background:#f9f9f9;
+    padding:22px 23px;
+    margin:25px 0;
+    line-height:24px
+}
+.navlist::after{
+    clear:both;
+    display:block;
+    visibility:hidden;
+    content:""
+}
+.policy_cont .navlist a{
+    text-decoration:none
+}
+.policy_cont .navlist a:hover{
+    text-decoration:underline
+}
+ol > li,ul > li{
+    margin-bottom:5px
+}
+.privacy ol>li>ol>li,.privacy ol>li>ul>li{
+    margin-bottom:5px
+}
+ol>li>ul>li, ol>li>ol>li,.privacy ol>li>ul>li>ol>li{
+    margin-bottom:0px
+}
+
+.privacy .list{
+    float:left;
+    width:50%
+}
+.privacy .list > li{
+    margin-bottom:0
+}
+.privacy .list li a{
+    color:#d31900
+}
+.policy_table{
+    width:100%;
+    text-align:center;
+    margin:10px 0 35px 0
+}
+.policy_table th,.policy_table td{
+    border:1px #ddd solid;
+    vertical-align:middle;
+    color:#555
+}
+.policy_table th{
+    height:40px;
+    background:#f3f3f3
+}
+.policy_table tr:first-child td{
+    border-top:none
+}
+.policy_table td{
+    padding:15px
+}
+.manager_info{
+    overflow:hidden;
+    padding:19px 24px 18px;
+    margin:20px 0;
+    background:#f3f3f3
+}
+.manager_cont{
+    float:left;
+    width:50%;
+    line-height:24px
+}
+.policy_cont.privacy .manager_info strong{
+    margin-top:0
+}
+.policy_cont a{
+    color:#29367c;
+    text-decoration:underline
+}
+
+/* 개인정보처리방침 레이어 버튼 */
+.btn_lyopen{
+    height:29px;
+    line-height:27px;
+    padding:0 13px;color:#333;
+    font-weight:bold;border:1px solid #c4c4c4;
+    background:#f9f9f9;box-sizing:border-box;
+    border-radius:2px
+}
+.btn_lyopen::after{
+    content:"";
+    display:inline-block;
+    width:6px;height:9px;
+    margin-left:7px;
+    background-image:url(/img/sp_img.png);background-repeat:no-repeat;
+    background-position:-27px -44px
+ }
+
+/*회원가입 로그인*/
+.con_box{
+    margin:25px 0 7px
+}
+.con_box.brd{
+    min-height:398px;
+    border:1px #cecdce solid;
+    border-radius:5px
+}
+.con_box.brd.nomin{
+    min-height:auto
+}
+.con_box.bluebrd{
+    border:2px #29367c solid;
+    border-radius:5px
+}
+.con{
+    padding:58px 0 58px;
+    margin:0 auto
+}
+.con.changform_box{
+    padding:78px 0 73px;
+    position:relative
+}
+.con.innerbox{
+    width:660px
+}
+.login_wrap .con.innerbox{
+    width:605px
+}
+.login_wrap .member_out .con.innerbox {
+    width:650px
+}
+.con.innerbox .info_txt{
+    padding-left:5px
+}
+.login_wrap .con.innerbox .info_txt{
+    padding-left:13px;
+    word-break:keep-all
+}
+.con .tit{
+    font-size:14px
+}
+.con.innerbox .tit{
+    padding-left:4px
+}
+.con.center{
+    padding-top:134px;
+    text-align:center;
+    line-height:25px;
+    font-size:14px;
+    color:#555
+}
+.con.center .tit{
+    display:block;
+    font-size:16px;
+    color:#d31900
+}
+.con.center .txt{
+    margin-top:1px
+}
+.con.center .btn_box{
+    margin-top:11px
+}
+.con.center .btn_box{
+    margin-top:11px
+}
+.con.center .int[type="password"]{
+    width:290px;
+    margin-top:9px
+}
+.bg_box{
+    padding:43px 0 47px;
+    margin:26px 0 35px;
+    background:#f3f3f3;
+    border-radius:2px;
+    text-align:center;
+    font-size:14px;
+    color:#333
+}
+.form_box{
+    width:290px;
+    margin:0 auto
+}
+.login_wrap .con.innerbox.w552, .w552{
+    width:552px
+}
+/* //이용약관*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
