@@ -124,13 +124,13 @@
                             <li class="nav-item">
                                 <a href="report.html">신고</a>
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a href="log.html">기록</a>
                             </li>
                             <li class="nav-item">
                                 <a href="blocks.html">제한</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a href="search.html">검색</a>
                             </li>
                             <li class="nav-item">
@@ -138,23 +138,19 @@
                             </li>
                         </ul>
                     </nav>
-                    <h3 class="col-md-12 gall-settings-title">기록 남기기</h3>
+                    <h3 class="col-md-12 gall-settings-title">검색/광고</h3>
                     <div class="form-group col-md-12">
-                        <label>추천, 비추천
-                            <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="일정 기간 내에 지정된 수치 이상 추천, 비추천 시 감사에 기록합니다."></span>
-                        </label>
                         <div class="table-responsive">
-                            <table class="table align-middle horizontal-scrollable">
+                            <table class="table align-middle">
                                 <colgroup>
-                                    <col width="1">
-                                    <col width="1">
                                     <col>
+                                    <col width="100%">
                                 </colgroup>
-                                <thead class="logThead">
+                                <thead>
                                     <tr>
                                         <th></th>
-                                        <th title="주소에 표시되는 리스트의 이름입니다." style="min-width: 10rem;">이름</th>
-                                        <th title="리스트의 속성입니다.">속성</th>
+                                        <th>검색 키워드</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody class="jquery-sortable"></tbody>
@@ -164,45 +160,44 @@
                                             <a href="#" data-action="table-add-row">추가...</a>
                                         </td>
                                     </tr>
-                                    <tr class="hidden" data-action="table-sample" data-idx-from="1">
-                                        <td class="ion-android-menu">
-                                            <input type="hidden" name="audit_rate.order[]" value="new-%idx%">
-                                        </td>
+                                    <tr class="hidden" data-action="table-sample">
+                                        <td class="ion-android-menu"></td>
                                         <td>
-                                            <div class="form-inline">
-                                                <input class="form-control form-control-sm" type="text" id="form.audit_rate.items[new-%idx%].id" name="audit_rate.items[new-%idx%].id" title="관리용으로 표시되는 리스트의 이름입니다. 저장한 이후에는 변경할 수 없습니다." autocomplete="off" data-required>
-                                            </div>
+                                            <input type="text" name="keywords[]" class="form-control form-control-static">
                                         </td>
+                                        <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div class="table-responsive">
+                            <table class="table align-middle">
+                                <colgroup>
+                                    <col>
+                                    <col width="100%">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>연관 갤러리</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="jquery-sortable"></tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4" class="align-middle">
+                                            <a href="#" data-action="table-add-row">추가...</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="hidden" data-action="table-sample">
+                                        <td class="ion-android-menu"></td>
                                         <td>
-                                            <div class="form-group">
-                                                <label>타입</label>
-                                                <select class="form-control form-control-sm" id="form.audit_rate.items[new-%idx%].type" name="audit_rate.items[new-%idx%].type">
-                                                    <option value="up">추천</option>
-                                                    <option value="down">비추천</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group input-group-sm">
-                                                <label>시간
-                                                    <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="60초 이상 부터 지정 가능합니다."></span>
-                                                </label>
-                                                <div class="input-group-append">
-                                                    <input class="form-control form-control-sm" type="number" id="form.audit_rate.items[new-%idx%].time" name="audit_rate.items[new-%idx%].time" require="true" min="60" max="1800">
-                                                    <span class="input-group-text">초</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group input-group-sm">
-                                                <label>횟수
-                                                    <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="5 이상 입력이 되어야합니다"></span>
-                                                </label>
-                                                <div class="input-group-append">
-                                                    <input class="form-control form-control-sm" type="number" id="form.audit_rate.items[new-%idx%].count" name="audit_rate.items[new-%idx%].count" require="true" min="5" max="100">
-                                                    <span class="input-group-text">회</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-sm btn-danger" data-action="table-remove-row">지우기</button>
-                                            </div>
+                                            <input type="text" name="related_gallerys[]" class="form-control form-control-static" placeholder="갤러리 slug">
                                         </td>
+                                        <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -211,7 +206,6 @@
                 </form>
             </div>
         </main>
-
         <footer></footer>
 
     </div>

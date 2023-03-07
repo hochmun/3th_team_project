@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/member/reset.css">
     <link rel="stylesheet" href="/css/manager.css">
     <link rel="stylesheet" href="/css/basic.css">
     <link rel="stylesheet" href="/css/popup.css">
@@ -124,10 +125,10 @@
                             <li class="nav-item">
                                 <a href="report.html">신고</a>
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a href="log.html">기록</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a href="blocks.html">제한</a>
                             </li>
                             <li class="nav-item">
@@ -138,80 +139,42 @@
                             </li>
                         </ul>
                     </nav>
-                    <h3 class="col-md-12 gall-settings-title">기록 남기기</h3>
-                    <div class="form-group col-md-12">
-                        <label>추천, 비추천
-                            <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="일정 기간 내에 지정된 수치 이상 추천, 비추천 시 감사에 기록합니다."></span>
-                        </label>
-                        <div class="table-responsive">
-                            <table class="table align-middle horizontal-scrollable">
-                                <colgroup>
-                                    <col width="1">
-                                    <col width="1">
-                                    <col>
-                                </colgroup>
-                                <thead class="logThead">
-                                    <tr>
-                                        <th></th>
-                                        <th title="주소에 표시되는 리스트의 이름입니다." style="min-width: 10rem;">이름</th>
-                                        <th title="리스트의 속성입니다.">속성</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="jquery-sortable"></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4" class="align-middle">
-                                            <a href="#" data-action="table-add-row">추가...</a>
-                                        </td>
-                                    </tr>
-                                    <tr class="hidden" data-action="table-sample" data-idx-from="1">
-                                        <td class="ion-android-menu">
-                                            <input type="hidden" name="audit_rate.order[]" value="new-%idx%">
-                                        </td>
-                                        <td>
-                                            <div class="form-inline">
-                                                <input class="form-control form-control-sm" type="text" id="form.audit_rate.items[new-%idx%].id" name="audit_rate.items[new-%idx%].id" title="관리용으로 표시되는 리스트의 이름입니다. 저장한 이후에는 변경할 수 없습니다." autocomplete="off" data-required>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <label>타입</label>
-                                                <select class="form-control form-control-sm" id="form.audit_rate.items[new-%idx%].type" name="audit_rate.items[new-%idx%].type">
-                                                    <option value="up">추천</option>
-                                                    <option value="down">비추천</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group input-group-sm">
-                                                <label>시간
-                                                    <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="60초 이상 부터 지정 가능합니다."></span>
-                                                </label>
-                                                <div class="input-group-append">
-                                                    <input class="form-control form-control-sm" type="number" id="form.audit_rate.items[new-%idx%].time" name="audit_rate.items[new-%idx%].time" require="true" min="60" max="1800">
-                                                    <span class="input-group-text">초</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group input-group-sm">
-                                                <label>횟수
-                                                    <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="5 이상 입력이 되어야합니다"></span>
-                                                </label>
-                                                <div class="input-group-append">
-                                                    <input class="form-control form-control-sm" type="number" id="form.audit_rate.items[new-%idx%].count" name="audit_rate.items[new-%idx%].count" require="true" min="5" max="100">
-                                                    <span class="input-group-text">회</span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="button" class="btn btn-sm btn-danger" data-action="table-remove-row">지우기</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                    <h3 class="col-md-12 gall-settings-title">금지어</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_restricted_keywords">게시물/댓글 금지어</label>
+                            <textarea class="form-control" name="restricted_keywords" id="id_restricted_keywords" rows="8" placeholder="금지어1&#13;&#10;금지어2&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                    <h3 class="col-md-12 gall-settings-title">이모티콘</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_restricted_emoticon_tags">
+                                금지할 이모티콘 태그
+                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 태그로 이모티콘을 차단합니다. 차단할 이모티콘의 태그를 입력해주세요. 최대 30개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
+                            </label>
+                            <textarea class="form-control" name="restricted_emoticon_tags" id="id_restricted_emoticon_tags" rows="8" placeholder="2D&#13;&#10;정치&#13;&#10;이상취향&#13;&#10;선정적&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_restricted_emoticon_ids">
+                                금지할 이모티콘 아이디
+                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 아이디로 차단합니다. 차단을 원하는 이모티콘 페이지 주소의 마지막 숫자를 입력해주세요. 최대 100개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
+                            </label>
+                            <textarea class="form-control" name="restricted_emoticon_ids" id="id_restricted_emoticon_ids" rows="8" placeholder="12345&#13;&#10;34567&#13;&#10;&#13;&#10;..."></textarea>
+                        </div>
+                    </div>
+                    <h3 class="col-md-12 gall-settings-title">아이피</h3>
+                    <div class="form-row col-md-12">
+                        <div class="form-group col-md-12">
+                            <label for="id_blocked_ip_blocks">아이피 대역 차단(임시)</label>
+                            <textarea class="form-control" name="blocked_ip_blocks" id="id_blocked_ip_blocks" rows="8" placeholder="111.111&#13;&#10;123.123&#13;&#10;&#13;&#10;..."></textarea>
                         </div>
                     </div>
                 </form>
             </div>
         </main>
-
         <footer></footer>
 
     </div>
