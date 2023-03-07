@@ -1,0 +1,18 @@
+/* 관리자 헤더 */
+.admin_header {background: #336600;}
+.admin_ul {position: absolute;right: 0;top: 15px;}
+.admin_ul > li {display: inline-block;}
+.admin_ul > li > a {color: white;}
+.admin_ul > li > a:hover {text-decoration: underline;}
+
+/* 메인 */
+.admin_main > div {overflow: hidden;}
+
+/* 관리자 gnb */
+.admin_aside{float: left;width: 270px;height: auto; background: #669933;box-sizing: border-box;}
+#admin_gnb > li {width: 100%; min-height: 66px; border-top: 1px solid #336600;box-sizing: border-box;}
+#admin_gnb > li > a {display: block;width: 100%;height: 66px;font-size: 14px;font-weight: bold;line-height: 66px;text-indent: 10px;color: white;}
+#admin_gnb ol {display: none;width: 100%;height: auto;}
+#admin_gnb ol > li {width: 100%;height: 32px;background: #99cc66;}
+#admin_gnb ol > li > a {display: block; width: 100%; height: 100%; text-indent: 52px;color: white;line-height: 32px;}
+#admin_gnb ol > li > a::before {content: " - ";}
