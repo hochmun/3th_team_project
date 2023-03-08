@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="content-language" content="kr">
+  <title>GCInside 입니다.</title>
+  <link rel="stylesheet" type="text/css" href="../css/member/reset.css"/>
+  <link rel="stylesheet" href="../css/member/member.css">
+  <link rel="stylesheet" href="../css/popup.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="/js/member/member.js"></script>
+</head>
+<body>
+    <div id="top" class="width868 join_wrap">
+        <header class="gcheader bg">
+            <div class="gchead">
+                <!-- 로고영역 -->
+                <h1 class="gc_logo">
+                  <a href="../index.html"><img src="../img/dcin_logo2.png" alt="GCInside"></a>
+                </h1>
+                <!-- //로고영역 -->
+                <div class="area_links">
+                    <ul>
+                      <li><a href="#">갤러리</a></li>
+                      <li><a href="#">마이너갤</a></li>
+                      <li><a href="#">미니갤</a></li>
+                      <li><a href="#">갤로그</a></li>
+                      <li><a href="#">지시뉴스</a></li>
+                      <li><a href="#">지시게임</a></li>
+                      <li><a href="#">지시위키</a></li>
+                      <li><a href="#">이벤트</a></li>
+                      <li><a href="#">지시콘</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <main id="container">
+            <div class="content">
+            <article>
+                <section>
+                  <div class="sp_joinpath joinpath2">
+                    <p class="blind">기본 정보 입력</p>
+                  </div>
+                </section>
+                <section>
+                  <div class="cont_head">
+                    <h3 class="head_tit">기본 정보 입력</h3>
+                  </div>
+                  <div class="con_box brd">
+                    <div class="con joinform_box">
+                <form action="#" id='join_info' name='join_info' method="post" accept-charset="utf-8">
+                        <fieldset>
+                          <div class="form_group id">
+                            <div class="form_tit">아이디</div>
+                            <div class="form_txt">
+                              <input type="text" class="int" id="user_id" name="user_id" maxlength="20" title="지시  아이디 입력" placeholder="아이디를 입력해 주세요.">
+                              <div class="tip_msgbox">
+                                <p class="tip_msg">아이디는 로그인 시 사용됩니다.</p>
+                                <p id="id_tip_msg" class="tip_msg">3~20자 영문, 숫자로 입력해 주세요.</p>
+                                <p class="tip_msg error" style="display:none">사용할 수 없는 아이디입니다. </p>
+                                <p id="id_unable" class="tip_msg error" style="display:none">이미 사용 중인 아이디입니다.</p>
+                                <p id="id_able" class="tip_msg ok" style="display:none">사용 가능한 아이디입니다.</p>
+            
+                              </div>
+                            </div>
+                          </div>
+            
+                          <div class="form_group pw">
+                            <div class="form_tit">비밀번호 입력</div>
+                            <div class="form_txt">
+                              <input type="password" class="int" id="gc_pw" name="gc_pw" title="비밀번호 입력" maxlength="20" placeholder="비밀번호를 입력해 주세요."><!--비밀번호 조건 불일치시 배경색 클래스 rule_out -->
+                              <input type="password" class="int pw_check" id="gc_pwc" name="gc_pwc" title="비밀번호 확인 입력" maxlength="20" placeholder="비밀번호를 재확인해 주세요.">
+                              <!-- 200602 비밀번호 조건, 안전정도 -->
+                              <div class="pw_rule">
+                                <div class="pw_tip">
+                                  <p class="tip_tit">비밀번호 필수 조건</p>
+                                  <div class="checkbox chkStr"> <!--200602 조건 충족 시 .on 추가-->
+                                    <p class="chklbl">영문, 숫자, 특수문자 조합입니다.</p>
+                                  </div>
+                                  <dis class="checkbox chkLen"> <!--200602 조건 충족 시 .on 추가-->
+                                    <p class="chklbl">8~20자입니다.</p>
+                                  </dis>
+                                </div>
+            
+                                <div class="pw_step">
+                                  <div class="step_box">  <!--200602 사용 불가:impossible / 보통:normal / 안전:safe 클래스 추가 -->
+                                    <div class="top">
+                                        <span class="step_tit">안전 정도</span>
+                                        <button type="button" class="btn_pw_info" onclick="showLayer(this, 'pwInfoLayer');return false;"><span class="blind">비밀번호 설정 안내</span><em class="sp_img icon_pwinfo_open"></em></button>
+                                         <!--200602<span class="step_txt">사용 불가</span> 사용 불가:impossible / 보통:normal / 안전:safe -->
+                                    </div>
+                                    <div class="btm_box">
+                                      <span class="bar"></span>
+                                    </div>
+                                  </div>
+            
+                                  <!--200602 .impossible 추가될때만 출력 -->
+                                  <p class="impsb_txt tip1" style="display:none">비밀번호가 일치하지 않습니다.</p>
+                                  <p class="impsb_txt tip2" style="display:none">아이디, 닉네임과 동일한 비밀번호는 사용 불가합니다.</p>
+                                  <p class="impsb_txt tip3" style="display:none">영문, 숫자 동일 및 연속 3자리 또는 특수문자 동일 3자리 사용 불가합니다.<br>예) 123, 111, abc, aaa, !!!</p>
+                                </div>
+                                <!-- 200602 비밀번호 설정 안내 팝업 -->
+                                <div class="pop_wrap type2" id="pwInfoLayer" style="left: 77px; top: 70px; display: none;">
+                                  <div class="pop_content pw_seting">
+                                    <div class="pop_head dashed">
+                                      <strong>비밀번호 설정 안내</strong>
+                                    </div>
+                                    <div class="inner">
+                                      <div class="pop_info">
+                                        <p>안전한 비밀번호를 사용하는 것은<br>스스로  정보를 지키는 간단한 방법입니다.</p>
+                                      </div>
+                                      <ul class="step_info">
+                                        <li>
+                                          <em class="tip_deco_dot"></em><span class="tit"><b class="impossible">사용 불가</b></span><span class="txt"> 비밀번호에 부적합합니다.</span>
+                                        </li>
+                                        <li>
+                                          <em class="tip_deco_dot"></em><span class="tit"><b class="normal">보통</b></span>
+                                          <span class="txt">
+                                            <span>영문, 숫자, 특수문자 조합 8~20자 필수입니다.</span>
+                                            <span>비밀번호는 아이디, 닉네임과 다르게 설정해야 합니다.</span>
+                                            <span>영문, 숫자 동일 및 연속 3자리 또는 특수문자 동일 3자리</span>
+                                            <span>사용 불가합니다. 예) 123, 111, abc, aaa, !!!</span>
+                                          </span>
+                                        </li>
+                                        <li>
+                                          <em class="tip_deco_dot"></em><span class="tit"><b class="safe">안전</b></span><span class="txt">'<b class="normal">보통</b>' +&nbsp;대문자 조합으로 안전한 비밀번호입니다.</span>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <button type="button" class="under poply_close" onclick="showLayer(this, 'pwInfoLayer');return false;"><span class="blind">갤러리 전체보기 레이어 닫기</span><em class="sp_img icon_lyclose"></em></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            
+                          <div class="form_group nick">
+                            <div class="form_tit">닉네임 만들기</div>
+                            <div class="form_txt">
+                              <div class="clear">
+                                <input type="text" class="int" id="user_nick" name="user_nick" maxlength="20" title="닉네임 입력" placeholder="닉네임을 입력해 주세요.">
+                                <div class="select_box subject_select nick_sel" onclick="showLayer(this, 'nick_type_lyr');return false;">
+                                  <input type="hidden" name="nick_type" id="nick_type" value="1">
+                                  <ul class="option_box subject_option white" style="left:0;top:34px;display:none" id="nick_type_lyr">
+                                    <li nick-type="1"></li>
+                                    <li nick-type="2"></li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <div class="tip_msgbox">
+                                <p class="tip_msg" >2~8자 닉네임을 입력해 주세요.(띄어쓰기는 할 수 없습니다.)</p>
+                                <p id="nick_able" class="tip_msg ok" style="display:none">사용 가능한 닉네임입니다.</p>
+                                <p id="nick_unable" class="tip_msg error" style="display:none">사용할 수 없는 닉네임입니다.</p>
+                              </div>
+                            </div>
+                          </div>
+            
+                          <!-- .form_group.email -->
+                          <div class="form_group email">
+                            <div class="form_tit">이메일 입력</div><!-- 210913 텍스트 수정-->
+                            <!-- form_txt.id -->
+                            <div class="form_txt">
+                              <div class="clear">
+                    <input type="hidden" id="code_email_type" name="code_email_type" value="JN">
+                    <input type="hidden" id="c_email_auth" name="c_email_auth" value="">
+                    <input type="hidden" id="c_email_auth_sign" name="c_email_auth_sign" value="">
+                                <input type="text" class="int" id="email1" name="email1" title="이메일 입력" value="" maxlength="30" style="text-transform: lowercase">
+                                <span class="deco_mail">@</span>
+                                <input type="text" class="int" id="email2" name="email2" title="이메일 주소 입력" readonly="" maxlength="20">
+                                <div class="select_box subject_select email_sel" onclick="showLayer(this, 'email_host_lyr');return false;">
+                                  <div class="select_area"><span >이메일 선택</span><em class="sp_img icon_option_more"></em></div>
+                                  <input type="hidden" id="email_list" name="email_list" value="">
+                                  <ul class="option_box subject_option white" id="email_host_lyr" style="left:0;top:34px;display:none">
+                                    <li value="self">이메일 선택</li>
+                                    <li value="gmail.com">gmail.com</li>
+                                    <li value="hanmail.net">hanmail.net</li>
+                                    <li value="daum.net">daum.net</li>
+                                    <li value="hotmail.com">hotmail.com</li>
+                                    <li value="korea.com">korea.com</li>
+                                    <li value="naver.com">naver.com</li>
+                                    <li value="yahoo.com">yahoo.com</li>
+                                    <li value="nate.com">nate.com</li>
+                                    <li value="inst">직접 입력</li>
+                                  </ul>
+                                </div>
+                              </div>
+            
+                              <!-- tip_msgbox -->
+                              <div class="tip_msgbox">
+                                <!-- 210913 텍스트 수정 -->
+                                <p class="tip_msg tip_deco_bar">이메일은 아이디 찾기/비밀번호 재설정 및 탈퇴 시 사용되므로 사용하시는 이메일로 입력 부탁드립니다.</p>
+                                <p class="tip_msg tip_deco_bar">인증 코드 발송 후 코드를 입력해 주세요.</p>
+                                <!-- //210913 텍스트 수정 -->
+                              </div>
+                              <!-- //tip_msgbox -->
+                              <!-- incode_wrap 인증코드 입력 -->
+                              <div class="incode_wrap">
+                                <div class="code">
+                                  <div class="code_box clear">
+                                    <div class="code_inputbox clear">
+                                    <input type="text" id="code" name="code" class="code_input" title="인증코드" placeholder="인증 코드 입력" maxlength="10">
+                                    <button type="button" class="btn_codeok" onclick="codeAuth()">확인</button>
+                                    </div>
+                                    <button type="button" class="btn_white small btn_recode" onclick="codeSend()">인증 코드 받기</button>
+                                  </div>
+                                  <p class="tip_msg" id="time_text" style="display:none">인증 번호 입력까지 남은 시간은<b id="time" class="font_red">4분 46초</b>입니다.</p>
+                                  <p class="email_agreemsg">&#8251; 이메일 제공 업체에 따라 수신 지연 또는 스팸으로 분류될 수 있으니 확인 바랍니다.</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- //.form_group.email -->
+                          <!-- 자동 입력 방지 -->
+                          <div class="form_group kapcode">
+                            <div class="form_tit">자동 입력 방지</div>
+                            <!-- form_txt -->
+                            <div class="form_txt">
+                                <div class="g-recaptcha" data-sitekey="6LeF09wkAAAAAIEZXKGZu0ZpwQixQ_0kQU8y6prR"></div>
+                            </div>
+                            <!-- //자동 입력 방지 -->
+                            <!-- //form_txt -->
+                          </div>
+                        </fieldset>
+                    </div>
+                  </div>
+                  <div class="btn_box clear">
+                    <div class="fr">
+                      <button type="button" class="btn_grey small bnt_next" onclick="return check_recaptcha()">다음</button>
+                    </div>
+                  </div>
+                </section>
+              </article>
+              </form>
+            </div>
+            </main>
+            <script>
+                function check_recaptcha(){
+                  let v = grecaptcha.getResponse();
+                  if(v.length == 0){
+                    alert("'자동 입력 방지'를 체크해주세요.")
+                    return false;
+                  }else{
+                    location.reload();
+                    return true;
+                  }
+                }
+            </script>
+            <script>
+              $(function() {
+                formInit();
+              });
+            </script>
+            <footer class="gcfoot">
+              <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+              </div>
+              <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
+            </footer>
+            </div>
+    </body>
+</html>
