@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/sortable.js"></script>
+    <script type="text/javascript" src="/js/manage/Sortable.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -205,6 +205,59 @@
                     </div>
                 </form>
             </div>
+            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
+            <!-- 갤러리 위임 팝업 -->
+            <article id="owiim" class="containe-fluid board-article popup">
+                <div class="row">
+                    <div class="col-sm-0 col-lg-1"></div>
+                    <div class="col-sm-12 col-lg-10">
+                        <div class="dialog card">
+                            <div class="card-block">
+                                <h4 class="card-title">ㅇㅇㅇ 갤러리 매니저 위임</h4>
+                                <h6 class="card-subtitle text-muted">
+                                    10,000Pt.를 소모하여 다른 사람에게 갤러리 매니저를 위임하는 기능입니다.
+                                </h6>
+                                <form method="POST">
+                                    <input type="hidden" name="_csrf" value="">
+                                    <div class="form-group row">
+                                        <label for="nameInput" class="col-3 col-form-label">위임할 갤러리</label>
+                                        <div class="col-9">
+                                            <input class="form-control" type="text" name="name" id="nameInput" maxlength="64" value="ㅇㅇㅇ 갤러리" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nicknameInput" class="col-3 col-form-label">위임받을 닉네임</label>
+                                        <div class="col-9">
+                                            <input class="form-control" type="text" name="nickname" id="nicknameInput" maxlength="64">
+                                        </div>
+                                    </div>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="submit">위임하기</button>
+                                        <button class="btn btn-secondary" type="button">취소</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-0 col-lg-1"></div>
+                </div>
+            </article>
+            <!-- 갤러리 위임 팝업 끝-->
+            <script>
+                // 갤러리 위임 팝업 띄우기
+                $(function(){
+                    $('.btn-danger').click(function(e){
+                        e.preventDefault();
+                        $('.popup').removeClass('on');
+                        $('#owiim').addClass('on');
+                    });
+
+                    // 갤러리 위임 팝업 닫기
+                    $('.popup .btn-secondary').click(function(){
+                        $(this).closest('.popup').removeClass('on');
+                    });
+                });
+            </script>
         </main>
         <footer></footer>
 
