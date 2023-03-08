@@ -1,11 +1,12 @@
-<!-- 2023/03/07 // 김동민 // 마이너갤러리 index 페이지 화면구현 -->
+<!-- 2023/03/07 // 김동민 // 마이너갤러리 index 페이지 html 작업  -->
+<!-- 2023/03/08 // 김동민 // 마이너갤러리 index 페이지 css 작업   -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="/css/member/reset.css">
-    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/minor/common.css">
     <link rel="stylesheet" href="/css/popup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -13,6 +14,7 @@
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/lately_visit_new.js"></script>
     <script type="text/javascript" src="/js/ctr_cookie.js"></script>
+    <script src="/js/minor/minor.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -158,7 +160,7 @@
                           </div>
                         </div>
                         <!-- //마이너 갤러리 안내 레이어 -->
-                        <a href="./create.html" class="btn_red mgall_make_go round">마이너 갤러리 만들기</a>
+                        <a href="./create.html" class="btn_red mgall_make_go round" id="mgall_make_go">마이너 갤러리 만들기</a>
                       </div>
                       <div class="mgall_list_wrap clear">
                         <!-- 흥한 마이너 갤러리 -->
@@ -251,7 +253,6 @@
                                         <li><a href="#">신설 마이너 갤러리 명</a></li>
                                         <li><a href="#">신설 마이너 갤러리 명</a></li>
                                         <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -274,97 +275,39 @@
                             <button type="button" class="btn_blue_round">갤러리 전체보기</button>
                         </div>
                         <!-- //갤러리 전체보기 레이어 팝업 -->
-                <div class="rank_listwrap clear">
-                    <div class="ranklist_over clear">
-                        <button type="button" class="btn_blue_round" >실시간 북적 m.갤러리</button>
-                    </div>
-                 </div>
-            </div>
-  		      </section>
-                <!-- 오른쪽 -->
-                <section class="right_content">
-                    <!-- 로그인 -->
-                    <div id="login" class="login_wrap mandudel">
-                        <div class="log_inr">
-                            <form id="login_process" autocomplete="off">
-                                <fieldset>
-                                    <div class="login_inp">
-                                        <div class="input_box">
-                                            <label for="user_id" id="idLabel" class="lab_login">아이디</label>
-                                            <input type="text" id="user_id" 
-                                            name="user_id" class="inp_txt" maxlength="50"
-                                            onfocus="$('#idLabel').html('');">
-                                        </div>
-                                        <div class="input_box">
-                                            <label for="pw" id="pwdLabel" class="lab_login">비밀번호</label>
-                                            <input type="password" id="pw" 
-                                            name="pw" class="inp_txt" maxlength="32"
-                                            onfocus="$('#pwdLabel').html('');">
-                                        </div>
-                                    </div>
-                                    <div class="login_set">
-                                        <button type="button" id="login_ok" class="btn_inout login">로그인</button>
-                                    </div>
-                                </fieldset>
-                            </form>
-                            <div class="options">
-                                <a href="#"><strong><em class="interval m">아이디</em>생성</strong></a>
-                                <a href="#" class="id">아이디찾기<em class="sp_img img_dot"></em></a>
-                                <a href="#" class="pw">비밀번호찾기</a>
+                        <div class="rank_listwrap clear">
+                            <div class="ranklist_over clear">
+                                <button type="button" class="btn_blue_round" >실시간 북적 m.갤러리</button>
                             </div>
                         </div>
+                        
+  		            </section>
+                    <!-- 오른쪽 -->
+                    <section class="right_content">
+                    <!-- 로그인 -->
+                    <div id="login_box" class="login_box">
+                        <div class="user_info newarea" data-alarmId="">
+                          <strong onclick="location='/member/login.html'" style="cursor:pointer">로그인해 주세요.</strong> 
+                        </div>
+                        <div class="user_option ">
+                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a></span>
+                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기<span class="blind">리스트 보기</span></a></span>
+                                <span><a href="javascript:;" onclick="alarmList($('.icon_noti', this), 'new')"><em class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
+                        </div>
                     </div>
-                </section>
-            </div>
+                    <img src="https://via.placeholder.com/300x150" alt="">
+                    </section>
+                </article>
+
+        </div>
+        
         </main>
 
         <!-- 푸터 -->
         <footer class="gcfoot">
             <div class="gc_all">
-                <div class="notice">
-                    <a href="#"><strong class="tit">공지사항</strong></a>
-                    <a href="#"></a>
-                </div>
-
-                <div class="all_box mandudel">
-                    <div class="all_list">
-                        <dl>
-                            <dt><a href="#">갤러리</a></dt>
-                            <dd><a href="#">HIT 갤러리</a></dd>
-                            <dd><a href="#">실시간 베스트 갤러리</a></dd>
-                        </dl>
-                        <dl class="rankingGall">
-                            <dt>인기갤러리</dt>
-                        </dl>
-                        <dl>
-                            <dt>주요서비스</dt>
-                        </dl>
-                        <dl class="rollingGall">
-                            <dt><span>갤러리 순회</span></dt>
-                        </dl>
-                        <dl>
-                            <dt><a href="#" target="_blank">갤시뉴스</a></dt>
-                        </dl>
-                        <dl>
-                            <dt><a href="#">디시미디어</a></dt>
-                        </dl>
-                    </div>
-                    <div class="all_bottom">
-                        <a href="#" target="_blank"><strong class="tit">광고안내</strong></a>
-                        <span class="list">
-                            <a href="#" target="_blank" class="link_info">디스플레이광고</a>
-                            <a href="#" target="_blank" class="link_info">프로모션</a>
-                            <a href="#" target="_blank" class="link_info">광고문의</a>
-                        </span>
-                        <span class="bottom_menu">
-                            <a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a>
-                            <a class="menu_link menu_fold" href="javascript:void(0);" style="display:block"><em class="sp_img icon_fold"></em>닫기</a>
-                            <a class="menu_link menu_open" href="javascript:void(0);" style="display:none"><em class="sp_img icon_open"></em>열기</a>
-                            <a class="menu_link" href="#top" ><em class="sp_img icon_up"></em>맨위로</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            </div>   
+                
 
             <div class="info_policy">
                 <a href="#">회사소개</a>
