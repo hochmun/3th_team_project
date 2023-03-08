@@ -408,7 +408,7 @@ html,html.theme-light {
     border-color: var(--color-border-inner)
 }
 
-.gallery-setting-wrap table {
+table {
     border-collapse: collapse;
 }
 
@@ -456,6 +456,10 @@ html,html.theme-light {
     color: #fff;
 }
 
+.gallery-setting-wrap tbody.ui-sortable>tr>td:first-of-type:before {
+    font-size: 1.3em
+}
+
 .table {
     width: 100%;
     margin-bottom: 1rem;
@@ -490,7 +494,7 @@ th {
     margin-top: 1rem;
 }
 
-#gall_image_preview {
+#gallery_image_preview {
     display: flex;
     max-height: 400px;
     overflow-x: auto;
@@ -602,56 +606,51 @@ th {
 }
 
 .sortable-list-wrapper {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-left: .5em;
+    padding-right: .5em
 }
 
 .sortable-list-wrapper .sortable-list {
     border-top: 1px solid;
-    border-color:#ddd;
-    border-color: var(--color-border-inner);
+    border-color: #ddd;
+    border-color: var(--color-border-inner)
 }
 
-.sortable-list-wrapper .sortable-list__item-sample {
-    display: none;
+.sortable-list-wrapper .sortable-list .sortable-list__item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid;
+    border-color: #ddd;
+    border-color: var(--color-border-inner)
 }
 
 .sortable-list-wrapper .sortable-list .sortable-list__item>div {
-    padding: 0.5em;
+    padding: .5em
 }
 
 .sortable-list-wrapper .sortable-list .sortable-list__item .ion-android-menu {
-    font-size: 1.3em;
+    font-size: 1.3em
 }
 
-.sortable-list-wrapper .flex-shrink-0 {
-    flex-shrink: 0;
+.sortable-list-wrapper .sortable-list .sortable-list__item.sortable-drag {
+    border: none
 }
 
-.sortable-list-wrapper .flex-grow-1 {
-    flex-grow: 1;
+.sortable-list-wrapper .sortable-list__item-sample {
+    display: none
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction {
     display: flex;
-    flex-direction: column;
-}
-
-@media screen and (min-width: 992px){
-.sortable-list-wrapper .sortable-list.permission .flexible-direction {
-    flex-direction: row;
-    align-items: center;
-}
+    flex-direction: column
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction .order-and-name {
-    margin-bottom: 0.5em;
+    margin-bottom: .5em
 }
 
-@media screen and (min-width: 992px){
-.sortable-list-wrapper .sortable-list.permission .flexible-direction .order-and-name{
-    margin: 0 1em 0 0.5em;
-}
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .order-and-name.drop {
+    text-decoration: line-through
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction .order-and-name input[name$=".name"] {
@@ -660,39 +659,321 @@ th {
     border: none;
     border-bottom: 1px solid;
     border-color: #ddd;
-    border-color: var(--color-checkbox-label-border);
+    border-color: var(--color-checkbox-label-border)
+}
+
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .order-and-name input[name$=".name"]:focus {
+    border-color: #29a1b7;
+    border-color: var(--color-checkbox-label-focus);
+    border-bottom-width: 2px;
+    box-shadow: none;
+    outline: none
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions {
-    margin-bottom: 0.8em;
+    font-size: .8em
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox] {
     width: 1px;
     height: 1px;
     position: absolute;
-    visibility: hidden;
+    visibility: hidden
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]+label {
-    padding: 0.2em 0.5em;
+    padding: .2em .5em;
     border: 1px solid;
     border-color: #ddd;
     border-color: var(--color-checkbox-label-border);
     border-radius: 1em;
     cursor: pointer;
     user-select: none;
-    margin: 0;
+    margin: 0
 }
 
 .sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]+label:not(:last-of-type) {
-    margin: 0.3em 0.3em 0.3em 0;
+    margin: .3em .3em .3em 0
 }
 
-@media screen and (min-width: 992px){
-    .sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]+label:not(:last-of-type) {
-        margin: 0.5em 0.5em 0.5em 0;
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]+label:hover {
+    border-color: #29a1b7;
+    border-color: var(--color-checkbox-label-focus)
+}
+
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]:disabled+label {
+    opacity: .4;
+    cursor: not-allowed
+}
+
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]:disabled+label:hover {
+    border-color: #bbb;
+    border-color: var(--color-border-outer)
+}
+
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions input[type=checkbox]:checked+label {
+    border: 1px solid;
+    border-color: #29a1b7;
+    border-color: var(--color-checkbox-label-focus);
+    color: #29a1b7;
+    color: var(--color-checkbox-label-focus)
+}
+
+.sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions input[type=checkbox]:checked+label::before {
+    font-family: ionicons;
+    content: "";
+    margin-right: .3em
+}
+
+@media screen and (min-width: 992px) {
+    .sortable-list-wrapper .sortable-list.permission .flexible-direction {
+        flex-direction:row;
+        align-items: center
     }
+
+    .sortable-list-wrapper .sortable-list.permission .flexible-direction .order-and-name {
+        margin: 0 1em 0 .5em
+    }
+
+    .sortable-list-wrapper .sortable-list.permission .flexible-direction .permissions>input[type=checkbox]+label:not(:last-of-type) {
+        margin: .5em .5em .5em 0
+    }
+}
+
+.sortable-list-wrapper .sortable-list.permission button[data-action=sortable-list-remove-item] {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    color: var(--color-text-color)
+}
+
+.sortable-list-wrapper .sortable-list.category {
+    border: none
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item {
+    display: block;
+    border: 1px solid;
+    border-color: #bbb;
+    border-color: var(--color-border-outer);
+    border-top-width: 3px
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item:not(:first-child) {
+    margin-top: 1em
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head {
+    padding: .5em 1em;
+    display: flex;
+    cursor: pointer;
+    transition-duration: .3s
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head:hover {
+    background-color: #eee;
+    background-color: var(--color-bg-focus)
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head>:not(:first-child) {
+    margin-left: .8em
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head>.sortable-list__handle {
+    flex-shrink: 0;
+    cursor: move
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head>.category-list__id {
+    flex-grow: 1
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head>.category-list__id>input[type=text] {
+    border: none;
+    border-bottom: 1px solid;
+    border-color: #ddd;
+    border-color: var(--color-border-inner);
+    margin: 0;
+    padding: 0 .5em;
+    background-color: transparent;
+    color: #000;
+    color: var(--color-text-color)
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head>.category-list__id>input[type=text]:focus {
+    outline: none;
+    border-color: #000;
+    border-color: var(--color-opposite)
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-head>.category-list__foldArrow {
+    flex-shrink: 0
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-body {
+    display: none
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-body .text-focus {
+    color: #29a1b7;
+    color: var(--color-checkbox-label-focus)
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-body .category-list__displayname-wrapper {
+    display: flex;
+    margin-bottom: 1em;
+    font-size: .8em;
+    max-width: 20em
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-body .category-list__displayname-wrapper .category-list__input-text {
+    margin-right: .5em;
+    border: none;
+    border-bottom: 1px solid;
+    border-color: #ddd;
+    border-color: var(--color-border-inner);
+    flex-grow: 1;
+    padding: .1em .3em;
+    background-color: transparent
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-body .category-list__displayname-wrapper .category-list__input-text:focus {
+    box-shadow: none;
+    outline: none;
+    border-color: #000;
+    border-color: var(--color-opposite)
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item>.item-body .category-list__displayname-wrapper .category-list__restrict-country-btn {
+    flex-shrink: 0;
+    padding: .3em 1em;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    color: var(--color-settings-point-text);
+    background-color: #29a1b7;
+    background-color: var(--color-settings-point-bg)
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item .ion-chevron-down {
+    display: block
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item .ion-chevron-up,.sortable-list-wrapper .sortable-list.category .sortable-list__item.extend .ion-chevron-down {
+    display: none
+}
+
+.sortable-list-wrapper .sortable-list.category .sortable-list__item.extend .ion-chevron-up {
+    display: block
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions {
+    font-size: .8em
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions>input[type=checkbox] {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    visibility: hidden
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions>input[type=checkbox]+label {
+    padding: .2em .5em;
+    border: 1px solid;
+    border-color: #ddd;
+    border-color: var(--color-checkbox-label-border);
+    border-radius: 1em;
+    cursor: pointer;
+    user-select: none;
+    margin: 0
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions>input[type=checkbox]+label:not(:last-of-type) {
+    margin: .3em .3em .3em 0
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions>input[type=checkbox]+label:hover {
+    border-color: #29a1b7;
+    border-color: var(--color-checkbox-label-focus)
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions>input[type=checkbox]:disabled+label {
+    opacity: .4;
+    cursor: not-allowed
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions>input[type=checkbox]:disabled+label:hover {
+    border-color: #bbb;
+    border-color: var(--color-border-outer)
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions input[type=checkbox]:checked+label {
+    border: 1px solid;
+    border-color: #29a1b7;
+    border-color: var(--color-checkbox-label-focus);
+    color: #29a1b7;
+    color: var(--color-checkbox-label-focus)
+}
+
+.sortable-list-wrapper .sortable-list.category .permissions input[type=checkbox]:checked+label::before {
+    font-family: ionicons;
+    content: "";
+    margin-right: .3em
+}
+
+.sortable-list-wrapper .sortable-list.category .category-list__remove-item-btn {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    color: var(--color-text-color);
+    color: red;
+    color: var(--color-broken-link-color)
+}
+
+.sortable-list-wrapper .sortable-list.category .category-list__remove-item-btn:hover {
+    text-decoration: underline
+}
+
+.sortable-list-wrapper .sortable-list.report-action-template .sortable-list__item {
+    display: table-row
+}
+
+.sortable-list-wrapper .sortable-list.report-action-template button[data-action=sortable-list-remove-item] {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    color: var(--color-text-color)
+}
+
+.sortable-list-wrapper .flex-grow-1 {
+    flex-grow: 1
+}
+
+.sortable-list-wrapper .flex-shrink-0 {
+    flex-shrink: 0
+}
+
+.sortable-list-wrapper .sortable-chosen {
+    background-color: #eee;
+    background-color: var(--color-bg-focus)
+}
+
+.sortable-list-wrapper .sortable-drag {
+    background-color: #fff;
+    background-color: var(--color-bg-main)
+}
+
+button[data-action=sortable-list-add-item] {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    color: var(--color-text-color);
+    margin: .5em 0 1em
+}
+
+button[data-action=sortable-list-add-item]:hover {
+    text-decoration: underline
 }
 
 .flex-shrink-0 {
@@ -1305,7 +1586,12 @@ input[type=date].form-control,input[type=time].form-control,input[type=datetime-
 }
 
 .card {
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 800px;
     display: flex;
     flex-direction: column;
     min-width: 0;

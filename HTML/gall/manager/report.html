@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/sortable.js"></script>
+    <script type="text/javascript" src="/js/manage/Sortable.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -174,12 +174,12 @@
                                     </thead>
                                     <tbody class="">
                                         <tr>
-                                            <input type="hidden" name="reportCategoryCodes" value="1677489049F922DB87">
+                                            <input type="hidden" name="reportCategoryCodes" value="">
                                             <td nowrap>갤러리 공지 위반</td>
                                             <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
                                         </tr>
                                         <tr>
-                                            <input type="hidden" name="reportCategoryCodes" value="16775735045009BA8F">
+                                            <input type="hidden" name="reportCategoryCodes" value="">
                                             <td nowrap>도배</td>
                                             <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
                                         </tr>
@@ -221,17 +221,16 @@
                                         <td><span class="ion-android-menu sortable-list__handle"></span></td>
                                         <td nowrap>
                                         분탕
-                                            <input type="hidden" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].code" value="733d3813-99a4-4906-9971-343b1b842d2f">
-                                            <input type="hidden" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].title" value="분탕">
+                                            <input type="hidden" name="report_actions.exist[new-%idx%].title" value="분탕">
                                         </td>
                                         <td>
                                             <label class="form-check-inline col-form-label mr-3">
-                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].is_should_be_delete" checked>
+                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[new-%idx%].is_should_be_delete" checked>
                                                 <span>삭제</span>
                                             </label>
                                             <label class="form-check-inline col-form-label mr-3">
-                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].is_should_be_block" checked>
-                                                <input class="form-control form-control-sm mr-2" type="number" name="report_actions.exist[733d3813-99a4-4906-9971-343b1b842d2f].block_duration" value="1" style="width: 10rem;">
+                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[new-%idx%].is_should_be_block" checked>
+                                                <input class="form-control form-control-sm mr-2" type="number" name="report_actions.exist[new-%idx%].block_duration" value="1" style="width: 10rem;">
                                                 <span>시간 차단</span>
                                             </label>
                                         </td>
@@ -277,6 +276,59 @@
                     </div>
                 </form>
             </div>
+            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
+            <!-- 갤러리 위임 팝업 -->
+            <article id="owiim" class="containe-fluid board-article popup">
+                <div class="row">
+                    <div class="col-sm-0 col-lg-1"></div>
+                    <div class="col-sm-12 col-lg-10">
+                        <div class="dialog card">
+                            <div class="card-block">
+                                <h4 class="card-title">ㅇㅇㅇ 갤러리 매니저 위임</h4>
+                                <h6 class="card-subtitle text-muted">
+                                    10,000Pt.를 소모하여 다른 사람에게 갤러리 매니저를 위임하는 기능입니다.
+                                </h6>
+                                <form method="POST">
+                                    <input type="hidden" name="_csrf" value="">
+                                    <div class="form-group row">
+                                        <label for="nameInput" class="col-3 col-form-label">위임할 갤러리</label>
+                                        <div class="col-9">
+                                            <input class="form-control" type="text" name="name" id="nameInput" maxlength="64" value="ㅇㅇㅇ 갤러리" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nicknameInput" class="col-3 col-form-label">위임받을 닉네임</label>
+                                        <div class="col-9">
+                                            <input class="form-control" type="text" name="nickname" id="nicknameInput" maxlength="64">
+                                        </div>
+                                    </div>
+                                    <div class="btns">
+                                        <button class="btn btn-primary" type="submit">위임하기</button>
+                                        <button class="btn btn-secondary" type="button">취소</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-0 col-lg-1"></div>
+                </div>
+            </article>
+            <!-- 갤러리 위임 팝업 끝-->
+            <script>
+                // 갤러리 위임 팝업 띄우기
+                $(function(){
+                    $('.btn-danger').click(function(e){
+                        e.preventDefault();
+                        $('.popup').removeClass('on');
+                        $('#owiim').addClass('on');
+                    });
+
+                    // 갤러리 위임 팝업 닫기
+                    $('.popup .btn-secondary').click(function(){
+                        $(this).closest('.popup').removeClass('on');
+                    });
+                });
+            </script>
         </main>
 
         <footer></footer>
