@@ -1,26 +1,10 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="content-language" content="kr">
-  <title>GCInside 입니다.</title>
-  <link rel="stylesheet" type="text/css" href="../css/member/reset.css"/>
-  <link rel="stylesheet" href="../css/member/member.css">
-</head>
-<body>
-  <div id="top" class="width868 login_wrap">
-    <!-- 상단 -->
-    <header class="gcheader bg">
-      <div class="gchead">
-        <!-- 로고영역 -->
-        <h1 class="gc_logo">
-          <a href="index"><img src="../img/dcin_logo2.png" alt="GCInside"></a>
-          <a href="../index.html"><img src="../img/tit_login.png" alt="로그인"></a>
-        </h1>
-        <!-- //로고영역 -->
-              </div>
-    </header>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<th:block th:replace="~{member/_header_login}"></th:block>
+<script>
+	//디시인사이드 로그인페이지엔 (갤러리,마이너갤,미니갤..등)없어서 숨김처리
+	$(".area_links").hide();
+</script>
     <main>
 <div class="content login">
   <article>
@@ -42,9 +26,9 @@
 				        <span class="checkbox type1"><input type="checkbox" id="checksaveid" name="checksaveid"><em class="checkmark"></em><label for="checksaveid">아이디 저장</label></span>
 				    </div>
 				    <div class="logon_option" style="margin-right: 20px;">
-				      <a href="#">아이디 찾기</a>
-				      <a href="#">비밀번호 찾기</a>
-				      <a href="#">회원가입</a>
+				      <a th:href="@{/member/find_id}">아이디 찾기</a>
+				      <a th:href="@{/member/reset_pwd}">비밀번호 찾기</a>
+				      <a th:href="@{/member/terms}">회원가입</a>
 				    </div>
 			      </fieldset>
 			      </form>
@@ -60,17 +44,7 @@
 	</article>
 </div>
 </main>
-    <footer class="gcfoot">
-      <div class="info_policy">
-        <a href="#">회사소개</a>
-        <a href="#">제휴안내</a>
-        <a href="#">광고안내</a>
-        <a href="#">이용약관</a>
-        <a href="#"><b>개인정보처리방침</b></a>
-        <a href="#">청소년보호정책</a>
-      </div>
-      <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
-    </footer>
+<th:block th:replace="~{member/_footer}"></th:block>
   </div>
 </body>
 </html>

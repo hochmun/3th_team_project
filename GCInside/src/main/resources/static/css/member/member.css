@@ -1,5 +1,5 @@
-
 /* 헤더 */
+/* 23-03-08 로컬로 실행시 백그라운드 이미지적용안되서 경로수정 (../../img/) */
 .gcheader.bg{background:#29367c}
 .gcheader.bg .gc_logo{top:30px}
 .gcheader.bg .area_links{top:47px}
@@ -253,7 +253,7 @@ button.smaller, button.small {
     background-position: -197px -294px;
 }
 .checkmark {
-    background-image: url('/img/sp_img.png');
+    background-image: url("../../img/sp_img.png");
     background-repeat: no-repeat;
 }
 .ip {
@@ -262,7 +262,7 @@ button.smaller, button.small {
     color: #999;
 }
 .sp_loginout {
-    background-image: url('/img/sp_img.png');
+    background-image: url("../../img/sp_img.png");
     background-repeat: no-repeat;
 }
 
@@ -331,7 +331,7 @@ button.smaller, button.small {
     height: 14px;
     background-position: -264px -184px;
 }
-.checkmark{background-image:url('/img/sp_img.png');background-repeat:no-repeat}
+.checkmark{background-image:url("../../img/sp_img.png");background-repeat:no-repeat}
 /*체크박스 디자인*/
 .checkbox{position:relative;display:inline-block;vertical-align:top;padding-left:13px;line-height:14px}/*폰트 버그 line-height:14px 추가 */
 .checkbox input[type="checkbox"]{position:absolute;left:0;top:0;margin:0;opacity:0;z-index:2;cursor:pointer}
@@ -482,7 +482,7 @@ li {
     width: 5px;
     height: 11px;
     display: inline-block;
-    background: url('/img/sp_img.png')no-repeat -124px -57px;
+    background: url("../../img/sp_img.png")no-repeat -124px -57px;
 }
 .bprev_ver a {
     color: #29367c;
@@ -599,7 +599,7 @@ button.smaller, button.small {
     width: 6px;
     height: 9px;
     margin-left: 7px;
-    background-image: url('/img/sp_img.png');
+    background-image: url("../../img/sp_img.png");
     background-repeat: no-repeat;
     background-position: -27px -44px;
 }
@@ -639,7 +639,7 @@ button.smaller, button.small {
     border-top: none;
 }
 .sp_img {
-    background-image: url('/img/sp_img.png');
+    background-image: url("../../img/sp_img.png");
     background-repeat: no-repeat;
 }
 .policy_cont .navlist .list li a {
@@ -767,7 +767,7 @@ button.smaller, button.small {
     top: 0;
     left: 0;
     margin: 7px 0 0 2px;
-    background: url(/img/checkbox.png) no-repeat 0 0;
+    background: url('../../img/checkbox.png') no-repeat 0 0;
     background-size: 10px 8px;
 }
 .pw_rule .pw_step {
@@ -1178,7 +1178,7 @@ ol>li>ul>li, ol>li>ol>li,.privacy ol>li>ul>li>ol>li{
     display:inline-block;
     width:6px;height:9px;
     margin-left:7px;
-    background-image:url(/img/sp_img.png);background-repeat:no-repeat;
+    background-image:url('../../img/sp_img.png');background-repeat:no-repeat;
     background-position:-27px -44px
  }
 
@@ -1439,7 +1439,7 @@ ol>li>ul>li, ol>li>ol>li,.privacy ol>li>ul>li>ol>li{
     width: 5px;
     height: 11px;
     display: inline-block;
-    background: url('/img/sp_img.png')no-repeat -124px -57px;
+    background: url("../../img/sp_img.png")no-repeat -124px -57px;
 }
 .another_go {
     position: absolute;
