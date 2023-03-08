@@ -1,41 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="content-language" content="kr">
-  <title>GCInside 입니다.</title>
-  <link rel="stylesheet" type="text/css" href="../css/member/reset.css"/>
-  <link rel="stylesheet" href="../css/member/member.css">
-  <link rel="stylesheet" href="../css/popup.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js"></script>
-  <script src="/js/member/member.js"></script>
-</head>
-<body>
-    <div id="top" class="width868 join_wrap">
-        <header class="gcheader bg">
-            <div class="gchead">
-                <!-- 로고영역 -->
-                <h1 class="gc_logo">
-                  <a href="../index.html"><img src="../img/dcin_logo2.png" alt="GCInside"></a>
-                </h1>
-                <!-- //로고영역 -->
-                <div class="area_links">
-                    <ul>
-                      <li><a href="#">갤러리</a></li>
-                      <li><a href="#">마이너갤</a></li>
-                      <li><a href="#">미니갤</a></li>
-                      <li><a href="#">갤로그</a></li>
-                      <li><a href="#">지시뉴스</a></li>
-                      <li><a href="#">지시게임</a></li>
-                      <li><a href="#">지시위키</a></li>
-                      <li><a href="#">이벤트</a></li>
-                      <li><a href="#">지시콘</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<th:block th:replace="~{member/_header_join}"></th:block>
         <main id="container">
             <div class="content">
             <article>
@@ -252,17 +217,7 @@
                 formInit();
               });
             </script>
-            <footer class="gcfoot">
-              <div class="info_policy">
-                <a href="#">회사소개</a>
-                <a href="#">제휴안내</a>
-                <a href="#">광고안내</a>
-                <a href="#">이용약관</a>
-                <a href="#"><b>개인정보처리방침</b></a>
-                <a href="#">청소년보호정책</a>
-              </div>
-              <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
-            </footer>
-            </div>
-    </body>
+<th:block th:replace="~{member/_footer}"></th:block>
+</div>
+</body>
 </html>

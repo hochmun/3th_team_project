@@ -1,39 +1,6 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="content-language" content="kr">
-  <title>GCInside 입니다.</title>
-  <link rel="stylesheet" type="text/css" href="../css/member/reset.css"/>
-  <link rel="stylesheet" href="../css/member/member.css">
-  <link rel="stylesheet" href="../css/popup.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-    <div id="top" class="width868 join_wrap">
-        <header class="gcheader bg">
-            <div class="gchead">
-                <!-- 로고영역 -->
-                <h1 class="gc_logo">
-                  <a href="../index.html"><img src="../img/dcin_logo2.png" alt="GCInside"></a>
-                </h1>
-                <!-- //로고영역 -->
-                <div class="area_links">
-                    <ul>
-                      <li><a href="#">갤러리</a></li>
-                      <li><a href="#">마이너갤</a></li>
-                      <li><a href="#">미니갤</a></li>
-                      <li><a href="#">갤로그</a></li>
-                      <li><a href="#">디시뉴스</a></li>
-                      <li><a href="#">디시게임</a></li>
-                      <li><a href="#">디시위키</a></li>
-                      <li><a href="#">이벤트</a></li>
-                      <li><a href="#">디시콘</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<th:block th:replace="~{member/_header_join}"></th:block>
         <main class="container">
             <div class="content">
                 <article>
@@ -602,8 +569,8 @@
                           <strong>13. 개정 전 고지의무</strong>
                           <p class="mb5">본 개인정보처리방침의 내용 추가, 삭제 및 수정이 있을 경우 개정 최소 7일 전에 회사 서비스 내의 공지사항을 통하여 사전 공지를 할 것입니다. 다만, 수집하는 개인정보의 항목, 이용 목적의 변경 등과 같이 이용자 권리의 중대한 변경이 발생할 때에는 최소 14일 전에 공지하며, 필요 시 이용자 동의를 다시 받을 수도 있습니다.</p>
                           <ul>
-                            <li>- 공고일자: 2022년 09월 08일</li>
-                            <li>- 시행일자: 2022년 09월 15일</li>
+                            <li>- 공고일자: 2023년 01월 1일</li>
+                            <li>- 시행일자: 2023년 01월 1일</li>
                           </ul>
                         </li>
                       </ol>
@@ -625,7 +592,7 @@
                           <!-- //개인정보 수집 및 이용 약관 -->
                       <div class="btn_box clear">
                         <div class="fr">
-                          <a href="./register.html"><button type="button" id="policy_agree" class="btn_grey small bnt_next">다음</button></a>
+                          <a th:href="@{/member/register}"><button type="button" id="policy_agree" class="btn_grey small bnt_next">다음</button></a>
                         </div>
                       </div>
                             </div>
@@ -634,17 +601,7 @@
                 </article>
             </div>
         </main>
-        <footer class="gcfoot">
-            <div class="info_policy">
-              <a href="#">회사소개</a>
-              <a href="#">제휴안내</a>
-              <a href="#">광고안내</a>
-              <a href="#">이용약관</a>
-              <a href="#"><b>개인정보처리방침</b></a>
-              <a href="#">청소년보호정책</a>
-            </div>
-            <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
-          </footer>
-    </div>
+<th:block th:replace="~{member/_footer}"></th:block>
+</div>
 </body>
 </html>
