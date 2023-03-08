@@ -1,13 +1,14 @@
 <!-- 2023/03/07 //라성준 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>## CONNECTING HEARTS! 지시인사이드입니다. ##</title>
-    <link rel="shortcut icon" href="/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="/css/member/reset.css"/>
-    <link rel="stylesheet" href="/css/member/member.css">
-    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="shortcut icon" th:href="@{/img/logo_icon.png}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/member/reset.css}"/>
+    <link rel="stylesheet" th:href="@{/css/member/member.css}">
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -24,7 +25,7 @@
           <!-- 로고영역 -->
           <h1 class="gc_logo">
             <a href="/index.html">
-              <img src="/img/gcin_logo2.png" alt="지시인사이드">
+              <img th:src="@{/img/gcin_logo2.png}" alt="지시인사이드">
             </a>
           </h1>
           <!-- //로고영역 -->
@@ -63,7 +64,14 @@
                 <div id="contbox" class="con_box brd">
                   <!-- 지시인사이드 개인정보처리방침 -->
                   <div class="policy_cont">
-                    <strong style="margin-bottom:5px">청소년보호를 위한 활동</strong>
+                      <script>
+                          const terms = '[[${data.get(5)[0].term_content}]]';
+                          console.log(terms);
+                          $('.policy_cont').append(terms);
+                      </script>
+                      <pre>[[${data.get(5)[0].term_content}]]</pre>
+                      <!--
+                    <strong style="margin-bottom:5px"></strong>
                     <p class="mb5">㈜지시인사이드는 각종 청소년유해정보로부터 청소년을 보호하고자 관련법률에 따라 19세미만의 청소년들이 유해정보에 접근할 수 없도록 청소년취급방침을 마련하여 시행하고 있습니다. 또한 ㈜지시인사이드는 청소년의 건전한 성장을 저해하는 음란 &middot; 불법 등의 유해정보와 비윤리적 &middot; 반사회적 행위에 대해서는 엄격하게 제재하기 위하여 다음과 같이 활동하고 있습니다.</p>
                     <ul>
                       <li style="margin-bottom:5px">
@@ -114,6 +122,7 @@
                     </div>
     
                   </div>
+                  -->
                   <!-- //지시인사이드 개인정보처리방침 -->
                 </div>
               </section>
