@@ -1,50 +1,23 @@
 <!-- 2023/03/07 //라성준 -->
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head>
-    <meta charset="UTF-8">
-    <title>## CONNECTING HEARTS! 지시인사이드입니다. ##</title>
-    <link rel="shortcut icon" th:href="@{/img/logo_icon.png}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}"/>
-    <link rel="stylesheet" th:href="@{/css/member/member.css}">
-    <link rel="stylesheet" th:href="@{/css/popup.css}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- 헤드 영역 -->
+<th:block th:replace="~{fragment/head_fragment::termsHead}"></th:block>
 </head>
-<body>
-    <!--스킵 내비게이션-->
-    <div class="skip">
-      <!-- <a href="#pagemenu"><span>페이지메뉴 영역 바로가기</span></a>
-      <a href="#contbox"><span>본문 영역 바로가기</span></a> -->
-    </div>
-    <!-- //스킵 내비게이션-->
-    <div id="top" class="width868 policy_wrap">
-      <!-- 상단 -->
-      <header class="gcheader bg">
-        <div class="gchead">
-          <!-- 로고영역 -->
-          <h1 class="gc_logo">
-            <a href="/index.html">
-              <img th:src="@{/img/gcin_logo2.png}" alt="지시인사이드">
-            </a>
-          </h1>
-          <!-- //로고영역 -->
-          <div class="area_links">
-            <ul>
-                        <li><a href="https://gall.dcinside.com/">갤러리</a></li>
-                        <li><a href="https://gall.dcinside.com/m">마이너갤</a></li>
-                        <li><a href="https://gall.dcinside.com/n">미니갤</a></li>
-                        <li><a href="https://gallog.dcinside.com">갤로그</a></li>
-                        <li><a href="https://dcnewsj.joins.com/">지시뉴스</a></li>
-                        <li><a href="https://h5.dcinside.com/game/main">지시게임</a></li>
-                        <li><a href="https://wiki.dcinside.com/wiki/대문">지시위키</a></li>
 
-                        <li><a href="https://event.dcinside.com/">이벤트</a></li>
-                        <li><a href="https://mall.dcinside.com/?from=A08">지시콘</a></li>
-            </ul>
-          </div>
-        </div>
-      </header>
+<body>
+<!--스킵 내비게이션-->
+<div class="skip">
+    <!-- <a href="#pagemenu"><span>페이지메뉴 영역 바로가기</span></a>
+    <a href="#contbox"><span>본문 영역 바로가기</span></a> -->
+</div>
+<!-- //스킵 내비게이션-->
+<div id="top" class="width868 policy_wrap">
+
+<!-- 헤더영역 -->
+<th:block th:replace="~{fragment/header_fragment::termsHeader}"></th:block>
+
       <main id="container">
         <div class="content">
           <article>
@@ -52,9 +25,9 @@
             <section id="pagemenu">
               <h2 class="blind">페이지 메뉴</h2>
               <ul class="page_menu three clear"> 
-                <li><a href="/terms/policy.html" class="pmenu">이용약관</a></li>
-                <li><a href="/terms/privacy.html" class="pmenu">개인정보처리방침</a></li>
-                <li><a href="/terms/youth_policy.html" class="pmenu on">청소년보호정책</a></li>
+                <li><a href="/GCInside/terms/policy" class="pmenu">이용약관</a></li>
+                <li><a href="/GCInside/terms/privacy" class="pmenu">개인정보처리방침</a></li>
+                <li><a href="/GCInside/terms/youth_policy" class="pmenu on">청소년보호정책</a></li>
               </ul>
             </section>
             <section>
@@ -63,82 +36,24 @@
                 </div>
                 <div id="contbox" class="con_box brd">
                   <!-- 지시인사이드 개인정보처리방침 -->
-                  <div class="policy_cont" th:utext="${data.get(5)[0].term_content}">
-                      <!--<pre>[[${data.get(5)[0].term_content}]]</pre>-->
-                      <!--
-                    <strong style="margin-bottom:5px"></strong>
-                    <p class="mb5">㈜지시인사이드는 각종 청소년유해정보로부터 청소년을 보호하고자 관련법률에 따라 19세미만의 청소년들이 유해정보에 접근할 수 없도록 청소년취급방침을 마련하여 시행하고 있습니다. 또한 ㈜지시인사이드는 청소년의 건전한 성장을 저해하는 음란 &middot; 불법 등의 유해정보와 비윤리적 &middot; 반사회적 행위에 대해서는 엄격하게 제재하기 위하여 다음과 같이 활동하고 있습니다.</p>
-                    <ul>
-                      <li style="margin-bottom:5px">
-                        <strong style="font-weight:normal">1. 청소년 유해정보로부터의 청소년 보호 계획의 수립</strong>
-                        <p>서비스를 이용하는 청소년 이용자들이 안심하고 사용할 수 있는 건전한 서비스를 제공하기 위하여 청소년 보호 계획을 수립하고 이행하려고 노력하고 있습니다.</p>
-                      </li>
-                      <li style="margin-bottom:5px">
-                        <strong style="font-weight:normal">2. 청소년 유해정보에 대한 청소년 접근 제한 및 관리 조치</strong>
-                        <p>청소년에 유해한 키워드에 대한 금칙어를 적용하고 있으며, 성인 인증장치가 마련된 서비스에 대해서는 이용 범위를 제한하게 하는 등 체계적인 관리를 하고 있습니다.</p>
-                      </li>
-                      <li style="margin-bottom:5px">
-                        <strong style="font-weight:normal">3. 정보통신업무 종사자에 대한 청소년 유해정보로부터의 청소년 보호를 위한 교육</strong>
-                        <p>청소년 보호 업무 종사자를 대상으로 청소년 보호 관련 법, 유해정보 발견 시 대처 방법, 위반사항 처리에 대한 교육을 연 1회 시행하고 있습니다.</p>
-                      </li>
-                      <li style="margin-bottom:5px">
-                        <strong style="font-weight:normal">4. 청소년 유해정보로 인한 피해상담 및 고충처리 </strong>
-                        <p>유해정보로 인한 피해를 줄이고 보호하기 위해, 24시간 모니터링 및 신고 게시판을 상시 운영하고 있으며, 피해가 확산되지 않도록 노력하고 있습니다.</p>
-                      </li>
-                      <li>
-                        <strong style="font-weight:normal">5. 청소년 보호 책임자 및 담당자</strong>
-                        <p>
-                          ㈜지시인사이드는 청소년 보호에 대한 의견수렴 및 불만처리를 담당하는 청소년 보호 책임자 및 담당자를 지정 &middot; 운영하고 있습니다.
-    
-                        </p>
-                      </li>
-                    
-                    </ul>  
-    
-                    <div class="manager_info">
-                      <div class="manager_cont">
-                        <strong>청소년보호 책임자</strong>
-                        <p>이 름 : 류성룡</p>
-                        <p>소 속 : 경영진</p>
-                        <p>직 위 : 부사장</p>
-    
-                        <p>이메일 : <a href="#@gcinside.com">login@gcinside.com</a></p>
-                        <p>팩 스 : 02-1001-1001</p>
-                      </div>
-                      <div class="manager_cont">
-                        <strong>청소년보호 담당자</strong>
-                        <p>이 름 : 이순신</p>
-                        <p>소 속 : 웹관리팀</p>
-                        <p>직 위 : 팀장</p>
-    
-                        <p>이메일 : <a href="#@gcinside.com">login@gcinside.com</a></p>
-                        <p>팩 스 : 02-1002-1002</p>
-                      </div>
-                    </div>
-    
-                  </div>
-                  -->
+                  <div class="policy_cont" th:utext="${data.term_content}">
+
+                      <!-- 이용약관 -->
+
                   <!-- //지시인사이드 개인정보처리방침 -->
+                </div>
                 </div>
               </section>
     
             </article>
           </div>
         </main>
-      <!-- 하단 -->
-      <footer class="gcfoot">
-       <div class="info_policy">
-        <a href="/company/index.html">회사소개</a>
-         
-        <a href="/company/index.html#alliance">제휴안내</a>
-        <a href="/ad/index.html">광고안내</a>
-        <a href="/terms/policy.html">이용약관</a>
-        <a href="/terms/privacy.html"><b>개인정보처리방침</b></a>
-        <a href="/terms/youth_policy.html">청소년보호정책</a>
-       </div>
-       <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
-      </footer>
-      <!-- //하단 -->
+    <!-- 하단 -->
+
+    <!-- 푸터영역 -->
+    <th:block th:replace="~{fragment/footer_fragment::termsFooter}"></th:block>
+
+    <!-- //하단 -->
     </div>
   
   </body>

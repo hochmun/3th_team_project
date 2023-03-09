@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <!-- 2023/03/09 // 라성준 // terms 약관 페이지 푸터 -->
+  <footer class="gcfoot" th:fragment="termsFooter">
+      <div class="info_policy">
+        <a href="/GCInside/company/index">회사소개</a>
+
+        <a href="/GCInside/company/index#alliance">제휴안내</a>
+        <a href="/GCInside/ad/index">광고안내</a>
+        <a href="/GCInside/terms/policy">이용약관</a>
+        <a href="/GCInside/terms/privacy"><b>개인정보처리방침</b></a>
+        <a href="/GCInside/terms/youth_policy">청소년보호정책</a>
+      </div>
+      <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
+  </footer>
+
+      <!-- 2023/03/09 // 라성준 // 메인 index 페이지 푸터 -->
+      <footer th:fragment="mainFooter">
+        <footer class="gcfoot">
+          <div class="gc_all">
+            <div class="notice">
+              <a href="#"><strong class="tit">공지사항</strong></a>
+              <a href="#"></a>
+            </div>
+
+            <div class="all_box mandudel">
+              <div class="all_list">
+                <dl>
+                  <dt><a href="#">갤러리</a></dt>
+                  <dd><a href="#">HIT 갤러리</a></dd>
+                  <dd><a href="#">실시간 베스트 갤러리</a></dd>
+                </dl>
+                <dl class="rankingGall">
+                  <dt>인기갤러리</dt>
+                </dl>
+                <dl>
+                  <dt>주요서비스</dt>
+                </dl>
+                <dl class="rollingGall">
+                  <dt><span>갤러리 순회</span></dt>
+                </dl>
+                <dl>
+                  <dt><a href="#" target="_blank">갤시뉴스</a></dt>
+                </dl>
+                <dl>
+                  <dt><a href="#">디시미디어</a></dt>
+                </dl>
+              </div>
+              <div class="all_bottom">
+                <a href="#" target="_blank"><strong class="tit">광고안내</strong></a>
+                <span class="list">
+                            <a href="#" target="_blank" class="link_info">디스플레이광고</a>
+                            <a href="#" target="_blank" class="link_info">프로모션</a>
+                            <a href="#" target="_blank" class="link_info">광고문의</a>
+                        </span>
+                <span class="bottom_menu">
+                            <a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a>
+                            <a class="menu_link menu_fold" href="javascript:void(0);" style="display:block"><em class="sp_img icon_fold"></em>닫기</a>
+                            <a class="menu_link menu_open" href="javascript:void(0);" style="display:none"><em class="sp_img icon_open"></em>열기</a>
+                            <a class="menu_link" href="#top" ><em class="sp_img icon_up"></em>맨위로</a>
+                        </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info_policy">
+            <a href="/GCInside/company/index">회사소개</a>
+            <a href="/GCInside/company/index#alliance">제휴안내</a>
+            <a href="/GCInside/ad/index">광고안내</a>
+            <a href="/GCInside/terms/policy">이용약관</a>
+            <a href="/GCInside/terms/privacy"><b>개인정보처리방침</b></a>
+            <a href="/GCInside/terms/youth_policy">청소년보호정책</a>
+          </div>
+
+          <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </footer>
+
+</body>
+</html>
