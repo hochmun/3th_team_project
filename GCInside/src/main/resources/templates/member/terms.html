@@ -1,5 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <th:block th:replace="~{member/_header_join}"></th:block>
         <main class="container">
             <div class="content">
@@ -19,7 +20,7 @@
                     <!-- 서비스 이용약관 -->
                     <div id="service_policy" class="con ser_policy clear">
                         <h4 class="tit font_red dotred">서비스 이용약관</h4>
-                        <div class="scroll">
+                        <div class="scroll" id="scroll1">
                             <div class="policy_cont">
                             <p class="navcaption">본 이용약관의 목차는 아래와 같습니다.</p>
                             <div class="navlist">
@@ -193,20 +194,21 @@
                         </div>
                         <div class="policy_check">
                           <span class="checkbox">
-                            <input type="checkbox" id="service_agree">
+                            <input type="checkbox" id="service_agree" disabled>
                             <em class="checkmark"></em>
                             <label for="service_agree">내용을 확인하였으며, 동의합니다.</label>
                           </span>
                         </div>
+                            <span style="float: right; padding: 15px; color: blue;">• 스크롤을 내리면 동의체크가 가능합니다.</span>
                       </div>
                       <!-- //서비스 이용약관 -->
-                      <!-- 개인정  보 수집 및 이용 약관 -->
+                      <!-- 개인정보 수집 및 이용 약관 -->
                           <div id="privacy_policy" class="con pri_policy clear">
                             <div class="clear">
                               <h4 class="tit font_red dotred fl">개인정보처리방침</h4>
                             </div>
                             <!--scroll-->
-                            <div class="scroll">
+                            <div class="scroll" id="scroll2">
                               <!--211209 policy_cont -->
                               <!-- 지시인사이드 개인정보처리방침 -->
                               <div class="policy_cont privacy">
@@ -583,11 +585,12 @@
         
                             <div class="policy_check">
                               <span class="checkbox">
-                                <input type="checkbox" id="personal_agree">
+                                <input type="checkbox" id="personal_agree" disabled>
                                 <em class="checkmark"></em>
                                 <label for="personal_agree">내용을 확인하였으며, 동의합니다.</label>
                               </span>
                             </div>
+                              <span style="float: right; padding: 15px; color: blue;">• 스크롤을 내리면 동의체크가 가능합니다.</span>
                           </div>
                           <!-- //개인정보 수집 및 이용 약관 -->
                       <div class="btn_box clear">
@@ -601,6 +604,28 @@
                 </article>
             </div>
         </main>
+<script>
+    $(function(){
+        agreeInit();
+    });
+</script>
+<script>
+const scrolls = document.querySelectorAll('.scroll');
+const serviceAgreeCheckbox = document.getElementById('service_agree');
+const personalAgreeCheckbox = document.getElementById('personal_agree');
+scrolls.forEach((scroll) => {
+  scroll.addEventListener('scroll', () => {
+    // 스크롤바 위치가 맨 아래인 경우에만 체크박스를 클릭할 수 있도록 처리
+    if (scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight) {
+      serviceAgreeCheckbox.disabled = false; // 체크박스 활성화
+      personalAgreeCheckbox.disabled = false; // 체크박스 활성화
+    } else {
+      serviceAgreeCheckbox.disabled = true; // 체크박스 비활성화
+      personalAgreeCheckbox.disabled = true; // 체크박스 비활성화
+    }
+  });
+});
+</script>
 <th:block th:replace="~{member/_footer}"></th:block>
 </div>
 </body>

@@ -5,6 +5,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.gcInside.dao.TermsDAO">
     <select id="selectTerm" resultType="kr.co.gcInside.vo.TermsVO">
-        SELECT * FROM `gc_terms` WHERE `term_type`= #{type} order by `term_sub_title_num` ASC;
+        SELECT * FROM `gc_terms` WHERE `term_type`= #{type};
     </select>
 </mapper>

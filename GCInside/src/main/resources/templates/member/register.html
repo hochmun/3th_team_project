@@ -107,7 +107,7 @@
                               <div class="clear">
                                 <input type="text" class="int" id="user_nick" name="user_nick" maxlength="20" title="닉네임 입력" placeholder="닉네임을 입력해 주세요.">
                                 <div class="select_box subject_select nick_sel" onclick="showLayer(this, 'nick_type_lyr');return false;">
-                                  <input type="hidden" name="nick_type" id="nick_type" value="1">
+                                  <input type="hidden" name="nick_type" id="nick_type" value="">
                                   <ul class="option_box subject_option white" style="left:0;top:34px;display:none" id="nick_type_lyr">
                                     <li nick-type="1"></li>
                                     <li nick-type="2"></li>
@@ -171,7 +171,7 @@
                                     <button type="button" class="btn_white small btn_recode" onclick="codeSend()">인증 코드 받기</button>
                                   </div>
                                   <p class="tip_msg" id="time_text" style="display:none">인증 번호 입력까지 남은 시간은<b id="time" class="font_red">4분 46초</b>입니다.</p>
-                                  <p class="email_agreemsg">&#8251; 이메일 제공 업체에 따라 수신 지연 또는 스팸으로 분류될 수 있으니 확인 바랍니다.</p>
+                                  <p class="email_agreemsg">&#8251; 수신 지연 또는 스팸으로 분류될 수 있으니 확인 바랍니다.</p>
                                 </div>
                               </div>
                             </div>
@@ -192,7 +192,7 @@
                   </div>
                   <div class="btn_box clear">
                     <div class="fr">
-                      <button type="button" class="btn_grey small bnt_next" onclick="return check_recaptcha()">다음</button>
+                      <button type="button" class="btn_grey small bnt_next" onclick="return check_recaptcha()">확인</button>
                     </div>
                   </div>
                 </section>
