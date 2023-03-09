@@ -1,13 +1,14 @@
 <!-- 2023/03/08 //라성준 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>## CONNECTING HEARTS! 지시인사이드입니다. ##</title>
-    <link rel="shortcut icon" href="/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="/css/member/reset.css"/>
-    <link rel="stylesheet" href="/css/member/member.css">
-    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="shortcut icon" th:href="@{/img/logo_icon.png}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/member/reset.css}"/>
+    <link rel="stylesheet" th:href="@{/css/member/member.css}">
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
 </head>
@@ -25,7 +26,7 @@
           <!-- 로고영역 -->
           <h1 class="gc_logo">
             <a href="/index.html">
-              <img src="/img/gcin_logo2.png" alt="지시인사이드">
+              <img th:src="@{/img/gcin_logo2.png}" alt="지시인사이드">
             </a>
           </h1>
           <!-- //로고영역 -->
@@ -75,7 +76,7 @@
                   <p class="navcaption">본 개인정보처리방침 쉬운버전의 목차는 아래와 같습니다.</p>
                   <div class="navlist">
                     <ol class="list">
-                      <li><a href="#1">1. 개인정보의 수집 목적 및 수집 항목</a></li>
+                      <li><a href="#1" th:text="${data.get(4).term_sub_title}"><!--1. 개인정보의 수집 목적 및 수집 항목--></a></li>
                       <li><a href="#2">2. 개인정보 수집 방법</a></li>
                       <li><a href="#3">3. 개인정보의 제공 및 위탁</a></li>
                       <li><a href="#4">4. 개인정보 보관 및 보호를 위한 노력</a></li>
