@@ -1,3 +1,17 @@
+
+/* 약관동의 페이지*/
+let agreeInit = function(){
+    $('#policy_agree').click(function(){
+        if(!$('input:checkbox[id="service_agree"]').is(":checked")){
+            alert('서비스 이용약관에 동의해주세요.');
+            return false;
+        }
+        if(!$('input:checkbox[id="personal_agree"]').is(":checked")){
+            alert('개인정보처리방침에 동의해주세요.');
+            return false;
+        }
+    });
+}
 /* 회원가입 이메일 리스트 클릭 */
 let showLayer = function(obj, layerName){
 	if($("#"+layerName).css("display") == "none"){
@@ -28,19 +42,16 @@ let mailList = function(){
 let formInit = function(){
 	$('#user_id').focus();	//처음 focus
 	//input창 초기화
-	//$('#user_id').val('');
-	$('#user_nick').val('');
 	$('#dc_pw').val('');
 	$('#dc_pwc').val('');
-	$('#dc_name').val('');
-	$('#birth_year').val('');
-	$('#birth_month').val('');
-	$('#birth_day').val('');
+	$('#user_nick').val('');
 	$('#email1').val('');
 	$('#email2').val('');
 	$('#email_list').val('');
-
 	id_check = true;
+	$('#user_id').keydown(function(){
+	    isCheckId()
+	});
 
 $("#email_host_lyr").click(function(e){
     let target = e.target;
@@ -60,3 +71,5 @@ $("#email_host_lyr").click(function(e){
 
 
 };
+
+
