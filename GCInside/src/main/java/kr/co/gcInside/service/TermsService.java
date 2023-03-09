@@ -29,9 +29,9 @@ public class TermsService {
      * @param type
      * @return
      */
-    public Map<Integer, List<TermsVO>> selectTerm(int type){
-        List<TermsVO> list = dao.selectTerm(type);
-        return list.stream().collect(Collectors.groupingBy(TermsVO::getTerm_title_num));
+    public TermsVO selectTerm(int type){
+        return dao.selectTerm(type);
+        //return list.stream().collect(Collectors.groupingBy(TermsVO::getTerm_title_num));
     }
 
     /**

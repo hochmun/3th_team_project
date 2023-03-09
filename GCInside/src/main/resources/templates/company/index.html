@@ -1,6 +1,7 @@
 <!-- 2023/03/03 // 라성준 // -->
 <!DOCTYPE html>
-<html lang="ko" class="no-js" id="ko">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" class="no-js" id="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
@@ -9,16 +10,16 @@
     <meta name="description" content="국내 최대 커뮤니티 포털 지시인사이드. 힛갤러리, 유저이슈 등 인터넷 트렌드 총 집합">
     <!-- E: Open Graph Meta Tag -->
     <title>지시인사이드</title>
-    <link rel="shortcut icon" href="/img/company/cp_logo_icon.ico">
-    <link rel="apple-touch-icon-precomposed" href="/img/company/cp_gcinside_icon.png">
+    <link rel="shortcut icon" th:href="@{/img/company/cp_logo_icon.ico}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/img/company/cp_gcinside_icon.png}">
     <!-- S: CSS -->
-    <link rel="stylesheet" href="/css/company/animage.min.css"/>
-    <link rel="stylesheet" href="/css/company/common.css"/>
+    <link rel="stylesheet" th:href="@{/css/company/animage.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/company/common.css}"/>
     <!-- E: CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/company/common.ui.js"></script>
-    <script type="text/javascript" src="/js/company/ctr.cookie.min.js"></script>
-    <script type="text/javascript" src="/js/company/company.js"></script>
+    <script type="text/javascript" th:src="@{/js/company/common.ui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/company/ctr.cookie.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/company/company.js}"></script>
 
   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
   <style>.js #fouc {display: none}</style>
@@ -57,15 +58,15 @@
               <div class="lang-setting">
                 <a href="" class="language">KOREAN</a>
                 <ul class="lang-setting-lst">
-                  <li><a href="/company/index.html">KOREAN</a></li>
-                  <li><a href="/company/index_en.html">ENGLISH</a></li>
-                  <li><a href="/company/index_ch.html">CHINESE</a></li>
-                  <li><a href="/company/index_jp.html">JAPANESE</a></li>
+                  <li><a href="index">KOREAN</a></li>
+                  <li><a href="index_en">ENGLISH</a></li>
+                  <li><a href="index_ch">CHINESE</a></li>
+                  <li><a href="index_jp">JAPANESE</a></li>
                 </ul>
               </div>
             </div> 
           </div>
-          <h1 class="logo"><a href="/index.html">지시인사이드</a></h1>
+          <h1 class="logo"><a th:href="@{/}">지시인사이드</a></h1>
         </div>
       </div><!-- //.lang-sel-box -->
         
@@ -82,7 +83,7 @@
     </header>
     
       <div class="visual-group">
-      <div class="vsimg-m-wrap animated fadeInUp"><img src="/img/company/cp_vs_m1.png" alt="" class="vsimg-m"></div>   
+      <div class="vsimg-m-wrap animated fadeInUp"><img th:src="@{/img/company/cp_vs_m1.png}" alt="" class="vsimg-m"></div>
       <div class="vsimg-w-wrap animated fadeInUp"><div class="vsimg-w"></div></div>
       <h2 class="vs-tit animated fadeInDown">인터넷 트렌드의 중심<br> <strong>지시인사이드</strong></h2>
       <div class="wifi-wrap animated show delay-06s"><div class="wifiicon"></div></div>
@@ -221,8 +222,8 @@
           <div class="grid-inner">
             <h3 class="tit">인재상</h3>
             <div class="people-box">
-              <div class="people-img"><img src="/img/company/cp_incurute.png" alt=""></div>
-              <div class="people-top-img"><img src="/img/company/cp_m_people.png" alt="" class=""></div>
+              <div class="people-img"><img th:src="@{/img/company/cp_incurute.png}" alt=""></div>
+              <div class="people-top-img"><img th:src="@{/img/company/cp_m_people.png}" alt="" class=""></div>
               <ul class="people-lst">
                 <li class="blue">
                   <span class="lst-tit">Frontier<em>개척자</em></span>

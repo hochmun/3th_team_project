@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <!-- 2023/03/08 // 라성준 // -->
+  <!-- 이용약관 Terms 헤더-->
+  <header class="gcheader bg" th:fragment="termsHeader">
+    <!-- 상단 -->
+      <div class="gchead">
+        <!-- 로고영역 -->
+        <h1 class="gc_logo">
+          <a href="/GCInside">
+            <img th:src="@{/img/gcin_logo2.png}" alt="지시인사이드">
+          </a>
+        </h1>
+        <!-- //로고영역 -->
+        <div class="area_links">
+          <ul>
+            <li><a href="https://gall.dcinside.com/">갤러리</a></li>
+            <li><a href="https://gall.dcinside.com/m">마이너갤</a></li>
+            <li><a href="https://gall.dcinside.com/n">미니갤</a></li>
+
+          </ul>
+        </div>
+      </div>
+  </header>
+</body>
+</html>

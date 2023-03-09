@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-import java.util.Map;
 
 /**
  * Terms 컨트롤러
@@ -25,7 +23,7 @@ public class TermsController {
 
     @GetMapping("/terms/")
     public String terms(Model model, int type){
-        Map<Integer, List<TermsVO>> term = service.selectTerm(type);
+        TermsVO term = service.selectTerm(type);
         String typeName = service.getTypeName(type);
 
         model.addAttribute("type", type);
@@ -36,31 +34,37 @@ public class TermsController {
     }
 
     @GetMapping("/terms/policy")
-    public String policy() {
+    public String policy(Model model) {
+        TermsVO data = service.selectTerm(10);
+        model.addAttribute("data", data);
         return "/terms/policy";
     }
 
     @GetMapping("/terms/privacy")
-    public String privacy() {
+    public String privacy(Model model) {
+        TermsVO data = service.selectTerm(12);
+        model.addAttribute("data", data);
         return "/terms/privacy";
     }
 
     @GetMapping("/terms/pay_policy")
-    public String pay_policy() {
+    public String pay_policy(Model model) {
+        TermsVO data = service.selectTerm(11);
+        model.addAttribute("data", data);
         return "/terms/pay_policy";
     }
 
     @GetMapping("/terms/privacy_young")
-    public String privacy_young() {
+    public String privacy_young(Model model) {
+        TermsVO data = service.selectTerm(13);
+        model.addAttribute("data", data);
         return "/terms/privacy_young";
     }
 
     @GetMapping("/terms/youth_policy")
     public String youth_policy(Model model) {
-        Map<Integer, List<TermsVO>> data = service.selectTerm(14);
-
+        TermsVO data = service.selectTerm(14);
         model.addAttribute("data", data);
-
         return "/terms/youth_policy";
     }
 }

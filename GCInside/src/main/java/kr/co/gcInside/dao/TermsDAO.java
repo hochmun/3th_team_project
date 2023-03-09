@@ -18,5 +18,5 @@ import java.util.List;
 @Repository
 public interface TermsDAO {
 
-    public List<TermsVO> selectTerm(@Param("type") int type);
+    public TermsVO selectTerm(@Param("type") int type);
 }
