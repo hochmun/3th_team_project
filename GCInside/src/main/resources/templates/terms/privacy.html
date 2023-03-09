@@ -1,16 +1,17 @@
 <!-- 2023/03/07 //라성준 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
-    <title>## CONNECTING HEARTS! 지시인사이드입니다. ##</title>
-    <link rel="shortcut icon" href="/img/logo_icon.png"/>
-    <link rel="stylesheet" type="text/css" href="/css/member/reset.css"/>
-    <link rel="stylesheet" href="/css/member/member.css">
-    <link rel="stylesheet" href="/css/popup.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+  <meta charset="UTF-8">
+  <title>## CONNECTING HEARTS! 지시인사이드입니다. ##</title>
+  <link rel="shortcut icon" th:href="@{/img/logo_icon.png}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/member/reset.css}"/>
+  <link rel="stylesheet" th:href="@{/css/member/member.css}">
+  <link rel="stylesheet" th:href="@{/css/popup.css}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
+
 <body>
     <!--스킵 내비게이션-->
     <div class="skip">
@@ -25,7 +26,7 @@
           <!-- 로고영역 -->
           <h1 class="gc_logo">
             <a href="/index.html">
-              <img src="/img/gcin_logo2.png" alt="지시인사이드">
+              <img th:src="@{/img/gcin_logo2.png}" alt="지시인사이드">
             </a>
           </h1>
           <!-- //로고영역 -->
