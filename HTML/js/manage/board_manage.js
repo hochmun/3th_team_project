@@ -81,25 +81,25 @@ function pageLoad(e) {
     imagelimit = e.imagelimit
 }
 function defaultImageOption(e, t) {
-    $("#channel_image_preview > img, #channel_icon_preview > img").tooltip("dispose"),
+    $("#gallery_image_preview > img, #gallery_icon_preview > img").tooltip("dispose"),
     "delete" === t && (e = $(e).data("src").replace("https://", "//"),
     $("img[src='" + e + "']").remove())
 }
 $(function() {
     function e() {
-        var e = $("#channel_image_preview").find("img:not(.ui-sortable-helper)").length;
-        imagelimit <= e ? ($(".channel-image-upload-btn").hide(),
-        $(".image-upload-count-warring").show()) : ($(".channel-image-upload-btn").show(),
+        var e = $("#gallery_image_preview").find("img:not(.ui-sortable-helper)").length;
+        imagelimit <= e ? ($(".gallery-image-upload-btn").hide(),
+        $(".image-upload-count-warring").show()) : ($(".gallery-image-upload-btn").show(),
         $(".image-upload-count-warring").hide()),
         $(".default-images-count").text(e)
     }
     function i() {
-        var n = $("#channel_image_preview > img, #channel_icon_preview > img");
+        var n = $("#gallery_image_preview > img, #gallery_icon_preview > img");
         n.off("click"),
         n.on("click", function() {
             n.tooltip("dispose");
             var e = this.src
-              , t = '<div class="tooltip channel-image-tooltip" role="tooltip"><div class="arrow"></div>';
+              , t = '<div class="tooltip gallery-image-tooltip" role="tooltip"><div class="arrow"></div>';
             t += '<div class="inner">',
             t += '&nbsp;<button class="btn btn-danger btn-sm" onclick=\'defaultImageOption(this, "delete");\' data-src="'.concat(e, '">').concat(i18n("DELETE"), "</button></div></div>"),
             $(this).tooltip({
@@ -117,8 +117,8 @@ $(function() {
         n && ((e = new FormData).append("upload", n),
         e.append("token", t),
         e.append("purpose", r),
-        "defaultImage" === r && $("#channel_image_preview > img").length >= imagelimit || $.ajax({
-            url: "/b/upload",
+        "defaultImage" === r && $("#gallery_image_preview > img").length >= imagelimit || $.ajax({
+            url: "#",
             type: "POST",
             data: e,
             processData: !1,
@@ -127,17 +127,17 @@ $(function() {
         }).done(function(e) {
             var t, n, a;
             e.uploaded ? (t = e.url,
-            "defaultImage" === r ? 0 < (n = $("#channel_image_preview").find("img[src='".concat(t, "']"))).length ? n.animate({
+            "defaultImage" === r ? 0 < (n = $("#gallery_image_preview").find("img[src='".concat(t, "']"))).length ? n.animate({
                 opacity: "toggle"
             }, 250, "linear", function() {
                 n.animate({
                     opacity: "toggle"
                 }, 250, "linear")
             }) : ((a = $("<img />")).attr("src", t),
-            $("#channel_image_preview").append(a),
-            i()) : "channelIcon" === r && ($("#channel_icon_preview").empty(),
+            $("#gallery_image_preview").append(a),
+            i()) : "galleryIcon" === r && ($("#gallery_icon_preview").empty(),
             (a = $("<img />")).attr("src", t),
-            $("#channel_icon_preview").append(a))) : ArcaModal.error(e.message)
+            $("#gallery_icon_preview").append(a))) : ArcaModal.error(e.message)
         }).fail(function(e) {
             try {
                 ArcaModal.error(e.responseJSON.message)
@@ -146,16 +146,16 @@ $(function() {
             }
         }))
     }),
-    $("#channel_image_preview").on("DOMSubtreeModified", function() {
+    $("#gallery_image_preview").on("DOMSubtreeModified", function() {
         e()
     }),
     i(),
-    $("form.channel-setting").on("submit", function(e) {
+    $("form.gallery-setting").on("submit", function(e) {
         e.preventDefault();
-        var t = $("#channel_icon_preview > img");
+        var t = $("#gallery_icon_preview > img");
         $("input[name=defaultIconImage]").val(t.attr("src")),
-        0 < $("#channel_image_preview > img").length && (e.preventDefault(),
-        e = _toConsumableArray($("#channel_image_preview > img").map(function(e, t) {
+        0 < $("#gallery_image_preview > img").length && (e.preventDefault(),
+        e = _toConsumableArray($("#gallery_image_preview > img").map(function(e, t) {
             return $(t).attr("src")
         })).join(","),
         $("input[name=defaultImageUrl]").val(e)),
@@ -281,7 +281,7 @@ $(function() {
         e = $(e.currentTarget);
         e.attr("data-confirm") && e.attr("data-confirm-text") && !confirm(e.attr("data-confirm-text")) || e.closest(e.attr("data-item")).remove()
     }),
-    $(".sortable-list.category").length && $(".body").on("click", ".sortable-list.category .item-head", function(e) {
+    $(".sortable-list.category").length && $(".gallery-setting-wrap").on("click", ".sortable-list.category .item-head", function(e) {
         var t;
         "INPUT" !== e.target.tagName && ((e = (t = $(e.currentTarget)).next()).is(":hidden") ? (e.slideDown("fast"),
         t.parent().addClass("extend")) : (e.slideUp("fast"),
