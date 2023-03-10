@@ -1,0 +1,133 @@
+<!-- 2023/03/07 // 심규영 // 어드민 메인 작업 시작 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/admin/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/admin/gnb.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+        <header class="admin_header">
+            <div class="gchead typea">
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="../img/gcin_logo3.png" alt="">
+                        <a class="_blank" href="/admin/index.html"></a>
+                    </div>
+                </h1>
+                <div class="admin_info">
+                    <ul class="admin_ul">
+                        <li><a href="../index.html">홈</a></li>
+                        <li><a href="javascript:;"> | </a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+                    <aside class="admin_aside">
+                        <ul id="admin_gnb">
+                            <li>
+                                <a href="#">환경설정</a>
+                                <ol>
+                                    <li><a href="#">배너 관리</a></li>
+                                    <li><a href="#">약관 관리</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">신고 관리</a>
+                                <ol>
+                                    <li><a href="#">서비스 신고 관리</a></li>
+                                    <li><a href="#">서비스 신청 목록</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">갤러리 관리</a>
+                                <ol>
+                                    <li><a href="#">갤러리 목록</a></li>
+                                    <li><a href="#">갤러리 개설 신청</a></li>
+                                    <li><a href="#">갤러리 승급 신청</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">회원 관리</a>
+                                <ol>
+                                    <li><a href="/admin/member/search.html">회원 조회</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>관리자 메인</h2></div>
+                        <div class="admin_info_content">
+                            <h3>운영 현황</h3>
+                            <table class="admin_table">
+                                <colgroup>
+                                    <col style="width: 20%;">
+                                    <col style="width: 26%;">
+                                    <col style="width: 26%;">
+                                    <col style="width: 28%;">
+                                </colgroup>
+                                <tr>
+                                    <th scope="col"> </th>
+                                    <th scope="col">메인갤</th>
+                                    <th scope="col">마이너갤</th>
+                                    <th scope="col">미니갤</th>
+                                </tr>
+                                <tr>
+                                    <th>총 갤러리 개수</th>
+                                    <td>1,044</td>
+                                    <td>12,644</td>
+                                    <td>22,456</td>
+                                </tr>
+                                <tr>
+                                    <th>신규 갤러리 개수</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>신규 갤러리 개수</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th colspan="2">총</th>
+                                    <th>최근 1 주일</th>
+                                </tr>
+                                <tr>
+                                    <th>회원 수</th>
+                                    <td colspan="2"></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>내역 처리 중인 신고 개수</th>
+                                    <td colspan="3"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>
