@@ -1,0 +1,189 @@
+<!-- 2023/03/06 // 심규영 // 신고 페이지 화면 구현 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>신고게시판</title>
+    <link rel="stylesheet" href="../css/member/reset.css">
+    <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/cs/report.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/cs/singo.js"></script>
+</head>
+<body>
+    <div id="top" class="width1000 report_wrap">
+        <header class="gcheader bg">
+            <div class="gchead">
+                <h1 class="gc_logo">
+                    <a href="#">
+                        <!-- 이미지 변경 필요 -->
+                        <img src="../img/gcinside,  s-1104992098.png" alt="">
+                    </a>
+                    <a href="#">
+                        <img src="../img/tit_report_a.png" alt="">
+                    </a>
+                </h1>
+                <div class="area_links">
+                    <ul>
+                        <li><a href="#" target="_self">갤러리</a></li>
+                        <li><a href="#" target="_self">마이너갤</a></li>
+                        <li><a href="#" target="_self">미니갤</a></li>
+                        <li><a class="btn_top_loginout" href="#">로그인</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container">
+            <div class="content">
+                <article>
+                    <section>
+                        <div class="con_box bluebrd top_box">
+                            <div class="con clear" id="singo_info_box">
+                                <div class="rpt_top_leftbox">
+                                    <em class="sp_report top_left_bg"></em>
+                                    <div class="btn_box">
+                                        <a href="javascript:;" class="btn_rpt_listgo btn_blue small">내 신고 처리 내역</a>
+                                        <a href="javascript:;" class="btn_rpt_listgo btn_grey small">비회원 신고 처리 내역</a>
+                                        <a href="javascript:;" class="btn_rpt_listgo btn_mediumblue small" id="singo_faq">게시물 신고 FAQ</a>
+                                    </div>
+                                </div>
+                                <div class="rpt_top_rightbox">
+                                    <div class="rpt_info_txtbox" id="singo_info_txt" style="display: block;">
+                                        <strong class="font_blue rpt_des_txt">아래 내용을 지켜주시면 보다 빠른 답변을 받을실 수 있습니다.</strong>
+                                        <ul class="info_txtlist top">
+                                            <li><p>게시물 신고는 게시물 주소(URL) 또는 작성자 ID, 해당 게시물의 제목, 신고 사유를 정확히 기재해 주셔야 합니다.</p></li>
+                                            <li>
+                                                <p>게시물 신고는<b>1개의 게시물(URL)만 등록</b>할 수 있습니다.</p>
+                                                <p class="font_red">[신고 사유]에 게시물(URL, 게시물번호)을 입력하는 경우 신고처리 되지 않습니다.</p>
+                                            </li>
+                                            <li>
+                                                <p>신고 분류 선택이 추가되었습니다.</p>
+                                                <p><b>정확한 신고 분류를 선택하여 신고</b>해 주시면 보다 빠른 답변을 받을실 수 있습니다.</p>
+                                                <p class="font_red">정확한 분류에 의한 신고가 아닐 경우 허위 신고로 판단되어 서비스 이용에 제한을 받으실 수 있습니다.</p>
+                                            </li>
+                                            <li>
+                                                <p>공지사항 요청은<b>평일 09:00~18:30</b> 사이에 요청해 주셔야만 처리가 가능합니다.</p>
+                                                <p class="font_red">공지사항 요청으로 게시물 신고 시, 허위 신고로 판단되어 서비스 이용에 제한을 받으실 수 있습니다.</p>
+                                                <p>공지 신청 시에는 타사이트 링크 및 유도되는 단어, 파일 공유, 공동구매, 고정닉 리스트, 저작권 관련 동영상 게시물,욕설 및 비속어가 포함된 게시물 등은 공지로 올려드리지 않으니 참고해주시기 바랍니다.</p>
+                                            </li>
+                                        </ul>
+                                        <ul class="info_txtlist bottom line">
+                                            <li><b>게시물 카테고리와 맞지 않는 허위 신고 시, <em class="font_red">게시판 이용에 제한</em>을 받을 수 있습니다.</b></li>
+                                            <li><p>고정닉만 신고 가능한 분류: <em class="font_red">도배, 욕설, 기타, HIT, 개념글 문의, 실시간 베스트, 만두, 매니저 위임, 매니저 문의, 갤로그 차단해제, 불법촬영물등 신고</em></p></li>
+                                            <li><p>고정닉/비회원 신고 가능한 분류: <em class="font_red">광고, 음란물, 개인정보침해, 저작권침해, 디시콘, 이벤트, 서비스 오류, 고정닉 서비스 변경, 대문, 자동짤방, 공지, 자기게시물 접근배제</em></p></li>
+                                        </ul>
+                                    </div>
+                                    <div class="rpt_info_txtbox" id="singo_faq_txt" style="display: none;">
+                                        <strong class="font_blue rpt_des_txt">게시물 신고 FAQ</strong>
+                                        <strong class="tit">저작권침해</strong>
+                                        <ul class="info_txtlist">
+                                            <li><p>저작권자임을 확인할 수 있는 자료를 첨부해 주시기 바랍니다.</p></li>
+                                            <li><p>해당 게시물 내에서 본인의 저작권을 침해한 부분 및 본인을 확인할 수 있는 자료:  신분증 사본(주민번호 뒷자리&주소 마스킹), 사업자등록증 등</p></li>
+                                            <li><p>대리인일 경우 위임장 및 대리인 본인을 확인할 수 있는 자료: 신분증 사본(주민번호 뒷자리&주소 마스킹), 사업자등록증 등</p></li>
+                                            <li><p>마스킹 되지 않은 신분증은 즉시 파기되며 신고 접수되지 않은 것으로 처리됩니다.</p></li>
+                                        </ul>
+                                        <strong class="tit">개인정보침해</strong>
+                                        <ul class="info_txtlist">
+                                            <li><p>개인정보침해를 확인할 수 있는 자료를 첨부해 주시기 바랍니다.</p></li>
+                                            <li><p>
+                                                해당 게시물 내에서 본인의 개인정보가 직접적으로 드러난 부분 및 본인을 확인할 수 있는 자료:
+                                                 신분증 사본(주민번호 뒷자리&주소 마스킹), 사업자등록증 등
+                                              </p></li>
+                                            <li><p>
+                                                대리인일 경우 위임장 및 대리인 본인을 확인할 수 있는 자료: 신분증 사본(주민번호 뒷자리&주소 마스킹),
+                                                 사업자등록증 등
+                                              </p></li>
+                                            <li><p>마스킹 되지 않은 신분증은 즉시 파기되며 신고 접수되지 않은 것으로 처리됩니다.</p></li>
+                                        </ul>
+                                        <strong class="tit">검색 결과 제외</strong>
+                                        <ul class="info_txtlist">
+                                            <li><p>
+                                                조치된 게시물은 디시인사이드∙타 사이트 검색 결과에서 제외되도록 하고 있습니다. 다만 검색 결과에서 완전히
+                                                 제외되기 위해서는 업데이트 시간이 필요합니다. 만약 검색 결과에서 노출되더라도 클릭 시 내용은 확인할 수
+                                                 없습니다.
+                                              </p></li>
+                                            <li><p>디시인사이드가 아닌 타 사이트에서의 검색 결과 제외 요청은 해당 사이트에 요청해 주시기 바랍니다.</p></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="cont_report choice">
+                            <div class="cont_head"><h3>신고 분류 선택</h3></div>
+                            <ul class="info_txtlist">
+                                <li><p>정확한 서비스 및 신고 분류를 선택해 주시길 바랍니다.</p></li>
+                                <li><p>저작권 침해(법인사업자)로 신고 시 사업자등록증을 필수로 첨부하셔야 합니다.</p></li>
+                                <li class="font_red"><p>정확한 분류에 의한 신고가 아닐 경우 허위 신고로 판단되어 서비스 이용에 제한을 받으실 수 있습니다.</p></li>
+                            </ul>
+                            <div class="report_optgroup clear">
+                                <div class="report_optbox opt_gall_report clear">
+                                    <div class="report_opt">
+                                        <h4 class="tit">게시물 신고</h4>
+                                        <em class="sp_report group_tit_bg"></em>
+                                    </div>
+                                    <ul class="opt_list">
+                                        <li><a href="javascript:;">광고</a></li>
+                                        <li><a href="javascript:;">도배</a></li>
+                                        <li><a href="javascript:;">음란물</a></li>
+                                        <li><a href="javascript:;">욕설</a></li>
+                                        <li><a href="javascript:;">개인정보침해</a></li>
+                                        <li><a href="javascript:;">저작권침해</a></li>
+                                        <li><a href="javascript:;">기타</a></li>
+                                    </ul>
+                                </div>
+                                <div class="report_optbox opt_service_report clear">
+                                    <div class="report_opt">
+                                        <h4 class="tit">서비스 신고</h4>
+                                        <em class="sp_report group_tit_bg"></em>
+                                    </div>
+                                    <ul class="opt_list">
+                                        <li><a href="javascript:;">HIT</a></li>
+                                        <li><a href="javascript:;">개념글 문의</a></li>
+                                        <li><a href="javascript:;">실시간 베스트</a></li>
+                                        <li><a href="javascript:;">만두</a></li>
+                                        <li><a href="javascript:;">디시콘</a></li>
+                                        <li><a href="javascript:;">이벤트</a></li>
+                                        <li><a href="javascript:;">서비스오류</a></li>
+                                        <li><a href="javascript:;">회원 서비스 변경</a></li>
+                                    </ul>
+                                </div>
+                                <div class="report_optbox opt_service_apply clear">
+                                    <div class="report_opt">
+                                        <h4 class="tit">서비스 신청</h4>
+                                        <em class="sp_report group_tit_bg"></em>
+                                    </div>
+                                    <ul class="opt_list">
+                                        <li><a href="javascript:;">대문</a></li>
+                                        <li><a href="javascript:;">자동짤방</a></li>
+                                        <li><a href="javascript:;">공지</a></li>
+                                        <li><a href="javascript:;">매니저 위임</a></li>
+                                        <li><a href="javascript:;">갤로그 차단해제</a></li>
+                                        <li><a href="javascript:;">불법촬영물등 신고</a></li>
+                                        <li><a href="javascript:;">자기게시물 접근배제</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </main>
+
+        <footer class="dcfoot">
+            <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+            </div>
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>

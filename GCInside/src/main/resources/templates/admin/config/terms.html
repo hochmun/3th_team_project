@@ -1,0 +1,72 @@
+<!-- 2023/03/10 // 심규영 // 공통 fragment 작업 -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragment/head_fragment::adminHead}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
+    <script type="text/javascript" th:src="@{/js/admin/terms.js}"></script>
+</head>
+<body>
+    <div class="gcwrap">
+        <header th:replace="~{fragment/header_fragment::adminHeader}"></header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+                    <!-- 사이드 gnb -->
+                    <aside th:replace="~{fragment/gnb_fragment::adminGnb}"></aside>
+                </div>
+
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>약관 관리</h2></div>
+                        <div class="admin_info_content">
+                            <table class="admin_table admin_member_list">
+                                <colgroup>
+                                    <col style="width: 33%;">
+                                    <col style="width: 34%;">
+                                    <col style="width: 33%;">
+                                </colgroup>
+                                <tr>
+                                    <th>약관 번호</th>
+                                    <th>약관 이름</th>
+                                    <th>약관 관리</th>
+                                </tr>
+                                <tr th:each="term:${terms}">
+                                    <td th:text="${term.term_type}" class="term_ori_type">10</td>
+                                    <td th:text="${term.term_title}" class="term_ori_name">이용약관 지시인사이드 이용약관</td>
+                                    <td><a href="javascript:;" id="detail" class="admin_detail" th:data-result="${term.term_content}">[자세히 보기]</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{fragment/footer_fragment::adminFooter}"></footer>
+    </div>
+
+    <!-- 팝업 창 -->
+    <div class="admin pop_back" style="display: none;">
+        <div class="admin pop_wrap gray1px">
+            <div class="admin_member pop_content">
+                <div class="admin cont_head"><h3 id="term_name" style="margin-left:10px;">ㅁㅁ</h3><a href="javascript:;" id="close">X</a></div>
+                <input type="hidden" id="term_type">
+
+                <!-- 약관 내용 -->
+                <textarea class="admin_term" name="term_content" id="term_content" readonly></textarea>
+                <div class="term_preview" id="term_preview" style="display:none;"></div>
+
+                <!-- 버튼 -->
+                <div class="admin_term_btn btn_box">
+                    <button type="button" class="btn_lightgreen" id="modify">수정 하기</button>
+                    <button type="button" class="btn_lightgreen" id="preview" style="display: none;">미리 보기</button>
+                    <button type="button" class="btn_lightgreen" id="complete" style="display: none;">수정 완료</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

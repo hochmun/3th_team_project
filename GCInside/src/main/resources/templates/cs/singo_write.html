@@ -1,0 +1,245 @@
+<!-- 2023/03/06 // 심규영 // 신고 작성 페이지 화면 구현 작업 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>신고게시판</title>
+    <link rel="stylesheet" href="../css/member/reset.css">
+    <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/cs/report.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/cs/singo.js"></script>
+</head>
+<body>
+    <div id="top" class="width1000 report_wrap">
+        <header class="gcheader bg">
+            <div class="gchead">
+                <h1 class="gc_logo">
+                    <a href="#">
+                        <!-- 이미지 변경 필요 -->
+                        <img src="../img/gcinside,  s-1104992098.png" alt="">
+                    </a>
+                    <a href="#">
+                        <img src="../img/tit_report_a.png" alt="">
+                    </a>
+                </h1>
+                <div class="area_links">
+                    <ul>
+                        <li><a href="#" target="_self">갤러리</a></li>
+                        <li><a href="#" target="_self">마이너갤</a></li>
+                        <li><a href="#" target="_self">미니갤</a></li>
+                        <li><a class="btn_top_loginout" href="#">로그인</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container">
+            <div class="content">
+                <article>
+                    <section>
+                        <div class="con_box bluebrd top_box">
+                            <div class="con clear" id="singo_info_box">
+                                <div class="rpt_top_leftbox">
+                                    <em class="sp_report top_left_bg"></em>
+                                    <div class="btn_box">
+                                        <a href="javascript:;" class="btn_rpt_listgo btn_blue small">내 신고 처리 내역</a>
+                                        <a href="javascript:;" class="btn_rpt_listgo btn_grey small">비회원 신고 처리 내역</a>
+                                        <a href="javascript:;" class="btn_rpt_listgo btn_mediumblue small" id="singo_faq">게시물 신고 FAQ</a>
+                                    </div>
+                                </div>
+                                <div class="rpt_top_rightbox">
+                                    <div class="rpt_info_txtbox" id="singo_info_txt" style="display: block;">
+                                        <strong class="font_blue rpt_des_txt">아래 내용을 지켜주시면 보다 빠른 답변을 받을실 수 있습니다.</strong>
+                                        <ul class="info_txtlist top">
+                                            <li><p>게시물 신고는 게시물 주소(URL) 또는 작성자 ID, 해당 게시물의 제목, 신고 사유를 정확히 기재해 주셔야 합니다.</p></li>
+                                            <li>
+                                                <p>게시물 신고는<b>1개의 게시물(URL)만 등록</b>할 수 있습니다.</p>
+                                                <p class="font_red">[신고 사유]에 게시물(URL, 게시물번호)을 입력하는 경우 신고처리 되지 않습니다.</p>
+                                            </li>
+                                            <li>
+                                                <p>신고 분류 선택이 추가되었습니다.</p>
+                                                <p><b>정확한 신고 분류를 선택하여 신고</b>해 주시면 보다 빠른 답변을 받을실 수 있습니다.</p>
+                                                <p class="font_red">정확한 분류에 의한 신고가 아닐 경우 허위 신고로 판단되어 서비스 이용에 제한을 받으실 수 있습니다.</p>
+                                            </li>
+                                            <li>
+                                                <p>공지사항 요청은<b>평일 09:00~18:30</b> 사이에 요청해 주셔야만 처리가 가능합니다.</p>
+                                                <p class="font_red">공지사항 요청으로 게시물 신고 시, 허위 신고로 판단되어 서비스 이용에 제한을 받으실 수 있습니다.</p>
+                                                <p>공지 신청 시에는 타사이트 링크 및 유도되는 단어, 파일 공유, 공동구매, 고정닉 리스트, 저작권 관련 동영상 게시물,욕설 및 비속어가 포함된 게시물 등은 공지로 올려드리지 않으니 참고해주시기 바랍니다.</p>
+                                            </li>
+                                        </ul>
+                                        <ul class="info_txtlist bottom line">
+                                            <li><b>게시물 카테고리와 맞지 않는 허위 신고 시, <em class="font_red">게시판 이용에 제한</em>을 받을 수 있습니다.</b></li>
+                                            <li><p>고정닉만 신고 가능한 분류: <em class="font_red">도배, 욕설, 기타, HIT, 개념글 문의, 실시간 베스트, 만두, 매니저 위임, 매니저 문의, 갤로그 차단해제, 불법촬영물등 신고</em></p></li>
+                                            <li><p>고정닉/비회원 신고 가능한 분류: <em class="font_red">광고, 음란물, 개인정보침해, 저작권침해, 디시콘, 이벤트, 서비스 오류, 고정닉 서비스 변경, 대문, 자동짤방, 공지, 자기게시물 접근배제</em></p></li>
+                                        </ul>
+                                    </div>
+                                    <div class="rpt_info_txtbox" id="singo_faq_txt" style="display: none;">
+                                        <strong class="font_blue rpt_des_txt">게시물 신고 FAQ</strong>
+                                        <strong class="tit">저작권침해</strong>
+                                        <ul class="info_txtlist">
+                                            <li><p>저작권자임을 확인할 수 있는 자료를 첨부해 주시기 바랍니다.</p></li>
+                                            <li><p>해당 게시물 내에서 본인의 저작권을 침해한 부분 및 본인을 확인할 수 있는 자료:  신분증 사본(주민번호 뒷자리&주소 마스킹), 사업자등록증 등</p></li>
+                                            <li><p>대리인일 경우 위임장 및 대리인 본인을 확인할 수 있는 자료: 신분증 사본(주민번호 뒷자리&주소 마스킹), 사업자등록증 등</p></li>
+                                            <li><p>마스킹 되지 않은 신분증은 즉시 파기되며 신고 접수되지 않은 것으로 처리됩니다.</p></li>
+                                        </ul>
+                                        <strong class="tit">개인정보침해</strong>
+                                        <ul class="info_txtlist">
+                                            <li><p>개인정보침해를 확인할 수 있는 자료를 첨부해 주시기 바랍니다.</p></li>
+                                            <li><p>
+                                                해당 게시물 내에서 본인의 개인정보가 직접적으로 드러난 부분 및 본인을 확인할 수 있는 자료:
+                                                 신분증 사본(주민번호 뒷자리&주소 마스킹), 사업자등록증 등
+                                              </p></li>
+                                            <li><p>
+                                                대리인일 경우 위임장 및 대리인 본인을 확인할 수 있는 자료: 신분증 사본(주민번호 뒷자리&주소 마스킹),
+                                                 사업자등록증 등
+                                              </p></li>
+                                            <li><p>마스킹 되지 않은 신분증은 즉시 파기되며 신고 접수되지 않은 것으로 처리됩니다.</p></li>
+                                        </ul>
+                                        <strong class="tit">검색 결과 제외</strong>
+                                        <ul class="info_txtlist">
+                                            <li><p>
+                                                조치된 게시물은 디시인사이드∙타 사이트 검색 결과에서 제외되도록 하고 있습니다. 다만 검색 결과에서 완전히
+                                                 제외되기 위해서는 업데이트 시간이 필요합니다. 만약 검색 결과에서 노출되더라도 클릭 시 내용은 확인할 수
+                                                 없습니다.
+                                              </p></li>
+                                            <li><p>디시인사이드가 아닌 타 사이트에서의 검색 결과 제외 요청은 해당 사이트에 요청해 주시기 바랍니다.</p></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                       <div class="cont_report">
+                            <div class="cont_head clear">
+                                <h3 class="head_tit fl">신고하기</h3>
+                                <span class="small_des fl">( <em class="font_red">*</em> 는 필수 입력 사항으로 반드시 적어 주셔야 합니다.)</span>
+                            </div>
+                            <div class="con_box brd">
+                                <div class="con report_formbox">
+                                    <form action="#" name="singo_form" id="singo_form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                                        <fieldset>
+                                            <div>
+                                                <div class="rpt_form_group nick_checkbox">
+                                                    <p><strong>아이디/비밀번호 없이도 신고하실 수 있습니다. <em class="font_red">단, 신고내역을 확인하시려면 아이디/비밀번호를 입력해주세요.</em></strong></p>
+                                                    <div class="nick_check">
+                                                        <span class="checkbox">
+                                                            <input type="checkbox" id="chk_nickname_input" name="chk_nickname_input">
+                                                            <em class="checkmark"></em>
+                                                            <label for="chk_nickname_input">아이디 입력</label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="rpt_form_group idpw">
+                                                    <div class="form_cont">
+                                                        <div class="tit">아이디</div>
+                                                        <div class="field">
+                                                            <!-- 아이디 입력 체크박스 클릭시 readonly 제거 -->
+                                                            <input type="text" class="bg" title="아이디 입력" id="nonmember_id" name="nonmember_id" readonly="readonly">
+                                                            <!-- 입력후 클래스 bg 빠짐 -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="form_cont">
+                                                        <div class="tit">비밀번호</div>
+                                                        <div class="field">
+                                                            <!-- 아이디 입력 체크박스 클릭시 readonly 제거 -->
+                                                            <input type="text" class="bg" title="비밀번호 입력" id="nonmember_password" name="nonmember_password" readonly="readonly">
+                                                            <!-- 입력후 클래스 bg 빠짐 -->
+                                                            <div class="tip_txtbox">
+                                                                <p>- 비밀번호는 6자리 이상 설정 가능합니다.</p>
+                                                                <p>- 영문, 숫자 조합으로 입력해주시기 바랍니다.(권장)</p>
+                                                                <p>- 쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rpt_form_group">
+                                                    <div class="form_cont">
+                                                        <div class="tit">
+                                                            <label for="singo_gallery">신고 갤러리(게시판)</label>
+                                                            <span class="essential">*</span>
+                                                        </div>
+                                                        <div class="field">
+                                                            <div class="gallsel_box">
+                                                                <!-- 입력 칸 -->
+                                                                <input type="text" id="singo_gallery" name="singo_gallery" title="신고게시판 입력" autocomplete="off">
+                                                                <!-- 비공개 미니 갤러리 선택 -->
+                                                                <!-- 미니 갤러리 구현후 구현하기 -->
+                                                                <button type="button" class="btn_greybox btn_minisel">비공개 미니 갤러리 선택</button>
+                                                            </div>
+                                                            <!-- 비공개 미니 갤러리 버튼 클릭시 열리는 팝업 창 -->
+                                                            <!-- 추후 구현 -->
+                                                            <div class="pop_wrap type3" id="h_gall_lay"></div>
+                                                            <!-- 입력칸 입력시 열리는 자동완성 팝업 박스 -->
+                                                            <!-- 추후 구현 -->
+                                                            <div class="gallword_box"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form_cont">
+                                                        <div class="tit">
+                                                            <label for="singo_url">신고 게시물(URL)</label>
+                                                            <span class="essential">*</span>
+                                                        </div>
+                                                        <div class="field">
+                                                            <div class="gall_urlbox" style="display: block;">
+                                                                <input type="text" title="신고 게시물 주소" id="singo_url" name="singo_url"
+                                                                ><button type="button" class="btn_greybox btn_urlup" id="singo_url_ok">URL 등록</button>
+                                                            </div>
+                                                            <div class="tip_txtbox">
+                                                                <p>- 본문 하단의 [공유 > 주소복사]를 사용하여 등록하시면 보다 정확하게 신고할 수 있습니다.</p>
+                                                                <p>- 신고 게시물 URL은 1개만 등록할 수 있습니다.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form_cont cate_file">
+                                                        <div class="tit">첨부 파일</div>
+                                                        <div class="field">
+                                                            <div class="rpt_filebox clear">
+                                                                <div class="file_urlbox fl">
+                                                                    <ul class="url_list" id="file_url_name"></ul>
+                                                                </div>
+                                                                <div class="file_bntup fl clear">
+                                                                    <div id="file_uid" style="display: none;"></div>
+                                                                    <button type="button" class="btn_fileup" id="file_on">파일첨부</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tip_txtbox">
+                                                                <p>- 첨부 파일은 최대 500KB 5개까지 첨부가 가능합니다.</p>
+                                                                <p class="font_red">- 게시물 신고일 경우 신고내용과 무관한 파일을 첨부하시는 경우 허위신고로 분류되어 서비스 이용에 제한을 받으실 수 있습니다.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                       </div>
+                       <div class="rpt_btn_box clear">
+                            <div class="fr">
+                                <button type="button" class="btn_grey" id="singo_btn_pre">뒤로</button>
+                                <button type="button" class="btn_blue" id="singo_submit">확인</button>
+                            </div>
+                       </div>
+                    </section>
+                </article>
+            </div>
+        </main>
+
+        <footer class="dcfoot">
+            <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+            </div>
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>

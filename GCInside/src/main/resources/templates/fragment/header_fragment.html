@@ -28,5 +28,56 @@
         </div>
       </div>
   </header>
+
+  <!-- 2023/03/09 // 심규영 // 메인 인덱스 헤더 -->
+  <header class="gcheader typea" th:fragment="mainHeader">
+    <div class="gchead">
+      <!-- 메인 로고 -->
+      <h1 class="gc_logo">
+        <div>
+          <img src="./img/gcinside,  s-1104992098.png" alt="겔시인사이드">
+          <a class="_blank" href="#"></a>
+          <a class="_top" href="#"></a>
+        </div>
+      </h1>
+
+      <div class="wrap_search">
+        <!-- 갤러리 통합검색-->
+        <form>
+          <fieldset>
+            <div class="top_search clear">
+              <div class="inner_search">
+                <input class="in_keyword" type="text" name="search"
+                       placeholder="갤러리 & 통합검색" autocomplete="off"
+                       title="검색어 입력">
+              </div>
+              <button class="sp_main bnt_search"></button>
+              <!-- 검색어 자동 완성 기능 -->
+              <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2023/03/10 // 심규영 // 관리자 헤더 공통 -->
+  <header class="admin_header" th:fragment="adminHeader">
+    <div class="gchead typea">
+      <h1 class="gc_logo">
+        <div>
+          <img th:src="@{/img/gcin_logo3.png}" alt="">
+          <a class="_blank" th:href="@{/admin/index}"></a>
+        </div>
+      </h1>
+      <div class="admin_info">
+        <ul class="admin_ul">
+          <li><a th:href="@{/index}">홈</a></li>
+          <li><a href="javascript:;"> | </a></li>
+          <li><a href="#">로그아웃</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 </body>
 </html>

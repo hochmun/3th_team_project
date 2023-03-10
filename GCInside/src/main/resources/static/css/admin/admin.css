@@ -1,0 +1,50 @@
+/* 공통 */
+.admin_header, .admin_footer {background: #336600;}
+
+/* 관리자 헤더 */
+.admin_ul {position: absolute;right: 0;top: 15px;}
+.admin_ul > li {display: inline-block;}
+.admin_ul > li > a {color: white;}
+.admin_ul > li > a:hover {text-decoration: underline;}
+
+/* 메인 */
+.admin_main > div {overflow: hidden;}
+.admin_left {float: left;}
+.admin_right {float: right; width: 715px;}
+.member_search_box {margin-top: 10px;margin-left: 10px;}
+.admin_info_content > div > select {width: 100px;}
+.admin_info_content > div > button {height: 25px;line-height: 25px;}
+
+/* 관리자 gnb */
+.admin_aside{width: 270px;height: auto; background: #669933;box-sizing: border-box;}
+#admin_gnb > li {width: 100%; min-height: 66px; border-top: 1px solid #336600;box-sizing: border-box;}
+#admin_gnb > li > a {display: block;width: 100%;height: 66px;font-size: 14px;font-weight: bold;line-height: 66px;text-indent: 10px;color: white;}
+#admin_gnb ol {display: none;width: 100%;height: auto;}
+#admin_gnb ol > li {width: 100%;height: 32px;background: #99cc66;}
+#admin_gnb ol > li > a {display: block; width: 100%; height: 100%; text-indent: 52px;color: white;line-height: 32px;}
+#admin_gnb ol > li > a::before {content: " - ";}
+
+/* 관리자 메인 정보 */
+.admin_info_content > h3 {margin-top: 10px; margin-left: 10px;padding-bottom: 5px;border-bottom: 1px solid green;}
+.admin_table {margin-top: 10px;width: 100%;}
+.admin_table th, .admin_table td {height: 40px;border: 1px solid black;line-height: 40px;text-align: center;}
+
+/* 관리자 config > terms */
+.admin_term {margin: 0 auto;margin-top: 10px;margin-bottom: 10px;display: block;width: 70%;height: 400px;}
+.admin_term_btn.btn_box {text-align: center;float: none;margin-bottom: 10px;}
+.term_preview {display:block;margin:0 auto;width:70%;height:400px;border:1px solid black;overflow:scroll;}
+
+/* 관리자 config > terms > preview */
+
+
+/* 관리자 회원 관리 => 회원 목록 및 회원 검색 */
+.admin_member_list th, .admin_member_list td {border-left: 0;border-right: 0;}
+
+/* 어드민 페이징 */
+.admin_pageing {text-align: center;margin-top: 15px;margin-bottom: 10px;font-size: 14px;}
+.admin_pageing a {display: inline-block;width: 20px;}
+.admin_pageing a.on {text-decoration: underline;}
+.admin_pageing_prev a, .admin_pageing_next a {width: 45px;}
+
+/* 관리자 푸터 */
+.admin_footer > div {color: white;position: relative; top: 25px;}
