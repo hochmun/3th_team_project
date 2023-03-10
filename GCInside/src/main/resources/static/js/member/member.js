@@ -42,34 +42,33 @@ let mailList = function(){
 let formInit = function(){
 	$('#user_id').focus();	//처음 focus
 	//input창 초기화
-	$('#dc_pw').val('');
-	$('#dc_pwc').val('');
+	$('#gc_pw').val('');
+	$('#gc_pwc').val('');
 	$('#user_nick').val('');
 	$('#email1').val('');
 	$('#email2').val('');
 	$('#email_list').val('');
-	id_check = true;
+    id_check = true;
+
+	//아이디 체크
 	$('#user_id').keydown(function(){
-	    isCheckId()
+		isCheckId();
 	});
+	//이메일 검사
+	$("#email_host_lyr").click(function(e){
+		let target = e.target;
+		let email_host = $(target).attr('value');
 
-$("#email_host_lyr").click(function(e){
-    let target = e.target;
-    let email_host = $(target).attr('value');
-    
-    $("#email_list").val(email_host);
-    
-    if(email_host == 'self') {
-        $("#email_sel_txt").text('이메일 선택');
-    } else if(email_host == 'inst') {
-        $("#email_sel_txt").text('직접 입력');
-    } else {
-        $("#email_sel_txt").text(email_host);
-    }
-    mailList();
-});
+		$("#email_list").val(email_host);
 
-
+		if(email_host == 'self') {
+			$("#email_sel_txt").text('이메일 선택');
+		} else if(email_host == 'inst') {
+			$("#email_sel_txt").text('직접 입력');
+		} else {
+			$("#email_sel_txt").text(email_host);
+		}
+		mailList();
+	});
 };
-
 

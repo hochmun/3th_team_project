@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gcInside.dao.MemberDAO">
+    <insert id="insertMember">
+        insert into `km_member` set
+        `member_uid`=#{user_id},
+        `member_pass`=#{gc_pw},
+        `member_nick`=#{user_nick},
+        `member_email`=#{email1} + `@` + #{email2},
+        `member_regip`=#{regip},
+        `member_status`=0,
+        `member_grade`=0,
+        `rdate`=NOW();
+    </insert>
+</mapper>
