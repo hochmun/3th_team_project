@@ -61,5 +61,23 @@
     </div>
   </header>
 
+  <!-- 2023/03/10 // 심규영 // 관리자 헤더 공통 -->
+  <header class="admin_header" th:fragment="adminHeader">
+    <div class="gchead typea">
+      <h1 class="gc_logo">
+        <div>
+          <img th:src="@{/img/gcin_logo3.png}" alt="">
+          <a class="_blank" th:href="@{/admin/index}"></a>
+        </div>
+      </h1>
+      <div class="admin_info">
+        <ul class="admin_ul">
+          <li><a th:href="@{/index}">홈</a></li>
+          <li><a href="javascript:;"> | </a></li>
+          <li><a href="#">로그아웃</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 </body>
 </html>

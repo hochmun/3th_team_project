@@ -86,5 +86,39 @@
             </div>
         </div>
     </div>
+
+    <!-- 2023/03/10 // 심규영 // 관리자 gnb -->
+    <aside class="admin_aside" th:fragment="adminGnb">
+        <ul id="admin_gnb">
+            <li>
+                <a href="javascript:;">환경설정</a>
+                <ol>
+                    <li><a href="javascript:;">배너 관리</a></li>
+                    <li><a th:href="@{/admin/config/terms}">약관 관리</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="javascript:;">신고 관리</a>
+                <ol>
+                    <li><a href="javascript:;">서비스 신고 관리</a></li>
+                    <li><a href="javascript:;">서비스 신청 목록</a></li>
+                </ol>
+            </li>
+            <li>
+                <a href="javascript:;">갤러리 관리</a>
+                <ol>
+                    <li><a href="javascript:;">갤러리 목록</a></li>
+                    <li><a href="javascript:;">갤러리 개설 신청</a></li>
+                    <li><a href="javascript:;">갤러리 승급 신청</a></li>
+                </ol>
+            </li>
+            <li>
+                <a th:href="@{/admin/member/search}">회원 관리</a>
+                <ol>
+                    <li><a th:href="@{/admin/member/search}">회원 조회</a></li>
+                </ol>
+            </li>
+        </ul>
+    </aside>
 </body>
 </html>
