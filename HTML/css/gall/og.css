@@ -1,0 +1,44 @@
+@charset "utf-8";
+	/*220926 게시물 펌*/
+a.og-wrap {
+	display:inline-block;width:100%;height:105px;background:#fff;border:1px solid #dfe1ee;box-sizing:border-box;letter-spacing:-1px;overflow:hidden;line-height: 1.5
+}
+.og-loading{
+	line-height: 105px;text-align: center
+}
+
+.og-div{
+	padding-bottom:0
+}
+
+div.og-img {
+	float:left;width: 104px;height:100%;box-sizing: border-box;border-right: 1px solid #dfe1ee;padding-bottom:0
+}
+.og-img img{
+width:100%!important;height:100%!important;object-fit: cover;object-position: center center
+}
+
+div.og-info {
+	float:right;width:calc(100% - 104px);height:100%;box-sizing:border-box;padding:12px;
+}
+
+div.og-inr {
+	display: inline-block;max-width: 100%;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;font-size: 14px;font-weight:bold;padding-bottom:0
+}
+
+strong.og-tit {
+	display: inline-block;max-width: 70%;font-size: 14px;vertical-align: top;padding-right: 1px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis
+}
+
+strong.og-gallname{
+	font-size: 14px;vertical-align: top;margin-left: -3px
+}
+
+p.og-txt {
+	width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#000;margin:2px 0 11px
+}
+
+p.og-lnk {
+	width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color: #3b4890
+}
+/*//220926 게시물 펌*/
