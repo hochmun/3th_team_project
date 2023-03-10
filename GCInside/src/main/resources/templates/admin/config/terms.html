@@ -32,10 +32,10 @@
                                     <th>약관 이름</th>
                                     <th>약관 관리</th>
                                 </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>이용약관 지시인사이드 이용약관</td>
-                                    <td><a href="javascript:;" id="detail">[자세히 보기]</a></td>
+                                <tr th:each="term:${terms}">
+                                    <td th:text="${term.term_type}" class="term_ori_type">10</td>
+                                    <td th:text="${term.term_title}" class="term_ori_name">이용약관 지시인사이드 이용약관</td>
+                                    <td><a href="javascript:;" id="detail" class="admin_detail" th:data-result="${term.term_content}">[자세히 보기]</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -51,10 +51,12 @@
     <div class="admin pop_back" style="display: none;">
         <div class="admin pop_wrap gray1px">
             <div class="admin_member pop_content">
-                <div class="admin cont_head"><h3>ㅁㅁ</h3><a href="javascript:;" id="close">X</a></div>
+                <div class="admin cont_head"><h3 id="term_name" style="margin-left:10px;">ㅁㅁ</h3><a href="javascript:;" id="close">X</a></div>
+                <input type="hidden" id="term_type">
 
                 <!-- 약관 내용 -->
                 <textarea class="admin_term" name="term_content" id="term_content" readonly></textarea>
+                <div class="term_preview" id="term_preview" style="display:none;"></div>
 
                 <!-- 버튼 -->
                 <div class="admin_term_btn btn_box">

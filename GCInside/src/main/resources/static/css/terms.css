@@ -1,0 +1,35 @@
+.policy_cont ol > li {margin-bottom: 5px;}
+.policy_cont {padding:26px 23px;color:#555;line-height:18px}
+.policy_cont .navlist {overflow: hidden;background: #f9f9f9;padding: 22px 23px;margin: 25px 0;line-height: 24px;}
+.policy_cont .navlist::after {clear: both;display: block;visibility: hidden;content: "";}
+.policy_cont .navlist .list {float: left;width: 50%;}
+.policy_cont .navlist {overflow: hidden;background: #f9f9f9;padding: 22px 23px;margin: 25px 0;line-height: 24px;}
+.policy_cont .navlist .list > li {margin-bottom: 0;}
+.policy_cont ol > li, .policy_cont ul > li {margin-bottom: 5px;}
+.policy_cont strong {display: block;margin-top: 7px;}
+.policy_cont .mb5 {margin-bottom: 5px;}
+.policy_cont a {color: #29367c;text-decoration: underline;}
+.policy_cont strong{display:block;margin-top:13px}
+.policy_cont strong:first-child{margin-top:0}
+.policy_cont.privacy strong:first-child{margin-top:13px}
+.policy_cont.privacy li:first-child strong{margin-top:0}
+.policy_cont strong.stit{margin-top:7px}
+.policy_cont ol > li > ol{margin-left:5px}
+.policy_cont .navlist a{text-decoration:none}
+.policy_cont .navlist a:hover{text-decoration:underline}
+.policy_cont.privacy .manager_info strong{margin-top:0}
+.policy_cont a{color:#29367c;text-decoration:underline}
+.policy_cont .navlist .list li a {color: #d31900;}
+.policy_cont .btn_lyopen{height:29px;line-height:27px;padding:0 13px;color:#333;font-weight:bold;border:1px solid #c4c4c4;background:#f9f9f9;box-sizing:border-box;border-radius:2px}
+.policy_cont .btn_lyopen::after{content:"";display:inline-block;width:6px;height:9px;margin-left:7px;background-image:url('../../img/sp_img.png');background-repeat:no-repeat;background-position:-27px -44px}
+.policy_cont .policy_table{width:100%;text-align:center;margin:10px 0 35px 0}
+.policy_cont .policy_table th,.policy_table td{border:1px #ddd solid;vertical-align:middle;color:#555}
+.policy_cont .policy_table th{height:40px;background:#f3f3f3}
+.policy_cont .policy_table tr:first-child td{border-top:none}
+.policy_cont .policy_table td{padding:15px}
+.policy_cont .manager_info{overflow:hidden;padding:19px 24px 18px;margin:20px 0;background:#f3f3f3}
+.policy_cont .manager_cont{float:left;width:50%;line-height:24px}
+.policy_cont .lyprivacy {position: absolute;width: 465px;line-height: 1.5;z-index: 1;}
+.policy_cont .lyprivacy .poply_close {top: 11px;right: 11px;}
+.policy_cont .lyprivacy .inner {position: relative;padding: 10px 13px 14px;background: #fff;border: 1px solid #ccc;}
+.policy_cont .policy_table.ly {margin: 11px 0 0;}

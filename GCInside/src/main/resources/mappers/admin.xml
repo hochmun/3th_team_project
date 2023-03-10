@@ -6,6 +6,13 @@
 <mapper namespace="kr.co.gcInside.dao.AdminDAO">
     <!-- create -->
     <!-- read -->
+    <!-- 2023/03/10 // 심규영 // 관리자 약관 불러오기 -->
+    <select id="selectTerms" resultType="kr.co.gcInside.vo.TermsVO">
+        SELECT `term_type`,`term_title`,`term_content` FROM `gc_terms` ORDER BY `term_type` ASC;
+    </select>
     <!-- upload -->
+    <update id="updateTerms">
+        UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};
+    </update>
     <!-- delete -->
 </mapper>

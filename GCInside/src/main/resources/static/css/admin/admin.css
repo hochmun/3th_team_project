@@ -32,6 +32,10 @@
 /* 관리자 config > terms */
 .admin_term {margin: 0 auto;margin-top: 10px;margin-bottom: 10px;display: block;width: 70%;height: 400px;}
 .admin_term_btn.btn_box {text-align: center;float: none;margin-bottom: 10px;}
+.term_preview {display:block;margin:0 auto;width:70%;height:400px;border:1px solid black;overflow:scroll;}
+
+/* 관리자 config > terms > preview */
+
 
 /* 관리자 회원 관리 => 회원 목록 및 회원 검색 */
 .admin_member_list th, .admin_member_list td {border-left: 0;border-right: 0;}
