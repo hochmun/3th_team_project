@@ -10,8 +10,6 @@ import lombok.*;
 public class MemberVO {
     private String member_uid;
     private String member_pass;
-    private String member_pass1;
-    private String member_pass2;
     private String member_email;
     private String member_nick;
     private int member_point;

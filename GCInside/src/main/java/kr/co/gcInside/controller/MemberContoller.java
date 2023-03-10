@@ -1,24 +1,11 @@
 package kr.co.gcInside.controller;
 
 
-import kr.co.gcInside.service.MemberService;
-import kr.co.gcInside.vo.MemberVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class MemberContoller {
-    @Autowired
-    private MemberService service;
 
     @GetMapping("member/login")
     public String login(){
@@ -32,12 +19,6 @@ public class MemberContoller {
     public String register(){
         return "member/register";
     }
-    @PostMapping("member/register")
-    public String register(MemberVO vo, HttpServletRequest req){
-        vo.setMember_regip(req.getRemoteAddr());
-        int result = service.insertMember(vo);
-        return "redirect:/member/login?success"+result;
-    }
     @GetMapping("member/find_id")
     public String find_id(){
         return "member/find_id";
@@ -50,6 +31,5 @@ public class MemberContoller {
     public String reset_pwd_Result(){
         return "member/reset_pwd_Result";
     }
-
 
 }
