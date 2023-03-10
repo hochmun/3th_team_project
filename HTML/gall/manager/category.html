@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="/css/popup.css">
     <link rel="stylesheet preload" href="/css/ionicons/ionicons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/navigation.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/manage/Sortable.js"></script>
-    <script type="text/javascript" src="/js/manage/layout.js"></script>
+    <script src="/js/navigation.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/manage/Sortable.js"></script>
+    <script src="/js/manage/layout.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -169,6 +169,7 @@
                                 <div class="category-list__displayname-wrapper">
                                     <input class="category-list__input-text" type="text" name="categories.items[new-%idx%].displayName" title="글머리 목록에 표시되는 이름입니다." data-required>
                                     <input type="hidden" name="categories.items[new-%idx%].restricted_countries" value="[]">
+                                    <button class="category-list__restrict-country-btn btn btn-sm btn-outline-secondary" type="button" data-toggle="modal-country-restriction">국가 제한</button>
                                 </div>
                                 <div class="item-warrings mb-2">
                                     <p><small class="text-focus font-weight-bold best-live-type-best">베스트라이브 제외됨: "베스트 차단" 이유로</small></p>
@@ -206,7 +207,7 @@
                     </div>
                 </form>
             </div>
-            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
+            <script src="/js/manage/board_manage.js"></script>
             <!-- 갤러리 위임 팝업 -->
             <article id="owiim" class="containe-fluid board-article popup">
                 <div class="row">
