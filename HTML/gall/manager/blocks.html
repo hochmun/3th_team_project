@@ -12,6 +12,8 @@
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/manage/Sortable.js"></script>
+    <script type="text/javascript" src="/js/manage/layout.js"></script>
+
 </head>
 <body>
     <div class="gcwrap">
@@ -104,77 +106,80 @@
         </div>
 
         <main>
-            <div class="gallery-setting-wrap">
-                <form action="gallery-setting">
-                    <div class="btns col-md-12">
-                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
-                        <input class="btn btn-gall" type="submit" value="저장">
+            <div class="body2" type="hidden">
+                <article class="containe-fluid board-article">
+                    <div class="gallery-setting-wrap">
+                        <form action="gallery-setting">
+                            <div class="btns col-md-12">
+                                <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                                <input class="btn btn-gall" type="submit" value="저장">
+                            </div>
+                            <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                            <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                                <ul class="navbar-nav mr-auto mt-2">
+                                    <li class="nav-item">
+                                        <a href="manage.html">기본</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="permission.html">권한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="category.html">글머리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="report.html">신고</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="log.html">기록</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="blocks.html">제한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="search.html">검색</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="notice.html">공지</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <h3 class="col-md-12 gall-settings-title">금지어</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label for="id_restricted_keywords">게시물/댓글 금지어</label>
+                                    <textarea class="form-control" name="restricted_keywords" id="id_restricted_keywords" rows="8" placeholder="금지어1&#13;&#10;금지어2&#13;&#10;&#13;&#10;..."></textarea>
+                                </div>
+                            </div>
+                            <h3 class="col-md-12 gall-settings-title">이모티콘</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label for="id_restricted_emoticon_tags">
+                                        금지할 이모티콘 태그
+                                        <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 태그로 이모티콘을 차단합니다. 차단할 이모티콘의 태그를 입력해주세요. 최대 30개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
+                                    </label>
+                                    <textarea class="form-control" name="restricted_emoticon_tags" id="id_restricted_emoticon_tags" rows="8" placeholder="2D&#13;&#10;정치&#13;&#10;이상취향&#13;&#10;선정적&#13;&#10;&#13;&#10;..."></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label for="id_restricted_emoticon_ids">
+                                        금지할 이모티콘 아이디
+                                        <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 아이디로 차단합니다. 차단을 원하는 이모티콘 페이지 주소의 마지막 숫자를 입력해주세요. 최대 100개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
+                                    </label>
+                                    <textarea class="form-control" name="restricted_emoticon_ids" id="id_restricted_emoticon_ids" rows="8" placeholder="12345&#13;&#10;34567&#13;&#10;&#13;&#10;..."></textarea>
+                                </div>
+                            </div>
+                            <h3 class="col-md-12 gall-settings-title">아이피</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-12">
+                                    <label for="id_blocked_ip_blocks">아이피 대역 차단(임시)</label>
+                                    <textarea class="form-control" name="blocked_ip_blocks" id="id_blocked_ip_blocks" rows="8" placeholder="111.111&#13;&#10;123.123&#13;&#10;&#13;&#10;..."></textarea>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
-                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
-                        <ul class="navbar-nav mr-auto mt-2">
-                            <li class="nav-item">
-                                <a href="manage.html">기본</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="permission.html">권한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="category.html">글머리</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="report.html">신고</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="log.html">기록</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a href="blocks.html">제한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="search.html">검색</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="notice.html">공지</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <h3 class="col-md-12 gall-settings-title">금지어</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-12">
-                            <label for="id_restricted_keywords">게시물/댓글 금지어</label>
-                            <textarea class="form-control" name="restricted_keywords" id="id_restricted_keywords" rows="8" placeholder="금지어1&#13;&#10;금지어2&#13;&#10;&#13;&#10;..."></textarea>
-                        </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">이모티콘</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-12">
-                            <label for="id_restricted_emoticon_tags">
-                                금지할 이모티콘 태그
-                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 태그로 이모티콘을 차단합니다. 차단할 이모티콘의 태그를 입력해주세요. 최대 30개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
-                            </label>
-                            <textarea class="form-control" name="restricted_emoticon_tags" id="id_restricted_emoticon_tags" rows="8" placeholder="2D&#13;&#10;정치&#13;&#10;이상취향&#13;&#10;선정적&#13;&#10;&#13;&#10;..."></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-12">
-                            <label for="id_restricted_emoticon_ids">
-                                금지할 이모티콘 아이디
-                                <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="이모티콘의 아이디로 차단합니다. 차단을 원하는 이모티콘 페이지 주소의 마지막 숫자를 입력해주세요. 최대 100개까지 지원하며, 게시물 본문 차단은 추후 지원 될 예정입니다."></span>
-                            </label>
-                            <textarea class="form-control" name="restricted_emoticon_ids" id="id_restricted_emoticon_ids" rows="8" placeholder="12345&#13;&#10;34567&#13;&#10;&#13;&#10;..."></textarea>
-                        </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">아이피</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-12">
-                            <label for="id_blocked_ip_blocks">아이피 대역 차단(임시)</label>
-                            <textarea class="form-control" name="blocked_ip_blocks" id="id_blocked_ip_blocks" rows="8" placeholder="111.111&#13;&#10;123.123&#13;&#10;&#13;&#10;..."></textarea>
-                        </div>
-                    </div>
-                </form>
+                </article>
             </div>
-            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
             <!-- 갤러리 위임 팝업 -->
             <article id="owiim" class="containe-fluid board-article popup">
                 <div class="row">

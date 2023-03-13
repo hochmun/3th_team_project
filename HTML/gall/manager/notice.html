@@ -11,6 +11,8 @@
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/manage/Sortable.js"></script>
+    <script type="text/javascript" src="/js/manage/board_manage.js"></script>
+
 </head>
 <body>
     <div class="gcwrap">
@@ -103,70 +105,73 @@
         </div>
 
         <main>
-            <div class="gallery-setting-wrap">
-                <form action="gallery-setting">
-                    <div class="btns col-md-12">
-                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
-                        <input class="btn btn-gall" type="submit" value="저장">
-                    </div>
-                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
-                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
-                        <ul class="navbar-nav mr-auto mt-2">
-                            <li class="nav-item">
-                                <a href="manage.html">기본</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="permission.html">권한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="category.html">글머리</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="report.html">신고</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="log.html">기록</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="blocks.html">제한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="search.html">검색</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a href="notice.html">공지</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="form-group col-md-12">
-                        <label for="notice_count">표시 개수</label>
-                        <select class="form-control" id="form.display_notice_count" name="display_notice_count">
-                            <option value="1">1</option>
-                            <option value="2" selected>2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                    </div>
-                    <div class="article-list ml-0 mr-0">
-                        <div class="list-table">
-                            <div class="vrow column head d-none d-md-flex">
-                                <div class="vrow-inner">
-                                    <div class="vrow-top">
-                                        <span class="vcol col-id"></span>
-                                        <span class="vcol col-title">제목</span>
+            <div class="body2" type="hidden">
+                <article class="containe-fluid board-article">
+                    <div class="gallery-setting-wrap">
+                        <form action="gallery-setting">
+                            <div class="btns col-md-12">
+                                <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                                <input class="btn btn-gall" type="submit" value="저장">
+                            </div>
+                            <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                            <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                                <ul class="navbar-nav mr-auto mt-2">
+                                    <li class="nav-item">
+                                        <a href="manage.html">기본</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="permission.html">권한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="category.html">글머리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="report.html">신고</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="log.html">기록</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="blocks.html">제한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="search.html">검색</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="notice.html">공지</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="form-group col-md-12">
+                                <label for="notice_count">표시 개수</label>
+                                <select class="form-control" id="form.display_notice_count" name="display_notice_count">
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="article-list ml-0 mr-0">
+                                <div class="list-table">
+                                    <div class="vrow column head d-none d-md-flex">
+                                        <div class="vrow-inner">
+                                            <div class="vrow-top">
+                                                <span class="vcol col-id"></span>
+                                                <span class="vcol col-title">제목</span>
+                                            </div>
+                                            <div class="vrow-bottom">
+                                                <span class="vcol col-author">작성자</span>
+                                                <span class="vcol col-time">작성일</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="vrow-bottom">
-                                        <span class="vcol col-author">작성자</span>
-                                        <span class="vcol col-time">작성일</span>
-                                    </div>
+                                    <div class="sortable-list"></div>
                                 </div>
                             </div>
-                            <div class="sortable-list"></div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </article>
             </div>
-            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
             <!-- 갤러리 위임 팝업 -->
             <article id="owiim" class="containe-fluid board-article popup">
                 <div class="row">

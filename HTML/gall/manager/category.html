@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="/css/basic.css">
     <link rel="stylesheet" href="/css/popup.css">
     <link rel="stylesheet preload" href="/css/ionicons/ionicons.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/manage/Sortable.js"></script>
-    <script type="text/javascript" src="/js/manage/layout.js"></script>
+    <script type="text/javascript" src="/js/manage/board_manage.js"></script>
+
 </head>
 <body>
     <div class="gcwrap">
@@ -104,109 +106,112 @@
         </div>
 
         <main>
-            <div class="gallery-setting-wrap">
-                <form action="gallery-setting">
-                    <div class="btns col-md-12">
-                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
-                        <input class="btn btn-gall" type="submit" value="저장">
-                    </div>
-                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
-                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
-                        <ul class="navbar-nav mr-auto mt-2">
-                            <li class="nav-item">
-                                <a href="manage.html">기본</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="permission.html">권한</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a href="category.html">글머리</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="report.html">신고</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="log.html">기록</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="blocks.html">제한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="search.html">검색</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="notice.html">공지</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <h3 class="col-md-12 gall-settings-title">글머리</h3>
-                    <div class="form-group col-md-4">
-                        <label for="id_require_category">글머리 필수</label>
-                        <select class="form-control" id="form.requireCategory" name="requireCategory">
-                            <option value="1">사용</option>
-                            <option value="0" selected>사용 안 함</option>
-                        </select>
-                    </div>
-                    <div class="sortable-list-wrapper">
-                            <div class="sortable-list category" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
-                        </div>
-                        <div class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="0">
-                            <div class="item-head">
-                                <div class="sortable-list__handle">
-                                    <span class="ion-navicon-round"></span>
-                                    <input type="hidden" name="categories.order[]" value="new-%idx%">
-                                </div>
-                                <div class="category-list__id">
-                                    <input type="text" name="categories.items[new-%idx%].id" title="주소에 표시되는 글머리의 이름입니다.&#013;저장한 이후에는 변경할 수 없습니다.&#013;8자 이내로 입력해야 하고, 비워둘 수 없습니다." placeholder="이름" pattern=".{1,8}" autocomplete="off" data-required>
-                                </div>
-                                <div class="category-list__foldArrow">
-                                    <span class="ion-chevron-down"></span>
-                                    <span class="ion-chevron-up"></span>
-                                </div>
+            <div class="body2" type="hidden">
+                <article class="containe-fluid board-article">
+                    <div class="gallery-setting-wrap">
+                        <form action="gallery-setting">
+                            <div class="btns col-md-12">
+                                <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                                <input class="btn btn-gall" type="submit" value="저장">
                             </div>
-                            <div class="item-body">
-                                <label>표시이름</label>
-                                <div class="category-list__displayname-wrapper">
-                                    <input class="category-list__input-text" type="text" name="categories.items[new-%idx%].displayName" title="글머리 목록에 표시되는 이름입니다." data-required>
-                                    <input type="hidden" name="categories.items[new-%idx%].restricted_countries" value="[]">
+                            <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                            <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                                <ul class="navbar-nav mr-auto mt-2">
+                                    <li class="nav-item">
+                                        <a href="manage.html">기본</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="permission.html">권한</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="category.html">글머리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="report.html">신고</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="log.html">기록</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="blocks.html">제한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="search.html">검색</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="notice.html">공지</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <h3 class="col-md-12 gall-settings-title">글머리</h3>
+                            <div class="form-group col-md-4">
+                                <label for="id_require_category">글머리 필수</label>
+                                <select class="form-control" id="form.requireCategory" name="requireCategory">
+                                    <option value="1">사용</option>
+                                    <option value="0" selected>사용 안 함</option>
+                                </select>
+                            </div>
+                            <div class="sortable-list-wrapper">
+                                    <div class="sortable-list category" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
                                 </div>
-                                <div class="item-warrings mb-2">
-                                    <p><small class="text-focus font-weight-bold best-live-type-best">베스트라이브 제외됨: "베스트 차단" 이유로</small></p>
-                                </div>
-                                <div>
-                                    <label>속성</label>
-                                    <div class="permissions">
-                                        <input id="categories-items-hidden-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].hidden">
-                                        <label for="categories-items-hidden-[new-%idx%]">표시 안 함</label>
-                                        <input id="categories-items-hideOnGeneral-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].hideOnGeneral" disabled>
-                                        <label for="categories-items-hideOnGeneral-[new-%idx%]">[전체]에서 표시 안 함</label>
-                                        <input id="categories-items-notice-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].notice" disabled>
-                                        <label for="categories-items-notice-[new-%idx%]">공지</label>
-                                        <input id="categories-items-onlyManager-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].onlyManager">
-                                        <label for="categories-items-onlyManager-[new-%idx%]">운영</label>
-                                        <input id="categories-items-denyHeadline-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyHeadline">
-                                        <label for="categories-items-denyHeadline-[new-%idx%]">개념글 차단</label>
-                                        <input id="categories-items-denyBest-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyBest">
-                                        <label for="categories-items-denyBest-[new-%idx%]">베스트 차단</label>
-                                        <input id="categories-items-denyRating-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyRating">
-                                        <label for="categories-items-denyRating-[new-%idx%]">추천 사용 안 함</label>
-                                        <input id="categories-items-denyRatingDown-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyRatingDown">
-                                        <label for="categories-items-denyRatingDown-[new-%idx%]">비추천 불가</label>
-                                        <input id="categories-items-hiddenPreview-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].hiddenPreview">
-                                        <label for="categories-items-hiddenPreview-[new-%idx%]">미디어 미리보기 사용 안 함</label>
-                                        <input id="categories-items-preventDelete-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].preventDelete">
-                                        <label for="categories-items-preventDelete-[new-%idx%]">자삭 방지</label>
-                                        <hr>
-                                        <button type="button" class="category-list__remove-item-btn" data-action="sortable-list-remove-item" data-item=".sortable-list__item">글머리 삭제</button>
+                                <div class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="0">
+                                    <div class="item-head">
+                                        <div class="sortable-list__handle">
+                                            <span class="ion-navicon-round"></span>
+                                            <input type="hidden" name="categories.order[]" value="new-%idx%">
+                                        </div>
+                                        <div class="category-list__id">
+                                            <input type="text" name="categories.items[new-%idx%].id" title="주소에 표시되는 글머리의 이름입니다.&#013;저장한 이후에는 변경할 수 없습니다.&#013;8자 이내로 입력해야 하고, 비워둘 수 없습니다." placeholder="이름" pattern=".{1,8}" autocomplete="off" data-required>
+                                        </div>
+                                        <div class="category-list__foldArrow">
+                                            <span class="ion-chevron-down"></span>
+                                            <span class="ion-chevron-up"></span>
+                                        </div>
+                                    </div>
+                                    <div class="item-body">
+                                        <label>표시이름</label>
+                                        <div class="category-list__displayname-wrapper">
+                                            <input class="category-list__input-text" type="text" name="categories.items[new-%idx%].displayName" title="글머리 목록에 표시되는 이름입니다." data-required>
+                                            <input type="hidden" name="categories.items[new-%idx%].restricted_countries" value="[]">
+                                        </div>
+                                        <div class="item-warrings mb-2">
+                                            <p><small class="text-focus font-weight-bold best-live-type-best">베스트라이브 제외됨: "베스트 차단" 이유로</small></p>
+                                        </div>
+                                        <div>
+                                            <label>속성</label>
+                                            <div class="permissions">
+                                                <input id="categories-items-hidden-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].hidden">
+                                                <label for="categories-items-hidden-[new-%idx%]">표시 안 함</label>
+                                                <input id="categories-items-hideOnGeneral-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].hideOnGeneral" disabled>
+                                                <label for="categories-items-hideOnGeneral-[new-%idx%]">[전체]에서 표시 안 함</label>
+                                                <input id="categories-items-notice-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].notice" disabled>
+                                                <label for="categories-items-notice-[new-%idx%]">공지</label>
+                                                <input id="categories-items-onlyManager-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].onlyManager">
+                                                <label for="categories-items-onlyManager-[new-%idx%]">운영</label>
+                                                <input id="categories-items-denyHeadline-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyHeadline">
+                                                <label for="categories-items-denyHeadline-[new-%idx%]">개념글 차단</label>
+                                                <input id="categories-items-denyBest-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyBest">
+                                                <label for="categories-items-denyBest-[new-%idx%]">베스트 차단</label>
+                                                <input id="categories-items-denyRating-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyRating">
+                                                <label for="categories-items-denyRating-[new-%idx%]">추천 사용 안 함</label>
+                                                <input id="categories-items-denyRatingDown-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].denyRatingDown">
+                                                <label for="categories-items-denyRatingDown-[new-%idx%]">비추천 불가</label>
+                                                <input id="categories-items-hiddenPreview-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].hiddenPreview">
+                                                <label for="categories-items-hiddenPreview-[new-%idx%]">미디어 미리보기 사용 안 함</label>
+                                                <input id="categories-items-preventDelete-[new-%idx%]" class="form-check-input" type="checkbox" name="categories.items[new-%idx%].preventDelete">
+                                                <label for="categories-items-preventDelete-[new-%idx%]">자삭 방지</label>
+                                                <hr>
+                                                <button type="button" class="category-list__remove-item-btn" data-action="sortable-list-remove-item" data-item=".sortable-list__item">글머리 삭제</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.category">추가...</button>
                             </div>
-                        </div>
-                        <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.category">추가...</button>
+                        </form>
                     </div>
-                </form>
+                </article>
             </div>
-            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
             <!-- 갤러리 위임 팝업 -->
             <article id="owiim" class="containe-fluid board-article popup">
                 <div class="row">

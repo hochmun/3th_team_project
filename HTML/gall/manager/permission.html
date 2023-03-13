@@ -11,6 +11,8 @@
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/manage/Sortable.js"></script>
+    <script type="text/javascript" src="/js/manage/board_manage.js"></script>
+
 </head>
 <body>
     <div class="gcwrap">
@@ -103,203 +105,206 @@
         </div>
 
         <main>
-            <div class="gallery-setting-wrap">
-                <form action="gallery-setting">
-                    <div class="btns col-md-12">
-                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
-                        <input class="btn btn-gall" type="submit" value="저장">
-                    </div>
-                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
-                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
-                        <ul class="navbar-nav mr-auto mt-2">
-                            <li class="nav-item">
-                                <a href="manage.html">기본</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a href="permission.html">권한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="category.html">글머리</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="report.html">신고</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="log.html">기록</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="blocks.html">제한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="search.html">검색</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="notice.html">공지</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <h3 class="col-md-12 gall-settings-title">권한</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="id_article_write">게시물 작성</label>
-                            <select class="form-control" name="article_write" id="form.article_write">
-                                <option value="login">모든 로그인한 사용자</option>
-                                <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
-                                <option value="blockAbnormal">VPN 제외 유동 + 로그인 사용자</option>
-                                <option value="everyone">모두</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_multimedia_write">멀티미디어 첨부</label>
-                            <select class="form-control" name="multimedia_write" id="form.multimedia_write">
-                                <option value="nobody">아무도 쓸 수 없음</option>
-                                <option value="superadmin">최고 관리자만</option>
-                                <option value="admin">모든 관리자</option>
-                                <option value="manager">매니저만</option>
-                                <option value="assistants">매니저, 부매니저</option>
-                                <option value="login">모든 로그인한 사용자</option>
-                                <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
-                                <option value="blockAbnormal">VPN 제외 유동 + 로그인 사용자</option>
-                                <option value="everyone" selected>모두</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="id_comment_write">댓글 작성</label>
-                            <select class="form-control" name="comment_write" id="form.comment_write">
-                                <option value="login">모든 로그인한 사용자</option>
-                                <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
-                                <option value="blockAbnormal">VPN 제외 유동 + 로그인 사용자</option>
-                                <option value="everyone">모두</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_rating_previleges">추천/비추천</label>
-                            <select class="form-control" name="rating_previleges" id="form.rating_previleges">
-                                <option value="nobody">아무도 쓸 수 없음</option>
-                                <option value="login">모든 로그인한 사용자</option>
-                                <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
-                                <option value="everyone">모두</option>
-                            </select>
-                        </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">앱 캡챠</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="id_captcha_notLogin">비로그인</label>
-                            <select class="form-control" name="captcha_notLogin" id="form.captcha_notLogin">
-                                <option value="1">사용</option>
-                                <option value="0" selected>사용 안 함</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_captcha_login">로그인</label>
-                            <select class="form-control" name="captcha_login" id="form.captcha_login">
-                                <option value="1">사용</option>
-                                <option value="0" selected>사용 안 함</option>
-                            </select>
-                        </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">작성 대기 시간</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="id_cooltime_article-notLogin">비로그인 게시물</label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="id_cooltime_article_notLogin" name="cooltime_article_notLogin" value="10">
-                                <div class="input-group-text input-group-append">초</div>
+            <div class="body2" type="hidden">
+                <article class="containe-fluid board-article">
+                    <div class="gallery-setting-wrap">
+                        <form action="gallery-setting">
+                            <div class="btns col-md-12">
+                                <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                                <input class="btn btn-gall" type="submit" value="저장">
                             </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_cooltime_article-login">로그인 게시물</label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="id_cooltime_article_login" name="cooltime_article_login" value="10">
-                                <div class="input-group-text input-group-append">초</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-6">
-                            <label for="id_cooltime_comment_notLogin">비로그인 댓글</label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="id_cooltime_comment_notLogin" name="cooltime_comment_notLogin" value="5">
-                                <div class="input-group-text input-group-append">초</div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="id_cooltime_comment_login">로그인 댓글</label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="id_cooltime_comment_login" name="cooltime_comment_login" value="5">
-                                <div class="input-group-text input-group-append">초</div>
-                            </div>
-                        </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">부매니저</h3>
-                    <div class="sortable-list-wrapper">
-                        <div class="sortable-list permission" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
-                        </div>
-                        <div class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="0">
-                            <div class="flex-shrink-0">
-                                <span class="sortable-list__handle ion-android-menu"></span>
-                            </div>
-                            <div class="flexible-direction flex-grow-1">
-                                <div class="flex-grow-1 order-and-name">
-                                    <input type="hidden" name="assistants.order[]" value="new-%idx%">
-                                    <input type="text" name="assistants[new-%idx%].name" value="" spellcheck="false">
+                            <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                            <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                                <ul class="navbar-nav mr-auto mt-2">
+                                    <li class="nav-item">
+                                        <a href="manage.html">기본</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="permission.html">권한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="category.html">글머리</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="report.html">신고</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="log.html">기록</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="blocks.html">제한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="search.html">검색</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="notice.html">공지</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <h3 class="col-md-12 gall-settings-title">권한</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-6">
+                                    <label for="id_article_write">게시물 작성</label>
+                                    <select class="form-control" name="article_write" id="form.article_write">
+                                        <option value="login">모든 로그인한 사용자</option>
+                                        <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
+                                        <option value="blockAbnormal">VPN 제외 유동 + 로그인 사용자</option>
+                                        <option value="everyone">모두</option>
+                                    </select>
                                 </div>
-                                <div class="flex-grow-1 permissions">
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.gallInfo" id="assistants[new-%idx%].permissions.gallInfo">
-                                    <label for="assistants[new-%idx%].permissions.gallInfo">전권</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.audit" id="assistants[new-%idx%].permissions.audit">
-                                    <label for="assistants[new-%idx%].permissions.audit">감사</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.everything" id="assistants[new-%idx%].permissions.everything">
-                                    <label for="assistants[new-%idx%].permissions.everything">전체</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.setNotices" id="assistants[new-%idx%].permissions.setNotices">
-                                    <label for="assistants[new-%idx%].permissions.setNotices">공지</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.deleteContents" id="assistants[new-%idx%].permissions.deleteContents">
-                                    <label for="assistants[new-%idx%].permissions.deleteContents">삭제</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.editContents" id="assistants[new-%idx%].permissions.editContents">
-                                    <label for="assistants[new-%idx%].permissions.editContents">수정</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.block" id="assistants[new-%idx%].permissions.block">
-                                    <label for="assistants[new-%idx%].permissions.block">차단</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.controlArticle" id="assistants[new-%idx%].permissions.controlArticle">
-                                    <label for="assistants[new-%idx%].permissions.controlArticle">글설정</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.controlOld" id="assistants[new-%idx%].permissions.controlOld">
-                                    <label for="assistants[new-%idx%].permissions.controlOld">古</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.showAsUser" id="assistants[new-%idx%].permissions.showAsUser">
-                                    <label for="assistants[new-%idx%].permissions.showAsUser">숨김</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.reportable" id="assistants[new-%idx%].permissions.reportable">
-                                    <label for="assistants[new-%idx%].permissions.reportable">신고</label>
-                                    <input type="checkbox" name="assistants[new-%idx%].permissions.reportAccesible" id="assistants[new-%idx%].permissions.reportAccesible">
-                                    <label for="assistants[new-%idx%].permissions.reportAccesible">신고 조회</label>
+                                <div class="form-group col-md-6">
+                                    <label for="id_multimedia_write">멀티미디어 첨부</label>
+                                    <select class="form-control" name="multimedia_write" id="form.multimedia_write">
+                                        <option value="nobody">아무도 쓸 수 없음</option>
+                                        <option value="superadmin">최고 관리자만</option>
+                                        <option value="admin">모든 관리자</option>
+                                        <option value="manager">매니저만</option>
+                                        <option value="assistants">매니저, 부매니저</option>
+                                        <option value="login">모든 로그인한 사용자</option>
+                                        <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
+                                        <option value="blockAbnormal">VPN 제외 유동 + 로그인 사용자</option>
+                                        <option value="everyone" selected>모두</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="flex-shrink-0">
-                                <button type="button" class="ion-android-remove-circle" data-action="sortable-list-remove-item" data-item=".sortable-list__item"></button>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-6">
+                                    <label for="id_comment_write">댓글 작성</label>
+                                    <select class="form-control" name="comment_write" id="form.comment_write">
+                                        <option value="login">모든 로그인한 사용자</option>
+                                        <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
+                                        <option value="blockAbnormal">VPN 제외 유동 + 로그인 사용자</option>
+                                        <option value="everyone">모두</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="id_rating_previleges">추천/비추천</label>
+                                    <select class="form-control" name="rating_previleges" id="form.rating_previleges">
+                                        <option value="nobody">아무도 쓸 수 없음</option>
+                                        <option value="login">모든 로그인한 사용자</option>
+                                        <option value="blockMobile">VPN + 통피 제외 유동 + 로그인 사용자</option>
+                                        <option value="everyone">모두</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.permission">추가...</button>
+                            <h3 class="col-md-12 gall-settings-title">앱 캡챠</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-6">
+                                    <label for="id_captcha_notLogin">비로그인</label>
+                                    <select class="form-control" name="captcha_notLogin" id="form.captcha_notLogin">
+                                        <option value="1">사용</option>
+                                        <option value="0" selected>사용 안 함</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="id_captcha_login">로그인</label>
+                                    <select class="form-control" name="captcha_login" id="form.captcha_login">
+                                        <option value="1">사용</option>
+                                        <option value="0" selected>사용 안 함</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <h3 class="col-md-12 gall-settings-title">작성 대기 시간</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-6">
+                                    <label for="id_cooltime_article-notLogin">비로그인 게시물</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" id="id_cooltime_article_notLogin" name="cooltime_article_notLogin" value="10">
+                                        <div class="input-group-text input-group-append">초</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="id_cooltime_article-login">로그인 게시물</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" id="id_cooltime_article_login" name="cooltime_article_login" value="10">
+                                        <div class="input-group-text input-group-append">초</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-6">
+                                    <label for="id_cooltime_comment_notLogin">비로그인 댓글</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" id="id_cooltime_comment_notLogin" name="cooltime_comment_notLogin" value="5">
+                                        <div class="input-group-text input-group-append">초</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="id_cooltime_comment_login">로그인 댓글</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" id="id_cooltime_comment_login" name="cooltime_comment_login" value="5">
+                                        <div class="input-group-text input-group-append">초</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="col-md-12 gall-settings-title">부매니저</h3>
+                            <div class="sortable-list-wrapper">
+                                <div class="sortable-list permission" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
+                                </div>
+                                <div class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="0">
+                                    <div class="flex-shrink-0">
+                                        <span class="sortable-list__handle ion-android-menu"></span>
+                                    </div>
+                                    <div class="flexible-direction flex-grow-1">
+                                        <div class="flex-grow-1 order-and-name">
+                                            <input type="hidden" name="assistants.order[]" value="new-%idx%">
+                                            <input type="text" name="assistants[new-%idx%].name" value="" spellcheck="false">
+                                        </div>
+                                        <div class="flex-grow-1 permissions">
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.gallInfo" id="assistants[new-%idx%].permissions.gallInfo">
+                                            <label for="assistants[new-%idx%].permissions.gallInfo">전권</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.audit" id="assistants[new-%idx%].permissions.audit">
+                                            <label for="assistants[new-%idx%].permissions.audit">감사</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.everything" id="assistants[new-%idx%].permissions.everything">
+                                            <label for="assistants[new-%idx%].permissions.everything">전체</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.setNotices" id="assistants[new-%idx%].permissions.setNotices">
+                                            <label for="assistants[new-%idx%].permissions.setNotices">공지</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.deleteContents" id="assistants[new-%idx%].permissions.deleteContents">
+                                            <label for="assistants[new-%idx%].permissions.deleteContents">삭제</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.editContents" id="assistants[new-%idx%].permissions.editContents">
+                                            <label for="assistants[new-%idx%].permissions.editContents">수정</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.block" id="assistants[new-%idx%].permissions.block">
+                                            <label for="assistants[new-%idx%].permissions.block">차단</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.controlArticle" id="assistants[new-%idx%].permissions.controlArticle">
+                                            <label for="assistants[new-%idx%].permissions.controlArticle">글설정</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.controlOld" id="assistants[new-%idx%].permissions.controlOld">
+                                            <label for="assistants[new-%idx%].permissions.controlOld">古</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.showAsUser" id="assistants[new-%idx%].permissions.showAsUser">
+                                            <label for="assistants[new-%idx%].permissions.showAsUser">숨김</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.reportable" id="assistants[new-%idx%].permissions.reportable">
+                                            <label for="assistants[new-%idx%].permissions.reportable">신고</label>
+                                            <input type="checkbox" name="assistants[new-%idx%].permissions.reportAccesible" id="assistants[new-%idx%].permissions.reportAccesible">
+                                            <label for="assistants[new-%idx%].permissions.reportAccesible">신고 조회</label>
+                                        </div>
+                                    </div>
+                                    <div class="flex-shrink-0">
+                                        <button type="button" class="ion-android-remove-circle" data-action="sortable-list-remove-item" data-item=".sortable-list__item"></button>
+                                    </div>
+                                </div>
+                                <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.permission">추가...</button>
+                            </div>
+                            <ul>
+                                <li>
+                                    전권 : 갤러리위임을 제외한 모든 권한 <sup title="전권 부매니저는 갤러리 위임을 할 수 없다는 점을 제외하면 매니저와 동일한 권한을 갖습니다. 갤러리 설정을 할 수 있기 때문에 다른 부매니저를 관리할 수도 있습니다.">[설명]</sup>
+                                </li>
+                                <li>
+                                    감사 : 권한 기록을 열람 <sup title="감사는 숨김 표시된 부매니저의 기록도 표시되므로 모든 부매니저를 알 수 있습니다. 또한, 조치가 적절했는지 확인하기 위해 삭제된 게시물이나 댓글을 확인할 수 있습니다.">[설명]</sup>
+                                </li>
+                                <li>
+                                    전체 : 감사와 갤러리설정을 제외한 모든 권한
+                                </li>
+                                <li>
+                                    숨김 : 게시물, 댓글에서 완장 표시 삭제,
+                                </li>
+                                <li>
+                                    古 : 7일 이상 컨텐츠 수정, 삭제 가능
+                                </li>
+                            </ul>
+                        </form>
                     </div>
-                    <ul>
-                        <li>
-                            전권 : 갤러리위임을 제외한 모든 권한 <sup title="전권 부매니저는 갤러리 위임을 할 수 없다는 점을 제외하면 매니저와 동일한 권한을 갖습니다. 갤러리 설정을 할 수 있기 때문에 다른 부매니저를 관리할 수도 있습니다.">[설명]</sup>
-                        </li>
-                        <li>
-                            감사 : 권한 기록을 열람 <sup title="감사는 숨김 표시된 부매니저의 기록도 표시되므로 모든 부매니저를 알 수 있습니다. 또한, 조치가 적절했는지 확인하기 위해 삭제된 게시물이나 댓글을 확인할 수 있습니다.">[설명]</sup>
-                        </li>
-                        <li>
-                            전체 : 감사와 갤러리설정을 제외한 모든 권한
-                        </li>
-                        <li>
-                            숨김 : 게시물, 댓글에서 완장 표시 삭제,
-                        </li>
-                        <li>
-                            古 : 7일 이상 컨텐츠 수정, 삭제 가능
-                        </li>
-                    </ul>
-                </form>
+                </article>
             </div>
-            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
             <!-- 갤러리 위임 팝업 -->
             <article id="owiim" class="containe-fluid board-article popup">
                 <div class="row">
