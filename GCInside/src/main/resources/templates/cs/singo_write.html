@@ -1,15 +1,15 @@
 <!-- 2023/03/06 // 심규영 // 신고 작성 페이지 화면 구현 작업 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>신고게시판</title>
-    <link rel="stylesheet" href="../css/member/reset.css">
-    <link rel="stylesheet" href="../css/basic.css">
-    <link rel="stylesheet" href="../css/cs/report.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/basic.css}">
+    <link rel="stylesheet" th:href="@{/css/cs/report.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../js/cs/singo.js"></script>
+    <script type="text/javascript" th:src="@{/js/cs/singo.js}"></script>
 </head>
 <body>
     <div id="top" class="width1000 report_wrap">
@@ -18,10 +18,10 @@
                 <h1 class="gc_logo">
                     <a href="#">
                         <!-- 이미지 변경 필요 -->
-                        <img src="../img/gcinside,  s-1104992098.png" alt="">
+                        <img th:src="@{/img/gcinside,  s-1104992098.png}" alt="">
                     </a>
                     <a href="#">
-                        <img src="../img/tit_report_a.png" alt="">
+                        <img th:src="@{/img/tit_report_a.png}" alt="">
                     </a>
                 </h1>
                 <div class="area_links">

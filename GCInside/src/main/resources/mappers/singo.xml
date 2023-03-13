@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2023/03/13 // 라성준 // singo xml 생성 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gcInside.dao.SingoDAO">
+    <insert id="insertSingo_write">
+        insert into `gc_singo_num` set
+        `singo_num`=#{singo_num},
+        `singo_type1`=#{singo_type1},
+        `singo_type2`=#{singo_type2},
+        `singo_type3`=#{singo_type3},
+        `singo_uid`=#{singo_uid},
+        `singo_id`=#{singo_id},
+        `singo_pass`=#{singo_pass},
+        `singo_email`=#{singo_email},
+        `singo_regip`=#{singo_regip},
+        `singo_gell`=#{singo_regip},
+        `singo_article`=#{singo_article},
+        `singo_text`=#{singo_text},
+        `singo_file`=#{singo_file},
+        `singo_rdate`=NOW(),
+        `singo_result_type`=#{singo_result_type},
+        `singo_result_text`=#{singo_result_text},
+        `singo_result_wdate`=NOW();
+    </insert>
+
+    <select id="selectSingoList" resultType="kr.co.gcInside.vo.SingoVO">
+        select * from gc_singo_num
+        order by singo_num desc;
+    </select>
+
+
+</mapper>
+
