@@ -1052,38 +1052,86 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 
 .btn_greybox{background:#f3f3f3;font-weight:bold}
 
+/* 2023/03/13 // 심규영 // 갤러리 글 목록 css 추가 */
+.list_wrap,.view_wrap{min-width:1515px}
+.wrap_inner{position:relative;width:1450px;margin:0 auto}
+.width1160 .dchead,.width1160 .gnb,.width1160 #container,.width1160 .info_policy,.width1160 .copyright{width:1160px}
+.width1160 #container{margin:20px auto 0}
+
+.gall_issuebox{padding-top:12px}
+.gall_issuebox button{color:#333;vertical-align:top;outline:none}
+.gall_issuebox button::before, .gall_issuebox .bundle button::before{content:"|";color:#ccc;font-size:12px;line-height:12px;padding:0 7px 0 3px;vertical-align:1px}/*220913 .gall_issuebox .bundle::before 추가*/
+.gall_issuebox button:last-child::before{vertical-align:top;line-height:14px }
+.gall_issuebox button:first-child:before{display:none}
+
+.gall_issuebox .bundle button:first-child:before{display:inline-block}/*220913 추가*/
+.gall_issuebox .bundle:first-child button:first-child:before{display:none}/*220913 추가*/
+
+.icon_relate_more{display:inline-block;width:9px;height:5px;background-position:-115px -43px;vertical-align:1px;margin-left:2px}/*211118 폰트 버그 vertical-align:2px;*/
+.hide .icon_relate_more{background-position:-103px -50px}
+.gall_issuebox .new{margin-right:2px}
+.gall_issuebox .icon_new{margin-left:0}
+.gall_issuebox .issue_setting{position:relative}
+
+.gall_issuebox .bundle{position:relative;display:inline-block}
+.gall_issuebox .tip_box3{top:-30px;left:50%;margin-left:-85px}
+.gall_issuebox .bundle:first-child .tip_box3{margin-left:-91px}
+
+.issue_wrap{position:relative;border-top:2px solid #29367c;padding-bottom:37px;z-index:13}
+.listwrap .issue_wrap,
+.visit_bookmark ~ #container .issue_wrap, .visit_bookmark + .wrap_inner #container .issue_wrap
+{padding-bottom:0}
+
+.issuebox{width:1158px;background:#fff}
+.listwrap .issuebox{width:840px;display:block;margin-bottom:15px}
+.issuebox.open{position:absolute;left:0;top:0;height:190px;border-width:0 1px 1px;border-style:solid;border-color:#29367c;z-index:1}
+.visit_bookmark ~ .wrap_inner .issuebox.open, .visit_bookmark ~ #container .issuebox.open{height:152px}/*220419*/
+.issuebox.open .concept_wrap{display:block}
+.issuebox.open .visit_history{left:0;bottom:0;border:0px;border-top:1px solid #d5d5d5}
+
+.list_wrap .visit_bookmark + .wrap_inner #container .concept_wrap,
+.list_wrap .visit_bookmark + .wrap_inner  #container .issue_contentbox
+{border-bottom:1px solid #d5d5d5;margin-bottom:0}
+
+.icon_prev,.icon_next{display:inline-block;width:17px;height:17px}
+.icon_prev{background-position:-56px -130px}
+.icon_next{background-position:-75px -149px}
+.on .icon_prev{background-position:-56px -149px}
+.on .icon_next{background-position:-75px -130px}
+
+.select_box{position:relative;float:left}
+.output_array .select_box{margin:0 2px 0 0}
+.output_array .select_area{width:41px;height:19px;line-height:19px;padding:0 5px;border:1px solid #ccc;background:#fff;font-size:11px}
+
+.tip_box3:after{content: '';position: absolute;border-style: solid;border-width: 9px 6px 0px 6px;border-color: #98ca33 transparent;display:block;top:22px;left:50%;margin-left:-5px}
+.pop_tipbox.setting_list{white-space:nowrap;right:-10px;top:20px}
+.pop_tipbox.setting_list .inner{padding:0}
+.pop_tipbox.setting_list ul{line-height:17px}
+.pop_tipbox.setting_list li{padding:0px 11px 0 9px;border-top:1px solid #ccc}
+.pop_tipbox.setting_list li:first-child{border-top:none}
+.pop_tipbox.setting_list li > button{display:block;width:100%;height:25px;vertical-align:0;line-height:25px;text-align:left }
+.gall_issuebox .bundle .pop_tipbox.setting_list li > button:first-child:before{display:none }
+
+.pagehead_titicon{display:inline-block;vertical-align:top;margin-left:6px}
+.pagehead_titicon + .favorite{margin-left:8px}
+.pagehead_titicon.mgall{width:22px;height:22px;background-position:-195px -844px;margin-top:3px}
+.pagehead_titicon.ngall{width:26px;height:20px;background-position:-223px -844px;margin-top:4px }
+
+.visit_bookmark{width:1050px;margin:0 auto}
+.width1160 .visit_bookmark{width:1160px}
+.visit_bookmark .newvisit_history{margin:0 0 10px;width:100%!important;position:relative!important}
+.visit_bookmark .newvisit_history::before{border-width:0 1px 1px}
+.visit_bookmark .newvisit_history .btn_open{position:relative;left:0;top:12px;float:left;display:block;width:15px;height:15px;margin-left:10px}
+.visit_bookmark .newvisit_history .btn_open .icon_listmore{display:inline-block;width:15px;height:15px;background-position:-56px -168px;margin-top:0;vertical-align:top }
+.visit_bookmark .newvisit_history .open .icon_listmore{background-position:-73px -168px }
+
+.width1160 .gc_all{width:1158px}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .page_head h2{margin:-2px 8px 0 3px}
+  .favorite{margin-top:0px}
+  .dcwiki{margin-top:0px}
+  .useradmin_go{margin-top:0}
+  
+  }
