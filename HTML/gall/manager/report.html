@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="/css/basic.css">
     <link rel="stylesheet" href="/css/popup.css">
     <link rel="stylesheet preload" href="/css/ionicons/ionicons.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/manage/Sortable.js"></script>
+    <script type="text/javascript" src="/js/manage/Micromodal.js"></script>
+    <script type="text/javascript" src="/js/manage/board_manage.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -103,180 +106,186 @@
         </div>
 
         <main>
-            <div class="gallery-setting-wrap">
-                <form action="gallery-setting">
-                    <div class="btns col-md-12">
-                        <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
-                        <input class="btn btn-gall" type="submit" value="저장">
-                    </div>
-                    <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
-                    <nav class="navbar navbar-expand navbar-gall-settings mb-2">
-                        <ul class="navbar-nav mr-auto mt-2">
-                            <li class="nav-item">
-                                <a href="manage.html">기본</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="permission.html">권한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="category.html">글머리</a>
-                            </li>
-                            <li class="nav-item active">
-                                <a href="report.html">신고</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="log.html">기록</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="blocks.html">제한</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="search.html">검색</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="notice.html">공지</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <h3 class="col-md-12 gall-settings-title">신고</h3>
-                    <div class="form-row col-md-12">
-                        <div class="form-group col-md-4">
-                            <label for="id_report_public">모든 사용자의 신고 받기 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="[사용]으로 표시하는 경우 채널 내 콘텐츠 신고를 일반 유저에게 공개하고 채널 내 신고를 채널 매니저가 관리합니다. 매니저는 사용 유무와는 별도로 아카라이브 관리자에게 콘텐츠 신고가 가능합니다."></span></label>
-                            <select class="form-control" id="form.reportPublic" name="reportPublic">
-                                <option value="1" selected>사용</option>
-                                <option value="0">사용 안 함</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="id_report_alarm">신고 일 수 제한 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="현재 시점에서 지정된 기간 이전에 생성된 콘텐츠만 신고를 접수합니다. 0일, 혹은 지정되어있지 않은 경우 기간 제한이 적용되지 않습니다."></span> </label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="id_reportAlarmCount" name="reportAlarmCount" value="1">
-                                <div class="input-group-text input-group-append">건 이상 신고시 알리기</div>
+            <div class="body2" type="hidden">
+                <article class="containe-fluid board-article">
+                    <div class="gallery-setting-wrap">
+                        <form action="gallery-setting">
+                            <div class="btns col-md-12">
+                                <a class="btn btn-danger ion-reply" href="#" title="갤러리위임">&nbsp;갤러리위임</a>
+                                <input class="btn btn-gall" type="submit" value="저장">
                             </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="id_report_alarm">신고 알림 기준</label>
-                            <div class="input-group">
-                                <input class="form-control" type="number" id="id_reportAlarmCount" name="reportAlarmCount" value="1">
-                                <div class="input-group-text input-group-append">건 이상 신고시 알리기</div>
+                            <a class="navbar-brand page-title" href="#" title="갤러리 설정">갤러리 설정</a>
+                            <nav class="navbar navbar-expand navbar-gall-settings mb-2">
+                                <ul class="navbar-nav mr-auto mt-2">
+                                    <li class="nav-item">
+                                        <a href="manage.html">기본</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="permission.html">권한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="category.html">글머리</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a href="report.html">신고</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="log.html">기록</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="blocks.html">제한</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="search.html">검색</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="notice.html">공지</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <h3 class="col-md-12 gall-settings-title">신고</h3>
+                            <div class="form-row col-md-12">
+                                <div class="form-group col-md-4">
+                                    <label for="id_report_public">모든 사용자의 신고 받기 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="[사용]으로 표시하는 경우 갤러리 내 콘텐츠 신고를 일반 유저에게 공개하고 갤러리 내 신고를 갤러리 매니저가 관리합니다. 매니저는 사용 유무와는 별도로 사이트 관리자에게 콘텐츠 신고가 가능합니다."></span></label>
+                                    <select class="form-control" id="form.reportPublic" name="reportPublic">
+                                        <option value="1" selected>사용</option>
+                                        <option value="0">사용 안 함</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="id_report_alarm">신고 일 수 제한 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="현재 시점에서 지정된 기간 이전에 생성된 콘텐츠만 신고를 접수합니다. 0일, 혹은 지정되어있지 않은 경우 기간 제한이 적용되지 않습니다."></span> </label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" id="id_reportRestriction" name="reportRestriction">
+                                        <div class="input-group-text input-group-append">일</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="id_report_alarm">신고 알림 기준</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="number" id="id_reportAlarmCount" name="reportAlarmCount" value="1">
+                                        <div class="input-group-text input-group-append">건 이상 신고시 알리기</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table align-middle horizontal-scrollable">
+                                            <colgroup>
+                                                <col>
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th title="주소에 표시되는 글머리의 이름입니다.">신고 접수 사유 카테고리</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="">
+                                                <tr>
+                                                    <input type="hidden" name="reportCategoryCodes" value="">
+                                                    <td nowrap>asdf</td>
+                                                    <td>
+                                                        <a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4" class="align-middle">
+                                                        <a href="#" data-action="table-add-row">추가...</a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="hidden" data-action="table-sample" data-idx-from="1">
+                                                    <td>
+                                                        <input type="text" name="reportCategoryTitles" size="5" class="form-control form-control-static">
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <div class="table-responsive">
-                                <table class="table align-middle horizontal-scrollable">
-                                    <colgroup>
-                                        <col>
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th title="주소에 표시되는 글머리의 이름입니다.">신고 접수 사유 카테고리</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="">
-                                        <tr>
-                                            <input type="hidden" name="reportCategoryCodes" value="">
-                                            <td nowrap>갤러리 공지 위반</td>
-                                            <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
-                                        </tr>
-                                        <tr>
-                                            <input type="hidden" name="reportCategoryCodes" value="">
-                                            <td nowrap>도배</td>
-                                            <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="4" class="align-middle">
-                                            <a href="#" data-action="table-add-row">추가...</a>
-                                            </td>
-                                        </tr>
-                                        <tr class="hidden" data-action="table-sample" data-idx-from="1">
-                                            <td>
-                                            <input type="text" name="reportCategoryTitles" size="5" class="form-control form-control-static">
-                                            </td>
-                                            <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                            <h3 class="col-md-12 gall-settings-title">신고 처리 템플릿</h3>
+                            <div class="form-group col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table align-middle horizontal-scrollable sortable-list-wrapper">
+                                        <colgroup>
+                                            <col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>사유</th>
+                                                <th>조치 내역</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="sortable-list report-action-template" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
+                                            <tr class="sortable-list__item">
+                                                <td><span class="ion-android-menu sortable-list__handle"></span></td>
+                                                <td nowrap>
+                                                분탕
+                                                    <input type="hidden" name="report_actions.exist[].code" value="">
+                                                    <input type="hidden" name="report_actions.exist[].title" value="분탕">
+                                                </td>
+                                                <td>
+                                                    <label class="form-check-inline col-form-label mr-3">
+                                                        <input class="form-check-input" type="checkbox" name="report_actions.exist[].is_should_be_delete" checked>
+                                                        <span>삭제</span>
+                                                    </label>
+                                                    <label class="form-check-inline col-form-label mr-3">
+                                                        <input class="form-check-input" type="checkbox" name="report_actions.exist[].is_should_be_block" checked>
+                                                        <input class="form-control form-control-sm mr-2" type="number" name="report_actions.exist[].block_duration" value="1" style="width: 10rem;">
+                                                        <span>시간 차단</span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4" class="align-middle">
+                                                    <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.report-action-template">추가...</button>
+                                                </td>
+                                            </tr>
+                                            <tr class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="1">
+                                                <td class="ion-android-menu sortable-list__handle">
+                                                    <input type="hidden" name="report_actions.new.order[]" value="new-%idx%">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="report_actions.new.items[new-%idx%].title" size="5" class="form-control form-control-sm form-control-static">
+                                                </td>
+                                                <td>
+                                                    <label class="form-check-inline col-form-label mr-3">
+                                                        <input class="form-check-input" type="checkbox" name="report_actions.new.items[new-%idx%].is_should_be_delete">
+                                                        <span>삭제</span>
+                                                    </label>
+                                                    <label class="form-check-inline col-form-label mr-3">
+                                                        <input class="form-check-input" type="checkbox" name="report_actions.new.items[new-%idx%].is_should_be_block">
+                                                        <input class="form-control form-control-sm mr-2" type="number" name="report_actions.new.items[new-%idx%].block_duration" style="width: 10rem;">
+                                                        <span>시간 차단</span>
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                            <h3 class="col-md-12 gall-settings-title">안내 문구</h3>
+                            <div class="form-group col-md-12">
+                                <label>신고 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="신고 사유 작성 전 표시될 안내 문구를 지정합니다."></span></label>
+                                <textarea class="form-control" name="placeholderReport" rows="3">신고사유를 잘 살펴보세요.</textarea>
+                            </div>
+                        </form>
                     </div>
-                    <h3 class="col-md-12 gall-settings-title">신고 처리 템플릿</h3>
-                    <div class="form-group col-md-12">
-                        <div class="table-responsive">
-                            <table class="table align-middle horizontal-scrollable sortable-list-wrapper">
-                                <colgroup>
-                                    <col>
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>사유</th>
-                                        <th>조치 내역</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="sortable-list report-action-template" data-handle=".sortable-list__handle" data-sample=".sortable-list-wrapper .sortable-list__item-sample">
-                                    <tr class="sortable-list__item">
-                                        <td><span class="ion-android-menu sortable-list__handle"></span></td>
-                                        <td nowrap>
-                                        분탕
-                                            <input type="hidden" name="report_actions.exist[new-%idx%].title" value="분탕">
-                                        </td>
-                                        <td>
-                                            <label class="form-check-inline col-form-label mr-3">
-                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[new-%idx%].is_should_be_delete" checked>
-                                                <span>삭제</span>
-                                            </label>
-                                            <label class="form-check-inline col-form-label mr-3">
-                                                <input class="form-check-input" type="checkbox" name="report_actions.exist[new-%idx%].is_should_be_block" checked>
-                                                <input class="form-control form-control-sm mr-2" type="number" name="report_actions.exist[new-%idx%].block_duration" value="1" style="width: 10rem;">
-                                                <span>시간 차단</span>
-                                            </label>
-                                        </td>
-                                        <td><a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a></td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4" class="align-middle">
-                                            <button type="button" data-action="sortable-list-add-item" data-list=".sortable-list.report-action-template">추가...</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="sortable-list__item-sample" data-class="sortable-list__item" data-idx-from="1">
-                                        <td class="ion-android-menu sortable-list__handle">
-                                            <input type="hidden" name="report_actions.new.order[]" value="new-%idx%">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="report_actions.new.items[new-%idx%].title" size="5" class="form-control form-control-sm form-control-static">
-                                        </td>
-                                        <td>
-                                            <label class="form-check-inline col-form-label mr-3">
-                                                <input class="form-check-input" type="checkbox" name="report_actions.new.items[new-%idx%].is_should_be_delete">
-                                                <span>삭제</span>
-                                            </label>
-                                            <label class="form-check-inline col-form-label mr-3">
-                                                <input class="form-check-input" type="checkbox" name="report_actions.new.items[new-%idx%].is_should_be_block">
-                                                <input class="form-control form-control-sm mr-2" type="number" name="report_actions.new.items[new-%idx%].block_duration" style="width: 10rem;">
-                                                <span>시간 차단</span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="ion-android-remove-circle" data-action="table-remove-row"></a>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                    <h3 class="col-md-12 gall-settings-title">안내 문구</h3>
-                    <div class="form-group col-md-12">
-                        <label>신고 <span class="ion-help-circled" data-toggle="tooltip" data-placement="right" title="신고 사유 작성 전 표시될 안내 문구를 지정합니다."></span></label>
-                        <textarea class="form-control" name="placeholderReport" rows="3">신고사유를 제대로 선택 해 주세요.</textarea>
-                    </div>
-                </form>
+                    
+                </article>
             </div>
-            <script type="text/javascript" src="/js/manage/board_manage.js"></script>
             <!-- 갤러리 위임 팝업 -->
             <article id="owiim" class="containe-fluid board-article popup">
                 <div class="row">

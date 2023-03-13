@@ -215,3 +215,43 @@ function recaptchaOnLoad() {
     for (var e = 0; e < t.length; e++) t[e]();
     isRecaptchaLoad = !0
 }
+
+void 0 !== jQuery.ui && $(".jquery-sortable").sortable(),
+$('table [data-action="table-add-row"]').on("click", function(t) {
+    var n = $(t.target).closest("table")
+      , e = n.find(">tbody")
+      , a = n.find('[data-action="table-sample"]');
+    if (e.length || (e = n),
+    !a.length)
+        throw new TypeError("no sample provided");
+    var i = a.children().clone(!0, !0);
+    n.prop("newElemId") || n.prop("newElemId", +a.attr("data-idx-from") || 0),
+    i.find("[name]").each(function(t, e) {
+        e.name = e.name.replace(/\%idx\%/g, n.prop("newElemId"))
+    }),
+    i.find('[name$=".order[]"]').each(function(t, e) {
+        e.value = e.value.replace(/\%idx\%/g, n.prop("newElemId"))
+    }),
+    i.find("[data-required]").each(function(t, e) {
+        e.required = !0,
+        e.removeAttribute("data-required")
+    }),
+    n.prop("newElemId", n.prop("newElemId") + 1),
+    $("<tr>").append(i).appendTo(e),
+    t.preventDefault()
+}),
+$('table [data-action="table-remove-row"]').on("click", function(t) {
+    $(t.target).closest("tr").remove(),
+    t.preventDefault()
+}),
+$('table [data-action="emoticons.remove"]').on("click", function(t) {
+    var e = $(t.target).closest("tr");
+    e.find('[name="customize.emoticons[]"]').length && (e.find('[name="customize.emoticons[]"]').attr("disabled") ? (e.find('[name="customize.emoticons[]"]').removeAttr("disabled"),
+    e.appendTo($('[data-action-role="emoticons.enabled"]>tbody').first())) : (e.find('[name="customize.emoticons[]"]').attr("disabled", "disabled"),
+    e.appendTo($('[data-action-role="emoticons.disabled"]>tbody').first())),
+    t.preventDefault())
+}),
+$(".comment-count").click(function(t) {
+    var e = $(this).closest("a");
+    e.attr("href", e.attr("href") + "#comment")
+})
