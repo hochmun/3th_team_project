@@ -1,12 +1,12 @@
 <!-- 2023/03/06 // 심규영 // 신고 페이지 화면 구현 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>신고게시판</title>
-    <link rel="stylesheet" href="../css/member/reset.css">
-    <link rel="stylesheet" href="../css/basic.css">
-    <link rel="stylesheet" href="../css/cs/report.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/basic.css}">
+    <link rel="stylesheet" th:href="@{/css/cs/report.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../js/cs/singo.js"></script>
@@ -18,10 +18,10 @@
                 <h1 class="gc_logo">
                     <a href="#">
                         <!-- 이미지 변경 필요 -->
-                        <img src="../img/gcinside,  s-1104992098.png" alt="">
+                        <img th:src="@{/img/gcinside,  s-1104992098.png}" alt="">
                     </a>
                     <a href="#">
-                        <img src="../img/tit_report_a.png" alt="">
+                        <img th:src="@{/img/tit_report_a.png}" alt="">
                     </a>
                 </h1>
                 <div class="area_links">
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="rpt_top_rightbox">
                                     <div class="rpt_info_txtbox" id="singo_info_txt" style="display: block;">
-                                        <strong class="font_blue rpt_des_txt">아래 내용을 지켜주시면 보다 빠른 답변을 받을실 수 있습니다.</strong>
+                                        <strong class="font_blue rpt_des_txt">아래 내용을 지켜주시면 보다 빠른 답변을 받으실 수 있습니다.</strong>
                                         <ul class="info_txtlist top">
                                             <li><p>게시물 신고는 게시물 주소(URL) 또는 작성자 ID, 해당 게시물의 제목, 신고 사유를 정확히 기재해 주셔야 합니다.</p></li>
                                             <li>
@@ -60,7 +60,7 @@
                                             </li>
                                             <li>
                                                 <p>신고 분류 선택이 추가되었습니다.</p>
-                                                <p><b>정확한 신고 분류를 선택하여 신고</b>해 주시면 보다 빠른 답변을 받을실 수 있습니다.</p>
+                                                <p><b>정확한 신고 분류를 선택하여 신고</b>해 주시면 보다 빠른 답변을 받으실 수 있습니다.</p>
                                                 <p class="font_red">정확한 분류에 의한 신고가 아닐 경우 허위 신고로 판단되어 서비스 이용에 제한을 받으실 수 있습니다.</p>
                                             </li>
                                             <li>
@@ -70,7 +70,7 @@
                                             </li>
                                         </ul>
                                         <ul class="info_txtlist bottom line">
-                                            <li><b>게시물 카테고리와 맞지 않는 허위 신고 시, <em class="font_red">게시판 이용에 제한</em>을 받을 수 있습니다.</b></li>
+                                            <li><b>게시물 카테고리와 맞지 않는 허위 신고 시, <em class="font_red">게시판 이용에 제한</em>을 받으 수 있습니다.</b></li>
                                             <li><p>고정닉만 신고 가능한 분류: <em class="font_red">도배, 욕설, 기타, HIT, 개념글 문의, 실시간 베스트, 만두, 매니저 위임, 매니저 문의, 갤로그 차단해제, 불법촬영물등 신고</em></p></li>
                                             <li><p>고정닉/비회원 신고 가능한 분류: <em class="font_red">광고, 음란물, 개인정보침해, 저작권침해, 디시콘, 이벤트, 서비스 오류, 고정닉 서비스 변경, 대문, 자동짤방, 공지, 자기게시물 접근배제</em></p></li>
                                         </ul>
@@ -126,13 +126,13 @@
                                         <em class="sp_report group_tit_bg"></em>
                                     </div>
                                     <ul class="opt_list">
-                                        <li><a href="javascript:;">광고</a></li>
-                                        <li><a href="javascript:;">도배</a></li>
-                                        <li><a href="javascript:;">음란물</a></li>
-                                        <li><a href="javascript:;">욕설</a></li>
-                                        <li><a href="javascript:;">개인정보침해</a></li>
-                                        <li><a href="javascript:;">저작권침해</a></li>
-                                        <li><a href="javascript:;">기타</a></li>
+                                        <li><a href="javascript:;" data-idx="300">광고</a></li>
+                                        <li><a href="javascript:;" data-idx="301">도배</a></li>
+                                        <li><a href="javascript:;" data-idx="302">음란물</a></li>
+                                        <li><a href="javascript:;" data-idx="303">욕설</a></li>
+                                        <li><a href="javascript:;" data-idx="304">개인정보침해</a></li>
+                                        <li><a href="javascript:;" data-idx="305">저작권침해</a></li>
+                                        <li><a href="javascript:;" data-idx="306">기타</a></li>
                                     </ul>
                                 </div>
                                 <div class="report_optbox opt_service_report clear">

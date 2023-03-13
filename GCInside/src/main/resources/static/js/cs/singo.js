@@ -14,4 +14,9 @@ $(function(){
 		}
 		
 	});
+
+	$('.opt_list > li > a').click(function(){
+	    const idx = $(this).data('idx');
+	    alert('click!'+idx);
+	})
 });
