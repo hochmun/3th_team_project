@@ -317,6 +317,7 @@ font-size:11px;text-align:center;box-sizing:border-box;vertical-align:text-top;}
 .btn_next,.btn_prev,.page_num{display:inline-block;height:17px;line-height:17px;outline:none}
 .btn_blue_round,.btn_lightpurple_round{display:inline-block;height:20px;line-height:18px;padding:0 14px;border-radius:10px;color:#fff;font-size:11px;text-align:center;box-sizing:border-box;overflow:hidden}
 .btn_blue_round{border:1px solid #29367c;background:#3b4890;text-shadow: 0px -1px #1d2761}
+
 /*신설 마이너 갤러리*/
 .new_magll_box{float:right;width:308px;height:214px;border-left:1px solid #d5d5d5;position:absolute;top:0;right:0}
 .new_mgall{padding:17px 0px 0 16px}/*200130*/
@@ -468,23 +469,39 @@ font-size:11px;text-align:center;box-sizing:border-box;vertical-align:text-top;}
 /* 흥한 미니 갤러리 */
 .mini_list_wrap{margin-top:11px;border:1px solid #d5d5d5;border-width:2px 1px 1px ;border-top-color:#6f6dd9}
 .miniwrap .mgall_make_go{width:150px}
-/*.miniwrap .icon_mgll_explain{margin-right:3px} 211112 */
+
+.btn_box button[class*="prev"], .btn_box button[class*="next"],
+.pageing_box button[class*="prev"], .pageing_box button[class*="next"]
+{outline:none}
+
+.icon_prev,.icon_next{display:inline-block;width:17px;height:17px}
+.on .icon_prev{background-position:-56px -149px}
+.page_num{margin:7px 3px 0 3px;color:#444;vertical-align:-1px}
+.on .icon_next{background-position:-75px -130px}
+.btn_paging{display:inline-block;margin-left:3px}
+.gallmain .box_head .btn_paging, .hotcate_list .box_head .btn_paging{font-size:0;padding-top:1px}
+
 .miniwrap .visit_history .tit{color:#4f4dc6}
 .hot_minigall .rank_num{width:12px;height:13px;line-height:13px;background:#6f6dd9;border:1px #4f4dc6 solid;font-weight:normal;margin-right:6px}/*211118 폰트버그 line-height:12px*/
 
-.hot_minigall .rank_list_box{margin:23px 0 3px 20px}/*201214 20px 0 0px 20*/
+.hot_minigall .rank_list_box{margin:23px 0 3px 20px}
 .miniwrap .hot_minigall .rank_list{width:176px}
 .miniwrap .hot_minigall .rank_list li{margin-bottom:18px}
 .hot_minigall .rank_list .rank_txt{position:relative;width:auto;max-width:126px;padding-right:9px}
 .miniwrap .hot_minigall .rank_list{padding:0 0 10px 0px}
-.miniwrap  .rank_list  .icon_new{position:absolute;right:0;top:0}/*미니 흥한갤러리 뉴 아이콘*/
-.miniwrap .bnt_visit_next.on .icon_next{background-position:-223px -229px}/*미니 최근방문*//*211118 폰트 버그 background-position:-223px -230px*/
-.miniwrap .bnt_visit_prev.on .icon_prev{background-position:-216px -229px}/*미니 최근방문*//*211118 폰트 버그 background-position:-216px -230px*/
-
+.miniwrap  .rank_list  .icon_new{position:absolute;right:0;top:0}
+.miniwrap .bnt_visit_next.on .icon_next{background-position:-223px -229px}
+.miniwrap .bnt_visit_prev.on .icon_prev{background-position:-216px -229px}
+.btn_whiteprev,.btn_whitenext{overflow:hidden;height:19px;outline:none}
+.icon_whiteprev{display:inline-block;width:19px;height:19px;background-position:-263px -129px;vertical-align:top}
+.icon_whiteprev.lightpurple{background-position:0 -554px}
+.btn_whitenext{margin-left:0px}
+.icon_whitenext{display:inline-block;width:18px;height:19px;background-position:-282px -106px;vertical-align:top}
+.on .icon_whitenext.lightpurple{background-position:-19px -554px}
 /*실시간 북적 갤러리*/
-.miniwrap .one_ranklist .rank_num{background:#6f6dd9;border:1px #4f4dc6 solid}/*한줄*/
+.miniwrap .one_ranklist .rank_num{background:#6f6dd9;border:1px #4f4dc6 solid}
 .miniwrap .mgall .rank_num{background:#6f6dd9;border:1px #4f4dc6 solid}
-
+.btn_lightpurple_round{border:1px solid #4f4dc6;background:#6f6dd9;text-shadow: 0px -1px #4d4cce}
 /*카테고리*/
 .miniwrap .gallmain{border-bottom:1px #6f6dd9 solid}
 .minicate_wrap .catehead{height:38px;line-height:38px;border-bottom:1px #ccc solid;padding:0 10px 0 9px}
