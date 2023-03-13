@@ -180,3 +180,10 @@
 .admin_member.pop_content ul {display: inline-block;width: 100%;background: #ccc;}
 .admin_member.pop_content ul > li {float: left;width: 12.5%;height: 40px;text-align: center;line-height: 40px;border: 1px solid grey;box-sizing: border-box;}
 .admin_member.pop_content ul > li.on {background: white;border-bottom: 1px solid white;}
+
+/* 갤러리 글 목록 */
+.pop_tipbox.minor_tip .inner.hotgall_tip{min-width:365px;text-align:left}
+.hotgall_tip .minor_tip_txt{min-width:342px}
+.hotgall_tip .minor_tip_txt > p{padding-top:1px;letter-spacing:-0.025em}
+.hotgall_tip .minor_tip_txt > p::before{content:"";display:inline-block;width:2px;height:2px;background:#555;margin:0 4px 0 1px;vertical-align:5px}
+.btn_tipclose{position:absolute;top:10px;right:8px;display:inline-block;width:14px;height:13px;margin-left:5px;background-position:-24px -241px}
