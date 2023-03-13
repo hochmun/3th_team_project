@@ -51,5 +51,20 @@ public class MemberContoller {
         return "member/reset_pwd_Result";
     }
 
+    @ResponseBody
+    @GetMapping("member/checkUid")
+    public Map<String, Object> checkUid(@RequestParam("member_uid") String member_uid){
+        Map<String, Object> resultMap = new HashMap<>();
+
+        boolean isExist = service.isExist(member_uid);
+        if(isExist){
+            resultMap.put("result", "fail");
+            resultMap.put("message", "이미 사용 중인 아이디 입니다.");
+        }else{
+            resultMap.put("result", "success");
+            resultMap.put("message", "사용 가능한 아이디 입니다.");
+        }
+        return resultMap;
+    }
 
 }
