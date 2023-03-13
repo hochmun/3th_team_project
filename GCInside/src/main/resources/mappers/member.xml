@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.gcInside.dao.MemberDAO">
     <insert id="insertMember">
         insert into `km_member` set
-        `member_uid`=#{user_id},
+        `member_uid`=#{member_uid},
         `member_pass`=#{gc_pw},
         `member_nick`=#{user_nick},
         `member_email`=#{email1} + `@` + #{email2},
@@ -14,4 +14,7 @@
         `member_grade`=0,
         `rdate`=NOW();
     </insert>
+    <select id="countByMemberUid" resultType="int" parameterType="String">
+        select count(*) from `gc_member` where member_uid = #{member_uid};
+    </select>
 </mapper>

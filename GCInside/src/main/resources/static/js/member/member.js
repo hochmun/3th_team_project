@@ -50,10 +50,7 @@ let formInit = function(){
 	$('#email_list').val('');
     id_check = true;
 
-	//아이디 체크
-	$('#user_id').keydown(function(){
-		isCheckId();
-	});
+
 	//이메일 검사
 	$("#email_host_lyr").click(function(e){
 		let target = e.target;
