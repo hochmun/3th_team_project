@@ -55,7 +55,6 @@ public class MemberContoller {
     @GetMapping("member/checkUid")
     public Map<String, Object> checkUid(@RequestParam("member_uid") String member_uid){
         Map<String, Object> resultMap = new HashMap<>();
-
         boolean isExist = service.isExist(member_uid);
         if(isExist){
             resultMap.put("result", "fail");
@@ -66,5 +65,6 @@ public class MemberContoller {
         }
         return resultMap;
     }
+
 
 }

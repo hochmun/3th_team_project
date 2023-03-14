@@ -12,35 +12,9 @@ let agreeInit = function(){
         }
     });
 }
-/* 회원가입 이메일 리스트 클릭 */
-let showLayer = function(obj, layerName){
-	if($("#"+layerName).css("display") == "none"){
-		$("#"+layerName).show();
-	} else {
-		$("#"+layerName).hide();
-	}
-}
-/* 이메일 리스트 선택시 자동입력 */
-let mailList = function(){
-	let email_list = $('#email_list').val();
-	if (email_list!="" && email_list =="self") {
-		$('#email2').val('');
-	}else if(email_list!="" && email_list=="inst") {	//직접입력
-		$('#email2').val('');
-		$('#email2').attr('readOnly',false);
-		$('#email2').focus();
-		//이메일 직접입력 체크
-		$("#email2").keyup(function(){
-		});
-	}else{
-		$('#email2').attr('readOnly',true);
-		$('#email2').val(email_list);
-	}
-}
-
 /* 회원가입 폼 */
 let formInit = function(){
-	$('#user_id').focus();	//처음 focus
+	$('#member_uid').focus();	//처음 focus
 	//input창 초기화
 	$('#gc_pw').val('');
 	$('#gc_pwc').val('');
@@ -48,7 +22,25 @@ let formInit = function(){
 	$('#email1').val('');
 	$('#email2').val('');
 	$('#email_list').val('');
-    id_check = true;
+
+    // 비밀번호 체크
+    $('#gc_pw').keyup(function(){
+        isCheckPw();
+    });
+    // 비밀번호 재확인체크
+    $('#gc_pwc').keyup(function(){
+        isCheckPwc();
+    });
+
+    //닉네임체크
+    $('#user_nick').keyup(function(e){
+        let keyCode = e.keyCode;
+        if(keyCode == '18' || keyCode == '220'){
+            $('#user_nick').val('');
+        }else{
+            isCheckNick();
+        }
+    });
 
 
 	//이메일 검사
@@ -68,4 +60,3 @@ let formInit = function(){
 		mailList();
 	});
 };
-
