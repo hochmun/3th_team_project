@@ -1144,6 +1144,23 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 
 .width1160 .gc_all{width:1158px}
 
+/*select  디자인*/
+.select_box{position:relative;float:left}
+.select_box select{display:none}
+.select_area{position:relative;cursor:pointer}
+.bottom_array .option_box{position:absolute;width:100%;box-sizing:border-box;background:#fff}
+.bottom_array .option_box li{line-height: 21px;font-size: 14px;color: #29367c}
+.option_box li:hover{text-decoration:underline;;cursor:pointer}
+.option_box{position:absolute;width:100%;box-sizing:border-box;background:#f3f3f3;border:1px #ccc solid;padding:6px 5px 4px;z-index:20;}
+.option_box li{line-height:16px;font-size:11px;color:#555;font-weight:normal;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif}
+.option_box li:hover{text-decoration:underline}
+/*큰 말머리*/
+.subject_select.select_box{clear:both;margin:10px 10px 0 0}
+.subject_select .select_area{width:102px;height:33px;padding:0 8px 0 11px;line-height:33px;border:1px solid #cecdce;background:#f3f3f3;font-size:14px;color:#333;font-weight:bold}
+
+.output_array .option_box{padding:6px 5px 4px;background:#f3f3f3;border:1px solid #ccc}
+.output_array .option_box li{line-height:16px;font-size:11px;color:#555}
+.output_array .option_box li:hover{text-decoration:underline}
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   .page_head h2{margin:-2px 8px 0 3px}

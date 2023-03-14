@@ -26,3 +26,64 @@
 .array_num a{display:inline-block;width:41px;padding:0 5px}
 .array_num .select_area{padding:0;width:51px}
 .right_box .output_array{padding-top:0}
+
+.switch_btnbox{width: 1%; display: table-cell; white-space: nowrap;font-size:0;vertical-align:top}
+.btn_write{width:21px;height:21px;display:inline-block;background-position:-196px -337px;line-height:0}
+.btn_write.txt{width:66px;box-sizing:border-box;padding:0px 6px;border:1px solid #29367c;background:#fff;font-weight:bold;font-size:12px;color:#29367c;line-height:19px;vertical-align:top;letter-spacing:-0.025em;text-align:center}
+.btn_write.txt::before{content:'';display:inline-block;width:15px;height:15px;margin-right:3px;margin-top:2px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png)no-repeat -133px -1023px;;vertical-align:top}
+.btn_write.txt:hover{text-decoration:none}
+
+/* 리스트 */
+.gall_listwrap{position:relative}
+.gall_list{width:100%;border-bottom:1px solid #29367c;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif}
+th{height:37px;border-width:2px 0 1px;border-style:solid;border-color:#29367c;vertical-align:middle;text-align:center;color:#333;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif}
+td{padding:2px 4px;border-top:1px solid #eee;vertical-align:middle;text-align:center;color:#333}
+tr:first-child td{border-top:none}
+tbody tr:hover{background:#f3f3f3}
+
+.gall_list td{padding:0px 4px}
+.list .gall_list td{height:25px}
+.gall_list .gall_num,.gall_list .gall_date,.gall_list .gall_count,.gall_list .gall_recommend{font-family:tahoma,sans-serif;font-size:11px;padding-top:1px}
+.gall_subject{position:relative}
+.list .gall_subject{padding:2px 0px 0 0}
+.gall_tit{position:relative;text-align:left;font-size:13px}
+.gall_tit a{display:inline-block;max-width:82%;vertical-align:middle;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.gall_tit.voice_tit a, .gall_tit.adult_tit a, .miniwrap .gall_tit.voice_tit a, .miniwrap .gall_tit.adult_tit a{max-width:81%}/*보이스 글, 성인 게시글*/
+.list .gall_tit a{padding-top:1px;line-height:100%}
+.list .gall_tit a:visited{color:#770088}
+
+.icon_go{display:inline-block;width:5px;height:9px;margin-left:6px;background-position:-36px -45px}
+.user_data .icon_go{margin-left:10px}
+.icon_img{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:7px;background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/icon_img.png?1012);background-repeat:no-repeat}
+.icon_notic{background-position:0px 0}/*공지*/
+.icon_toprecomimg{background-position:0px -25px}/*초개념*/
+.icon_recomimg{background-position:0px -50px}/*이미지개념*/
+.icon_recomtxt{background-position:0px -75px}/*텍스트 개념*/
+.icon_pic{background-position:0 -100px}/*이미지*/
+.icon_txt{background-position:0px -123px}/*텍스트*/
+.icon_movie{background-position:0px -147px}/*동영상*/
+.icon_recomovie{background-position:-3px -362px}/*210330 개념 동영상*/
+.icon_survey{background-position:0px -170px}/*설문*/
+.icon_issue{background-position:0px -193px}/*이슈*/
+.icon_ad{background-position:0px -193px}/*광고*/
+.icon_voice_tit{display:inline-block;width:9px;height:13px;background-position:-241px -214px;vertical-align:-3px}/*보이스글 아이콘*/
+.icon_slow{background-position:0px -216px}/*mini 느린글*/
+.icon_secret, .icon_secret2{background-position:0px -284px} /*201020 아이콘변경*/
+.icon_vote_tit{display:inline-block;width:11px;height:11px;background-position:-285px -438px;vertical-align:-2px}/*201110 mini 투표 아이콘*/
+.icon_fnews{background-position:0px -261px}/*공지뉴스*/
+.icon_autodel_tit{display:inline-block;width:13px;height:13px;background-position:-247px -818px;vertical-align:-3px}/*201207 mini 자동삭제 아이콘*/
+.icon_rtimebest{display:inline-block;width:15px;height:18px;background-position:-3px -309px;vertical-align:-5px}/*210303 운영자 선택 실시간 베스트 탑고정 아이콘*/ /*220530 width값 포지션값 수정*/
+.icon_btimebest{display:inline-block;width:15px;height:15px;background-position:-3px -337px;vertical-align:-3px}/*210303 운영자 선택 실시간 베스트 아이콘*/
+.icon_lrtimebest{display:inline-block;width:15px;height:18px;background-position:-3px -437px}/*220530 실베 라이트 탑고정 아이콘*/
+.icon_lbtimebest{display:inline-block;width:15px;height:15px;background-position:-3px -465px;vertical-align:-3px}/*220530 실베 라이트 아이콘*/
+
+.icon_hit{background-position:-3px -387px}/*210524 힛갤러리*/
+.icon_lottery{background-position:-3px -412px}/*220221 디시로터리*/
+
+.icon_ai{background-position: -3px -818px}/*230214 ai*/
+
+/* 하단 버튼 */
+.list_bottom_btnbox button:first-child{margin-left:0}
+.list_bottom_btnbox, .view_bottom_btnbox{margin-top:12px}
+.list_bottom_btnbox > div >button:first-child{margin-left:0}
+.list_bottom_btnbox > div >button{margin-left:3px}
