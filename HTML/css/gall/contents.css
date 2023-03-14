@@ -87,3 +87,65 @@ tbody tr:hover{background:#f3f3f3}
 .list_bottom_btnbox, .view_bottom_btnbox{margin-top:12px}
 .list_bottom_btnbox > div >button:first-child{margin-left:0}
 .list_bottom_btnbox > div >button{margin-left:3px}
+
+
+
+/* 글쓰기 */
+#write_wrap{/* padding:33px 68px 40px; */px; */margin-top:15px;/* border:2px solid #d5d5d5; */5d5; */}
+.visit_bookmark + #container #write_wrap{/* border-width:0 2px 2px; */px; */margin-top:0}
+.input_box{position:relative}
+.input_infotxt{float:left;width:230px;margin:10px 10px 0 0}
+.input_write_tit{float:left;width:728px;margin:10px 0 0 0PX}
+.txt_placeholder{position:absolute;left:13px;top:9px}
+.put_inquiry,.input_box label{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;color:#999;font-size:13px;font-weight:bold}
+.put_inquiry{width:204px;height:33px;padding:0 12px;line-height:35px;border:1px solid #cecdce;color:#333}
+
+/*크롬 로그인,비밀번호를 기억하면 배경색이 노란색으로 변하는 문제 해결*/
+input.put_inquiry:-webkit-autofill,
+input.put_inquiry:-webkit-autofill:hover,
+input.put_inquiry:-webkit-autofill:focus,
+input.put_inquiry:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #fff inset !important;
+-webkit-text-fill-color:#999 !important;
+}
+.input_write_tit .put_inquiry{width:702px}
+.input_kcapcode .put_inquiry{width:97px;border-width:1px 1px 1px 0 }
+#write_wrap .kap_codeimg{float: left;width:125px;height:33px;margin-top:10px;border:1px #cecdce solid;border-width:1px 0px 1px 1px}
+#write_wrap .kap_codeimg img{height:33px}
+.input_infotxt.input_kcapcode{width:122px;margin-top:10px}
+.write_infobox{position:relative;margin:16px 0 14px;font-size:12px;color:#666}
+.write_infobox p{line-height:20px}
+.write_infobox p > button{font-size:12px;color:#666;vertical-align:0}
+.write_infobox p > button:hover{text-decoration:underline}
+.write_infobox p::before{content:"";display:inline-block;width:9px;height:9px;margin-right:4px;background:url(/img/sp_img.png) no-repeat -86px -63px}/*churl*/
+.write_infobox .hitchek{margin-left:10px;line-height:20px}
+.write_infobox .hitchek label{margin-left:3px}
+.write_infobox .hitchek .checkbox input[type="checkbox"]{top:3px}
+.write_infobox .hitchek .checkbox input + .checkmark{top:3px}
+
+/*말머리*/
+.write_subject{clear:both;display:inline-block;min-width:715px;border:1px solid #cecdce;padding-right:11px;margin-top:10px}
+.write_subject > .tit{display:block;float:left;width:66px;height:33px;background:#eee;vertical-align:top;line-height:33px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px}
+.subject_list{float:left;margin:5px 0 0 11px;max-width:930px}
+.write_subject .subject_list li{max-width:105px;width:auto}
+.subject_list li{float:left;height:23px;line-height:22px;font-size:13px;color:#666;font-weight:bold;margin-left:21px;cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif}/*211118 폰트 버그 line-height:24px*/
+.subject_list li:first-child{margin-left:0}
+.subject_list .sel{background:#29367c;border-radius:50px;color:#fff;padding:0 10px 0 9px;text-shadow: 0px -1px #2a326e;cursor:default}
+.subject_list .sel > em{display:inline-block;width:11px;height:11px;background-position:-236px -321px;margin-right:2px}
+.subject_list .not{color:#c5c5c5;cursor:default}
+.btn_fixnotice{width:auto;padding:0 20px;margin-left:0}
+
+.write_subject .subject_list {margin-left:-15px}
+.write_subject .subject_list li:first-child{margin-left:26px}
+.write_subject > .tit{height:100%}
+.write_subject .subject_list li{margin-bottom:5px}
+.write_subject{position:relative;z-index:1}
+.write_subject::before{content:'';display:inline-block;line-height:100%;width:66px;height:100%;background:#eee;position:absolute;left:0;top:0;z-index:-1}
+
+
+.write_type_box{position:relative;font-size:0}
+.write_type_box .inner{position:relative;display:inline-block;margin-right:17px}
+.write_type_box .pop_content .inner{margin-right:0}
+.write_type_box .pop_tipbox .inner{display:block;min-width:378px;height:25px;line-height:25px;font-size:12px;color:#555;margin-right:0;white-space:nowrap}
+.btn_write_type{height:21px;font-size:14px;color:#555;line-height:21px}
+.icon_slowrite_info{display:inline-block;width:14px;height:13px;background-position:-252px -201px;margin-top:3px}
+.on .icon_slowrite{width:20px;height:20px;background-position:-235px -522px}
