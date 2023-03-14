@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/reset.css">
+        <link rel="stylesheet" href="/css/popup.css">
+        <link rel="stylesheet" href="/css/basic.css">
+        <link rel="stylesheet" href="/css/management/common.css">
+        <link rel="stylesheet" href="/css/management/minor.css">
+        <link rel="stylesheet" href="/css/management/research.css">
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.css"></script>
+
+        <script type="text/javascript" src="/js/navigation.js"></script>
+        <script type="text/javascript" src="/js/common.js"></script>
+        <script type="text/javascript" src="/js/lately_visit_new.js"></script>
+        <script type="text/javascript" src="/js/management/ctr_cookie.js"></script>
+        <script type="text/javascript" src="/js/management/managements.js"></script>
+    </head>
+<body>
+    <div class="gcwrap">
+
+        <!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcinside_main_logo.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                                <li><a href="#">게임</a></li>
+                                <li><a href="#">연예/방송</a></li>
+                                <li><a href="#">스포츠</a></li>
+                                <li><a href="#">교육/금융/IT</a></li>
+                                <li><a href="#">여행/음식/생물</a></li>
+                                <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title 1_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">최근 방문</h3>
+                <button type="button" class="btn_open">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box"></div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
+            </div>
+        </div>
+
+        <main id="container" class="minor_admin">
+            <!-- 갤러리명 타이틀바 ~ 이용안내 -->
+
+            <header>
+                <div class="page_head clear">
+                    <div class="fl clear">
+
+                        <div class="lock"><em class="sp_img icon_minilock"></em><span class="blind">비공개</span></div>
+
+                        <h2><a href="#">ㅇㅇㅇ  갤러리<div class="pagehead_titicon ngall sp_img"><span class="blind">미니</span></div></a></h2>
+
+
+                        <div class="useradmin_go">
+                            <button type="button" class="sp_img btn_useradmin_go" onclick="location.href='/gall/management';"><span class="blind">관리</span></button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>  
+            <div class="minor_uadmin_wrap clear">
+                <!-- left_content -->
+                <script type="text/javascript">
+                    var mgall_id = 'qivreg';
+                    var mgall_block = 'N';
+                </script>
+
+                <section id="left_cont_wrap"  class="left_content">
+                    <h2 class="blind">왼쪽 컨텐츠 영역</h2>
+                    <ul class="minor_uadmin_menu">
+                        <li><a href="/gall/management/index.html" class="">기본 설정</a></li>
+                        <li><a href="/gall/management/gallery.html" class="on">갤러리 설정</a></li>
+                        <li><a href="/gall/management/block.html" class="">차단 목록 </a></li>
+                        <li><a href="/gall/management/delete.html" class="">삭제 목록 </a></li>
+                        <li><a href="/gall/management/submanager.html" class="">부매니저</a></li>
+                        <li><a href="#" onclick="alert('매니저 위임은 개설일 기준으로 7일 이후 가능합니다.');return false;" class=>매니저 위임</a></li>
+                        <li><a href="/gall/management/report.html" class="">관리 기록</a></li>
+                    </ul>
+
+
+                </section>      
+                <!-- right_content -->
+                <section id="right_cont_wrap" class="right_content">
+                    <h2 class="blind">오른쪽 컨텐츠 영역</h2>
+                    <div class="minor_uadmin_setting">
+                        <fieldset>
+                            <legend class="blind">갤러리 관리</legend>
+
+                            <!-- VPN or 통신사 IP 제한의 경우 구현의 어려움이 있어 추후 개발 예정.
+                            <div class="form_group">
+                                <div class="set_content nonmember clear">
+                                    <div class="set_tit">비회원 제한</div>
+
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <div class="cont_inr result">
+                                                <strong class="cont_boxtit">갤러리 사용:</strong>
+                                                <span id="ipblock_text">
+                                                    사용안함
+                                                </span>
+                                            </div>
+                                            <div class="cont_inr result">
+                                                <strong class="cont_boxtit">이미지, 동영상 첨부:</strong>
+                                                <span id="img_block_text">
+                                                    사용안함
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="cont_inr galluse">
+                                                <h4 class="tit">갤러리 사용</h4>
+                                                <div class="cont_inr set proxy">
+                                                    <strong class="cont_boxtit">VPN 제한</strong>
+                                                    <div class="select_box select_arraybox">
+                                                        <div class="select_area">선택<em class="sp_img icon_option_more"></em></div>
+                                                        <ul class="option_box" style="left:-1px;top:22px;display:none">
+                                                            <li data-value="60">1시간</li>
+                                                            <li data-value="360">6시간</li>
+                                                            <li data-value="1440">24시간</li>
+                                                            <li data-value="2880">48시간</li>
+                                                        </ul>
+                                                    </div>
+                                                    <script>ul_selectric($('.select_box'), 'proxy_time', ''); </script>
+                                                    <button type="button" class="btn_blue smaller update_time" data-confname="proxy">사용</button>
+                                                    <span class="tiptxt off" >사용안함</span>
+                                                    <span class ="tiptxt on"  style ="display:none">
+                                                        <span class ='proxy_txt'></span>
+                                                        <button type="button" class="btn_cancel">해제</button>
+                                                    </span>
+
+                                                </div>
+                                                <div class="cont_inr set mobile">
+                                                    <strong class="cont_boxtit">통신사 IP 제한</strong>
+                                                    <div class="select_box select_arraybox ul_selectric">
+                                                        <div class="select_area">선택<em class="sp_img icon_option_more"></em></div>
+                                                        <ul class="option_box" style="left:-1px;top:22px;display:none">
+                                                            <li data-value="10">10분</li>
+                                                            <li data-value="20">20분</li>
+                                                            <li data-value="30">30분</li>
+                                                            <li data-value="60">1시간</li>
+                                                        </ul>
+                                                    </div>
+                                                    <script>ul_selectric($('.select_box'), 'mobile_time', ''); </script>
+                                                    <button type="button" class="btn_blue smaller update_time" data-confname="mobile">사용</button>
+                                                    <span class="tiptxt off" >사용안함</span>
+                                                    <span class="tiptxt on" style ="display:none">
+                                                    <span class ='mobile_txt'></span>
+                                                    <button type="button" class="btn_cancel">해제</button>
+                                                    </span>
+
+                                                </div>
+                                                <p class="tiptxt dot_line"><em class="sp_img tip_deco"></em>제한된 IP는 글 쓰기 / 댓글 쓰기 / 추천 / 비추천이 불가능합니다.</p>
+                                                <p class="tiptxt"><em class="tip_deco"></em>(일부 IP 대역은 제한되지 않을 수도 있으며 계속 보완 예정입니다.) </p>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>사용 설정 후 선택 시간이 지나면 자동 해제됩니다.</p>
+                                            </div>
+                                            <div class="cont_inr imgadd img_block">
+                                            <h4 class="tit">이미지, 동영상 첨부</h4>
+                                            <div class="cont_inr set ">
+                                            <strong class="cont_boxtit">제한 범위</strong>
+                                            <span class="checkbox imgvpn">
+                                            <input type="checkbox" id="img_block_vpn" name="img_block[]" onclick="if($(this).closest('.cont_inr').hasClass('all')) return false;" value="P" >
+                                            <em class="checkmark"></em>
+                                            <label for="img_block_vpn">VPN</label>
+                                            </span>
+                                            <span class="checkbox imgip">
+                                            <input type="checkbox" id="img_block_mobile" name="img_block[]" onclick="if($(this).closest('.cont_inr').hasClass('all')) return false;" value="M" >
+                                            <em class="checkmark"></em>
+                                            <label for="img_block_mobile">통신사 IP</label>
+                                            </span>
+                                            <span class="checkbox imgall">
+                                            <input type="checkbox" id="img_block_all" name="img_block[]" value="A" >
+                                            <em class="checkmark"></em>
+                                            <label for="img_block_all">전체 비회원</label>
+                                            </span>
+                                            </div>
+                                            <div class="cont_inr set">
+                                            <strong class="cont_boxtit">제한 시간</strong>
+                                            <div class="select_box select_arraybox ">
+                                            <div class="select_area">선택<em class="sp_img icon_option_more"></em></div>
+                                            <ul class="option_box" style="left:-1px;top:22px;display:none">
+                                            <li data-value="60">1시간</li>
+                                            <li data-value="360">6시간</li>
+                                            <li data-value="1440">24시간</li>
+                                            <li data-value="2880">48시간</li>
+                                            </ul>
+                                            </div>
+                                            <script>ul_selectric($('.select_box'), 'img_block_time', ''); </script>
+                                            </div>
+                                            <div class="cont_inr set">
+                                            <button type="button" class="btn_blue smaller update_time" data-confname="img_block" data-use="0" data-use_set="">사용</button>
+                                            <span class="tiptxt off" >사용안함</span>
+                                            <span class="tiptxt on" style ="display:none">
+                                            <span class ='img_block_txt'>사용안함 </span>
+                                            <button type="button" class="btn_cancel">해제</button>
+                                            </span>
+                                            </div>
+
+                                            <p class="tiptxt dot_line"><em class="sp_img tip_deco"></em>제한된 IP는 글 쓰기 시 이미지, 동영상 첨부가 불가능합니다.</p>
+                                            <p class="tiptxt"><em class="sp_img tip_deco"></em>사용 설정 후 선택 시간이 지나면 자동 해제됩니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                        <button type="button" class="font_lightblue set_save" onclick="update_ipblock()"><b>저장</b></button>
+                                        <button type="button" class= "set_cancel">취소</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            -->
+
+
+                            <div class="form_group">
+                                <div class="set_content concept_range clear">
+                                    <div class="set_tit">
+                                        개념 추천, 비추천                  
+                                    </div>
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <div class="cont_inr fl">
+                                                <strong>개념글 추천: </strong>
+                                                <span class="recom_cnt_text">10 이상 개념글로 선정</span>
+                                            </div>
+                                            <div class="cont_inr fl">
+                                                <strong>비추천: </strong>
+                                                <span class="decom_cnt_text">사용함(20 이상 개념글 불가)</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <!--  추천글 -->
+                                            <div class="cont_inr recomy">
+                                                <strong class="cont_boxtit">개념글 기준</strong>
+                                                <p>추천이 <input name="recom_cnt" class="num_setting" type="text" value="10" title="추천 수" min = "5" max = "100"  maxlength="3" onkeydown="return numberKeyPress(event)" onkeyup="chk_recom_input(this)" style="ime-mode:disabled;"> 이상인 경우 개념글에 선정됩니다.</p>
+                                                <p class="tiptxt "><em class="sp_img tip_deco"></em>개념글 기준 설정은 최소 5에서 최대 100까지 가능합니다.</p>
+                                            </div>
+                                            <!--//추천글 -->
+                                            <!--  비추천 -->
+                                            <div class="cont_inr recomn">
+                                                <strong class="cont_boxtit">비추천</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio" checked="checked" name="decom_use" class = "decom_use y"  value="1">
+                                                    <em class="checkmark"></em>
+                                                    <label for="recom_u">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio"   name="decom_use" class = "decom_use n"  value="0">
+                                                    <em class="checkmark"></em>
+                                                    <label for="recom_n">사용안함</label>
+                                                </span>
+                                                <p class="tiptxt "><em class="sp_img tip_deco"></em>사용안함 선택 시 비추천 버튼이 노출되지 않습니다.</p>
+                                            </div>
+                                            <!--//비추천 -->
+
+                                            <!--  비추천으로 개념글 내리기 -->
+                                            <div class="cont_inr recomn"  id = "decom_count">
+                                                <strong class="cont_boxtit">비추천으로 개념글 내리기</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio" checked="checked" name ="recom_down_use" class = "recom_down y"  value="1">
+                                                    <em class="checkmark"></em>
+                                                    <label for="recom_u">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio"  name ="recom_down_use" class = "recom_down n"  value="0">
+                                                    <em class="checkmark"></em>
+                                                    <label for="recom_n">사용안함</label>
+                                                </span>
+
+                                                <span  id ="recom_down">
+                                                    <p>비추천이 <input name="decom_cnt" class="num_setting" type="text" value="20" title="비추천 수"  min = "5" max = "1000" maxlength="4" onkeydown="return numberKeyPress(event)" onkeyup="chk_recom_input(this)" style="ime-mode:disabled;"> 이상인 경우 개념글이 되지 않습니다.</p>
+                                                    <p class="tiptxt "><em class="sp_img tip_deco"></em>비추천으로 개념글 내리기 기준 설정은 최소 5에서 최대 1000까지 가능합니다.</p>
+                                                    <p class="tiptxt "><em class="sp_img tip_deco"></em>매니저가 직접 개념글로 등록한 글은 영향을 받지 않습니다.</p>
+                                                </span>
+
+                                            </div>
+                                            <!--//비추천으로 개념글 내리기 -->
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_recom_decom()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form_group">
+                                <div class="set_content prevent_code clear">
+                                    <div class="set_tit">
+                                        도배 방지 코드
+                                        <button type="button" class="btn_tit_guide"><span class="blind">도배 방지 코드란</span><em class="sp_img icon_tit_guide"></em></button>
+                                        <div class="pop_tipbox option_tip" style="left:0;top:0;margin-left:103px;display:none">
+                                            <div class="inner uadmin_opt_tip">
+                                                도배 방지 코드를 사용하면 도배글이나 스팸글을 방지할 수 있습니다.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <div id="use_kcaptcha" class="cont_inr result" style="display:''">
+                                                <p>사용안함</p>
+                                            </div>
+                                            <!-- 수정시 set / 수정완료시 result -->
+                                            <div style="display:none">
+                                                <div id="use_ips" class="cont_inr result">
+                                                    <strong class="cont_boxtit 0" style="display:''">전체</strong>
+                                                    <strong class="cont_boxtit 1" style="display:none">특정 IP</strong>
+                                                </div>
+                                                <div class="cont_inr result">
+                                                    <strong class="cont_boxtit">글쓰기:</strong>
+                                                    <span id="use_kcaptcha_write">사용안함</span>
+                                                </div>
+                                                <div class="cont_inr result">
+                                                    <strong class="cont_boxtit">댓글쓰기:</strong>
+                                                    <span id="use_kcaptcha_comment">사용안함</span>
+                                                </div>
+                                                <div class="cont_inr result">
+                                                    <strong class="cont_boxtit">개념글 추천:</strong>
+                                                    <span id="use_kcaptcha_recom">사용안함</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <!-- 수정시 set / 수정완료시 result -->
+
+                                            <div class="cont_inr set">
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="chk_use_ips0" name="use_ips" value="0" checked="checked">
+                                                    <em class="checkmark"></em>
+                                                    <label for="chk_use_ips0">전체</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="chk_use_ips1" name="use_ips" value="1" >
+                                                    <em class="checkmark"></em>
+                                                    <label for="chk_use_ips1">특정 IP 대역</label>
+                                                </span>
+                                                <button type="button" class="btn_ip" onclick="in_kcaptcha_ips()">입력</button>
+                                                <!-- 특정 IP 대역 입력 레이어 -->
+                                                <div id="kcaptcha_ips_layer" class="pop_wrap type3 lightpurple" style="display:none">
+                                                    <div class="pop_content ipinbox">
+                                                        <div class="pop_head bg"><h3>특정 IP 대역 입력</h3></div>
+                                                        <div class="pop_info">
+                                                            <p>도배 방지 코드를 적용할 IP 대역을 입력해주세요.</p>
+                                                        </div>
+                                                        <div class="ip_inr">
+                                                            <textarea name="kcaptcha_ips" class="chk_str_length" placeholder="(예시)&#10;123.123&#10;11.222-메모"></textarea>
+                                                        </div>
+                                                        <div class="info_txt">
+                                                            <p><em class="tip_deco999">-</em>IP는 줄바꿈으로 구분됩니다.</p>
+                                                            <p><em class="tip_deco999">-</em>IP 또는 IP-메모를 입력할 수 있습니다.</p>
+                                                            <p><em class="tip_deco999">-</em>IP는 앞 2마디를 입력해주세요.</p>
+                                                            <p><em class=" tip_deco999"></em>예시) 123.123</p>
+                                                            <span class="max_txt"><span>0</span>/<b>10000</b></span>
+                                                        </div>
+                                                        <div class="btn_box">
+                                                            <button type="button" class="btn_lightpurple small" onclick="update_avoid_ips()">저장</button>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="poply_whiteclose" onclick="in_kcaptcha_ips()"><span class="blind">레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>
+                                                </div>
+                                                <!-- //특정 IP 대역 입력 레이어 -->
+                                            </div>
+
+                                            <div class="cont_inr set">
+                                                <strong class="cont_boxtit">글쓰기</strong>
+                                                <div class="select_box select_arraybox ">
+                                                    <div class="select_area">1<em class="sp_img icon_option_more"></em></div>
+                                                    <ul class="option_box" style="left:-1px;top:19px;display:none">
+                                                        <li data-value="1">1</li>
+                                                        <li data-value="2">2</li>
+                                                        <li data-value="3">3</li>
+                                                        <li data-value="4">4</li>
+                                                        <li data-value="5">5</li>
+                                                        <li data-value="6">6</li>
+                                                        <li data-value="7">7</li>
+                                                        <li data-value="8">8</li>
+                                                    </ul>
+                                                </div>
+                                                <script>ul_selectric($('.select_box'), 'write_kcaptcha_cnt', '1'); </script>
+                                                <span class="inner_txt">자리</span>
+                                                <span class="radiobox small">
+                                                    <input type="radio"  name="use_write_kcaptcha" value="1">
+                                                    <em class="checkmark"></em>
+                                                    <label for="code_use1">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" checked="checked" name="use_write_kcaptcha" value="0">
+                                                    <em class="checkmark"></em>
+                                                    <label for="code_nouse1">사용안함</label>
+                                                </span>
+                                            </div>
+                                            <div class="cont_inr set">
+                                                <strong class="cont_boxtit">댓글 쓰기</strong>
+                                                <div class="select_box select_arraybox ">
+                                                    <div class="select_area">1<em class="sp_img icon_option_more"></em></div>
+                                                    <ul class="option_box" style="left:-1px;top:19px;display:none">
+                                                        <li data-value="1">1</li>
+                                                        <li data-value="2">2</li>
+                                                        <li data-value="3">3</li>
+                                                        <li data-value="4">4</li>
+                                                        <li data-value="5">5</li>
+                                                        <li data-value="6">6</li>
+                                                        <li data-value="7">7</li>
+                                                        <li data-value="8">8</li>
+                                                    </ul>
+                                                </div>
+                                                <script>ul_selectric($('.select_box'), 'comment_kcaptcha_cnt', '1'); </script>
+                                                <span class="inner_txt">자리</span>
+                                                <span class="radiobox small">
+                                                    <input type="radio"  name="use_comment_kcaptcha" value="1">
+                                                    <em class="checkmark"></em>
+                                                    <label for="code_use2">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" checked="checked" name="use_comment_kcaptcha" value="0">
+                                                    <em class="checkmark"></em>
+                                                    <label for="code_nouse2">사용안함</label>
+                                                </span>
+                                            </div>
+                                            <div class="cont_inr set">
+                                                <strong class="cont_boxtit">개념글 추천</strong>
+                                                <div class="select_box select_arraybox ">
+                                                    <div class="select_area">1<em class="sp_img icon_option_more"></em></div>
+                                                    <ul class="option_box" style="left:-1px;top:19px;display:none">
+                                                        <li data-value="1">1</li>
+                                                        <li data-value="2">2</li>
+                                                        <li data-value="3">3</li>
+                                                        <li data-value="4">4</li>
+                                                        <li data-value="5">5</li>
+                                                        <li data-value="6">6</li>
+                                                        <li data-value="7">7</li>
+                                                        <li data-value="8">8</li>
+                                                    </ul>
+                                                </div>
+                                                <script>ul_selectric($('.select_box'), 'recom_kcaptcha_cnt', '1'); </script>
+                                                <span class="inner_txt">자리</span>
+                                                <span class="radiobox small">
+                                                    <input type="radio"  name="use_recom_kcaptcha" value="1">
+                                                    <em class="checkmark"></em>
+                                                    <label for="code_use3">사용함</label>
+                                                </span>
+                                                <span class="recom_set">
+                                                    (
+                                                    <span class="checkbox ">
+                                                        <input type="checkbox" id="code_use4" checked="checked" name="chk_recom_use" value="1">
+                                                        <em class="checkmark"></em>
+                                                        <label for="code_use4">추천</label>
+                                                    </span>
+                                                    <span class="checkbox ">
+                                                        <input type="checkbox" id="code_use5" checked="checked"  name="chk_non_recom_use" value="1">
+                                                        <em class="checkmark"></em>
+                                                        <label for="code_use5">비추천</label>
+                                                    </span>
+                                                    )
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" checked="checked" name="use_recom_kcaptcha" value="0">
+                                                    <em class="checkmark"></em>
+                                                    <label for="code_nouse3">사용안함</label>
+                                                </span>
+                                            </div>
+                                            <p class="tiptxt dot_line"><em class="sp_img tip_deco"></em>도배 방지 코드를 사용하면 도배글이나 스팸글을 방지할 수 있습니다.</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_kcaptcha()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="set_content subject clear">
+                                    <div class="set_tit">말머리</div>
+
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <p id="headtext_text">사용안함</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="cont_inr">
+                                                <strong class="cont_boxtit">사용여부</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="subject_use"  name="use_headtext" value="1">
+                                                    <em class="checkmark"></em>
+                                                    <label for="subject_use">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="subject_nouse" checked="checked" name="use_headtext" value="0">
+                                                    <em class="checkmark"></em>
+                                                    <label for="subject_nouse">사용안함</label>
+                                                </span>
+                                            </div>
+                                            <div class="cont_inr add_subject_box clear">
+                                                <div class="add_subject_cont">
+                                                    <div class="cont_input_box clear">
+                                                        <input class="t_input chk_str_length" id="headtext_word" type="text" data-minlevel="1">
+                                                        <span class="max_txt"><span>0</span>/<b>5</b></span>
+                                                    </div>
+                                                    <label class="add_subject" for="headtext_word" onclick="add_headtext()">추가</label>
+                                                </div>
+
+                                                <ul id="headtext_list" class="add_subject_list"></ul>
+
+                                                <script id="headtext_list-tmpl" type="text/x-jquery-tmpl">
+                                                    <li class="ui-state-default">
+                                                        <input type="hidden" class="headtext_input" name="headtext[]" data-no="${key}" data-lv="${level}" value="${value}">
+                                                        <div class="cont_input_box clear">
+                                                            <input class="t_input" maxlength="5" disabled="disabled" type="text" title="말머리" value="${value}">
+                                                            <button type="button" class="btn_subject_set" onclick="modify_headtext(this)">
+                                                                <span class="blind">완료</span>
+                                                                <em class="sp_img icon_mdf"></em>
+                                                            </button>
+                                                        </div>
+                                                        {{if key == 0}}
+                                                        <div class="authority_set off">
+                                                            <div class="select_box select_arraybox">
+                                                                <div class="select_area" onclick="">권한: 고정닉</div>
+                                                            </div>
+                                                        </div>
+                                                        {{else}}
+                                                        <div class="authority_set">
+                                                            <div class="select_box select_arraybox">
+                                                                <div class="select_area" onclick="sel_headtext_lv(this);">권한: 
+                                                    
+                                                                            {{if level == 1}}고정닉{{/if}}
+                                                                            {{if level == 9}}매니저{{/if}}
+                                                    
+                                                                    <em class="sp_img icon_option_more"></em>
+                                                                </div>
+                                                                <ul class="option_box white" style="left:-1px;top:22px;display:none">
+                                                    
+                                                                            <li data-value="1" onclick="set_headtext_lv(this);">권한: 고정닉</li>
+                                                                            <li data-value="9" onclick="set_headtext_lv(this);">권한: 매니저</li>
+                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        {{/if}}
+                                                        <button type="button" class="btn_addsubject btn_sort">
+                                                            <span class="inner">
+                                                            <span class="blind">순서 변경</span>
+                                                            <em class="sp_img icon_change_img"></em>
+                                                            </span>
+                                                        </button>
+                                                        {{if key != 0}}
+                                                        <button type="button" class="btn_subject_del" onclick="del_headtext(this)">
+                                                            <span class="blind">삭제</span>
+                                                            <em class="sp_img icon_subject_del"></em>
+                                                        </button>
+                                                        {{/if}}
+                                                    </li>
+                                                </script>
+
+                                                <script type="text/javascript">
+                                                    $('#headtext_list-tmpl').tmpl([{"key":0,"level":1,"value":"\uc77c\ubc18"}]).appendTo('#headtext_list');
+                                                </script>
+
+                                            </div>
+                                            <p class="tiptxt dot_line"><em class="sp_img tip_deco"></em>최대 15개까지 사용 가능합니다.</p>
+                                            <p class="tiptxt"><em class="sp_img tip_deco"></em><em class="sp_img icon_change_img"></em>드래그 앤 드롭으로 순서 변경이 가능합니다.</p>
+                                            <div class="cont_inr">
+                                                <div class="set_write_subject">
+                                                    <strong class="cont_boxtit">글쓰기 시 기본 말머리</strong>
+                                                    <input type="hidden" class="default_selected" name="default_selected" data-no="" value="">
+                                                    <div class="select_box select_arraybox">
+                                                        <div class="select_area" onclick="sel_headtext_lv(this);">
+                                                        없음						<em class="sp_img icon_option_more"></em>
+                                                        </div>
+                                                        <ul class="option_box" id="sel_default_headtext" style="left:-1px;top:22px;display:none">
+                                                            <li data-value="" data-name="없음" onclick="set_headtext_default(this);">없음</li>
+                                                            <script id="sel_default_headtext-tmpl" type="text/x-jquery-tmpl">
+                                                                {{if level == 1}}<li data-value="${key}" data-name="${value}" onclick="set_headtext_default(this);">${value}</li>{{/if}}
+                                                            </script>
+                                                            <script type="text/javascript">
+                                                                $('#sel_default_headtext-tmpl').tmpl([{"key":0,"level":1,"value":"\uc77c\ubc18"}]).appendTo('#sel_default_headtext');
+                                                            </script>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_headtext()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="set_content block_word clear">
+                                    <div class="set_tit">
+                                        금지 단어
+                                        <button type="button" class="btn_tit_guide"><span class="blind">금지 단어란</span><em class="sp_img icon_tit_guide"></em></button>
+                                        <!-- 항목 설명 툴팁 -->
+                                        <div class="pop_tipbox option_tip" style="left:0;top:0;margin-left:70px;display:none">
+                                            <div class="inner uadmin_opt_tip">
+                                                금지 단어가 입력된 글 또는 댓글이 등록되지 않습니다.
+                                            </div>
+                                        </div>
+                                        <!-- //항목 설명 툴팁 -->
+                                    </div>
+
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <p id="blockword_text">사용안함</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="cont_inr">
+                                                <strong class="cont_boxtit">사용여부</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio"  name="use_blockword" value="Y">
+                                                    <em class="checkmark"></em>
+                                                    <label for="blockword_use">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" checked="checked" name="use_blockword" value="N">
+                                                    <em class="checkmark"></em>
+                                                    <label for="blockword_nouse">사용안함</label>
+                                                </span>
+                                            </div>
+                                            <textarea class="t_area chk_str_length" id="blockword"></textarea>
+                                            <div class="clear">
+                                                <p class="tiptxt fl">(띄어쓰기 없이 쉼표로 구분하여 등록)</p>
+                                                <span class="max_txt fr"><span>0</span>/<b>10000</b></span>
+                                            </div>
+                                            <p class="tiptxt dot_line"><em class="sp_img tip_deco"></em>금지 단어가 입력된 글 또는 댓글이 등록되지 않습니다.</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_blockword()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="set_content miniauto_delword clear">
+                                    <div class="set_tit">
+                                        글 자동 삭제
+                                        <button type="button" class="btn_tit_guide"><span class="blind">글 자동 삭제란</span><em class="sp_img icon_tit_guide"></em></button>
+                                        <!-- 항목 설명 툴팁 -->
+                                        <div class="pop_tipbox option_tip" style="left:0;top:0;margin-left:106px;display:none">
+                                            <div class="inner uadmin_opt_tip">일정 시간이 지나면 글이 자동으로 삭제되는 기능입니다.</div>
+                                        </div>
+                                        <!-- //항목 설명 툴팁 -->
+                                    </div>
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <p id="autodel_text">사용안함</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="cont_inr">
+                                                <strong class="cont_boxtit">사용여부</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="use_autodel_a" name="use_autodel" value="1" >
+                                                    <em class="checkmark"></em>
+                                                    <label for="use_autodel_a">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="use_autodel_b" name="use_autodel" value="0" checked="checked">
+                                                    <em class="checkmark"></em>
+                                                    <label for="use_autodel_b">사용안함</label>
+                                                </span>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>일정 시간이 지나면 글이 자동으로 삭제되는 기능입니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_autodel()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="set_content mini_secret clear">
+                                    <div class="set_tit">
+                                        비밀글
+                                        <button type="button" class="btn_tit_guide"><span class="blind">비밀글이란</span><em class="sp_img icon_tit_guide"></em></button>
+                                        <!-- 항목 설명 툴팁 -->
+                                        <div class="pop_tipbox option_tip" style="left:0;top:0;margin-left:70px;display:none">
+                                            <div class="inner uadmin_opt_tip">글에 비밀번호를 설정할 수 있습니다.</div>
+                                        </div>
+                                        <!-- //항목 설명 툴팁 -->
+                                    </div>
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <p id="secret_text">사용함</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="cont_inr">
+                                                <strong class="cont_boxtit">사용여부</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="use_secret_a" checked="checked" name="use_secret" value="1" checked="checked">
+                                                    <em class="checkmark"></em>
+                                                    <label for="use_secret_a">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="use_secret_b" name="use_secret" value="0" >
+                                                    <em class="checkmark"></em>
+                                                    <label for="use_secret_b">사용안함</label>
+                                                </span>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>글에 비밀번호를 설정할 수 있습니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_secret()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="set_content notice_numset clear">
+                                    <div class="set_tit">공지 노출 수</div>
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <p><span class="notice_cnt_text">5개</span> 노출</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="select_box select_arraybox">
+                                                <div class="select_area">5<em class="sp_img icon_option_more"></em></div>
+                                                <ul class="option_box" style="left:-1px;top:19px;display:none">
+                                                    <li data-value="1">1개</li>
+                                                    <li data-value="2">2개</li>
+                                                    <li data-value="3">3개</li>
+                                                    <li data-value="4">4개</li>
+                                                    <li data-value="5">5개</li>
+                                                    <li data-value="6">6개</li>
+                                                    <li data-value="7">7개</li>
+                                                    <li data-value="8">8개</li>
+                                                    <li data-value="0">모두</li>
+                                                </ul>
+                                            </div>
+                                            <script>ul_selectric($('.select_box'), 'notice_cnt', '5'); </script>
+                                            <span>노출</span>
+                                            <div class="clear">
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>PC 전체글에 노출될 공지 개수입니다. (공지 탭 선택 시 모든 공지 보임)</p>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>노출수 설정으로 공지와 일반 게시물의 비중을 적절하게 조정할 수 있습니다.</p>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>저장 후 설정 적용까지 <b>최대 1분</b> 정도 소요될 수 있습니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_notice_cnt()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form_group">
+                            <div class="set_content mini_slow clear">
+                                <div class="set_tit">
+                                    고정글
+                                    <button type="button" class="btn_tit_guide"><span class="blind">고정글이란</span><em class="sp_img icon_tit_guide"></em></button>
+                                    <!-- 항목 설명 툴팁 -->
+                                    <div class="pop_tipbox option_tip" style="left:0;top:0;margin-left:70px;display:none">
+                                        <div class="inner uadmin_opt_tip">글목록 상단에 일정 시간 동안 노출됩니다.</div>
+                                    </div>
+                                    <!-- //항목 설명 툴팁 -->
+                                </div>
+                                <div class="set_disable">
+                                    <div class="cont_box">
+                                        <p id="list_fix_text">사용함</p>
+                                    </div>
+                                    <div class="fr set_btn">
+                                        <button type="button" class="font_lightblue set_modify">수정</button>
+                                    </div>
+                                </div>
+                                <div class="set_enable" style="display:none">
+                                    <div class="cont_box">
+                                        <div class="cont_inr">
+                                            <strong class="cont_boxtit">사용여부</strong>
+                                            <span class="radiobox small" onclick="$('#list_fix_options').removeClass('hide');">
+                                                <input type="radio" id="list_fix_a" name="list_fix" value="Y" checked="checked" onclick="$('#list_fix_options').addClass('hide');">
+                                                <em class="checkmark"></em>
+                                                <label for="list_fix_a">사용함</label>
+                                            </span>
+                                            <span class="radiobox small">
+                                                <input type="radio" id="list_fix_b" name="list_fix" value="N"  onclick="$('#list_fix_options').addClass('hide');">
+                                                <em class="checkmark"></em>
+                                                <label for="list_fix_b">사용안함</label>
+                                            </span>
+                                        </div>
+
+                                        <div id="list_fix_options" class="cont_inr dot_line ">
+                                            <div class="fl clear mini_slow_list">
+                                                <strong class="fl cont_boxtit">글목록 노출</strong>
+                                                <div class="select_box select_arraybox fl">
+                                                    <div class="select_area"><em class="sp_img icon_option_more"></em></div>
+                                                    <ul class="option_box" style="left:-1px;top:19px;display:none">
+                                                        <li data-value="1">1줄</li>
+                                                        <li data-value="2">2줄</li>
+                                                        <li data-value="3">3줄</li>
+                                                        <li data-value="4">4줄</li>
+                                                        <li data-value="5">5줄</li>
+                                                    </ul>
+                                                </div>
+                                                <script>ul_selectric($('.select_box'), 'list_fix_limit', '3'); </script>
+                                            </div>
+                                            <div class="fl clear mini_slow_time">
+                                                <strong class="fl cont_boxtit">노출 시간</strong>
+                                                <div class="select_box select_arraybox fl">
+                                                    <div class="select_area"><em class="sp_img icon_option_more"></em></div>
+                                                    <ul class="option_box" style="left:-1px;top:19px;display:none">
+
+                                                        <li data-value="1">1시간</li>
+                                                        <li data-value="2">2시간</li>
+                                                        <li data-value="3">3시간</li>
+                                                        <li data-value="4">4시간</li>
+                                                        <li data-value="5">5시간</li>
+                                                        <li data-value="6">6시간</li>
+                                                        <li data-value="7">7시간</li>
+                                                        <li data-value="8">8시간</li>
+                                                        <li data-value="9">9시간</li>
+                                                        <li data-value="10">10시간</li>
+                                                        <li data-value="11">11시간</li>
+                                                        <li data-value="12">12시간</li>
+                                                        <li data-value="13">13시간</li>
+                                                        <li data-value="14">14시간</li>
+                                                        <li data-value="15">15시간</li>
+                                                        <li data-value="16">16시간</li>
+                                                        <li data-value="17">17시간</li>
+                                                        <li data-value="18">18시간</li>
+                                                        <li data-value="19">19시간</li>
+                                                        <li data-value="20">20시간</li>
+                                                        <li data-value="21">21시간</li>
+                                                        <li data-value="22">22시간</li>
+                                                        <li data-value="23">23시간</li>
+                                                        <li data-value="24">24시간</li>
+                                                        
+                                                    </ul>
+                                                </div>
+                                                <script>ul_selectric($('.select_box'), 'list_fix_hour', '1'); </script>
+                                            </div>
+                                        </div>
+                                        <p class="tiptxt"><em class="sp_img tip_deco"></em>글목록 상단에 일정 시간 동안 노출됩니다.</p>
+                                    </div>
+                                    <div class="fr set_btn">
+                                        <button type="button" class="font_lightblue set_save" onclick="update_list_fix()"><b>저장</b></button>
+                                        <button type="button" class="set_cancel">취소</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="form_group">
+                                <div class="set_content mini_slow clear">
+                                    <div class="set_tit">
+                                        성인 게시물
+                                    </div>
+                                    <div class="set_disable">
+                                        <div class="cont_box">
+                                            <p id="adult_text">사용안함</p>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_modify">수정</button>
+                                        </div>
+                                    </div>
+                                    <div class="set_enable" style="display:none;">
+                                        <div class="cont_box">
+                                            <div class="cont_inr">
+                                                <strong class="cont_boxtit">사용여부</strong>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="use_adult_a" checked="checked" name="use_adult" value="1" >
+                                                    <em class="checkmark"></em>
+                                                    <label for="use_adult_a">사용함</label>
+                                                </span>
+                                                <span class="radiobox small">
+                                                    <input type="radio" id="use_adult_b" name="use_adult" value="0" checked="checked">
+                                                    <em class="checkmark"></em>
+                                                    <label for="use_adult_b">사용안함</label>
+                                                </span>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>성인 게시물 사용에 관한 설정입니다.</p>
+                                            </div>
+                                        </div>
+                                        <div class="fr set_btn">
+                                            <button type="button" class="font_lightblue set_save" onclick="update_adult()"><b>저장</b></button>
+                                            <button type="button" class="set_cancel">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  			
+                        </fieldset>
+                    </div>
+                </section>
+                <!-- right_content -->        
+
+
+                
+            </div>
+        </main>
+        <!-- 푸터 -->
+        <footer class="gcfoot">
+            <div class="info_policy">
+                <a href="/company/index.html">회사소개</a>
+                <a href="/company/index.html#alliance">제휴안내</a>
+                <a href="/ad/index.html">광고안내</a>
+                <a href="/terms/policy.html">이용약관</a>
+                <a href="/terms/privacy.html"><b>개인정보처리방침</b></a>
+                <a href="/terms/youth_policy.html">청소년보호정책</a>
+            </div>
+
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+
+    </div>
+</body>
+</html>
+
+
+
+
