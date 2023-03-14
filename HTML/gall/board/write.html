@@ -1,10 +1,285 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+<html lang="ko" class="darkmode">
+<head> 
+	<meta charset="UTF-8">
+	<title>글쓰기</title>
+    <link rel="shortcut icon" href="/img/logo_icon.png" />
+	<link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+	<link rel="stylesheet" href="/css/minor/common.css">
+	<link rel="stylesheet" href="/css/popup.css">
+	<link rel="stylesheet" href="/css/gall/contents.css">
+	<!-- 마이너 갤러리용 css -->
+	<link rel="stylesheet" href="/css/gall/minor.css">
+	<script type="text/javascript" src="/js/minor/minor.js"></script>
+	<script type="text/javascript" src="/js/ctr_cookie.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
 </head>
 <body>
-    
+    <div class="gcwrap width1160 list_wrap">
+		<!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                              <li><a href="#">게임</a></li>
+                              <li><a href="#">연예/방송</a></li>
+                              <li><a href="#">스포츠</a></li>
+                              <li><a href="#">교육/금융/IT</a></li>
+                              <li><a href="#">여행/음식/생물</a></li>
+                              <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+        <!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title l_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
+                <button type="button" class="btn_open" onclick="openLately()">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box">
+                    <!-- 최근방문 갤러리 리스트 -->
+                    <ul class="newvisit_list vst_listbox l_div_style"></ul>
+
+                    <!-- 즐겨찾기 갤러리 리스트 -->
+                    <ul class="newvisit_list bkmark_listbox f_div_style" style="display:none"></ul>
+                </div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more" onclick="openLately()">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;" id="visit_history_lyr">
+                    <div class="pop_content under_catelist newvisit_layer">
+                        <div class="tabs">
+                            <ul class="tabslist clear">
+                                <li class="tab_l"><button type="button" onclick="tabLately('lately')">최근 방문</button></li>
+                                <li class="tab_f"><button type="button" onclick="tabLately('favorite')">즐겨찾기</button></li>
+                            </ul>
+                        </div>
+                        <div class="toptab_content">
+                            <div class="visit_div 1_div_style">
+                                <!-- 최근 방문 리스트  -->
+							    <div class="visit_tablist" style="display:block">
+                                    <ul class="under_listbox vst_list"></ul>
+                                    <div class="tabcon_bottom">
+                                        <button type="button" class="list_modi">전체 삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="favorite_div f_div_style"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+       
+        <!-- 메인 -->
+        <main id="container">
+            <section>
+                <!-- 갤리명 타이틀바 ~ 이용안내 -->
+            <header>
+                <div class="page_head clear">
+                    <div class="f1 clear">
+
+                        <h2><a href="#">OO 갤러리<div class="pagehead_titicon mgall sp_img"><span class="blind">마이너</span></div></a></h2>
+                        <div class="fr gall_issuebox">
+                            <button type="button" class="relate" onclick="open_relation(33010)"><span class="new" style="display:none;"><em class="blind">NEW</em><em class="sp_img icon_new"></em></span>연관 갤러리(0/10) <span class="blind">연관 갤러리 열기</span><em class="sp_img icon_relate_more"></em></button>
+                            <button type="button" class="adr_copy" onclick="copy_gall_url()">갤주소 복사</button>
+			                <button type="button" class="gall_useinfo" onclick="open_user_guide()">이용안내</button>
+                            <button type="button" class="" onclick="gt_toggle_issue(this)">
+                            <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                    
+                    </div>
+                <article id="write_wrap" class="clear">
+                    
+                    <div class="issue_wrap">
+                        <div class="issuebox gallery_box"></div>
+                    </div>
+
+                        <div class="clear">
+                            <fieldset>
+                                <legend class="blind">글쓰기 정보 입력폼</legend>
+                                <!-- 닉네임, 비밀번호-->
+                                                                    
+                                        <div class="input_box input_infotxt"><label for="name" class="txt_placeholder">닉네임</label><input id="name" class="put_inquiry f_blank" type="text" name="name" maxlength = "15"></div>					
+                                    <div class="input_box input_infotxt">
+                                        <label for="password" class="txt_placeholder" >비밀번호</label>
+                                        <input id="password" class="put_inquiry f_blank" type="password" name="password" maxlength = '20' autocomplete="new-password">
+                                    </div>
+                                 <!-- //닉네임, 비밀번호-->
+                                
+                                    <div style="clear:both;"></div>
+                                    
+                                                    
+                                <!-- 글 제목 입력 / 노출 -->
+                                <div class="write_subject clear">
+                                    <strong class="tit">말머리</strong>
+                                    <ul class="subject_list clear">
+                                    <li class="sel" data-no = "0" onclick = "write_headtext(this)">
+                                        <em class="sp_img"></em>일반</li>
+                                        <li class="" data-no = "40" onclick = "write_headtext(this)">
+                                            🎨창작</li><li class="" data-no = "120" onclick = "write_headtext(this)">
+                                                📃번역</li><li class="" data-no = "130" onclick = "write_headtext(this)">
+                                                    🗾JP</li><li class="" data-no = "50" onclick = "write_headtext(this)">
+                                                        짤</li><li class="" data-no = "10" onclick = "write_headtext(this)">
+                                                            정보/공략</li><li class="" data-no = "110" onclick = "write_headtext(this)">
+                                                                총력/시험</li><li class="" data-no = "140" onclick = "write_headtext(this)">
+                                                                    질❓문</li><li class="" data-no = "20" onclick = "write_headtext(this)">
+                                                                        📢공!지</li><li class="" data-no = "80" onclick = "write_headtext(this)">
+                                                                            친구/서클</li><li class="" data-no = "150" onclick = "write_headtext(this)">
+                                                                                👑대회</li><li class="" data-no = "170" onclick = "write_headtext(this)">
+                                                                                    🔄교환</li>	       
+                                        
+                                    </ul>
+                                </div>
+                            <div class="input_box input_write_tit">
+                                <label for="subject" class="txt_placeholder">제목을 입력해 주세요.</label>
+                                <input id="subject" class="put_inquiry f_blank" type="text" name="subject" maxlength = "40">
+                            </div> 
+                               
+
+                            <!-- //글 제목 입력 -->
+                            </fieldset>
+                            <div class="write_infobox">
+                                <p>쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</p>
+                                <p>음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질 수 있습니다.
+                                    <button type="button" class = 'layer_show' layer = 'copyright_law'>[저작권법 안내]</button> <button type="button" class = 'layer_show' layer = 'post_guide'>[게시물 활용 안내]</button>
+                                </p>
+                                <div class="pop_wrap type2 layer_guide" id = "copyright_law" style="margin-left:534px;margin-top:1px;display:none">
+                                    <div class="pop_content copyright_law">
+                                        <div class="pop_head dashed"><h3>저작권법 안내</h3></div>
+                                        <div class="guide_txtbox">
+                                            <p>이용자가 불법복제물을 게재, 유통하면 이에 대한 경고 및 불법복제물의 삭제 또는 전송 중단 조치를 할 수 있으며, 경고를 받은 이용자에게 사용 정지를 할 수 있습니다.(관련 법률: 저작권법 제133조 의 제1항 및 제2항)</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="under poply_close"><span class="blind">갤러리 전체보기 레이어 닫기</span><em class="sp_img icon_lyclose"></em></button>
+                                </div>
+                                <div class="pop_wrap type2 layer_guide" id = "post_guide" style="margin-left:628px;margin-top:1px;display:none">
+                                    <div class="pop_content post_guide">
+                                        <div class="pop_head dashed"><h3>게시물 활용 안내</h3></div>
+                                        <div class="guide_txtbox">
+                                        <p>이용자가 게시한 게시물의 저작권은 게시한 이용자에게 귀속됩니다. 단, 회사는 서비스의 운영, 전시, 전송, 배포, 홍보의 목적으로 회원의 별도의 허락 없이 무상으로 저작권법에 규정하는 범위 내에서 이용자가 등록한 게시물을 사용 할 수 있습니다.(세부조항 ‘이용약관’ 제 13조 와 동일)</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="under poply_close"><span class="blind">갤러리 전체보기 레이어 닫기</span><em class="sp_img icon_lyclose"></em></button>
+                                </div>
+                                </div>
+                                </div>
+
+                                <!-- 광고 -->
+                                <div class="banner_box">
+									<a href="#" target="_blank">
+										<img src="https://via.placeholder.com/728x90" width="728" height="90" style="border:0px;">
+									</a>
+                                <!-- //광고 -->
+                                    
+                                
+                                    
+
+
+                                        </article>
+                                    </header>
+                                </section>
+                            </main>
+                        </div>
+                    </body>
+                </html>                    
+                </article>
+                </header>
+            </section>
+        </main>
+
+
+
+	<form action="#" method="POST">
+		<label for="content">내용:</label>
+		<textarea id="content" name="content" rows="10" cols="30"></textarea><br><br>
+		<button type="submit">취소</button>
+		<button type="submit">등록</button>
+	</form>
+
+
+
+        <footer class="gcfoot">
+            <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+            </div>
+
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+	</div>
 </body>
 </html>
