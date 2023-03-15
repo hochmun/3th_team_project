@@ -6,6 +6,7 @@ import kr.co.gcInside.vo.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Service
 public class MemberService {
@@ -15,6 +16,7 @@ public class MemberService {
     private PasswordEncoder encoder;
     @Autowired
     private UserRepo repo;
+
     public int insertMember(MemberVO vo){
         vo.setMember_regip(encoder.encode(vo.getMember_pass1()));
         return dao.insertMember(vo);
