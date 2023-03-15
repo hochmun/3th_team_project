@@ -93,7 +93,7 @@ tbody tr:hover{background:#f3f3f3}
 
 
 /* 글쓰기 */
-#write_wrap{/* padding:33px 68px 40px; */margin-top:15px;/* border:2px solid #d5d5d5; */}
+#write_wrap{padding:33px 68px 40px;margin-top:15px;border:2px solid #d5d5d5;}
 .visit_bookmark + #container #write_wrap{/* border-width:0 2px 2px; */margin-top:0}
 .input_box{position:relative}
 .input_infotxt{float:left;width:230px;margin:10px 10px 0 0}
@@ -123,6 +123,14 @@ input.put_inquiry:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #fff 
 .write_infobox .hitchek label{margin-left:3px}
 .write_infobox .hitchek .checkbox input[type="checkbox"]{top:3px}
 .write_infobox .hitchek .checkbox input + .checkmark{top:3px}
+
+.temporary_save_box{position:relative;text-align:right;z-index:5}
+.btn_temporary_save{position:absolute;right:0;top:4px;font-size:14px;color:#29367c;font-weight:bold}
+.editor_wrap{border-top:2px solid #29367c;margin-top:25px; width:923px;}
+.btn_box.write{position:relative;margin-top:6px}
+.btn_cancle,.btn_up{width:85px;height:40px;border-width:1px 1px 3px 1px;border-style:solid;border-radius:2px;font-size:14px;color:#fff;font-weight:bold}
+.btn_cancle{background:#666;border-color:#444;text-shadow: 0px -1px #474747}
+.btn_up{margin-left:4px;background:#3b4890;border-color:#29367c;text-shadow: 0px -1px #1d2761}
 
 /*말머리*/
 .write_subject{clear:both;display:inline-block;min-width:715px;border:1px solid #cecdce;padding-right:11px;margin-top:10px}
@@ -262,3 +270,198 @@ input.put_inquiry:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #fff 
 .wk_content .tit > span{display:block;height:44px;line-height:44px;padding:0 13px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-weight:normal;;font-size:24px;background:#f3f3f3}
 .wk_content .tit:after{content:'';position:absolute;bottom:1px;left:50%;border-style:solid;border-width:9px 7px 0px 7px;border-color:#f3f3f3 transparent;display:block;margin-left:-7px}
 .wk_txt{overflow:hidden;height:50px;line-height:17px;margin:4px 20px 15px;font-size:12px;letter-spacing:-0.05em}
+
+/* 게시판 글작성 */
+textarea#content {
+    width: 100%;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #b5b5b5;
+    border-right-color: #cdcdcd;
+    border-left-color: #cdcdcd;
+    border-radius: 5px;
+    font-size: 16px;
+    line-height: 1.5;
+    resize: vertical;
+  }
+
+
+  /*뷰*/
+#bottom_listwrap{position:relative;margin-top:20px}
+.view_content_wrap{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333}
+.gallview_head{margin:16px 0 29px;padding-bottom:11px;border-bottom:1px solid #eee}
+.gallview_head .title{padding:0 2px;margin-bottom:7px;font-size:14px}
+.gallview_head .title.autodel{margin-bottom:9px}
+
+.gallview_head .gall_writer{padding:0 2px}
+.gallview_head .gall_date::before{content:"";display:inline-block;width:1px;height:12px;background:#ccc;margin:0 10px 0 6px;vertical-align:-2px}
+.gallview_head .gall_writer > .fr{padding-right:7px}
+.gallview_head .gall_writer .fr > span::before, .album_head .gall_writer .fr > span::before{content:"";display:inline-block;width:1px;height:12px;background:#ccc;margin:0 10px 0 6px;vertical-align:-1px}/*201217*/
+.gallview_head .gall_writer .fr > span:first-child::before,.album_head .gall_writer .fr > span:first-child::before{display:none}
+.gallview_head .gall_date,.gallview_head  .gall_count,.gallview_head .gall_reply_num, .gallview_head .gall_comment {cursor:default}
+.gallview_head .gall_comment a{display:inline-block;height:20px;line-height:20px;padding:0 10px;background:#eee;border:1px #ccc solid;border-radius:50px}
+
+.txt_plusminus{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-weight:bold;font-size:13px;cursor:pointer}
+.txt_plusminus.plus{font-size:16px;vertical-align:-1px}
+.txt_plusminus.minus{color:#999;vertical-align:0}
+
+.view_content_wrap .comment_dccon,.album_cont .comment_dccon{margin-bottom:0}
+.icon_write_mbl,.icon_write_app{display:inline-block;width:11px;height:14px;margin-left:9px;vertical-align:-1px}
+.icon_write_mbl{background-position:-263px 0}
+.icon_write_app{background-position:-278px 0}
+.gallview_contents{line-height:22px}
+.gallview_contents > .inner{margin-bottom:50px}
+.view_content_wrap .writing_view_box td{text-align:left;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif}
+.writing_view_box{float:left;max-width:900px;word-break:break-all;line-height:1.5}
+.writing_view_box img{max-width:100%;vertical-align:top}
+.writing_view_box ul,.writing_view_box ol{padding-left:15px}
+.writing_banbox{float:right;max-width:160px}
+.bottom_btnbox{overflow:hidden}
+
+/* 221012 실베라이트 아이콘 추가 */
+.title_headicon .tip_box3{margin: -30px 0 0 -9px}
+.title_headicon .tip_box3:after{left: 5%}
+.title_headicon .icon_lbtimebest{vertical-align: -2px;margin: 0;background-position: -1px -484px}
+
+
+/*추천 비추천*/
+.btn_recommend_box{width:288px;height:auto;margin:0 auto 36px;padding-top:19px;border:1px solid #c4c4c4;border-radius:2px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;clear:both;}/*201202 앨범형 일부글 영역관련 대응 clear 추가*/
+.btn_recommend_box .inner{overflow:hidden;width:139px;margin-bottom:13px;padding:0}
+.up_num_box,.down_num_box{text-align:center;font-size:16px;font-weight:bold;color:#555}
+.up_num_box{float:left;width:67px;padding:10px 0 0 11px}
+.down_num_box{float:right;width:64px;padding:17px 12px 0 0}
+.sup_num{line-height:12px}
+.smallnum{font-size:11px;font-weight:normal}
+.btn_recom_up{float:right;width:56px;outline:none}
+.btn_recom_down{float:left;width:56px;outline:none}
+.icon_recom_up,.icon_recom_down{display:inline-block;width:56px;height:56px}
+.icon_recom_up{background-position:0 -315px}
+.btn_recom_up.on .icon_recom_up{background-position:0 -440px}
+.icon_recom_down{background-position:0 -377px}
+.recom_bottom_box{clear:both;position:relative;height:37px;border-top:1px solid #c4c4c4}
+.btn_hitgall,.btn_snsmore,.btn_report, .btn_nhitgall, .btn_silbechu{display:block;float:left;width:95px;height:37px;margin-left:1px;border-right:1px solid #c4c4c4;
+  background:#f9f9f9;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:12px;color:#555;text-shadow:0px 1px #fff
+}/*220530 btn_silbechu 추가*/
+.btn_hitgall, .btn_nhitgall{margin-left:0}/*220303 btn_nhitgall 추가*/
+.btn_hitgall.not, .btn_nhitgall.not,.btn_silbechu.not{cursor:default;outline:none;color:#c2c2c2}/* 220614 btn_silbechu추가*/
+
+.btn_hitgall.not .icon_hitgall, .btn_nhitgall.not .icon_nhitgall,  .btn_silbechu.not .icon_silbechu{opacity:0.3}/* 220614  .btn_silbechu.not .icon_silbechu 추기*/
+.btn_snsmore{width:96px}
+.btn_report{border-right:0}
+.icon_hitgall, .icon_snsmore, .icon_report, .icon_silbechu{display:inline-block}/*220530 icon_silbechu 추가*/
+.icon_hitgall{width:23px;height:20px;background-position:-74px -284px;margin-right:6px;vertical-align:-4px}
+.icon_snsmore{width:17px;height:20px;background-position:-74px -262px;margin-right:6px;vertical-align:-4px}
+.icon_report{width:18px;height:20px;background-position:-74px -241px;margin-right:6px;vertical-align:-4px}
+.icon_nhitgall{display:inline-block;width:24px;height:23px;background-position:-109px -991px;vertical-align:-6px;margin-right:4px}/*220303 힛추 아이콘 변경*/
+.morebox .icon_nhitgall{width:25px;height:25px;background-position:-237px -983px}/*220530 */
+.btn_nhitgall ~ .btn_snsmore .icon_snsmore, .btn_nhitgall ~ .btn_report .icon_report{vertical-align:-5px} /*220303 추가*/
+
+/*220530 실베추 추가*/
+.btn_recommend_box.morebox{min-width:288px;width:auto;display:table;}
+.btn_recommend_box.morebox .inner_box{text-align:center;font-size:0;}
+.btn_recommend_box.morebox .inner{display:inline-block;margin-bottom:2px }
+.btn_recommend_box.morebox .inner + .inner{margin-left:10px}
+.icon_silbechu{width:23px;height:23px;background-position:-270px -983px;margin-right:3px;margin-top:2px;vertical-align:-8px}
+
+.btn_recommend_box.morebox .icon_nhitgall{margin-top:2px;margin-right:2px;vertical-align:-9px}
+.btn_recommend_box.morebox .recom_bottom_box{height:36px}
+
+.btn_recommend_box.morebox .btn_snsmore,
+.btn_recommend_box.morebox .btn_report,
+.btn_recommend_box.morebox .btn_nhitgall,
+.btn_recommend_box.morebox .btn_silbechu
+{position:relative;width:85px;height:36px;margin-left:0;box-sizing:content-box}
+
+
+/*220630 버튼3개*/
+.btn_recommend_box.morebox .three .btn_nhitgall, .btn_recommend_box.morebox .three .btn_report, .btn_recommend_box.morebox .three .btn_silbechu{width:95px}
+.btn_recommend_box.morebox .three .btn_snsmore{width:96px}
+.btn_recommend_box.morebox .three .btn_silbechu:first-child::before{display:none}
+/*220630 버튼3개*/
+
+/*220722 버튼 2개(힛갤)*/
+.btn_recommend_box.morebox .two.recom_bottom_box > button{width:50%!important;box-sizing:border-box;}
+.btn_recommend_box.morebox .two.recom_bottom_box > button:first-child::before{display:none }
+/*//220722 버튼 2개(힛갤)*/
+
+
+.btn_recommend_box.morebox .btn_snsmore::before,
+.btn_recommend_box.morebox .btn_report::before,
+.btn_recommend_box.morebox .btn_silbechu::before
+{content:"";display:block;position:absolute;left:0;top:0;width:1px;height:100%;background:#fff}
+
+/*게시판형 리스트*/
+.gall_list{width:100%;border-bottom:1px solid #29367c;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif}
+th{height:37px;border-width:2px 0 1px;border-style:solid;border-color:#29367c;vertical-align:middle;text-align:center;color:#333;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif}
+
+td{padding:2px 4px;border-top:1px solid #eee;vertical-align:middle;text-align:center;color:#333}
+tr:first-child td{border-top:none}
+tbody tr:hover{background:#f3f3f3}
+.editor_wrap tbody tr:hover, .writing_view_box tbody tr:hover{background:none}
+
+.crt{background:#f4f6ff}
+.crt_icon{display:block;width:6px;height:11px;margin:0 auto;background-position:-195px -231px}
+.gall_list td{padding:0px 4px}
+.list .gall_list td{height:25px}
+.tbt.bg{background:#edf1fa;font-weight:bold}/*210303 실시간 베스트 배경색*/
+
+.gall_chk{padding:2px 0}/*마이너 관리자 체크박스*/
+.gall_list .gall_num,.gall_list .gall_date,.gall_list .gall_count,.gall_list .gall_recommend{font-family:tahoma,sans-serif;font-size:11px;padding-top:1px}
+.gall_subject{position:relative}
+.list .gall_subject{padding:2px 0px 0 0}
+.gall_tit{position:relative;text-align:left;font-size:13px}
+.gall_tit a{display:inline-block;max-width:82%;vertical-align:middle;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.gall_tit.voice_tit a, .gall_tit.adult_tit a, .miniwrap .gall_tit.voice_tit a, .miniwrap .gall_tit.adult_tit a{max-width:81%}/*보이스 글, 성인 게시글*/
+.uminor_admin .gall_tit a, .miniwrap .uminor_admin .gall_tit a{max-width:79%}/*210927 매니저 어드민 수정*/
+.uminor_admin .gall_tit.icon_four a, .miniwrap .uminor_admin .gall_tit.icon_four a{max-width:69%}/**210927 아이콘4개 추가*/
+.uminor_admin .gall_tit.icon_three a, .miniwrap .uminor_admin .gall_tit.icon_three a{max-width:73%}/**210927 아이콘3개 추가*/
+.uminor_admin .gall_tit.icon_two a, .miniwrap .uminor_admin .gall_tit.icon_two a{max-width:76%}/**210927 아이콘2개 추가*/
+
+
+.list .gall_tit a{padding-top:1px;line-height:100%}
+.list .gall_tit a:visited{color:#770088}
+.gall_writer{position:relative;font-size:13px;cursor:pointer}
+.list .gall_writer{padding-top:2px}
+.list .nickname{display:inline-block;max-width:64%;vertical-align:top;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.list .nickname.in{max-width:81%}/*210913 66%수정*//*211118 폰트 버그 max-width:84%*/
+.list .nickname em{line-height:13px}
+.list .gall_tit a.reply_numbox{width:auto;vertical-align:text-bottom;letter-spacing:-0.05em}/*211118 폰트 버그 vertical-align:bottom*/
+.list .tbt.bg .gall_tit a.reply_numbox{}/*211118 폰트 버그 삭제 vertical-align:-5px*/
+.reply_num{font-size:12px;color:#999}
+.list .ip{letter-spacing:-0.05em;margin-left:3px}
+
+.icon_go{display:inline-block;width:5px;height:9px;margin-left:6px;background-position:-36px -45px}
+.user_data .icon_go{margin-left:10px}
+.icon_img{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:7px;background-image:url(/img/icon_img.png);background-repeat:no-repeat}
+.icon_notic{background-position:0px 0}/*공지*/
+.icon_toprecomimg{background-position:0px -25px}/*초개념*/
+.icon_recomimg{background-position:0px -50px}/*이미지개념*/
+.icon_recomtxt{background-position:0px -75px}/*텍스트 개념*/
+.icon_pic{background-position:0 -100px}/*이미지*/
+.icon_txt{background-position:0px -123px}/*텍스트*/
+.icon_movie{background-position:0px -147px}/*동영상*/
+.icon_recomovie{background-position:-3px -362px}/*210330 개념 동영상*/
+.icon_survey{background-position:0px -170px}/*설문*/
+.icon_issue{background-position:0px -193px}/*이슈*/
+.icon_ad{background-position:0px -193px}/*광고*/
+.icon_voice_tit{display:inline-block;width:9px;height:13px;background-position:-241px -214px;vertical-align:-3px}/*보이스글 아이콘*/
+.icon_slow{background-position:0px -216px}/*mini 느린글*/
+.icon_secret, .icon_secret2{background-position:0px -284px} /*201020 아이콘변경*/
+.icon_vote_tit{display:inline-block;width:11px;height:11px;background-position:-285px -438px;vertical-align:-2px}/*201110 mini 투표 아이콘*/
+.icon_fnews{background-position:0px -261px}/*공지뉴스*/
+.icon_autodel_tit{display:inline-block;width:13px;height:13px;background-position:-247px -818px;vertical-align:-3px}/*201207 mini 자동삭제 아이콘*/
+.icon_rtimebest{display:inline-block;width:15px;height:18px;background-position:-3px -309px;vertical-align:-5px}/*210303 운영자 선택 실시간 베스트 탑고정 아이콘*/ /*220530 width값 포지션값 수정*/
+.icon_btimebest{display:inline-block;width:15px;height:15px;background-position:-3px -337px;vertical-align:-3px}/*210303 운영자 선택 실시간 베스트 아이콘*/
+.icon_lrtimebest{display:inline-block;width:15px;height:18px;background-position:-3px -437px}/*220530 실베 라이트 탑고정 아이콘*/
+.icon_lbtimebest{display:inline-block;width:15px;height:15px;background-position:-3px -465px;vertical-align:-3px}/*220530 실베 라이트 아이콘*/
+
+.icon_hit{background-position:-3px -387px}/*210524 힛갤러리*/
+.icon_lottery{background-position:-3px -412px}/*220221 디시로터리*/
+
+.icon_ai{background-position: -3px -818px}/*230214 ai*/
+
+.album .icon_voice_tit{vertical-align:-3px}
+.gall_list.empty td{color:#555;height:250px}
+.gall_list.empty .empty_list td{height:25px;color:#333}/*200708 게시글 없음시 설문or 공지등록*/
+.gall_list.empty tr:hover{background:none}

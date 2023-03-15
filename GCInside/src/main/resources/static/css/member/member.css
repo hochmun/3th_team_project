@@ -759,6 +759,7 @@ button.smaller, button.small {
     background-color: #ccc;
     border-radius: 50%;
 }
+.pw_rule .checkbox.on .chklbl::before{background-color: #4b58a7;}
 .pw_rule .chklbl::after {
     content: "";
     width: 10px;
@@ -770,6 +771,20 @@ button.smaller, button.small {
     background: url('../../img/checkbox.png') no-repeat 0 0;
     background-size: 10px 8px;
 }
+/*03-15 안전바 색추가*/
+.step_box.impossible .bar {
+    background: #d31900;
+    left: 0;
+}
+.step_box.normal .bar {
+    background: #ff9933;
+    left: 33.333%;
+}
+.step_box.safe .bar {
+    background: #008140;
+    right: 0;
+}
+/*////03-15 안전 색추가*/
 .pw_rule .pw_step {
     margin-top: 7px;
 }
