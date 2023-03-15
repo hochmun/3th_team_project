@@ -27,6 +27,7 @@ let formInit = function(){
     $('#gc_pw').keyup(function(){
         isCheckPw();
     });
+
     // 비밀번호 재확인체크
     $('#gc_pwc').keyup(function(){
         isCheckPwc();
@@ -41,7 +42,6 @@ let formInit = function(){
             isCheckNick();
         }
     });
-
 
 	//이메일 검사
 	$("#email_host_lyr").click(function(e){

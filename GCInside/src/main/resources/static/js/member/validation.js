@@ -250,6 +250,7 @@ let mailList = function(){
 		$('#email2').val(email_list);
 	}
 }
+// 인증코드 받기
 let codeSend = function() {
     let email1 = jQuery.trim($('#email1').val());			//이메일
 	if(typeof(email1) == 'undefined' || email1 == '') {
@@ -264,7 +265,45 @@ let codeSend = function() {
 		return false;
 	}
 	let email = email1 + "@" + email2;
+	$.ajax({
+        url: '/GCInside/member/sendEmailCode',
+        type: 'POST',
+        data: {email: email},
+        success: function(response) {
+            alert('인증코드가 전송되었습니다.');
+        },
+        error: function(error) {
+            alert('인증코드 전송에 실패했습니다.');
+        }
+    });
 }
+// 이메일 인증코드 처리
+let AuthCode = function() {
+    let code = jQuery.trim($('#code').val());  // 입력한 인증코드
+    if(typeof(code) == 'undefined' || code == '') {
+        alert('인증코드를 입력해 주세요.');
+        $('#code').focus();
+        return false;
+    }
+    $.ajax({
+        url : '/GCInside/member/AuthCode',
+        type : 'POST',
+        contentType: 'application/json',
+        data : JSON.stringify({'code' : code}),// 입력한 인증코드 전송
+        dataType: 'json',
+        success : function(result) {
+            if(result == 'success') {
+                alert('인증되었습니다.'); // 인증 성공 시 처리할 코드 작성
+            } else {
+                alert('인증코드가 일치하지 않습니다.');
+            }
+        },
+        error : function() {
+            alert('오류가 발생하였습니다.');
+        }
+    });
+}
+
 
 
 
