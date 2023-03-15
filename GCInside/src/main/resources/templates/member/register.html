@@ -123,13 +123,13 @@
             
                           <!-- .form_group.email -->
                           <div class="form_group email">
-                            <div class="form_tit">이메일 입력</div><!-- 210913 텍스트 수정-->
+                            <div class="form_tit">이메일 입력</div>
                             <!-- form_txt.id -->
                             <div class="form_txt">
                               <div class="clear">
-                    <input type="hidden" id="code_email_type" name="code_email_type" value="JN">
+                    <!--<input type="hidden" id="code_email_type" name="code_email_type" value="JN">
                     <input type="hidden" id="c_email_auth" name="c_email_auth" value="">
-                    <input type="hidden" id="c_email_auth_sign" name="c_email_auth_sign" value="">
+                    <input type="hidden" id="c_email_auth_sign" name="c_email_auth_sign" value="">-->
                                 <input type="text" class="int" id="email1" name="email1" title="이메일 입력" value="" maxlength="30" style="text-transform: lowercase">
                                 <span class="deco_mail">@</span>
                                 <input type="text" class="int" id="email2" name="email2" title="이메일 주소 입력" readonly="" maxlength="20">
@@ -165,7 +165,7 @@
                                   <div class="code_box clear">
                                     <div class="code_inputbox clear">
                                     <input type="text" id="code" name="code" class="code_input" title="인증코드" placeholder="인증 코드 입력" maxlength="10">
-                                    <button type="button" class="btn_codeok" onclick="codeAuth()">확인</button>
+                                    <button type="button" class="btn_codeok" onclick="AuthCode()">확인</button>
                                     </div>
                                     <button type="button" class="btn_white small btn_recode" onclick="codeSend()">인증 코드 받기</button>
                                   </div>
