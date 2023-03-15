@@ -170,10 +170,13 @@
     border: 1px solid #29367c;
     border-width: 2px 1px 1px;
 }
+/* 갤러리 index */
 .pop_wrap.lightpurple{border-color:#4f4dc6}
 .pop_wrap .pop_hot_gall .dashed{font-size:12px;padding-left:0}
 .pop_wrap.lightpurple .pop_hot_gall .pop_head.dashed{color:#4f4dc6}
 .miniwrap .pop_wrap .pop_hot_gall .btn_box, .pop_wrap .pop_hot_gall .btn_box{border-top:none;padding:0 0 0 15px;line-height:15px;clear:both}
+.pop_wrap .pop_hot_gall .btn_box{padding-top:3px}
+/* /갤러리 index*/
 /* 어드민 팝업 */
 /* 회원 목록 자세히보기 팝업 */
 .admin.pop_back {position: absolute;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,0,0,0.5);z-index: 4000;}
