@@ -46,7 +46,7 @@ public class MemberContoller {
     public String register(MemberVO vo, HttpServletRequest req) {
         vo.setMember_regip(req.getRemoteAddr());
         int result = service.insertMember(vo);
-        return "redirect:/member/login?success" + result;
+        return "redirect:/member/login?success"+result;
     }
 
     @GetMapping("member/find_id")
@@ -81,20 +81,22 @@ public class MemberContoller {
 
     @PostMapping("member/sendEmailCode") // 이메일보내는 컨트롤러
     public ResponseEntity<?> sendEmailCode(@RequestParam String email, HttpSession session) throws Exception {
-        String code = emailService.sendEmailCode(email,session);
-        session.setAttribute("code", code);
-        return ResponseEntity.ok().build();
+        String code = emailService.sendEmailCode(email, session);
+        return ResponseEntity.ok(code);
     }
 
-    @ResponseBody
-    @PostMapping("member/AuthCode") // 인증코드 확인 컨트롤러
+    /* @ResponseBody 어노테이션은 생략가능,ResponseEntity를 반환할 땐
+       자동으로 응답 body에 데이터가 들어감
+    */
+    @PostMapping("member/AuthCode")
     public ResponseEntity<String> AuthCode(@RequestParam("code") String code, HttpSession session) {
         String sessionCode = (String) session.getAttribute("code");
+        System.out.println("sessionCode: " + sessionCode + ", code: " + code);//
         if (sessionCode != null && sessionCode.equals(code)) { // 인증코드 일치
-            session.removeAttribute("code"); // 세션에서 인증코드 제거
+            session.removeAttribute("code"); // 인증성공시 세션에서 인증코드 제거
             return ResponseEntity.ok("success");
         } else { // 인증코드 불일치
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.badRequest().body("fail");
         }
     }
 }
