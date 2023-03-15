@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/lately_visit_new.js"></script>
+    <script type="text/javascript" src="/js/gall/gallery.js"></script>
 </head>
 <body>
 	<div class="gcwrap width1160 list_wrap">
@@ -158,7 +159,7 @@
 							</div>
 							<div class="fr gall_issuebox">
 								<div class="bundle">
-									<button type="button" class="issue_setting" id="issue_setting">설정</button>
+									<button type="button" class="issue_setting" id="issue_setting" onclick="setting_layer()">설정</button>
 									<!-- 팝업 -->
 									<div class="pop_tipbox setting_list" id="setting_list" style="display: none;">
 										<div class="inner">
@@ -168,8 +169,8 @@
 											</ul>
 										</div>
 									</div>
-								</div
-								><button type="button" class="relate">
+								</div>
+								<button type="button" class="relate" onclick="open_relation(0)">
 									<!-- 새로운 연관 갤러리 있을 경우 display:none 제거 됨 -->
 									<span class="new" style="display: none;"><em class="sp_img icon_new"></em></span>
 									연관 갤러리(0/n)
@@ -187,7 +188,53 @@
 							<!-- 말머리, 꼬리말 설정 팝업 -->
 							<div class="pop_wrap type3" id="headTail_lay" style="left:50%;top:44px;margin-left:-222px;display: none;"></div>
 							<!-- 연관 갤러리 팝업 -->
-							<div id="relation_popup" class="pop_wrap type3" style="left: 0px;top:-2px;display: none;" loaded="1"></div>
+							<div id="relation_popup" class="pop_wrap type3" style="left: 0px;top:-2px;display: none;" loaded="1">
+								<div class="pop_content relation_wrap">
+									<div class="pop_head"><h3>연관 갤러리</h3></div>
+									<!-- 현갤러리 -> 타 갤러리 -->
+									<div class="following inner">
+										<div class="pop_info">
+											<b>ㅁㅁ 갤러리<em class="sp_img icon_right_arrow"></em> 타 갤러리(<span class="count">3</span>)</b>
+											<p>이 갤러리가 연관 갤러리로 추가한 갤러리</p>
+										</div>
+										<ul class="list_box clear">
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+										</ul>
+										<div class="btn_box">
+											<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
+											<div class="page_num">
+												<strong class="now_num">1</strong>/<span class="total_num">1</span>
+											</div>
+											<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
+										</div>
+									</div>
+									<!-- 타 갤러리 -> 현갤러리 -->
+									<div class="follower inner">
+										<div class="pop_info">
+											<b>타 갤러리<em class="sp_img icon_right_arrow"></em> ㅁㅁ 갤러리(<span class="count">6</span>)</b>
+											<p>이 갤러리를 연관 갤러리로 추가한 갤러리</p>
+										</div>
+										<ul class="list_box clear">
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+										</ul>
+										<div class="btn_box">
+											<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
+											<div class="page_num">
+												<strong class="now_num">1</strong>/<span class="total_num">1</span>
+											</div>
+											<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="poply_bgblueclose"></button>
+							</div>
 						</div>
 					</header>
 
@@ -324,7 +371,7 @@
 							<div class="right_box">
 								<div class="output_array clear" style="display: block;">
 									<div class="select_box array_num">
-										<div class="select_area"><a href="#"><!--현재 페이지 개수-->50개<em class="sp_img icon_option_more"></em></a></div>
+										<div class="select_area"><a href="javascript:;"><!--현재 페이지 개수-->50개<em class="sp_img icon_option_more"></em></a></div>
 										<ul id="listSizeLayer" class="option_box" style="left:0;top:20px;display:none;">
 											<li><a href="javascript:;">30개</a></li>
 											<li><a href="javascript:;">50개</a></li>
