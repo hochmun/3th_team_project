@@ -119,33 +119,29 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_sub_manager` (
 ENGINE = InnoDB
 COMMENT = 'gell_num, uid => COMPOSITE UNIQUE KEY'
 
+## 2023/03/15 // 심규영 // 갤러리 설정 테이블 수정
 CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_setting` (
   `setting_num` INT NOT NULL AUTO_INCREMENT,
   `setting_gell_num` INT NOT NULL,
-  `setting_access` TINYINT NOT NULL DEFAULT 0,
-  `setting_total_recommend` TINYINT NOT NULL DEFAULT 0,
-  `setting_recommend_limit_time` INT NOT NULL DEFAULT 0,
-  `setting_recommend_standard` INT NOT NULL DEFAULT 10,
-  `setting_recommend_reflect_limit` INT NOT NULL DEFAULT 600,
-  `setting_hit_gell` INT NOT NULL DEFAULT 100,
-  `setting_article_info` VARCHAR(400) NULL,
-  `setting_comment_info` VARCHAR(400) NULL,
-  `setting_write_authority` TINYINT NOT NULL DEFAULT 0,
-  `setting_append_limit` TINYINT NOT NULL DEFAULT 0,
-  `setting_comment_authority` TINYINT NOT NULL DEFAULT 0,
-  `setting_recomment_authority` TINYINT NOT NULL DEFAULT 0,
-  `setting_non_member_appcapcha` TINYINT NOT NULL DEFAULT 0,
-  `setting_member_appcapcha` TINYINT NOT NULL DEFAULT 0,
-  `setting_non_member_write_wait` INT NOT NULL DEFAULT 10,
-  `setting_non_member_comment_wait` INT NOT NULL DEFAULT 10,
-  `setting_member_write_wait` INT NOT NULL DEFAULT 10,
-  `setting_member_comment_wait` INT NOT NULL DEFAULT 10,
-  `setting_singo_limit` TINYINT NOT NULL DEFAULT 0,
-  `setting_singo_time_limit` INT NOT NULL DEFAULT 0,
-  `setting_singo_alarm_count` INT NOT NULL DEFAULT 1,
+  `setting_member` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_non_nick` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_article_open_s` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_recommend_standard` TINYINT(3) NOT NULL DEFAULT 10,
+  `setting_be_recommend` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_be_recommend_standard` SMALLINT(4) NOT NULL DEFAULT 20,
+  `setting_sub_cate` TINYINT(2) NOT NULL DEFAULT 0,
+  `setting_basic_cate` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_p_word` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_p_word_list` TEXT NULL DEFAULT NULL,
+  `setting_auto_article_delete` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_secret` TINYINT(1) NOT NULL DEFAULT 0,
+  `setting_notice` TINYINT(1) NOT NULL DEFAULT 5,
+  `setting_fix_s` TINYINT(1) NOT NULL DEFAULT 1,
+  `setting_fix_num` TINYINT(1) NOT NULL DEFAULT 3,
+  `setting_fix_time` TINYINT(2) NOT NULL DEFAULT 1,
+  `setting_adult` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`setting_num`),
   INDEX `fk_gc_gell_setting_gc_gell1_idx` (`setting_gell_num` ASC),
-  UNIQUE INDEX `setting_gell_num_UNIQUE` (`setting_gell_num` ASC),
   CONSTRAINT `fk_gc_gell_setting_gc_gell1`
     FOREIGN KEY (`setting_gell_num`)
     REFERENCES `GC_Inside`.`gc_gell` (`gell_num`)
@@ -153,11 +149,12 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_setting` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 
+## 갤러리 말머리 테이블
 CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_sub_cate` (
   `sub_cate_num` INT NOT NULL AUTO_INCREMENT,
   `sub_cate_gell_num` INT NOT NULL,
   `sub_cate_sequence` INT NOT NULL,
-  `sub_cate_name` VARCHAR(20) NOT NULL,
+  `sub_cate_name` VARCHAR(5) NOT NULL,
   PRIMARY KEY (`sub_cate_num`),
   INDEX `fk_gc_gell_sub_cate_gc_gell1_idx` (`sub_cate_gell_num` ASC),
   CONSTRAINT `fk_gc_gell_sub_cate_gc_gell1`
@@ -222,31 +219,30 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_file` (
     ON UPDATE NO ACTION)
 ENGINE = INNODB
 
-CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_comment` (
-  `comment_num` INT NOT NULL AUTO_INCREMENT,
-  `comment_article_num` INT NOT NULL,
-  `comment_content` VARCHAR(400) NOT NULL,
-  `comment_uid` VARCHAR(20) NOT NULL,
-  `comment_regip` VARCHAR(100) NOT NULL,
-  `comment_re_count` INT NOT NULL DEFAULT 0,
-  `comment_status` TINYINT NOT NULL DEFAULT 0,
-  `comment_rdate` DATETIME NOT NULL,
-  `comment_wdate` DATETIME NULL,
-  PRIMARY KEY (`comment_num`),
-  INDEX `fk_gc_gell_comment_gc_gell_article1_idx` (`comment_article_num` ASC),
-  INDEX `fk_gc_gell_comment_gc_member1_idx` (`comment_uid` ASC),
-  CONSTRAINT `fk_gc_gell_comment_gc_gell_article1`
-    FOREIGN KEY (`comment_article_num`)
-    REFERENCES `GC_Inside`.`gc_gell_article` (`article_num`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_gc_gell_comment_gc_member1`
-    FOREIGN KEY (`comment_uid`)
-    REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
+## 2023/03/15 // 심규영 // 댓글 삭제 처리자 열 추가
+CREATE TABLE `gc_gell_comment` (
+	`comment_num` INT(11) NOT NULL AUTO_INCREMENT COMMENT '댓글 번호',
+	`comment_article_num` INT(11) NOT NULL COMMENT '게시물 번호',
+	`comment_content` VARCHAR(400) NOT NULL COMMENT '댓글 내용' COLLATE 'utf8_general_ci',
+	`comment_uid` VARCHAR(20) NOT NULL COMMENT '댓글 작성자' COLLATE 'utf8_general_ci',
+	`comment_regip` VARCHAR(100) NOT NULL COMMENT '댓글 작성자 아이피' COLLATE 'utf8_general_ci',
+	`comment_re_count` INT(11) NOT NULL DEFAULT '0' COMMENT '댓글 답글 갯수',
+	`comment_status` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '댓글 상태//\r\n0:기본//\r\n1:삭제',
+	`comment_rdate` DATETIME NOT NULL COMMENT '댓글 작성 날짜',
+	`comment_wdate` DATETIME NULL DEFAULT NULL COMMENT '댓글 삭제 날짜',
+	`comment_w_uid` VARCHAR(20) NULL DEFAULT NULL COMMENT '댓글 삭제 처리자' COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`comment_num`) USING BTREE,
+	INDEX `fk_gc_gell_comment_gc_gell_article1_idx` (`comment_article_num`) USING BTREE,
+	INDEX `fk_gc_gell_comment_gc_member1_idx` (`comment_uid`) USING BTREE,
+	INDEX `comment_w_uid` (`comment_w_uid`) USING BTREE,
+	CONSTRAINT `FK_gc_gell_comment_gc_member` FOREIGN KEY (`comment_w_uid`) REFERENCES `gc_member` (`member_uid`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT `fk_gc_gell_comment_gc_gell_article1` FOREIGN KEY (`comment_article_num`) REFERENCES `gc_gell_article` (`article_num`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	CONSTRAINT `fk_gc_gell_comment_gc_member1` FOREIGN KEY (`comment_uid`) REFERENCES `gc_member` (`member_uid`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
 
+## 2023/03/15 // 심규영 // 댓글 답글 삭제 처리자 열 추가
 CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_re_comment` (
   `re_comment_num` INT NOT NULL AUTO_INCREMENT,
   `re_comment_oir_num` INT NOT NULL,
@@ -300,6 +296,116 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_admin_service_singo` (
   CONSTRAINT `singo_gell`
     FOREIGN KEY (`singo_gell`)
     REFERENCES `GC_Inside`.`gc_gell` (`gell_name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+## 관리자 갤러리 생성 신청 테이블
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_admin_gell_create_approve` (
+  `gell_create_rdate` DATETIME NOT NULL,
+  `gell_create_status` TINYINT(1) NOT NULL DEFAULT 0,
+  `gell_create_uid` VARCHAR(20) NOT NULL,
+  `gell_create_name` VARCHAR(12) NOT NULL,
+  `gell_create_intro` VARCHAR(200) NOT NULL,
+  `gell_create_cate` TINYINT NOT NULL,
+  `gell_create_address` VARCHAR(20) NOT NULL,
+  `gell_create_reason` VARCHAR(100) NOT NULL,
+  `gell_create_r_reason` VARCHAR(100) NULL,
+  INDEX `fk_gc_admin_gell_create_approve_gc_member1_idx` (`gell_create_uid` ASC),
+  INDEX `fk_gc_admin_gell_create_approve_gc_gell_cate21_idx` (`gell_create_cate` ASC),
+  CONSTRAINT `fk_gc_admin_gell_create_approve_gc_member1`
+    FOREIGN KEY (`gell_create_uid`)
+    REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gc_admin_gell_create_approve_gc_gell_cate21`
+    FOREIGN KEY (`gell_create_cate`)
+    REFERENCES `GC_Inside`.`gc_gell_cate2` (`gell_cate2`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = INNODB
+
+## 2023/03/15 // 심규영 // 갤러리 차단 목록
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_block_list` (
+  `gell_block_num` INT NOT NULL AUTO_INCREMENT,
+  `gell_block_g_num` INT NOT NULL,
+  `gell_block_m_uid` VARCHAR(20) NOT NULL,
+  `gell_block_uid` VARCHAR(20) NOT NULL,
+  `gell_block_reason` VARCHAR(20) NOT NULL,
+  `gell_block_date` SMALLINT(3) NOT NULL,
+  `gell_block_rdate` DATETIME NOT NULL,
+  `gell_block_wdate` DATETIME NOT NULL,
+  INDEX `fk_gc_gell_block_list_gc_gell1_idx` (`gell_block_g_num` ASC),
+  INDEX `fk_gc_gell_block_list_gc_member1_idx` (`gell_block_m_uid` ASC),
+  INDEX `fk_gc_gell_block_list_gc_member2_idx` (`gell_block_uid` ASC),
+  PRIMARY KEY (`gell_block_num`),
+  CONSTRAINT `fk_gc_gell_block_list_gc_gell1`
+    FOREIGN KEY (`gell_block_g_num`)
+    REFERENCES `GC_Inside`.`gc_gell` (`gell_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gc_gell_block_list_gc_member1`
+    FOREIGN KEY (`gell_block_m_uid`)
+    REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gc_gell_block_list_gc_member2`
+    FOREIGN KEY (`gell_block_uid`)
+    REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = INNODB
+
+## 2023/03/15 // 심규영 // 갤러리 관리 내역
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_manage_log` (
+  `gell_m_l_n` INT NOT NULL AUTO_INCREMENT,
+  `gell_m_l_g_n` INT NOT NULL,
+  `gell_m_l_uid` VARCHAR(20) NOT NULL,
+  `gell_m_l_cate` VARCHAR(20) NOT NULL,
+  `gell_m_l_content` VARCHAR(100) NOT NULL,
+  `gell_m_l_date` DATETIME NOT NULL,
+  INDEX `fk_gc_gell_manage_log_gc_member1_idx` (`gell_m_l_uid` ASC),
+  PRIMARY KEY (`gell_m_l_n`),
+  CONSTRAINT `fk_gc_gell_manage_log_gc_gell1`
+    FOREIGN KEY (`gell_m_l_g_n`)
+    REFERENCES `GC_Inside`.`gc_gell` (`gell_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gc_gell_manage_log_gc_member1`
+    FOREIGN KEY (`gell_m_l_uid`)
+    REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = INNODB
+
+## 2023/03/15 // 심규영 // 갤러리 부매니저 권한 테이블 생성
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_sub_m_power` (
+  `sub_m_p_num` INT NOT NULL AUTO_INCREMENT,
+  `sub_m_p_g_num` INT NOT NULL,
+  `sub_m_p_uid` VARCHAR(20) NOT NULL,
+  `sub_m_p_basic` TINYINT(1) NOT NULL,
+  `sub_m_p_gell` TINYINT(1) NOT NULL,
+  `sub_m_p_ban_list` TINYINT(1) NOT NULL,
+  `sub_m_p_delete_list` TINYINT(1) NOT NULL,
+  `sub_m_p_log_list` TINYINT(1) NOT NULL,
+  `sub_m_p_user_ban` TINYINT(1) NOT NULL,
+  `sub_m_p_txt_delete` TINYINT(1) NOT NULL,
+  `sub_m_p_command_delete` TINYINT(1) NOT NULL,
+  `sub_m_p_coment_delete` TINYINT(1) NOT NULL,
+  `sub_m_p_notice` TINYINT(1) NOT NULL,
+  `sub_m_p_command` TINYINT(1) NOT NULL,
+  `sub_m_p_cate` TINYINT(1) NOT NULL,
+  INDEX `fk_gc_gell_sub_m_power_gc_gell1_idx` (`sub_m_p_g_num` ASC),
+  INDEX `fk_gc_gell_sub_m_power_gc_member1_idx` (`sub_m_p_uid` ASC),
+  PRIMARY KEY (`sub_m_p_num`),
+  CONSTRAINT `fk_gc_gell_sub_m_power_gc_gell1`
+    FOREIGN KEY (`sub_m_p_g_num`)
+    REFERENCES `GC_Inside`.`gc_gell` (`gell_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_gc_gell_sub_m_power_gc_member1`
+    FOREIGN KEY (`sub_m_p_uid`)
+    REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

@@ -88,11 +88,13 @@ tbody tr:hover{background:#f3f3f3}
 .list_bottom_btnbox > div >button:first-child{margin-left:0}
 .list_bottom_btnbox > div >button{margin-left:3px}
 
+.listwrap .bottom_paging_wrap .bottom_paging_box > a, .listwrap .bottom_paging_wrap .bottom_paging_box > em, .listwrap .bottom_paging_wrap .bottom_paging_box{padding-top:6px}
+
 
 
 /* 글쓰기 */
-#write_wrap{/* padding:33px 68px 40px; */px; */margin-top:15px;/* border:2px solid #d5d5d5; */5d5; */}
-.visit_bookmark + #container #write_wrap{/* border-width:0 2px 2px; */px; */margin-top:0}
+#write_wrap{/* padding:33px 68px 40px; */margin-top:15px;/* border:2px solid #d5d5d5; */}
+.visit_bookmark + #container #write_wrap{/* border-width:0 2px 2px; */margin-top:0}
 .input_box{position:relative}
 .input_infotxt{float:left;width:230px;margin:10px 10px 0 0}
 .input_write_tit{float:left;width:728px;margin:10px 0 0 0PX}
@@ -149,3 +151,114 @@ input.put_inquiry:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #fff 
 .btn_write_type{height:21px;font-size:14px;color:#555;line-height:21px}
 .icon_slowrite_info{display:inline-block;width:14px;height:13px;background-position:-252px -201px;margin-top:3px}
 .on .icon_slowrite{width:20px;height:20px;background-position:-235px -522px}
+
+.listwrap .bottom_paging_wrap{display:inline-block;width:100%;margin-top:5px;position:relative;padding:0 121px;box-sizing: border-box}
+.bottom_movebox{display:inline-block;position: absolute;top:11px;right:0}
+.btn_schmove{padding:0 9px 0 10px;height:26px;line-height:24px;font-size:14px;color:#333;margin-left:7px;vertical-align:0}
+.icon_schmove{display:inline-block;width:16px;height:16px;background-position:-262px -909px;vertical-align:-3px;}
+.bottom_paging_wrap span.icon_schmove{margin-left:4px;font-size:0}
+
+/*리스트,뷰,통합 검색 오른쪽 영역*/
+.content_box{position:relative;margin-top:15px;padding:0 13px 16px;border:1px solid #ccc;background:#fff}
+.content_box header{overflow:hidden;border-bottom:1px dashed #aaa}
+.content_box .tit{height:44px;padding-left:2px;line-height:48px;font-size:14px}
+.right_content  .content_box .tit{line-height:47px}/*220302 추가*/
+.content_box .tit a{position:relative;display:inline-block;height:44px}
+.content_box a.inner{display:block}
+.content_box .new{position:absolute;right:-9px;top:-3px}
+.content_box .img_box{display:block;overflow:hidden;height:182px;box-sizing:border-box;border:1px solid #ccc;
+  background:url(https://nstatic.dcinside.com/dc/w/images/img_none1.jpg) no-repeat center center
+}
+.content_box .secimg_box .img_box{background-size:auto 100px;background-position:center -7px}
+.content_box .img_box img{display:block;width:100%;min-height:182px;}/*180424 max-width:100% 수정*/
+.r_news .txt_box strong,.rcont_issue .txt_box strong{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.right_content .box_menu{position:absolute;right:16px;top:18px}
+.right_content .box_menu a{font-size:11px;letter-spacing:-1px}
+.right_content .box_menu a:before{content:"";display:inline-block;width:1px;height:10px;margin:0 8px 0 3px;vertical-align:-1px;background:#d7d7d7}
+.right_content .box_menu a:first-child:before{display:none}
+.right_content .rank_gall{color:#29367c}
+.right_content .rank_gall:hover{text-decoration:underline}
+.right_content .rank_mgall{color:#ee3c24}
+.right_content .rank_mgall:hover{text-decoration:underline}
+.right_content .rank_gall.on,.right_content .rank_mgall.on,.right_content .rank_mini.on{text-decoration:underline}/*mini 추가*/
+
+/* 실시간 베스트*/
+.rightbanner + .content_box.r_timebest{margin-top:12px}
+.rcont_imgtxt_box .img{overflow:hidden;margin-top:12px;margin-left:-7px}
+.rcont_imgtxt_box .txt_box{margin:8px 0 0;height:35px}
+.rcont_imgtxt_box .txt_box strong{font-weight:normal}
+.rcontimg_box{float:left;width:132px;margin-left:7px}
+
+.content_box .rcontimg_box .img_box{position:relative;display:block;overflow:hidden;height:88px;border:none;background-size:cover}
+.content_box .rcontimg_box .img_box::after{content:"";display:block;position:absolute;left:0;top:0 ;width:130px;height:86px;border:1px solid #ccc }
+.content_box .rcontimg_box .img_box img{display:block;min-height:88px;width:100%;}
+.rcont_imgtxt_box .txt{margin:12px 0 0;padding-top:13px;border-top:1px solid #eee;line-height:22px}
+.rcont_imgtxt_box .txt a{display:block;width:272px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+
+/* 뉴스,디시미디어*/
+.r_dcmedia{overflow:hidden}
+.r_dcmedia .tit{float:left}
+.r_dcmedia .tit.on a{text-decoration: underline}
+.r_dcmedia .tit::before{content:"|";display:inline-block;width:2px;height:13px;padding:0 10px 0 5px;color:#d7d7d7;font-size:13px;line-height:45px;vertical-align:top}/*220302*/
+.r_dcmedia .tit:first-child::before{display:none }/*220302*/
+.r_dcmedia .txt_box{
+  height:37px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+}
+.r_dcmedia .txt_box strong{white-space:normal;text-overflow:inherit}
+
+.r_dcmedia .rcontimg_box:nth-child(even), .r_timebest .rcontimg_box:nth-child(even){float:right;margin-left:0}/*220331 화면 배율 조절시 떨어짐 대응*/
+
+/* 디시이슈*/
+.r_dcmedia .dcissue .rcontimg_box a, .r_dcmedia .dcissue .txt li a{position:relative}
+.r_dcmedia .dcissue .txt_box{padding-left:13px}
+.r_dcmedia .dcissue .txt_box, .r_dcmedia .dcissue .txt li a{box-sizing:border-box}
+.r_dcmedia .dcissue .ranking{color:#3b4890;font-weight:bold}
+.r_dcmedia .dcissue .txt_box .ranking{position:absolute;left:0px}
+.r_dcmedia .dcissue .txt li .ranking{padding-right:2px}
+.r_dcmedia .dcissue .ranking.grey{color:#999}
+
+/*초개념*/
+.content_box.r_recommend .tit{float:left}/*ipad*/
+.content_box .tit .sub{font-weight:normal;font-size:12px;color:#555;letter-spacing:-0.05em;display:inline-block;vertical-align:top;line-height:48px}
+.r_recommend .tit .sub em{
+  display:inline-block;max-width:140px;vertical-align:top;padding-top:1px;line-height:46px;
+  text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+}
+.r_sec_recommend .btn_more{position:absolute;right:15px;top:18px}
+.rcont_sec{margin-top:12px}
+.rcont_sec .img{overflow:hidden}
+.rcont_sec .txt_box{margin:8px 0 0;height:35px}
+.secimg_box{float:right;width:132px;margin-left:7px}
+.secimg_box:first-child{float:left;margin-left:0}
+.content_box .secimg_box .img_box{display:block;overflow:hidden;height:88px;box-sizing:border-box;border:1px solid #ccc}
+.content_box .secimg_box .img_box img{display:block;min-height:88px;width:100%}
+.rcont_sec .txt{margin:12px 0 1px;padding-top:13px;border-top:1px solid #eee;line-height:22px}
+.rcont_sec .txt a{display:block;width:272px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+
+/*개념글*/
+.rcont_list{padding-left:4px;margin-top:10px}
+.rcont_list li{line-height:22px}
+.rcont_list li a{display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.rcont_list li a::before{content:"";display:inline-block;width:2px;height:2px;margin-right:5px;background:#333;vertical-align:4px}
+
+/*힛 ,그때그힛*/
+.r_hit{overflow:hidden}
+.r_hit .tit{float:left}
+.content_box.r_hit{padding:0 13px 17px}
+.r_hit .tit:last-of-type:before{content:"|";display:inline-block;width:2px;height:13px;padding:0 15px;color:#d7d7d7;font-size:13px;line-height:45px;vertical-align:top}/*211118 폰트 버그 font-size:13px;line-height:45px;vertical-align:top 추가 */
+.r_hit .tit.on a{text-decoration:underline}
+.r_hit .txt_box{height:37px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.hit_day{margin-top:3px;color:#999}
+.rcont_hit,.rcont_old_hit{margin-top:13px}
+.rcont_old_hit a.inner{position:relative}
+.content_box .rcont_old_hit .img_box{background:url(/img/sp_bgimg.png) no-repeat 0 -314px}
+
+/*디시위키*/
+.wiki_random_go{position:absolute;right:14px;top:18px}
+.wiki_random_go .icon_go{margin-left:4px}
+.rcont_wiki{margin:14px 0 0}
+.wk_box{background:#fff;border:1px #e8e8e8 solid;box-sizing:border-box;height:125px}
+.wk_content .tit{position:relative;display:block;height:54px;text-align:center;padding-left:0}
+.wk_content .tit > span{display:block;height:44px;line-height:44px;padding:0 13px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-weight:normal;;font-size:24px;background:#f3f3f3}
+.wk_content .tit:after{content:'';position:absolute;bottom:1px;left:50%;border-style:solid;border-width:9px 7px 0px 7px;border-color:#f3f3f3 transparent;display:block;margin-left:-7px}
+.wk_txt{overflow:hidden;height:50px;line-height:17px;margin:4px 20px 15px;font-size:12px;letter-spacing:-0.05em}

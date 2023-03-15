@@ -1193,7 +1193,6 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .width1160 .gc_all{width:1158px}
 
 /*select  디자인*/
-.select_box{position:relative;float:left}
 .select_box select{display:none}
 .select_area{position:relative;cursor:pointer}
 .bottom_array .option_box{position:absolute;width:100%;box-sizing:border-box;background:#fff}
@@ -1205,6 +1204,63 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 /*큰 말머리*/
 .subject_select.select_box{clear:both;margin:10px 10px 0 0}
 .subject_select .select_area{width:102px;height:33px;padding:0 8px 0 11px;line-height:33px;border:1px solid #cecdce;background:#f3f3f3;font-size:14px;color:#333;font-weight:bold}
+
+/*페이징*/
+.bottom_paging_box{position:relative;margin-top:18px;text-align:center;line-height:20px}
+.bottom_paging_box.iconpaging{font-size:0}
+.listwrap .left_content.result .bottom_paging_wrap .bottom_paging_box,.listwrap .left_content .bottom_paging_wrap .bottom_paging_box{margin-top:3px}
+.bottom_paging_box a,.bottom_paging_box em,.bottom_paging_box span{display:inline-block;margin-left:9px;font-size:14px;font-weight:bold}
+.bottom_paging_box em{text-decoration:underline;color:#d31900}
+.bottom_paging_box a.search_prev,.bottom_paging_box a.search_next{/*position:absolute;top:0;*/font-weight:normal;}
+.sp_pagingicon{background-image:url(/img/sp_pagingicon.png?1);background-repeat:no-repeat}
+.page_prev{padding:0 5px 0 0px}
+.page_next{padding:0 0px 0 5px}
+
+.btn_grey_roundbg{background:#f3f3f3;border:1px #e8e8e8 solid;border-radius:50px }
+
+/*갤러리 내부 검색 */
+.buttom_search_wrap{width:451px;margin:20px auto 0}
+.result .button_search_wrap{margin:0px auto }
+.bottom_search{height:36px;margin-left:5px;border:1px solid #29367c;background:#3b4890}
+.bottom_search .bnt_search{width:37px;height:36px;background-position:0 -195px}
+.bottom_search .inner_search{width:278px}
+.bottom_search .in_keyword{width:260px;height:30px;line-height:30px}
+.bottom_search .inner_search{margin:3px 0 0 3px}
+.result .bottom_paging_box a, .result .bottom_paging_box em{margin-bottom:3px}
+.listwrap .buttom_search_wrap{position:relative; margin-top:18px auto 0}
+
+.bottom_array{width:123px;height:36px;border:1px solid #29367c;background:#3b4890}
+.bottom_array .bottom_option_more{display:block;width:37px;height:36px;background:#3b4890}
+.bottom_array .select_area{display:block;width:109px;height:30px;padding-left:8px;line-height:30px;margin:3px 0 0 3px;background-color:#fff;font-size:14px;color:#29367c}
+.bottom_array .select_area .inner{position:absolute;right:0px;top:0px;width:34px;height:30px;background-color:#3b4890}
+.bottom_array .icon_option_more{position:static;width:15px;height:9px;margin:10px 0 0 10px;background-position:-150px -42px}
+.bottom_array .option_box{width:103px;box-sizing:content-box;padding:6px 9px 5px;border:2px solid #29367c;line-height:21px;font-size:14px;color:#29367c}
+
+/*광고 배너*/
+.ad_bottom_list{clear:both;position:relative;padding:40px 0 20px 0;background:#fff;margin:0 auto;text-align:center}
+.leftbanner{margin-bottom:19px}
+.rightbanner, .rightbanner1{overflow:hidden;width:300px;min-height:250px;margin-top:15px}
+
+.right_content .pageing_box{position:absolute;right:12px;top:14px;height:18px}
+.right_content .page_num{margin:1px 1px 0 0;color:#333}
+
+/*220303 아이콘 형*/
+.iconpaging .icon_prev_search, .iconpaging .icon_next_search{width:10px;height:11px;vertical-align:0}
+.iconpaging .icon_prev_search{background-position:-1px -46px;margin-right:5px}
+.iconpaging .icon_next_search{background-position:-15px -46px;margin-left:5px}
+
+.bottom_paging_box.iconpaging{font-size:0}
+.iconpaging .page_first, .iconpaging .page_prev,.iconpaging .page_next, .iconpaging .page_end{font-size:0!important;padding-top:0!important;vertical-align:2px}
+
+.iconpaging .page_first, .iconpaging .page_end{width:13px;height:14px;padding:0}
+.iconpaging .page_prev, .iconpaging .page_next{width:12px;height:14px;padding:0}
+
+.iconpaging .page_first{background-position:-1px -1px}
+.iconpaging .page_prev{background-position:-24px -1px;margin:0 10px 0 10px}
+
+.iconpaging .page_next{background-position:-1px -24px;margin:0 10px 0 19px}
+.iconpaging .page_end{background-position:-23px -24px;margin-left:0}
+
 
 .output_array .option_box{padding:6px 5px 4px;background:#f3f3f3;border:1px solid #ccc}
 .output_array .option_box li{line-height:16px;font-size:11px;color:#555}

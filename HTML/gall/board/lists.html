@@ -535,17 +535,316 @@
 
 						<!-- 페이징 -->
 						<div class="bottom_paging_wrap">
-							<div class="bottom_paging_box iconpaging"></div>
-							<div class="bottom_movebox"></div>
-							<div class="pop_wrap type3 move_page_lyr" style="top:-121px;right:0px;display:none;"></div>
+							<!-- 페이징 메인 -->
+							<div class="bottom_paging_box iconpaging">
+								<a href="javascript:;" class="sp_pagingicon page_first">처음</a>
+								<a href="javascript:;" class="sp_pagingicon page_prev">이전</a>
+								<em>16</em>
+								<a href="javascript:;">17</a>
+								<a href="javascript:;">18</a>
+								<a href="javascript:;">19</a>
+								<a href="javascript:;">20</a>
+								<a href="javascript:;">21</a>
+								<a href="javascript:;">22</a>
+								<a href="javascript:;">23</a>
+								<a href="javascript:;">24</a>
+								<a href="javascript:;">25</a>
+								<a href="javascript:;">26</a>
+								<a href="javascript:;">27</a>
+								<a href="javascript:;">28</a>
+								<a href="javascript:;">29</a>
+								<a href="javascript:;">30</a>
+								<a href="javascript:;" class="sp_pagingicon page_next">다음</a>
+								<a href="javascript:;" class="sp_pagingicon page_end">끝</a>
+							</div>
+							
+							<!-- 페이지 이동 버튼 -->
+							<div class="bottom_movebox">
+								<button type="button" class="btn_grey_roundbg btn_schmove">
+									페이지이동
+									<span class="sp_img icon_schmove"></span>
+								</button>
+							</div>
+
+							<!-- 페이지 이동 버튼 팝업 창 -->
+							<div class="pop_wrap type3 move_page_lyr" style="top:-121px;right:0px;display:none;">
+								<!-- 팝업 창 메인 -->
+								<div class="pop_content schmove">
+									<div class="pop_head"><h3>페이지 이동</h3></div>
+									<div class="inner page">
+										<div class="hint_txt">이동할 페이지 번호를 입력하세요.</div>
+										<div class="moveset">
+											<span class="tit">페이지</span>
+											<input type="text" name="move_page" value="16">
+											<span class="num total_page">999</span>
+											<button type="button" class="btn_blue small move_page_btn">이동</button>
+										</div>
+									</div>
+								</div>
+								<!-- 팝업 창 닫기 버튼 -->
+								<button type="button" class="poply_bgblueclose"><em class="sp_img icon_bgblueclose"></em></button>
+							</div>
 						</div>
 
 						<!-- 갤러리 내 검색 폼 -->
-						<form name="frmSearch" method="post"></form>
+						<form name="frmSearch" method="post">
+							<fieldset>
+								<div class="buttom_search_wrap clear">
+									<!-- 검색 종류 선택 -->
+									<div class="select_box bottom_array fl">
+										<div class="select_area">
+											<!-- 선택한 내용 출력 -->
+											<span id="search_type_txt">제목+내용</span>
+
+											<!-- 아이콘 -->
+											<span class="inner"><em class="sp_img icon_option_more"></em></span>
+										</div>
+
+										<!-- 선택 팝업 창 -->
+										<ul id="searchTypeLayer" class="option_box" style="left:-1px;top:36px;display:none;">
+											<!-- onclick 함수 사용 -->
+											<li>제목+내용</li>
+											<li>제목</li>
+											<li>내용</li>
+											<li>글쓴이</li>
+											<li>댓글</li>
+										</ul>
+									</div>
+
+									<!-- 검색 내용 입력 -->
+									<div class="bottom_search fl clear">
+										<!-- 입력 칸 -->
+										<div class="inner_search">
+											<input type="text" class="in_keyword" name="search_keyword" title="검색어 입력">
+										</div>
+
+										<!-- 검색 아이콘 및 버튼 -->
+										<button class="sp_img bnt_search"></button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
 
 					</article>
 				</section>
-				<section class="right_content"></section>
+				
+				<section class="right_content">
+					<!-- 로그인 창 -->
+					<div>
+						<!-- 로그인 정보 -->
+						<div id="login_box" class="login_box">
+							<div class="user_info newarea" data-alarmid>
+								<strong onclick="location='/member/login'" style="cursor: pointer;">로그인해 주세요.</strong>
+							</div>
+
+							<div class="user_option">
+								<span>
+									<a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a>
+								</span>
+								<span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기</a></span>
+							</div>
+						</div>
+					</div>
+
+					<!-- 오른쪽 배너 -->
+					<!-- width 300px 고정 최소 높이 250px -->
+					<div class="rightbanner1">
+						<a href="javascript:;"><img src="https://via.placeholder.com/300x500" alt=""></a>
+					</div>
+
+					<!-- 실시간 베스트 -->
+					<article>
+						<div class="content_box r_timebest">
+							<header>
+								<h3 class="tit"><a href="#">실시간 베스트</a></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num realtimeNum">1</strong>/<span class="total_num realtimeTotal">8</span>
+									</div>
+									<button type="button" class="btn_blueprev" id="realtime_prev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on" id="realtime_next"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+
+							<div class="rcont_imgtxt_box">
+								<div class="img">
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box" style="display:none;">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box" style="display:none;">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+								</div>
+								<ul class="txt">
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+								</ul>
+							</div>
+						</div>
+					</article>
+
+					<!-- 뉴스/ 겔시미디어 / 겔시 이슈-->
+					<article>
+						<div class="content_box r_dcmedia">
+							<header>
+								<h3 class="tit newsTab on"><a href="jvascript:;">뉴스</a></h3>
+								<h3 class="tit mediaTab"><a href="javascript:;">지시미디어</a></h3>
+								<h3 class="tit issueTab"><a href="javascript:;">지시이슈</a></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num" id="newsNum">1</strong>/<span class="total_num" id="newsTotal">2</span>
+									</div>
+									<button type="button" class="btn_blueprev" id="news_prev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on" id="news_next"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+							<div class="rcont_imgtxt_box r_news_box">
+								<div class="img">
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass" target="_blank">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass" target="_blank">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+								</div>
+								<ul class="txt">
+									<li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+									<li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+									<li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+								</ul>
+							</div>
+							<div class="rcont_imgtxt_box r_media_box" style="display: none;"></div>
+							<div class="rcont_imgtxt_box dcissue r_issue_box" style="display: none;"></div>
+						</div>
+					</article>
+					
+					<!-- 개념글 -->
+					<article>
+						<div class="content_box r_recommend">
+							<header>
+								<h3 class="tit"><a href="#">개념글<span class="sub">[<em>바이크</em>]</span></a></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num">1</strong>/<span class="total_num">18</span>
+									</div>
+									<button type="button" class="btn_blueprev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+
+							<ul id="rightRecom" class="rcont_list">
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+							</ul>
+						</div>
+					</article>
+
+					<!-- 힛글 -->
+					<article>
+						<div id="rightHit" class="content_box r_hit">
+							<header>
+								<h3 class="tit on"><a href="javascript:;">힛(HIT)<span class="new"><em class="sp_img icon_new"></em></span></a></h3>
+								<h3 class="tit"></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num">1</strong>/<span class="total_num">3</span>
+									</div>
+									<button type="button" class="btn_blueprev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+							<div class="rcont_hit rhit_list">
+								<a href="#" class="inner logClass">
+									<span class="img_box">
+										<img src="https://via.placeholder.com/270x200">
+										<!-- n년전 -->
+										<span class="sp_years icon_years" style="display: none;"></span>
+									</span>
+									<div class="txt_box">
+										<strong>글 제목</strong>
+										<p class="hit_day">작성일 0000-00-00</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					</article>
+
+					<!-- 디시 위키 -->
+					<article>
+						<div class="content_box r_wiki">
+							<header>
+								<h3 class="tit"><a href="#" class="wiki_main"> 디시위키</a></h3>
+								<a href="#" class="wiki_random_go">심심할 땐 랜덤<em class="sp_img icon_go"></em></a>
+							</header>
+							<div class="rcont_wiki">
+								<div class="wk_content">
+									<div class="wk_box">
+										<a href="#" class="logClass">
+											<strong class="tit"><span>#주제</span></strong>
+											<p class="wk_txt">내용</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+					
+				</section>
 			</main>
 		</div>
 
