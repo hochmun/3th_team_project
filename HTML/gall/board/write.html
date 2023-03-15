@@ -1,3 +1,4 @@
+<!-- 2023/03/14 // 라성준 //-->
 <!DOCTYPE html>
 <html lang="ko" class="darkmode">
 <head> 
@@ -138,7 +139,7 @@
         <!-- 메인 -->
         <main id="container">
             <section>
-                <!-- 갤리명 타이틀바 ~ 이용안내 -->
+                <!-- 갤러리명 타이틀바 ~ 이용안내 -->
             <header>
                 <div class="page_head clear">
                     <div class="f1 clear">
@@ -149,21 +150,18 @@
                             <button type="button" class="adr_copy" onclick="copy_gall_url()">갤주소 복사</button>
 			                <button type="button" class="gall_useinfo" onclick="open_user_guide()">이용안내</button>
                             <button type="button" class="" onclick="gt_toggle_issue(this)">
-                            <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
+                                <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
                             </button>
                         </div>
-
                     </div>
+                </div>
 
+                <div class="issue_wrap">
+                    <div class="issuebox gallery_box"></div>
+                </div>
 
-                    
-                    </div>
                 <article id="write_wrap" class="clear">
-                    
-                    <div class="issue_wrap">
-                        <div class="issuebox gallery_box"></div>
-                    </div>
-
+                           
                         <div class="clear">
                             <fieldset>
                                 <legend class="blind">글쓰기 정보 입력폼</legend>
@@ -183,20 +181,20 @@
                                 <div class="write_subject clear">
                                     <strong class="tit">말머리</strong>
                                     <ul class="subject_list clear">
-                                    <li class="sel" data-no = "0" onclick = "write_headtext(this)">
-                                        <em class="sp_img"></em>일반</li>
-                                        <li class="" data-no = "40" onclick = "write_headtext(this)">
-                                            🎨창작</li><li class="" data-no = "120" onclick = "write_headtext(this)">
-                                                📃번역</li><li class="" data-no = "130" onclick = "write_headtext(this)">
-                                                    🗾JP</li><li class="" data-no = "50" onclick = "write_headtext(this)">
-                                                        짤</li><li class="" data-no = "10" onclick = "write_headtext(this)">
-                                                            정보/공략</li><li class="" data-no = "110" onclick = "write_headtext(this)">
-                                                                총력/시험</li><li class="" data-no = "140" onclick = "write_headtext(this)">
-                                                                    질❓문</li><li class="" data-no = "20" onclick = "write_headtext(this)">
-                                                                        📢공!지</li><li class="" data-no = "80" onclick = "write_headtext(this)">
-                                                                            친구/서클</li><li class="" data-no = "150" onclick = "write_headtext(this)">
-                                                                                👑대회</li><li class="" data-no = "170" onclick = "write_headtext(this)">
-                                                                                    🔄교환</li>	       
+                                        <li class="sel" data-no = "0" onclick = "write_headtext(this)">
+                                            <em class="sp_img"></em>일반</li>
+                                            <li class="" data-no = "40" onclick = "write_headtext(this)">
+                                                🎨창작</li><li class="" data-no = "120" onclick = "write_headtext(this)">
+                                                    📃번역</li><li class="" data-no = "130" onclick = "write_headtext(this)">
+                                                        🗾JP</li><li class="" data-no = "50" onclick = "write_headtext(this)">
+                                                            짤</li><li class="" data-no = "10" onclick = "write_headtext(this)">
+                                                                정보/공략</li><li class="" data-no = "110" onclick = "write_headtext(this)">
+                                                                    총력/시험</li><li class="" data-no = "140" onclick = "write_headtext(this)">
+                                                                        질❓문</li><li class="" data-no = "20" onclick = "write_headtext(this)">
+                                                                            📢공!지</li><li class="" data-no = "80" onclick = "write_headtext(this)">
+                                                                                친구/서클</li><li class="" data-no = "150" onclick = "write_headtext(this)">
+                                                                                    👑대회</li><li class="" data-no = "170" onclick = "write_headtext(this)">
+                                                                                        🔄교환</li>	       
                                         
                                     </ul>
                                 </div>
@@ -242,32 +240,37 @@
                                 <!-- //광고 -->
                                     
                                 
+                                <div class="editor_wrap">
+                                    <div id="tx_trex_container" class="tx-editor-container" style="z-index:4" data-boxonly="">
                                     
+                                        
 
+                                
+                                <!-- 취소 / 등록 버튼 -->
+                                <form action="#" method="POST">
+                                    <textarea id="content" name="content" rows="30" cols="150"></textarea><br><br>
+                                    <button type="button" class="btn_grey cancle" onclick="$('#leave_confirm_box').show();">취소</button>
+                                    <button type="image" class="btn_blue btn_svc write">등록</button>
+                                </form>
 
-                                        </article>
-                                    </header>
-                                </section>
-                            </main>
-                        </div>
-                    </body>
-                </html>                    
-                </article>
+                                <!-- 글 작성을 취소하시겠습니까? 팝업 레이어 -->
+                                <div id="leave_confirm_box" class="pop_wrap type2" style="left:50%;top:-322px;margin-left:-619px;display:none">
+                                    <div class="pop_content write_ly">
+                                        <div class="pop_head bg"><h3>글쓰기</h3></div>
+                                            <div class="write_cont">
+                                                <p class="txt">글 작성을 취소하시겠습니까?</p>
+                                                    <div class="btn_box">
+                                                        <button type="button" class="btn_grey small" onclick="$('#leave_confirm_box').hide();">취소</button>
+                                                        <button type="button" class="btn_blue small" onclick="history.back();">확인</button>
+                                                    </div>
+                                            </div>
+                                    </div>
+                                </div>                
                 </header>
             </section>
         </main>
 
-
-
-	<form action="#" method="POST">
-		<label for="content">내용:</label>
-		<textarea id="content" name="content" rows="10" cols="30"></textarea><br><br>
-		<button type="submit">취소</button>
-		<button type="submit">등록</button>
-	</form>
-
-
-
+        <!-- footer -->
         <footer class="gcfoot">
             <div class="info_policy">
                 <a href="#">회사소개</a>
