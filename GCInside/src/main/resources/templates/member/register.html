@@ -107,7 +107,6 @@
                               <div class="clear">
                                 <input type="text" class="int" id="user_nick" name="user_nick" maxlength="20" title="닉네임 입력" placeholder="닉네임을 입력해 주세요.">
                                 <div class="select_box subject_select nick_sel" onclick="showLayer(this, 'nick_type_lyr');return false;">
-                                  <input type="hidden" name="nick_type" id="nick_type" value="">
                                   <ul class="option_box subject_option white" style="left:0;top:34px;display:none" id="nick_type_lyr">
                                     <li nick-type="1"></li>
                                     <li nick-type="2"></li>
@@ -115,7 +114,7 @@
                                 </div>
                               </div>
                               <div class="tip_msgbox">
-                                <p class="tip_msg" >2~8자 닉네임을 입력해 주세요.(띄어쓰기는 할 수 없습니다.)</p>
+                                <p class="tip_msg" >2~20자 닉네임을 입력해 주세요.(띄어쓰기는 할 수 없습니다.)</p>
                                 <p id="nick_able" class="tip_msg ok" style="display:none">사용 가능한 닉네임입니다.</p>
                                 <p id="nick_unable" class="tip_msg error" style="display:none">사용할 수 없는 닉네임입니다.</p>
                               </div>
@@ -192,7 +191,7 @@
                   </div>
                   <div class="btn_box clear">
                     <div class="fr">
-                      <button type="button" class="btn_grey small bnt_next" onclick="return check_recaptcha()">확인</button>
+                      <button type="submit" class="btn_grey small bnt_next" onclick="return check_recaptcha()">확인</button>
                     </div>
                   </div>
                 </section>

@@ -36,6 +36,150 @@
 /* 관리자 회원 관리 => 회원 목록 및 회원 검색 */
 .admin_member_list th, .admin_member_list td {border-left: 0;border-right: 0;}
 
+/* 관리자 갤러리 목록 > 메인 갤러리 생성 */
+.page_head {height: 37px;margin-bottom: 3px;padding-top: 4px;}
+.page_head h2 {margin: -2px 8px 0 3px;}
+.page_head h2 {
+    font-size: 24px;
+    font-family: 'Nanum Gothic', sans-serif;
+    letter-spacing: -1px;
+    margin: 2px 8px 0 3px;
+    max-width: 416px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #336623;
+}
+.page_head h2 a {color: #336623;padding-left: 5px;}
+.page_head h2, .favorite, .dcwiki, .lock {float: left;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {.page_head h2{margin:-2px 8px 0 3px}}
+.page_head .fixtit {color: #585857;}
+.clear:after {clear: both;display: block;visibility: hidden;content: "";}
+.main_make_wrap {border-top: 2px #336623 solid;border-bottom: 2px #336623 solid;}
+.blind {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+.main_make_form {border-top: 2px solid #336623;border-bottom: 2px solid #336623;}
+.make_form_cont {display: table-cell;width: 726px;padding: 12px 0 2px;}
+.form_group {padding: 2px 0 14px 16px;border-top: 1px #eee solid;color: #555;}
+.form_group:first-of-type {border-top: none;}
+.set_content {padding-top: 11px;}
+.form_group:first-of-type .set_content {padding-top: 0;}
+.set_tit {position: relative;float: left;width: 157px;font-weight: bold;line-height: 24px;}
+.make_form_cont .set_tit {width: 130px;}
+.required_input {
+    padding-left: 3px;
+    color: #d31900;
+    vertical-align: top;
+    line-height: 18px;
+}
+.cont_box {float: left;position: relative;width: 515px;line-height: 24px;margin: 0;}
+.set_content .cont_input_box {position: relative;display: inline-block;}
+.set_content.name .cont_input_box {width: 343px;}
+.t_input {
+    width: 327px;
+    height: 22px;
+    line-height: 20px;
+    padding: 0 7px;
+    border: 1px #bbb solid;
+    margin-bottom: 5px;
+}
+.main_make_form input {color: #555;}
+.set_content.name .t_input {width: 242px;padding: 0 92px 0 7px;}
+.basic_tit {
+    position: absolute;
+    right: 9px;
+    top: 0px;
+    color: #336623;
+    font-weight: bold;
+}
+
+.tip_deco {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background-position: -190px -201px;
+    margin-right: 5px;
+}
+.red .tip_deco {background-position: -203px -201px;}
+.form_group::after {clear: both;display: block;visibility: hidden;content: "";}
+.t_area {
+    width: 470px;
+    height: 54px;
+    padding: 7px;
+    border: 1px #bbb solid;
+    margin-bottom: 5px;
+    resize: none;
+}
+.set_content.desc .tiptxt {float: left;}
+.set_content.desc .max_txt {float: right;padding-right: 27px;line-height: 18px;}
+.adr .basic_adr, .adr .max_txt {vertical-align: -1px;}
+.adr .t_input {width: 184px;margin: 0 2px 4px 0;}
+.select_box {position: relative;float: left;}
+.select_box.array_latest, .select_arraybox {
+    float: none;
+    display: inline-block;
+    width: 55px;
+    height: 19px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    margin-left: 4px;
+    font-size: 11px;
+    background: #fff;
+    color: #333;
+    line-height: 18px;
+    vertical-align: 1px;
+}
+.set_content.category  .select_arraybox {
+    width: 163px;
+    height: 22px;
+    line-height: 23px;
+    margin: 0 0 5px 0;
+    padding-left: 5px;
+}
+.select_area {position: relative;cursor: pointer;}
+.set_content .select_area {padding-right: 17px;}
+.placeholder {color: #999;}
+.icon_option_more {display: inline-block;position: absolute;}
+.select_arraybox .icon_option_more, .output_array .icon_option_more, .array_latest .icon_option_more {
+    right: 5px;
+    top: 7px;
+    width: 9px;
+    height: 5px;
+    background-position: -126px -43px;
+}
+.option_box {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f3f3f3;
+    border: 1px #ccc solid;
+    padding: 6px 5px 4px;
+    z-index: 20;
+}
+.option_box li {
+    line-height: 16px;
+    font-size: 11px;
+    color: #555;
+    font-weight: normal;
+    font-family: -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;
+}
+.option_box li:hover {text-decoration: underline;cursor: pointer;}
+.make_bottom_btnbox {margin: 42px 0 86px;text-align: center;}
+.make_bottom_btnbox button {width: 100px;}
+.make_bottom_btnbox button:first-child {margin-left: 0;}
+.btn_lightpurple {
+    background: #2b641f;
+    text-shadow: 0px -1px #1a3123;
+    color: #fff;
+    border-color: #21361a;
+}
+.admin_main > div:not(.main_make_wrap) {overflow: visible;}
+
 /* 어드민 페이징 */
 .admin_pageing {text-align: center;margin-top: 15px;margin-bottom: 10px;font-size: 14px;}
 .admin_pageing a {display: inline-block;width: 20px;}

@@ -1,0 +1,204 @@
+<!-- 2023/03/15 // 김재준 // 어드민 메인 갤러리 생성 작업 시작 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/admin/gnb.js"></script>
+    <script type="text/javascript" src="/js/management/common.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+        <header class="admin_header">
+            <div class="gchead typea">
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcin_logo3.png" alt="">
+                        <a class="_blank" href="/admin/index.html"></a>
+                    </div>
+                </h1>
+                <div class="admin_info">
+                    <ul class="admin_ul">
+                        <li><a href="/index.html">홈</a></li>
+                        <li><a href="javascript:;"> | </a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+                    <aside class="admin_aside">
+                        <ul id="admin_gnb">
+                            <li>
+                                <a href="#">환경설정</a>
+                                <ol>
+                                    <li><a href="#">배너 관리</a></li>
+                                    <li><a href="#">약관 관리</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">신고 관리</a>
+                                <ol>
+                                    <li><a href="#">서비스 신고 관리</a></li>
+                                    <li><a href="#">서비스 신청 목록</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">갤러리 관리</a>
+                                <ol>
+                                    <li><a href="#">갤러리 목록</a></li>
+                                    <li><a href="/admin/gallery/create_main.html">메인 갤러리 생성</a></li>
+                                    <li><a href="#">갤러리 개설 신청</a></li>
+                                    <li><a href="#">갤러리 승급 신청</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">회원 관리</a>
+                                <ol>
+                                    <li><a href="/admin/member/search.html">회원 조회</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <header class="main_make">
+                <div class="page_head clear">
+                    <div class="fl">
+                        <h2>
+                            <a href="#"><span class="fixtit">갤러리</span> 생성</a>
+                        </h2>
+                    </div>
+                </div>
+                </header>
+                <div class="main_make_wrap">
+                    <form method="post" id="frmCreate" name="frmCreate" action="/n/regist" onsubmit="return galleryCreate(this)">
+                        <h2 class="blind">메인 갤러리 정보입력</h2>
+                        <div class="main_make_form clear">
+                            <div id="make_form_wrap" class="make_form_cont">
+                                <fieldset>
+                                    <legend class="blind">메인 갤러리 정보입력</legend>
+                                    <div class="form_group">
+                                        <div class="set_content name clear">
+                                            <div class="set_tit"><label for="g_name">이름</label><em class="required_input">*</em></div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <input class="t_input chk_str_length" id="g_name" name="g_name" type="text" placeholder="메인 갤러리 이름" onfocusout="return chk_create_name(false)">
+                                                    <span class="basic_tit"> 갤러리</span>
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>12</b></span>
+                                                <p class="tiptxt name_alert_txt">
+                                                    <b class="font_red"></b>
+                                                    <span class="alert_msg"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content desc clear">
+                                            <div class="set_tit"><label for="gallery_desc">설명</label></div>
+                                            <div class="cont_box">
+                                                <textarea class="t_area chk_str_length" id="g_desc" name="g_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요." onfocusout="return chk_create_desc(false)"></textarea>
+                                                <div class="clear">
+                                                    <p class="tiptxt desc_alert_txt">
+                                                        <b class="font_red"></b>
+                                                        <span class="alert_msg"></span>
+                                                    </p>
+                                                    <span class="max_txt fr"><span>0</span>/<b>200</b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content adr clear">
+                                            <div class="set_tit">주소<em class="required_input">*</em></div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <span class="basic_adr">https://gall.dcinside.com/mini/asdf</span>
+                                                    <input class="t_input chk_str_length" id="g_id" name="g_id" type="text" onfocusout="chk_create_id(false)">
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>20</b></span>
+                                                <p class="tiptxt id_alert_txt">
+                                                    <b class="font_red"></b>
+                                                    <span class="alert_msg"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content category clear">
+                                            <div class="set_tit"><label for="gallery_cate" onclick="$('#gallery_cate').click()">카테고리</label><em class="required_input">*</em></div>
+                                            <div class="cont_box">
+                                                <div class="select_box select_arraybox">
+                                                    <div class="select_area"><span class="placeholder">카테고리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
+                                                    <ul class="option_box select_Cate" select_Cate style="left:-1px;top:22px;display:none">
+                                                        <li data-value="">카테고리를 선택해주세요.</li>
+                                                        <li data-value="26">연예</li>
+                                                        <li data-value="22">국내방송</li>
+                                                        <li data-value="31">해외방송</li>
+                                                        <li data-value="21">게임</li>
+                                                        <li data-value="12">취미</li>
+                                                        <li data-value="39">만화/애니</li>
+                                                        <li data-value="24">스포츠</li>
+                                                        <li data-value="25">스포츠스타</li>
+                                                        <li data-value="8">디지털/IT</li>
+                                                        <li data-value="15">교통/운송</li>
+                                                        <li data-value="7">음식</li>
+                                                        <li data-value="16">패션</li>
+                                                        <li data-value="23">음악</li>
+                                                        <li data-value="6">여행/풍경</li>
+                                                        <li data-value="9">합성</li>
+                                                        <li data-value="4">생물</li>
+                                                        <li data-value="40">건강/심리</li>
+                                                        <li data-value="13">학술</li>
+                                                        <li data-value="14">교육</li>
+                                                        <li data-value="27">대학</li>
+                                                        <li data-value="11">수능</li>
+                                                        <li data-value="20">직업</li>
+                                                        <li data-value="28">정치인/유명인</li>
+                                                        <li data-value="17">밀리터리</li>
+                                                        <li data-value="41">금융/재테크 </li>
+                                                        <li data-value="29">성공/계발</li>
+                                                        <li data-value="19">생활</li>
+                                                        <li data-value="30">지역</li>
+                                                        <li data-value="37">쇼핑/장터</li>
+                                                        <li data-value="10">정부/기관</li>
+                                                        <li data-value="35">기업</li>
+                                                        <li data-value="38">미디어</li>
+                                                        <li data-value="5">이슈</li>
+                                                        <li data-value="18">성인</li>
+                                                        <li data-value="34">기타</li>
+                                                        <li data-value="42">공무원</li>
+                                                    </ul>
+                                                    <script>ul_selectric($('#make_form_wrap .select_box'), 'g_category');</script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                        </div>
+                    </form>
+                    <div class="make_bottom_btnbox">
+                        <button type="button" class="list_bottom btn_grey" onclick="history.back()">취소</button>
+                        <button type="button" class="list_bottom btn_lightpurple" onclick="$('#frmCreate').submit()">만들기</button>
+                    </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>
