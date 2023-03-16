@@ -5,6 +5,16 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.gcInside.dao.AdminDAO">
     <!-- create -->
+    <!-- 2023/03/16 // 김재준 // 관리자 메인 갤러리 생성 -->
+    <insert id="createMainGallery" useGeneratedKeys="true" keyProperty="gell_num">
+        INSERT INTO `gc_gell` set
+            `gell_cate` = #{gell_cate},
+            `gell_name` = #{gell_name},
+            `gell_address` = #{gell_address},
+            `gell_info` = #{gell_info};
+        <!--(gell_cate, gell_name, gell_address, gell_info)
+        VALUES (#{gell_cate}, #{gell_name}, #{gell_address}, #{gell_info});-->
+    </insert>
     <!-- read -->
     <!-- 2023/03/10 // 심규영 // 관리자 약관 불러오기 -->
     <select id="selectTerms" resultType="kr.co.gcInside.vo.TermsVO">
@@ -19,6 +29,9 @@
         WHERE member_uid = #{memberUid}
     </select>
 
+    <select id="selectGalleryCates" resultType="kr.co.gcInside.vo.gall_cate2VO">
+        SELECT * FROM `gc_gell_cate2`;
+    </select>
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};

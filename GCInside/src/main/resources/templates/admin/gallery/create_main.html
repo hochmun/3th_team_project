@@ -1,0 +1,133 @@
+<!-- 2023/03/16 // 김재준 // 어드민 메인 갤러리 생성 작업 시작 -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{fragment/head_fragment::adminHead}"></th:block>
+</head>
+<body>
+<div class="gcwrap">
+  <header th:replace="~{fragment/header_fragment::adminHeader}"></header>
+
+  <main id="container" class="admin_main">
+    <div class="main_content">
+      <div class="admin_left">
+        <!-- 사이드 gnb -->
+        <aside th:replace="~{fragment/gnb_fragment::adminGnb}"></aside>
+      </div>
+      <header class="main_make">
+        <div class="page_head clear">
+          <div class="fl">
+            <h2>
+              <a href="#"><span class="fixtit">갤러리</span> 생성</a>
+            </h2>
+          </div>
+        </div>
+      </header>
+      <div class="main_make_wrap">
+        <form method="post" th:action="@{/admin/gallery/create_main}">
+          <h2 class="blind">메인 갤러리 정보입력</h2>
+          <div class="main_make_form clear">
+            <div id="make_form_wrap" class="make_form_cont">
+              <fieldset>
+                <legend class="blind">메인 갤러리 정보입력</legend>
+                <div class="form_group">
+                  <div class="set_content name clear">
+                    <div class="set_tit"><label for="gell_name">이름</label><em class="required_input">*</em></div>
+                    <div class="cont_box clear">
+                      <div class="cont_input_box">
+                        <input class="t_input chk_str_length" id="gell_name" name="gell_name" type="text" placeholder="메인 갤러리 이름"<!--onfocusout="return chk_create_name(false)"-->
+                        <span class="basic_tit"> 갤러리</span>
+                      </div>
+                      <span class="max_txt"><span>0</span>/<b>12</b></span>
+                      <p class="tiptxt name_alert_txt">
+                        <b class="font_red"></b>
+                        <span class="alert_msg"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form_group">
+                  <div class="set_content desc clear">
+                    <div class="set_tit"><label for="gell_info">설명</label></div>
+                    <div class="cont_box">
+                      <textarea class="t_area chk_str_length" id="gell_info" name="gell_info" placeholder="갤러리에 대한 설명 작성." <!--onfocusout="return chk_create_desc(false)"--></textarea>
+                      <div class="clear">
+                        <p class="tiptxt desc_alert_txt">
+                          <b class="font_red"></b>
+                          <span class="alert_msg"></span>
+                        </p>
+                        <span class="max_txt fr"><span>0</span>/<b>200</b></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form_group">
+                  <div class="set_content adr clear">
+                    <div class="set_tit">주소<em class="required_input">*</em></div>
+                    <div class="cont_box clear">
+                      <div class="cont_input_box">
+                        <span class="basic_adr">https://GCInside/gall/</span>
+                        <input class="t_input chk_str_length" id="gell_address" name="gell_address" type="text" <!--onfocusout="chk_create_id(false)"-->
+                      </div>
+                      <span class="max_txt"><span>0</span>/<b>20</b></span>
+                      <p class="tiptxt id_alert_txt">
+                        <b class="font_red"></b>
+                        <span class="alert_msg"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form_group">
+                  <div class="set_content category clear">
+                    <div class="set_tit"><label for="gell_cate" onclick="$('#gell_cate').click()">카테고리</label><em class="required_input">*</em></div>
+                    <div class="cont_box">
+                      <div class="select_box select_arraybox">
+                        <div class="select_area"><span class="placeholder">카테고리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
+                        <ul class="option_box select_Cate" select_Cate style="left:-1px;top:22px;display:none">
+                          <li data-value="">카테고리를 선택해주세요.</li>
+                          <th:block th:each="cate:${cates}">
+                            <li th:value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></li>
+                          </th:block>
+                        </ul>
+                        <script>ul_selectric($('#make_form_wrap .select_box'), 'g_category');</script>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+          </div>
+          <div class="make_bottom_btnbox">
+            <button type="button" class="list_bottom btn_grey" onclick="history.back()">취소</button>
+            <input type="submit" class="list_bottom btn_lightpurple" value="만들기">
+          </div>
+        </form>
+        </section>
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript">
+    $('.chk_str_length').keyup(function () {
+      var inputVal =		$(this).val();
+      var nInputVal =		inputVal.length;
+      var maxcount =		$('.max_txt b', $(this).closest('.cont_box')).text();
+
+      if (nInputVal > maxcount) {
+          inputVal = inputVal.substr(0, maxcount);
+          nInputVal = maxcount;
+          $(this).val(inputVal);
+      }
+
+    $('.max_txt span', $(this).closest('.cont_box')).text(nInputVal);
+    }).click(function(){ $(this).keyup(); }).blur(function(){ $(this).keyup(); });
+
+    $('div.select_box li').click(function() {
+        /*authCategoryChk($('input[name="mg_category"]'))*/;
+    });
+  </script>
+
+  <footer th:replace="~{fragment/footer_fragment::adminFooter}"></footer>
+</div>
+</body>
+</html>

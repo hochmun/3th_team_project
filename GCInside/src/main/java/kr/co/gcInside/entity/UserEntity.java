@@ -30,5 +30,6 @@ public class UserEntity {
     private String member_wdate;
     private String member_sanctions_rdate;
     private String member_sanctions_wdate;
-    private int member_sanctions_grade;
+    private Integer member_sanctions_grade;//로그인시도시 Null값 오류로 int => integer로 변경
+
 }

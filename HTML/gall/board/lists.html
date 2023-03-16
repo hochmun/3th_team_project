@@ -1,4 +1,5 @@
 <!-- 2023/03/13 // 심규영 // 작업 이어받기 -->
+<!-- 2023/03/16 // 심규영 // 게시물 리스트 화면 구현 작업 완료 -->
 <!DOCTYPE html>
 <html lang="ko" class="darkmode">
 <head> 
@@ -187,54 +188,6 @@
 							<div class="pop_wrap type3" id="user_block" style="left:50%;top:-2px;margin-left:-199px;display: none;"></div>
 							<!-- 말머리, 꼬리말 설정 팝업 -->
 							<div class="pop_wrap type3" id="headTail_lay" style="left:50%;top:44px;margin-left:-222px;display: none;"></div>
-							<!-- 연관 갤러리 팝업 -->
-							<div id="relation_popup" class="pop_wrap type3" style="left: 0px;top:-2px;display: none;" loaded="1">
-								<div class="pop_content relation_wrap">
-									<div class="pop_head"><h3>연관 갤러리</h3></div>
-									<!-- 현갤러리 -> 타 갤러리 -->
-									<div class="following inner">
-										<div class="pop_info">
-											<b>ㅁㅁ 갤러리<em class="sp_img icon_right_arrow"></em> 타 갤러리(<span class="count">3</span>)</b>
-											<p>이 갤러리가 연관 갤러리로 추가한 갤러리</p>
-										</div>
-										<ul class="list_box clear">
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-										</ul>
-										<div class="btn_box">
-											<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
-											<div class="page_num">
-												<strong class="now_num">1</strong>/<span class="total_num">1</span>
-											</div>
-											<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
-										</div>
-									</div>
-									<!-- 타 갤러리 -> 현갤러리 -->
-									<div class="follower inner">
-										<div class="pop_info">
-											<b>타 갤러리<em class="sp_img icon_right_arrow"></em> ㅁㅁ 갤러리(<span class="count">6</span>)</b>
-											<p>이 갤러리를 연관 갤러리로 추가한 갤러리</p>
-										</div>
-										<ul class="list_box clear">
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-											<li><a href="#">갤러리 이름</a></li>
-										</ul>
-										<div class="btn_box">
-											<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
-											<div class="page_num">
-												<strong class="now_num">1</strong>/<span class="total_num">1</span>
-											</div>
-											<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
-										</div>
-									</div>
-								</div>
-								<button type="button" class="poply_bgblueclose"></button>
-							</div>
 						</div>
 					</header>
 
@@ -242,6 +195,54 @@
 					<article>
 						<div class="issue_wrap">
 							<div class="issuebox gallery_box">
+								<!-- 연관 갤러리 팝업 -->
+								<div id="relation_popup" class="pop_wrap type3" style="left: 0px;top:-2px;display: none;" loaded="1">
+									<div class="pop_content relation_wrap">
+										<div class="pop_head"><h3>연관 갤러리</h3></div>
+										<!-- 현갤러리 -> 타 갤러리 -->
+										<div class="following inner">
+											<div class="pop_info">
+												<b>ㅁㅁ 갤러리<em class="sp_img icon_right_arrow"></em> 타 갤러리(<span class="count">3</span>)</b>
+												<p>이 갤러리가 연관 갤러리로 추가한 갤러리</p>
+											</div>
+											<ul class="list_box clear">
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+											</ul>
+											<div class="btn_box">
+												<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
+												<div class="page_num">
+													<strong class="now_num">1</strong>/<span class="total_num">1</span>
+												</div>
+												<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
+											</div>
+										</div>
+										<!-- 타 갤러리 -> 현갤러리 -->
+										<div class="follower inner">
+											<div class="pop_info">
+												<b>타 갤러리<em class="sp_img icon_right_arrow"></em> ㅁㅁ 갤러리(<span class="count">6</span>)</b>
+												<p>이 갤러리를 연관 갤러리로 추가한 갤러리</p>
+											</div>
+											<ul class="list_box clear">
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+												<li><a href="#">갤러리 이름</a></li>
+											</ul>
+											<div class="btn_box">
+												<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
+												<div class="page_num">
+													<strong class="now_num">1</strong>/<span class="total_num">1</span>
+												</div>
+												<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
+											</div>
+										</div>
+									</div>
+									<button type="button" class="poply_bgblueclose"><em class="sp_img icon_bgblueclose"></em></button>
+								</div>
 								<!-- 상단 이슈 박스 -->
 								<div class="issue_contentbox clear">
 									<!-- 마이너 갤러리 설명 -->
@@ -937,7 +938,7 @@
                         </span>
                     </div>
                 </div>
-            </div> 
+            </div>
                 
 
             <div class="info_policy">
