@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/admin/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery-certificate/1.0.0/jquery.certify.min.js"></script>
     <script type="text/javascript" src="/js/admin/gnb.js"></script>
     <script type="text/javascript" src="/js/management/common.js"></script>
 </head>
@@ -195,6 +196,25 @@
                 </div>
             </div>
         </main>
+        <script type="text/javascript">
+            $('.chk_str_length').keyup(function () {
+            var inputVal =		$(this).val();
+            var nInputVal =		inputVal.length;
+            var maxcount =		$('.max_txt b', $(this).closest('.cont_box')).text();
+            
+                if (nInputVal > maxcount) {
+                    inputVal = inputVal.substr(0, maxcount);
+                    nInputVal = maxcount;
+                    $(this).val(inputVal);
+                }
+            
+            $('.max_txt span', $(this).closest('.cont_box')).text(nInputVal);
+            }).click(function(){ $(this).keyup(); }).blur(function(){ $(this).keyup(); });
+
+            $('div.select_box li').click(function() {
+                authCategoryChk($('input[name="mg_category"]'));
+            });
+        </script>
 
         <footer class="admin_footer gcfoot">
             <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>

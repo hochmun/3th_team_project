@@ -2,6 +2,8 @@ package kr.co.gcInside.controller;
 
 import kr.co.gcInside.service.AdminService;
 import kr.co.gcInside.vo.TermsVO;
+import kr.co.gcInside.vo.gall_cate2VO;
+import kr.co.gcInside.vo.galleryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,5 +78,35 @@ public class AdminController {
         resultMap.put("result", result);
 
         return resultMap;
+    }
+
+    /**
+     * 2023/03/10 // 김재준 // 관리자 메인갤러리 생성 get 매핑
+     * @return
+     */
+    @GetMapping("admin/gallery/create_main")
+    public String createMainGallery (Model model) {
+
+        List<gall_cate2VO> cates = service.selectGalleryCates();
+
+        model.addAttribute("cates", cates);
+
+        return "admin/gallery/create_main";
+    }
+
+    @PostMapping("admin/gallery/create_main")
+    public String createMainGallery (HttpServletRequest req, Model model, galleryVO vo) {
+        /* 관리자 userEntity는 추후 추가*/
+
+        vo.setGell_cate(req.getParameter("gell_cate"));
+        vo.setGell_name(req.getParameter("gell_name"));
+        vo.setGell_address(req.getParameter("gell_address"));
+        vo.setGell_info(req.getParameter("gell_info"));
+
+        service.createMainGallery(vo);
+
+        model.addAttribute("msg", "갤러리가 생성되었습니다.");
+
+        return "redirect:/admin/index";
     }
 }
