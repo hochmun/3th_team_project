@@ -191,7 +191,7 @@
                   </div>
                   <div class="btn_box clear">
                     <div class="fr">
-                      <button type="submit" class="btn_grey small bnt_next" onclick="return check_recaptcha()">확인</button>
+                      <button type="submit" class="btn_grey small bnt_next" onclick="return check_recaptcha();">확인</button>
                     </div>
                   </div>
                 </section>
@@ -199,23 +199,16 @@
               </form>
             </div>
             </main>
-            <script>
-                function check_recaptcha(){
-                  let v = grecaptcha.getResponse();
-                  if(v.length == 0){
-                    alert("'자동 입력 방지'를 체크해주세요.")
-                    return false;
-                  }else{
-                    location.reload();
-                    return true;
-                  }
-                }
-            </script>
-            <script>
-              $(function() {
-                formInit();
-              });
-            </script>
+            <script>$(function() {formInit();});</script>
+<script>function check_recaptcha(){
+                      let v = grecaptcha.getResponse();
+                      if(v.length == 0){
+                        alert("'자동 입력 방지'를 체크해주세요.")
+                        return false;
+                      }else{
+                        return true;
+                      }
+                    }</script>
 <th:block th:replace="~{member/_footer}"></th:block>
 </div>
 </body>

@@ -250,7 +250,7 @@ let mailList = function(){
 		$('#email2').val(email_list);
 	}
 }
-// 인증코드 받기
+// 이메일 인증코드 전송
 let codeSend = function() {
     let email1 = jQuery.trim($('#email1').val());			//이메일
 	if(typeof(email1) == 'undefined' || email1 == '') {
@@ -277,7 +277,7 @@ let codeSend = function() {
         }
     });
 }
-// 이메일 인증코드 처리
+// 이메일 인증코드값 확인
 let AuthCode = function() {
     let code = jQuery.trim($('#code').val());  // 입력한 인증코드
     if(typeof(code) == 'undefined' || code == '') {
@@ -288,9 +288,7 @@ let AuthCode = function() {
     $.ajax({
         url : '/GCInside/member/AuthCode',
         type : 'POST',
-        contentType: 'application/json',
-        data : JSON.stringify({'code' : code}),// 입력한 인증코드 전송
-        dataType: 'json',
+        data : {code : code},// 인증코드 값
         success : function(result) {
             if(result == 'success') {
                 alert('인증되었습니다.'); // 인증 성공 시 처리할 코드 작성
@@ -298,12 +296,12 @@ let AuthCode = function() {
                 alert('인증코드가 일치하지 않습니다.');
             }
         },
-        error : function() {
-            alert('오류가 발생하였습니다.');
+        error : function(xhr) {
+            if(xhr.responseText == 'fail'){
+                alert('인증코드가 일치하지 않습니다.');
+            }else{
+                alert('오류가 발생하였습니다.');
+            }
         }
     });
 }
-
-
-
-

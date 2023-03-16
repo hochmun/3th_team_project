@@ -37,7 +37,7 @@ public class EmailService {
         String subject = "지시인사이드 인증코드 입니다."; // 이메일 제목
         String body = "인증코드는 "+code+"<br>드래그후 복사하여 입력하세요."; // 이메일 내용
         session.setAttribute("code", code);
-        return sendEmail(toEmail,subject,body);
-
+        sendEmail(toEmail,subject,body);
+        return code;
     }
 }

@@ -18,7 +18,7 @@ public class MemberService {
     private UserRepo repo;
 
     public int insertMember(MemberVO vo){
-        vo.setMember_regip(encoder.encode(vo.getMember_pass1()));
+        vo.setMember_regip(encoder.encode(vo.getMember_pass()));
         return dao.insertMember(vo);
     }
     public boolean isExist(String member_uid){
