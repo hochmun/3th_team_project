@@ -249,3 +249,23 @@
 .poply_whiteclose{position:absolute;right:11px;top:8px}
 .icon_whiteclose{display:inline-block;width:17px;height:18px;background-position:-107px -108px}
 .pop_bg{position:fixed;top:0px;right:0px;bottom:0px;left:0px;width:100%;height:100%;background:#000;filter:alpha(opacity=50);opacity:0.5;z-index:99}
+
+/*저작권법 내용보기, 게시물 활용안내, 힛갤 경품  내용 상세*/
+.copyright_law,.post_guide{width:414px;padding:0 12px 16px 14px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;font-size:12px;color:#555}
+.copyright_law .guide_txtbox,.post_guide .guide_txtbox{margin-top:13px;line-height:20px}
+.write_infobox .copyright_law p::before,.write_infobox .post_guide p::before{display:none}
+.pop_content.whittip{padding:12px 22px 10px 15px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;font-size:12px;color:#555;line-height:20px}
+.poply_close.whittip_b{top:11px;right:11px}
+
+/*글쓰기*/
+.hitup_ly .btn_box,.write_ly .btn_box{border-top:0;padding:10px 0 8px}
+.write_ly{padding-bottom:34px}
+
+/*힛추 글쓰기*/
+.hitup_ly,.write_ly{width:398px;color:#555}
+.hitup_cont,.write_cont{padding-top:30px }
+.hitup_ly .txt,.write_ly .txt{font-size:14px;font-weight:bold;text-align:center}
+.hitgall_go{display:block;padding:0 25px 12px;text-align:right;font-size:12px;color:#555;}
+.hitgall_go:hover{text-decoration:none}
+.hitgall_go::after{content:"";width:5px;height:11px;display:inline-block;vertical-align:0px;margin-left:3px;
+;background:url(/img/sp_img.png)no-repeat -110px -56px}

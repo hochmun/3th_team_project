@@ -57,3 +57,17 @@ var open_relation = function(gall_no) {
 	}
 	
 }
+
+// 상단 갤러리 정보 토글
+const gt_toggle_issue = function(btn_elm) {
+	if($('.issue_wrap .issuebox').hasClass('open')) {
+		$('.issue_wrap .issuebox').removeClass('open');
+		$(btn_elm).removeClass('open');
+	}
+	else {
+		$('.issue_wrap .issuebox').addClass('open');
+		$(btn_elm).addClass('open');
+		
+		//gt_recomAjax($.getURLParam("id"));
+	}
+}

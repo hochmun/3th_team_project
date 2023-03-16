@@ -1311,6 +1311,10 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .right_content .pageing_box{position:absolute;right:12px;top:14px;height:18px}
 .right_content .page_num{margin:1px 1px 0 0;color:#333}
 
+/* 갤러리 글 쓰기 */
+.issue_contentbox{display:none}
+.issuebox.open .issue_contentbox{display:block}
+
 /*220303 아이콘 형*/
 .iconpaging .icon_prev_search, .iconpaging .icon_next_search{width:10px;height:11px;vertical-align:0}
 .iconpaging .icon_prev_search{background-position:-1px -46px;margin-right:5px}
