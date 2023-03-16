@@ -60,56 +60,5 @@ let formInit = function(){
 		mailList();
 	});
 };
-// 회원가입 폼 전송
-let check = function(){
-    e.preventDefault();
-    let member_uid = $('#member_uid').val();
-    let gc_pw = $('#gc_pw').val();
-    let gc_pwc = $('#gc_pwc').val();
-    let user_nick = $('#user_nick').val();
-    let email1 = $('#email1').val();
-    let email2 = $('#email2').val();
 
-    // 모든 필드가 채워져 있는지 확인
-    if(!member_uid || !gc_pw || !gc_pwc || !user_nick || !email1 || !email2){
-        alert('입력하지않은 데이터가 없는지 확인해주세요.');
-        return false;
-    }
 
-    // 비밀번호 확인
-    if(gc_pw != gc_pwc){
-        alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
-        return false;
-    }
-
-    // 닉네임 유효성 검사
-    if(user_nick.includes(' ')){
-        alert('닉네임은 띄어쓰기를 할 수 없습니다.');
-        return false;
-    }
-
-    // reCAPTCHA 검사
-    if(!check_recaptcha()){
-        return false;
-    }
-
-    // 모든 검사를 통과했다면 데이터베이스에 insert
-    $.ajax({
-        url: '/GCInside/member/register',
-        type: 'post',
-        data: {
-            member_uid: member_uid,
-            member_pass: gc_pw,
-            member_nick: user_nick,
-            member_email: email1 + '@' + email2,
-        },
-        success: function(response){
-            // insert 성공시 처리
-            alert('회원가입이 완료되었습니다.');
-        },
-        error: function(xhr, status, error){
-            // insert 실패시 처리
-            alert('회원가입 중 오류가 발생했습니다. 다시 시도해주세요.');
-        }
-    });
-};

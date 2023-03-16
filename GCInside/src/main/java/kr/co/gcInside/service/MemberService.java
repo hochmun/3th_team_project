@@ -1,5 +1,6 @@
 package kr.co.gcInside.service;
 
+import com.sun.istack.NotNull;
 import kr.co.gcInside.dao.MemberDAO;
 import kr.co.gcInside.repository.UserRepo;
 import kr.co.gcInside.vo.MemberVO;
@@ -17,8 +18,8 @@ public class MemberService {
     @Autowired
     private UserRepo repo;
 
-    public int insertMember(MemberVO vo){
-        vo.setMember_regip(encoder.encode(vo.getMember_pass()));
+    public int insertMember(@NotNull MemberVO vo){
+        vo.setMember_pass(encoder.encode(vo.getGc_pw()));
         return dao.insertMember(vo);
     }
     public boolean isExist(String member_uid){

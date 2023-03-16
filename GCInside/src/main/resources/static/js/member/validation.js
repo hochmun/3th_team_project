@@ -305,3 +305,25 @@ let AuthCode = function() {
         }
     });
 }
+// 폼 전송
+function Recheck(){
+    // 모든 필드가 채워져 있는지 확인
+    let member_uid = $('#member_uid').val();
+    let gc_pw = $('#gc_pw').val();
+    let gc_pwc = $('#gc_pwc').val();
+    let user_nick = $('#user_nick').val();
+    let email1 = $('#email1').val();
+    let email2 = $('#email2').val();
+    let code = $('#code').val();
+
+    if(member_uid == ""){alert('아이디를 입력해주세요.');return false;}
+    if(gc_pw == ""){alert('비밀번호를 입력해주세요.');return false;}
+    if(gc_pwc == ""){alert('비밀번호를 재입력해주세요.');return false;}
+    if(user_nick == ""){alert('닉네임을 입력해주세요.');return false;}
+    if(email1 == ""){alert('이메일을 입력해주세요.');return false;}
+    if(email2 == ""){alert('이메일을 입력해주세요.');return false;}
+    if(code == ""){alert('인증코드를 입력해주세요.');return false;}
+    if(gc_pw != gc_pwc){alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');return false;}
+    return true;
+};
+
