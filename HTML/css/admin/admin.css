@@ -178,7 +178,10 @@
     color: #fff;
     border-color: #21361a;
 }
+
+/*
 .admin_main > div:not(.main_make_wrap) {overflow: visible;}
+*/
 
 /* 어드민 페이징 */
 .admin_pageing {text-align: center;margin-top: 15px;margin-bottom: 10px;font-size: 14px;}
