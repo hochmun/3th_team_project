@@ -1,0 +1,502 @@
+<!-- 2023/03/10 // 김동민 // 미니갤러리 index 페이지 화면구현 중 -->
+<!-- 2023/03/13 // 김동민 // 미니갤러리 index 페이지 화면구현 완료 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/minor/common.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
+    <script type="text/javascript" src="/js/ctr_cookie.js"></script>
+    <script src="/js/minor/minor.js"></script>
+</head>
+<body>
+    <div class="gcwrap miniwrap">
+
+        <!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                              <li><a href="#">게임</a></li>
+                              <li><a href="#">연예/방송</a></li>
+                              <li><a href="#">스포츠</a></li>
+                              <li><a href="#">교육/금융/IT</a></li>
+                              <li><a href="#">여행/음식/생물</a></li>
+                              <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+
+        <!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title l_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
+                <button type="button" class="btn_open" onclick="openLately()">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box">
+                    <!-- 최근방문 갤러리 리스트 -->
+                    <ul class="newvisit_list vst_listbox l_div_style"></ul>
+
+                    <!-- 즐겨찾기 갤러리 리스트 -->
+                    <ul class="newvisit_list bkmark_listbox f_div_style" style="display:none"></ul>
+                </div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more" onclick="openLately()">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;" id="visit_history_lyr">
+                    <div class="pop_content under_catelist newvisit_layer">
+                        <div class="tabs">
+                            <ul class="tabslist clear">
+                                <li class="tab_l"><button type="button" onclick="tabLately('lately')">최근 방문</button></li>
+                                <li class="tab_f"><button type="button" onclick="tabLately('favorite')">즐겨찾기</button></li>
+                            </ul>
+                        </div>
+                        <div class="toptab_content">
+                            <div class="visit_div 1_div_style">
+                                <!-- 최근 방문 리스트  -->
+							    <div class="visit_tablist" style="display:block">
+                                    <ul class="under_listbox vst_list"></ul>
+                                    <div class="tabcon_bottom">
+                                        <button type="button" class="list_modi">전체 삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="favorite_div f_div_style"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 메인 -->
+        <main id="container" class="minor_wrap gallmain">
+                <article class="clear">
+                    <h2 class="blind">미니 갤러리 메인 탑</h2>
+                    <section class="left_content">
+                      <h2 class="blind">미니 갤러리 메인 탑 왼쪽</h2>
+                      <div class="mgall_info clear">
+                        <p class="txt">비공개, 멤버 가입, 익명 사용 등 차별화된 기능의 <span class="font_lightpurple">미니 갤러리</span><button onclick="open_mini_info()"><span class="blind">미니 갤러리란?</span><em class="sp_img icon_mgll_explain"></em></button>를 만들어보세요.</p>
+                        <a href="./create.html" class="btn_lightpurple mgall_make_go round">미니 갤러리 만들기</a>
+                      </div>
+                      <div class="mini_list_wrap clear">
+                        <!-- 흥한 미니 갤러리 -->
+                        <div class="hot_mini_box">
+                          <header class="box_head clear">
+                            <h3 class="tit fl">흥한 미니 갤러리</h3>
+                            <div class="box_head_right clear">
+                              <button type="button" class="btn_white_round font_jinlightpurple" onclick="showLayer('heung_gall_all_lyr')">전체 순위</button>
+                              
+                              <!-- 흥한갤 전체 순위 레이어 팝업 -->
+                              <div id="heung_gall_all_lyr" class="pop_wrap type2 lightpurple" style="right:-259px;top:49px;display:none">
+                                <div class="pop_content pop_hot_gall" id="heung_list_ul">
+                                  <div class="pop_head dashed">
+                                    <strong>흥한갤 전체 순위</strong>
+                                    <span class="inner_txt">전체 마이너 갤러리 순위 중 300위 이내는 흥한갤이 됩니다. (20위 이내는 대흥갤)</span>
+                                  </div>
+                                    <ol class="pop_hotgall_listbox" data-heunggall-page="1">
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">1.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">2.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">3.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">4.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">5.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">6.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">7.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">8.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">9.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">10.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">11.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">12.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">13.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">14.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">15.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">16.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">17.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">18.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">19.</span> 갤러리 명</a></li>
+                                        <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();" onmouseover="gallery_view();"><span class="num font_red">20.</span> 갤러리 명</a></li>
+                                    </ol>
+                                    <div class="btn_box" data-lyr="heung_gall_all_lyr">
+                                  <button type="button" class="heung_gall_prev btn_prev on"><span class="blind">이전</span><em class="sp_img icon_prev"></em></button>
+                                  <div class="page_num"><strong class="now_num" data-heung-gall-page="1" data-heung-gall-totalpage="3">1</strong>
+                                  <span>/<span class="total_num">3</span>
+                                  </span></div>
+                                  <button type="button" class="heung_gall_next btn_next on"><span class="blind">다음</span><em class="sp_img icon_next"></em></button>
+                                  </div>
+                                </div>
+                                <button type="button" class="under poply_close" onclick="showLayer('heung_gall_all_lyr')"><span class="blind">갤러리 전체보기 레이어 닫기</span><em class="sp_img icon_lyclose"></em></button>
+                              </div>
+                              <!-- //흥한갤 전체 순위 레이어 팝업 -->
+                              <div class="btn_paging fr" data-page="1">
+                                <button type="button" class="btn_whiteprev" id="btn_hot_prev"><span class="blind">이전</span><em class="sp_img icon_whiteprev lightpurple"></em></button>
+                                <button type="button" class="btn_whitenext on" id="btn_hot_next"><span class="blind">다음</span><em class="sp_img icon_whitenext lightpurple"></em></button>
+                              </div>
+                            </div>
+                          </header>
+                            <div class="hot_minigall">
+                                <div class="rank_list_box clear">
+                                    <ol class="rank_list fl">
+                                        <li><a class="" href="#"><span class="rank_num"><em>1</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>2</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>3</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>4</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>5</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                    </ol>
+                                    <ol class="rank_list fl">
+                                        <li><a class="" href="#"><span class="rank_num"><em>6</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>7</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>8</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>9</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                        <li><a class="" href="#"><span class="rank_num"><em>10</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- //흥한 미니 갤러리 -->
+                        <div class="allandrank clear">
+                            <button type="button" class="btn_lightpurple_round">갤러리 전체보기</button>
+                            <div class="rank_listwrap clear">
+                              <div class="ranklist_over clear">
+                                <button type="button" class="btn_lightpurple_round" >실시간 북적 미니 갤러리</button>
+                                <!-- 실시간 북적 갤러리 한줄 노출 -->
+                                <div class="one_ranklist">
+                                  <ol class="rank_list">
+                                    <li id="rank_no">
+                                      <a id="rank_num_1" href="#">
+                                      <span class="rank_num"><em>1</em></span>
+                                      <span class="rank_txt">실시간북적 1</span>
+                                      <span class="sp_img ico_ranking same"></span>
+                                      </a>
+                                      <a id="rank_num_2" href="#">
+                                        <span class="rank_num"><em>2</em></span>
+                                        <span class="rank_txt">실시간북적 2</span>
+                                        <span class="sp_img ico_ranking same"></span>
+                                        </a>
+                                    </li>
+                                  </ol>
+                                </div>
+                                <!-- //실시간 북적 갤러리 한줄 노출 -->
+                             <!-- 실시간 북적 갤러리 1~20위 10개씩 노출 -->
+                              <div class="all_ranklist" style="display:none;right:0;top:0">
+                                <div class="box_tit">
+                                  <h3 class="tit">미니 갤러리</h3>
+                                </div>
+                                <ol class="rank_list mgall rank_high" style="display:blcok"><!--1~10위-->
+                                      <li>
+                                        <a href="#" class="logClass" depth1="topframe" depth2="busygall" depth3="minormain_count">
+                                          <span class="rank_num"><em>1</em></span>
+                                          <span class="rank_txt">실시간북적 1</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a href="#" class="logClass" depth1="topframe" depth2="busygall" depth3="minormain_count">
+                                          <span class="rank_num"><em>2</em></span>
+                                          <span class="rank_txt">실시간북적 2</span>
+                                        </a>
+                                      </li>
+                                </ol>
+                                <ol class="rank_list mgall rank_low" style="display:none"><!--11~20위-->
+                                      <li>
+                                        <a href="#">
+                                          <span class="rank_num"><em>3</em></span>
+                                          <span class="rank_txt">실시간북적 3</span>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a href="#">
+                                          <span class="rank_num"><em>4</em></span>
+                                          <span class="rank_txt">실시간북적 4</span>
+                                        </a>
+                                      </li>
+                                </ol>
+                                <div class="box_bottom rank_more" rank_type="high">11위 - 20위</div>
+                              </div>
+                              <!-- //실시간 북적 갤러리 1~20위 10개씩 리스트 -->
+                            </div>
+                          </div>
+                    </section>
+                    <!-- 오른쪽 -->
+                    <section class="right_content">
+                    <!-- 로그인 -->
+                    <div id="login_box" class="login_box">
+                        <div class="user_info newarea" data-alarmId="">
+                          <strong onclick="location='/member/login.html'" style="cursor:pointer">로그인해 주세요.</strong> 
+                        </div>
+                        <div class="user_option ">
+                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a></span>
+                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기<span class="blind">리스트 보기</span></a></span>
+                                <span><a href="javascript:;" onclick="alarmList($('.icon_noti', this), 'new')"><em class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
+                        </div>
+                    </div>
+                    <img src="https://via.placeholder.com/300x150" alt="">
+                    </section>
+                </article>
+                 <!-- 미니 갤러리  리스트 -->
+                 <article  class="category_listwrap" >
+                  <h2 class="blind">카테고리별 갤러리 리스트</h2>
+                  <section class="cate_mgall_box">
+                    <!-- 마이너 갤러리 리스트 -->
+                    <div id="categ_listwrap" class="minicate_wrap">
+                      <div class="mini_catebox">
+                        <div class="catehead clear">
+                    <h3 class="fl">연예<em>(1234)</em></h3>
+                      <div class="mini_new fl clear new_26">
+                        <span class="tit fl">신설</span>
+                      </div><!--mini_new-->
+                            <button type="button" class="fr btn_cate_more" data-lyr="LayerMI_26">
+                            <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
+                            </button>
+                        </div><!--mini_catebox-->
+                    <ul class="mini_catelists clear">
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=26b2c225eddb33a7&no=63f39f2fe8d577a26fabd7e743856b30262adbfae2d019cc91ee6c953351afb0cf6ecd86caf9b599b9cbbb5fa72308b77049214920ff08800ea00953f40821944d8d71003618" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">국내지하아이돌</h4>
+                            </div>
+                            <p class="txt">대한민국에서 활동하는 지하아이돌에 대해 다룹니다.</p>
+                          </a>
+                        </div>						
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=3eb2de21b7&no=24b0d769e1d32ca73dea85fa1bd8233cdde052371d0918d242f4bf20c72ea96e63967654a47b6dc738f01fdbf5d8a0b104edcc76e2bd178b4b0fdab1ed4bde2f04fd6dd1d2a49d36b1da60bbe9769bbb231508" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">하트송이</h4>
+                            </div>
+                            <p class="txt"></p>
+                          </a>		
+                        </div>										
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=37b5d128e2da39a963b6d8bc&no=24b0d769e1d32ca73dea82fa1bd8233ce22fd5d9a98ee678171fc1eca1612cd0a8b213c1ea448395a379590fa5f88b3bbc93b2c02bd198313b268bf622645876c35dbfa2cf67c0a83bae1c52c13c93ec8839ea0512ae5b3fe655" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">장하오</h4>
+                            </div>
+                            <p class="txt">장하오 미니 갤러리입니다</p>
+                          </a>		
+                        </div>										
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=3ea8de21edd336a467b1&no=24b0d769e1d32ca73dea82fa1bd8233ce22fd5d9a98ee678171fc1eca1612cd0a8bb0ecee34b8a9aae7d5e4effe28e30452a5d3510a9111a01ca2a2474cfd6bf3fc61bf92a4927b34e9506d2904b929c16a53394a0958ed4" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">성한빈</h4>
+                            </div>
+                            <p class="txt">성한빈 미니 갤러리</p>
+                          </a>			
+                        </div>									
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=39afd936e9d72b&no=63f39f2fe8d577a26fabd7e643856b302415daf2f5e2b69472ebf12c6ac7e77ac162f3fa6d9e09f90aceb3f4a58c2d598b4c7a0ac85456007d2e0ae115b3e844a12bc76993" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">트리플에스</h4>
+                            </div>
+                            <p class="txt">걸그룹 트리플에스(tripleS)에 관심있는 모두를 위한 '익명'의 '블라인드' ...</p>
+                          </a>				
+                        </div>		
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=3fb2d82cecc12da8&no=63f39f2fe8d577a26fabd7e643856b302415daf2f5e2b69472ebf12c6ac7e67ae30c323b71d0f80eab807331911dd604bad232d783c96d0bcdbae15a7ccdd8b7dcbc78ae419d" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">노지선</h4>
+                            </div>
+                            <p class="txt">걸그룹 프로미스나인의 노지선에 대한 갤러리입니다.</p>
+                          </a>			
+                        </div>			
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                                        <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=21b4c623ecd637aa&no=24b0d769e1d32ca73cea85fa1bd8233c5811f523f189ad22b6a61b1b0b43dece7d7bc961b3c0b7df867cab97bf855b888e57a10a69fe209d5f3bbec052609a4b34af9750f9d67c5a880cfa12a84f3db6afc21d7e7b" >
+                                        </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">일본지하아이돌</h4>
+                            </div>
+                            <p class="txt">일본에서 활동하는 마이너 아이돌에 대해서 이야기하는 곳입니다.</p>
+                          </a>
+                        </div>						
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl"></a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">얼빡</h4>
+                            </div>
+                            <p class="txt">얼굴 사진을 공유하는 갤러리</p>
+                          </a>						
+                        </div>
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=7ded8177b486&no=24b0d769e1d32ca73feb81fa1bd8233c501401784cbd9491ab5ae509186dea604dd687a5d432796772f8a63153e53e142b41d16be0d2abd9b358d90bc8e0071129520b577f743ebeb0e57f2e1e955223c6a359a2" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">박시연</h4>
+                              <div class="member_numinfo fl">
+                                <span class="sp_img icon_membernum"><em class="blind">회원수</em></span><span>1</span>
+                              </div>
+                            </div>
+                            <p class="txt">배우 박시연에 관해 얘기하는 공간</p>
+                          </a>
+                        </div>						
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl"></a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">AKBG</h4>
+                                <div class="member_numinfo fl">
+                                <span class="sp_img icon_membernum"><em class="blind">회원수</em></span><span>1</span>
+                               </div>
+                            </div>
+                            <p class="txt">48그룹 관련 정보교환</p>
+                          </a>						
+                        </div>
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=2fb1d125eec231a865&no=24b0d769e1d32ca73fec85fa1bd8233c5eed1939fd53bba629750267ab9f16c70d1da9bb09db8056ce4c1053d0d28d92c00a298128ab4ae19035ce6261993e9b66ab2ee0bd8e825f35ba242d28d9ae1bc1f6883e27" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">블랙핑크</h4>
+                            </div>
+                            <p class="txt">뇽안?  뇽안!!</p>
+                          </a>
+                        </div>						
+                      </li>
+                      <li>
+                        <div class="list clear">
+                          <a href="#" target="_parent" class="mini_infoimg fl">
+                            <img src="https://dcimg2.dcinside.co.kr/viewimage.php?id=24a7df28e0&no=63f39f2fe8d577a26fabd7e745826b3071e5651e7041d8ad2ea945a3c69538126e1860f7e525aed499e513b24d75da4ec60478fa053b7f5a82017626b6edfa5723bb" >
+                          </a>
+                          <a href="#" target="_parent" class="mini_infotxt fl">
+                            <div class="head clear">
+                              <h4 class="tit fl ">아이즈원</h4>
+                            </div>
+                            <p class="txt">IZ*ONE(아이즈원)을 응원합니다.</p>
+                          </a>			
+                        </div>			
+                      </li>
+                    </ul></div><!--cate_box-->
+                  </div><!--categ_listwrap-->
+                        <!-- //미니 갤러리 리스트 -->
+              </section>
+            </article>
+          </main>
+        <!-- 푸터 -->
+        <footer class="gcfoot">
+            <div class="gc_all">
+            </div>   
+                
+
+            <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+            </div>
+
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+
+    </div>
+</body>
+</html>

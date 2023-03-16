@@ -38,6 +38,21 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script type="text/javascript" th:src="@{/js/admin/gnb.js}"></script>
     </th:block>
+
+    <!-- 2023/03/16 // 김동민 // 마이너 헤더 공통 -->
+    <th:block th:fragment="minorHead">
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" th:href="@{/css/basic.css}">
+        <link rel="stylesheet" th:href="@{/css/minor/common.css}">
+        <link rel="stylesheet" th:href="@{/css/popup.css}">
+        <link rel="stylesheet" th:href="@{/css/reset.css}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" th:src="@{/js/navigation.js}"></script>
+        <script type="text/javascript" th:src="@{/js/common.js}"></script>
+        <script type="text/javascript" th:src="@{/js/minor/minor.js}"></script>
+    </th:block>
 </head>
 <body>
 
