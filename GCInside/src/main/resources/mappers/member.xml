@@ -4,15 +4,13 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.gcInside.dao.MemberDAO">
     <insert id="insertMember">
-        insert into `km_member` set
+        insert into `gc_member` set
         `member_uid`=#{member_uid},
-        `member_pass`=#{gc_pw},
+        `member_pass`=#{member_pass},
         `member_nick`=#{user_nick},
-        `member_email`=#{email1} + `@` + #{email2},
-        `member_regip`=#{regip},
-        `member_status`=0,
-        `member_grade`=0,
-        `rdate`=NOW();
+        `member_email`=CONCAT(#{email1}, '@', #{email2}), <!--concat = 합치는 함수-->
+        `member_regip`=#{member_regip},
+        `member_rdate`=NOW();
     </insert>
     <select id="countByMemberUid" resultType="int" parameterType="String">
         select count(*) from `gc_member` where member_uid = #{member_uid};

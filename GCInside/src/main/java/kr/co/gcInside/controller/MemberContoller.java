@@ -1,6 +1,7 @@
 package kr.co.gcInside.controller;
 
 
+import com.sun.istack.NotNull;
 import kr.co.gcInside.service.EmailService;
 import kr.co.gcInside.service.MemberService;
 import kr.co.gcInside.vo.MemberVO;
@@ -43,10 +44,10 @@ public class MemberContoller {
     }
 
     @PostMapping("member/register")
-    public String register(MemberVO vo, HttpServletRequest req) {
+    public String register(@NotNull MemberVO vo, @NotNull HttpServletRequest req) {
         vo.setMember_regip(req.getRemoteAddr());
         int result = service.insertMember(vo);
-        return "redirect:/member/login?success"+result;
+        return "redirect:/index?success"+result;
     }
 
     @GetMapping("member/find_id")
@@ -84,10 +85,8 @@ public class MemberContoller {
         String code = emailService.sendEmailCode(email, session);
         return ResponseEntity.ok(code);
     }
-
     /* @ResponseBody 어노테이션은 생략가능,ResponseEntity를 반환할 땐
-       자동으로 응답 body에 데이터가 들어감
-    */
+       자동으로 응답 body에 데이터가 들어감 */
     @PostMapping("member/AuthCode")
     public ResponseEntity<String> AuthCode(@RequestParam("code") String code, HttpSession session) {
         String sessionCode = (String) session.getAttribute("code");
