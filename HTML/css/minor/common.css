@@ -797,7 +797,7 @@ display:block;max-height:34px;overflow:hidden;
 /* 어제 등록된 게시글, 댓글 */
 .gall_exposure {
   overflow: hidden;
-  float: left;
+  float: right; /* 2023/03/16 // 심규영 // 오른쪽 밀기 */
   width: 250px;
   height: 44px;
   text-align: center;
