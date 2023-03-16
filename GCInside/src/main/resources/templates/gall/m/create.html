@@ -1,0 +1,231 @@
+<!-- 2023/03/02 // 김동민 // 마이너 갤러리 생성페이지,css 작업 중 -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragment/head_fragment::minorHead}"></th:block>
+</head>
+<body>
+    <div class="minorwrap">
+
+        <!-- 헤더 -->
+        <th:block th:replace="~{fragment/header_fragment::minorHeader}"></th:block>
+        <!-- gnb -->
+        <th:block th:replace="~{fragment/gnb_fragment::mainGnb}"></th:block>
+        <!-- 최근 방문 탭 -->
+        <th:block th:replace="~{fragment/gnb_fragment::mainVisit}"></th:block>
+
+        <main id="container" class="minor_make">
+            <header>
+                <div class="page_head clear">
+                    <div class="fl">
+                        <h2>
+                            <a href="javascript:;"><span class="fixtit">마이너 갤러리</span> 만들기</a><span class="stxt">(만들기는 6개까지 가능합니다.)</span>
+                        </h2>
+                    </div>
+                </div>
+            </header>
+            <div class="minor_make_wrap">
+                <section>
+                    <h2 class="make_guide_tit">마이너 갤러리는?</h2>
+                    <div class="minor_make_guide clear">
+                        <p class="make_guide_txt">누구나 갤러리를 개설할 수 있습니다. 갤러리의 운영 권한 및 의무가 개설자에게 부여됩니다.</p>
+                        <div class="fl">
+                            <img th:src="@{/img/minor_infoimg2.png}" alt="승격전 마이너 갤러리는 매니저(개설자)가 운영, 승격 후의 갤러리는 매지너 권한 회수 gcinside에서 직접 운영합니다.">
+                        </div>
+                        <div class="minor_make_info fl">
+                            <div>
+                                <strong class="tit">승격 안내</strong>
+                                <p>영화, 드라마 등 일부 마이너 갤러리는 심사 후 메인 갤러리로 승격됩니다.</p>
+                                <p>승격 여부는 전적으로 회사에 의해 결정되며, 승격 시 매니저 권한은 회수됩니다.</p>
+                            </div>
+                            <div class="txt_attention">
+                                <strong class="tit">유의 사항</strong>
+                                <p>메인 갤러리 승격을 위해서는 간결하고 정확한 단어형 이름을 입력하셔야 합니다.</p>
+                                <p>
+                                    동일한 주제의 메인 갤러리가 있을 경우 승격이 불가능합니다.
+                                    <button type="button" class="btn_guide_view">자세히보기</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="blind">마이너 갤러리 신청 정보입력</h2>
+                    <form th:action="@{/m/create}" method="post" id="frmCreate" name="frmCreate">
+                        <input type="hidden" name="ci_t" value=""/>
+                        <div class="minor_make_form clear">
+                            <div id="make_form_wrap" class="make_form_cont">
+                                <fieldset>
+                                    <legend class="blind">마이너 갤러리 신청 정보입력</legend>
+                                    <div class="form_group">
+                                        <div class="set_content name clear">
+                                            <div class="set_tit">
+                                                <label for="gell_create_name">이름</label><em class="required_input">*</em>
+                                            </div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <input class="t_input chk_str_length" id="gell_create_name" name="gell_create_name" type="text" placeholder="마이너 갤러리 이름을 간단히 넣어주세요."> <span class="basic_tit">마이너 갤러리</span>
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>12</b></span>
+                                                <p class="tiptxt red mname_alert_txt_fix">
+                                                    <em class="sp_img tip_deco"></em>이름은 개설 후, 7일 내 1회만 수정할 수 있습니다.
+                                                </p>
+                                                <p class="tiptxt red mname_alert_txt_fix">
+                                                    <em class="sp_img tip_deco"></em>동일한 주제의 마이너 갤러리는 개설이 불가능합니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content desc clear">
+                                            <div class="set_tit">
+                                                <label for="gell_create_intro">설명</label>
+                                            </div>
+                                            <div class="cont_box">
+                                                <textarea class="t_area chk_str_length" id="gell_create_intro" name="gell_create_intro" placeholder="마이너 갤러리에 대한 설명을 넣어주세요."></textarea>
+                                                <div class="clear">
+                                                    <p class="tiptxt mdesc_alert_txt">
+                                                        <b class="font_red"></b> <span class="alert_msg"></span>
+                                                    </p>
+                                                    <span class="max_txt"><span>0</span>/<b>200</b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content adr clear">
+                                            <div class="set_tit">
+                                                <label for="gell_create_address">주소</label><em class="required_input">*</em>
+                                            </div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <span class="basic_adr">https://gall.gcinside.com/</span> 
+                                                    <input class="t_input chk_str_length" id="gell_create_address" name="gell_create_address" type="text">
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>20</b></span>
+                                                <p class="tiptxt red mid_alert_txt_fix">
+                                                    <em class="sp_img tip_deco"></em>주소는 만들기 후 수정이 불가능합니다. 신중히
+                                                    입력해주세요.
+                                                </p>
+                                                <p class="tiptxt mid_alert_txt">
+                                                    <b class="font_red"></b> <span class="alert_msg"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content category clear">
+                                            <div class="set_tit">
+                                                <label for="gell_create_cate">카테고리</label><em class="required_input">*</em>
+                                            </div>
+                                            <div class="cont_box">
+                                                <div class="select_box select_arraybox">
+                                                    <div id="gell_create_cate" class="select_area select_Cate" onclick="showOptions()">
+                                                        카테고리를 선택해주세요.<em class="sp_img icon_option_more"></em>
+                                                    </div>
+                                                    <select id="options" style="display:none;">
+                                                        <th:block th:each="cate:${cate2}">
+                                                        <option th:value="${cate.gell_cate2}">[[${cate.gell_cate2_name}]]</option>
+                                                        </th:block>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form_group">
+                                        <div class="set_content makereason clear">
+                                            <div class="set_tit">
+                                                <label for="gell_create_reason">개설이유</label><em class="required_input">*</em>
+                                            </div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <input class="t_input chk_str_length" id="gell_create_reason" name="gell_create_reason" type="text" placeholder="운영자에게 전달되는 메세지입니다.">
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>100</b></span>
+                                                <p class="tiptxt">
+                                                    <em class="sp_img tip_deco"></em>마이너 갤러리 개설은 이름, 설명, 주소, 개설
+                                                    이유에 따라 승인 또는 반려될 수 있습니다.
+                                                </p>
+                                                <p class="tiptxt">
+                                                    <em class="sp_img tip_deco"></em>개설 승인, 반려는 평일 정상근무 시간에 처리됩니다.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </fieldset>
+                            </div>
+                            <div class="ex_cont clear">
+                                <p class="fl tit">예시</p>
+                                <div class="fr ex">
+                                    <fieldset>
+                                        <legend class="blind">마이너 갤러리 만들기 예시</legend>
+                                        <div class="form_group">
+                                            <div class="set_content name clear">
+                                                <div class="cont_box clear">
+                                                    <div class="cont_input_box">
+                                                        <input class="t_input" type="text" title="예시 문구" readonly="readonly" value="백수"> <span class="basic_tit">마이너 갤러리</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form_group">
+                                            <div class="set_content desc clear">
+                                                <div class="cont_box">
+                                                    <textarea class="t_area" readonly="readonly">백수, 백조 모두 모두 모여요.</textarea>
+                                                    <div class="clear">
+                                                        <span class="max_txt"><span>17</span>/<b>200</b></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="minor_make_chk clear">
+                        <div class="fl agree_chk chk1">
+                            <span class="checkbox"> 
+                            <input type="checkbox" id="person_agree" name="person_agree" value="1"> <em class="checkmark"></em> <label for="person_agree">마이너 갤러리 개인정보보호정책에 동의합니다.</label>
+                            </span>
+                            <!-- 매니저의 개인정보보호의무 -->
+                            <div class="scroll privacy">
+                            </div>
+                            <!--//매니저의 개인정보보호의무 -->
+                        </div>
+                        <div class="fl agree_chk chk2">
+                            <span class="checkbox"> <input type="checkbox" id="use_agree"
+                                name="use_agree" value="1"> <em class="checkmark"></em> <label
+                                for="use_agree">마이너 갤러리 운영원칙에 동의합니다.</label>
+                            </span>
+                            <!-- 마이너 운영원칙-->
+                            <div class="scroll operating">
+                      </div>
+                            <!-- //마이너 운영원칙-->
+                        </div>
+        
+                        <div class="agree_chk chk3">
+                            <span class="checkbox"> 
+                            <input type="checkbox" id="upgrade_agree" name="upgrade_agree" value="1"> <em class="checkmark"></em> <label for="upgrade_agree">메인 갤러리 승격에 동의합니다.</label>
+                            </span>
+                            <p class="txt">신청하신 마이너 갤러리는 지시인사이드의 판단에 따라 메인 갤러리로 승격되고, 매니저 권한이 회수됩니다.</p>
+                        </div>
+                    </div>
+                    <div class="make_guidetxt_box">
+                        <p class="tiptxt">
+                            <em class="tip_deco_dot"></em>게시물의 관리 의무와 권리는 매니저(개설자)에게 있으며, 운영원칙을 위반한 경우 폐쇄 또는 매니저 해임이 될 수 있습니다.(음란물, 불량 게시물, 상업적 게시물, 댓글의 방치 등)
+                        </p>
+                    </div>
+                    <div class="make_bottom_btnbox">
+                        <button type="button" class="list_bottom btn_grey">취소</button>
+                        <button type="button" class="list_bottom btn_blue" onclick="submitForm()">만들기</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer></footer>
+
+    </div>
+</body>
+</html>

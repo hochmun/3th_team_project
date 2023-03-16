@@ -1,0 +1,957 @@
+<!-- 2023/03/13 // 심규영 // 작업 이어받기 -->
+<!DOCTYPE html>
+<html lang="ko" class="darkmode">
+<head> 
+	<meta charset="UTF-8">
+	<title>ㅁㅁ 갤러리 - 커뮤니티 포털 사이트</title>
+    <link rel="shortcut icon" href="/img/logo_icon.png" />
+	<link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+	<link rel="stylesheet" href="/css/minor/common.css">
+	<link rel="stylesheet" href="/css/popup.css">
+	<link rel="stylesheet" href="/css/gall/contents.css">
+	<!-- 마이너 갤러리용 css -->
+	<link rel="stylesheet" href="/css/gall/minor.css">
+	<script type="text/javascript" src="/js/minor/minor.js"></script>
+	<script type="text/javascript" src="/js/ctr_cookie.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/navigation.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
+    <script type="text/javascript" src="/js/gall/gallery.js"></script>
+</head>
+<body>
+	<div class="gcwrap width1160 list_wrap">
+		<!-- 헤더 -->
+        <header class="gcheader typea">
+
+            <div class="gchead">
+                <!-- 메인 로고 -->
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
+                        <a class="_blank" href="#"></a>
+                        <a class="_top" href="#"></a>
+                    </div>
+                </h1>
+
+                <div class="wrap_search">
+                    <!-- 갤러리 통합검색-->
+                    <form>
+                        <fieldset>
+                            <div class="top_search clear">
+                                <div class="inner_search">
+                                    <input class="in_keyword" type="text" name="search"
+                                    placeholder="갤러리 & 통합검색" autocomplete="off"
+                                    title="검색어 입력">
+                                </div>
+                                <button class="sp_main bnt_search"></button>
+                                <!-- 검색어 자동 완성 기능 -->
+                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </header>
+
+		<!-- gnb -->
+        <div class="gnb_bar">
+            <nav class="gnb clear">
+                <ul class="gnb_list clear">
+                    <li>
+                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
+                        <!-- 2차메뉴 -->
+                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
+                            <span class="sp_img depth_bg"></span>
+                            <ul class="depth2_list" >
+                              <li><a href="#">게임</a></li>
+                              <li><a href="#">연예/방송</a></li>
+                              <li><a href="#">스포츠</a></li>
+                              <li><a href="#">교육/금융/IT</a></li>
+                              <li><a href="#">여행/음식/생물</a></li>
+                              <li><a href="#">취미/생활</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">마이너갤</a></li>
+                    <li><a href="#">미니갤</a></li>
+                </ul>
+
+                <!-- 어제 게시글, 댓글 등록 수 -->
+                <div class="gall_exposure">
+                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                    <div class="ltr"><a href="#">로터리 응모</a></div>
+                </div>
+
+            </nav>
+        </div>
+
+		<!-- 최근 방문 탭 -->
+        <div class="visit_bookmark">
+            <div class="newvisit_history vst">
+                <h3 class="tit vst_title l_div_style">최근 방문</h3>
+                <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
+                <button type="button" class="btn_open" onclick="openLately()">
+                    <em class="sp_img icon_listmore"></em>
+                </button>
+                <button type="button" class="bnt_visit_prev">
+                    <em class="sp_img icon_prev"></em>
+                </button>
+                <div class="newvisit_box">
+                    <!-- 최근방문 갤러리 리스트 -->
+                    <ul class="newvisit_list vst_listbox l_div_style"></ul>
+
+                    <!-- 즐겨찾기 갤러리 리스트 -->
+                    <ul class="newvisit_list bkmark_listbox f_div_style" style="display:none"></ul>
+                </div>
+                <button type="button" class="bnt_visit_next">
+                    <em class="sp_img icon_next"></em>
+                </button>
+                <button type="button" class="bnt_newvisit_more" onclick="openLately()">전체</button>
+                <!-- 최근방문 / 즐겨찾기 레이어 -->
+                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;" id="visit_history_lyr">
+                    <div class="pop_content under_catelist newvisit_layer">
+                        <div class="tabs">
+                            <ul class="tabslist clear">
+                                <li class="tab_l"><button type="button" onclick="tabLately('lately')">최근 방문</button></li>
+                                <li class="tab_f"><button type="button" onclick="tabLately('favorite')">즐겨찾기</button></li>
+                            </ul>
+                        </div>
+                        <div class="toptab_content">
+                            <div class="visit_div 1_div_style">
+                                <!-- 최근 방문 리스트  -->
+							    <div class="visit_tablist" style="display:block">
+                                    <ul class="under_listbox vst_list"></ul>
+                                    <div class="tabcon_bottom">
+                                        <button type="button" class="list_modi">전체 삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="favorite_div f_div_style"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+		<!-- 메인 -->
+		<div class="wrap_inner">
+			<main id="container" class="listwrap clear">
+				<section class="left_content">
+					<!-- 갤러리명 -->
+					<header>
+						<div class="page_head clear">
+							<div class="fl clear">
+								<h2>
+									<a href="#">
+										ㅁㅁ 갤러리
+										<!--마이너 갤 아이콘-->
+										<div class="pagehead_titicon mgall sp_img"></div>
+										<!-- 미니 갤 아이콘 -->
+										<div class="pagehead_titicon ngall sp_img" style="display: none;"></div>
+									</a>
+									
+								</h2>
+							</div>
+							<div class="fr gall_issuebox">
+								<div class="bundle">
+									<button type="button" class="issue_setting" id="issue_setting" onclick="setting_layer()">설정</button>
+									<!-- 팝업 -->
+									<div class="pop_tipbox setting_list" id="setting_list" style="display: none;">
+										<div class="inner">
+											<ul>
+												<li><button type="button">차단 설정</button></li>
+												<li><button type="button">머리말·꼬리말 설정</button></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="relate" onclick="open_relation(0)">
+									<!-- 새로운 연관 갤러리 있을 경우 display:none 제거 됨 -->
+									<span class="new" style="display: none;"><em class="sp_img icon_new"></em></span>
+									연관 갤러리(0/n)
+									<em class="sp_img icon_relate_more"></em>
+								</button
+								><button type="button" class="adr_copy">
+									갤주소 복사
+								</button
+								><button type="button" class="gall_useinfo">
+									이용안내
+								</button>
+							</div>
+							<!-- 차단 설정 팝업 -->
+							<div class="pop_wrap type3" id="user_block" style="left:50%;top:-2px;margin-left:-199px;display: none;"></div>
+							<!-- 말머리, 꼬리말 설정 팝업 -->
+							<div class="pop_wrap type3" id="headTail_lay" style="left:50%;top:44px;margin-left:-222px;display: none;"></div>
+							<!-- 연관 갤러리 팝업 -->
+							<div id="relation_popup" class="pop_wrap type3" style="left: 0px;top:-2px;display: none;" loaded="1">
+								<div class="pop_content relation_wrap">
+									<div class="pop_head"><h3>연관 갤러리</h3></div>
+									<!-- 현갤러리 -> 타 갤러리 -->
+									<div class="following inner">
+										<div class="pop_info">
+											<b>ㅁㅁ 갤러리<em class="sp_img icon_right_arrow"></em> 타 갤러리(<span class="count">3</span>)</b>
+											<p>이 갤러리가 연관 갤러리로 추가한 갤러리</p>
+										</div>
+										<ul class="list_box clear">
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+										</ul>
+										<div class="btn_box">
+											<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
+											<div class="page_num">
+												<strong class="now_num">1</strong>/<span class="total_num">1</span>
+											</div>
+											<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
+										</div>
+									</div>
+									<!-- 타 갤러리 -> 현갤러리 -->
+									<div class="follower inner">
+										<div class="pop_info">
+											<b>타 갤러리<em class="sp_img icon_right_arrow"></em> ㅁㅁ 갤러리(<span class="count">6</span>)</b>
+											<p>이 갤러리를 연관 갤러리로 추가한 갤러리</p>
+										</div>
+										<ul class="list_box clear">
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+											<li><a href="#">갤러리 이름</a></li>
+										</ul>
+										<div class="btn_box">
+											<button type="button" class="btn_prev"><em class="sp_img icon_prev"></em></button>
+											<div class="page_num">
+												<strong class="now_num">1</strong>/<span class="total_num">1</span>
+											</div>
+											<button type="button" class="btn_next"><em class="sp_img icon_next"></em></button>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="poply_bgblueclose"></button>
+							</div>
+						</div>
+					</header>
+
+					<!-- 갤러리 설명 -->
+					<article>
+						<div class="issue_wrap">
+							<div class="issuebox gallery_box">
+								<!-- 상단 이슈 박스 -->
+								<div class="issue_contentbox clear">
+									<!-- 마이너 갤러리 설명 -->
+									<div class="minor_intro_box clear">
+										<div class="img_contbox clear">
+											<div class="bgcover">
+												<a href="javascript:imgPop('이미지주소,menubar=no,toolbar=no,location=no,status=no,width=550,height=350');" class="mintro_imgbox in_img">
+													<span class="cover" style="background-image: url('이미지주소');"></span>
+												</a>
+											</div>
+											<div class="mintro_txtbox">
+												<p class="mintro_txt">갤러리 소개글</p>
+											</div>
+										</div>
+										<div class="info_contbox">
+											<div class="info_cont">
+												<strong class="tit">매니저</strong>
+												<p class="cont">
+													<span class="mng_nick">닉네임(아이디)</span>
+												</p>
+											</div>
+											<div class="info_cont">
+												<strong class="tit">부매니저</strong>
+												<p class="cont">
+													<span class="mng_nick">닉네임(<span>아이디...</span>)</span>
+												</p>
+											</div>
+											<div class="info_cont">
+												<strong class="tit">개설일</strong>
+												<p class="cont">0000-00-00</p>
+											</div>
+											<div class="info_cont">
+												<button type="button" class="font_lightblue btn_mngadmin_report">갤러리 관리 내역</button>
+											</div>
+										</div>
+									</div>
+									<div class="minor_ranking_box">
+										<!-- 안흥한갤 -->
+										<div class="ranking" style="display:block">
+											<div class="ranking_tit normal"></div>
+											<div class="rank_img">
+												<span class="outsied_img"></span>
+											</div>
+										</div>
+										<!-- 흥한갤 설명 버튼 -->
+										<button type="button" class="btn_mgall_dcp"><em class="icon_mgall_dcp sp_img"></em></button>
+										<!-- 흥한갤 설명 레이어 -->
+										<div id="hot_tip_pop" class="pop_tipbox minor_tip" style="right:15px;top:15px;display:none;">
+											<div class="inner hotgall_tip">
+												<div class="minor_tip_txt">
+													<p>전체 마이너 갤러리 순위 중 300위 이내는 흥한갤이 됩니다.</p>
+													<span style="display: block;padding-left:6px;">(20위 이내는 대흥갤)</span>
+													<p>흥한갤은 순위 갱신 시 변동될 수 있습니다.</p>
+												</div>
+												<button type="button" class="btn_tipclose"><em class="sp_img icon_tipclose"></em></button>
+											</div>
+										</div>
+										<!-- 흥한갤 랭킹 버튼 -->
+										<button type="button" class="btn_hotall_list sp_img"></button>
+										<!-- 흥한갤 랭킹 팝업 창 -->
+										<div id="hot_rank_pop" class="pop_wrap type2" style="right:-1px;top:139px;display:none;">
+											<div class="pop_content pop_hot_mgall">
+												<div class="pop_head dashed">
+													<strong>흥한갤 전체 순위</strong>
+													<span class="inner_txt">전체 마이너 갤러리 순위 중 300위 이내는 흥한갤이 됩니다. (20위 이내는 대흥갤)</span>
+												</div>
+												<div class="hot_rank_list_wrap">
+													<ul class="pop_hotmgall_listbox" id="heung_list_ul" style data-heunggall-page="1">
+														<!-- 20위 까지는 빨간색 -->
+														<li><a href="#"><span class="num font_red">1.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">2.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">3.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">4.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">5.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">6.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">7.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">8.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">9.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">10.</span> 갤러리이름</a></li>
+														<li><a href="#"><span class="num font_red">11.</span> 갤러리이름</a></li>
+													</ul>
+													<ul class="pop_hotmgall_listbox" id="heung_list_ul_2" data-heunggall-page="2" style="display:none;"></ul>
+													<ul class="pop_hotmgall_listbox" id="heung_list_ul_3" data-heunggall-page="3" style="display:none;"></ul>
+													<div class="btn_box" data-lyr="hot_rank_pop">
+														<button type="button" class="heung_gall_prev btn_prev on"><em class="sp_img icon_prev"></em></button>
+														<div class="page_num">
+															<strong class="now_num" data-heung-gall-page="1" data-heung-gall-totalpage="3">1</strong>
+															<span>/</span>
+															<span class="total_num">3</span>
+														</div>
+														<button type="button" class="heung_gall_prev btn_next on"><em class="sp_img icon_next"></em></button>
+													</div>
+												</div>
+											</div>
+											<button type="button" class="under poply_close"><em class="sp_img icon_lyclose"></em></button>
+										</div>
+									</div>
+								</div>
+
+								<!-- 하단 배너 -->
+								<div class="banner_box">
+									<a href="#" target="_blank">
+										<img src="https://via.placeholder.com/840x90" width="840" height="90" style="border:0px;">
+									</a>
+								</div>
+							</div>
+						</div>
+					</article>
+
+					<!-- 갤러리 내용-->
+					<article>
+						<!-- 상단 탭 -->
+						<div class="list_array_option clear">
+							<div class="array_tab left_box">
+								<button type="button" class="on">전체글</button>
+								<button type="button">개념글</button>
+								<button type="button">공지</button>
+							</div>
+							<div class="center_box">
+								<div class="inner">
+									<ul>
+										<li><a href="javascript:;" class="on">전체</a></li>
+										<li><a href="javascript:;">일반</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="right_box">
+								<div class="output_array clear" style="display: block;">
+									<div class="select_box array_num">
+										<div class="select_area"><a href="javascript:;"><!--현재 페이지 개수-->50개<em class="sp_img icon_option_more"></em></a></div>
+										<ul id="listSizeLayer" class="option_box" style="left:0;top:20px;display:none;">
+											<li><a href="javascript:;">30개</a></li>
+											<li><a href="javascript:;">50개</a></li>
+											<li><a href="javascript:;">100개</a></li>
+										</ul>
+									</div>
+									<div class="switch_btnbox">
+										&nbsp;
+										<a class="btn_write txt" href="#">글쓰기</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- 갤러리 리스트 -->
+						<div class="gall_listwrap list">
+							<table class="gall_list">
+								<!-- 열 설정 -->
+								<colgroup>
+									<col style="width: 7%;">
+									<col style="width: 51px;">
+									<col>
+									<col style="width: 18%;">
+									<col style="width: 6%;">
+									<col style="width: 6%;">
+									<col style="width: 6%;">
+								</colgroup>
+								<!-- 게시글 헤더 -->
+								<thead>
+									<tr>
+										<th scope="col">번호</th>
+										<th scope="col">말머리</th>
+										<th scope="col">제목</th>
+										<th scope="col">글쓴이</th>
+										<th scope="col">작성일</th>
+										<th scope="col">조회</th>
+										<th scope="col">추천</th>
+									</tr>
+								</thead>
+								<!-- 게시글 목록 -->
+								<tbody>
+									<!--
+									<tr class="ub_content us-post" data-no="게시물번호" data-type="게시글 타입(ex.icon_txt, icon_pic, icon_notice, icon_recoming)"></tr>
+									-->
+									<!--공지글 예시-->
+									<tr class="ub_content us-post" data-no="21906" data-type="icon_notice">
+										<td class="gall_num">21906</td>
+										<td class="gall_subject"><b>공지</b></td>
+										<td class="gall_tit ub-word">
+											<a href="#">
+												<em class="icon_img icon_notice"></em>
+												<b>공지 제목</b>
+											</a>
+											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+										</td>
+										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="" data-loc="list">
+											<b>
+												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
+												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+												<a class="writer_nikcon">
+													<img src="/img/fix_managernik.gif" alt="갤로그로 이동합니다."
+													title="uid** : 갤로그로 이동합니다." width="12" height="11"
+													style="cursor: pointer;margin-left: 2px;">
+												</a>
+											</b>
+										</td>
+										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+										<td class="gall_count">50924</td>
+										<td class="gall_recommend">72</td>
+									</tr>
+									<!--일반글예시-->
+									<tr class="ub_content us-post" data-no="1" data-type="icon_txt">
+										<td class="gall_num">1</td>
+										<td class="gall_subject"><b>일반</b></td>
+										<td class="gall_tit ub-word">
+											<a href="#">
+												<em class="icon_img icon_txt"></em>
+												<b>일반 글 제목</b>
+											</a>
+											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+										</td>
+										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+											<b>
+												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
+												<!-- 비회원 아이피 표시 -->
+												<span class="ip">(000.00)</span>
+												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+												<!-- 갤로그 있을 경우 표시 ex.유저-->
+												<!--
+												<a class="writer_nikcon">
+													<img src="/img/fix_managernik.gif" alt="갤로그로 이동합니다."
+													title="uid** : 갤로그로 이동합니다." width="12" height="11"
+													style="cursor: pointer;margin-left: 2px;">
+												</a>
+												-->
+											</b>
+										</td>
+										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+										<td class="gall_count">1033</td>
+										<td class="gall_recommend">12</td>
+									</tr>
+									<!--이미지 포함 글 표시-->
+									<tr class="ub_content us-post" data-no="2" data-type="icon_pic">
+										<td class="gall_num">2</td>
+										<td class="gall_subject"><b>질문</b></td>
+										<td class="gall_tit ub-word">
+											<a href="#">
+												<em class="icon_img icon_pic"></em>
+												<b>일반 글 이미지포함 제목</b>
+											</a>
+											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+										</td>
+										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+											<b>
+												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
+												<!-- 비회원 아이피 표시 -->
+												<!--
+												<span class="ip">(000.00)</span>
+												-->
+												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+												<!-- 갤로그 있을 경우 표시 ex.유저-->
+												<a class="writer_nikcon">
+													<img src="/img/fix_sub_managernik.gif" alt="갤로그로 이동합니다."
+													title="uid** : 갤로그로 이동합니다." width="12" height="11"
+													style="cursor: pointer;margin-left: 2px;">
+												</a>
+											</b>
+										</td>
+										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+										<td class="gall_count">1033</td>
+										<td class="gall_recommend">12</td>
+									</tr>
+									<!-- 추천 글 예시 -->
+									<tr class="ub_content us-post" data-no="4" data-type="icon_recoming">
+										<td class="gall_num">4</td>
+										<td class="gall_subject"><b>정보</b></td>
+										<td class="gall_tit ub-word">
+											<a href="#">
+												<em class="icon_img icon_recomimg"></em>
+												<b>추천 글 제목</b>
+											</a>
+											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+										</td>
+										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+											<b>
+												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
+												<!-- 비회원 아이피 표시 -->
+												<!--
+												<span class="ip">(000.00)</span>
+												-->
+												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+												<!-- 갤로그 있을 경우 표시 ex.유저-->
+												<a class="writer_nikcon">
+													<img src="/img/fix_nik.gif" alt="갤로그로 이동합니다."
+													title="uid** : 갤로그로 이동합니다." width="12" height="11"
+													style="cursor: pointer;margin-left: 2px;">
+												</a>
+											</b>
+										</td>
+										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+										<td class="gall_count">1033</td>
+										<td class="gall_recommend">12</td>
+									</tr>
+									<tr class="ub_content us-post" data-no="5" data-type="icon_txt">
+										<td class="gall_num">5</td>
+										<td class="gall_subject"><b>일반</b></td>
+										<td class="gall_tit ub-word">
+											<a href="#">
+												<em class="icon_img icon_txt"></em>
+												<b>일반 글 제목</b>
+											</a>
+											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+										</td>
+										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+											<b>
+												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
+												<!-- 비회원 아이피 표시 -->
+												<!--
+												<span class="ip">(000.00)</span>
+												-->
+												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+												<!-- 갤로그 있을 경우 표시 ex.유저-->
+												<a class="writer_nikcon">
+													<img src="/img/nik.gif" alt="갤로그로 이동합니다."
+													title="uid** : 갤로그로 이동합니다." width="12" height="11"
+													style="cursor: pointer;margin-left: 2px;">
+												</a>
+											</b>
+										</td>
+										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+										<td class="gall_count">1033</td>
+										<td class="gall_recommend">12</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<!-- 하단 버튼 박스 -->
+						<div class="list_bottom_btnbox">
+							<div class="fl">
+								<button type="button" class="list_bottom btn_blue">전체글</button>
+								<button type="button" class="list_bottom btn_white">개념글</button>
+							</div>
+							<div class="fr">
+								<button type="button" id="btn_write" class="btn_blue write">글쓰기</button>
+							</div>
+						</div>
+
+						<!-- 페이징 -->
+						<div class="bottom_paging_wrap">
+							<!-- 페이징 메인 -->
+							<div class="bottom_paging_box iconpaging">
+								<a href="javascript:;" class="sp_pagingicon page_first">처음</a>
+								<a href="javascript:;" class="sp_pagingicon page_prev">이전</a>
+								<em>16</em>
+								<a href="javascript:;">17</a>
+								<a href="javascript:;">18</a>
+								<a href="javascript:;">19</a>
+								<a href="javascript:;">20</a>
+								<a href="javascript:;">21</a>
+								<a href="javascript:;">22</a>
+								<a href="javascript:;">23</a>
+								<a href="javascript:;">24</a>
+								<a href="javascript:;">25</a>
+								<a href="javascript:;">26</a>
+								<a href="javascript:;">27</a>
+								<a href="javascript:;">28</a>
+								<a href="javascript:;">29</a>
+								<a href="javascript:;">30</a>
+								<a href="javascript:;" class="sp_pagingicon page_next">다음</a>
+								<a href="javascript:;" class="sp_pagingicon page_end">끝</a>
+							</div>
+							
+							<!-- 페이지 이동 버튼 -->
+							<div class="bottom_movebox">
+								<button type="button" class="btn_grey_roundbg btn_schmove">
+									페이지이동
+									<span class="sp_img icon_schmove"></span>
+								</button>
+							</div>
+
+							<!-- 페이지 이동 버튼 팝업 창 -->
+							<div class="pop_wrap type3 move_page_lyr" style="top:-121px;right:0px;display:none;">
+								<!-- 팝업 창 메인 -->
+								<div class="pop_content schmove">
+									<div class="pop_head"><h3>페이지 이동</h3></div>
+									<div class="inner page">
+										<div class="hint_txt">이동할 페이지 번호를 입력하세요.</div>
+										<div class="moveset">
+											<span class="tit">페이지</span>
+											<input type="text" name="move_page" value="16">
+											<span class="num total_page">999</span>
+											<button type="button" class="btn_blue small move_page_btn">이동</button>
+										</div>
+									</div>
+								</div>
+								<!-- 팝업 창 닫기 버튼 -->
+								<button type="button" class="poply_bgblueclose"><em class="sp_img icon_bgblueclose"></em></button>
+							</div>
+						</div>
+
+						<!-- 갤러리 내 검색 폼 -->
+						<form name="frmSearch" method="post">
+							<fieldset>
+								<div class="buttom_search_wrap clear">
+									<!-- 검색 종류 선택 -->
+									<div class="select_box bottom_array fl">
+										<div class="select_area">
+											<!-- 선택한 내용 출력 -->
+											<span id="search_type_txt">제목+내용</span>
+
+											<!-- 아이콘 -->
+											<span class="inner"><em class="sp_img icon_option_more"></em></span>
+										</div>
+
+										<!-- 선택 팝업 창 -->
+										<ul id="searchTypeLayer" class="option_box" style="left:-1px;top:36px;display:none;">
+											<!-- onclick 함수 사용 -->
+											<li>제목+내용</li>
+											<li>제목</li>
+											<li>내용</li>
+											<li>글쓴이</li>
+											<li>댓글</li>
+										</ul>
+									</div>
+
+									<!-- 검색 내용 입력 -->
+									<div class="bottom_search fl clear">
+										<!-- 입력 칸 -->
+										<div class="inner_search">
+											<input type="text" class="in_keyword" name="search_keyword" title="검색어 입력">
+										</div>
+
+										<!-- 검색 아이콘 및 버튼 -->
+										<button class="sp_img bnt_search"></button>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+
+					</article>
+				</section>
+				
+				<section class="right_content">
+					<!-- 로그인 창 -->
+					<div>
+						<!-- 로그인 정보 -->
+						<div id="login_box" class="login_box">
+							<div class="user_info newarea" data-alarmid>
+								<strong onclick="location='/member/login'" style="cursor: pointer;">로그인해 주세요.</strong>
+							</div>
+
+							<div class="user_option">
+								<span>
+									<a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a>
+								</span>
+								<span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기</a></span>
+							</div>
+						</div>
+					</div>
+
+					<!-- 오른쪽 배너 -->
+					<!-- width 300px 고정 최소 높이 250px -->
+					<div class="rightbanner1">
+						<a href="javascript:;"><img src="https://via.placeholder.com/300x500" alt=""></a>
+					</div>
+
+					<!-- 실시간 베스트 -->
+					<article>
+						<div class="content_box r_timebest">
+							<header>
+								<h3 class="tit"><a href="#">실시간 베스트</a></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num realtimeNum">1</strong>/<span class="total_num realtimeTotal">8</span>
+									</div>
+									<button type="button" class="btn_blueprev" id="realtime_prev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on" id="realtime_next"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+
+							<div class="rcont_imgtxt_box">
+								<div class="img">
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box" style="display:none;">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box" style="display:none;">
+										<a href="#" class="inner logClass">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+								</div>
+								<ul class="txt">
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+									<li><a href="#">글 제목</a></li>
+								</ul>
+							</div>
+						</div>
+					</article>
+
+					<!-- 뉴스/ 겔시미디어 / 겔시 이슈-->
+					<article>
+						<div class="content_box r_dcmedia">
+							<header>
+								<h3 class="tit newsTab on"><a href="jvascript:;">뉴스</a></h3>
+								<h3 class="tit mediaTab"><a href="javascript:;">지시미디어</a></h3>
+								<h3 class="tit issueTab"><a href="javascript:;">지시이슈</a></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num" id="newsNum">1</strong>/<span class="total_num" id="newsTotal">2</span>
+									</div>
+									<button type="button" class="btn_blueprev" id="news_prev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on" id="news_next"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+							<div class="rcont_imgtxt_box r_news_box">
+								<div class="img">
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass" target="_blank">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+									<div class="rcontimg_box">
+										<a href="#" class="inner logClass" target="_blank">
+											<span class="img_box">
+												<img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+											</span>
+											<div class="txt_box">
+												<strong>글 제목</strong>
+											</div>
+										</a>
+									</div>
+								</div>
+								<ul class="txt">
+									<li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+									<li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+									<li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+								</ul>
+							</div>
+							<div class="rcont_imgtxt_box r_media_box" style="display: none;"></div>
+							<div class="rcont_imgtxt_box dcissue r_issue_box" style="display: none;"></div>
+						</div>
+					</article>
+					
+					<!-- 개념글 -->
+					<article>
+						<div class="content_box r_recommend">
+							<header>
+								<h3 class="tit"><a href="#">개념글<span class="sub">[<em>바이크</em>]</span></a></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num">1</strong>/<span class="total_num">18</span>
+									</div>
+									<button type="button" class="btn_blueprev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+
+							<ul id="rightRecom" class="rcont_list">
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+								<li><a href="#" class="logClass">글 제목</a></li>
+							</ul>
+						</div>
+					</article>
+
+					<!-- 힛글 -->
+					<article>
+						<div id="rightHit" class="content_box r_hit">
+							<header>
+								<h3 class="tit on"><a href="javascript:;">힛(HIT)<span class="new"><em class="sp_img icon_new"></em></span></a></h3>
+								<h3 class="tit"></h3>
+								<div class="pageing_box">
+									<div class="page_num">
+										<strong class="now_num">1</strong>/<span class="total_num">3</span>
+									</div>
+									<button type="button" class="btn_blueprev"><em class="sp_img icon_blueprev"></em></button>
+									<button type="button" class="btn_bluenext on"><em class="sp_img icon_bluenext"></em></button>
+								</div>
+							</header>
+							<div class="rcont_hit rhit_list">
+								<a href="#" class="inner logClass">
+									<span class="img_box">
+										<img src="https://via.placeholder.com/270x200">
+										<!-- n년전 -->
+										<span class="sp_years icon_years" style="display: none;"></span>
+									</span>
+									<div class="txt_box">
+										<strong>글 제목</strong>
+										<p class="hit_day">작성일 0000-00-00</p>
+									</div>
+								</a>
+							</div>
+						</div>
+					</article>
+
+					<!-- 디시 위키 -->
+					<article>
+						<div class="content_box r_wiki">
+							<header>
+								<h3 class="tit"><a href="#" class="wiki_main"> 디시위키</a></h3>
+								<a href="#" class="wiki_random_go">심심할 땐 랜덤<em class="sp_img icon_go"></em></a>
+							</header>
+							<div class="rcont_wiki">
+								<div class="wk_content">
+									<div class="wk_box">
+										<a href="#" class="logClass">
+											<strong class="tit"><span>#주제</span></strong>
+											<p class="wk_txt">내용</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+					
+				</section>
+			</main>
+		</div>
+
+		<!-- 푸터 -->
+        <footer class="gcfoot">
+            <div class="gc_all">
+                <div class="all_box mandudel">
+					<!-- 각 카테고리의 상위 랭킹 갤러리 10개씩 -->
+                    <div class="all_list">
+                        <dl>
+                            <dt>게임</dt>
+                            <dd><a href="#">ㅁㅁ 갤러리</a></dd>
+                            <dd><a href="#">ㅁㅁ 갤러리</a></dd>
+                        </dl>
+                        <dl>
+                            <dt>연애/방송</dt>
+                        </dl>
+                        <dl>
+                            <dt>스포츠</dt>
+                        </dl>
+                        <dl>
+                            <dt>교육/금융/IT</dt>
+                        </dl>
+                        <dl>
+                            <dt>여행/음식/생물</dt>
+                        </dl>
+                        <dl>
+                            <dt>취미/생활</dt>
+                        </dl>
+                    </div>
+                    <div class="all_bottom">
+                        <a href="#" target="_blank"><strong class="tit">광고안내</strong></a>
+                        <span class="list">
+                            <a href="#" target="_blank" class="link_info">디스플레이광고</a>
+                            <a href="#" target="_blank" class="link_info">프로모션</a>
+                            <a href="#" target="_blank" class="link_info">광고문의</a>
+                        </span>
+                        <span class="bottom_menu">
+                            <a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a>
+                            <a class="menu_link menu_fold" href="javascript:void(0);" style="display:block"><em class="sp_img icon_fold"></em>닫기</a>
+                            <a class="menu_link menu_open" href="javascript:void(0);" style="display:none"><em class="sp_img icon_open"></em>열기</a>
+                            <a class="menu_link" href="#top" ><em class="sp_img icon_up"></em>맨위로</a>
+                        </span>
+                    </div>
+                </div>
+            </div> 
+                
+
+            <div class="info_policy">
+                <a href="#">회사소개</a>
+                <a href="#">제휴안내</a>
+                <a href="#">광고안내</a>
+                <a href="#">이용약관</a>
+                <a href="#"><b>개인정보처리방침</b></a>
+                <a href="#">청소년보호정책</a>
+            </div>
+
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2023/03/16 // 김동민 // 마이너 xml 생성 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gcInside.dao.MinorDAO">
+    <!-- create -->
+    <insert id="creategall" parameterType="kr.co.gcInside.vo.CreateVO">
+        INSERT INTO `gc_admin_gell_create_approve` SET
+        `gell_create_rdate`   = NOW(),
+        `gell_create_status`  = '0',
+        `gell_create_uid`     = 'qwe123',
+        `gell_create_name`    = #{gell_create_name},
+        `gell_create_intro`   = #{gell_create_intro},
+        `gell_create_cate`    = #{gell_cate2},
+        `gell_create_address` = #{gell_create_address},
+        `gell_create_reason`  = #{gell_create_reason};
+    </insert>
+    <!-- 여기서 오류 외래키관련추정 -->
+    <!-- read -->
+    <select id="selectcate2" resultType="kr.co.gcInside.vo.CreateVO">
+        SELECT * from `gc_gell_cate2`;
+    </select>
+    <!-- 2023/03/16 // 김동민 //  -->
+
+    <!-- upload -->
+
+    <!-- delete -->
+</mapper>
