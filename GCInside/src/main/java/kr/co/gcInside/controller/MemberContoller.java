@@ -47,7 +47,7 @@ public class MemberContoller {
     public String register(@NotNull MemberVO vo, @NotNull HttpServletRequest req) {
         vo.setMember_regip(req.getRemoteAddr());
         int result = service.insertMember(vo);
-        return "redirect:/index/login?success"+result;
+        return "redirect:/index?success"+result;
     }
 
     @GetMapping("member/find_id")
