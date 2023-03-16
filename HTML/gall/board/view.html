@@ -257,14 +257,18 @@
                     <!-- 원본 첨부 파일 -->
 					<div class="appending_file_box">
 						<strong>원본 첨부파일 <em class="font_red">1</em></strong><ul class="appending_file">
-							<li><a href="#">210413 - Javy Error.gif</a></li></ul>
+							<li><a href="#">210413 - 이미지 입니다.gif</a></li></ul>
 					</div>
 					<!-- //원본 첨부 파일 -->
+
+                    <!-- 위 아래 간격 띄움-->
+                    <div style="height:20px"></div>
+                    <!-- //위 아래 간격 띄움-->
+
                     <!-- 댓글 -->
-                    <div id="jquery_jplayer"></div>
                     <div class="view_comment" id="focus_cmt">
                         <h2 class="blind">댓글 영역</h2>
-                        <div id="comment_wrap_5" class="comment_wrap" data-article-lv="10" data-sort-type='I'>
+                        <div id="comment_wrap_5" class="comment_wrap" data-article-lv="" data-sort-type=''>
                             <div class="comment_count">
                                 <div class="fl num_box">
                                     전체 댓글 <em class="font_red"><span id="comment_total_5">0</span></em>개
@@ -291,35 +295,728 @@
                                 </div>
                             </div>
                         </div>
-                        
-					</div>
-                    <div class="view_comment" id="focus_cmt">
-                        <h2 class="blind">댓글 영역</h2>
-                            <div class="comment_count">
-                                <div class="f1 num_box">전체 댓글 <em class="font_red"><span id="comment_total_5">0</span></em>개
-                                    <div class="select_box array_latest">
-                                        <select name="selCommentSort">
-                                            <option value="D">등록순</option>
-                                            <option value="N">최신순</option>
-                                            <option value="R">답글수</option>
-                                        </select>
-                                        <div class="select_area" onClick="showLayer(this, 'commentSortLayer_5');return false;"><span class="comment_sort_txt">등록순</span><span class="blind">정렬 기준선택</span><em class="sp_img icon_option_more"></em></div>
-                                        <ul class="option_box" id="commentSortLayer_5" data-no="5" style="left:-1px;top:19px;display:none">
-                                            <!--<li class="comment_sort" data-sort="I">등록순</li>-->
-                                            <li class="comment_sort" data-sort="D">등록순</li>
-                                            <li class="comment_sort" data-sort="N">최신순</li>
-                                            <li class="comment_sort" data-sort="R">답글순</li>
-                                        </ul>
+
+
+                                <div class="comment_box">
+                                    <ul class="cmt_list">
+                                        
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="닉네임">ㅇㅇ</em>
+                                                            <span class="ip">(39.113)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">ㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(220.70)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">시카고의 인심 ㄷㄷ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(211.36)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃어? - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(211.199)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">드르렁</em>
+                                                            <span class="ip">(121.131)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">이게 왜 베스트 글? - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">드르렁</em>
+                                                            <span class="ip">(121.131)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">이게 왜 베스트 글? - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">드르렁</em>
+                                                            <span class="ip">(121.131)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">이게 왜 베스트 글? - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">드르렁</em>
+                                                            <span class="ip">(121.131)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">이게 왜 베스트 글? - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <div class="reply show">
+                                            <div class="reply_box">
+                                                <ul class="reply_list" id="reply_list">
+                                                    <li id="reply_li" class="ub-content">
+                                                        <div class="reply_info clear">
+                                                            <div class="cmt_nickbox">
+                                                                <span class="gall_writer ub-writer" data-nick="IIIIIIII" data-uid="dongg" data-ip>
+                                                                    <span class="nickname in" title="IIIIII" style>
+                                                                        <em>IIIIIII</em>
+                                                                        <p class="usertxt ub-word">ㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+                                                                        
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div class="fr clear">
+                                                                <span class="date_time">2023.03.16 18:13:15</span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li id="comment_li" class="up-content">
+                                            <div class="cmt_info clear" data-no="780" data-rcnt="0" data-article-no="5">
+                                                <div class="cmt_nickbox">
+                                                    <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid data-ip="39.113">
+                                                        <span class="nickname">
+                                                            <em title="ㅇㅇ">ㅇㅇ</em>
+                                                            <span class="ip">(3216.212)</span>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <div class="clear cmt_txbox btn_reply_write_all">
+                                                    <p class="usertxt ub-word">웃음이 나오냐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ - gc App</p>
+
+                                                </div>
+                                                <div class="fr clear">
+                                                    <span class="date_time">2023.03.16 18:13:15</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        
+                                    </ul>
                                     
-                                    
-                                    </div>
-                                    <button type="button" class="btn_setreply" style="display: none"><span class="blind">답글 펼침 설정</span><em class="sp_img icon_setreply"></em></button>
                                 </div>
+                                <div class="bottom_paging_box iconpaging">
+                                    <div class="cmt_paging">
+                                        <em>1</em>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <a href="#">6</a>
+                                        <a href="#">7</a>
+                                        <div class="cmt_inner">
+                                            
+                                        </div>
+                                    </div>
+                                
+                                
+                                
+                                
+                                </div>
+                                <!-- 코멘트 입력 -->
+                                <div class="cmt_write_box clear">
+                                    <div class="fl">
+                                        <div class="user_info_input">
+                                            <label for="user_nick" class="blind">닉네임</label>
+                                            <input type="text" id="name_5" name = "name" placeholder="닉네임" onfocus="this.style.background='#FFFFFF'" maxlength="20" >	
+                                        </div>
+                                    <div class="user_info_input">
+                                            <label for="user_pw" class="blind">비밀번호</label>
+                                            <input type="password" id="password_5" name = "password" placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'" maxlength = "20">
+                                    </div>
+                                    </div>
+                                <div class="cmt_txt_cont">
+                                    <div class="cmt_write">
+                                        <label for="cmt_textarea" class="cmt_textarea_label" onclick="$('.cmt_textarea_label').hide();$(this).siblings('textarea').focus();" >
+                                        타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 제재를 받을 수 있습니다.<br>
+                                        Shift+Enter 키를 동시에 누르면 줄바꿈이 됩니다.
+                                        </label>
+                                            <textarea id="memo_5" onfocus="$('.cmt_textarea_label').hide();" maxlength="400" onKeyup="javascript:reply_length_count(5);"></textarea>
+                                    </div>
+                                    <div class="cmt_cont_bottm clear">
+                                         <div class="dccon_guidebox">
+                                            <button type="button" class="btn_white small tx_dccon" data-no = '5'><em class="sp_img icon_dccon"></em>지시콘</button>
+                                            <button type="button" class="btn_dccon_guide">
+                                                <span class="blind">지시콘이란</span><em class="sp_img icon_guide_open"></em>
+                                            </button>
+                                        </div>
+                                        <div class="fr">
+                                            <button type="button" class="btn_blue btn_svc small repley_add" data-no = "5">등록</button>
+                                            <button type="button" class="btn_lightblue btn_svc small repley_add_vote" data-no = "5">등록+추천</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                <!-- 광고 -->
+                                <div style="width:100%;overflow:hidden;text-align:center;margin-top:10px;">
+                                <img src="https://via.placeholder.com/1160x126" width="1160" height="126" style="border:0px;">		
+
                                 
                             </div>
+                            
                         </div>
-
+                        
+                        </div>
+                        
                     </div>
+
+                    <!-- 위 아래 간격 뛰움-->
+                    <div style="height: 0px"></div>
+                    <!-- //위 아래 간격 뛰움-->
 
                     <form action="submit.php" method="POST">
                     </form>
@@ -338,7 +1035,6 @@
                             <div class="array_tab left_box">
                                 <button type="button" class="on">전체글</button>
                                 <button type="button">개념글</button>
-                                <button type="button">공지</button>
                             </div>
                             <div class="center_box">
                                 <div class="inner">
@@ -851,11 +1547,11 @@
                         </div>
                     </article>
 
-                    <!-- 디시 위키 -->
+                    <!-- 지시 위키 -->
                     <article>
                         <div class="content_box r_wiki">
                             <header>
-                                <h3 class="tit"><a href="#" class="wiki_main"> 디시위키</a></h3>
+                                <h3 class="tit"><a href="#" class="wiki_main"> 지시위키</a></h3>
                                 <a href="#" class="wiki_random_go">심심할 땐 랜덤<em class="sp_img icon_go"></em></a>
                             </header>
                             <div class="rcont_wiki">

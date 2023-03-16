@@ -556,6 +556,12 @@ background-color:#fff;background-image:url(https://nstatic.dcinside.com/dc/w/ima
 .btn_bluenext{margin-left:-5px}
 .btn_bluenext, .icon_bluenext{width:21px}
 .on .icon_bluenext{background-position:-76px -107px}
+
+.btn_lightgreen.small,.btn_yeongrey.small,.btn_lightpurple.small,.btn_blue.small,.btn_lightblue.small,.btn_grey.small,.btn_jeangrey.small,.btn_white.small,.btn_red.small,
+.btn_lightgrey.small,.btn_red.small,.btn_green.small,.btn_yeonpurple.small, .btn_mediumblue.small, .btn_yeongreen.small, .btn_yeonblue.small,
+.btn_tyeonblue.small
+{height:31px;line-height:29px;margin-left:3px;border-width:1px;border-style:solid;border-radius:2px;font-size:12px;font-weight:bold}
+
 /* 초개념 */
 .cont_list{overflow:hidden}
 .cont_list.img{overflow:hidden;margin:0 0 8px 0px}
@@ -1344,3 +1350,152 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
   .useradmin_go{margin-top:0}
   
   }
+
+/*댓글입력*/
+.bor_btm_ddd1{border-bottom:1px solid #ddd}
+.cmt_write_box{padding:12px 12px 12px;background:#fafafa;border-top:1px solid #3b4890;}
+.view_comment{position:relative}
+.view_comment .cmt_write_box{border-bottom:1px solid #3b4890;}
+.cmt_write_box.small{background:transparent;border-top:none;border-bottom:none}
+.reply .cmt_write_box.small{border-top:1px solid #ddd}
+.reply_list li .cmt_write_box.small{border-top:none;padding:3px 0 5px}
+.reply_list li .cmt_write_box{padding:0}
+.cmt_write{position:relative}
+.cmt_textarea_label{position:absolute;left:13px;top:13px;font-size:12px;color:#999;line-height:18px}
+.cmt_txt_cont{float:right}
+.cmt_txt_cont textarea{width:956px;height:78px;padding:13px;border:1px solid #cecdce;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333;line-height:18px}
+.cmt_write_box.small .cmt_txt_cont textarea{width:927px}
+
+
+.icon_cmt_more{display:inline-block;width:9px;height:5px;background-position:-115px -43px;margin-left:4px;vertical-align:2px}
+.btn_cmt_close .icon_cmt_more{background-position:-84px -52px}
+.btn_cmt_refresh .icon_cmt_more{vertical-align:2px}
+.cmt_info{position:relative;padding:9px 12px 7px;border-top:1px solid #eee;}
+.view_comment .cmt_info{padding:9px 3px 7px 3px}
+
+  /*댓글 수정,삭제 비번 입력 레이어*/
+.cmt_mdf_del{position:relative;margin-left:6px;z-index:1}
+.cmt_mdf_del:empty{display:none}
+.cmt_delpw_box{overflow:hidden;position:absolute;width:218px;height:31px;border:2px solid #29367c}
+.cmt_delpw{float:left;width:129px;height:31px;line-height:34px;padding:0 5px;border:0;background:#fff;font-size:14px}
+.cmt_delpw:-webkit-autofill,
+.cmt_delpw:-webkit-autofill:hover,
+.cmt_delpw:-webkit-autofill:focus,
+.cmt_delpw:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #fff inset !important}
+.btn_cmtpw_close{width:30px;height:31px;background:#29367c}
+.icon_cmtpw_close{display:inline-block;width:13px;height:14px;margin:3px 0 0 3px;background-position:-138px -78px }
+.cmt_mdf_del .btn_ok,.cont_btnbox .btn_ok{float:left;width:49px;height:31px;line-height:32px;background:#3b4890;color:#fff;font-weight:bold;text-shadow:0px 1px #1d2761}
+.cmt_mdf_del{float:right}
+.reply_info .cmt_mdf_del{top:3px;right:-2px}
+.album .cmt_mdf_del{top:3px}
+.album  .reply_info .cmt_mdf_del{right:0px}
+.view_comment .cmt_mdf_del{top:3px}
+.view_comment .reply_info .cmt_mdf_del{right:0}
+.cmt_mdf_del button{color:#999}
+.btn_cmt_delete{background:url(/img/sp_img.png);background-position:-268px -200px;font-size:0;line-height:0;width:13px;height:13px;vertical-align:top}
+.cmt_nickbox{float:left;width:132px;margin-right:33px;margin-top:3px;line-height:13px}
+.cmt_nickbox:empty{display:none}
+.album .cmt_nickbox{margin-right:15px}
+
+.comment_box .nickname{font-size:12px;color:#777;vertical-align:top}
+.comment_box .nickname > em{display:inline-block;max-width:84px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;vertical-align:top}
+.comment_box .nickname.in > em{max-width:110px;padding-right:1px}
+.comment_box .reply .nickname.in > em {max-width:107px}
+.comment_box .nickname .ip{display:inline-block;vertical-align:1px}
+.nickname.me{background:#e5ebff;padding:0px 1px 0px 2px}
+.comment_box{position:relative;border-top:1px solid #3b4890;}
+
+.event_con{position:absolute;margin-left:3px;margin-top:-1px}
+.gallview_head .event_con,.album_head .event_con{position:static;margin-left:0}
+.gallview_head .event_con:hover,.album_head .event_con:hover{text-decoration:none}
+
+.dory .nickname{color:#333}
+.reply .cmt_nickbox{width:133px;margin-right:23px}
+.album .reply .cmt_nickbox{margin-right:15px}
+
+.gall_listwrap.album .cmt_txt_cont textarea{width:653px}
+.gall_listwrap.album .cmt_write_box.small  .cmt_txt_cont textarea{width:621px}
+.user_info_input{width:140px;height:30px;margin-top:5px;border:1px solid #cecdce;background:#fff}
+.user_info_input:first-child{margin-top:0px}
+.user_info_input input,.cmt_write_box .user_info_input.id > label{width:126px;height:28px;line-height:29px;padding:1px 7px 1px;border:none;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:12px;vertical-align:top}/*211118 폰트 버그 padding:2px 7px 0;*/
+.user_info_input.id input,.cmt_write_box .user_info_input.id > label{background:#f3f3f3}
+.user_info_input.id input,.user_info_input.id label{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.cmt_write_box .user_info_input.id > label{display:block}
+.album .user_info_input{width:125px}
+.album .user_info_input input{width:111px}
+
+
+/*댓글페이징*/
+.comment_box .bottom_paging_box{margin-top:0}
+.view_comment .bottom_paging_box{height:69px}
+.cmt_paging{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;padding:23px 272px 28px 235px}/*201217*/
+.album .cmt_paging{padding:23px 10px 28px 10px}
+.comment_box .bottom_paging_box .cmt_inner{position:absolute;right:0;top:0;margin-top:23px;font-size:0}/*201217*/
+.comment_box .bottom_paging_box .useradmin_btnbox{position:absolute;left:0;top:0;margin-top:10px}
+.comment_box .bottom_paging_box .cmt_inner .icon_cmt_more{margin-left:4px}
+
+/*댓글*/
+.comment_wrap{overflow:hidden;width:100%;height:38px;margin-top:15px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333}
+.comment_wrap.show,.gall_listwrap.album .comment_wrap.show,.comment_box .reply.show{overflow:visible;height:100%}
+.comment_box .reply.show:after{clear:both;display:block;visibility:hidden;content:""}
+.icon_red_show,.icon_red_hide{display:inline-block;width:9px;height:5px;margin-left:5px}
+.icon_red_show{background-position:-128px -50px;vertical-align:1px}
+.icon_red_hide{background-position:-121px 0;vertical-align:2px}
+.gall_listwrap.album .comment_wrap{height:38px;margin-top:0}
+.comment_count .checkbox input[type="checkbox"]{top:11px}
+.comment_count .checkbox input + .checkmark{top:11px}
+.comment_count .checkbox input:checked + .checkmark{top:11px}
+.comment_count:after{clear:both;display:block;visibility:hidden;content:""}
+.cmt_bg_box{padding:0 15px;background:#f3f3f3;border:1px solid #eee;border-width:1px 0 1px 0}
+.btn_setreply{overflow:hidden;height:21px;margin:-1px 0 0 71px}
+.icon_setreply{display:inline-block;width:21px;height:21px;;background-position:-143px -275px}
+.reply .cmt_bg_box{border:1px solid #ddd;border-width:1px 0 0px 0}
+.cmt_bg_box.comment_more,.cmt_bg_box.reply_more{padding:0;text-align:center}
+.bnt_comment_more,.bnt_reply_more{width:100%;height:38px;color:#555;font-weight:bold;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px}
+.icon_comment_more{display:inline-block;width:11px;height:6px;margin-left:7px;background-position:-115px -50px;vertical-align:1px}
+.bnt_reply_more.close .icon_comment_more{background-position:-102px -50px}
+.btn_cmt_close,.btn_cmt_close span,.btn_cmt_refresh,.btn_cmt_open, .comment_wrap .contgo{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333;font-weight:bold;outline:none}/*201217 .comment_count .contgo 추가*/
+.comment_count > .fr{font-size:0}
+.comment_count > .fr > *::before, .bottom_paging_box > .cmt_inner  > *::before, .ltrwrap .usertxt span::before
+{content:"";display:inline-block;width:1px;height:12px;margin:0 10px 0 9px;background:#ccc;vertical-align:-1px}
+.comment_count > .fr > *:first-child::before, .bottom_paging_box > .cmt_inner  > *:first-child::before, .ltrwrap .usertxt span:first-child::before{display: none}
+.bottom_paging_box > .cmt_inner  > .btn_cmt_close span{margin-left:0}
+.comment_count > .fr > .btn_cmt_refresh::before, .bottom_paging_box > .cmt_inner  > .btn_cmt_refresh::before{margin-left:11px}
+.comment_wrap .contgo{vertical-align:middle;line-height:15px;}
+.comment_wrap .bottom_paging_box .contgo{vertical-align:middle;line-height:15px}
+.comment_wrap .contgo:hover{text-decoration:none}
+
+
+.icon_cmt_more{display:inline-block;width:9px;height:5px;background-position:-115px -43px;margin-left:4px;vertical-align:2px}
+.btn_cmt_close .icon_cmt_more{background-position:-84px -52px}
+.btn_cmt_refresh .icon_cmt_more{vertical-align:2px}
+.cmt_info{position:relative;padding:9px 12px 7px;border-top:1px solid #eee;}
+.view_comment .cmt_info{padding:9px 3px 7px 3px}
+
+.dory .cmt_info{padding:12px 2px 10px 2px}
+.reply_list li.dory .cmt_txtbox{margin:3px 0}
+.album .dory .cmt_info{padding:12px 12px 10px}
+.cmt_list li:first-child .cmt_info{border-top:none}
+.cmt_bg_box .cmt_info{padding-top:19px}
+.cmt_txtbox{float:left}
+.cmt_info p{line-height:20px}
+.usertxt,.comment_wrap .comment_dccon{width:820px;cursor:pointer}
+.usertxt{float:left;line-height:20px;cursor:pointer;word-break:break-all;overflow:hidden}
+.album .usertxt,.album .comment_wrap .comment_dccon{max-width:518px}
+.event_wrap .usertxt{cursor:default}
+.uservoice{margin-top:6px}
+.date_time{float:left;font-size:12px;color:#999;vertical-align:top;margin-top:1px}
+.dory .date_time{display:none}
+.reply_info{position:relative}
+.cmt_list li:first-child .reply{padding:12px 0;border-top:none}
+.cmt_list li:first-child .reply li:first-child{margin-top:0}
+.reply_info .usertxt,.del_reply,.reply_info .comment_dccon{position:relative;width:774px;padding-left:16px;cursor:default}
+.reply .comment_dccon{padding-left:16px}
+.reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
+background:url(/img/sp_img.png) no-repeat;background-position:-283px -200px}
+.album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
+.comment_box .reply{overflow:hidden;height:0}
+.reply_box{margin:0px 0 12px 30px;padding:0px 0 0;border:1px solid #ddd;background:#fafafa;border-width:0  1px 1px 1px}
+li:first-child .reply_box{margin:0px 0 0px 30px}
+.reply_list li{padding:9px 12px 7px;border-top:1px solid #ddd}
+.reply_list li:first-child{margin-top:0px}
