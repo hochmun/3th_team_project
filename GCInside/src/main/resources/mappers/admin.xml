@@ -10,6 +10,15 @@
     <select id="selectTerms" resultType="kr.co.gcInside.vo.TermsVO">
         SELECT `term_type`,`term_title`,`term_content` FROM `gc_terms` ORDER BY `term_type` ASC;
     </select>
+
+    <!-- 2023/03/16 // 라성준 // 관리자 멤버 불러오기 -->
+    <select id="SearchMember" resultType="kr.co.gcInside.vo.MemberVO">
+        SELECT member_uid, member_pass, member_email, member_nick, member_point, member_regip, member_grade,
+        member_status, member_rdate, member_wdate, member_sanctions_rdate, member_sanctions_wdate, member_sanctions_grade
+        FROM gc_member
+        WHERE member_uid = #{memberUid}
+    </select>
+
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};

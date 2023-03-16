@@ -1,5 +1,6 @@
 package kr.co.gcInside.dao;
 
+import kr.co.gcInside.vo.MemberVO;
 import kr.co.gcInside.vo.TermsVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -21,6 +22,12 @@ public interface AdminDAO {
      * @return
      */
     public List<TermsVO> selectTerms();
+
+    /**
+     * 2023.03.16 // 라성준 // 서치멤버 불러오기
+     * @return
+     */
+    public List<MemberVO> SearchMember();
 
     // upload
 

@@ -28,6 +28,13 @@
                                     <option value="option3">포인트</option>
                                     <option value="option3">가입날짜</option>
                                     <option value="option3">이메일</option>
+                                    <tr th:each="member : ${search}">
+                                        <td th:text="${member.member_uid}"></td>
+                                        <td th:text="${member.member_nick}"></td>
+                                        <td th:text="${member.member_point}"></td>
+                                        <td th:text="${member.member_rdate}"></td>
+                                        <td th:text="${member.member_email}"></td>
+                                    </tr>
                                 </select>
                                 <input type="text" id="input-box" name="input-box" placeholder="닉네임 검색">
                                 <button type="button" class="btn_lightgreen" id="submit-button">검색</button>

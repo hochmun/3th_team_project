@@ -1,6 +1,7 @@
 package kr.co.gcInside.service;
 
 import kr.co.gcInside.dao.AdminDAO;
+import kr.co.gcInside.vo.MemberVO;
 import kr.co.gcInside.vo.TermsVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,14 @@ public class AdminService {
      */
     public List<TermsVO> selectTerms() {
         return dao.selectTerms();
+    }
+
+    /**
+     * 2023/3/16 // 라성준 // 관리자 멤버 불러오기
+     * @return
+     */
+    public List<MemberVO> SearchMember() {
+        return dao.SearchMember();
     }
 
     // upload

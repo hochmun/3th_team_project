@@ -1,6 +1,7 @@
 package kr.co.gcInside.controller;
 
 import kr.co.gcInside.service.AdminService;
+import kr.co.gcInside.vo.MemberVO;
 import kr.co.gcInside.vo.TermsVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,10 +38,13 @@ public class AdminController {
 
     /**
      * 2023/03/10 // 심규영 // 관리자 멤버 목록 및 검색 페이지 get맵핑
+     * 2023/03/16 // 라성준 // 관리자 멤버 불러오기
      * @return
      */
     @GetMapping("admin/member/search")
-    public String memberSearch() {
+    public String memberSearch(Model model) {
+        List<MemberVO> search = service.SearchMember();
+        model.addAttribute("search", search);
         return "admin/member/search";
     }
 
