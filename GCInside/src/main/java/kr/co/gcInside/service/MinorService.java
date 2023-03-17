@@ -4,11 +4,13 @@ package kr.co.gcInside.service;
  */
 import kr.co.gcInside.dao.MinorDAO;
 import kr.co.gcInside.vo.CreateVO;
+import kr.co.gcInside.vo.TermsVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Slf4j
 @Service
 public class MinorService {
     @Autowired
@@ -26,5 +28,9 @@ public class MinorService {
      */
     public void creategall(CreateVO frmCreate){
         dao.creategall(frmCreate);
+
+    }
+    public String selectminorterms(){
+        return dao.selectminorterms();
     }
 }
