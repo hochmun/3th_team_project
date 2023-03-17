@@ -15,5 +15,21 @@ public class CompanyController {
         return "company/index";
     }
 
+    @GetMapping("company/index_en")
+    public String company_en() {
+        return "company/index_en";
+    }
+
+    @GetMapping("company/index_ch")
+    public String company_ch() {
+        return "company/index_ch";
+    }
+
+    @GetMapping("company/index_jp")
+    public String company_jp() {
+        return "company/index_jp";
+    }
+
+
 
 }

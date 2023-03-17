@@ -59,6 +59,14 @@ public class AdminService {
         return dao.SearchMember();
     }
 
+    /**
+     * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
+     * @return
+     */
+    public List<MemberVO> searchMembersByCondition(String searchType, String keyword) {
+        return dao.searchMembersByCondition(searchType, keyword);
+    }
+
     // upload
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 업데이트
