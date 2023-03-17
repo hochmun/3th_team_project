@@ -1,13 +1,8 @@
 <!-- 2023/03/06 // 라성준 // -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>지시인사이드 광고안내</title>
-    <link rel="stylesheet" type="text/css" href="/css/ad/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/ad/ad.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/ad/common.js"></script>
+  <th:block th:replace="~{fragment/head_fragment::adHead}"></th:block>
     <script type="text/javascript">
       var lnbMenu=3, lnbSubMenu=2, gMenu=1;
     </script>
@@ -26,8 +21,8 @@
       <div class="gnb_bar">
   <div class="inner clear">
     <h1 class="gc_logo">
-      <a href="/index.html">
-        <img src="/img/gcin_logo3.png" alt="디시인사이드">
+      <a href="@{/index}">
+        <img th:src="@{/img/gcin_logo3.png}" alt="디시인사이드">
       </a>
     </h1>
     <div style="position:relative;float:right">
@@ -137,7 +132,7 @@
                         </div>
           
                         <div class="cont_banbox">
-                          <img src="/img/npc_ad_img1.png" alt="">
+                          <img th:src="@{/img/npc_ad_img1.png}" alt="">
                         </div>
                         <div class="infotxt_box">
                           <ol>
@@ -154,20 +149,7 @@
               </main>
               <!-- //본문 -->
               <!-- 하단 -->
-              <footer class="foot">
-                <div class="inner">
-            <div class="info_policy">
-              <a href="/company/index.html">회사소개</a>
-         
-              <a href="/company/index.html#alliance">제휴안내</a>
-              <a href="/ad/index.html">광고안내</a>
-              <a href="/terms/policy.html">이용약관</a>
-              <a href="/terms/privacy.html"><b>개인정보처리방침</b></a>
-              <a href="/terms/youth_policy.html">청소년보호정책</a>
-            </div>
-            <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
-          </div>
-              </footer>
+    <footer th:replace="~{fragment/footer_fragment::adFooter}"></footer>
               <!-- //하단 -->
             </div>
           </body>

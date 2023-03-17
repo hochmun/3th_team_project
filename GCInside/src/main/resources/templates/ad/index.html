@@ -1,13 +1,8 @@
 <!-- 2023/03/03 // 라성준 // -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>지시인사이드 광고안내</title>
-    <link rel="stylesheet" type="text/css" href="/css/ad/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/ad/ad.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/ad/common.js"></script>
+  <th:block th:replace="~{fragment/head_fragment::adHead}"></th:block>
     <!-- 상단바 메뉴 카테고리 이펙트 효과 -->
     <script>
         $(window).scroll(function () {
@@ -36,14 +31,14 @@
           <div class="gnb_bar">
       <div class="inner clear">
         <h1 class="gc_logo">
-          <a href="/index.html">
-            <img src="/img/gcin_logo3.png" alt="지시인사이드">
+          <a th:href="@{/index}">
+            <img th:src="@{/img/gcin_logo3.png}" alt="지시인사이드">
           </a>
         </h1>
         <div style="position:relative;float:right">
           <ul class="gmenu_list clear">
-            <li><a href="/ad/index.html">광고안내</a></li>
-            <li><a href="/ad/ad_guide_pc2.html"> 광고 상품 및 가이드</a></li>
+            <li><a th:href="@{/GCIside/ad/index}">광고안내</a></li>
+            <li><a th:href="@{/GCIside/ad/ad_guide_pc2}"> 광고 상품 및 가이드</a></li>
             <li><a href="#">광고문의</a></li>
           </ul>
         </div>
@@ -71,7 +66,7 @@
               <div class="recomm">
                 <h2 class="mcont_tit">#고효율 #추천광고</h2>
                 <div class="recomm_cont clear">
-                  <a href="ad_guide_wm1.html">
+                  <a th:href="@{ad_guide_wm1}">
                   <div class="recomm_box box1">
                     <div class="txt_box">
                       <h3 class="tit">갤러리 리스트 상단</h3>
@@ -79,7 +74,7 @@
                     </div>
                   </div>
                   </a>
-                  <a href="ad_guide_wm2.html">
+                  <a th:href="@{ad_guide_wm2}">
                     <div class="recomm_box box2">
                       <div class=txt_box>
                         <h3 class="tit">갤러리 본문 자동 짤방</h3>
@@ -96,7 +91,7 @@
             <div id="mcont_wrap2" class="cont mcont2">
               <ul class="moreinfo clear">
                 <li class="morelist1">
-                  <a href="/company/index.html" target="_blank">
+                  <a th:href="@{/company/index}" target="_blank">
                     <em class="sp_gcadimg icon_morelist"></em>
                     매체 소개서
                   </a>
@@ -138,21 +133,7 @@
         <!-- //본문 -->
     
         <!-- 하단 -->
-        <footer class="foot">
-          <div class="inner">
-      <div class="info_policy">
-        <a href="/company/index.html">회사소개</a>
-         
-         <a href="/company/index.html#alliance">제휴안내</a>
-         <a href="/ad/index.html">광고안내</a>
-         <a href="/terms/policy.html">이용약관</a>
-         <a href="/terms/privacy.html"><b>개인정보처리방침</b></a>
-         <a href="/terms/youth_policy.html">청소년보호정책</a>
-        
-      </div>
-      <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
-    </div>
-        </footer>
+        <footer th:replace="~{fragment/footer_fragment::adFooter}"></footer>
         <!-- //하단 -->
       </div>
     

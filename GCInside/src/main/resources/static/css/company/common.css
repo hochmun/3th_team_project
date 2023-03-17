@@ -244,7 +244,7 @@ width:68px;
 
 
 .logo{position:absolute;left:15px;top:15px;font-size:0;line-height:0;}
-.logo a{display:inline-block;background:url(/img/company/cp_logo.png) no-repeat 0 0;width:156px;height:19px;background-size:100%;}
+.logo a{display:inline-block;background:url(/GCInside/img/company/cp_logo.png) no-repeat 0 0;width:156px;height:19px;background-size:100%;}
 
 .grid{width:100%;}
 
@@ -371,9 +371,9 @@ width:68px;
 
 
 
-.visual-group .vsimg01{position:absolute;left:0;right:0;bottom:0;background:url(/img/company/vs01.png) no-repeat;background-position:50% bottom;height:412px;background-size:100% auto;}
-.visual-group .vsimg02{position:absolute;left:0;right:0;bottom:0;background:url(/img/company/visual02.png) no-repeat;background-position:50% bottom;height:464px;background-size:100% auto;}
-.visual-group .vsimg03{position:absolute;left:0;right:0;bottom:0;background:url(/img/company/visual03.png) no-repeat;background-position:50% bottom;background-size:100% auto;height:77.33333333333333vw}
+.visual-group .vsimg01{position:absolute;left:0;right:0;bottom:0;background:url(/GCInside/img/company/vs01.png) no-repeat;background-position:50% bottom;height:412px;background-size:100% auto;}
+.visual-group .vsimg02{position:absolute;left:0;right:0;bottom:0;background:url(/GCInside/img/company/visual02.png) no-repeat;background-position:50% bottom;height:464px;background-size:100% auto;}
+.visual-group .vsimg03{position:absolute;left:0;right:0;bottom:0;background:url(/GCInside/img/company/visual03.png) no-repeat;background-position:50% bottom;background-size:100% auto;height:77.33333333333333vw}
 .visual-group .txt-box{
   position:absolute;
   top:61.54177215189873vw;
@@ -389,7 +389,7 @@ width:68px;
 #ja .visual-group .txt-box{font-size:3vw;}
 #ja .visual-group .txt-box .txt2{font-size:4.375vw;}
 
-.visual-group .wifi{position:absolute;left:0;right:0;top:0;background:url(/img/company/wifi.png) no-repeat 0 0;width:78px;height:64px;width:10.98591549295775vw;height:10.66666666666667vw;margin:0 auto;background-size:100%;}
+.visual-group .wifi{position:absolute;left:0;right:0;top:0;background:url(/GCInside/img/company/wifi.png) no-repeat 0 0;width:78px;height:64px;width:10.98591549295775vw;height:10.66666666666667vw;margin:0 auto;background-size:100%;}
 
 
 
@@ -406,7 +406,7 @@ height:12.5vw;}
 
 
   background-repeat: no-repeat;
-  background-image: url(/img/company/wifi_test8.png);
+  background-image: url(/GCIside/img/company/wifi_test8.png);
 
   overflow: hidden;
   text-indent: 100%;
@@ -448,7 +448,7 @@ margin:0 auto;
 
 
   background-repeat: no-repeat;
-  background-image: url(/img//company/wifi_test8.png);
+  background-image: url(/GCInside/img/company/wifi_test8.png);
 
   overflow: hidden;
 
@@ -477,7 +477,7 @@ margin:0 auto;
 	.vsimg-m{display:none;}
 
 .visual-group .vsimg-w-wrap{visibility:visible;position:absolute;bottom:0;left:0;width:100%;height:412px;}
-.visual-group .vsimg-w{background:url(/img//company//vs_test03.png) no-repeat 50% 0;width:100%;height:412px;}
+.visual-group .vsimg-w{background:url(/GCInside/img/company/vs_test03.png) no-repeat 50% 0;width:100%;height:412px;}
 	.visual-group .vs-tit{font-size:55px;top:47px;}
 	.visual-group .vs-tit br{display:none;}
 #en .visual-group .vs-tit{font-size:45px;}
@@ -638,13 +638,13 @@ margin:0 auto;
 .service-lst li:first-child{margin-top:0;}
 .service-lst .caption{overflow:hidden}
 .service-lst .icon{width:64px;height:64px;display:inline-block;float:left;margin-right:12px}
-.service-lst .gall{background-image: url(/img/company/ser1.svg);}
-.service-lst .mgall{background-image: url(/img/company/ser2.svg);}
-.service-lst .mweb{background-image: url(/img/company/ser3.svg);}
-.service-lst .mandu{background-image: url(/img/company/ser4.svg);}
-.service-lst .wiki{background-image: url(/img/company/ser8.svg);background-size:100%}/* 이미지파일명 ser5.svg 수정 background-size 추가*/
-.service-lst .galloge{background-image: url(/img/company/ser6.svg);}
-.service-lst .dccon{background-image: url(/img/company/ser7.svg);} /* 디시콘 추가*/
+.service-lst .gall{background-image: url(/GCInside/img/company/ser1.svg);}
+.service-lst .mgall{background-image: url(/GCInside/img/company/ser2.svg);}
+.service-lst .mweb{background-image: url(/GCInside/img/company/ser3.svg);}
+.service-lst .mandu{background-image: url(/GCInside/img/company/ser4.svg);}
+.service-lst .wiki{background-image: url(/GCInside/img/company/ser8.svg);background-size:100%}/* 이미지파일명 ser5.svg 수정 background-size 추가*/
+.service-lst .galloge{background-image: url(/GCInside/img/company/ser6.svg);}
+.service-lst .dccon{background-image: url(/GCInside/img/company/ser7.svg);} /* 디시콘 추가*/
 
 
 
@@ -786,7 +786,7 @@ position:absolute;top:-20px;left:50%;margin-left:-16px;}
 .recruit-box .txt1{font-size:17px;letter-spacing:-0.05em;margin-top:5px;font-weight:500;color:#333;}
 .recruit-box .txt2{font-size:14px;line-height:1.5;margin-top:10px;letter-spacing:-0.05em;;color:#6c6f79;}
 .recruit-box .txt3{font-size:14px;color:#333;margin-top:20px;letter-spacing:-0.05em;;font-weight:500;}
-.recruit-box .txt3::after{content:"";display:inline-block;background:url(/img/company/arrow_right_blue.png) no-repeat 0 0;
+.recruit-box .txt3::after{content:"";display:inline-block;background:url(/GCInside/img/company/arrow_right_blue.png) no-repeat 0 0;
 width:9px;height:11px;margin-left:5px;vertical-align:-1px;background-size:100%;}
 .recruit-box .star{font-size:14px;color:#d22227;}
 .recruit-lst{overflow:hidden;display:inline-block;}
@@ -800,10 +800,10 @@ width:9px;height:11px;margin-left:5px;vertical-align:-1px;background-size:100%;}
 .recruit-box .recruit-lst-inner .lst-tit{color:#fff;font-size:18px;line-height:1.3}
 .recruit-box .recruit-lst-inner .lst-tit em{display:block;font-size:18px;}
 .recruit-box .recruit-lst-inner .icon{display:inline-block;width:60px;height:55px;}
-.recruit-lst .step01 .icon{background-image: url(/img/company/people1.svg);}
-.recruit-lst .step02 .icon{background-image: url(/img/company/people2.svg);}
-.recruit-lst .step03 .icon{background-image: url(/img/company/people3.svg);}
-.recruit-lst .step04 .icon{background-image: url(/img/company/people4.svg);}
+.recruit-lst .step01 .icon{background-image: url(/GCInside/img/company/people1.svg);}
+.recruit-lst .step02 .icon{background-image: url(/GCInside/img/company/people2.svg);}
+.recruit-lst .step03 .icon{background-image: url(/GCInside/img/company/people3.svg);}
+.recruit-lst .step04 .icon{background-image: url(/GCInside/img/company/people4.svg);}
 
 
 .recruit-info-lst{color:#6c6f79;font-size:14px;line-height:1.5;margin-left:10px;text-indent:-8px;margin-top:3px;letter-spacing:-0.05em;}
@@ -963,7 +963,7 @@ padding:20px;margin-top:30px;}
 /* 인풋 */
 .chklbl{position:relative;display:inline-block;padding-left:22px;font-size:15px;line-height:18px;color:#333;letter-spacing:-1px;}
 .chklbl::before{position:absolute;top:1px;left:0;content:'';width:14px;height:14px;background-color:#9ea0ab;-webkit-border-radius:50%;border-radius:50%;}
-.chklbl::after{position:absolute;top:4.5px;left:2px;content:'';width:10px;height:8px;background:url(/img/company/checkbox.png) no-repeat 0 0;background-size:100%;}
+.chklbl::after{position:absolute;top:4.5px;left:2px;content:'';width:10px;height:8px;background:url(/GCInside/img/company/checkbox.png) no-repeat 0 0;background-size:100%;}
 
 
 #ch .chklbl::before{top:3px;}
@@ -987,7 +987,7 @@ padding:20px;margin-top:30px;}
 .sel-wrap{position:relative;width:100%;box-sizing:border-box}
 
 
-.sel-wrap::after{content:'';display:block;position:absolute;top:50%;right:10px;width:16px;height:10px;margin-top:-5px;border:0;background:url(/img/company/formsel.png) no-repeat 0 0;transition:transform 0.3s;background-size:100%;
+.sel-wrap::after{content:'';display:block;position:absolute;top:50%;right:10px;width:16px;height:10px;margin-top:-5px;border:0;background:url(/GCInside/img/company/formsel.png) no-repeat 0 0;transition:transform 0.3s;background-size:100%;
 -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
     -webkit-transition: all .3s ease;
@@ -1093,7 +1093,7 @@ padding:20px;margin-top:30px;}
 /* 인풋 */
 .chklbl{padding-left:40px;font-size:21px;line-height:28px;}
 .chklbl::before{width:28px;height:28px;}
-.chklbl::after{position:absolute;top:7.5px;left:4px;content:'';width:20px;height:18px;background-image:url(/img/company/checkbox.png);}
+.chklbl::after{position:absolute;top:7.5px;left:4px;content:'';width:20px;height:18px;background-image:url(/GCInside/img/company/checkbox.png);}
 
 #ch .chklbl::before,
 #ja .chklbl::before{top:1px;}

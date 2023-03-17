@@ -85,5 +85,23 @@
     <footer class="admin_footer gcfoot" th:fragment="adminFooter">
         <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
     </footer>
+
+    <!-- 2023.03.17 // 라성준 // AD footer -->
+    <footer class="ad_footer gcfoot" th:fragment="adFooter">
+        <footer class="foot">
+            <div class="inner">
+                <div class="info_policy">
+                    <a th:href="@{/company/index}">회사소개</a>
+
+                    <a th:href="@{/company/index#alliance}">제휴안내</a>
+                    <a th:href="@{/ad/index}">광고안내</a>
+                    <a th:href="@{/terms/policy}">이용약관</a>
+                    <a th:href="@{/terms/privacy}"><b>개인정보처리방침</b></a>
+                    <a th:href="@{/terms/youth_policy}">청소년보호정책</a>
+                </div>
+                <div class="copyright">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</div>
+            </div>
+    </footer>
+
 </body>
 </html>

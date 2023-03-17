@@ -1,6 +1,6 @@
 <!-- 2023/03/06 // 라성준 // -->
 <!DOCTYPE html>
-<html lang="ja" class="no-js" id="ja">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja" class="no-js" id="ja">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
@@ -9,16 +9,16 @@
     <meta name="description" content="국내 최대 커뮤니티 포털 지시인사이드. 힛갤러리, 유저이슈 등 인터넷 트렌드 총 집합">
     <!-- E: Open Graph Meta Tag -->
     <title>ジーシーインサイド</title>
-    <link rel="shortcut icon" href="/img/company/cp_logo_icon.ico">
-    <link rel="apple-touch-icon-precomposed" href="/img/company/cp_gcinside_icon.png">
+    <link rel="shortcut icon" th:href="@{/img/company/cp_logo_icon.ico}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/img/company/cp_gcinside_icon.png}">
     <!-- S: CSS -->
-    <link rel="stylesheet" href="/css/company/animage.min.css"/>
-    <link rel="stylesheet" href="/css/company/common.css"/>
+    <link rel="stylesheet" th:href="@{/css/company/animage.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/company/common.css}"/>
     <!-- E: CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/company/common.ui.js"></script>
-    <script type="text/javascript" src="/js/company/ctr.cookie.min.js"></script>
-    <script type="text/javascript" src="/js/company/company.js"></script>
+    <script type="text/javascript" th:src="@{/js/company/common.ui.js}"></script>
+    <script type="text/javascript" th:src="@{/js/company/ctr.cookie.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/company/company.js}"></script>
 
   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
   <style>.js #fouc {display: none}</style>
@@ -59,15 +59,15 @@
               <div class="lang-setting">
                 <a href="" class="language">JAPANESE</a>
                 <ul class="lang-setting-lst">
-                  <li><a href="/company/index.html">KOREAN</a></li>
-                  <li><a href="/company/index_en.html">ENGLISH</a></li>
-                  <li><a href="/company/index_ch.html">CHINESE</a></li>
-                  <li><a href="/company/index_jp.html">JAPANESE</a></li>
+                  <li><a href="/GCInside/company/index">KOREAN</a></li>
+                  <li><a href="/GCInside/company/index_en">ENGLISH</a></li>
+                  <li><a href="/GCInside/company/index_ch">CHINESE</a></li>
+                  <li><a href="/GCInside/company/index_jp">JAPANESE</a></li>
                 </ul>
               </div>
             </div> 
           </div>
-          <h1 class="logo"><a href="/index.html">지시인사이드</a></h1>
+          <h1 class="logo"><a href="/GCInside/index">지시인사이드</a></h1>
         </div>
       </div><!-- //.lang-sel-box -->
         
@@ -278,11 +278,11 @@
       <div class="grid-inner">  
         <div class="footer-box">
           <ul class="footer-lst">
-            <li><a class="ftlnkcompany" href="/company/index.html">会社紹介</a></li>
-            <li><a class="ftlnkad" href="/ad/index.html">広告案内</a></li>
-            <li><a class="ftlnkpolicy" href="/terms/policy.html">利用規約</a></li>
-            <li><a class="ftlnkprivacy" href="/terms/privacy.html">個人情報処理方針</a></li>
-            <li><a class="ftlnkyouth" href="/terms/youth_policy.html">青少年保護政策</a></li>   
+            <li><a class="ftlnkcompany" href="/GCInside/company/index">会社紹介</a></li>
+            <li><a class="ftlnkad" href="/GCInside/ad/index">広告案内</a></li>
+            <li><a class="ftlnkpolicy" href="/GCInside/terms/policy">利用規約</a></li>
+            <li><a class="ftlnkprivacy" href="/GCInside/terms/privacy">個人情報処理方針</a></li>
+            <li><a class="ftlnkyouth" href="/GCInside/terms/youth_policy">青少年保護政策</a></li>
           </ul>
           <p class="copy">Copyright ⓒ 2023 - 2023 gcinside. All rights reserved.</p>
         </div>
