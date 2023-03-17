@@ -116,17 +116,13 @@
                                     <div class="form_group">
                                         <div class="set_content category clear">
                                             <div class="set_tit">
-                                                <label for="gell_create_cate">카테고리</label><em class="required_input">*</em>
+                                                <label for="gell_cate2">카테고리</label><em class="required_input">*</em>
                                             </div>
                                             <div class="cont_box">
                                                 <div class="select_box select_arraybox">
-                                                    <div id="gell_create_cate" class="select_area select_Cate" onclick="showOptions()">
-                                                        카테고리를 선택해주세요.<em class="sp_img icon_option_more"></em>
-                                                    </div>
-                                                    <select id="options" style="display:none;">
-                                                        <th:block th:each="cate:${cate2}">
-                                                        <option th:value="${cate.gell_cate2}">[[${cate.gell_cate2_name}]]</option>
-                                                        </th:block>
+                                                    <select name="gell_cate2" id="gell_cate2" style="width: 170px;height: 22px;line-height: 23px;margin: 0 0 5px 0;display:block;">
+                                                        <option>카테고리를 선택해주세요.</option>
+                                                        <option th:each="cate:${cate2}" th:value="${cate.gell_cate2}">[[${cate.gell_cate2_name}]]</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -189,7 +185,8 @@
                             <input type="checkbox" id="person_agree" name="person_agree" value="1"> <em class="checkmark"></em> <label for="person_agree">마이너 갤러리 개인정보보호정책에 동의합니다.</label>
                             </span>
                             <!-- 매니저의 개인정보보호의무 -->
-                            <div class="scroll privacy">
+                            <div class="scroll privacy" th:utext="${terms}">
+
                             </div>
                             <!--//매니저의 개인정보보호의무 -->
                         </div>

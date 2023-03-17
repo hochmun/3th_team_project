@@ -5,15 +5,16 @@ function showLayer(layerName){
 		$("#"+layerName).hide();
 	}
 }
+
 //카테고리 펼치기
 function showOptions() {
-  var selectArea = document.getElementById("gell_cate");
+  var selectArea = document.getElementById("gell_create_cate");
   var options = document.getElementById("options");
   options.style.display = "block";
   selectArea.style.display = "none";
   options.addEventListener("change", function() {
     var selectedValue = options.options[options.selectedIndex].value;
-    selectArea.innerHTML = "Selected Option: " + selectedValue + "<em class='sp_img icon_option_more'></em>";
+    selectArea.innerHTML = selectedoptions + "<em class='sp_img icon_option_more'></em>";
     options.style.display = "none";
     selectArea.style.display = "block";
   });
@@ -23,6 +24,8 @@ function submitForm() {
   var form = document.getElementById("frmCreate");
   form.submit();
 }
+
+
 // function thumb_view(e,src) {
 // 	$("#gallery_thumb_img").attr("src",src);
 // 	var ex_obj = document.getElementById('gallery_thumb_div');

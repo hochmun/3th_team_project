@@ -187,7 +187,7 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .adr .t_input{width:184px;margin:0 2px 4px 0}
 .adr .basic_adr,.adr .max_txt{vertical-align:-1px}
 /* select박스 */
-.select_box.array_latest,.select_arraybox{float:none;display:inline-block;width:55px;height:19px;padding-left:5px;border:1px solid #ccc;margin-left:4px;
+.select_box.array_latest,.select_arraybox{float:none;display:inline-block;width:55px;height:19px;padding-left:5px;#ccc;margin-left:4px;
     font-size:11px;background:#fff;color:#333;line-height:18px;vertical-align:1px
   }
 .set_content.category  .select_arraybox{width:163px;height:22px;line-height:23px;margin:0 0 5px 0;padding-left:5px}

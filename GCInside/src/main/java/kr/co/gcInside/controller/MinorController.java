@@ -2,6 +2,7 @@ package kr.co.gcInside.controller;
 
 import kr.co.gcInside.service.MinorService;
 import kr.co.gcInside.vo.CreateVO;
+import kr.co.gcInside.vo.TermsVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,14 @@ public class MinorController{
     @GetMapping("m/create")
     public String minorcreateview(Model model){
         List<CreateVO> cate2 = service.selectcate2();
+        String minorterms = service.selectminorterms();
+        model.addAttribute("terms",minorterms);
         model.addAttribute("cate2",cate2);
         return "gall/m/create";
     }
     @PostMapping("m/create")
-    public void minorcreate(CreateVO frmCreate){
-        log.info(frmCreate.toString());
+    public String minorcreate(CreateVO frmCreate){
         service.creategall(frmCreate);
-
+        return "gall/m/create";
     }
 }

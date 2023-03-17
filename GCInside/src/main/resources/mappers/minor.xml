@@ -22,6 +22,10 @@
         SELECT * from `gc_gell_cate2`;
     </select>
     <!-- 2023/03/16 // 김동민 //  -->
+    <select id="selectminorterms" resultType="String">
+        SELECT `term_content` FROM `gc_terms` WHERE `term_type`= '21' ;
+    </select>
+
 
     <!-- upload -->
 
