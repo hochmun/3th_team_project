@@ -48,6 +48,7 @@ public class AdminController {
     public String memberSearch(Model model) {
         List<MemberVO> search = service.SearchMember();
         model.addAttribute("search", search);
+        System.out.println("search 데이터: " + search);
         return "admin/member/search";
     }
 
