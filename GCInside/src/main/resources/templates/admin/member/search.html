@@ -22,22 +22,16 @@
                         <div class="cont_head"><h2>회원 목록 및 검색</h2></div>
                         <div class="admin_info_content">
                             <div class="member_search_box">
-                                <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
-                                    <option value="option1">닉네임</option>
-                                    <option value="option2">아이디</option>
-                                    <option value="option3">포인트</option>
-                                    <option value="option3">가입날짜</option>
-                                    <option value="option3">이메일</option>
-                                    <tr th:each="member : ${search}">
-                                        <td th:text="${member.member_uid}"></td>
-                                        <td th:text="${member.member_nick}"></td>
-                                        <td th:text="${member.member_point}"></td>
-                                        <td th:text="${member.member_rdate}"></td>
-                                        <td th:text="${member.member_email}"></td>
-                                    </tr>
+                                <form th:action="@{/admin/member/search}" method="get">
+                                <select class="admin_member_search_select_box" id="member_search_select_box" name="searchType">
+                                    <option value="nickname">아이디</option>
+                                    <option value="id">닉네임</option>
+                                    <option value="point">포인트</option>
+                                    <option value="regdate">가입날짜</option>
+                                    <option value="email">이메일</option>
                                 </select>
-                                <input type="text" id="input-box" name="input-box" placeholder="닉네임 검색">
-                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
+                                <input type="text" id="input-box" name="keyword" placeholder="닉네임 검색">
+                                <button type="submit" class="btn_lightgreen" id="submit-button">검색</button>
                             </div>
                             <table class="admin_table admin_member_list">
                                 <colgroup>
@@ -58,94 +52,13 @@
                                     <th>가입날짜</th>
                                     <th>관리</th>
                                 </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
-                                </tr>
-                                <tr>
-                                    <td>hong123</td>
-                                    <td>human@gmail.com</td>
-                                    <td>홍길동</td>
-                                    <td>5,500</td>
-                                    <td>000.000.0.0</td>
-                                    <td>0000-00-00</td>
+                                <tr th:each="member : ${search}">
+                                    <td th:text="${member.member_uid}">hong123</td>
+                                    <td th:text="${member.member_email}">human@gmail.com</td>
+                                    <td th:text="${member.member_nick}">홍길동</td>
+                                    <td th:text="${member.member_point}">5,500</td>
+                                    <td th:text="${member.member_regip}">000.000.0.0</td>
+                                    <td th:text="${member.member_rdate.substring(2, 11)}">0000-00-00</td>
                                     <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
                                 </tr>
                             </table>

@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -47,14 +44,25 @@ public class AdminController {
     /**
      * 2023/03/10 // 심규영 // 관리자 멤버 목록 및 검색 페이지 get맵핑
      * 2023/03/16 // 라성준 // 관리자 멤버 불러오기
-     * @return
+     * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
+     *@searchType
+     *@keyword
+     *@return
      */
     @GetMapping("admin/member/search")
-    public String memberSearch(Model model) {
-        List<MemberVO> search = service.SearchMember();
-        model.addAttribute("search", search);
+    public String memberSearch(Model model,
+                               @RequestParam Map<String, String> data) {
+        List<MemberVO> memberList = null;
+
+        if(data.get("keyword") != null)
+            memberList = service.searchMembersByCondition(data.get("searchType"), data.get("keyword"));
+        else memberList = service.SearchMember();
+        model.addAttribute("search", memberList);
+        System.out.println("search 데이터: " + memberList);
         return "admin/member/search";
     }
+
+
 
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 설정 페이지 get 맵핑

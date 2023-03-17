@@ -20,12 +20,6 @@
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/lately_visit_new.js"></script>
     <script type="text/javascript" src="/js/gall/gallery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <!--
-    <script src="/js/gall/editor.js?v=1"></script>
-    -->
-    <script type="text/javascript" src="/js/gall/editor_main.js?v=1"></script>
-    <script type="text/javascript" src="/js/gall/editor_modify.js?v=1"></script>
 </head>
 <body>
     <div class="gcwrap width1160 list_wrap">
@@ -334,42 +328,37 @@
                         </div>
 
                         <!-- 에디터 컨테이너 -->
-                        <div id="tx_trex_container" class="tx-editor-container">
-                            <div id="editorjs"></div>
+                        <div id="tx_trex_container" class="tx-editor-container" style="border: 1px solid grey">
+                            <iframe src="./editor.html" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:300px;"></iframe>
                         </div>
 
-                        <!--
+                        <!-- 에디터 컨테이너 동적 높이 조절 -->
                         <script>
-                            const editor = new EditorJS({
-                                holder: 'editorjs'
+                            window.addEventListener('load',function(){
+                                const target = document.getElementById('editor_iframe')
+                                .contentWindow.document.querySelector('.codex-editor__redactor');
+
+                                const $editor_html = $('#editor_iframe').contents().find('html');
+                                const $editor_iframe = $('#editor_iframe');
+
+                                const observer = new MutationObserver(mutations => {
+                                    mutations.forEach(mutation => {
+                                        $editor_iframe.css('height',$editor_html.height()+'px')
+                                    })
+                                })
+
+                                const config = {
+                                    childList: true,
+                                    attributes: false,
+                                    characterData: false,
+                                    subtree: false,
+                                    attributeOldValue: false,
+                                    characterDataOldValue: false
+                                };
+
+                                observer.observe(target, config);
                             })
                         </script>
-                        -->
-
-                        <!--
-                        <div id="tx_trex_container" class="tx-editor-container">
-                             사이드바 // 추후 구현 
-                            <div id="tx_sidebar" class="tx-sidebar"></div>
-
-                             툴바 
-                            <div id="tx_toolbar_basic" class="tx-toolbar tx-toolbar-basic"></div>
-
-                            에디터 영역 
-                            <div id="tx_canvas" class="tx-canvas">
-                                <div id="tx_canvas_wysiwyg_holder" class="tx-holder" style="display: block;">
-                                    <iframe frameborder="0" id="tx_canvas_wysiwyg" name="tx_canvas_wysiwyg" allowtransparency="true"></iframe>
-                                </div>
-                            </div>
-
-                            <div id="editorjs"></div>
-
-                             높이조절 바 
-                            <div id="tx_resizer" class="tx-resize-bar">
-                                <div class="tx-resize-bar-bg"></div>
-                                <img id="tx_resize_holder" src="/img/btn_drag01.gif" width="58" height="12" unselectable="on">
-                            </div>
-                        </div>
-                        -->
 
                         <!-- 글 작성 타입 선택 -->
                         <div class="write_type_box">
@@ -385,7 +374,8 @@
                             <!-- 취소 -->
                             <button type="button" class="btn_grey cancle" onclick="$('#leave_confirm_box').show()">취소</button>
                             <!-- 등록 -->
-                            <button type="image" class="btn_lightpurple write">등록</button>
+                            <button type="button" class="btn_lightpurple write"
+                            onclick="$('#editor_iframe').get(0).contentWindow.editor_save()">등록</button>
                             <!-- 글 작성 취소 팝업  -->
                             <div id="leave_confirm_box" class="pop_wrap type2" style="left: 50%;top: -322px;margin-left: -619px;display: none;">
                                 <div class="pop_content write_ly">
