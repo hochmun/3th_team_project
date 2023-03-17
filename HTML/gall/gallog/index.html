@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/management/common.css">
+    <link rel="stylesheet" href="/css/gall/gallog.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tmpl/1.0.0/jquery.tmpl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.iframetracker/latest/jquery.iframetracker.min.js"></script>
+
+    <script type="text/javascript" src="/js/gallog/calendar.js"></script>
+    <script type="text/javascript" src="/js/gallog/crossDomainStroage.js"></script>
+    <script type="text/javascript" src="/js/gallog/ZeroClipboard.js"></script>
+    <script type="text/javascript" src="/js/management/common.js"></script>
+    <script type="text/javascript" src="/js/management/ctr_cookie.js"></script>
+</head>
+<body>
+    <div class="innerbox">
+        <div id="top" class="gallog_wrap width1160 home">
+            <!-- 상단 -->
+            <div class="headbox">
+                <div class="gchead">
+                    <a href="#" class="gcmain_go">지시인사이드 메인가기<em class="sp_img icon_gcmain_go"></em></a>
+                    <div class="area_links clear">
+                        <ul class="fl clear">
+                            <li><a href="#">갤러리</a></li>
+                            <li><a href="#">마이너갤</a></li>
+                            <li><a href="#">미니갤</a></li>
+                            <li><a href="#">지시뉴스</a></li>
+                            <li><a href="#">지시게임</a></li>
+                            <li><a href="#">지시위키</a></li>
+                            <li><a href="#">이벤트</a></li>
+                            <li><a href="#">지시콘</a></li>
+
+                            <li class="area_nickname"><a href="javascript:;" id="btn_gallog_user_lyr" class="btn_user_data"> 님</a><!-- li와 a태그 사이 여백 없이. / 레이어 펼침 시 on 클래스 삽입 -->
+                                <!-- #user_data_lyr.user_data -->
+                                <div id="user_data_lyr" class="user_data" style="right:0;top:25px;display:none">
+                                    <ul class="user_data_list">
+                                        <li>
+                                            <a href="#">MY갤로그<em class="sp_img icon_go"></em></a>
+                                        </li>
+                                        <li>
+                                            <a href="#">고정닉정보<em class="sp_img icon_go"></em></a>
+                                        </li>
+                                        <li><a href="javascript:;" onclick="myFavorite()">즐겨찾기</a></li>
+                                        <li><a href="javascript:;" id="my_minor_btn_g" onclick="toggle_my_minor_pop(this)">운영/가입</a></li>
+                                        <li><a href="javascript:;" onclick="alarmList($(this), 'on', 'G')">알림 리스트</a></li>
+                                    </ul>
+                                </div>
+                                <!-- //#user_data_lyr.user_data -->
+                            </li>
+                            <li><a class="btn_top_loginout" href="#">로그아웃</a></li>
+                        </ul>
+                        <div class="fl darkmodebox">
+                            <a href="javascript:;" class="darkonoff" onclick="gallog_darkmode()"><em class="sp_img icon_tdark"></em>야간모드</a><!--dark-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top_bar">
+                <div id="top_bg" class="bar clear">
+                    <div class="photo sp_img" style="display:none">
+                        <!--<img id="profile_img" src="https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=profile&gid=gofyd889&t=1667626726" alt="" onload="$(this).parent().show();" onerror="$(this).hide().parent().show();"> 프로필 이미지 설정-->
+                    </div>
+                    <div class="galler_info">
+                        <strong class="nick_name">nick_name</strong>의 갤로그입니다.
+                    </div>
+                    <div class="tright_box clear">
+                        <!-- 방문자수 영역 -->
+                        <div class="visitors_num rbox">
+                            <span class="today_num">오늘의 방문자<em class="today_num">1/</em><em class="total_num ">4</em></span>  <!-- 태그사이 여백 X -->
+                        </div>
+                        <!-- 달력 영역 -->
+                        <div class="calendar_wrap rbox">
+                            <button type="button" class="btn_calendar">
+                                <em class="sp_img icon_calendar"></em><span class="blind">달력</span>
+                            </button>
+                            <div id="calendar_layer" class="inner" style="display:none"></div>
+                        </div>
+                        <!-- 갤로그 설정 영역 -->
+                        <div class="gallog_set_box rbox">
+                            <button type="button" id="btn_gallog_conf" class="btn_gallog_setting">
+                                <em class="sp_img icon_gallog_setting"></em><span class="txt">설정</span>
+                            </button>
+
+                            <script type="text/javascript" src="/js/gallog/gallog_config.js"></script>
+                            <div id="gallog_config_layer" class="pop_wrap type3" style="right:-1px;top:30px;display:none">
+                                <div class="pop_content gallog_setting three">
+                                    <div class="pop_head bg"><h3>갤로그 설정</h3></div>
+                                    <div class="tab_menubox gallogset_tab">
+                                        <button type="button" class="on">콘텐츠</button>
+                                        <button type="button">배경 이미지</button>
+                                        <button type="button">프로필 이미지</button>
+                                    </div>
+                                    <!-- gallog_setbox -->
+                                    <div class="inner">
+                                        <!-- 비공개 설정 -->
+                                        <div class="tabcontent gallog_blockset">
+                                            <div class="pop_info">
+                                                <p>콘텐츠 공개여부 설정입니다.(비공개 미니 갤러리 콘텐츠는 모두 비공개됩니다.)</p>
+                                            </div>
+                                            <div class="setting_box">
+                                                <div class="setting_cont">
+                                                    <div class="set_cont">
+                                                        <div class="inner">
+                                                            <div class="box sel clear">
+                                                                <span class="cont_tit">게시글 / 댓글</span>
+                                                                <div class="fl selbox">
+                                                                    <span class="radiobox small">
+                                                                        <input type="radio" id="album_0"  name="album_conf" value="0" onclick="$('#sel_galls').hide()">
+                                                                        <em class="checkmark"></em>
+                                                                        <label for="album_0">공개</label>
+                                                                    </span>
+                                                                    <span class="radiobox small">
+                                                                        <input type="radio" id="album_1" name="album_conf" value="1" onclick="$('#sel_galls').show()">
+                                                                        <em class="checkmark"></em>
+                                                                        <label for="album_1">일부공개</label>
+                                                                    </span>
+                                                                    <span class="radiobox small">
+                                                                        <input type="radio" id="album_X" name="album_conf" value="X" onclick="$('#sel_galls').hide()">
+                                                                        <em class="checkmark"></em>
+                                                                        <label for="album_X">비공개</label>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div id="sel_galls" class="box seh" style="display:none">
+                                                                <div class="sehbox">
+                                                                    <div class="option_sort  gallog_set">
+                                                                        <div class="select_box select_arraybox">
+                                                                            <div class="select_area"><span class="placeholder">공개할 갤러리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
+                                                                            <ul id="conf_sel_gall" class="option_box" style="left:-1px;top:28px;display:none"></ul>
+                                                                            <script id="conf_sel_gall-tmpl" type="text/x-jquery-tmpl">
+                                                                                <li data-type="${type}" data-name="${ko_name}" data-hide="${gall_hide}" data-value="${cno}">
+                                                                                    ${ko_name}
+                                                                                </li>
+                                                                            </script>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button type="button" class="btn_enroll">등록</button>
+                                                                </div>
+                                                                <ul class="set_gall_list"></ul>
+                                                                <script id="gall_list-tmpl" type="text/x-jquery-tmpl">
+                                                                    <li data-no="${no}">
+                                                                        <span class="gall_name">${ko_name}{{if type == 'N'}}<em class="icon_mini"></em>{{/if}}</span>
+                                                                        <button type="button" class="btn_del" onclick="del_open_gall(this)"><span class="blind">설정 갤러리 삭제</span><em class="sp_img icon_del"></em></button>
+                                                                    </li>
+                                                                </script>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="set_cont">
+                                                        <div class="inner clear">
+                                                            <span class="cont_tit">스크랩</span>
+                                                            <div class="fl selbox">
+                                                                <span class="radiobox small">
+                                                                    <input type="radio" id="scrap_on"  name="scrap_conf" value="0">
+                                                                    <em class="checkmark"></em>
+                                                                    <label for="scrap_on">공개</label>
+                                                                </span>
+                                                                <span class="radiobox small">
+                                                                    <input type="radio" id="scrap_off" name="scrap_conf" value="X">
+                                                                    <em class="checkmark"></em>
+                                                                    <label for="scrap_off">비공개</label>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 배경 설정 -->
+                                        <div class="tabcontent gallog_bgset" style="display:none">
+                                            <div class="pop_info">
+                                                <p>배경 이미지를 설정할 수 있습니다.(이미지는 jpg, png 최대3MB 가능)</p>
+                                            </div>
+                                            <div class="setting_box">
+                                                <div class="setting_cont">
+                                                    <div class="set_cont">
+                                                        <!-- 상단 이미지 -->
+                                                        <div class="inner">
+                                                            <span class="cont_tit">상단 이미지</span>
+                                                            <div id="topbg_img" class="gallog_set topbg_img clear">
+                                                                <div class="fl">
+                                                                    <div class="up_bgimg">
+                                                                        <img data-src="" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fl bg_fileup">
+                                                                    <input type="file" name="top" title="상단 배경이미지 올리기" accept=".jpg,.jpeg,.png">
+                                                                    <button type="button" class="btn_fileup">찾기</button>
+                                                                </div>
+                                                                <button type="button" class="del" style="display:none;">삭제</button>
+                                                                <!--<script type="text/javascript">
+                                                                    var img_topbg = new Image();
+                                                                    img_topbg.src = "https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=top&gid=gofyd889&t=1667626726";
+                                                                    img_topbg.onload = function() { $('#topbg_img .up_bgimg img').attr('src', 'https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=top&gid=gofyd889&t=1667626726'); $('#topbg_img button.del').show(); }
+                                                                    img_topbg.onerror = function() { $('#topbg_img .up_bgimg img').attr('src', $('#topbg_img .up_bgimg img').data('src')); }
+                                                                </script>상단 이미지 업로드-->
+                                                            </div>
+                                                            <div class="setting_onoff">
+                                                                <span class="tit">이미지 반복</span>
+                                                                <button id="btn_repeat_toggle" type="button" class="sp_img on"><span class="blind">on</span></button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- 상단 이미지 -->
+                                                    </div>
+                                                    <div class="set_cont">
+                                                        <!-- 배경 이미지 -->
+                                                        <div class="inner">
+                                                            <span class="cont_tit">배경 이미지</span>
+                                                            <div id="bg_img" class="gallog_set bg_img clear">
+                                                                <div class="fl">
+                                                                    <div class="up_bgimg">
+                                                                        <img data-src="" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fl bg_fileup">
+                                                                    <input type="file" name="bg" title="배경이미지 올리기" accept=".jpg,.jpeg,.png">
+                                                                    <button type="button" class="btn_fileup">찾기</button>
+                                                                </div>
+                                                                <button type="button" class="del" style="display:none;">삭제</button>
+                                                                <!--<script type="text/javascript">
+                                                                    var img_bg = new Image();
+                                                                    img_bg.src = "https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=bg&gid=gofyd889&t=1667626726";
+                                                                    img_bg.onload = function() { $('#bg_img .up_bgimg img').attr('src', 'https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=bg&gid=gofyd889&t=1667626726'); $('#bg_img button.del').show(); }
+                                                                    img_bg.onerror = function() { $('#bg_img .up_bgimg img').attr('src', $('#bg_img .up_bgimg img').data('src')); }
+                                                                </script> 배경 이미지 업로드-->
+                                                            </div>
+                                                        </div>
+                                                        <!-- //배경 이미지 -->
+                                                        <!-- 배경 색상 -->
+                                                        <div class="inner bg_colorbox">
+                                                            <span class="cont_tit">배경 색상</span>
+                                                            <div class="gallog_set bg_color clear">
+                                                                <div class="fl int">
+                                                                    <span class="deco">#</span>
+                                                                    <input type="text" value="F1F1F1">
+                                                                </div>
+                                                                <div class="palette">
+                                                                    <ul class="clear">
+                                                                        <li class="color"><button type="button" style="background-color:#f1f1f1"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#999999"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#ff6666"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#ff9966"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#ffff99"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#99ff99"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#6699cc"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#ff99cc"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#cc99ff"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#000000"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#c00000"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#ff0000"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#ffcc33"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#99cc66"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#009966"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#0099ff"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#003366"></button></li>
+                                                                        <li class="color"><button type="button" style="background-color:#7030a0"></button></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 프로필 설정 -->
+                                        <div class="tabcontent gallog_bgset pf" style="display:none">
+                                            <div class="pop_info">
+                                                <p>프로필 이미지를 설정할 수 있습니다.(이미지는 jpg, png 최대3MB 가능)</p>
+                                            </div>
+                                            <div class="setting_box">
+                                                <div class="setting_cont">
+                                                    <div class="set_cont">
+                                                        <div class="inner">
+                                                            <span class="cont_tit">프로필 이미지</span>
+                                                            <div id="profile_img" class="gallog_set topbg_img clear">
+                                                                <div class="fl">
+                                                                    <div class="up_bgimg">
+                                                                        <img data-src="" alt="">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="fl bg_fileup">
+                                                                    <input type="file" name="profile" title="프로필 이미지 올리기" accept=".jpg,.jpeg,.png">
+                                                                    <button type="button" class="btn_fileup">찾기</button>
+                                                                </div>
+
+                                                                <button type="button" class="del" style="display:none;">삭제</button>
+                                                                <!--<script type="text/javascript">
+                                                                    var img_profile = new Image();
+                                                                    img_profile.src = "https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=profile&gid=gofyd889&t=1667626726";
+                                                                    img_profile.onload = function() { $('#profile_img .up_bgimg img').attr('src', 'https://gcimg2.gcinside.co.kr/gallog_upimg.php?mode=profile&gid=gofyd889&t=1667626726'); $('#profile_img button.del').show(); }
+                                                                    img_profile.onerror = function() { $('#profile_img .up_bgimg img').attr('src', $('#profile_img .up_bgimg img').data('src')); }
+                                                                </script> 프로필 이미지 업로드-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="btn_box">
+                                        <button type="button" class="btn_apply">저장</button>
+                                    </div>
+                                </div>
+                                <button type="button" class="poply_whiteclose" onclick="toggle_layer($('#gallog_config_layer'))"><span class="blind">설정 레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //상단 -->
+            <main id="container">
+                <article>
+                    <h2 class="blind">갤로그 홈</h2>
+                    <!-- conent_wrap -->
+                    <div class="conent_wrap clear">
+                        <div class="wrap_left">
+                            <ul class="gallog_menu"><!-- 링크 맨 앞에 member_uid 오도록 ex) /${member_uid}/posting -->
+                                <li class="home on"><a href="/">홈</a></li>
+                                <li class="posting"><a href="/posting">게시글</a></li>
+                                <li class="comment"><a href="/comment">댓글</a></li>
+                                <li class="scrap"><a href="/scrap">스크랩</a></li>
+                                <li class="guestbook">
+                                    <a href="/guestbook">방명록</a>
+                                </li>
+                            </ul>
+                            <script>$('.gallog_menu .home').adgclass('on');</script>
+                        </div>
+                        <div id="secret_tip_pop" class="pop_tipbox secret_tip" style="display:none">
+                            <p class="txt">익명 사용 미니갤에 남긴 글은 작성자만 볼 수 있습니다.</p>
+                            <button class="btn_close" onclick="secret_tip_close()"><span class="sp_img icon_mini_wclose"></span><em class="blind">닫기</em></button>
+                        </div>
+                        <div class="wrap_right">
+                            <section>
+                                <div id="jquery_jplayer"></div>
+
+                                <!-- 게시글 -->
+                                <section>
+                                    <div class="gallog_cont">
+                                        <header>
+                                            <div class="cont_head clear"><!-- location.href='${member_uid}/posting';" -->
+                                                <h2 class="tit" onclick="location.href='/posting';" style="cursor:pointer">게시글<span class="num">(2)</span></h2>
+                                                <span class="greybox">비공개</span>
+                                            </div>
+                                        </header>
+                                        <div class="cont_box">
+                                            <ul class="cont_listbox">
+                                                <li class="" data-no="5">
+                                                    <div class="cont">
+                                                        <div class="gall_linkbox">
+                                                            <a class="link " href="#" target="_blank">
+                                                                <div class="galltit"><strong>첫번째 작성글</strong></div>
+                                                                <div class="nameday ">
+                                                                    <span class="gall_name">
+                                                                    아무거나
+                                                                    </span>
+                                                                    <span class="date">2023.03.14</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="" data-no="1">
+                                                    <div class="cont">
+                                                        <div class="gall_linkbox">
+                                                            <a class="link " href="#" target="_blank">
+                                                                <div class="galltit"><strong>철조망 총에 깨지는거 정리해옴</strong><span class="comment_num">[5]</span></div>			
+                                                                <div class="nameday ">
+                                                                    <span class="gall_name">
+                                                                        프로젝트 좀보이드
+                                                                    </span>
+                                                                    <span class="date">2022.11.05</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 댓글 -->
+                                <section>
+                                    <div class="gallog_cont comments">
+                                        <header>
+                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/comment';" -->
+                                                <h2 class="tit" onclick="location.href='/comment';" style="cursor:pointer">댓글<span class="num">(3)</span></h2>
+                                                <span class="greybox">비공개</span>
+                                            </div>
+                                        </header>
+                                        <div class="cont_box">
+                                            <ul class="cont_listbox">
+                                                <li class="replys" data-no="3">
+                                                    <div class="cont">
+                                                        <div class="gall_linkbox">
+                                                            <a class="link " href="#" target="_blank">
+                                                                <p class="txt">아니용</p>
+                                                                <div class="nameday ">
+                                                                    <span class="gall_name">
+                                                                        아무거나
+                                                                    </span>
+                                                                    <span class="date">2023.03.14</span>
+                                                                </div>
+                                                                <div class="galltit"><strong>이게 뭔지 아시나용</strong></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="" data-no="2">
+                                                    <div class="cont">
+                                                        <div class="gall_linkbox">
+                                                            <a class="link " href="#" target="_blank">
+                                                                <p class="txt">ㅢ</p>
+                                                                <div class="nameday ">
+                                                                    <span class="gall_name">
+                                                                        이것저것
+                                                                    </span>
+                                                                    <span class="date">2023.03.14</span>
+                                                                </div>
+                                                                <div class="galltit"><strong>으이</strong></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="" data-no="1">
+                                                    <div class="cont">
+                                                        <div class="gall_linkbox">
+                                                            <a class="link " href="#" target="_blank">
+                                                                <p class="txt">416 분전 ㅅㅅㅅ</p>
+                                                                <div class="nameday ">
+                                                                    <span class="gall_name">
+                                                                        WOW 
+                                                                    </span>
+                                                                    <span class="date">2023.03.14</span>
+                                                                </div>
+                                                                <div class="galltit"><strong>8시 라자게스 신화 확고팟</strong></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 스크랩 -->
+                                <section>
+                                    <div class="gallog_cont scraps">
+                                        <header>
+                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/scrap'; -->
+                                                <h2 class="tit" onclick="location.href='/scrap';" style="cursor:pointer">스크랩<span class="num">(1)</span></h2>
+                                                <span class="greybox">비공개</span>
+                                            </div>
+                                        </header>
+                                        <div class="cont_box">
+                                            <ul class="cont_listbox">
+                                                <li class="" data-no="8">
+                                                    <div class="cont">
+                                                        <div class="gall_linkbox">
+                                                            <a class="link " href="https://gall.gcinside.com/mgallery/board/view?id=sims&no=177148" target="_blank">
+                                                                <div class="galltit"><strong>게임 업뎃시 매우매우 간단한 팁</strong></div>
+                                                                <div class="nameday ">
+                                                                    <span class="gall_name">
+                                                                    심즈
+                                                                    </span>
+                                                    
+                                                                    <span class="writer_info fix"><em class='nickname in' title='ㅂㅂㅂㄱ' >ㅂㅂㅂㄱ</em>
+                                                                        <span class='writer_nikcon '><img src='https://nstatic.gcinside.com/gc/w/images/fix_nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' ></span>
+                                                                    </span>				
+                                                                    <span class="date">2022.07.28</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- 방명록 -->
+                                <section>
+                                    <div class="gallog_cont gstbook">
+                                        <header>
+                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/guestbook'; -->
+                                                <h2 class="tit" onclick="location.href='/guestbook';" style="cursor:pointer">방명록<span class="num">(0)</span></h2>
+                                            </div>
+                                        </header>
+                                        <div class="cont_box">
+                                            <div class="gallog_empty small">
+                                                방명록이 없습니다. 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+                            <!-- 푸터 -->
+                            <footer class="gcfoot">
+                                <div class="info_policy">
+                                    <a href="/company/index.html">회사소개</a>
+                                    <a href="/company/index.html#alliance">제휴안내</a>
+                                    <a href="/ad/index.html">광고안내</a>
+                                    <a href="/terms/policy.html">이용약관</a>
+                                    <a href="/terms/privacy.html"><b>개인정보처리방침</b></a>
+                                    <a href="/terms/youth_policy.html">청소년보호정책</a>
+                                </div>
+
+                                <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

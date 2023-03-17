@@ -7,13 +7,10 @@
     <!-- create -->
     <!-- 2023/03/16 // 김재준 // 관리자 메인 갤러리 생성 -->
     <insert id="createMainGallery" useGeneratedKeys="true" keyProperty="gell_num">
-        INSERT INTO `gc_gell` set
-            `gell_cate` = #{gell_cate},
-            `gell_name` = #{gell_name},
-            `gell_address` = #{gell_address},
-            `gell_info` = #{gell_info};
-        <!--(gell_cate, gell_name, gell_address, gell_info)
-        VALUES (#{gell_cate}, #{gell_name}, #{gell_address}, #{gell_info});-->
+        INSERT INTO `gc_gell` (gell_cate, gell_name, gell_address, gell_info, gell_manager, gell_grade, gell_rdate)
+        SELECT gc_gell_cate2.gell_cate2, #{gell_name}, #{gell_address}, #{gell_info}, #{gell_manager}, 0, NOW()
+        FROM gc_gell_cate2
+        WHERE gc_gell_cate2.gell_cate2 = #{gell_cate};
     </insert>
     <!-- read -->
     <!-- 2023/03/10 // 심규영 // 관리자 약관 불러오기 -->
@@ -28,7 +25,7 @@
         FROM gc_member
         WHERE member_uid = #{memberUid}
     </select>
-
+    <!-- 2023/03/16 // 김재준 // 메인갤러리 생성 시 카테고리 번호,이름 불러오기 -->
     <select id="selectGalleryCates" resultType="kr.co.gcInside.vo.gall_cate2VO">
         SELECT * FROM `gc_gell_cate2`;
     </select>

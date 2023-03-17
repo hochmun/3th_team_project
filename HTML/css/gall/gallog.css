@@ -1,0 +1,517 @@
+@charset "utf-8";
+/**/
+html{height:100%;background-color:#f1f1f1;overflow-y:hidden}
+body{overflow-y:auto;min-width:1200px;position:relative; }
+.sp_higbadge{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_hitbadge.png);background-repeat:no-repeat}
+.sp_higbadgeb{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_hitbadge_img.png?0609);background-repeat:no-repeat}
+
+input[type=text]::-ms-clear {display: none;}
+
+
+/*레이아웃*/
+#top{position:relative}
+.bar{position:relative;width:1048px;height:66px;padding:17px 0 15px;margin:0 auto;background-color:#29367c;border:1px #29367c solid}
+.conent_wrap{width:1160px;box-sizing:border-box;padding:0px 4.7% 0 4.75%;margin:0 auto;background:#fff}
+.gallog_cont{margin:0 auto}/*210527 width:1050px; 삭제*/
+.gallog_wrap{width:1160px;margin:0 auto}
+.innerbox{width:1160px;height:100%;margin:0 auto;background-color:#fff;position:relative;}
+
+
+/*211230 추가 삭제된 갤로그 입니다 관련 페이지 여백 설정*/
+.innerbox.emptypage::after{display:none}
+.emptypage .conent_wrap{min-height:600px;height:100%}
+
+
+
+/*상단*/
+.top_box{background:#fff}
+.headbox{height:40px;background:#fff;position:relative;z-index:2}
+.gallog_wrap.width1160 .gchead{width:1050px;height:28px;padding-top:12px}
+.gcmain_go{font-size:11px;color:#d31900;vertical-align:-2px}
+.icon_gcmain_go{display:inline-block;width:5px;height:9px;background-position:-186px -231px;margin-left:3px}
+.gallog_wrap .area_links{top:12px}
+.top_bar{width:1050px;margin:0 auto;background:#29367c;font-size:14px;color:#fff;position:relative;z-index:1}
+.galler_info{float:left;height:28px;margin:-1px 0 0 75px;padding:0 20px 0 27px;line-height:28px;border-radius:0 15px 15px 0;background:url(https://nstatic.gcinside.com/gc/w/images/bg.png) repeat-x 0 0}
+.tright_box{
+position:absolute;bottom:15px;right:0;clear:both;height:26px;padding:0 10px 0 20px;line-height:26px;border-radius:15px 0 0 15px;
+background:url("/img/bg.png") repeat-x 0 0;
+}/*211118 폰트 버그 line-height:28px*/
+.rbox{float:left}
+.rbox::before{content:"";display:inline-block;width:1px;height:11px;background:#3b4890;margin:8px 4px 0 9px;vertical-align:top
+;box-shadow: 0px -1px #2a326e}
+.rbox:first-child::before{display:none}
+.galler_info .nick_name{color:#fff200;font-family:tahoma,-apple-system,BlinkMacSystemFont,"Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif}
+.galler_info .nick_id{font-weight:normal}
+.btn_grey.smaller.btn_gallog_setting{height:24px;line-height:23px;padding:0 7px 0 6px;margin-left:8px}
+.btn_gallog_setting{vertical-align:-2px}
+.btn_gallog_setting .txt{font-size:0;line-height:0}
+.icon_gallog_setting{display:inline-block;width:16px;height:17px;background-position:-196px -362px}
+.btn_calendar{vertical-align:-2px}
+.icon_calendar{display:block;width:17px;height:17px;background-position:-196px -383px}
+/*방문자수*/
+.visitors_num{font-size:12px}
+.visitors_num .today_num,.visitors_num .total_num{text-shadow: 0px -1px #2a326e}
+.visitors_num em{color:#6dcff6}
+.visitors_num em:first-child{margin-left:5px}
+/*본문*/
+/*메뉴*/
+
+.gallog_menu:after{clear:both;display:block;visibility:hidden;content:""}/*210125 추가*/
+.gallog_menu li{position:relative;margin-top:5px}/*210527 수정*/
+.gallog_menu li:first-child{margin-top:0}
+.gallog_menu li a{display:block;width:180px;height:36px;padding-left:14px;box-sizing:border-box;padding-right:1px;line-height:34px;border:1px #ccc solid;border-radius:2px;/*211118 폰트 버그 line-height:36px;*/
+font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;font-size:14px;font-weight:bold}
+.gallog_menu li.on a{color:#fff;text-shadow: 0px -1px #1d2761;border-color:#3b4890;background:#3b4890}
+.gallog_menu li.on a:hover{text-decoration:none}
+.gallog_menu .new{position:absolute;top:-1px;right:auto;vertical-align:6px}/*210527 수정*/
+/*컨텐츠*/
+.gallog_wrap.width1060 #container{margin:0 auto 0}
+.gallog_cont{padding-bottom:28px}
+.conent_wrap section:last-child .gallog_cont{padding-bottom:0}
+.gallog_wrap .cont_head{position:relative;border-bottom:none}
+.cont_head .tit{float:left;padding:2px 0 0 2px;color:#d31900;font-size:14px;letter-spacing:-0.075em}
+/*.cont_head .tit::before{content:"";display:inline-block;width:3px;height:3px;background:#d31900;vertical-align:5px;margin:0 6px 0 4px}*/
+.cont_head .tit .num{padding-left:1px;font-weight:normal}
+.cont_head .tit .next{font-weight:normal;margin-left:8px}
+.choice_sect{font-size:0}
+.choice_sect button{position:relative;padding-right:14px;font-size:14px;color:#29367c;font-weight:bold;line-height:20px;vertical-align:top;overflow:visible;letter-spacing:-0.075em}
+.choice_sect button.on{color:#d31900}
+.choice_sect button.on::after{content:'';display:block;width:100%;height:2px;position:absolute;left:0;top:30px;background:#29367c }
+.choice_sect button::before{content:'';display:inline-block;width:1px;height:13px;margin-right:13px;background:#29367c;font-size:0;vertical-align:-1px}
+.choice_sect button:first-child::before{display:none}
+.choice_sect button:first-child{padding-left:12px}
+.choice_sect button .num{font-weight:normal}
+
+.option_sort.gallog{margin:9px 0 9px 3px;font-size:0}
+.option_sort.gallog .select_arraybox{min-width:137px;width:auto;height:26px;line-height:26px}/*211118 폰트 버그 line-height:28px*/
+.option_sort.gallog .select_arraybox .option_box{overflow-y:auto;width:100%;max-height:400px;padding:5px 0px 4px}
+.option_sort.gallog .select_arraybox .option_box li{padding:0 9px}
+
+h2.tit + .option_sort.gallog{position:absolute;right:0;top:-7px;margin:0}/*방명록*/
+.guestbook .option_sort.gallog .select_arraybox{width:35px;height:27px;min-width:auto}/*방명록 년도*/
+
+
+.btn_blue.smallest.go{display:block;float:left;width:60px;height:18px;;margin-left:10px;line-height:18px;text-align:center}/*211118 폰트 버그 line-height:20px*/
+.btn_blue.smallest.go:hover{text-decoration:underline}
+.cont_box{clear:both;border-top:2px #29367c solid}
+.cont_listbox{border:1px #29367c solid;border-width:0px 0 1px 0}
+.cont_listbox li{border-top:1px #ddd solid;padding:15px 0 14px 2px}/*210527*/
+.cont_listbox li:after{clear:both;display:block;visibility:hidden;content:""}
+.cont_listbox li:first-child{border-top:none}/*210527*/
+.option_sort.gallog ~ .cont_listbox li:first-child{border-top:1px #ddd solid}/*210629 셀렉터 수정*/
+.cont_listbox li.my{background:#fafafa}/*방명록*/
+.cont_listbox li.my {border-top:1px #eee solid}
+.cont_listbox li.my .writer_info{color:#d31900}
+.cont_listbox .gall_linkbox a{display:block }
+.cont_listbox .gall_linkbox .nameday{margin-top:8px}/*210527*/
+.cont_listbox .gall_linkbox .comment_gccon .nameday{margin-top:69px!important;margin-left:11px}/*211118 폰트 버그 margin-top:72px*/
+.cont_listbox .replys .gall_linkbox  .comment_gccon  .nameday{margin-left:13px}
+.gall_linkbox{position:relative;padding-right:30px;word-break:break-all}
+.home .gall_linkbox{padding-right:0}
+.gall_linkbox .link .galltit strong{font-size:13px}
+.gallog_cont.gstbook .gall_linkbox .link .galltit strong{font-weight:normal}
+.gall_linkbox .link .galltit .icon_secretsquare + strong{padding-left:8px}
+.gall_linkbox .link:hover, .home .gallog_cont.gstbook .link .galltit strong{text-decoration:none}
+.gall_linkbox .link:hover .galltit strong{text-decoration:underline}
+.nameday{font-size:0}
+.nameday span::before{content:"|";color:#d7d7d7;font-size:12px;line-height:12px;padding:0 4px 0 4px;vertical-align:1px}/*211118 폰트 버그 vertical-align:1px 추가*/
+
+.comment_gccon  + span.gall_name::before, .nameday span:first-child::before, .gallog_cont span.writer_nikcon:before{display:none}
+
+.nameday .gall_name{text-decoration:none}
+.gall_linkbox .icon_mini{margin-left:3px}/*211118 폰트 버그 vertical-align:-1px 삭제*/
+.gall_linkbox .nameday .icon_mini{margin-right:1px}
+.gall_linkbox .nameday .writer_nikcon img{margin-right:2px}
+
+.nameday .gall_name, .nameday .date, .nameday .writer_info{font-size:12px }
+
+
+.cont{font-size:13px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;color:#333}/*210527*/
+
+.cont > a,.cont > .txt{overflow:hidden;display:block;max-height:60px;line-height:20px;margin:17px 0 18px;word-break:break-all;word-wrap:break-word}
+.cont > a[href="javascript:;"]:hover{text-decoration:none}/*201204 갤로그에서 보이스리플 버튼 오버시 선생김 대응*/
+
+.guestbook .cont.box1 > strong{overflow:hidden;display:inline-block;max-width:165px;max-height:60px;
+  padding:0 1px 0 15px;margin:17px 0 18px;line-height:20px;word-break:break-all;word-wrap:break-word;
+  text-overflow:ellipsis;white-space:nowrap}
+.cont.box1 > a{padding:0 1px 0 15px}
+.cont.box1 > a:hover{text-decoration:none}
+.cont.box1 > a:hover strong{text-decoration:underline}
+.cont.box2 > a,.cont > .txt,.gallog_wrap .uservoice{padding:0 27px 0 32px}
+.cont.box2.voicein a{overflow:visible;margin:20px 0 18px 0;cursor:default}/*201204 보이스리플 공유하기 레이어 가림 이슈로 스타일 추가*/ /*201207*/
+
+.cont.off .txt{padding:0 1px 0 15px;color:#999} /*200921 추가*/
+/*게시글*/
+/*
+.state {display:inline-block; height:14px;line-height:16px;padding:0 3px;border-radius:2px;font-size:11px;margin:2px 0 0 7px;
+background:#cccccc;border:1px #aaa solid;color:#fff;text-shadow: 0px -1px #bdbdbd
+}
+.state.on{background:#3b4890;border:1px #29367c solid;color:#fff;text-shadow: 0px -1px #1d2761}
+*/
+
+.gallog_empty{height:242px;padding-top:234px;border:1px #29367c solid;border-width:0px 0 1px 0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;font-size:14px;color:#333;font-weight:bold;text-align:center}
+.gallog_empty.small{height:105px;padding-top:88px}
+.guestbook .gallog_empty{border-width:2px 0 1px 0}
+/*주인장*/
+.cont_btnbox .btn_lightgrey.smaller,.cont_btnbox .btn_grey.smaller,.cont_btnbox .btn_blue.smaller,.cont_btnbox .btn_jeangrey.smaller
+{width:43px;height:22px;line-height:20px;padding:0;font-size:11px;text-align:center}/*211118 폰트 버그 line-height:22px*/
+.cmt_write_box.gallog .cont_btnbox{padding:0}
+/*210727 성인 게시글*/
+.galltit.adult{position:relative}
+.icon_sadult{
+  display:inline-block;position:absolute;margin-left:3px;width:17px;height:17px;
+  background-position:-227px -909px;vertical-align:top;
+}/*211118 폰트 버그 margin-top:-2px 삭제*/
+
+/*220715 uiux 개선*/
+.comment_num{font-size:12px;color:#999;margin-left:3px;vertical-align:top}/*게시글 옆 댓글수 표기*/
+.area_nickname .user_data{left:inherit;margin-top:0}
+/*//220715 uiux 개선*/
+
+
+
+/* 댓글*/
+.gallog_wrap .comments .cont_listbox li{padding:12px 0 14px 2px}
+.gallog_wrap .comment_gccon{margin:0 9px 0 0px}
+.gallog_wrap .coment_gccon_img{width:80px;height:80px}
+.gallog_wrap .coment_gccon_img{margin-top:5px}
+.gallog_wrap .coment_gccon_img img{width:100%}
+.gallog_wrap .coment_gccon_info{margin-top:2px}
+.gallog_wrap .comment_gccon + .gall_name, .gallog_wrap .comment_gccon + .gall_name + .date{vertical-align:3px}
+.gallog_wrap .voice-box{float:none;font-family:AppleSDGothicNeo-Regular,HelveticaNeue,'나눔고딕', NanumGothic, '돋움', Dotum, sans-serif/*margin:10px 0 18px;padding:0 27px 0 32px*/}/*201125*/
+.gallog_wrap .voice-box .btn-voice{font-family:AppleSDGothicNeo-Regular,HelveticaNeue,'나눔고딕', NanumGothic, '돋움', Dotum, sans-serif}
+.gall_linkbox .voice_wrap + .galltit {margin-top:3px!important}
+.voice_wrap .nameday{position:absolute;left:287px;top:14px}/*211118 폰트 버그 top:17px*/
+.gallog_wrap .comments .gall_linkbox .nameday{margin-top:4px;line-height:14px}
+.gallog_wrap .comments .gall_linkbox .voice_wrap .nameday{margin-top:3px}
+
+.gallog_cont .galltit{clear:both;display:inline-block;;font-size:0}
+.gallog_cont.comments .galltit{position:relative;background:#edf1ff;padding:0px 1px;margin-top:4px;margin-bottom:1px;height:18px;line-height:18px}
+.gallog_cont.comments .link .galltit strong{text-decoration:none;font-weight:normal;font-size:12px}
+.gallog_cont.comments .voice_wrap > div.fl{height:54px}
+.gallog_cont.comments .cont_listbox{line-height:22px}
+.gallog_cont.comments .link:hover .txt{text-decoration:underline}
+.gallog_cont.comments .galltit .icon_secretsquare{vertical-align:1px}/*211118 폰트 버그 vertical-align:0*/
+/*답글*/
+.gallog_cont.comments .replys .gall_linkbox{position:relative;padding-left:15px}
+.gallog_cont.comments .replys .nameday, .gallog_cont.comments .replys .txt{margin-left:1px}
+.gallog_cont .replys .gall_linkbox .link::before, .guestbook .replys .cont.box1::before, .guestbook .comments .cont.box1::before
+{content:" ";position:absolute;left:0px;display:inline-block;width:11px;height:11px;background:url("/img/sp_img.png") no-repeat;background-position:-274px -843px}
+.gallog_cont .replys .gall_linkbox .link::before{top:2px}
+.guestbook .replys .cont.box1::before{top:1px}
+
+
+
+/*201126 보이스톡 공유 레이어 관련 버튼 사이즈 고정*/
+.voice_wrap{margin:3px 0 0 1px;z-index:1}
+
+.gallog_wrap .voice-box .btn-voice.vic_play{width: 120px}
+.gallog_wrap .voice-box .btn-voice.vic_copy{width: 84px}
+.gallog_wrap .voice-box .btn-voice.vic_share{width: 58px}
+
+/*방명록*/
+.home .gallog_cont.gstbook .galltit{overflow:hidden}
+.home .gallog_cont.gstbook .cont_listbox .gall_linkbox .nameday{margin-top:5px}
+.guestbook .cont_listbox li{padding:17px 3px 18px 14px}
+.gallog_cont.gst .writer_info{display:inline}
+.home .gallog_cont.guestbook .galltit strong{font-weight:normal}
+.guestbook .cont{float:left}
+.cont.box1{width:135px;position:relative}
+.cont.box2{width:633px;margin-left:18px}
+.comments .cont.box2{width:621px}
+.gst .cont.box2{width:633px}
+.gst .cmt_write_box.gallog .cmt_txt_cont textarea{width:632px}
+.guestbook .cont .txt{max-height:100%;word-break:break-word;padding:0;margin:0}
+.guestbook .cont.box1 .date{display:block;margin-top:6px;font-size:12px}
+.guestbook .cont.box1 .icon_secretsquare{display:block ;margin-top:9px;margin-left:1px}
+.cont .ip{padding-left:2px;font-weight:normal;font-family:Tahoma,sans-serif;font-size:11px;color:#999;vertical-align:top}
+.gallog_cont .writer_info{padding-right:1px;font-size:0;position:relative; }
+.gallog_cont .nickname{font-size:12px}
+.gallog_cont .writer_nikcon img{vertical-align:-3px}
+
+.guestbook .gallog_cont .writer_info{position:static;display:block}
+.nickname[style^="vertical-align"] ~ .writer_nikcon{vertical-align:-13px}
+.guestbook .gallog_cont  .cmt_write_box.gallog .checkbox label{vertical-align:1px}/*211118 폰트 버그 vertical-align:-1px*/
+.cmt_write_box.gallog .writer_info{margin-top:9px}
+
+.guestbook .gallog_cont .writer_info .nickname{display:inline-block;overflow:hidden;max-width:116px;text-overflow:ellipsis;white-space:nowrap;padding-right:1px}
+.guestbook .gallog_cont .cont_listbox .writer_info, .guestbook .gallog_cont .cont_listbox .replys.gst .writer_info, .guestbook .gallog_cont .cont_listbox .comments .writer_info{margin-top:1px}/*0708*/
+.guestbook .gallog_cont .cont_listbox .writer_info .nickname{max-width:83px}
+.guestbook .gallog_cont .cont_listbox .writer_info .nickname.in{max-width:115px}
+
+.guestbook .writer_nikcon img{vertical-align:1px}
+.guestbook .writer_info .ip{vertical-align:3px;padding:0}
+
+.guestbook .cont_btnbox{margin-top:7px;font-size:0;position:relative; }
+.guestbook .cont_btnbox button{margin-left:3px}
+.guestbook .cont_btnbox button:first-child{margin-left:0}
+.btn_white.small.guest_block{width:66px;height:29px;line-height:27px;border-radius:0;font-weight:normal;vertical-align:top;margin-left:0;padding-right:0}/*211118 폰트 버그 line-height:29px*/
+.guestbook .select_arraybox{margin-left:7px}
+
+/*.guestbook .cont_listbox li{min-height:55px}*/
+/*방명록 입력*/
+.guestbook .nickname{font-weight:bold;font-size:13px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif}
+.cmt_write_box.gallog{border-top:0px #29367c solid;padding:18px 15px;background:#f5f5f5}
+.cmt_write_box.gallog > .fl.clear{position:relative; }
+.guestbook .cont_listbox{border-top:2px #29367c solid}
+.cmt_write_box.gallog .user_info_input{width:133px;height:30px}
+.cmt_write_box.gallog .user_info_input input{width:119px}
+
+.cmt_write_box.gallog .cmt_txt_cont textarea{width:620px;height:97px;;padding:10px 13px 13px;word-break:break-word;resize:none;line-height:20px;box-sizing:border-box}
+.cmt_write_box.gallog .cmt_cont_bottm{margin-top:7px}
+.cont.box2 .cmt_cont_bottm{margin-top:10px}
+.cmt_write_box.gallog .checkbox{margin-top:7px}
+.cmt_write_box.gallog.mdf .checkbox{margin-top:1px}
+.cmt_write_box.gallog .checkbox label{color:#555;font-size:11.65px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;margin-left:3px}
+.cmt_write_box.gallog.mdf .checkbox_txt{vertical-align:-2px}
+/*방명록 수정*/
+.cmt_write_box.gallog.mdf{padding:0;border:none;background:none}
+.cmt_write_box.gallog.mdf .cmt_txt_cont textarea{height:70px;margin-left:1px}
+.cmt_write_box.gallog.mdf .cmt_txt_cont{margin-left:0}
+
+.cmt_write_box.gallog.mdf .cmt_txt_cont{float:none}
+.cmt_write_box.gallog.mdf .cont_btnbox{margin-bottom:0}
+
+.w_html a{width:auto;font-weight:bold;letter-spacing:0.5px}
+.w_html a:hover{text-decoration:none}
+.w_html span:hover{text-decoration:underline}
+
+.guestbook .cont_listbox li.comments, .guestbook .cont_listbox li.gst{padding-top:14px;padding-bottom:14px}
+.guestbook .cont_listbox li.comments{background:#f5f5f5;margin-left:14px;border:1px solid #ddd;margin-bottom:18px}/*방명록 댓글작성*/
+.guestbook .gallog_cont .cont_listbox .gst .writer_info{margin-top:8px}
+.guestbook .cont_listbox .cmt_cont_bottm{margin-top:1px}
+.guestbook .cont_listbox .cmt_cont_bottm .checkbox{margin:10px 0 0 1px}
+.guestbook .gallog_cont .cont_listbox .cmt_write_box.gallog .checkbox label{vertical-align:1px}/*211118 폰트 버그 ertical-align:0*/
+
+/*방명록 댓글*/
+.guestbook .comments{border-bottom:1px #ddd solid}
+.guestbook .comments .cont.box2 .cmt_write_box.gallog .cmt_txt_cont textarea{width:587px}
+.guestbook .comments .cont.box2{width:588px}
+
+.replys.gst .cont.box2{padding-left:0}
+.replys .cont.box1, .comments .cont.box1{padding-left:16px}
+
+.guestbook .replys .cont.box2{width:588px;padding-left:0}
+.guestbook .replys.gst .cont.box2 .cmt_write_box.gallog .cmt_txt_cont textarea{width:587px}
+
+.guestbook .cont_listbox li.replys{padding:17px 15px 18px 28px;background:#fff;padding:0px 0px 0px 15px;border-width:0}
+.guestbook .replys .inr{padding:17px 15px 18px 14px;border:1px solid #ddd;border-width:0px 1px 1px 1px}
+.guestbook .replys.line .inr{border-top:1px solid #ddd}
+.guestbook .replys + li{margin-top:18px}
+.guestbook .replys:last-child{margin-bottom:18px }
+.guestbook .replys{margin-top:0!important}
+
+.guestbook .replys .nickname{background:#e5ebff }
+
+/*허용된 사용자만*/
+.nomem_comment_info{height:54px;line-height:54px;text-align:center;background:#f5f5f5;color:#29367c;font-size:14px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;font-weight:bold; }
+
+.icon_go{display:inline-block;width:5px;height:9px;margin-left:6px;background-position:-36px -45px}
+.user_data .icon_go{margin-left:10px}
+
+/*마이로그
+.mylog .cont_head{height:auto}
+.mylog.list .cont_head{margin-bottom:10px}
+.mylog,.mylog button{font-family:'굴림',Gulim}
+.mylog.list .mylog_top .info_txt{color:#d31900;font-size:14px;vertical-align:text-top;font-family:Dotum,'돋움'}
+.mylog.list .mylog_top .btn_white_round{height:20px;line-height:20px;padding:0 10px}
+.mylog.view{margin-top:-12px}
+.mylog.view .mylog_top{height:40px;line-height:40px;border-top:2px #3b4890 solid;font-size:13px;}
+.mylog_top .tit,.mylog .cont .date{color:#333}
+.mylog_top .tit::before{display:none}
+.mylog .cont_listbox li{min-height:auto}
+.mylog .cont.box1 > strong{display:block;padding:0 1px 0 15px}
+.mylog .cont > strong,.mylog .cont > a, .mylog .cont .info, .mylog .cont > .txt{margin:8px 0 7px;line-height:15px}
+.mylog .cont.box1{width:18%}
+.mylog .cont.box2{width:62%}
+.mylog .cont.box2 > a{padding:0 8px 0 8px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.mylog_view{padding-top:10px;border-top:1px #ddd solid;font-size:13px;line-height:22px;word-wrap:break-word;word-break:break-all;}
+.mylog_view .adr{text-align:right}
+.mylog_view .adrtxt{color:#999;font-size:11px}
+.mylog_view > .inner{min-height:308px;margin-top:15px}
+.mylog .comment_wrap{height:100%}
+.mylog .usertxt{cursor:default}
+.mylog .usertxt, .mylog .comment_gccon{width:735px}
+.mylog .cmt_nickbox{width:164px;margin-right:20px}
+.mylog .cmt_info{padding:9px 0px 7px}
+.mylog .comment_box .nickname.in > em{max-width:144px}
+.mylog .comment_box .nickname > em{max-width:84px}
+.gallog_wrap .mylog .voice-box{margin:0}/*보이스
+.mylog .appending_file_box{line-height:22px}
+.gallog_wrap .mylog.view .bottom_paging_box{padding:17px 0 19px}
+.gallog_wrap .mylog.list .bottom_paging_box{padding:27px 0 3px}
+.mylog_listgo{padding-top:20px;border-top:1px #3b4890 solid}
+.mylog_listgo a{font-weight:bold;font-size:13px;text-decoration:underline}
+.mylog .appending_file_box{margin-top:25px}/*파일첨부
+*/
+
+
+/*//본문*/
+
+.loading_btntype{display:block;padding:0 6px}/*로딩바*/
+.gallog_wrap .robot_box{margin:0 -14px 15px 0}/*로봇*/
+
+/*201222 비밀글,익명글 아이콘 추가 관련*/
+.pop_tipbox.secret_tip{background: #98ca33;padding: 0 15px;border-radius: 13px;top:128px;left:101px;padding-right: 30px;line-height: 25px;box-sizing: border-box;overflow:hidden}/*210125 텍스트번짐이슈로 overflow추가 */
+.secret_tip .txt{color: #fff;font-weight: bold;display: inline-block;font-size: 14px;margin-right: 4px;vertical-align: -2px;}
+.secret_tip .btn_close{display: inline-block;position: absolute;top: 0;right: 0;width: 100%;height: 100%;text-align: right;background-color: transparent;outline: 0;padding-right: 15px;line-height:27px}
+.secret_tip .icon_mini_wclose{display: inline-block;width: 12px;height: 12px;background-position: -267px -818px;vertical-align: -2px}
+/*
+.icon_secretsquare{
+  display: inline-block;font-family:'Malgun Gothic','맑은 고딕',Dotum,돋움,helvetica,'Apple SD Gothic Neo',sans-serif;
+  width: 24px;height: 14px;line-height: 14px;background: #fff;border: 1px solid #c4c4c4;box-sizing: border-box;color: #999;font-size: 11px;letter-spacing: -0.1em;text-align: center;vertical-align: 1px;margin-left: 3px
+}211118 폰트 버그*/
+
+.icon_secretsquare{
+  display: inline-block;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;
+  width: 24px;height: 14px;line-height:12px;background: #fff;border: 1px solid #c4c4c4;box-sizing: border-box;color: #999;font-size: 11px;letter-spacing: -0.1em;text-align:center;vertical-align: 1px;margin-left: 3px;
+  padding:0 1px 0 0px;
+}/*211118 폰트 버그*/
+
+.cont.box1 > a .icon_secretsquare:first-child{margin: 0;}
+.cont_listbox li.secret > a{margin-bottom: 15px}
+.cont_listbox li.secret a{color: #999;pointer-events: none;cursor: default}
+
+/*미니갤러리 아이콘*/
+.autodel{color:#999}/*자동삭제*/
+
+/*210511 힛갤 배지*/
+.hitbadge{margin-top:20px;width:180px;text-align: center}
+.hit_box.top .badgeimg + .badgeimg{margin-top:9px}
+.hit_box.bottom{margin-top:11px}
+.select_info{color:#666;margin:0 auto;position:absolute; }
+.select_info .tit{display:block;width:184px;color:#333;letter-spacing:-0.075em;text-align:center;padding-bottom:1px;margin-left:-4px}
+.daylist{margin:3px 0 0 -10px;text-align:left;padding-left:28px}/*display:flex;flex-wrap:wrap;-ms-flex-wrap:wrap*/
+.daylist li{float:left;margin-left:8px;padding-top:2px}
+.daylist.one{margin:3px 0 0 0;padding-left:0}
+.daylist.one li{float:none;display:inline-block;width:180px;text-align:center ;padding-left:0;margin-left:0}
+.daylist li a{color:#666}
+
+.badgeimg{width:160px;height:122px;margin:0 auto }
+.badgeimg[class*="badgex"]{height:142px}
+.badgeimg.badge1{background-position:18px -1px;}/*힛갤 배지 1회*/
+.badgeimg.badge2{background-position:-126px -1px}/*힛갤 배지 2회*/
+.badgeimg.badge3{background-position:-270px -1px}/*힛갤 배지 3회*/
+.badgeimg.badge4{background-position:-414px -1px}/*힛갤 배지 4회*/
+.badgeimg.badge5{background-position:-558px -1px}/*힛갤 배지 5회*/
+.badgeimg.badge6{background-position:-702px -1px}/*힛갤 배지 6회*/
+.badgeimg.badgex1{background-position:8px -141px}/*힛갤 배지 7회*/
+.badgeimg.badgex2{background-position:-161px -141px}/*힛갤 배지 *2회*/
+.badgeimg.badgex3{background-position:-339px -141px}/*힛갤 배지 *3회*/
+.badgeimg.badgex4{background-position:-517px -141px}/*힛갤 배지 *4회*/
+.badgeimg.badgex5{background-position:-695px -141px}/*힛갤 배지 *5회*/
+.badgeimg.badgex6{background-position:-1px -301px}/*힛갤 배지 *6회*/
+.badgeimg.badgex7{background-position:-179px -301px}/*힛갤 배지 *7회*/
+.badgeimg.badgex8{background-position:-357px -301px}/*힛갤 배지 *8회*/
+.badgeimg.badgex9{background-position:-535px -301px}/*힛갤 배지 *9회*/
+
+.guestbook .option_sort.gallog.fl .select_arraybox{margin-left:21px}/*210518*/
+
+
+
+
+/*//210511 힛갤 배지*/
+
+/*페이징*/
+.gallog_wrap  .bottom_paging_box{padding:37px 0 10px;margin:0}
+.gallog_wrap .iconpaging .page_next{margin:0 0px 0 19px}
+.gallog_wrap .iconpaging .page_next + .page_end{margin:0 19px 0 10px}/*margin:0 10px 0 19px*/
+.gallog_wrap .iconpaging .page_end{margin:0 0px 0 19px}
+/*footer*/
+.gallog_wrap .gcfoot{padding-bottom:0px;/*font-size:0.750em*/}/*210527*/
+.gallog_wrap .info_policy{width:803px;margin-top:0;padding-top:40px}
+.width1160 .copyright{width:803px;margin-top:0;padding:10px 0 50px}
+
+
+/*210527 갤로그 개선*/
+.gallog_wrap .option_sort .select_arraybox .icon_option_more{top:10px}
+.bluebox,.greybox,.whitebox{padding:0px 4px 1px 3px;margin-left:7px;line-height:24px;border-radius:2px;font-size:11px;;letter-spacing:-0.06em}/*211118 폰트 버그 padding:2px 2px 1px;line-height:21px*/
+.select_box + .bluebox, .select_box + .greybox, .select_box + .whitebox{margin-left:10px;vertical-align:1px}
+.select_box + .num{font-size:14px;color:#555;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,Dotum,돋움,sans-serif;letter-spacing:-0.075em;vertical-align:0px;margin-left:6px}
+.select_box + .num + .greybox{margin-left:5px;vertical-align:1px }
+.bluebox{background:#3b4890;border:1px #29367c solid;color:#fff;text-shadow: 0px -1px #1d2761}
+.whitebox{border:1px #3b4890 solid;color:#3b4890;background:#fff}
+.greybox{border:1px #aaa solid;color:#fff;background:#ccc;text-shadow: 0px -1px #bdbdbd}
+
+.gallog_wrap{background:#fff }
+
+.photo{position:absolute;left:5px;top:5px;overflow:hidden;width:88px;height:88px;box-sizing:border-box;text-align:center;line-height:88px;;background-position:0 0;
+background-position:-1px -1087px;background-repeat:no-repeat;border-radius:50%
+}
+.photo img{display:inline-block;width:100%;height:100%;/*image-rendering:pixelated*/}/*210706*/ /*width:88px;min-height:88px*/
+
+.wrap_left{float:left;position:relative;padding-top:30px}
+.wrap_right{float:right;width:803px;padding-left:33px;padding-top:32px}
+.wrap_right > section{min-height:600px}
+.gallog_wrap.home .wrap_right > section{min-height:auto}
+.innerbox::after, .wrap_right::after{content:"";display:block;width:1px;min-height:100%;position:absolute;left:268px;top:0;border-left:1px #eee solid}
+
+.icon_secretsquare:first-child{margin-left:1px}
+
+
+/*스크랩*/
+.gallog_cont.scraps .writer_info, .home .gstbook .writer_info{display:inline}
+.gallog_cont span.writer_nikcon img{margin-left:3px!important}
+
+
+.btn_listdel{position:absolute;top:-5px;right:7px;width:13px;height:13px;background-position:-182px -911px}/*삭제 버튼*/
+.gallog_cont.comments .btn_listdel{top:-2px}/*댓글페이지 삭제버튼*/
+
+.search_wrap{position:absolute;right:3px;top:-7px}
+.search_box{margin-left:5px}
+.search{width:300px;height:29px;position:relative}
+.bnt_search, .btn_greysearch{float:left;width:29px;height:29px;background-position:-166px -275px}/*210421*/
+.bnt_search{position:absolute;top:0;right:0 }
+.search .inner_search{position:relative;width:270px;height:27px;margin:0;border:1px #ccc solid;border-width:1px 0px 1px 1px}
+.search .in_keyword{width:252px;height:27px;font-size:12px;color:#555;vertical-align:top;line-height:27px;font-weight:normal}/*211118 폰트 버그 line-height:30px;*/
+.inner_search .word_del{position:absolute;left:0;top:0;height:27px;padding:0 9px 0 9px;line-height:27px;background:#fff;font-size:12px;white-space:nowrap; }/*211118 폰트 버그 line-height:29px*/
+.inner_search .word_del .word{max-width:242px;overflow:hidden;display:inline-block;color:#555}
+.inner_search .word_del .btn{position:absolute;margin-top:9px;margin-left:5px;width:9px;height:9px;background-position:-199px -911px;}
+
+.gallog_wrap .mark{background:#fff200;color:333;padding:1px}
+
+
+
+
+
+/*힛갤콘*/
+/*210524 힛갤러콘*/
+.gallog_cont .hitnik span.writer_nikcon img{margin-left:2px!important}
+.hitnik  .writer_nikcon{position:absolute;margin-top:-2px}/*211118 폰트 버그 margin-top:-4px*/
+.home .hitnik .writer_nikcon, .scraps .hitnik .writer_nikcon{left:auto;top:0;margin-top:-15px}
+.hitnik ~ .date::before{padding:0 4px 0 24px}
+.hitnik .writer_nikcon img{width:20px}
+.hitnik.fix .writer_nikcon img{width:20px}
+
+.cmt_delpw_box{z-index:1}
+.gallog_wrap .cont_btnbox .cmt_delpw_box button{margin-left:0}/*삭제 비밀번호 입력*/
+.guestbook .cont_listbox .user_data_list  li {padding:0 9px}
+.replys .user_data{margin-left:16px}
+.user_data{left:0;top:0;margin-top:22px}
+.comments .user_data, .gst .user_data, .cmt_write_box.gallog .user_data{margin-top:29px}
+.guestbook .gallog_cont .hitnik span.writer_nikcon img{margin-left:1px!important}
+.guestbook .gallog_cont span.writer_nikcon img{margin-left:2px!important}
+
+
+/*210712 익명글 익명 비밀댓글*/
+.link.hidetxt{line-height:20px;padding-top:1px}
+.comments .link.hidetxt{padding-top:4px}
+.hidetxt.link:hover, .gallog_cont.comments .link.hidetxt:hover .txt,
+.hidetxt.link:active, .gallog_cont.comments .link.hidetxt:active .txt{text-decoration:none}
+.hidetxt p{font-size:13px;color:#999;background:none}
+.gallog_cont .replys .gall_linkbox .hidetxt.link::before{display:none }
+.gallog_cont.comments .replys .gall_linkbox .hidetxt{margin-left:-15px}
+.gallog_cont.comments .hidetxt .galltit{background:none}
+/*210712 익명글 익명 비밀댓글*/
+
+/* 211201 앱100만 갤러콘 */
+.gallog_cont img[src*="app_evt"]{margin-top: 2px}
+.cmt_write_box img[src*="app_evt"]{position:absolute;margin-top:1px}
+.cmt_write_box + .cont_listbox img[src*="app_evt"]{position:absolute;margin-top:1px}
+
+
+/*익스*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+/*.bluebox, .greybox, .whitebox{padding:0px 2px 0} 211118 폰트 버그 삭제*/
+.home .hitnik .writer_nikcon, .scraps .hitnik .writer_nikcon{margin-top:-13px}
+}

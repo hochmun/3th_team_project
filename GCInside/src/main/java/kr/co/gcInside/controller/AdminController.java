@@ -1,11 +1,15 @@
 package kr.co.gcInside.controller;
 
+import kr.co.gcInside.entity.UserEntity;
+import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.AdminService;
 import kr.co.gcInside.vo.MemberVO;
 import kr.co.gcInside.vo.TermsVO;
 import kr.co.gcInside.vo.gall_cate2VO;
 import kr.co.gcInside.vo.galleryVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +26,7 @@ import java.util.Objects;
 /**
  * 2023/03/10 // 심규영 // 관리자 컨트롤러 생성
  */
+@Slf4j
 @Controller
 public class AdminController {
 
@@ -85,7 +90,7 @@ public class AdminController {
     }
 
     /**
-     * 2023/03/10 // 김재준 // 관리자 메인갤러리 생성 get 매핑
+     * 2023/03/16 // 김재준 // 관리자 메인갤러리 생성 get 매핑
      * @return
      */
     @GetMapping("admin/gallery/create_main")
@@ -97,19 +102,24 @@ public class AdminController {
 
         return "admin/gallery/create_main";
     }
-
+    /**
+     * 2023/03/16 // 김재준 // 관리자 메인갤러리 생성 post 매핑
+     * @return
+     */
     @PostMapping("admin/gallery/create_main")
-    public String createMainGallery (HttpServletRequest req, Model model, galleryVO vo) {
-        /* 관리자 userEntity는 추후 추가*/
+    public String createMainGallery (HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser) {
+        UserEntity user = myUser.getUser();
 
-        vo.setGell_cate(req.getParameter("gell_cate"));
+        vo.setGell_manager(user.getMember_uid());
+
         vo.setGell_name(req.getParameter("gell_name"));
         vo.setGell_address(req.getParameter("gell_address"));
         vo.setGell_info(req.getParameter("gell_info"));
 
         service.createMainGallery(vo);
 
-        model.addAttribute("msg", "갤러리가 생성되었습니다.");
+        log.info("갤러리 생성 : " + vo.getGell_name() + " / " + vo.getGell_address() + " / " + vo.getGell_info() + " / " + vo.getGell_manager());
+        log.info("vo 정보 불러오기 : " + vo);
 
         return "redirect:/admin/index";
     }
