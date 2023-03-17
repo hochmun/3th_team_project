@@ -44,6 +44,15 @@ public interface AdminDAO {
      */
     public List<MemberVO> SearchMember();
 
+    /**
+     * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
+     * @return
+     */
+    List<MemberVO> searchMembersByCondition(@Param("searchType") String searchType,
+                                            @Param("keyword") String keyword);
+
+
+
     // upload
 
     /**

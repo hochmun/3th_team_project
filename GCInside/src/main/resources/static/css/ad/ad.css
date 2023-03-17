@@ -3,8 +3,8 @@
 @charset "utf-8";
 @import url(https://fonts.googleapis.com/earlyaccess/notosanskr.css);
 /*본고딕*/
-.sp_img{background-image:url(/img/sp_img.png);background-repeat:no-repeat}
-.sp_gcadimg{background:url(/img/sp_gcadimg.png) no-repeat 0 0}
+.sp_img{background-image:url(/GCInside/img/sp_img.png);background-repeat:no-repeat}
+.sp_gcadimg{background:url(/GCInside/img/sp_gcadimg.png) no-repeat 0 0}
 .clear:after{clear:both;display:block;visibility:hidden;content:""}
 .blind{position:absolute;overflow:hidden;visibility:hidden;margin:-1px;width:0px;height:0px;top:-9999px;font-size:0}
 caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index:-1}
@@ -25,7 +25,7 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 
 /*gnb*/
 .gnb_bar{position:fixed;top:0;left:0;width:100%;height:95px;
-  background:url(/img/gnb_bg.png) repeat-x center center;background-size:cover;z-index:10
+  background:url(/GCInside/img/gnb_bg.png) repeat-x center center;background-size:cover;z-index:10
 }
 .main .gnb_bar{background-image:none}
 .main .gnb_bar::before{content:"";position:fixed;top:0;left:0;display:block;width:100%;height:95px;background-color:#000;opacity:0.7}
@@ -51,7 +51,7 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 
 /*디스플레이 광고*/
 .cont.main_visual{height:440px;margin-top:0;
-  background:url(/img/visual_img.png) no-repeat center 0;background-size:cover;color:#fff
+  background:url(/GCInside/img/visual_img.png) no-repeat center 0;background-size:cover;color:#fff
 }
 .main_visual a{color:#fff}
 .display_ad{padding-top:135px;letter-spacing:-2px}
@@ -67,8 +67,8 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 .cont.mcont1{margin-top:57px}
 .recomm .mcont_tit{background:#ee3c24}
 .recomm_box{float:left;width:509px;height:90px;padding-top:228px}
-.recomm_box.box1{background:url(/img/nrecomm_img1.png) no-repeat 0 0}
-.recomm_box.box2{float:right;background:url(/img/nrecomm_img2.png) no-repeat 0 0}
+.recomm_box.box1{background:url(/GCInside/img/nrecomm_img1.png) no-repeat 0 0}
+.recomm_box.box2{float:right;background:url(/GCInside/img/nrecomm_img2.png) no-repeat 0 0}
 .txt_box{width:457px;height:52px;padding:17px 23px 19px;border:1px #282d31 solid;border-radius:0 0 8px 8px;font-size:20px;color:#1e1e1e;line-height:26px}
 .txt_box .tit{font-size:22px}
 
@@ -84,7 +84,7 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 
 /*간편 광고절차*/
 .process .mcont_tit{background:#3c4790}
-.cont .process_list{height:116px;background:url(/img/process_bg.png) no-repeat 0 0;overflow:hidden}
+.cont .process_list{height:116px;background:url(/GCInside/img/process_bg.png) no-repeat 0 0;overflow:hidden}
 .process_list li{position:relative;float:left;width:269px;height:116px}
 .process_list li:first-child{width:293px}
 .process_list li .inner{position:absolute;bottom:12px;display:inline-block;height:33px;margin-left:2px}
@@ -95,7 +95,7 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 .process_list li .inner .cont_txt{display:inline-block;vertical-align:top;height:33px;line-height:30px;background:#1e1e1e;
   font-size:25px;color:#fff;padding:0 26px 0 6px;opacity:0.9; filter:alpha(opacity=90)
 }
-.process_list li .bg{display:inline-block;width:26px;height:33px;background:url(/img/bgimg.png) no-repeat 0 0}
+.process_list li .bg{display:inline-block;width:26px;height:33px;background:url(/GCInside/img/bgimg.png) no-repeat 0 0}
 .process_list li.list4 a{right:0px}
 .process_list li.list4 .bg{display:none}
 
@@ -180,7 +180,7 @@ textarea:-ms-input-placeholder{color:#999}
 .option_box li:hover{text-decoration:underline}
 .select_area .icon_option_more{display:block;position:absolute;right:12px;top:13px;width:13px;height:7px;background-position:-92px -43px}
 /*체크박스 디자인*/
-.checkmark{background-image:url(/img/sp_img.png);background-repeat:no-repeat}
+.checkmark{background-image:url(/GCInside/img/sp_img.png);background-repeat:no-repeat}
 .checkbox{position:relative;display:inline-block;vertical-align:top;padding-left:20px;color:#333}
 .checkbox input[type="checkbox"]{position:absolute;left:0;top:0;margin:0;opacity:0;z-index:2;cursor:pointer}
 .checkbox input + .checkmark{position:absolute;top:0;left:0;display:block;width:14px;height:14px;background-position:-264px -184px}

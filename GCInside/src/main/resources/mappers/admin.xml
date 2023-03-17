@@ -39,6 +39,33 @@
         FROM gc_member
     </select>
 
+    <!-- 2023/03/17 // 라성준 // 관리자 회원 목록 및 검색 -->
+    <select id="searchMembersByCondition" resultType="kr.co.gcInside.vo.MemberVO">
+        SELECT member_uid, member_nick, member_point, member_rdate, member_email
+        FROM gc_member
+        <where>
+            <choose>
+                <when test="searchType=='id'">
+                    member_uid LIKE '%${keyword}%'
+                </when>
+                <when test="searchType=='nickname'">
+                    member_nick LIKE '%${keyword}%'
+                </when>
+                <when test="searchType=='point'">
+                    member_point >= ${keyword}
+                </when>
+                <when test="searchType=='regdate'">
+                    member_rdate >= #{keyword}
+                </when>
+                <when test="searchType=='email'">
+                    member_email LIKE '%${keyword}%'
+                </when>
+            </choose>
+        </where>
+        ;
+    </select>
+
+
     <select id="selectGalleryCates" resultType="kr.co.gcInside.vo.gall_cate2VO">
         SELECT * FROM `gc_gell_cate2`;
     </select>
