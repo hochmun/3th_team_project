@@ -82,13 +82,22 @@
                     <div class="set_tit"><label for="gell_cate" onclick="$('#gell_cate').click()">카테고리</label><em class="required_input">*</em></div>
                     <div class="cont_box">
                       <div class="select_box select_arraybox">
+                        <input type="hidden" id="gell_cate" name="gell_cate" value="" />
                         <div class="select_area"><span class="placeholder">카테고리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
                         <ul class="option_box select_Cate" select_Cate style="left:-1px;top:22px;display:none">
                           <li data-value="">카테고리를 선택해주세요.</li>
                           <th:block th:each="cate:${cates}">
-                            <li th:value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></li>
+                            <li th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></li>
                           </th:block>
                         </ul>
+                        <script>
+                          $(document).ready(function() {
+                            $(".select_Cate li").on("click", function() {
+                              var selectedValue = $(this).attr("data-value");
+                              $("#gell_cate").val(selectedValue);
+                            });
+                          });
+                        </script>
                         <script>ul_selectric($('#make_form_wrap .select_box'), 'g_category');</script>
                       </div>
                     </div>
@@ -100,7 +109,7 @@
           </div>
           <div class="make_bottom_btnbox">
             <button type="button" class="list_bottom btn_grey" onclick="history.back()">취소</button>
-            <input type="submit" class="list_bottom btn_lightpurple" value="만들기">
+            <button type="submit" class="list_bottom btn_lightpurple" value="만들기">만들기</button>
           </div>
         </form>
         </section>

@@ -68,12 +68,12 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 
 /*레아아웃*/
 .list_wrap,.view_wrap{min-width:1515px}/*220613 왼쪽 날개 배너 사이즈 120->160 으로 수정하면서 min-width:1450px수정*/
-.width868 .dchead,.width868 #container,.width868 .info_policy,.width868 .copyright{width:868px}
-.width1000 .dchead,.width1000 #container,.width1000 .info_policy,.width1000 .copyright{width:1000px}
-.width1160 .dchead,.width1160 .gnb,.width1160 #container,.width1160 .info_policy,.width1160 .copyright{width:1160px}
+.width868 .gchead,.width868 #container,.width868 .info_policy,.width868 .copyright{width:868px}
+.width1000 .gchead,.width1000 #container,.width1000 .info_policy,.width1000 .copyright{width:1000px}
+.width1160 .gchead,.width1160 .gnb,.width1160 #container,.width1160 .info_policy,.width1160 .copyright{width:1160px}
 
-.dchead{position:relative;width:1050px;height:105px;margin:0 auto}
-.dcheader.bg .dchead{height:85px}
+.gchead{position:relative;width:1050px;height:105px;margin:0 auto}
+.gcheader.bg .gchead{height:85px}
 .gnb{width:1050px;height:44px;margin:0 auto}
 .gnb_depth2_list .icon_new{margin-left:3px}
 .dc_all{width:1048px;margin:20px auto 0;border-left:1px solid #ccc;border-top:2px solid #29367c;border-right:1px solid #ccc;border-bottom:1px solid #29367c}
@@ -95,27 +95,27 @@ caption{position:relative;width:0px;height:0px;font-size:0;line-height:0;z-index
 .integrate_schwrap .left_content{min-height:10px}/*221201 민지과장님 요청으로 고정형으로 수정 */
 
 /*상단*/
-.dcheader.bg{background:#29367c}
+.gcheader.bg{background:#29367c}
 .dc_logo{overflow:hidden;position:absolute;left:0;top:40px;text-align:center}
-.dcheader.bg .dc_logo{top:30px}
+.gcheader.bg .dc_logo{top:30px}
 .dc_logo a{display:block;float:left}
 .dc_logo:after{clear:both;display:block;visibility:hidden;content:""}
 .dc_logo a:hover{text-decoration:none}
 .area_links{position:absolute;top:9px;right:0}
-.dcheader.bg .area_links{top:47px}
+.gcheader.bg .area_links{top:47px}
 .area_links ul{overflow:hidden;line-height:17px}/*211118 폰트 버그 line-height:19px*/
 .area_links li{float:left}
 .area_links li::before{content:"|";color:#ccc;font-size:10px;line-height:10px;padding:0 5px 0 4px;vertical-align:1px}/*211118 폰트 버그 font-size:11px;line-height:11px수정  vertical-align:1px 추가*/
 .area_links li:first-child:before{display:none}
 .area_links li:last-child:before{content:"";font-size:0px;padding:0 12px 0 0}
-.dcheader.bg .area_links li:last-child:before{content:"|";color:#ccc;font-size:10px;line-height:10px;padding:0 3px 0}/*211118 폰트 버그 font-size:11px;line-height:11px*/
-.report_wrap .dcheader.bg .area_links li:last-child:before{content:"";font-size:0px;padding:0 12px 0 0}
+.gcheader.bg .area_links li:last-child:before{content:"|";color:#ccc;font-size:10px;line-height:10px;padding:0 3px 0}/*211118 폰트 버그 font-size:11px;line-height:11px*/
+.report_wrap .gcheader.bg .area_links li:last-child:before{content:"";font-size:0px;padding:0 12px 0 0}
 
 .area_links a{font-size:11px;color:#555}
-.dcheader.bg a{color:#fff}
+.gcheader.bg a{color:#fff}
 .area_links .btn_top_loginout{display:inline-block;background:#3b4890;padding:0 3px;height:16px;line-height:16px;vertical-align:top;border:1px solid #29367c;color:#fff;font-size:11px;text-shadow: 0px -1px #1d2761}/*211118 폰트 버그 line-height:18px;*/
 .area_links .btn_top_loginout:hover{text-decoration:none}
-.dcheader.bg .area_links .btn_top_loginout{background:#fff;padding:0 9px;border:1px solid #3b4890;color:#29367c;text-shadow:none}
+.gcheader.bg .area_links .btn_top_loginout{background:#fff;padding:0 9px;border:1px solid #3b4890;color:#29367c;text-shadow:none}
 
 /*placeholder*/
 input::-webkit-input-placeholder{color:#aaa}
@@ -189,10 +189,10 @@ input:-ms-input-placeholder{color:#aaa}
 .word_close .btn_close{display:block;position:absolute;right:0;top:0 ;width:18px;height:18px;margin:9px 12px 0 0;background-position:0 -21px}/*220331 수정*/
 .word_list li a.restriction, .auto_wordwrap .restriction .wordmark, .restriction ~ .sch_ranking{color:#ddd}/*220331*/
 .word_list li > .icon_mini{}/*211118 폰트 버그  스타일 추가*//*211202*/
-.dchead .auto_wordwrap .word_list{padding:7px 0px 8px}/*220331*/
-.dchead .auto_wordwrap .word_list li:hover{background:#f3f3f3}
-.dchead .word_list li a{height:27px;line-height:27px;display:block;font-size:13px}/*220331 수정*/
-.dchead .word_list li a:hover{text-decoration:none}/*220331 수정*/
+.gchead .auto_wordwrap .word_list{padding:7px 0px 8px}/*220331*/
+.gchead .auto_wordwrap .word_list li:hover{background:#f3f3f3}
+.gchead .word_list li a{height:27px;line-height:27px;display:block;font-size:13px}/*220331 수정*/
+.gchead .word_list li a:hover{text-decoration:none}/*220331 수정*/
 .dccon_wrap .auto_wordwrap{width:456px}
 
 /*실시간 검색어 자동완성*/
@@ -227,8 +227,8 @@ background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);bac
 .icon_autoword_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat -127px -153px;cursor:pointer}
 
 
-.dcheader .wrap_search .word_close{position:relative;height:35px;line-height:35px;background:none;border-top:1px #29367c solid}/*220331 스타일 추가*/
-.dcheader .wrap_search .word_close .btn_close{display:block;position:absolute;right:7px;top:5px;width:14px;height:14px;background-position:-105px -1019px;padding:5px;margin:0}/*220331 수정*/
+.gcheader .wrap_search .word_close{position:relative;height:35px;line-height:35px;background:none;border-top:1px #29367c solid}/*220331 스타일 추가*/
+.gcheader .wrap_search .word_close .btn_close{display:block;position:absolute;right:7px;top:5px;width:14px;height:14px;background-position:-105px -1019px;padding:5px;margin:0}/*220331 수정*/
 /*//220331 통합검색 개편 - 검색어 자동완성 / 최근 검색어*/
 
 
@@ -468,7 +468,7 @@ button.on .icon_favorite{background-position:-121px -15px}
 .area_nickname .btn_user_data::after{content:"";display:inline-block;width:9px;height:5px;margin-left:2px;vertical-align:2px;
 background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png?07203)no-repeat -198px -1024px }
 .area_nickname .btn_user_data.on::after{background-position:-217px -1024px }
-.dchead .pop_wrap.type3{z-index:4010}
+.gchead .pop_wrap.type3{z-index:4010}
 /*//작성자 정보*/
 
 
@@ -1555,19 +1555,19 @@ background-color:#fff;border:1px solid #dfe1ee;color:#555;font-weight:bold}/*190
 /*//댓글*/
 
 /*하단영역*/
-.dcfoot{clear:both;position:relative;padding-bottom:50px;background:#fff;/*z-index:15*/}
-.join_wrap .dcfoot,.login_wrap .dcfoot,.policy_wrap .dcfoot,.adult_wrap .dcfoot,
-.noaccess_wrap .dcfoot,
-.delet_wrap .dcfoot,
-.report_wrap .dcfoot,.woman_wrap .dcfoot,.pwcam_wrap .dcfoot{margin-top:80px;border-top:1px #29367c solid}
+.gcfoot{clear:both;position:relative;padding-bottom:50px;background:#fff;/*z-index:15*/}
+.join_wrap .gcfoot,.login_wrap .gcfoot,.policy_wrap .gcfoot,.adult_wrap .gcfoot,
+.noaccess_wrap .gcfoot,
+.delet_wrap .gcfoot,
+.report_wrap .gcfoot,.woman_wrap .gcfoot,.pwcam_wrap .gcfoot{margin-top:80px;border-top:1px #29367c solid}
 .dc_all .tit{margin-right:22px;color:#29367c;letter-spacing:0.025em}
 .notice,.all_bottom{height:38px;padding:0 19px 0 16px;line-height:40px;color:#333}
 .notice{border-bottom:1px solid #ccc}
 .all_list{overflow:hidden;height:236px;padding:21px 0 23px;border-bottom:1px solid #ccc}/*211217 height:200px*/
 .all_list dl{float:left;width:148px;height:236px;padding-left:25px;border-left:1px solid #f1f1f1}/*211217 height:200px*/
-.dcfoot.type1 .all_list{min-height:108px;height:auto ;padding:21px 0 30px}
-.dcfoot.type1 .all_list dl{width:170px;min-height:108px;height:auto;padding-left:20px}
-.event_wrap .dcfoot.type1 .all_list dl{min-height:225px}/*220216 188->225*/
+.gcfoot.type1 .all_list{min-height:108px;height:auto ;padding:21px 0 30px}
+.gcfoot.type1 .all_list dl{width:170px;min-height:108px;height:auto;padding-left:20px}
+.event_wrap .gcfoot.type1 .all_list dl{min-height:225px}/*220216 188->225*/
 .all_list dl a{color:#555;font-size:11px}
 .all_list dl a:hover{text-decoration:underline}
 .all_list dl:first-child{border-left:0;margin-right:2px}
@@ -1676,7 +1676,7 @@ background:url(https://nstatic.dcinside.com/dc/w/images/icon_bluesmini1.png?0406
 .guide_cont .btn_white.go{display:block;width:160px;height:45px;line-height:43px;margin:0 auto;padding:0;box-sizing:border-box}
 .guide_cont .btn_white.go:hover{text-decoration:none}
 .guide_wrap .guide_cont{margin-top:80px}
-.guide_wrap .dcfoot{margin-top:100px;border-top:1px #29367c solid}
+.guide_wrap .gcfoot{margin-top:100px;border-top:1px #29367c solid}
 /*// 200728 안내 페이지  - 마이너 매니저 비밀번호 변경 안내 */
 
 /*201126 보이스리플 카톡공유*/
