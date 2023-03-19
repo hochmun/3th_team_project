@@ -8,15 +8,19 @@ import kr.co.gcInside.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.rmi.server.ServerCloneException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +40,29 @@ public class MemberContoller {
     @GetMapping("member/terms")
     public String terms() {
         return "member/terms";
+    }
+    // 임시로 밑에 주석에있는 주소 처럼 넣으면 로그아웃 기능됨
+    // a태그 사용하면 get방식으로 보내서 로그아웃시 권장되지않는방법
+    // <form th:action="@{/logout}" method="post"><button type="submit"></button></form>
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request, HttpServletResponse response){
+        // 세션 무효
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        // 쿠키 삭제
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setValue("");
+                cookie.setMaxAge(0);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
+        }
+        // 로그아웃 후 리다이렉트할 페이지
+        return "redirect:/index";
     }
 
     @GetMapping("member/register")
