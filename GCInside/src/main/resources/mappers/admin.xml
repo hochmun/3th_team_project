@@ -12,6 +12,11 @@
         FROM gc_gell_cate2
         WHERE gc_gell_cate2.gell_cate2 = #{gell_cate};
     </insert>
+
+    <!-- 2023/03/20 // 심규영 // 관리자 메인 갤러리 setting 생성 -->
+    <insert id="createMainGallerySetting">
+        INSERT INTO `gc_gell_setting` SET `setting_gell_num` = #{gell_num};
+    </insert>
     <!-- read -->
     <!-- 2023/03/10 // 심규영 // 관리자 약관 불러오기 -->
     <select id="selectTerms" resultType="kr.co.gcInside.vo.TermsVO">

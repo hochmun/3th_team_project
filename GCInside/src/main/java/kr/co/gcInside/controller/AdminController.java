@@ -112,6 +112,7 @@ public class AdminController {
     }
     /**
      * 2023/03/16 // 김재준 // 관리자 메인갤러리 생성 post 매핑
+     * 2023/03/20 // 심규영 // 관리자 메인갤러리 setting 생성 추가
      * @return
      */
     @PostMapping("admin/gallery/create_main")
@@ -125,6 +126,8 @@ public class AdminController {
         vo.setGell_info(req.getParameter("gell_info"));
 
         service.createMainGallery(vo);
+        // 갤러리 셋팅 생성
+        service.createMainGallerySetting(vo.getGell_num());
 
         log.info("갤러리 생성 : " + vo.getGell_name() + " / " + vo.getGell_address() + " / " + vo.getGell_info() + " / " + vo.getGell_manager());
         log.info("vo 정보 불러오기 : " + vo);

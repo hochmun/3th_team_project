@@ -1,0 +1,861 @@
+<!-- 2023/03/20 // 심규영 // 글 수정, 글 보기, 글 쓰기 공통 작업 -->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{fragment/head_fragment::boardHead}"></th:block>
+
+  <link rel="stylesheet" th:href="@{/css/gall/editor.css}">
+</head>
+<body>
+  <div class="gcwrap width1160 list_wrap">
+    <!-- 헤더 -->
+    <header th:replace="~{fragment/header_fragment::boardHeader}"></header>
+
+    <!-- gnb -->
+    <div class="gnb_bar" th:replace="~{fragment/gnb_fragment::mainGnb}"></div>
+
+    <!-- 최근 방문 탭 -->
+    <div class="visit_bookmark" th:replace="~{fragment/gnb_fragment::mainVisit}"></div>
+
+    <!-- 메인 -->
+    <main id="container">
+          <section>
+            <!-- 갤러리명 타이틀바 ~ 팝업 창 -->
+            <th:block th:replace="~{fragment/editor_fragment::gall_main_header}"></th:block>
+
+
+            <th:block th:if="${type} != 'view'">
+              <!-- 글 작성 메인 -->
+              <article id="write_wrap" class="clear" th:replace="~{fragment/editor_fragment::write_from}"></article>
+            </th:block>
+
+            <!-- 글 보기  -->
+            <th:block th:if="${type} == 'view'">
+                <div class="view_content_wrap">
+
+                  <header>
+                    <div class="gallview_head clear ub-content">
+                      <h3>
+                        <!-- 글 말머리 -->
+                        <span class="title_headtext"></span>
+                        <span class="title_subject">제목내용...gif</span>
+                        <span class="title_device"></span>
+                      </h3>
+                      <!-- 글 정보 -->
+                      <div class="gall_writer ub-writer" data-nick="KB" data-uid="" data-ip="112.148" data-loc="view">
+                        <div class="fl">
+                          <span class='nickname' title='KB'><em>KB</em></span><span class="ip">(112.148)</span>
+                          <span class="gall_date" title="2021-04-13 17:44:09">2021.04.13 17:44:09</span>
+                        </div>
+                        <div class="fr">
+                          <span class="gall_count">조회 123456</span>
+                          <span class="gall_reply_num">추천 123</span>
+                          <span class="gall_comment"><a href="#">댓글 123</a></span>
+                        </div>
+                      </div>
+                    </div>
+                  </header>
+
+                  <div class="gallview_contents">
+                    <div class="inner clear">
+                      <div class="writing_view_box">
+                        <div class="write_div" style="overflow:hidden;width:900px;">
+                          <p><br></p>
+                          <p style="text-align:left;">
+                            <a href="#" target="_blank">
+                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
+                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
+                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
+                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
+                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
+                            </a>
+                          </p>
+                          <p style="text-align:left;">이미지 올렸는데 왜 안올라가죠? 장난하나요? </p>
+                          <p><br></p>
+                          <div style='clear:both;'>
+                            <br><br>
+                            <b>출처: OO 갤러리 <a href='#' target='_blank'>[원본 보기]</a></b>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 본문 우측 광고 -->
+                      <div class="con_banner writing_banbox" style="position:relative;min-width:160px; min-height:600px;">
+                        <img src="https://via.placeholder.com/160x600" width="160" height="600" style="border:0px;">
+                      </div>
+                      <!-- //본문 우측 광고-->
+
+                      <!-- 추천 비추천 -->
+                      <div class="btn_recommend_box recomuse_y morebox">
+                        <h3 class="blind">추천 비추천</h3>
+                        <div class="inner_box">
+                          <div class="inner">
+                            <div class="up_num_box">
+                              <p class="up_num font_red" id="recommend_view_up_5">124</p>
+                              <p class="sup_num"><span class="writer_nikcon"><img th:src="@{/img/fix_nik.gif}" alt="고정닉"></span>
+                                <span class="font_blue smallnum" id="recommend_view_up_fix_5">17</span>
+                              </p>
+                            </div>
+                            <button type="button" class="btn_recom_up on" data-no="5"><span class="blind">개념 추천</span><em class="sp_img icon_recom_up"></em></button>
+                          </div>
+                          <div class="inner">
+                            <button type="button" class="btn_recom_down" data-no="5"><span class="blind">개념 비추천</span><em class="sp_img icon_recom_down"></em></button>
+                            <div class="down_num_box">
+                              <p class="down_num" id="recommend_view_down_5">3</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="recom_bottom_box clear three">
+                          <button type="button" class="btn_nhitgall" data-no="5"><em class="sp_img icon_nhitgall"></em>힛추</button>
+                          <button type="button" class="btn_snsmore" data-no="5"><em class="sp_img icon_snsmore"></em>공유</button>
+                          <button type="button" class="btn_report" data-no="5"><em class="sp_img icon_report"></em>신고</button>
+                        </div>
+                      </div>
+                      <!-- //추천 비추천 -->
+
+                      <!-- 본문 하단 광고 -->
+                      <div style="width:100%;overflow:hidden;text-align:center;margin-top:10px;">
+                        <img src="https://via.placeholder.com/728x90" width="728" height="90" style="border:0px;">
+                      </div>
+                      <!-- //본문 하단 광고 -->
+
+                      <!-- 원본 첨부 파일 -->
+                      <div class="appending_file_box">
+                        <strong>원본 첨부파일 <em class="font_red">1</em></strong
+                        ><ul class="appending_file"><li><a href="#">210413 - Javy Error.gif</a></li></ul>
+                      </div>
+                      <!-- //원본 첨부 파일 -->
+
+                      <!-- 댓글 -->
+                      <div class="view_comment" id="focus_cmt">
+                        <h2 class="blind">댓글 영역</h2>
+
+                        <!-- 댓글 영역 상단 -->
+                        <!-- id의 뒤쪽 숫자는 게시글의 번호 -->
+                        <div id="comment_wrap_10" class="comment_wrap" data-article-no="10">
+
+                          <!-- 댓글 개수 / 댓글 상단 부분 -->
+                          <div class="comment_count">
+                            <div class="fl num_box">
+                              <!-- 겔러리 관리자 일 경우 체크 박스 출력 -->
+                              <span class="checkbox">
+                                <!-- 전체 글 선택 -->
+                                <input type="checkbox" id="comment_chk_all"><em class="checkmark"></em>
+                              </span>
+
+                              <!-- 댓글 갯수 -->
+                              전체 댓글 <em class="font_red"><span id="comment_total">0</span></em>개
+
+                              <!-- 댓글 나열 선택 박스 -->
+                              <div class="select_box array_latest">
+                                <select name="selCommentSort">
+                                  <option value="D">등록순</option>
+                                  <option value="N">최신순</option>
+                                  <option value="R">답글수</option>
+                                </select>
+
+                                <div class="select_area">
+                                  <span class="comment_sort_txt">등록순</span>
+                                  <span class="blind">정렬 기준선택</span>
+                                  <em class="sp_img icon_option_more"></em>
+                                </div>
+
+                                <ul class="option_box" id="commentSortLayer_5" data-no="5" style="left:-1px;top:19px;display:none">
+                                  <li class="comment_sort" data-sort="D">등록순</li>
+                                  <li class="comment_sort" data-sort="N">최신순</li>
+                                  <li class="comment_sort" data-sort="R">답글순</li>
+                                </ul>
+                              </div>
+
+                              <!-- 답글 기본 보기 설정 버튼 -->
+                              <button type="button" class="btn_setreply" style="display: none"><span class="blind">답글 펼침 설정</span><em class="sp_img icon_setreply"></em></button>
+                            </div>
+
+                            <div class="fr">
+                              <a href="#container" class="contgo">본문 보기</a>
+                              <button type="button" class="btn_cmt_close" data-no="5" data-loc="TOP"><span>댓글닫기</span><em class="sp_img icon_cmt_more"></em></button>
+                              <button type="button" class="btn_cmt_refresh" data-no="5" data-sort="">새로고침</button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- 댓글 영역 본문 -->
+                        <div class="comment_box">
+                          <!-- 댓글 목록 -->
+                          <ul class="cmt_list">
+                            <!-- id의 번호는 댓글 번호 -->
+                            <li id="comment_li_20000" class="ub-content">
+                              <div class="cmt_info clear" data-no="20000" data-article-no="10">
+                                <div class="cmt_nickbox">
+                                  <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid="" data-ip="">
+                                    <span class="nickname">
+                                      <em title="ㅇㅇ">ㅇㅇ</em>
+                                      <span class="ip">(00.00)</span>
+                                    </span>
+                                  </span>
+                                </div>
+
+                                <div class="clear cmt_txtbox btn_reply_write_all">
+                                  <p class="usertxt ub-word">zzzzz</p>
+                                </div>
+
+                                <div class="fr clear">
+                                  <span class="date_time">03.20 00:00:00</span>
+
+                                  <!--
+                                      type : cmt:댓글, rcmt:답글
+                                      no : 댓글 번호
+                                      my : N:본인거 아님,Y:본인 거
+                                  -->
+                                  <div class="cmt_mdf_del" data-type="cmt" re-no="1" data-my="N" data-article-no="10" data-pwd-pop="N">
+                                    <button type="button" class="btn_cmt_delete">삭제</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+
+                            <!-- 답글 형식 -->
+                            <li>
+                              <div class="reply show">
+                                <div class="reply_box">
+                                  <ul class="reply_list">
+                                    <li id="reply_li_20001" class="ub-content">
+                                      <div class="reply_info clear" data-no="20001">
+                                        <div class="cmt_nickbox">
+                                          <span class="gall_writer ub-writer" data-nick="다스마스터" data-uid="gofyd889" data-ip="">
+                                            <span class="nickname in">
+                                              <em title="다스마스터">다스마스터</em>
+                                              <span class="ip">(00.00)</span>
+                                            </span>
+                                          </span>
+                                        </div>
+
+                                        <div class="clear cmt_txtbox">
+                                          <p class="usertxt ub-word">zzzzz</p>
+                                        </div>
+
+                                        <div class="fr clear">
+                                          <span class="date_time">03.20 00:00:00</span>
+
+                                          <!--
+                                              type : cmt:댓글, rcmt:답글
+                                              no : 댓글 번호
+                                              my : N:본인거 아님,Y:본인 거
+                                          -->
+                                          <div class="cmt_mdf_del" data-type="cmt" re-no="1" data-my="N" data-article-no="10" data-pwd-pop="N">
+                                            <button type="button" class="btn_cmt_delete">삭제</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+
+                          <!-- 댓글 페이징 -->
+                          <div class="bottom_paging_box iconpaging">
+                            <!-- 관리자 버튼 박스 -->
+                            <div class="useradmin_btnbox"></div>
+
+                            <!-- 페이징 -->
+                            <div class="cmt_paging"></div>
+
+                            <!-- 본문보기 / 댓글 보기 설정 / 새로고침 -->
+                            <div class="cmt_inner"></div>
+                          </div>
+                        </div>
+
+                        <!-- 댓글 작성 -->
+                        <!-- 코멘트 입력 -->
+                        <div class="cmt_write_box clear">
+
+                          <div class="fl">
+                            <!-- 회원 일 경우 -->
+                            <div class="user_info_input id" style="display:none;">
+                              <label class>homoon</label>
+                              <!-- id 뒤에 유저 uid-->
+                              <input type="hidden" name="name" id="name_me03454" value="homoon">
+                            </div>
+
+                            <!-- 비회원 일 경우 -->
+                            <div class="user_info_input">
+                              <label class="blind">닉네임</label>
+                              <input type="text" id="name_5" name = "name"
+                                     placeholder="닉네임" onfocus="this.style.background='#FFFFFF'"
+                                     maxlength="20">
+                            </div>
+                            <div class="user_info_input">
+                              <label class="blind">비밀번호</label>
+                              <input type="password" id="password_5" name = "password"
+                                     placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'"
+                                     maxlength = "20">
+                            </div>
+                          </div>
+
+                          <div class="cmt_txt_cont">
+                            <div class="cmt_write">
+                              <label class="cmt_textarea_label" onclick="$('.cmt_textarea_label').hide();$(this).siblings('textarea').focus();" >
+                                타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 제재를 받을 수 있습니다.<br>
+                                Shift+Enter 키를 동시에 누르면 줄바꿈이 됩니다.
+                              </label>
+                              <textarea id="memo_5" onfocus="$('.cmt_textarea_label').hide();"
+                                        maxlength="400"></textarea>
+                            </div>
+                            <div class="cmt_cont_bottm clear">
+                              <div class="dccon_guidebox">
+                              </div>
+                              <div class="fr">
+                                <button type="button" class="btn_blue btn_svc small repley_add" data-no = "5">등록</button>
+                                <button type="button" class="btn_lightblue btn_svc small repley_add_vote" data-no = "5">등록+추천</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- 전체글 / 개념글 / 수정 / 삭제 / 글쓰기 영역 버튼 -->
+                      <div class="view_bottom_btnbox clear">
+                        <div class="fl">
+                          <button type="button" class="btn_blue concept">전체글</button>
+                          <button type="button" class="btn_white concept">개념글</button>
+                        </div>
+                        <div class="fr">
+                          <button type="button" class="btn_grey modify">수정</button>
+                          <button type="button" class="btn_grey cancle">삭제</button>
+                          <button type="button" class="btn_blue write">글쓰기</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </th:block>
+
+
+        <th:block th:if="${type} == 'view'">
+          <!-- 글 보기시 하단 글 리스트 -->
+          <div id="bottom_listwrap" class="listwrap clear">
+
+            <section class="left_content">
+              <!-- 갤러리 내용-->
+              <article>
+
+                <!-- 갤러리 리스트 -->
+                <div class="gall_listwrap list">
+                  <table class="gall_list">
+                    <!-- 열 설정 -->
+                    <colgroup>
+                      <col style="width: 7%;">
+                      <col style="width: 51px;">
+                      <col>
+                      <col style="width: 18%;">
+                      <col style="width: 6%;">
+                      <col style="width: 6%;">
+                      <col style="width: 6%;">
+                    </colgroup>
+                    <!-- 게시글 헤더 -->
+                    <thead>
+                    <tr>
+                      <th scope="col">번호</th>
+                      <th scope="col">말머리</th>
+                      <th scope="col">제목</th>
+                      <th scope="col">글쓴이</th>
+                      <th scope="col">작성일</th>
+                      <th scope="col">조회</th>
+                      <th scope="col">추천</th>
+                    </tr>
+                    </thead>
+                    <!-- 게시글 목록 -->
+                    <tbody>
+                    <!--
+                    <tr class="ub_content us-post" data-no="게시물번호" data-type="게시글 타입(ex.icon_txt, icon_pic, icon_notice, icon_recoming)"></tr>
+                    -->
+                    <!--공지글 예시-->
+                    <tr class="ub_content us-post" data-no="21906" data-type="icon_notice">
+                      <td class="gall_num">21906</td>
+                      <td class="gall_subject"><b>공지</b></td>
+                      <td class="gall_tit ub-word">
+                        <a href="#">
+                          <em class="icon_img icon_notice"></em>
+                          <b>공지 제목</b>
+                        </a>
+                        <a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+                      </td>
+                      <td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="" data-loc="list">
+                        <b>
+                          <span class="nickname in" title="닉네임"><em>닉네임</em></span>
+                          <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+                          <a class="writer_nikcon">
+                            <img th:src="@{/img/fix_managernik.gif}" alt="갤로그로 이동합니다."
+                                 title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                                 style="cursor: pointer;margin-left: 2px;">
+                          </a>
+                        </b>
+                      </td>
+                      <td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+                      <td class="gall_count">50924</td>
+                      <td class="gall_recommend">72</td>
+                    </tr>
+                    <!--일반글예시-->
+                    <tr class="ub_content us-post" data-no="1" data-type="icon_txt">
+                      <td class="gall_num">1</td>
+                      <td class="gall_subject"><b>일반</b></td>
+                      <td class="gall_tit ub-word">
+                        <a href="#">
+                          <em class="icon_img icon_txt"></em>
+                          <b>일반 글 제목</b>
+                        </a>
+                        <a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+                      </td>
+                      <td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+                        <b>
+                          <span class="nickname in" title="닉네임"><em>닉네임</em></span>
+                          <!-- 비회원 아이피 표시 -->
+                          <span class="ip">(000.00)</span>
+                          <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+                          <!-- 갤로그 있을 경우 표시 ex.유저-->
+                          <!--
+                          <a class="writer_nikcon">
+                              <img src="/img/fix_managernik.gif" alt="갤로그로 이동합니다."
+                              title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                              style="cursor: pointer;margin-left: 2px;">
+                          </a>
+                          -->
+                        </b>
+                      </td>
+                      <td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+                      <td class="gall_count">1033</td>
+                      <td class="gall_recommend">12</td>
+                    </tr>
+                    <!--이미지 포함 글 표시-->
+                    <tr class="ub_content us-post" data-no="2" data-type="icon_pic">
+                      <td class="gall_num">2</td>
+                      <td class="gall_subject"><b>질문</b></td>
+                      <td class="gall_tit ub-word">
+                        <a href="#">
+                          <em class="icon_img icon_pic"></em>
+                          <b>일반 글 이미지포함 제목</b>
+                        </a>
+                        <a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+                      </td>
+                      <td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+                        <b>
+                          <span class="nickname in" title="닉네임"><em>닉네임</em></span>
+                          <!-- 비회원 아이피 표시 -->
+                          <!--
+                          <span class="ip">(000.00)</span>
+                          -->
+                          <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+                          <!-- 갤로그 있을 경우 표시 ex.유저-->
+                          <a class="writer_nikcon">
+                            <img th:src="@{/img/fix_sub_managernik.gif}" alt="갤로그로 이동합니다."
+                                 title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                                 style="cursor: pointer;margin-left: 2px;">
+                          </a>
+                        </b>
+                      </td>
+                      <td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+                      <td class="gall_count">1033</td>
+                      <td class="gall_recommend">12</td>
+                    </tr>
+                    <!-- 추천 글 예시 -->
+                    <tr class="ub_content us-post" data-no="4" data-type="icon_recoming">
+                      <td class="gall_num">4</td>
+                      <td class="gall_subject"><b>정보</b></td>
+                      <td class="gall_tit ub-word">
+                        <a href="#">
+                          <em class="icon_img icon_recomimg"></em>
+                          <b>추천 글 제목</b>
+                        </a>
+                        <a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+                      </td>
+                      <td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+                        <b>
+                          <span class="nickname in" title="닉네임"><em>닉네임</em></span>
+                          <!-- 비회원 아이피 표시 -->
+                          <!--
+                          <span class="ip">(000.00)</span>
+                          -->
+                          <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+                          <!-- 갤로그 있을 경우 표시 ex.유저-->
+                          <a class="writer_nikcon">
+                            <img th:src="@{/img/fix_nik.gif}" alt="갤로그로 이동합니다."
+                                 title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                                 style="cursor: pointer;margin-left: 2px;">
+                          </a>
+                        </b>
+                      </td>
+                      <td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+                      <td class="gall_count">1033</td>
+                      <td class="gall_recommend">12</td>
+                    </tr>
+                    <tr class="ub_content us-post" data-no="5" data-type="icon_txt">
+                      <td class="gall_num">5</td>
+                      <td class="gall_subject"><b>일반</b></td>
+                      <td class="gall_tit ub-word">
+                        <a href="#">
+                          <em class="icon_img icon_txt"></em>
+                          <b>일반 글 제목</b>
+                        </a>
+                        <a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
+                      </td>
+                      <td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
+                        <b>
+                          <span class="nickname in" title="닉네임"><em>닉네임</em></span>
+                          <!-- 비회원 아이피 표시 -->
+                          <!--
+                          <span class="ip">(000.00)</span>
+                          -->
+                          <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+                          <!-- 갤로그 있을 경우 표시 ex.유저-->
+                          <a class="writer_nikcon">
+                            <img th:src="@{/img/nik.gif}" alt="갤로그로 이동합니다."
+                                 title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                                 style="cursor: pointer;margin-left: 2px;">
+                          </a>
+                        </b>
+                      </td>
+                      <td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
+                      <td class="gall_count">1033</td>
+                      <td class="gall_recommend">12</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- 하단 버튼 박스 -->
+                <div class="list_bottom_btnbox">
+                  <div class="fl">
+                    <button type="button" class="list_bottom btn_blue">전체글</button>
+                    <button type="button" class="list_bottom btn_white">개념글</button>
+                  </div>
+                  <div class="fr">
+                    <button type="button" id="btn_write" class="btn_blue write">글쓰기</button>
+                  </div>
+                </div>
+
+                <!-- 페이징 -->
+                <div class="bottom_paging_wrap">
+                  <!-- 페이징 메인 -->
+                  <div class="bottom_paging_box iconpaging">
+                    <a href="javascript:;" class="sp_pagingicon page_first">처음</a>
+                    <a href="javascript:;" class="sp_pagingicon page_prev">이전</a>
+                    <em>16</em>
+                    <a href="javascript:;">17</a>
+                    <a href="javascript:;">18</a>
+                    <a href="javascript:;">19</a>
+                    <a href="javascript:;">20</a>
+                    <a href="javascript:;">21</a>
+                    <a href="javascript:;">22</a>
+                    <a href="javascript:;">23</a>
+                    <a href="javascript:;">24</a>
+                    <a href="javascript:;">25</a>
+                    <a href="javascript:;">26</a>
+                    <a href="javascript:;">27</a>
+                    <a href="javascript:;">28</a>
+                    <a href="javascript:;">29</a>
+                    <a href="javascript:;">30</a>
+                    <a href="javascript:;" class="sp_pagingicon page_next">다음</a>
+                    <a href="javascript:;" class="sp_pagingicon page_end">끝</a>
+                  </div>
+
+                  <!-- 페이지 이동 버튼 -->
+                  <div class="bottom_movebox">
+                    <button type="button" class="btn_grey_roundbg btn_schmove">
+                      페이지이동
+                      <span class="sp_img icon_schmove"></span>
+                    </button>
+                  </div>
+
+                  <!-- 페이지 이동 버튼 팝업 창 -->
+                  <div class="pop_wrap type3 move_page_lyr" style="top:-121px;right:0px;display:none;">
+                    <!-- 팝업 창 메인 -->
+                    <div class="pop_content schmove">
+                      <div class="pop_head"><h3>페이지 이동</h3></div>
+                      <div class="inner page">
+                        <div class="hint_txt">이동할 페이지 번호를 입력하세요.</div>
+                        <div class="moveset">
+                          <span class="tit">페이지</span>
+                          <input type="text" name="move_page" value="16">
+                          <span class="num total_page">999</span>
+                          <button type="button" class="btn_blue small move_page_btn">이동</button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 팝업 창 닫기 버튼 -->
+                    <button type="button" class="poply_bgblueclose"><em class="sp_img icon_bgblueclose"></em></button>
+                  </div>
+                </div>
+
+                <!-- 갤러리 내 검색 폼 -->
+                <form name="frmSearch" method="post">
+                  <fieldset>
+                    <div class="buttom_search_wrap clear">
+                      <!-- 검색 종류 선택 -->
+                      <div class="select_box bottom_array fl">
+                        <div class="select_area">
+                          <!-- 선택한 내용 출력 -->
+                          <span id="search_type_txt">제목+내용</span>
+
+                          <!-- 아이콘 -->
+                          <span class="inner"><em class="sp_img icon_option_more"></em></span>
+                        </div>
+
+                        <!-- 선택 팝업 창 -->
+                        <ul id="searchTypeLayer" class="option_box" style="left:-1px;top:36px;display:none;">
+                          <!-- onclick 함수 사용 -->
+                          <li>제목+내용</li>
+                          <li>제목</li>
+                          <li>내용</li>
+                          <li>글쓴이</li>
+                          <li>댓글</li>
+                        </ul>
+                      </div>
+
+                      <!-- 검색 내용 입력 -->
+                      <div class="bottom_search fl clear">
+                        <!-- 입력 칸 -->
+                        <div class="inner_search">
+                          <input type="text" class="in_keyword" name="search_keyword" title="검색어 입력">
+                        </div>
+
+                        <!-- 검색 아이콘 및 버튼 -->
+                        <button class="sp_img bnt_search"></button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+
+              </article>
+            </section>
+
+            <section class="right_content">
+              <!-- 로그인 창 -->
+              <div>
+                <!-- 로그인 정보 -->
+                <div id="login_box" class="login_box">
+                  <div class="user_info newarea" data-alarmid>
+                    <strong onclick="location='/member/login'" style="cursor: pointer;">로그인해 주세요.</strong>
+                  </div>
+
+                  <div class="user_option">
+                                <span>
+                                    <a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a>
+                                </span>
+                    <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기</a></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 오른쪽 배너 -->
+              <!-- width 300px 고정 최소 높이 250px -->
+              <div class="rightbanner1">
+                <a href="javascript:;"><img src="https://via.placeholder.com/300x500" alt=""></a>
+              </div>
+
+              <!-- 실시간 베스트 -->
+              <article>
+                <div class="content_box r_timebest">
+                  <header>
+                    <h3 class="tit"><a href="#">실시간 베스트</a></h3>
+                    <div class="pageing_box">
+                      <div class="page_num">
+                        <strong class="now_num realtimeNum">1</strong>/<span class="total_num realtimeTotal">8</span>
+                      </div>
+                      <button type="button" class="btn_blueprev" id="realtime_prev"><em class="sp_img icon_blueprev"></em></button>
+                      <button type="button" class="btn_bluenext on" id="realtime_next"><em class="sp_img icon_bluenext"></em></button>
+                    </div>
+                  </header>
+
+                  <div class="rcont_imgtxt_box">
+                    <div class="img">
+                      <div class="rcontimg_box">
+                        <a href="#" class="inner logClass">
+                                            <span class="img_box">
+                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                            </span>
+                          <div class="txt_box">
+                            <strong>글 제목</strong>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="rcontimg_box">
+                        <a href="#" class="inner logClass">
+                                            <span class="img_box">
+                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                            </span>
+                          <div class="txt_box">
+                            <strong>글 제목</strong>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="rcontimg_box" style="display:none;">
+                        <a href="#" class="inner logClass">
+                                            <span class="img_box">
+                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                            </span>
+                          <div class="txt_box">
+                            <strong>글 제목</strong>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="rcontimg_box" style="display:none;">
+                        <a href="#" class="inner logClass">
+                                            <span class="img_box">
+                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                            </span>
+                          <div class="txt_box">
+                            <strong>글 제목</strong>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <ul class="txt">
+                      <li><a href="#">글 제목</a></li>
+                      <li><a href="#">글 제목</a></li>
+                      <li><a href="#">글 제목</a></li>
+                      <li><a href="#">글 제목</a></li>
+                      <li><a href="#">글 제목</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 뉴스/ 겔시미디어 / 겔시 이슈-->
+              <article>
+                <div class="content_box r_dcmedia">
+                  <header>
+                    <h3 class="tit newsTab on"><a href="jvascript:;">뉴스</a></h3>
+                    <h3 class="tit mediaTab"><a href="javascript:;">지시미디어</a></h3>
+                    <h3 class="tit issueTab"><a href="javascript:;">지시이슈</a></h3>
+                    <div class="pageing_box">
+                      <div class="page_num">
+                        <strong class="now_num" id="newsNum">1</strong>/<span class="total_num" id="newsTotal">2</span>
+                      </div>
+                      <button type="button" class="btn_blueprev" id="news_prev"><em class="sp_img icon_blueprev"></em></button>
+                      <button type="button" class="btn_bluenext on" id="news_next"><em class="sp_img icon_bluenext"></em></button>
+                    </div>
+                  </header>
+                  <div class="rcont_imgtxt_box r_news_box">
+                    <div class="img">
+                      <div class="rcontimg_box">
+                        <a href="#" class="inner logClass" target="_blank">
+                                            <span class="img_box">
+                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                            </span>
+                          <div class="txt_box">
+                            <strong>글 제목</strong>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="rcontimg_box">
+                        <a href="#" class="inner logClass" target="_blank">
+                                            <span class="img_box">
+                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                            </span>
+                          <div class="txt_box">
+                            <strong>글 제목</strong>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <ul class="txt">
+                      <li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+                      <li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+                      <li><a href="#" class="logClass" target="_blank">글 제목</a></li>
+                    </ul>
+                  </div>
+                  <div class="rcont_imgtxt_box r_media_box" style="display: none;"></div>
+                  <div class="rcont_imgtxt_box dcissue r_issue_box" style="display: none;"></div>
+                </div>
+              </article>
+
+              <!-- 개념글 -->
+              <article>
+                <div class="content_box r_recommend">
+                  <header>
+                    <h3 class="tit"><a href="#">개념글<span class="sub">[<em>바이크</em>]</span></a></h3>
+                    <div class="pageing_box">
+                      <div class="page_num">
+                        <strong class="now_num">1</strong>/<span class="total_num">18</span>
+                      </div>
+                      <button type="button" class="btn_blueprev"><em class="sp_img icon_blueprev"></em></button>
+                      <button type="button" class="btn_bluenext on"><em class="sp_img icon_bluenext"></em></button>
+                    </div>
+                  </header>
+
+                  <ul id="rightRecom" class="rcont_list">
+                    <li><a href="#" class="logClass">글 제목</a></li>
+                    <li><a href="#" class="logClass">글 제목</a></li>
+                    <li><a href="#" class="logClass">글 제목</a></li>
+                    <li><a href="#" class="logClass">글 제목</a></li>
+                    <li><a href="#" class="logClass">글 제목</a></li>
+                    <li><a href="#" class="logClass">글 제목</a></li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- 힛글 -->
+              <article>
+                <div id="rightHit" class="content_box r_hit">
+                  <header>
+                    <h3 class="tit on"><a href="javascript:;">힛(HIT)<span class="new"><em class="sp_img icon_new"></em></span></a></h3>
+                    <h3 class="tit"></h3>
+                    <div class="pageing_box">
+                      <div class="page_num">
+                        <strong class="now_num">1</strong>/<span class="total_num">3</span>
+                      </div>
+                      <button type="button" class="btn_blueprev"><em class="sp_img icon_blueprev"></em></button>
+                      <button type="button" class="btn_bluenext on"><em class="sp_img icon_bluenext"></em></button>
+                    </div>
+                  </header>
+                  <div class="rcont_hit rhit_list">
+                    <a href="#" class="inner logClass">
+                                    <span class="img_box">
+                                        <img src="https://via.placeholder.com/270x200">
+                                      <!-- n년전 -->
+                                        <span class="sp_years icon_years" style="display: none;"></span>
+                                    </span>
+                      <div class="txt_box">
+                        <strong>글 제목</strong>
+                        <p class="hit_day">작성일 0000-00-00</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- 디시 위키 -->
+              <article>
+                <div class="content_box r_wiki">
+                  <header>
+                    <h3 class="tit"><a href="#" class="wiki_main"> 디시위키</a></h3>
+                    <a href="#" class="wiki_random_go">심심할 땐 랜덤<em class="sp_img icon_go"></em></a>
+                  </header>
+                  <div class="rcont_wiki">
+                    <div class="wk_content">
+                      <div class="wk_box">
+                        <a href="#" class="logClass">
+                          <strong class="tit"><span>#주제</span></strong>
+                          <p class="wk_txt">내용</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+            </section>
+          </div>
+        </th:block>
+
+      </section>
+    </main>
+
+    <!-- footer -->
+    <footer class="gcfoot" th:replace="~{fragment/footer_fragment::boardFooter}"></footer>
+  </div>
+</body>
+</html>

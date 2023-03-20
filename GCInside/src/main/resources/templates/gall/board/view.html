@@ -63,17 +63,23 @@
                 <div class="view_content_wrap">
                     <header>
                         <div class="gallview_head clear ub-content">
-
-                                <span class="title_headtext"></span> <span class="title_subject">제목내용...gif</span><span class="title_device"></span></h3>
-                                <div class="gall_writer ub-writer" data-nick="KB" data-uid="" data-ip="112.148" data-loc="view">
-							<div class="fl">
-                                <span class='nickname' title='KB'><em>KB</em></span><span class="ip">(112.148)</span></span>
-                                <span class="gall_date" title="2021-04-13 17:44:09">2021.04.13 17:44:09</span>
+                            <h3>
+                                <!-- 글 말머리 -->
+                                <span class="title_headtext"></span>
+                                <span class="title_subject">제목내용...gif</span>
+                                <span class="title_device"></span>
+                            </h3>
+                                <!-- 글 정보 -->
+                            <div class="gall_writer ub-writer" data-nick="KB" data-uid="" data-ip="112.148" data-loc="view">
+                                <div class="fl">
+                                    <span class='nickname' title='KB'><em>KB</em></span><span class="ip">(112.148)</span>
+                                    <span class="gall_date" title="2021-04-13 17:44:09">2021.04.13 17:44:09</span>
                                 </div>
-                            <div class="fr">
-                                <span class="gall_count">조회 123456</span>
-                                <span class="gall_reply_num">추천 123</span>
-                                <span class="gall_comment"><a href="#">댓글 123</a></span>
+                                <div class="fr">
+                                    <span class="gall_count">조회 123456</span>
+                                    <span class="gall_reply_num">추천 123</span>
+                                    <span class="gall_comment"><a href="#">댓글 123</a></span>
+                                </div>
                             </div>
                         </div>
                     </header>
@@ -175,38 +181,7 @@
                         </div>
                         
 					</div>
-                    <div class="view_comment" id="focus_cmt">
-                        <h2 class="blind">댓글 영역</h2>
-                            <div class="comment_count">
-                                <div class="f1 num_box">전체 댓글 <em class="font_red"><span id="comment_total_5">0</span></em>개
-                                    <div class="select_box array_latest">
-                                        <select name="selCommentSort">
-                                            <option value="D">등록순</option>
-                                            <option value="N">최신순</option>
-                                            <option value="R">답글수</option>
-                                        </select>
-                                        <div class="select_area" onClick="showLayer(this, 'commentSortLayer_5');return false;"><span class="comment_sort_txt">등록순</span><span class="blind">정렬 기준선택</span><em class="sp_img icon_option_more"></em></div>
-                                        <ul class="option_box" id="commentSortLayer_5" data-no="5" style="left:-1px;top:19px;display:none">
-                                            <!--<li class="comment_sort" data-sort="I">등록순</li>-->
-                                            <li class="comment_sort" data-sort="D">등록순</li>
-                                            <li class="comment_sort" data-sort="N">최신순</li>
-                                            <li class="comment_sort" data-sort="R">답글순</li>
-                                        </ul>
-                                    
-                                    
-                                    </div>
-                                    <button type="button" class="btn_setreply" style="display: none"><span class="blind">답글 펼침 설정</span><em class="sp_img icon_setreply"></em></button>
-                                </div>
-                                
-                            </div>
-                        </div>
 
-                    </div>
-
-                    <form action="submit.php" method="POST">
-                    </form>
-
-				   
                 </div>
             </section>
 

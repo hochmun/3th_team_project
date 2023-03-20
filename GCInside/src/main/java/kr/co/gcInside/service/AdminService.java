@@ -33,6 +33,14 @@ public class AdminService {
         return dao.createMainGallery(vo);
     }
 
+    /**
+     * 2023/03/20 // 심규영 // 관리자 메인 갤러리 생성 셋팅 생성 추가
+     * @return
+     */
+    public int createMainGallerySetting(int gell_num) {
+        return dao.createMainGallerySetting(gell_num);
+    }
+
     // read
 
     /**
