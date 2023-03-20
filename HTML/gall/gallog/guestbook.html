@@ -18,10 +18,12 @@
     <script type="text/javascript" src="/js/gallog/ZeroClipboard.js"></script>
     <script type="text/javascript" src="/js/management/common.js"></script>
     <script type="text/javascript" src="/js/management/ctr_cookie.js"></script>
+    <script type="text/javascript" src="/js/gallog/guestbook.js"></script>
+    <script type="text/javascript" src="/js/gallog/guestbook_config.js"></script>
 </head>
 <body>
     <div class="innerbox">
-        <div id="top" class="gallog_wrap width1160 home">
+        <div id="top" class="gallog_wrap width1160 guestbook">
             <!-- 상단 -->
             <div class="headbox">
                 <div class="gchead">
@@ -133,7 +135,7 @@
                                                                     <div class="option_sort  gallog_set">
                                                                         <div class="select_box select_arraybox">
                                                                             <div class="select_area"><span class="placeholder">공개할 갤러리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
-                                                                            <ul id="conf_sel_gall" class="option_box" style="left:-1px;top:28px;display:none"></ul>
+                                                                            <ul id="conf_sel_gall" class="option_box" style="left:-1px;top:28px;display:none;"></ul>
                                                                             <script id="conf_sel_gall-tmpl" type="text/x-jquery-tmpl">
                                                                                 <li data-type="${type}" data-name="${ko_name}" data-hide="${gall_hide}" data-value="${cno}">
                                                                                     ${ko_name}
@@ -325,15 +327,15 @@
                     <div class="conent_wrap clear">
                         <div class="wrap_left">
                             <ul class="gallog_menu"><!-- 링크 맨 앞에 member_uid 오도록 ex) /${member_uid}/posting -->
-                                <li class="home on"><a href="/gall/gallog/index.html">홈</a></li>
+                                <li class="home"><a href="/gall/gallog/index.html">홈</a></li>
                                 <li class="posting"><a href="/gall/gallog/posting.html">게시글</a></li>
                                 <li class="comment"><a href="/gall/gallog/comment.html">댓글</a></li>
                                 <li class="scrap"><a href="/gall/gallog/scrap.html">스크랩</a></li>
-                                <li class="guestbook">
+                                <li class="guestbook on">
                                     <a href="/gall/gallog/guestbook.html">방명록</a>
                                 </li>
                             </ul>
-                            <script>$('.gallog_menu .home').adgclass('on');</script>
+                            <script>$('.gallog_menu .guestbook').addClass('on');</script>
                         </div>
                         <div id="secret_tip_pop" class="pop_tipbox secret_tip" style="display:none">
                             <p class="txt">익명 사용 미니갤에 남긴 글은 작성자만 볼 수 있습니다.</p>
@@ -341,208 +343,227 @@
                         </div>
                         <div class="wrap_right">
                             <section>
-                                <div id="jquery_jplayer"></div>
-
-                                <!-- 게시글 -->
-                                <section>
-                                    <div class="gallog_cont">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='${member_uid}/posting';" -->
-                                                <h2 class="tit" onclick="location.href='/posting';" style="cursor:pointer">게시글<span class="num">(2)</span></h2>
-                                                <span class="greybox">비공개</span>
-                                            </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li class="" data-no="5">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <div class="galltit"><strong>첫번째 작성글</strong></div>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                    아무거나
-                                                                    </span>
-                                                                    <span class="date">2023.03.14</span>
+                                <div class="gallog_cont">
+                                    <header>
+                                        <div class="cont_head clear">
+                                            <h2 class="tit">방명록<span class="num">(2)</span></h2>
+                                            <div class="option_sort fr gallog">
+                                                <button id="btn_guestbook_conf" class="btn_white small guest_block" type="button">차단설정</button>
+                                                <div id="block_layer" class="pop_wrap type3" style="right:0;top:35px;display:none;">
+                                                    <div class="pop_content ipinbox guestblock">
+                                                        <div class="pop_head bg"><h3>방명록 차단 설정</h3></div>
+                                                        <div class="inner">
+                                                            <div class="ip_inr clear">
+                                                                <div class="box clear" >
+                                                                    <span class="cont_tit">고정닉 글 등록</span>
+                                                                    <div class="fl selbox">
+                                                                        <span class="radiobox ">
+                                                                            <input type="radio" id="use_block_id_on" class="use_block_radio" name="use_block_id" value="0" checked="checked">
+                                                                            <em class="checkmark"></em>
+						                                                    <label for="use_block_id_on">허용</label>
+                                                                        </span>
+                                                                        <span class="radiobox ">
+                                                                            <input type="radio" id="use_block_id_off" class="use_block_radio" name="use_block_id" value="1" >
+                                                                            <em class="checkmark"></em>
+                                                                            <label for="use_block_id_off">허용안함</label>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="" data-no="1">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <div class="galltit"><strong>철조망 총에 깨지는거 정리해옴</strong><span class="comment_num">[5]</span></div>			
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                        프로젝트 좀보이드
-                                                                    </span>
-                                                                    <span class="date">2022.11.05</span>
+                                                                <div id="use_block_id_text" class="box clear" style="display:block">
+                                                                    <span class="cont_tit">차단 식별 코드</span>
+                                                                    <textarea class="fl" name="block_ids" placeholder="(예시)                                                                    abc123                                                                    aaa111"></textarea>
+                                                                    <div class="info_txt">
+                                                                        <p><em class="tip_deco999">-</em>줄바꿈으로 구분됩니다.</p>
+                                                                        <p><em class="tip_deco999">-</em>전체 식별 코드를 입력해주세요. 예시) abc123</p>
+                                                                    </div>
                                                                 </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <!-- 댓글 -->
-                                <section>
-                                    <div class="gallog_cont comments">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/comment';" -->
-                                                <h2 class="tit" onclick="location.href='/comment';" style="cursor:pointer">댓글<span class="num">(3)</span></h2>
-                                                <span class="greybox">비공개</span>
-                                            </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li class="replys" data-no="3">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <p class="txt">아니용</p>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                        아무거나
-                                                                    </span>
-                                                                    <span class="date">2023.03.14</span>
+                                                            </div>
+                                                            <div class="ip_inr clear">
+                                                                <div class="box clear" >
+                                                                    <span class="cont_tit">비회원 글 등록</span>
+                                                                    <div class="fl selbox">
+                                                                        <span class="radiobox ">
+                                                                            <input type="radio" id="use_block_ip_on" class="use_block_radio" name="use_block_ip" value="0" checked="checked">
+                                                                            <em class="checkmark"></em>
+                                                                            <label for="use_block_ip_on">허용</label>
+                                                                        </span>
+                                                                        <span class="radiobox ">
+                                                                            <input type="radio" id="use_block_ip_off" class="use_block_radio" name="use_block_ip" value="1" >
+                                                                            <em class="checkmark"></em>
+                                                                            <label for="use_block_ip_off">허용안함</label>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="galltit"><strong>이게 뭔지 아시나용</strong></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="" data-no="2">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <p class="txt">ㅢ</p>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                        이것저것
-                                                                    </span>
-                                                                    <span class="date">2023.03.14</span>
-                                                                </div>
-                                                                <div class="galltit"><strong>으이</strong></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="" data-no="1">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <p class="txt">416 분전 ㅅㅅㅅ</p>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                        WOW 
-                                                                    </span>
-                                                                    <span class="date">2023.03.14</span>
-                                                                </div>
-                                                                <div class="galltit"><strong>8시 라자게스 신화 확고팟</strong></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <!-- 스크랩 -->
-                                <section>
-                                    <div class="gallog_cont scraps">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/scrap'; -->
-                                                <h2 class="tit" onclick="location.href='/scrap';" style="cursor:pointer">스크랩<span class="num">(1)</span></h2>
-                                                <span class="greybox">비공개</span>
-                                            </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li class="" data-no="8">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="https://gall.gcinside.com/mgallery/board/view?id=sims&no=177148" target="_blank">
-                                                                <div class="galltit"><strong>게임 업뎃시 매우매우 간단한 팁</strong></div>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                    심즈
-                                                                    </span>
-                                                    
-                                                                    <span class="writer_info fix"><em class='nickname in' title='ㅂㅂㅂㄱ' >ㅂㅂㅂㄱ</em>
-                                                                        <span class='writer_nikcon '><img src='/img/fix_nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' ></span>
-                                                                    </span>				
-                                                                    <span class="date">2022.07.28</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
-
-                                <!-- 방명록 -->
-                                <section>
-                                    <div class="gallog_cont gstbook">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/guestbook'; -->
-                                                <h2 class="tit" onclick="location.href='/guestbook';" style="cursor:pointer">방명록<span class="num">(2)</span></h2>
-                                            </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li>
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <div  class="link">
-                                                                <div class="galltit">
-                                                                    <span class="icon_secretsquare">비밀</span>				  
-				                                                    <strong>비밀글 ㅁㄴㅇㄹ</strong>
-                                                                </div>
-                                                                <div class="nameday">
-                                                                    <span class="writer_info">
-                                                                        <em class='nickname in' title='놔줘스크립트' >놔줘스크립트</em>
-                                                                        <strong class='writer_nikcon '>
-                                                                            <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/nagandr1113');">
-                                                                        </strong>
-                                                                        <span class="date">2023.03.20</span>
-                                                                    </span>
+                                                                <div id="use_block_ip_text" class="box clear" style="display:block">
+                                                                    <span class="cont_tit">차단 IP</span>
+                                                                    <textarea class="fl" name="block_ips" placeholder="(예시)                                                                    123.123                                                                    11.222"></textarea>
+                                                                    <div class="info_txt">
+                                                                        <p><em class="tip_deco999">-</em>줄바꿈으로 구분됩니다.</p>
+                                                                        <p><em class="tip_deco999">-</em>앞 2마디를 입력해주세요. 예시)123.123</p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="btn_box">
+                                                            <button type="button" class="btn_blue small btn_apply">저장</button>
+                                                        </div>
                                                     </div>
-                                                </li>
-                                                <li>
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <div  class="link">
-                                                                <div class="galltit">
-				                                                    <strong>ㅁㄴㅇㄹ</strong>
-                                                                </div>
-                                                                <div class="nameday">
-                                                                    <span class="writer_info">
-                                                                        <em class='nickname in' title='놔줘스크립트' >놔줘스크립트</em>
-                                                                        <strong class='writer_nikcon '>
-                                                                            <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/nagandr1113');">
-                                                                        </strong>
-                                                                        <span class="date">2023.03.20</span>
-                                                                    </span>
-                                                                </div>
+                                                    <button type="button" class="poply_whiteclose"><span class="blind">레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>
+                                                </div>
+                                                <div class="select_box select_arraybox">
+                                                    <div class="select_area"><span class="placeholder">2023</span><em class="sp_img icon_option_more"></em></div>
+                                                    <ul id="sel_year" class="option_box" style="left:-1px;top:26px;display:none">
+                                                        <li data-value="2023" onclick="location.href='?y=2023'">2023</li>
+                                                    </ul>
+                                                </div>
+                                                <script>ul_selectric($('#sel_year').parent(), 's_year');</script>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <div class="cont_box">
+                                        <!-- 방명록 입력 -->
+                                        <div class="cmt_write_box gallog clear">
+                                            <form name="gb_form" id="gb_form" method="post" action="./ajax/guestbook_ajax/write">
+                                                <div class="fl clear"><!-- <a href="/${member.uid}" -->
+                                                    <a href="#" target="_blank" class="writer_info">
+                                                        <em class='nickname in' title='다스마스터' >다스마스터</em>
+                                                        <span class='writer_nikcon '>
+                                                            <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/gofyd889');">
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="cmt_txt_cont">
+                                                    <div class="cmt_write">
+                                                        <textarea name="memo"></textarea>
+                                                    </div>
+                                                    <div class="cmt_cont_bottm clear">
+                                                        <div class="fl">
+                                                            <span class="checkbox">
+                                                                <input type="checkbox" id="comment_chk" name="is_secret" value="1">
+                                                                <em class="checkmark"></em>
+                                                                <label for="comment_chk">비밀글</label>
+                                                            </span>
+                                                        </div>
+                                                        <div class="fr">
+                                                            <button type="submit" class="btn_grey small">등록</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <ul id="gb_comments" class="cont_listbox">
+                                            <li data-no="2" data-headnum="2000" class=" ">
+                                                <div class="inr clear">
+                                                    <div class="cont box1">
+                                                        <button type="button" class="writer_info" onclick="show_user_data(this)">
+                                                            <em class='nickname in' title='놔줘스크립트' >놔줘스크립트</em>
+                                                            <strong class='writer_nikcon '>
+                                                                <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/nagandr1113');">
+                                                            </strong>
+                                                        </button>
+                                                        <div class="user_data" style="display:none">
+                                                            <ul class="user_data_list">
+                                                                <li class="bg_grey"><a href="/nagandr1113" target="_blank">갤로그 가기<em class="sp_img icon_go"></em></a></li>
+                                                                <li class="bg_jingrey"><a href="javascript:;" onclick="add_block(this, 'id', 'nagandr1113')">차단 ID<em class="sp_img icon_go"></em></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <span class="date">2023.03.20 16:28:13</span>
+                                                        <span class="icon_secretsquare" style="display:''">비밀</span>
+                                                    </div>
+                                                    <div class="cont box2">
+                                                        <p class="txt memo">비밀글 ㅁㄴㅇㄹ</p>
+                                                        <div class="btn_box fr cont_btnbox">
+                                                            <button type="button" class="btn_comment btn_lightgrey smaller">답글</button>
+                                                            <button type="button" class="btn_delete btn_lightgrey smaller">삭제</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li data-no="1" data-headnum="1000" class=" ">
+                                                <div class="inr clear">
+                                                    <div class="cont box1">
+                                                        <button type="button" class="writer_info" onclick="show_user_data(this)">
+                                                            <em class='nickname in' title='놔줘스크립트' >놔줘스크립트</em>
+                                                            <strong class='writer_nikcon '>
+                                                                <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/nagandr1113');">
+                                                            </strong>
+                                                        </button>
+                                                        <div class="user_data" style="display:none">
+                                                            <ul class="user_data_list">
+                                                                <li class="bg_grey"><a href="/nagandr1113" target="_blank">갤로그 가기<em class="sp_img icon_go"></em></a></li>
+                                                                <li class="bg_jingrey"><a href="javascript:;" onclick="add_block(this, 'id', 'nagandr1113')">차단 ID<em class="sp_img icon_go"></em></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <span class="date">2023.03.20 16:28:07</span>
+                                                        <span class="icon_secretsquare" style="display:none">비밀</span>
+                                                    </div>
+                                                    <div class="cont box2">
+                                                        <p class="txt memo">ㅁㄴㅇㄹ</p>
+                                                        <div class="btn_box fr cont_btnbox">
+                                                            <button type="button" class="btn_comment btn_lightgrey smaller">답글</button>
+                                                            <button type="button" class="btn_delete btn_lightgrey smaller">삭제</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <!-- 페이징 -->
+                                        <div class="bottom_paging_box iconpaging">
+                                            <em>1</em>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script id="gb_write_form-tmpl" type="text/x-jquery-tmpl">
+                                    <li class="{{if is_modify}}gst{{else}}comments{{/if}} {{if is_reply}}replys{{/if}} {{if is_first_reply}}line{{/if}}" data-no="${no}" {{if typeof(password) != 'undefined' && password}}data-password="${password}"{{/if}}>
+                                        <div class="inr clear">
+                                            <div class="cont box1">
+                                                <button type="button" class="writer_info">
+                                                    {{if nickname}}
+                                                    {{html nickname}}
+                                                    {{else}}
+                                                    <em class='nickname in' title='다스마스터' >다스마스터</em> <span class='writer_nikcon '><img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/gofyd889');"></span>	  {{/if}}
+                                                </button>
+                                            </div>
+                                            <div class="cont box2">
+                                                <!-- cmt_write_box gallog mdf -->
+                                                <div class="cmt_write_box gallog mdf">
+                                                    <div class="cmt_txt_cont">
+                                                        <div class="cmt_write">
+                                                            <textarea>${memo}</textarea>
+                                                        </div>
+                                                        <div class="cmt_cont_bottm clear">
+                                                            <div class="fl">
+                                    
+                                                                {{if secret !== false && (typeof(password) == 'undefined' || !password)}}
+                                                                <span class="checkbox">
+                                                                    <input type="checkbox" id="comment_chk_${no}" name="is_secret" ${secret}="1" value="1">
+                                                                    <em class="checkmark"></em>
+                                                                    <label for="comment_chk_${no}">비밀글</label>
+                                                                </span>
+                                                                {{/if}}
+                                    
+                                                            </div>
+                                                            <div class="fr cont_btnbox">
+                                                                <button type="button" class="btn_cancel btn_lightgrey smaller">취소</button>
+                                                                <button type="submit" class="btn_modify_submit btn_grey smaller">등록</button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </li>
+                                </script>
+                                <script id="gb_password_form-tmpl" type="text/x-jquery-tmpl">
+                                    <div class="cmt_delpw_box" style="margin:4px 0 0 -133px">
+                                        <input type="password" title="비밀번호" placeholder="비밀번호" class="cmt_delpw">
+                                        <button type="button" class="btn_ok">확인</button>
+                                        <button type="button" class="btn_cmtpw_close" onclick="$(this).parent().remove();"><span class="blind">닫기</span><em class="sp_img icon_cmtpw_close"></em></button>
                                     </div>
-                                </section>
+                                </script>
+                                
                             </section>
                             <!-- 푸터 -->
                             <footer class="gcfoot">
@@ -565,3 +586,4 @@
     </div>
 </body>
 </html>
+

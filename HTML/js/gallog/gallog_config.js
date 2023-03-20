@@ -7,7 +7,7 @@ function del_open_gall(btn) {
 }
 
 $(function() {
-	var _UPIMG_URL_ = "https://upimg.dcinside.com";
+	var _UPIMG_URL_ = "https://upimg.gcinside.com";
 	var csrf_token = get_cookie('ci_c');
 	var gallog_id = location.pathname.split('/').slice(1,2).join();
 	
