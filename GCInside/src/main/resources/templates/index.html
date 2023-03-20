@@ -724,7 +724,7 @@
                     <!-- 로그인 -->
                     <div id="login" class="login_wrap mandudel">
                         <div class="log_inr">
-                            <form id="login_process" autocomplete="off" name="login" method="get" action="#">
+                            <form id="login_process" autocomplete="off" name="login" method="post">
                                 <fieldset>
                                     <div class="login_inp">
                                         <div class="input_box">
@@ -736,7 +736,7 @@
                                         <div class="input_box">
                                             <label for="member_pass" id="pwdLabel" class="lab_login">비밀번호</label>
                                             <input type="password" id="member_pass"
-                                            name="pw" class="inp_txt" maxlength="32"
+                                            name="member_pass" class="inp_txt" maxlength="32"
                                             onfocus="$('#pwdLabel').html('');">
                                         </div>
                                     </div>
