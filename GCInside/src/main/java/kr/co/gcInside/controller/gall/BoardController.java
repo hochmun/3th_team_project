@@ -46,7 +46,6 @@ public class BoardController {
      *              mini    : 미니
      *
      *          type => 페이지 구별 용
-     *              lists   : 목록
      *              view    : 보기
      *              write   : 쓰기
      *              modify  : 수정
