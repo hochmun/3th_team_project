@@ -211,6 +211,66 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .checkbox.type1 input:checked + .checkmark{top:0;left:0px;width:17px;height:17px;background-position:-197px -275px;z-index:1}
 .minor_make_wrap .checkbox input[type="checkbox"]{width:298px;height:110px;left:-61px;top:-24px }
 .checkmark{background-image:url("/img/sp_img.png");background-repeat:no-repeat}
+/*체크 라디오 버튼 디자인 공통*/
+.checkmark{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);background-repeat:no-repeat}/*churl*/
+/*라디오 버튼 디자인*/
+.radiobox{position:relative;display:inline-block;line-height:31px;padding-left:23px}
+.radiobox input[type="radio"]{position:absolute;left:0;top:8px;margin:0;opacity:0;z-index:2;cursor:pointer}
+.radiobox input + .checkmark{position:absolute;top:8px;left:0;display:block;width:14px;height:14px;background-position:-193px -44px;border-radius:50%}
+.radiobox input:checked + .checkmark{top:8px;left:0px;width:14px;height:14px;border-radius:50%;background-position:-175px -44px;z-index:1}
+.radiobox.white input + .checkmark{background-position:-205px -214px}
+.radiobox.white input:checked + .checkmark{background-position:-186px -214px}
+.radiobox.big input[type="radio"]{left:0;top:-13px;width:50px;height:50px}
+.radiobox.big input + .checkmark{left:0;top:-13px;width:50px;height:50px;background-position:-142px -364px}
+.radiobox.big input:checked + .checkmark{left:0px;top:-13px;width:50px;height:50px;background-position:-142px -310px}
+.radiobox.small{line-height:18px}/*211118 폰트 버그 line-height:20px*/
+.radiobox.small input[type="radio"]{position:absolute;left:0;top:3px}/*211118 폰트 버그 top:4*/
+.radiobox.small input + .checkmark{left:0;top:3px;width:12px;height:12px;background-position:-233px -201px}/*211118 폰트 버그 top:4*/
+.radiobox.small input:checked + .checkmark{left:0px;top:3px;width:12px;height:12px;background-position:-218px -201px}/*211118 폰트 버그 top:4*/
+
+.radiobox.middle{line-height:25px}
+.radiobox.middle input[type="radio"]{left:0;top:2px;width:27px;height:27px}
+.radiobox.middle input + .checkmark{left:0;top:2px;width:27px;height:27px;background-position:-234px -548px}
+.radiobox.middle input:checked + .checkmark{left:0px;top:2px;width:27px;height:27px;background-position:-263px -548px}
+.radiobox.middle label{font-size:16px;color:#333;font-weight:bold;margin-left:9px;vertical-align:top;line-height:28px}
+.minor_make_wrap .radiobox.middle input[type="radio"]{width:280px;height:110px;left:-18px;top:-19px}/*200810 미니갤러리 만들기 클릭영역 확장*/
+.minor_make_wrap .checkbox input[type="checkbox"]{width:298px;height:110px;left:-61px;top:-24px }/*200810 미니갤러리 만들기 클릭영역 확장*/
+
+.bottom_paging_box .radiobox em.checkmark{margin-left:0}
+/*//라디오 버튼 디자인*/
+/*체크박스 디자인*/
+.checkbox{position:relative;display:inline-block;vertical-align:top;padding-left:13px;line-height:14px}/*211118 폰트 버그 line-height:14px 추가 */
+.checkbox input[type="checkbox"]{position:absolute;left:0;top:0;margin:0;opacity:0;z-index:2;cursor:pointer}
+.checkbox input + .checkmark{position:absolute;top:0;left:0;display:block;width:14px;height:14px;background-position:-264px -184px}
+.checkbox input:checked + .checkmark{top:0;left:0px;width:14px;height:14px;background-position:-248px -184px;z-index:1}
+.checkbox.type1{padding-left:23px}
+.checkbox.type1 input[type="checkbox"]{width:17px;height:17px}
+.checkbox.type1 input + .checkmark{position:absolute;top:0;left:0;display:block;width:17px;height:17px;background-position:-197px -294px}
+.checkbox.type1 input:checked + .checkmark{top:0;left:0px;width:17px;height:17px;background-position:-197px -275px;z-index:1}
+/*//체크박스 디자인*/
+/*체크박스 라운드*/
+.checkbox.round{padding-left:0;z-index:0}
+.round_check + .round_label {position:relative;display:block;width:36px;height:19px;font-size:12px;text-indent:0;border-radius:2.25rem;
+;background-color:#ccc;cursor:pointer;outline:none;
+  -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
+  z-index:1
+}
+.round_check + .round_label::before {position:absolute;top:2px;left:2px;display:block;width:15px;height:15px;background-color:#fff;border-radius:2.25rem;
+  content:"";
+  -webkit-transition:background 0.2s, -webkit-transform 0.2s;
+  transition:background 0.2s, -webkit-transform 0.2s;
+  transition:background 0.2s, transform 0.2s;
+  transition:background 0.2s, transform 0.2s, -webkit-transform 0.2s;
+}
+.round_check:checked + .round_label {background-color:#4f4dc6}
+.round_check:checked + .round_label::before {background-color:#fff;-webkit-transform:translateX(17px);transform:translateX(17px)}
+.checkbox.round .round_label .inr{position:absolute;left:-41px;top:1px;font-size:16px;font-weight:bold;}
+/*220331 라운드 체크박스 -파랑색 (검색어 저장)*/
+.checkbox.round.blue input[type="checkbox"]{width:108px;height:19px;left:-70px}
+.checkbox.round.blue .round_label .inr{position:absolute;left:-70px;top:1px;font-size:16px;font-weight:bold;}
+.blue .round_check:checked + .round_label{background:#3b4890}
+.blue .round_check + .round_label{background:#888}
+/*//체크박스 라운드*/
 /* 팁 */
 .tip_deco_dot{content:"";display:inline-block;width:2px;height:2px;background:#333;font-size:0;vertical-align:4px;margin-right:6px}
 
@@ -663,7 +723,7 @@ display:block;max-height:34px;overflow:hidden;
 /* header */
 .gchead {
   position: relative;
-  width: 1000px;
+  width: 1050px;
   height: 120px;
   margin: 0 auto;
 }
@@ -716,14 +776,14 @@ display:block;max-height:34px;overflow:hidden;
 }
 /* 상단 카테고리 (gnb) */
 .gnb_bar {
-  min-width: 1000px;
+  min-width: 1050px;
   background-color: #3b4890;
   border: 1px solid #3b4890;
   border-width: 1px 0 1px 0;
 }
 
 .gnb {
-  width: 1000px;
+  width: 1050px;
   height: 44px;
   margin: 0 auto;
 }
@@ -886,7 +946,7 @@ display:block;max-height:34px;overflow:hidden;
 
 .newvisit_history {
     position: relative;
-    width: 1000px;
+    width: 1050px;
     height: 38px;
     line-height: 38px;
     padding: 0 66px 0 12px;
@@ -1064,8 +1124,8 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .all_box.mandudel .all_list dl{height:236px}
 
 .gc_all{width:1048px;margin:23px auto 0;border-left:1px solid #ccc;border-top:2px solid #29367c;border-right:1px solid #ccc;border-bottom:1px solid #29367c}
-.info_policy{width:1000px;margin:28px auto 0;text-align:center}
-.copyright{width:1000px;margin:10px auto 0;text-align:center;font-family:tahoma,sans-serif;font-size:12px;color:#333}
+.info_policy{width:1050px;margin:28px auto 0;text-align:center}
+.copyright{width:1050px;margin:10px auto 0;text-align:center;font-family:tahoma,sans-serif;font-size:12px;color:#333}
 
 .info_policy a{color:#333}
 .info_policy a:hover{text-decoration:underline}

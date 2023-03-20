@@ -30,7 +30,7 @@ public class MinorService {
         dao.creategall(frmCreate);
 
     }
-    public String selectminorterms(){
+    public List<TermsVO> selectminorterms(){
         return dao.selectminorterms();
     }
 }

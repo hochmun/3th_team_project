@@ -19,25 +19,29 @@ function showOptions() {
     selectArea.style.display = "block";
   });
 }
-//폼 전송
-function submitForm() {
-  var form = document.getElementById("frmCreate");
-  form.submit();
+function chk_gellname(){
+
 }
-
-
-// function thumb_view(e,src) {
-// 	$("#gallery_thumb_img").attr("src",src);
-// 	var ex_obj = document.getElementById('gallery_thumb_div');
-//     if(!e) e = window.Event;
-//     pos = abspos(e);
-//     ex_obj.style.left = pos.x+"px";
-//     ex_obj.style.top = (pos.y+10)+"px";
-//     ex_obj.style.display = ex_obj.style.display=='none'?'block':'none';
-    
-// }
-
-// function thumb_hide(e,src) {
-// 	var ex_obj = document.getElementById('gallery_thumb_div');
-//     ex_obj.style.display = 'none';
-// }
+$(document).ready(function() {
+  let agree = function() {
+    $('#submitbutton').click(function() {
+      if(!$('#gell_create_name').is())
+      if (!$('input:checkbox[id="person_agree"]').is(":checked")) {
+        alert('마이너 갤러리 개인정보보호정책에 동의해주세요.');
+        return false;
+      }
+      if (!$('input:checkbox[id="use_agree"]').is(":checked")) {
+        alert('마이너 갤러리 운영원칙에 동의해주세요.');
+        return false;
+      }
+      if (!$('input:checkbox[id="upgrade_agree"]').is(":checked")) {
+        alert('메인 갤러리 승격에 동의해주세요.');
+        return false;
+      }
+      $('#frmCreate').submit(); // 폼전송
+      alert('성공적으로 마이너 갤러리 생성신청이 완료되었습니다.')
+      location.replace('/GCInside/m/index');
+    });
+  };
+  agree();
+});
