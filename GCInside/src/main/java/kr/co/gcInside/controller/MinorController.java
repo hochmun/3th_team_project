@@ -1,6 +1,7 @@
 package kr.co.gcInside.controller;
 
 import kr.co.gcInside.service.MinorService;
+import kr.co.gcInside.service.TermsService;
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +22,21 @@ public class MinorController{
 
     @Autowired
     private MinorService service;
+    @Autowired
+    private TermsService tservice;
+
+    @GetMapping(value = {"/m/","m/index"})
+    public String minorindex(){
+        return "gall/m/index";
+    }
     @GetMapping("m/create")
     public String minorcreateview(Model model){
         List<CreateVO> cate2 = service.selectcate2();
-        String minorterms = service.selectminorterms();
-        model.addAttribute("terms",minorterms);
         model.addAttribute("cate2",cate2);
+        TermsVO data1 = tservice.selectTerm(21);
+        TermsVO data2 = tservice.selectTerm(22);
+        model.addAttribute("termdata1", data1);
+        model.addAttribute("termdata2", data2);
         return "gall/m/create";
     }
     @PostMapping("m/create")
@@ -34,4 +44,5 @@ public class MinorController{
         service.creategall(frmCreate);
         return "gall/m/create";
     }
+
 }

@@ -2,140 +2,18 @@
 <!-- 2023/03/08 // 김동민 // 마이너갤러리 index 페이지 css 작업   -->
 <!-- 2023/03/10 // 김동민 // 마이너갤러리 index 페이지 화면구현 완료 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/minor/common.css">
-    <link rel="stylesheet" href="/css/popup.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/js/navigation.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
-    <script type="text/javascript" src="/js/ctr_cookie.js"></script>
-    <script src="/js/minor/minor.js"></script>
+    <th:block th:replace="~{fragment/head_fragment::minorHead}"></th:block>
 </head>
 <body>
-    <div class="gcwrap">
-
-        <!-- 헤더 -->
-        <header class="gcheader typea">
-
-            <div class="gchead">
-                <!-- 메인 로고 -->
-                <h1 class="gc_logo">
-                    <div>
-                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
-                    </div>
-                </h1>
-
-                <div class="wrap_search">
-                    <!-- 갤러리 통합검색-->
-                    <form>
-                        <fieldset>
-                            <div class="top_search clear">
-                                <div class="inner_search">
-                                    <input class="in_keyword" type="text" name="search"
-                                    placeholder="갤러리 & 통합검색" autocomplete="off"
-                                    title="검색어 입력">
-                                </div>
-                                <button class="sp_main bnt_search"></button>
-                                <!-- 검색어 자동 완성 기능 -->
-                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
-        </header>
-
-        <!-- gnb -->
-        <div class="gnb_bar">
-            <nav class="gnb clear">
-                <ul class="gnb_list clear">
-                    <li>
-                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
-                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
-                        <!-- 2차메뉴 -->
-                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
-                            <span class="sp_img depth_bg"></span>
-                            <ul class="depth2_list" >
-                              <li><a href="#">게임</a></li>
-                              <li><a href="#">연예/방송</a></li>
-                              <li><a href="#">스포츠</a></li>
-                              <li><a href="#">교육/금융/IT</a></li>
-                              <li><a href="#">여행/음식/생물</a></li>
-                              <li><a href="#">취미/생활</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="#">마이너갤</a></li>
-                    <li><a href="#">미니갤</a></li>
-                </ul>
-
-                <!-- 어제 게시글, 댓글 등록 수 -->
-                <div class="gall_exposure">
-                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
-                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
-                    <div class="ltr"><a href="#">로터리 응모</a></div>
-                </div>
-
-            </nav>
-        </div>
-
-        <!-- 최근 방문 탭 -->
-        <div class="visit_bookmark">
-            <div class="newvisit_history vst">
-                <h3 class="tit vst_title l_div_style">최근 방문</h3>
-                <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
-                <button type="button" class="btn_open" onclick="openLately()">
-                    <em class="sp_img icon_listmore"></em>
-                </button>
-                <button type="button" class="bnt_visit_prev">
-                    <em class="sp_img icon_prev"></em>
-                </button>
-                <div class="newvisit_box">
-                    <!-- 최근방문 갤러리 리스트 -->
-                    <ul class="newvisit_list vst_listbox l_div_style"></ul>
-
-                    <!-- 즐겨찾기 갤러리 리스트 -->
-                    <ul class="newvisit_list bkmark_listbox f_div_style" style="display:none"></ul>
-                </div>
-                <button type="button" class="bnt_visit_next">
-                    <em class="sp_img icon_next"></em>
-                </button>
-                <button type="button" class="bnt_newvisit_more" onclick="openLately()">전체</button>
-                <!-- 최근방문 / 즐겨찾기 레이어 -->
-                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;" id="visit_history_lyr">
-                    <div class="pop_content under_catelist newvisit_layer">
-                        <div class="tabs">
-                            <ul class="tabslist clear">
-                                <li class="tab_l"><button type="button" onclick="tabLately('lately')">최근 방문</button></li>
-                                <li class="tab_f"><button type="button" onclick="tabLately('favorite')">즐겨찾기</button></li>
-                            </ul>
-                        </div>
-                        <div class="toptab_content">
-                            <div class="visit_div 1_div_style">
-                                <!-- 최근 방문 리스트  -->
-							    <div class="visit_tablist" style="display:block">
-                                    <ul class="under_listbox vst_list"></ul>
-                                    <div class="tabcon_bottom">
-                                        <button type="button" class="list_modi">전체 삭제</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite_div f_div_style"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    <div class="minorwrap">
+            <!-- 헤더 -->
+            <th:block th:replace="~{fragment/header_fragment::minorHeader}"></th:block>
+            <!-- gnb -->
+            <th:block th:replace="~{fragment/gnb_fragment::mainGnb}"></th:block>
+            <!-- 최근 방문 탭 -->
+            <th:block th:replace="~{fragment/gnb_fragment::mainVisit}"></th:block>
         <!-- 메인 -->
         <main id="container" class="minor_wrap gallmain">
             <div class="main_content clear">

@@ -16,14 +16,13 @@
         `gell_create_address` = #{gell_create_address},
         `gell_create_reason`  = #{gell_create_reason};
     </insert>
-    <!-- 여기서 오류 외래키관련추정 -->
     <!-- read -->
     <select id="selectcate2" resultType="kr.co.gcInside.vo.CreateVO">
         SELECT * from `gc_gell_cate2`;
     </select>
     <!-- 2023/03/16 // 김동민 //  -->
-    <select id="selectminorterms" resultType="String">
-        SELECT `term_content` FROM `gc_terms` WHERE `term_type`= '21' ;
+    <select id="selectminorterms" resultType="kr.co.gcInside.vo.TermsVO">
+        SELECT * FROM `gc_terms`;
     </select>
 
 

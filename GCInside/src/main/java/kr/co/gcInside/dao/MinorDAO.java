@@ -26,5 +26,5 @@ public interface MinorDAO {
     /**
      * 2023/03/17 // 김동민 // 약관 불러오기
      */
-    public String selectminorterms();
+    public List<TermsVO> selectminorterms();
 }
