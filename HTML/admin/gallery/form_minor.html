@@ -79,30 +79,60 @@
                 </div>
                 </header>
                 <div class="main_make_wrap">
-                    <div class="bottom_paging_box iconpaging"><em>1</em></div>
+                    <div class="minor_uadmin_setting">
+                        <table class="minor_block_list del">
+                            <caption>신청 리스트</caption>
+                            <colgroup>
+                                <col style="width:8%">
+                                <col style="width:16%">
+                                <col>
+                                <col style="width:10%">
+                                <col style="width:16%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th scope="col">신청 번호</th>
+                                    <th scope="col">신청자 식별코드</th>
+                                    <th scope="col">갤러리 이름</th>
+                                    <th scope="col">설명</th>
+                                    <th scope="col">주소</th>
+                                    <th scope="col">카테고리</th>
+                                    <th scope="col">개설이유</th>
+                                    <th scope="col">신청날짜</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td class="minnum">4</td>
+                                <td class="minnik">
+                                    <p>놔줘스크립트</p>
+                                    <p>(navascript)</p>
+                                </td>
+                                <td class="minname"><span>강호동 갤러리</span></td>
+                                <td class="mindesc">
+                                    강호동 팬 갤러리 입니다.
+                                </td>
+                                <td class="minaddr">
+                                    <span>https://gall.gcinside.com/ghd</span>
+                                </td>
+                                <td class="mincate">
+                                    <span>연예</span>
+                                </td>
+                                <td class="minreason">
+                                    <span>강호동 팬이라서</span>
+                                </td>
+                                <td class="minday">
+                                    <span>2023.03.14<br>17:40:49</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="bottom_paging_box iconpaging"><em>1</em></div>	
+                    </div>
                 </div>
             </div>
         </main>
-        <script type="text/javascript">
-            $('.chk_str_length').keyup(function () {
-            var inputVal =		$(this).val();
-            var nInputVal =		inputVal.length;
-            var maxcount =		$('.max_txt b', $(this).closest('.cont_box')).text();
-            
-                if (nInputVal > maxcount) {
-                    inputVal = inputVal.substr(0, maxcount);
-                    nInputVal = maxcount;
-                    $(this).val(inputVal);
-                }
-            
-            $('.max_txt span', $(this).closest('.cont_box')).text(nInputVal);
-            }).click(function(){ $(this).keyup(); }).blur(function(){ $(this).keyup(); });
-
-            $('div.select_box li').click(function() {
-                authCategoryChk($('input[name="mg_category"]'));
-            });
-        </script>
-
         <footer class="admin_footer gcfoot">
             <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
         </footer>
