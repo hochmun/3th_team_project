@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery-certificate/1.0.0/jquery.certify.min.js"></script>
+    <script type="text/javascript" src="/js/admin/gnb.js"></script>
+    <script type="text/javascript" src="/js/management/common.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+        <header class="admin_header">
+            <div class="gchead typea">
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcin_logo3.png" alt="">
+                        <a class="_blank" href="/admin/index.html"></a>
+                    </div>
+                </h1>
+                <div class="admin_info">
+                    <ul class="admin_ul">
+                        <li><a href="/index.html">홈</a></li>
+                        <li><a href="javascript:;"> | </a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+                    <aside class="admin_aside">
+                        <ul id="admin_gnb">
+                            <li>
+                                <a href="#">환경설정</a>
+                                <ol>
+                                    <li><a href="#">배너 관리</a></li>
+                                    <li><a href="#">약관 관리</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">신고 관리</a>
+                                <ol>
+                                    <li><a href="#">서비스 신고 관리</a></li>
+                                    <li><a href="#">서비스 신청 목록</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">갤러리 관리</a>
+                                <ol>
+                                    <li><a href="#">갤러리 목록</a></li>
+                                    <li><a href="/admin/gallery/create_main.html">메인 갤러리 생성</a></li>
+                                    <li><a href="#">갤러리 개설 신청</a></li>
+                                    <li><a href="#">갤러리 승급 신청</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">회원 관리</a>
+                                <ol>
+                                    <li><a href="/admin/member/search.html">회원 조회</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <header class="main_make">
+                <div class="page_head clear">
+                    <div class="fl">
+                        <h2>
+                            <a href="#"><span class="fixtit">갤러리</span> 개설 신청</a>
+                        </h2>
+                    </div>
+                </div>
+                </header>
+                <div class="main_make_wrap">
+                    <div class="minor_uadmin_setting">
+                        <table class="minor_block_list del">
+                            <caption>신청 리스트</caption>
+                            <colgroup>
+                                <col style="width:8%">
+                                <col style="width:16%">
+                                <col>
+                                <col style="width:10%">
+                                <col style="width:16%">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th scope="col">신청 번호</th>
+                                    <th scope="col">신청자 식별코드</th>
+                                    <th scope="col">갤러리 이름</th>
+                                    <th scope="col">설명</th>
+                                    <th scope="col">주소</th>
+                                    <th scope="col">카테고리</th>
+                                    <th scope="col">개설이유</th>
+                                    <th scope="col">신청날짜</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td class="minnum">4</td>
+                                <td class="minnik">
+                                    <p>놔줘스크립트</p>
+                                    <p>(navascript)</p>
+                                </td>
+                                <td class="minname"><span>강호동 갤러리</span></td>
+                                <td class="mindesc">
+                                    강호동 팬 갤러리 입니다.
+                                </td>
+                                <td class="minaddr">
+                                    <span>https://gall.gcinside.com/ghd</span>
+                                </td>
+                                <td class="mincate">
+                                    <span>연예</span>
+                                </td>
+                                <td class="minreason">
+                                    <span>강호동 팬이라서</span>
+                                </td>
+                                <td class="minday">
+                                    <span>2023.03.14<br>17:40:49</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="bottom_paging_box iconpaging"><em>1</em></div>	
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>

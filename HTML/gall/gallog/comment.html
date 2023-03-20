@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="innerbox">
-        <div id="top" class="gallog_wrap width1160 home">
+        <div id="top" class="gallog_wrap width1160 comment">
             <!-- 상단 -->
             <div class="headbox">
                 <div class="gchead">
@@ -325,15 +325,15 @@
                     <div class="conent_wrap clear">
                         <div class="wrap_left">
                             <ul class="gallog_menu"><!-- 링크 맨 앞에 member_uid 오도록 ex) /${member_uid}/posting -->
-                                <li class="home on"><a href="/gall/gallog/index.html">홈</a></li>
+                                <li class="home"><a href="/gall/gallog/index.html">홈</a></li>
                                 <li class="posting"><a href="/gall/gallog/posting.html">게시글</a></li>
-                                <li class="comment"><a href="/gall/gallog/comment.html">댓글</a></li>
+                                <li class="comment on"><a href="/gall/gallog/comment.html">댓글</a></li>
                                 <li class="scrap"><a href="/gall/gallog/scrap.html">스크랩</a></li>
                                 <li class="guestbook">
                                     <a href="/gall/gallog/guestbook.html">방명록</a>
                                 </li>
                             </ul>
-                            <script>$('.gallog_menu .home').adgclass('on');</script>
+                            <script>$('.gallog_menu .comment').addClass('on');</script>
                         </div>
                         <div id="secret_tip_pop" class="pop_tipbox secret_tip" style="display:none">
                             <p class="txt">익명 사용 미니갤에 남긴 글은 작성자만 볼 수 있습니다.</p>
@@ -341,208 +341,128 @@
                         </div>
                         <div class="wrap_right">
                             <section>
-                                <div id="jquery_jplayer"></div>
-
-                                <!-- 게시글 -->
-                                <section>
-                                    <div class="gallog_cont">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='${member_uid}/posting';" -->
-                                                <h2 class="tit" onclick="location.href='/posting';" style="cursor:pointer">게시글<span class="num">(2)</span></h2>
-                                                <span class="greybox">비공개</span>
+                                <div class="gallog_cont comments">
+                                    <input type="hidden" name="service_code" value="#"/>
+                                    <header>
+                                        <div class="cont_head clear">
+                                            <div class="choice_sect"><!-- location.href='/${member.uid}/comment' -->
+                                                <button type="button" class="on" onclick="location.href='/comment'">전체<span class="num">(3)</span></button>
+                                                <button type="button" class="" onclick="location.href='/comment/main'">갤러리<span class="num">(0)</span></button>
+                                                <button type="button" class="" onclick="location.href='/comment/minor'">마이너갤<span class="num">(3)</span></button>
+                                                <button type="button" class="" onclick="location.href='/comment/mini'">미니갤<span class="num">(0)</span></button>
                                             </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li class="" data-no="5">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <div class="galltit"><strong>첫번째 작성글</strong></div>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                    아무거나
-                                                                    </span>
-                                                                    <span class="date">2023.03.14</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
+                                            <div class="search_wrap">
+                                                <div class="search_box">
+                                                    <div class="search clear"><!-- action="/${member.uid}/comment" -->
+                                                        <form name="f_search" method="GET" action="/comment">
+                                                            <div class="inner_search">
+                                                                <input class="in_keyword" title="검색어 입력" placeholder="게시글 제목 검색" type="text" name="keyword" value="" onfocus="clear_keyword(true)" onblur="reset_keyword()" onchange="$(this).data('modified', 1)">
+                                                            </div>
+                                                            <button class="sp_img bnt_search" type="submit"><span class="blind">검색</span></button>
+                                                        </form>
                                                     </div>
-                                                </li>
-                                                <li class="" data-no="1">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <div class="galltit"><strong>철조망 총에 깨지는거 정리해옴</strong><span class="comment_num">[5]</span></div>			
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                        프로젝트 좀보이드
-                                                                    </span>
-                                                                    <span class="date">2022.11.05</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </section>
+                                    </header>
+                                    <div class="cont_box">
+                                        <div class="option_sort gallog">
+                                            <div class="select_box select_arraybox">
+                                                <div class="select_area">전체보기<span class="blind">정렬 기준선택</span><em class="sp_img icon_option_more"></em></div>
+                                                <ul class="option_box" style="left:-1px;top:26px;display:none"><!-- location.href='/${member.uid}/comment' -->
+                                                    <li data-value="" onclick="location.href='/comment'">전체보기</li>
 
-                                <!-- 댓글 -->
-                                <section>
-                                    <div class="gallog_cont comments">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/comment';" -->
-                                                <h2 class="tit" onclick="location.href='/comment';" style="cursor:pointer">댓글<span class="num">(3)</span></h2>
-                                                <span class="greybox">비공개</span>
+                                                    <li data-value="6" onclick="location.href='/comment/index?cno=6'">아무거나</li>
+                                                    <li data-value="5" onclick="location.href='/comment/index?cno=5'">이것저것</li>
+                                                    <li data-value="3" onclick="location.href='/comment/index?cno=3'">WOW</li>
+                                                </ul>
                                             </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li class="replys" data-no="3">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <p class="txt">아니용</p>
+                                            <span class="greybox">비공개</span>
+                                        </div>
+                                        <script>ul_selectric($('.option_sort .select_box'), 'filter', '');</script>
+                                        <ul class="cont_listbox">
+                                            <li class="" data-no="3">
+                                                <div class="cont">
+                                                    <div class="gall_linkbox">
+                                                        <a class="link " href="#" target="_blank">
+                                                            <p class="txt">아니용</p>
                                                                 <div class="nameday ">
                                                                     <span class="gall_name">
                                                                         아무거나
                                                                     </span>
                                                                     <span class="date">2023.03.14</span>
                                                                 </div>
-                                                                <div class="galltit"><strong>이게 뭔지 아시나용</strong></div>
-                                                            </a>
-                                                        </div>
+                                                            <div class="galltit"><strong>이게 뭔지 아시나용</strong></div>
+                                                        </a>
+                                                        <button type="button" class="btn_delete btn_listdel sp_img"><span class="blind">삭제</span></button>
                                                     </div>
-                                                </li>
-                                                <li class="" data-no="2">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <p class="txt">ㅢ</p>
+                                                </div>
+                                            </li>
+                                            <li class="" data-no="2">
+                                                <div class="cont">
+                                                    <div class="gall_linkbox">
+                                                        <a class="link " href="#" target="_blank">
+                                                            <p class="txt">ㅢ</p>
                                                                 <div class="nameday ">
                                                                     <span class="gall_name">
                                                                         이것저것
                                                                     </span>
                                                                     <span class="date">2023.03.14</span>
                                                                 </div>
-                                                                <div class="galltit"><strong>으이</strong></div>
-                                                            </a>
-                                                        </div>
+                                                            <div class="galltit"><strong>으이</strong></div>
+                                                        </a>
+                                                        <button type="button" class="btn_delete btn_listdel sp_img"><span class="blind">삭제</span></button>
                                                     </div>
-                                                </li>
-                                                <li class="" data-no="1">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="#" target="_blank">
-                                                                <p class="txt">416 분전 ㅅㅅㅅ</p>
+                                                </div>
+                                            </li>
+                                            <li class="" data-no="1">
+                                                <div class="cont">
+                                                    <div class="gall_linkbox">
+                                                        <a class="link " href="#" target="_blank">
+                                                            <p class="txt">416 분전 ㅅㅅㅅ</p>
                                                                 <div class="nameday ">
                                                                     <span class="gall_name">
                                                                         WOW 
                                                                     </span>
                                                                     <span class="date">2023.03.14</span>
                                                                 </div>
-                                                                <div class="galltit"><strong>8시 라자게스 신화 확고팟</strong></div>
-                                                            </a>
-                                                        </div>
+                                                            <div class="galltit"><strong>8시 라자게스 신화 확고팟</strong></div>
+                                                        </a>
+                                                        <button type="button" class="btn_delete btn_listdel sp_img"><span class="blind">삭제</span></button>
                                                     </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="bottom_paging_box iconpaging"><em>1</em></div>
                                     </div>
-                                </section>
+                                </div>
+                                <!-- jPlayer 플러그인을 사용하여 음악 또는 비디오를 재생할 수 있는 영역을 생성하는 코드.
+                                <div id="jquery_jplayer"></div>
 
-                                <!-- 스크랩 -->
-                                <section>
-                                    <div class="gallog_cont scraps">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/scrap'; -->
-                                                <h2 class="tit" onclick="location.href='/scrap';" style="cursor:pointer">스크랩<span class="num">(1)</span></h2>
-                                                <span class="greybox">비공개</span>
-                                            </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li class="" data-no="8">
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <a class="link " href="https://gall.gcinside.com/mgallery/board/view?id=sims&no=177148" target="_blank">
-                                                                <div class="galltit"><strong>게임 업뎃시 매우매우 간단한 팁</strong></div>
-                                                                <div class="nameday ">
-                                                                    <span class="gall_name">
-                                                                    심즈
-                                                                    </span>
-                                                    
-                                                                    <span class="writer_info fix"><em class='nickname in' title='ㅂㅂㅂㄱ' >ㅂㅂㅂㄱ</em>
-                                                                        <span class='writer_nikcon '><img src='/img/fix_nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' ></span>
-                                                                    </span>				
-                                                                    <span class="date">2022.07.28</span>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
+                                <script type="text/javascript">
+                                var _r = _d('Qgq5PMUGQ4u4dMQtQ+QwPMSEQ4uERMSDdTuEdF0tQgQFPM0uQ4uHQow5');
 
-                                <!-- 방명록 -->
-                                <section>
-                                    <div class="gallog_cont gstbook">
-                                        <header>
-                                            <div class="cont_head clear"><!-- location.href='/${member_uid}/guestbook'; -->
-                                                <h2 class="tit" onclick="location.href='/guestbook';" style="cursor:pointer">방명록<span class="num">(2)</span></h2>
-                                            </div>
-                                        </header>
-                                        <div class="cont_box">
-                                            <ul class="cont_listbox">
-                                                <li>
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <div  class="link">
-                                                                <div class="galltit">
-                                                                    <span class="icon_secretsquare">비밀</span>				  
-				                                                    <strong>비밀글 ㅁㄴㅇㄹ</strong>
-                                                                </div>
-                                                                <div class="nameday">
-                                                                    <span class="writer_info">
-                                                                        <em class='nickname in' title='놔줘스크립트' >놔줘스크립트</em>
-                                                                        <strong class='writer_nikcon '>
-                                                                            <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/nagandr1113');">
-                                                                        </strong>
-                                                                        <span class="date">2023.03.20</span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="cont">
-                                                        <div class="gall_linkbox">
-                                                            <div  class="link">
-                                                                <div class="galltit">
-				                                                    <strong>ㅁㄴㅇㄹ</strong>
-                                                                </div>
-                                                                <div class="nameday">
-                                                                    <span class="writer_info">
-                                                                        <em class='nickname in' title='놔줘스크립트' >놔줘스크립트</em>
-                                                                        <strong class='writer_nikcon '>
-                                                                            <img src='/img/nik.gif' border=0  width='12'  height='11'  style='margin-left:2px;cursor:pointer;' onClick="window.open('/nagandr1113');">
-                                                                        </strong>
-                                                                        <span class="date">2023.03.20</span>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </section>
+                                function clear_keyword(onfocus) {
+                                    var form = $('form[name="f_search"]');
+                                    
+                                    if(typeof(onfocus) == 'undefined') {
+                                        $('.word_del', form).remove();
+                                        $('.in_keyword', form).val('');
+                                        $('.in_keyword', form).focus();
+                                    }
+                                    else {
+                                        $('.word_del', form).hide();
+                                    }
+                                }
+
+                                function reset_keyword() {
+                                    var form = $('form[name="f_search"]');
+
+                                    if(!$('.in_keyword', form).data('modified')) {
+                                        $('.word_del', form).show();
+                                    }
+                                }
+                                </script>-->
                             </section>
                             <!-- 푸터 -->
                             <footer class="gcfoot">

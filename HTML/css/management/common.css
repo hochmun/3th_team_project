@@ -1,8 +1,8 @@
 @charset "utf-8";
 @import url("https://fonts.googleapis.com/earlyaccess/nanumgothic.css");/*나눔고딕 웹폰트*/
 /*공통*/
-.sp_img{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png?2);background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
-.sp_bgimg{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_bgimg.png);background-repeat:no-repeat}
+.sp_img{background-image:url("/img/sp_img.png");background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
+.sp_bgimg{background-image:url("/img/sp_bgimg.png");background-repeat:no-repeat}
 .sp_loginout{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_loginout.png?1);background-repeat:no-repeat}
 .sp_years{position:absolute;right:0px;top:0;display:block;background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_years.png);background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
 .sp_sns{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_sns.png);background-repeat:no-repeat}

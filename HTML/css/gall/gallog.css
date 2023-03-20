@@ -88,7 +88,7 @@ font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothi
 .option_sort.gallog .select_arraybox .option_box li{padding:0 9px}
 
 h2.tit + .option_sort.gallog{position:absolute;right:0;top:-7px;margin:0}/*방명록*/
-.guestbook .option_sort.gallog .select_arraybox{width:35px;height:27px;min-width:auto}/*방명록 년도*/
+.guestbook .option_sort.gallog .select_arraybox{width:35px;height:27px;min-width:auto;}/*방명록 년도*/
 
 
 .btn_blue.smallest.go{display:block;float:left;width:60px;height:18px;;margin-left:10px;line-height:18px;text-align:center}/*211118 폰트 버그 line-height:20px*/
