@@ -24,6 +24,12 @@ public interface AdminDAO {
      */
     public int createMainGallery(galleryVO vo);
 
+    /**
+     * 2023/03/20 // 심규영 // 관리자 메인 갤러리 생성 셋팅 생성 추가
+     * @return
+     */
+    public int createMainGallerySetting(@Param("gell_num") int gell_num);
+
     // read
 
     /**

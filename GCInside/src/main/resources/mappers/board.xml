@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 2023/03/08 // 심규영 // 메인 인덱스 xml 생성 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gcInside.dao.BoardDAO">
+    <!-- create -->
+    <!-- read -->
+
+    <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
+    <select id="selectGellInfo" resultMap="selectGellInfoResultMap">
+        SELECT
+            a.`gell_num`,
+            b.`setting_sub_cate`
+        FROM `gc_gell` AS a
+        JOIN `gc_gell_setting` AS b ON a.gell_num = b.setting_gell_num
+        WHERE a.gell_address = #{gell_address};
+    </select>
+
+    <resultMap id="selectGellInfoResultMap" type="kr.co.gcInside.vo.galleryVO">
+        <id column="gell_num" property="gell_num"/>
+
+        <association property="Gell_SettingVO" javaType="kr.co.gcInside.vo.Gell_SettingVO">
+            <result column="setting_sub_cate" property="setting_sub_cate"></result>
+        </association>
+    </resultMap>
+    <!-- upload -->
+    <!-- delete -->
+</mapper>

@@ -31,6 +31,9 @@ public class galleryVO {
     // 추가필드
     private int gell_cate2;
     private String gell_cate2_name;
+    
+    // 추가 필드 vo 연결
+    private Gell_SettingVO gellSettingVO;
 
     // 추가 get, set
     // gell_num int -> String 변환
