@@ -2,7 +2,7 @@
 .listwrap .minor_intro_box{width:684px;padding:24px 0 0 2px}
 .img_contbox{float:left;width:56%}
 .mintro_imgbox{position:relative;display:block;float:left;width:156px;height:104px;
-    background-color:#fff;background-image:url(/img/minorbg.png);background-repeat:no-repeat;background-position: 0 0;background-size:156px 104px
+    background-color:#fff;background-image:url(/GCInside/img/minorbg.png);background-repeat:no-repeat;background-position: 0 0;background-size:156px 104px
   }
 .cover{display:block;background-repeat:no-repeat;background-position:50% 50%;background-size:cover;background-color:#fff}
 .mintro_imgbox .cover{width:156px;height:104px}
@@ -23,7 +23,7 @@
 .minor_ranking_box{position:relative;float:right;width:152px;height:153px;background:#f3f3f3;border-left:1px solid #d5d5d5;text-align:center}
 .btn_mgall_dcp{position:absolute;right:0;top:0;width:30px}
 .icon_mgall_dcp{display:block;width:30px;height:30px;background-position:-111px -275px}
-.ranking_tit{height:32px;margin:29px auto 0;background-image:url(/img/sp_minor_txt.png);background-repeat:no-repeat}
+.ranking_tit{height:32px;margin:29px auto 0;background-image:url(/GCInside/img/sp_minor_txt.png);background-repeat:no-repeat}
 .ranking_tit.hot{width:108px;background-position:0 0}/*흥한갤*/
 .ranking_tit.nohot{width:122px;background-position:0 -78px}/*안흥한갤*/
 .ranking_tit.darkness{width:106px;background-position:0 -117px}/*정전갤*/
@@ -34,10 +34,10 @@
 .ranking_tit.darkness1{width:100px;height:30px;background-position:-110px -112px}/*정전갤*/
 
 .rank_img{padding:7px 0 17px 1px;font-size:0}
-.outsied_img{display:inline-block;width:90px;height:29px;background:url(/img/sp_minor_txt.png) 0 -157px no-repeat}
+.outsied_img{display:inline-block;width:90px;height:29px;background:url(/GCInside/img/sp_minor_txt.png) 0 -157px no-repeat}
 .num_img,.txt_img{height:28px;margin-left:2px;vertical-align:top}
 .num_img:first-child{margin-left:0}
-.num_img{display:inline-block;width:16px;background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_num.png);background-repeat:no-repeat}
+.num_img{display:inline-block;width:16px;background-image:url(/GCInside/img/sp_num.png);background-repeat:no-repeat}
 .num_img.num0{background-position:0 1px}
 .num_img.num1{background-position:2px -31px}
 .num_img.num2{background-position:0 -65px}

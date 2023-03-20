@@ -65,6 +65,27 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script th:src="@{/js/ad/common.js}"></script>
     </th:block>
+
+    <!-- 2023/03/18 // 심규영 // 갤러리 board 헤더 공통 -->
+    <th:block th:fragment="boardHead">
+        <meta charset="UTF-8">
+        <title>ㅁㅁ 갤러리 - 커뮤니티 포털 사이트</title>
+        <link rel="shortcut icon" th:href="@{/img/logo_icon.png}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}"/>
+        <link rel="stylesheet" th:href="@{/css/minor/common.css}">
+        <link rel="stylesheet" th:href="@{/css/popup.css}">
+        <link rel="stylesheet" th:href="@{/css/gall/contents.css}">
+        <!-- 마이너 갤러리용 css -->
+        <link rel="stylesheet" th:href="@{/css/gall/minor.css}">
+        <script type="text/javascript" th:src="@{/js/minor/minor.js}"></script>
+        <script type="text/javascript" th:src="@{/js/ctr_cookie.js}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" th:src="@{/js/navigation.js}"></script>
+        <script type="text/javascript" th:src="@{/js/common.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lately_visit_new.js}"></script>
+        <script type="text/javascript" th:src="@{/js/gall/gallery.js}"></script>
+    </th:block>
 </head>
 <body>
 

@@ -34,6 +34,19 @@ public class SecurityConfig {
 	@Autowired
 	private SecurityUserService service;
 
+	/**
+	 * 2023/03/18 // 심규영 // iframe 동일 도메인 접근 허용
+	 * @param http
+	 * @return
+	 * @throws Exception
+	 */
+	@Bean
+	SecurityFilterChain iframeOptionFilter(HttpSecurity http) throws Exception {
+		http.headers().frameOptions().sameOrigin();
+
+		return http.build();
+	}
+
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
