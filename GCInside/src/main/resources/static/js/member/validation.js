@@ -250,6 +250,7 @@ let mailList = function(){
 		$('#email2').val(email_list);
 	}
 }
+
 // 이메일 인증코드 전송
 let codeSend = function() {
     let email1 = jQuery.trim($('#email1').val());			//이메일
@@ -305,6 +306,7 @@ let AuthCode = function() {
         }
     });
 }
+
 // 폼 전송
 function Recheck(){
     // 모든 필드가 채워져 있는지 확인
@@ -315,15 +317,17 @@ function Recheck(){
     let email1 = $('#email1').val();
     let email2 = $('#email2').val();
     let code = $('#code').val();
+    let v = grecaptcha.getResponse(); // 자동입력방지값
 
     if(member_uid == ""){alert('아이디를 입력해주세요.');return false;}
     if(gc_pw == ""){alert('비밀번호를 입력해주세요.');return false;}
     if(gc_pwc == ""){alert('비밀번호를 재입력해주세요.');return false;}
     if(user_nick == ""){alert('닉네임을 입력해주세요.');return false;}
+    if(gc_pw != gc_pwc){alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');return false;}
     if(email1 == ""){alert('이메일을 입력해주세요.');return false;}
     if(email2 == ""){alert('이메일을 입력해주세요.');return false;}
     if(code == ""){alert('인증코드를 입력해주세요.');return false;}
-    if(gc_pw != gc_pwc){alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');return false;}
+    if(v.length == 0){alert("'자동 입력 방지'를 체크해주세요.");return false;}
     return true;
 };
 

@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.session.ConcurrentSessionFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,8 @@ public class SecurityConfig {
 	 * @return
 	 * @throws Exception
 	 */
-	@Bean
+	/*@Bean 회원가입시 인증메일 에러로임시 비활성화 */
+	@Order(3)
 	SecurityFilterChain iframeOptionFilter(HttpSecurity http) throws Exception {
 		http.headers().frameOptions().sameOrigin();
 
@@ -48,6 +50,7 @@ public class SecurityConfig {
 	}
 
 	@Bean
+	@Order(1) // @Order = SecurityFilterChain 실행순서 어노테이션
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
 		.sessionManagement()
@@ -57,7 +60,9 @@ public class SecurityConfig {
 		.sessionRegistry(sessionRegistry());
 
 		// 전체 접근 가능
+		http.authorizeRequests().antMatchers("/**/**").permitAll();
 		http.authorizeRequests().antMatchers("/index").permitAll();
+
 
 		// /member/login 경로에 대한 로그인 설정
 		http.requestMatchers()
@@ -81,6 +86,7 @@ public class SecurityConfig {
 	}
 
 	@Bean
+	@Order(2)
 	SecurityFilterChain indexfilterChain(HttpSecurity http) throws Exception {
 		http
 		.sessionManagement()
@@ -91,6 +97,7 @@ public class SecurityConfig {
 
 		// 전체 접근 가능
 		http.authorizeRequests().antMatchers("/index").permitAll();
+		http.authorizeRequests().antMatchers("/**").permitAll();
 
 		// /index 경로에 대한 로그인 설정
 		http.requestMatchers()
@@ -115,7 +122,6 @@ public class SecurityConfig {
 		http.logout()
 		.logoutUrl("/logout");
 
-
 		http.userDetailsService(service);
 		return http.build();
 	}
@@ -136,22 +142,4 @@ public class SecurityConfig {
 			SecurityContextHolder.clearContext();
 		});
 	}
-	/*
-	@Bean
-	public LogoutSuccessHandler logoutSuccessHandler() {
-		return (request, response, authentication) -> {
-			HttpSession session = request.getSession(false);
-			System.out.println("세션 : "+ session);
-			if (session != null) {
-				session.invalidate(); // 세션 무효화
-			}
-			Cookie cookie = new Cookie("JSESSIONID", null); // 쿠키 삭제를 위해 빈 값을 할당
-			cookie.setMaxAge(0); // 쿠키 유효기간 0으로 설정
-			cookie.setPath("/");
-			response.addCookie(cookie); // 응답에 쿠키 추가
-		};
-	}
-
-	 */
-
 }

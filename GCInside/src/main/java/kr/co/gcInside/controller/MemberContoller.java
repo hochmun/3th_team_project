@@ -115,7 +115,7 @@ public class MemberContoller {
     /* @ResponseBody 어노테이션은 생략가능,ResponseEntity를 반환할 땐
        자동으로 응답 body에 데이터가 들어감 */
     @PostMapping("member/AuthCode")
-    public ResponseEntity<String> AuthCode(@RequestParam("code") String code, HttpSession session) {
+    public ResponseEntity<String> AuthCode(@RequestParam("code") String code, HttpSession session,HttpServletRequest req) {
         String sessionCode = (String) session.getAttribute("code");
         System.out.println("sessionCode: " + sessionCode + ", code: " + code);//
         if (sessionCode != null && sessionCode.equals(code)) { // 인증코드 일치
@@ -124,5 +124,6 @@ public class MemberContoller {
         } else { // 인증코드 불일치
             return ResponseEntity.badRequest().body("fail");
         }
+
     }
 }
