@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- 2023/03/20 // 라성준 // ad 광고 페이지 어사이드 -->
+    <main class="gcaside" th:fragment="adAside">
+        <div class="leftbox">
+            <section>
+                <h2 class="blind">왼쪽 서브메뉴 영역</h2>
+                <ul class="left_menu">
+                    <li class="one_depth">
+                        <a th:href="@{ad_guide_pc2}">Moblie web + PC 광고</a>
+                        <ul class="two_depth">
+                            <li><a th:href="@{ad_guide_pc2}">동영상 자동 짤방</a></li>
+                            <li><a th:href="@{ad_guide_wm1}">리스트 상단</a></li>
+                            <li><a th:href="@{ad_guide_wm2}">본문 자동 짤방</a></li>
+                            <li><a th:href="@{ad_guide_wm3}">리스트 아이콘 플로팅</a></li>
+                            <li><a th:href="@{ad_guide_wm4}">리스트 공지</a></li>
+                        </ul>
+                    </li>
+                    <li class="one_depth">
+                        <a th:href="@{ad_guide_mo3}">Moblie web 광고</a>
+                        <ul class="two_depth">
+                            <li><a th:href="@{ad_guide_mo3}">메인 중앙</a></li>
+                            <li><a th:href="@{ad_guide_mo1}">리스트 중간</a></li>
+                            <li><a th:href="@{ad_guide_mo4}">리스트 하단</a></li>
+                            <li><a th:href="@{ad_guide_mo2}">본문 상단</a></li>
+                        </ul>
+                    </li>
+                    <li class="one_depth">
+                        <a th:href="@{ad_guide_app1}">APP 광고</a>
+                        <ul class="two_depth">
+                            <li><a th:href="@{ad_guide_app1}">리스트 상단</a></li>
+                            <li><a th:href="@{ad_guide_app2}">자동 짤방</a></li>
+                        </ul>
+                    </li>
+                    <li class="one_depth">
+                        <a th:href="@{ad_guide_pc5}">PC 광고</a>
+                        <ul class="two_depth">
+                            <li><a th:href="@{ad_guide_pc5}">로고 배너</a></li>
+                            <li><a th:href="@{ad_guide_pc4}">메인 중앙</a></li>
+                            <li><a th:href="@{ad_guide_pc1}">리스트/본문 날개</a></li>
+                            <li><a th:href="@{ad_guide_pc3}">리스트 좌측</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <div class="download_cont">
+                    <a th:href="@{GCInside/company}" class="btn_download" target="_blank">매체소개서 다운로드</a>
+                    <a href="pdf" class="btn_download" target="_blank">광고단가표 다운로드</a>
+                </div>
+            </section>
+        </div>
+
+    </main>
+</body>
+</html>

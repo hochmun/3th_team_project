@@ -26,7 +26,7 @@ public class AdController {
 
     @GetMapping("ad/ad_guide_mo1")
     public String ad_guide_mo1(){
-        return "ad/ad_guide_app2";
+        return "ad/ad_guide_mo1";
     }
 
     @GetMapping("ad/ad_guide_mo2")
