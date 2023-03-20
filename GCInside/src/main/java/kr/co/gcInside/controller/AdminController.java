@@ -45,6 +45,7 @@ public class AdminController {
      * 2023/03/10 // 심규영 // 관리자 멤버 목록 및 검색 페이지 get맵핑
      * 2023/03/16 // 라성준 // 관리자 멤버 불러오기
      * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
+     * 2023.03.20 // 라성준 // 관리자 멤버 리스트 페이징
      *@searchType
      *@keyword
      *@return
@@ -62,7 +63,31 @@ public class AdminController {
         return "admin/member/search";
     }
 
+/**
+ @GetMapping("admin/member/search")
+ public String memberSearch(Model model,
+ @RequestParam Map<String, String> data,
+ @RequestParam(value = "page", defaultValue = "1") int page) {
+ int amountPerPage = 10; // 페이지당 보여줄 데이터 수
+ int totalCount = service.getMemberCount();
+ int totalPage = (int) Math.ceil((double) totalCount / amountPerPage); // 전체 페이지 수
+ int startIndex = (page - 1) * amountPerPage; // 해당 페이지의 시작 인덱스
 
+ List<MemberVO> memberList = null;
+ if (data.get("keyword") != null) {
+ memberList = service.searchMembersByCondition(data.get("searchType"), data.get("keyword"), startIndex, amountPerPage);
+ } else {
+ memberList = service.searchMember(startIndex, amountPerPage);
+ }
+
+ model.addAttribute("search", memberList);
+ model.addAttribute("totalPage", totalPage);
+ model.addAttribute("currentPage", page);
+
+ return "admin/member/search";
+ }
+    }
+/
 
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 설정 페이지 get 맵핑

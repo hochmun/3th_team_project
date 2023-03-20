@@ -27,9 +27,9 @@
     </h1>
     <div style="position:relative;float:right">
       <ul class="gmenu_list clear">
-        <li><a href="/ad/index.html">광고안내</a></li>
-        <li><a href="/ad/ad_guide.html"> 광고 상품 및 가이드</a></li>
-        <li><a href="#@gmail.com">광고문의</a></li>
+        <li><a th:href="@{/ad/index}">광고안내</a></li>
+        <li><a th:href="@{/ad/ad_guide_pc2}"> 광고 상품 및 가이드</a></li>
+        <li><a th:href="@{#@gmail.com}">광고문의</a></li>
       </ul>
     </div>
   </div>
@@ -43,53 +43,8 @@
   <div class="content clear">
     <div id="left_wrap" class="fl">
 
-        <div class="leftbox">
-            <section>
-              <h2 class="blind">왼쪽 서브메뉴 영역</h2>
-              <ul class="left_menu">
-                <li class="one_depth">
-                  <a href="ad_guide_pc2.html">Moblie web + PC 광고</a>
-                  <ul class="two_depth">
-                  <li><a href="ad_guide_pc2.html">동영상 자동 짤방</a></li>
-                    <li><a href="ad_guide_wm1.html">리스트 상단</a></li>
-                    <li><a href="ad_guide_wm2.html">본문 자동 짤방</a></li>
-                    <li><a href="ad_guide_wm3.html">리스트 아이콘 플로팅</a></li>
-                    <li><a href="ad_guide_wm4.html">리스트 공지</a></li>
-                  </ul>
-                </li>
-                <li class="one_depth">
-                  <a href="ad_guide_mo3.html">Moblie web 광고</a>
-                  <ul class="two_depth">
-                    <li><a href="ad_guide_mo3.html">메인 중앙</a></li>
-                    <li><a href="ad_guide_mo1.html">리스트 중간</a></li>
-                    <li><a href="ad_guide_mo4.html">리스트 하단</a></li>
-                    <li><a href="ad_guide_mo2.html">본문 상단</a></li>
-                  </ul>
-                </li>
-                      <li class="one_depth">
-                  <a href="ad_guide_app1.html">APP 광고</a>
-                  <ul class="two_depth">
-                    <li><a href="ad_guide_app1.html">리스트 상단</a></li>
-                    <li><a href="ad_guide_app2.html">자동 짤방</a></li>
-                  </ul>
-                </li>
-                <li class="one_depth">
-                  <a href="ad_guide_pc5.html">PC 광고</a>
-                  <ul class="two_depth">
-                    <li><a href="ad_guide_pc5.html">로고 배너</a></li>
-                    <li><a href="ad_guide_pc4.html">메인 중앙</a></li>
-                    <li><a href="ad_guide_pc1.html">리스트/본문 날개</a></li>
-                    <li><a href="ad_guide_pc3.html">리스트 좌측</a></li>
-          
-                  </ul>
-                </li>
-              </ul>
-              <div class="download_cont">
-                <a href="gcinside.com/company" class="btn_download" target="_blank">매체소개서 다운로드</a>
-                <a href="pdf" class="btn_download" target="_blank">광고단가표 다운로드</a>
-              </div>
-            </section>
-          </div>
+      <th:block th:replace="~{fragment/aside_fragment::adAside}"></th:block>
+      
                   </div>
                   <div id="right_wrap" class="right_content">
                     <section>

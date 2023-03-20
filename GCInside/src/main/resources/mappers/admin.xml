@@ -54,7 +54,7 @@
                 <when test="searchType=='nickname'">
                     member_nick LIKE '%${keyword}%'
                 </when>
-                <when test="searchType=='point'">
+                <when test="searchType=='point' and keyword != null and keyword != ''">
                     member_point >= ${keyword}
                 </when>
                 <when test="searchType=='regdate'">
