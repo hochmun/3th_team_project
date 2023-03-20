@@ -54,7 +54,7 @@ tbody tr:hover{background:#f3f3f3}
 
 .icon_go{display:inline-block;width:5px;height:9px;margin-left:6px;background-position:-36px -45px}
 .user_data .icon_go{margin-left:10px}
-.icon_img{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:7px;background-image:url(/img/icon_img.png);background-repeat:no-repeat}
+.icon_img{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:7px;background-image:url(/GCInside/img/icon_img.png);background-repeat:no-repeat}
 .icon_notic{background-position:0px 0}/*공지*/
 .icon_toprecomimg{background-position:0px -25px}/*초개념*/
 .icon_recomimg{background-position:0px -50px}/*이미지개념*/
@@ -118,7 +118,7 @@ input.put_inquiry:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #fff 
 .write_infobox p{line-height:20px}
 .write_infobox p > button{font-size:12px;color:#666;vertical-align:0}
 .write_infobox p > button:hover{text-decoration:underline}
-.write_infobox p::before{content:"";display:inline-block;width:9px;height:9px;margin-right:4px;background:url(/img/sp_img.png) no-repeat -86px -63px}/*churl*/
+.write_infobox p::before{content:"";display:inline-block;width:9px;height:9px;margin-right:4px;background:url(/GCInside/img/sp_img.png) no-repeat -86px -63px}/*churl*/
 .write_infobox .hitchek{margin-left:10px;line-height:20px}
 .write_infobox .hitchek label{margin-left:3px}
 .write_infobox .hitchek .checkbox input[type="checkbox"]{top:3px}
@@ -433,11 +433,13 @@ tbody tr:hover{background:#f3f3f3}
 
 .icon_go{display:inline-block;width:5px;height:9px;margin-left:6px;background-position:-36px -45px}
 .user_data .icon_go{margin-left:10px}
+.icon_img{display:inline-block;width:15px;height:15px;vertical-align:-3px;margin-right:7px;background-image:url(/GCInside/img/icon_img.png);background-repeat:no-repeat}
 .icon_notic{background-position:0px 0}/*공지*/
 .icon_toprecomimg{background-position:0px -25px}/*초개념*/
 .icon_recomimg{background-position:0px -50px}/*이미지개념*/
 .icon_recomtxt{background-position:0px -75px}/*텍스트 개념*/
 .icon_pic{background-position:0 -100px}/*이미지*/
+.icon_txt{background-position:0px -123px}/*텍스트*/
 .icon_movie{background-position:0px -147px}/*동영상*/
 .icon_recomovie{background-position:-3px -362px}/*210330 개념 동영상*/
 .icon_survey{background-position:0px -170px}/*설문*/

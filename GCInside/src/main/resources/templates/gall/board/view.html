@@ -1,140 +1,22 @@
 <!-- 2023/03/15 // 라성준 //-->
 <!DOCTYPE html>
-<html lang="ko" class="darkmode">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>글보기</title>
-    <link rel="shortcut icon" href="/img/logo_icon.png" />
-	<link rel="stylesheet" type="text/css" href="/css/reset.css"/>
-	<link rel="stylesheet" href="/css/minor/common.css">
-	<link rel="stylesheet" href="/css/popup.css">
-	<link rel="stylesheet" href="/css/gall/contents.css">
-	<!-- 마이너 갤러리용 css -->
-	<link rel="stylesheet" href="/css/gall/minor.css">
-	<script type="text/javascript" src="/js/minor/minor.js"></script>
-	<script type="text/javascript" src="/js/ctr_cookie.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/js/navigation.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
+    <th:block th:replace="~{fragment/head_fragment::boardHead}"></th:block>
 </head>
 <body>
     <div class="gcwrap width1160 list_wrap">
 		<!-- 헤더 -->
-        <header class="gcheader typea">
-
-            <div class="gchead">
-                <!-- 메인 로고 -->
-                <h1 class="gc_logo">
-                    <div>
-                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
-                    </div>
-                </h1>
-
-                <div class="wrap_search">
-                    <!-- 갤러리 통합검색-->
-                    <form>
-                        <fieldset>
-                            <div class="top_search clear">
-                                <div class="inner_search">
-                                    <input class="in_keyword" type="text" name="search"
-                                    placeholder="갤러리 & 통합검색" autocomplete="off"
-                                    title="검색어 입력">
-                                </div>
-                                <button class="sp_main bnt_search"></button>
-                                <!-- 검색어 자동 완성 기능 -->
-                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-        </header>
+        <header th:replace="~{fragment/header_fragment::boardHeader}"></header>
 
         <!-- gnb -->
-        <div class="gnb_bar">
-            <nav class="gnb clear">
-                <ul class="gnb_list clear">
-                    <li>
-                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
-                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
-                        <!-- 2차메뉴 -->
-                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
-                            <span class="sp_img depth_bg"></span>
-                            <ul class="depth2_list" >
-                              <li><a href="#">게임</a></li>
-                              <li><a href="#">연예/방송</a></li>
-                              <li><a href="#">스포츠</a></li>
-                              <li><a href="#">교육/금융/IT</a></li>
-                              <li><a href="#">여행/음식/생물</a></li>
-                              <li><a href="#">취미/생활</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="#">마이너갤</a></li>
-                    <li><a href="#">미니갤</a></li>
-                </ul>
+        <div class="gnb_bar" th:replace="~{fragment/gnb_fragment::mainGnb}"></div>
 
-                <!-- 어제 게시글, 댓글 등록 수 -->
-                <div class="gall_exposure">
-                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
-                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
-                    <div class="ltr"><a href="#">로터리 응모</a></div>
-                </div>
-            </nav>
-        </div>
         <!-- 최근 방문 탭 -->
-        <div class="visit_bookmark">
-            <div class="newvisit_history vst">
-                <h3 class="tit vst_title l_div_style">최근 방문</h3>
-                <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
-                <button type="button" class="btn_open" onclick="openLately()">
-                    <em class="sp_img icon_listmore"></em>
-                </button>
-                <button type="button" class="bnt_visit_prev">
-                    <em class="sp_img icon_prev"></em>
-                </button>
-                <div class="newvisit_box">
-                    <!-- 최근방문 갤러리 리스트 -->
-                    <ul class="newvisit_list vst_listbox l_div_style"></ul>
+        <div class="visit_bookmark" th:replace="~{fragment/gnb_fragment::mainVisit}"></div>
 
-                    <!-- 즐겨찾기 갤러리 리스트 -->
-                    <ul class="newvisit_list bkmark_listbox f_div_style" style="display:none"></ul>
-                </div>
-                <button type="button" class="bnt_visit_next">
-                    <em class="sp_img icon_next"></em>
-                </button>
-                <button type="button" class="bnt_newvisit_more" onclick="openLately()">전체</button>
-                <!-- 최근방문 / 즐겨찾기 레이어 -->
-                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;" id="visit_history_lyr">
-                    <div class="pop_content under_catelist newvisit_layer">
-                        <div class="tabs">
-                            <ul class="tabslist clear">
-                                <li class="tab_l"><button type="button" onclick="tabLately('lately')">최근 방문</button></li>
-                                <li class="tab_f"><button type="button" onclick="tabLately('favorite')">즐겨찾기</button></li>
-                            </ul>
-                        </div>
-                        <div class="toptab_content">
-                            <div class="visit_div 1_div_style">
-                                <!-- 최근 방문 리스트  -->
-							    <div class="visit_tablist" style="display:block">
-                                    <ul class="under_listbox vst_list"></ul>
-                                    <div class="tabcon_bottom">
-                                        <button type="button" class="list_modi">전체 삭제</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite_div f_div_style"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    <div class="wrap_inner">
+        <div class="wrap_inner">
         <main id="container">
             <section>
                 <!-- 갤러리명 타이틀바 ~ 이용안내 -->
@@ -227,7 +109,7 @@
                                 <div class="inner">
                                     <div class="up_num_box">
                                         <p class="up_num font_red" id="recommend_view_up_5">124</p>
-                                        <p class="sup_num"><spen class="writer_nikcon"><img src="/img/fix_nik.gif" alt="고정닉"></spen>
+                                        <p class="sup_num"><spen class="writer_nikcon"><img th:src="@{/img/fix_nik.gif}" alt="고정닉"></spen>
                                                             <span class="font_blue smallnum" id="recommend_view_up_fix_5">17</span>
                                         </p>
                                     </div>
@@ -412,7 +294,7 @@
                                                 <span class="nickname in" title="닉네임"><em>닉네임</em></span>
                                                 <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
                                                 <a class="writer_nikcon">
-                                                    <img src="/img/fix_managernik.gif" alt="갤로그로 이동합니다."
+                                                    <img th:src="@{/img/fix_managernik.gif}" alt="갤로그로 이동합니다."
                                                     title="uid** : 갤로그로 이동합니다." width="12" height="11"
                                                     style="cursor: pointer;margin-left: 2px;">
                                                 </a>
@@ -474,7 +356,7 @@
                                                 <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
                                                 <!-- 갤로그 있을 경우 표시 ex.유저-->
                                                 <a class="writer_nikcon">
-                                                    <img src="/img/fix_sub_managernik.gif" alt="갤로그로 이동합니다."
+                                                    <img th:src="@{/img/fix_sub_managernik.gif}" alt="갤로그로 이동합니다."
                                                     title="uid** : 갤로그로 이동합니다." width="12" height="11"
                                                     style="cursor: pointer;margin-left: 2px;">
                                                 </a>
@@ -505,7 +387,7 @@
                                                 <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
                                                 <!-- 갤로그 있을 경우 표시 ex.유저-->
                                                 <a class="writer_nikcon">
-                                                    <img src="/img/fix_nik.gif" alt="갤로그로 이동합니다."
+                                                    <img th:src="@{/img/fix_nik.gif}" alt="갤로그로 이동합니다."
                                                     title="uid** : 갤로그로 이동합니다." width="12" height="11"
                                                     style="cursor: pointer;margin-left: 2px;">
                                                 </a>
@@ -535,7 +417,7 @@
                                                 <!-- 클릭시 갤로그 이동 추후 개발 하기 -->
                                                 <!-- 갤로그 있을 경우 표시 ex.유저-->
                                                 <a class="writer_nikcon">
-                                                    <img src="/img/nik.gif" alt="갤로그로 이동합니다."
+                                                    <img th:src="@{/img/nik.gif}" alt="갤로그로 이동합니다."
                                                     title="uid** : 갤로그로 이동합니다." width="12" height="11"
                                                     style="cursor: pointer;margin-left: 2px;">
                                                 </a>
@@ -876,64 +758,9 @@
 
             
         </main>
-                    
-		<!-- 푸터 -->
-        <footer class="gcfoot">
-            <div class="gc_all">
-                <div class="all_box mandudel">
-					<!-- 각 카테고리의 상위 랭킹 갤러리 10개씩 -->
-                    <div class="all_list">
-                        <dl>
-                            <dt>게임</dt>
-                            <dd><a href="#">ㅁㅁ 갤러리</a></dd>
-                            <dd><a href="#">ㅁㅁ 갤러리</a></dd>
-                        </dl>
-                        <dl>
-                            <dt>연애/방송</dt>
-                        </dl>
-                        <dl>
-                            <dt>스포츠</dt>
-                        </dl>
-                        <dl>
-                            <dt>교육/금융/IT</dt>
-                        </dl>
-                        <dl>
-                            <dt>여행/음식/생물</dt>
-                        </dl>
-                        <dl>
-                            <dt>취미/생활</dt>
-                        </dl>
-                    </div>
-                    <div class="all_bottom">
-                        <a href="#" target="_blank"><strong class="tit">광고안내</strong></a>
-                        <span class="list">
-                            <a href="#" target="_blank" class="link_info">디스플레이광고</a>
-                            <a href="#" target="_blank" class="link_info">프로모션</a>
-                            <a href="#" target="_blank" class="link_info">광고문의</a>
-                        </span>
-                        <span class="bottom_menu">
-                            <a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a>
-                            <a class="menu_link menu_fold" href="javascript:void(0);" style="display:block"><em class="sp_img icon_fold"></em>닫기</a>
-                            <a class="menu_link menu_open" href="javascript:void(0);" style="display:none"><em class="sp_img icon_open"></em>열기</a>
-                            <a class="menu_link" href="#top" ><em class="sp_img icon_up"></em>맨위로</a>
-                        </span>
-                    </div>
-                </div>
-            </div> 
-                
-
-            <div class="info_policy">
-                <a href="#">회사소개</a>
-                <a href="#">제휴안내</a>
-                <a href="#">광고안내</a>
-                <a href="#">이용약관</a>
-                <a href="#"><b>개인정보처리방침</b></a>
-                <a href="#">청소년보호정책</a>
-            </div>
-
-            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
-        </footer>
 	</div>
+
+    <footer class="gcfoot" th:replace="~{fragment/footer_fragment::boardFooter}"></footer>
 </body>
 </html>
 
