@@ -56,7 +56,7 @@
                                     <td th:text="${member.member_uid}">hong123</td>
                                     <td th:text="${member.member_email}">human@gmail.com</td>
                                     <td th:text="${member.member_nick}">홍길동</td>
-                                    <td th:text="${member.member_point}">5,500</td>
+                                    <td th:text="${#numbers.formatInteger(member.member_point, 1, 'COMMA')}">5,500</td>
                                     <td th:text="${member.member_regip}">000.000.0.0</td>
                                     <td th:text="${member.member_rdate.substring(2, 11)}">0000-00-00</td>
                                     <td><a href="javascript:;" onclick="popup_open()">[설정]</a></td>
