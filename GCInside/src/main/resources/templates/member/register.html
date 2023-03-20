@@ -37,36 +37,36 @@
                             <div class="form_txt">
                               <input type="password" class="int" id="gc_pw" name="gc_pw" title="비밀번호 입력" maxlength="20" placeholder="비밀번호를 입력해 주세요."><!--비밀번호 조건 불일치시 배경색 클래스 rule_out -->
                               <input type="password" class="int pw_check" id="gc_pwc" name="gc_pwc" title="비밀번호 확인 입력" maxlength="20" placeholder="비밀번호를 재확인해 주세요.">
-                              <!-- 200602 비밀번호 조건, 안전정도 -->
+                              <!--  비밀번호 조건, 안전정도 -->
                               <div class="pw_rule">
                                 <div class="pw_tip">
                                   <p class="tip_tit">비밀번호 필수 조건</p>
-                                  <div class="checkbox chkStr"> <!--200602 조건 충족 시 .on 추가-->
+                                  <div class="checkbox chkStr"> <!-- 조건 충족 시 .on 추가-->
                                     <p class="chklbl">영문, 숫자, 특수문자 조합입니다.</p>
                                   </div>
-                                  <dis class="checkbox chkLen"> <!--200602 조건 충족 시 .on 추가-->
+                                  <dis class="checkbox chkLen"> <!-- 조건 충족 시 .on 추가-->
                                     <p class="chklbl">8~20자입니다.</p>
                                   </dis>
                                 </div>
             
                                 <div class="pw_step">
-                                  <div class="step_box">  <!--200602 사용 불가:impossible / 보통:normal / 안전:safe 클래스 추가 -->
+                                  <div class="step_box">  <!-- 사용 불가:impossible / 보통:normal / 안전:safe 클래스 추가 -->
                                     <div class="top">
                                         <span class="step_tit">안전 정도</span>
                                         <button type="button" class="btn_pw_info" onclick="showLayer(this, 'pwInfoLayer');return false;"><span class="blind">비밀번호 설정 안내</span><em class="sp_img icon_pwinfo_open"></em></button>
-                                         <!--200602<span class="step_txt">사용 불가</span> 사용 불가:impossible / 보통:normal / 안전:safe -->
+                                         <!--<span class="step_txt">사용 불가</span> 사용 불가:impossible / 보통:normal / 안전:safe -->
                                     </div>
                                     <div class="btm_box">
                                       <span class="bar"></span>
                                     </div>
                                   </div>
             
-                                  <!--200602 .impossible 추가될때만 출력 -->
+                                  <!-- .impossible 추가될때만 출력 -->
                                   <p class="impsb_txt tip1" style="display:none">비밀번호가 일치하지 않습니다.</p>
                                   <p class="impsb_txt tip2" style="display:none">아이디, 닉네임과 동일한 비밀번호는 사용 불가합니다.</p>
                                   <p class="impsb_txt tip3" style="display:none">영문, 숫자 동일 및 연속 3자리 또는 특수문자 동일 3자리 사용 불가합니다.<br>예) 123, 111, abc, aaa, !!!</p>
                                 </div>
-                                <!-- 200602 비밀번호 설정 안내 팝업 -->
+                                <!-- 비밀번호 설정 안내 팝업 -->
                                 <div class="pop_wrap type2" id="pwInfoLayer" style="left: 77px; top: 70px; display: none;">
                                   <div class="pop_content pw_seting">
                                     <div class="pop_head dashed">
@@ -127,9 +127,6 @@
                             <!-- form_txt.id -->
                             <div class="form_txt">
                               <div class="clear">
-                    <!--<input type="hidden" id="code_email_type" name="code_email_type" value="JN">
-                    <input type="hidden" id="c_email_auth" name="c_email_auth" value="">
-                    <input type="hidden" id="c_email_auth_sign" name="c_email_auth_sign" value="">-->
                                 <input type="text" class="int" id="email1" name="email1" title="이메일 입력" value="" maxlength="30" style="text-transform: lowercase">
                                 <span class="deco_mail">@</span>
                                 <input type="text" class="int" id="email2" name="email2" title="이메일 주소 입력" readonly="" maxlength="20">
@@ -151,15 +148,11 @@
                                 </div>
                               </div>
             
-                              <!-- tip_msgbox -->
                               <div class="tip_msgbox">
-                                <!-- 210913 텍스트 수정 -->
                                 <p class="tip_msg tip_deco_bar">이메일은 아이디 찾기/비밀번호 재설정 및 탈퇴 시 사용되므로 사용하시는 이메일로 입력 부탁드립니다.</p>
                                 <p class="tip_msg tip_deco_bar">인증 코드 발송 후 코드를 입력해 주세요.</p>
-                                <!-- //210913 텍스트 수정 -->
                               </div>
-                              <!-- //tip_msgbox -->
-                              <!-- incode_wrap 인증코드 입력 -->
+                              <!-- 인증코드 입력 -->
                               <div class="incode_wrap">
                                 <div class="code">
                                   <div class="code_box clear">
@@ -167,7 +160,7 @@
                                     <input type="text" id="code" name="code" class="code_input" title="인증코드" placeholder="인증 코드 입력" maxlength="10">
                                     <button type="button" class="btn_codeok" onclick="AuthCode()">확인</button>
                                     </div>
-                                    <button type="button" class="btn_white small btn_recode" onclick="codeSend()">인증 코드 받기</button>
+                                    <button type="button" id="sendbtncheck" class="btn_white small btn_recode" onclick="codeSend()">인증 코드 받기</button>
                                   </div>
                                   <p class="tip_msg" id="time_text" style="display:none">인증 번호 입력까지 남은 시간은<b id="time" class="font_red">4분 46초</b>입니다.</p>
                                   <p class="email_agreemsg">&#8251; 수신 지연 또는 스팸으로 분류될 수 있으니 확인 바랍니다.</p>
@@ -175,23 +168,20 @@
                               </div>
                             </div>
                           </div>
-                          <!-- //.form_group.email -->
                           <!-- 자동 입력 방지 -->
                           <div class="form_group kapcode">
                             <div class="form_tit">자동 입력 방지</div>
-                            <!-- form_txt -->
                             <div class="form_txt">
                                 <div class="g-recaptcha" data-sitekey="6LeF09wkAAAAAIEZXKGZu0ZpwQixQ_0kQU8y6prR"></div>
                             </div>
                             <!-- //자동 입력 방지 -->
-                            <!-- //form_txt -->
                           </div>
                         </fieldset>
                     </div>
                   </div>
                   <div class="btn_box clear">
                     <div class="fr">
-                      <button type="submit" class="btn_grey small bnt_next" onclick="return check_recaptcha();">확인</button>
+                      <button type="submit" class="btn_grey small bnt_next">확인</button>
                     </div>
                   </div>
                 </section>
@@ -200,15 +190,6 @@
             </div>
             </main>
             <script>$(function() {formInit();});</script>
-<script>function check_recaptcha(){
-                      let v = grecaptcha.getResponse();
-                      if(v.length == 0){
-                        alert("'자동 입력 방지'를 체크해주세요.")
-                        return false;
-                      }else{
-                        return true;
-                      }
-                    }</script>
 <th:block th:replace="~{member/_footer}"></th:block>
 </div>
 </body>
