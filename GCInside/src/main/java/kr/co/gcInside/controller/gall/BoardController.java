@@ -22,10 +22,11 @@ public class BoardController {
      *              m       : 메인
      *              mgall   : 마이너
      *              mini    : 미니
-     *
+     *              
      *      들어오는 값
-     *          id : 갤러리 주소
-     *      
+     *          기본 공통
+     *              id : 갤러리 주소
+     *
      * @param grade
      * @return
      */
@@ -36,52 +37,34 @@ public class BoardController {
     }
 
     /**
-     * 2023/03/18 // 심규영 // 글 쓰기 화면 불러오기
+     * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료
      *
      *      restAPI 정보
      *          grade => 갤러리 등급 정보
      *              m       : 메인
      *              mgall   : 마이너
      *              mini    : 미니
+     *
+     *          type => 페이지 구별 용
+     *              lists   : 목록
+     *              view    : 보기
+     *              write   : 쓰기
+     *              modify  : 수정
+     *
+     *      들어오는 값
+     *          기본 공통
+     *              id : 갤러리 주소
+     *          수정, 보기
+     *              no : 글 번호
+     *              pg : 페이지 번호
      *
      * @param grade
      * @return
      */
-    @GetMapping("{grade}/board/write")
-    public String write(@PathVariable("grade") String grade) {
-        return "gall/board/write";
-    }
-
-    /**
-     * 2023/03/18 // 심규영 // 글 보기 화면 불러오기
-     *
-     *      restAPI 정보
-     *          grade => 갤러리 등급 정보
-     *              m       : 메인
-     *              mgall   : 마이너
-     *              mini    : 미니
-     *
-     * @return
-     */
-    @GetMapping("{grade}/board/view")
-    public String view(@PathVariable("grade") String grade){
-        return "gall/board/view";
-    }
-
-    /**
-     * 2023/03/18 // 심규영 // 글 수정 화면 불러오기
-     *
-     *      restAPI 정보
-     *          grade => 갤러리 등급 정보
-     *              m       : 메인
-     *              mgall   : 마이너
-     *              mini    : 미니
-     *
-     * @return
-     */
-    @GetMapping("{grade}/board/modify")
-    public String modify(@PathVariable("grade") String grade) {
-        return "gall/board/modify";
+    @GetMapping("{grade}/board/{type}/")
+    public String board(@PathVariable("grade") String grade, @PathVariable("type") String type,
+                       @RequestParam Map<String, String> data) {
+        return "gall/board/total";
     }
 
     /**
