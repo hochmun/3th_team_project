@@ -1,8 +1,12 @@
 package kr.co.gcInside.controller.gall;
 
 
+import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
+import kr.co.gcInside.vo.galleryVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +18,7 @@ import java.util.Map;
 /**
  * 2023/03/18 // 심규영 // 갤러리 글 컨트롤러 생성
  */
+@Slf4j
 @Controller
 public class BoardController {
 
@@ -79,18 +84,20 @@ public class BoardController {
     @GetMapping("{grade}/board/{type}/")
     public String board(@PathVariable("grade") String grade, @PathVariable("type") String type,
                         @RequestParam Map<String, String> data,
-                        Model model) {
+                        Model model,
+                        @AuthenticationPrincipal MyUserDetails myUserDetails) {
         // 주소 체크
         if(service.URLCheck(grade,type)) return "index";
         
         // id 값에 따른 갤러리 정보 불러오기
         // 불러오는 내용
         // 갤러리 말머리 설정
-        service.selectGellInfo(data.get("id"));
+        galleryVO galleryVO = service.selectGellInfo(data.get("id"));
 
         // 페이지 종류 전송
         model.addAttribute("type", type);
         model.addAttribute("grade", grade);
+        model.addAttribute("galleryVO", galleryVO);
 
         return "gall/board/total";
     }

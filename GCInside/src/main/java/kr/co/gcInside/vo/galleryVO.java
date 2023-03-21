@@ -31,6 +31,10 @@ public class galleryVO {
     // 추가필드
     private int gell_cate2;
     private String gell_cate2_name;
+    /** 연관 갤러리 개수 */
+    private int relation_count;
+    /** 연관 갤러리로 추가한 갤러리 개수 */
+    private int re_relation_count;
     
     // 추가 필드 vo 연결
     private Gell_SettingVO gellSettingVO;
