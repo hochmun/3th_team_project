@@ -1,6 +1,8 @@
 package kr.co.gcInside.utill;
 
 
+import kr.co.gcInside.dto.PagingDTO;
+
 /**
  * 페이징 처리 도구
  * @since 2023/02/09 // 심규영 // 페이징 처리 도구 생성
@@ -85,7 +87,7 @@ public class PagingUtil {
      * 페이징 처리후 DTO에 담아서 리턴
      * @since 2023/02/09 // 심규영 // 최초작성
      * @return PagingDTO // 데이터 저장 객체
-
+     */
     public PagingDTO getPagingDTO(String pg, int total) {
         int currentPage = getCurrentPage(pg);
         int start = getLimitStart(currentPage);
@@ -95,5 +97,5 @@ public class PagingUtil {
 
         return new PagingDTO(groups[0], groups[1], currentPage,lastPage,start);
     }
-     */
+
 }
