@@ -26,5 +26,9 @@ public class MemberService {
         int count = dao.countByMemberUid(member_uid);
         return count > 0;
     }
+    public boolean isExistEmail(String member_email){
+        int count = dao.countByMemberEmail(member_email);
+        return count > 0;
+    }
 
 }

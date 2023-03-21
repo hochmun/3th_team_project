@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 @Service
 public class EmailService {
     private final JavaMailSender javaMailSender;
+    @Autowired
+    private MemberService service;
 
     @Autowired
     public EmailService(JavaMailSender javaMailSender) {
@@ -40,4 +42,5 @@ public class EmailService {
         sendEmail(toEmail,subject,body);
         return code;
     }
+
 }

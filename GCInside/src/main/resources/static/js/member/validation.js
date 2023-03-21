@@ -331,3 +331,23 @@ function Recheck(){
     return true;
 };
 
+// 아이디 찾기
+let member_emailResult = function(){
+    if(!$("#member_email").val()) {
+        alert("이메일을 입력해 주세요.");
+        $("#member_email").focus();
+        return false;
+    }
+    let member_email = $('#member_email').val();
+    let jsonData = {"member_email" : member_email};
+    $.ajax({
+        type : "get",
+        url : '/GCInside/member/checkEmail',
+        data : jsonData,
+        success : function(data){
+            if(data.result === 'fail'){
+                alert('입력한 이메일을 찾을수없습니다.');
+            }else{}
+        }
+    });
+};

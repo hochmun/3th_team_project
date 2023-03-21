@@ -106,6 +106,20 @@ public class MemberContoller {
         }
         return resultMap;
     }
+    @ResponseBody
+    @GetMapping("member/checkEmail")
+    public Map<String, Object> checkEmail(@RequestParam(value = "member_email") String member_email) {
+        Map<String, Object> resultMap = new HashMap<>();
+        boolean isExistEmail = service.isExistEmail(member_email);
+        if (isExistEmail) {
+            resultMap.put("result", "success");
+            resultMap.put("message", "존재하는 이메일 입니다.");
+        } else {
+            resultMap.put("result", "fail");
+            resultMap.put("message", "존재하지않는 이메일 입니다.");
+        }
+        return resultMap;
+    }
 
     @PostMapping("member/sendEmailCode") // 이메일보내는 컨트롤러
     public ResponseEntity<?> sendEmailCode(@RequestParam String email, HttpSession session) throws Exception {
