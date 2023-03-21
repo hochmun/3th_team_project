@@ -47,6 +47,11 @@ public class Gell_SettingVO {
     private int setting_be_recommend;
 
     private int setting_be_recommend_standard;
+    /**
+     * 갤러리 말머리 개수
+     * 0일 경우 비활성
+     * 최대 15개
+     */
     private int setting_sub_cate;
     private int setting_basic_cate;
     private int setting_p_word;

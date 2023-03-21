@@ -11,7 +11,12 @@
     <select id="selectGellInfo" resultMap="selectGellInfoResultMap">
         SELECT
             a.`gell_num`,
-            b.`setting_sub_cate`
+            a.`gell_name`,
+            a.`gell_address`,
+            a.`gell_grade`,
+            b.`setting_sub_cate`,
+            (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_gell_num = a.gell_num) AS relation_count,
+            (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_relation_gell_num = a.gell_num) AS re_relation_count
         FROM `gc_gell` AS a
         JOIN `gc_gell_setting` AS b ON a.gell_num = b.setting_gell_num
         WHERE a.gell_address = #{gell_address};
@@ -19,8 +24,13 @@
 
     <resultMap id="selectGellInfoResultMap" type="kr.co.gcInside.vo.galleryVO">
         <id column="gell_num" property="gell_num"/>
+        <result column="gell_name" property="gell_name"/>
+        <result column="gell_address" property="gell_address"/>
+        <result column="gell_grade" property="gell_grade"/>
+        <result column="relation_count" property="relation_count"/>
+        <result column="re_relation_count" property="re_relation_count"/>
 
-        <association property="Gell_SettingVO" javaType="kr.co.gcInside.vo.Gell_SettingVO">
+        <association property="gellSettingVO" javaType="kr.co.gcInside.vo.Gell_SettingVO">
             <result column="setting_sub_cate" property="setting_sub_cate"></result>
         </association>
     </resultMap>

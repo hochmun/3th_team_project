@@ -1,7 +1,8 @@
 <!-- 2023/03/20 // 심규영 // 글 수정, 글 보기, 글 쓰기 공통 작업 -->
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <th:block th:replace="~{fragment/head_fragment::boardHead}"></th:block>
 
@@ -22,12 +23,12 @@
     <main id="container">
           <section>
             <!-- 갤러리명 타이틀바 ~ 팝업 창 -->
-            <th:block th:replace="~{fragment/editor_fragment::gall_main_header}"></th:block>
+            <th:block th:replace="~{fragment/editor_fragment::gall_main_header(galleryVO = ${galleryVO}, grade = ${grade})}"></th:block>
 
 
             <th:block th:if="${type} != 'view'">
               <!-- 글 작성 메인 -->
-              <article id="write_wrap" class="clear" th:replace="~{fragment/editor_fragment::write_from}"></article>
+              <article id="write_wrap" class="clear" th:replace="~{fragment/editor_fragment::write_from(galleryVO = ${galleryVO})}"></article>
             </th:block>
 
             <!-- 글 보기  -->
@@ -333,7 +334,7 @@
                 </div>
             </th:block>
 
-
+        <!-- 글 보기 하단 글 리스트 -->
         <th:block th:if="${type} == 'view'">
           <!-- 글 보기시 하단 글 리스트 -->
           <div id="bottom_listwrap" class="listwrap clear">

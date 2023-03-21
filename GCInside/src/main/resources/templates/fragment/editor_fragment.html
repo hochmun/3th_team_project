@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
   <!-- 2023/03/19 // 심규영 // 글 작성 공통 fragment -->
-  <article id="write_wrap" class="clear" th:fragment="write_from">
+  <article id="write_wrap" class="clear" th:fragment="write_from(galleryVO)">
     <form action="#">
       <!-- 제목 -->
       <div class="clear">
@@ -14,18 +15,22 @@
         <fieldset>
           <div class="blind"></div>
           <!-- 닉네임, 비밀번호 -->
-          <div class="input_box input_infotxt">
-            <label for="name" class="txt_placeholder">닉네임</label>
-            <input id="name" class="put_inquiry f_blank" type="text" name="name" maxlength = "15">
-          </div>
 
-          <div class="input_box input_infotxt">
-            <label for="password" class="txt_placeholder" >비밀번호</label>
-            <input id="password" class="put_inquiry f_blank" type="password" name="password" maxlength = '20' autocomplete="new-password">
-          </div>
+            <div class="input_box input_infotxt">
+              <label for="name" class="txt_placeholder">닉네임</label>
+              <input id="name" class="put_inquiry f_blank" type="text" name="name" maxlength = "15">
+            </div>
+
+          <th:block sec:authorize="isAnonymous()">
+            <div class="input_box input_infotxt">
+              <label for="password" class="txt_placeholder" >비밀번호</label>
+              <input id="password" class="put_inquiry f_blank" type="password" name="password" maxlength = '20' autocomplete="new-password">
+            </div>
+          </th:block>
+
 
           <!-- 말머리 -->
-          <div class="write_subject clear">
+          <div class="write_subject clear" th:if="${galleryVO.gellSettingVO.setting_sub_cate} != 0">
             <strong class="tit">말머리</strong>
             <ul class="subject_list clear">
               <li class="sel" data-no = "0" onclick = "write_headtext(this)"><em class="sp_img"></em>일반</li>
@@ -162,7 +167,7 @@
   </article>
 
   <!-- 2023/03/19 // 심규영 // 글 작성, 수정, 보기 main > header 및 popup 부분 -->
-  <th:block th:fragment="gall_main_header">
+  <th:block th:fragment="gall_main_header(galleryVO,grade)">
     <!-- 갤러리명 타이틀바 -->
     <header>
       <div class="page_head clear">
@@ -172,10 +177,10 @@
 
           <!-- 갤러리 이름 -->
           <h2>
-            <a href="#">
-              갤러리 제목
+            <a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}|">
+              [[${galleryVO.gell_name}]] 갤러리
               <!-- 갤러리 종류에 따라 아이콘 변경 -->
-              <div class="pagehead_titicon ngall sp_img"></div>
+              <div class="pagehead_titicon sp_img" th:classappend="${galleryVO.gell_grade == 0 ? '' : galleryVO.gell_grade == 1 ? 'mgall' : 'ngall'}"></div>
             </a>
           </h2>
 
@@ -187,7 +192,7 @@
 
         <div class="fr gall_issuebox">
           <button type="button" class="relate"><span class="new" style="display:none;"
-          ><em class="sp_img icon_new"></em></span>연관 갤러리(0/10) <em class="sp_img icon_relate_more"></em
+          ><em class="sp_img icon_new"></em></span>연관 갤러리([[${galleryVO.relation_count}]]/[[${galleryVO.re_relation_count}]]) <em class="sp_img icon_relate_more"></em
           ></button>
           <button type="button" class="adr_copy">갤주소 복사</button>
           <button type="button" class="gall_useinfo">이용안내</button>
