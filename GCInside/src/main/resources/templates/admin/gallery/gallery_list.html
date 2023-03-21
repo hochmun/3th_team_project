@@ -1,0 +1,138 @@
+<!-- 2023/03/21 // 라성준 // 어드민갤러리 리스트-->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragment/head_fragment::adminHead}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
+    <script type="text/javascript" th:src="@{/js/admin/member.js}"></script>
+</head>
+<body>
+    <div class="gcwrap">
+
+        <header th:replace="~{fragment/header_fragment::adminHeader}"></header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+
+                    <!-- 사이드 gnb -->
+                    <aside th:replace="~{fragment/gnb_fragment::adminGnb}"></aside>
+
+                </div>
+
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>갤러리 목록</h2></div>
+                        <div class="admin_info_content">
+                            <div class="member_search_box">
+                                <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
+                                    <option value="option1">갤러리명</option>
+                                    <option value="option2">갤러리 이름</option>
+                                    <option value="option3">갤러리 종류</option>
+                                    <option value="option3">카테고리</option>
+                                    <option value="option3">갤러리 개설일</option>
+                                    <option value="option3">갤러리 관리자</option>
+                                    <option value="option3">갤러리 상태</option>
+                                </select>
+                                <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
+                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
+                                <!-- 체크박스 -->
+                                <div class="checkbox-group fr">
+                                    <input type="checkbox" id="main-gallery" name="gallery" value="main">
+                                    <label for="main-gallery">메인 갤러리</label><input type="checkbox" id="mini-gallery" name="gallery" value="mini">
+                                    <label for="mini-gallery">미니 갤러리</label><input type="checkbox" id="minor-gallery" name="gallery" value="minor">
+                                    <label for="minor-gallery">마이너 갤러리</label>
+                                  </div>
+                                <!-- //체크박스 --> 
+                            </div>
+                            <table class="admin_table admin_member_list">
+                                <colgroup>
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.8%;">
+                                </colgroup>
+                                <tr>
+                                    <th>갤러리 번호</th>
+                                    <th>갤러리 이름</th>
+                                    <th>갤러리 종류</th>
+                                    <th>카테고리</th>
+                                    <th>갤러리 개설일</th>
+                                    <th>갤러리 관리자</th>
+                                    <th>갤러리 상태</th>
+                                    <th>관리</th>
+                                </tr>
+                                <tr th:each="gallery : ${list}">
+                                    <td th:text="${gallery.gell_num}">1066</td>
+                                    <td th:text="${gallery.gell_name}">다크소울 갤러리</td>
+                                    <td th:text="${gallery.gell_grade == 0 ? '메인 갤러리' : gallery.gell_grade == 1 ? '마이너 갤러리' : '미니 갤러리'}">메인 갤러리</td>
+                                    <td th:text="${gallery.gell_address}">게임</td>
+                                    <td th:text="${gallery.gell_rdate.substring(2, 11)}">19-12-09</td>
+                                    <td th:text="${gallery.gell_manager}">아인슈타인</td>
+                                    <td th:text="${gallery.gell_status == 0 ? '공개' : gallery.gell_status == 1 ? '비공개' : '삭제'}">공개</td>
+                                    <td><a href="javascript:;" onclick="popup_open()">[설정][보기]</a></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- 페이징 -->
+                        <div class="admin_pageing">
+                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
+
+                            <span class="admin_pageing_num">
+                                <a href="#" class="on">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+                            </span>
+
+                            <span class="admin_pageing_next">다음&nbsp;></span>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+
+    <!-- 회원 설정 팝업 창 -->
+    <div class="admin pop_back" style="display: none;">
+        <div class="admin pop_wrap gray1px">
+            <div class="admin_member pop_content">
+                <div class="admin cont_head"><h3>ㅇㅇ 유저 설정</h3><a href="javascript:;" onclick="popup_close()">X</a></div>
+                <ul>
+                    <li class="on" data-value="basic" >기본</li>
+                    <li data-value="activity">활동 내역</li>
+                    <li data-value="article">글 작성 내역</li>
+                    <li data-value="comment">댓글 작성 내역</li>
+                    <li data-value="point">포인트 내역</li>
+                    <li data-value=""></li>
+                    <li data-value="sanctions">제재</li>
+                    <li data-value="secession">탈퇴</li>
+                </ul>
+                <div class="admin_member main_content basic">basic</div>
+                <div class="admin_member main_content activity" style="display: none;">activity</div>
+                <div class="admin_member main_content article" style="display: none;">article</div>
+                <div class="admin_member main_content comment" style="display: none;">comment</div>
+                <div class="admin_member main_content point" style="display: none;">point</div>
+                <div class="admin_member main_content sanctions" style="display: none;">sanctions</div>
+                <div class="admin_member main_content secession" style="display: none;">secession</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

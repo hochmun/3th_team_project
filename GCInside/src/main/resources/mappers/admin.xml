@@ -39,6 +39,8 @@
         member_sanctions_wdate,
         member_sanctions_grade
         FROM gc_member
+        ORDER BY `member_rdate` DESC
+        LIMIT ${start}, 10;
     </select>
     
 
@@ -65,7 +67,35 @@
                 </when>
             </choose>
         </where>
-        ;
+        ORDER BY `member_rdate` DESC
+        LIMIT ${start}, 10;
+    </select>
+
+    <!-- 2023/03/21 // 라성준 // 관리자 갤러리 리스트 불러오기 -->
+    <select id="AdminGalleryList" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT
+        gell_num,
+        gell_cate,
+        gell_name,
+        gell_address,
+        gell_main_img,
+        gell_info,
+        gell_manager,
+        gell_grade,
+        gell_status,
+        gell_hit,
+        gell_article_count,
+        gell_rdate,
+        gell_wdate,
+        gell_sanctions_rdate,
+        gell_sanctions_wdate,
+        gell_sanctions_grade
+        FROM gc_gell
+        ORDER BY `gell_rdate` DESC
+    </select>
+
+    <select id="searchMemberCount" resultType="int">
+        select COUNT('member_uid') FROM `gc_member`;
     </select>
 
     <!-- 2023/03/16 // 김재준 // 메인갤러리 생성 시 카테고리 번호,이름 불러오기 -->

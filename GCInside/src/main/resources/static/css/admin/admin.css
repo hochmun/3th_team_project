@@ -189,3 +189,8 @@
 
 /* 관리자 푸터 */
 .admin_footer > div {color: white;position: relative; top: 25px;}
+
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 10px; /* 체크박스 사이 간격 조절 */
+  }
