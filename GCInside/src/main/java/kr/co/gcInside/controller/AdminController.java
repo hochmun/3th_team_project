@@ -1,8 +1,10 @@
 package kr.co.gcInside.controller;
 
+import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.entity.UserEntity;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.AdminService;
+import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.MemberVO;
 import kr.co.gcInside.vo.TermsVO;
 import kr.co.gcInside.vo.gall_cate2VO;
@@ -55,39 +57,32 @@ public class AdminController {
                                @RequestParam Map<String, String> data) {
         List<MemberVO> memberList = null;
 
+        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchMemberCount());
+
         if(data.get("keyword") != null)
-            memberList = service.searchMembersByCondition(data.get("searchType"), data.get("keyword"));
-        else memberList = service.SearchMember();
+            memberList = service.searchMembersByCondition(data.get("searchType"), data.get("keyword"), pagingDTO.getStart());
+        else memberList = service.SearchMember(pagingDTO.getStart());
+
         model.addAttribute("search", memberList);
-        System.out.println("search 데이터: " + memberList);
+        model.addAttribute("pagingDTO", pagingDTO);
+
+        log.info(pagingDTO.toString());
         return "admin/member/search";
     }
 
-/**
- @GetMapping("admin/member/search")
- public String memberSearch(Model model,
- @RequestParam Map<String, String> data,
- @RequestParam(value = "page", defaultValue = "1") int page) {
- int amountPerPage = 10; // 페이지당 보여줄 데이터 수
- int totalCount = service.getMemberCount();
- int totalPage = (int) Math.ceil((double) totalCount / amountPerPage); // 전체 페이지 수
- int startIndex = (page - 1) * amountPerPage; // 해당 페이지의 시작 인덱스
+    /**
+     * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 get 맵핑
+     * @return
+     */
+    @GetMapping("admin/gallery/gallery_list")
+    public String AdminGalleryList(Model model) {
+        List<galleryVO> list = service.AdminGalleryList();
 
- List<MemberVO> memberList = null;
- if (data.get("keyword") != null) {
- memberList = service.searchMembersByCondition(data.get("searchType"), data.get("keyword"), startIndex, amountPerPage);
- } else {
- memberList = service.searchMember(startIndex, amountPerPage);
- }
-
- model.addAttribute("search", memberList);
- model.addAttribute("totalPage", totalPage);
- model.addAttribute("currentPage", page);
-
- return "admin/member/search";
- }
+        model.addAttribute("list", list);
+        log.info(list.toString());
+        return "admin/gallery/gallery_list";
     }
-/
+
 
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 설정 페이지 get 맵핑

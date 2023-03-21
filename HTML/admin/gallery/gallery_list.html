@@ -1,0 +1,198 @@
+<!-- 2023/03/21 //라성준// 어드민갤러리 리스트-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/basic.css">
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../js/admin/gnb.js"></script>
+    <script type="text/javascript" src="../../js/admin/member.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+        <header class="admin_header">
+            <div class="gchead typea">
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="../../img/gcin_logo3.png" alt="">
+                        <a class="_blank" href="/admin/index.html"></a>
+                    </div>
+                </h1>
+                <div class="admin_info">
+                    <ul class="admin_ul">
+                        <li><a href="../../index.html">홈</a></li>
+                        <li><a href="javascript:;"> | </a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+                    <aside class="admin_aside">
+                        <ul id="admin_gnb">
+                            <li>
+                                <a href="#">환경설정</a>
+                                <ol>
+                                    <li><a href="#">배너 관리</a></li>
+                                    <li><a href="/admin/config/terms.html">약관 관리</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">신고 관리</a>
+                                <ol>
+                                    <li><a href="#">서비스 신고 관리</a></li>
+                                    <li><a href="#">서비스 신청 목록</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">갤러리 관리</a>
+                                <ol>
+                                    <li><a href="#">갤러리 목록</a></li>
+                                    <li><a href="/admin/gallery/create_main.html">메인 갤러리 생성</a></li>
+                                    <li><a href="#">갤러리 개설 신청</a></li>
+                                    <li><a href="#">갤러리 승급 신청</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">회원 관리</a>
+                                <ol>
+                                    <li><a href="/admin/member/search.html">회원 조회</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>회원 목록 및 검색</h2></div>
+                        <div class="admin_info_content">
+                            <div class="member_search_box">
+                                <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
+                                    <option value="option1">갤러리명</option>
+                                    <option value="option2">아이디</option>
+                                    <option value="option3">포인트</option>
+                                    <option value="option3">가입날짜</option>
+                                    <option value="option3">이메일</option>
+                                </select>
+                                <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
+                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
+                                <!-- 체크박스 -->
+                                <div class="checkbox-group fr">
+                                    <input type="checkbox" id="main-gallery" name="gallery" value="main">
+                                    <label for="main-gallery">메인 갤러리</label><input type="checkbox" id="mini-gallery" name="gallery" value="mini">
+                                    <label for="mini-gallery">미니 갤러리</label><input type="checkbox" id="minor-gallery" name="gallery" value="minor">
+                                    <label for="minor-gallery">마이너 갤러리</label>
+                                  </div>
+                                <!-- //체크박스 --> 
+                            </div>
+                            <table class="admin_table admin_member_list">
+                                <colgroup>
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.8%;">
+                                </colgroup>
+                                <tr>
+                                    <th>갤러리 번호</th>
+                                    <th>갤러리 이름</th>
+                                    <th>갤러리 종류</th>
+                                    <th>카테고리</th>
+                                    <th>갤러리 개설일</th>
+                                    <th>갤러리 관리자</th>
+                                    <th>갤러리 상태</th>
+                                    <th>관리</th>
+                                </tr>
+                                <tr>
+                                    <td>1066</td>
+                                    <td>다크소울 갤러리</td>
+                                    <td>메인 갤러리</td>
+                                    <td>게임</td>
+                                    <td>19-12-09</td>
+                                    <td>아인슈타인</td>
+                                    <td>공개</td>
+                                    <td><a href="javascript:;" onclick="popup_open()">[설정][보기]</a></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>1067</td>
+                                    <td>디아블IV</td>
+                                    <td>마이너 갤러리</td>
+                                    <td>게임</td>
+                                    <td>23-03-21</td>
+                                    <td>블라디미르 푸틴</td>
+                                    <td>비공개</td>
+                                    <td><a href="javascript:;" onclick="popup_open()">[설정][보기]</a></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <!-- 페이징 -->
+                        <div class="admin_pageing">
+                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
+
+                            <span class="admin_pageing_num">
+                                <a href="#" class="on">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+                            </span>
+
+                            <span class="admin_pageing_next">다음&nbsp;></span>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+
+    <!-- 회원 설정 팝업 창 -->
+    <div class="admin pop_back" style="display: none;">
+        <div class="admin pop_wrap gray1px">
+            <div class="admin_member pop_content">
+                <div class="admin cont_head"><h3>ㅇㅇ 유저 설정</h3><a href="javascript:;" onclick="popup_close()">X</a></div>
+                <ul>
+                    <li class="on" data-value="basic" >기본</li>
+                    <li data-value="activity">활동 내역</li>
+                    <li data-value="article">글 작성 내역</li>
+                    <li data-value="comment">댓글 작성 내역</li>
+                    <li data-value="point">포인트 내역</li>
+                    <li data-value=""></li>
+                    <li data-value="sanctions">제재</li>
+                    <li data-value="secession">탈퇴</li>
+                </ul>
+                <div class="admin_member main_content basic">basic</div>
+                <div class="admin_member main_content activity" style="display: none;">activity</div>
+                <div class="admin_member main_content article" style="display: none;">article</div>
+                <div class="admin_member main_content comment" style="display: none;">comment</div>
+                <div class="admin_member main_content point" style="display: none;">point</div>
+                <div class="admin_member main_content sanctions" style="display: none;">sanctions</div>
+                <div class="admin_member main_content secession" style="display: none;">secession</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

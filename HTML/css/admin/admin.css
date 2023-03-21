@@ -209,3 +209,8 @@
 }
 .bottom_paging_box em {text-decoration: underline; color: #d31900;}
 .bottom_paging_box a:first-child, .bottom_paging_box em:first-child {margin-left: 0;}
+
+.checkbox-group label {
+    display: inline-block;
+    margin-right: 10px; /* 체크박스 사이 간격 조절 */
+  }

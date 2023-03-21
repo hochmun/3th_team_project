@@ -48,16 +48,28 @@ public interface AdminDAO {
      * 2023.03.16 // 라성준 // 서치멤버 불러오기
      * @return
      */
-    public List<MemberVO> SearchMember();
+    public List<MemberVO> SearchMember(@Param("start") int start);
 
     /**
      * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
      * @return
      */
-    List<MemberVO> searchMembersByCondition(@Param("searchType") String searchType,
-                                            @Param("keyword") String keyword);
+    public List<MemberVO> searchMembersByCondition(@Param("searchType") String searchType,
+                                                   @Param("keyword") String keyword,
+                                                   @Param("start") int start);
 
 
+    /**
+     * 2023/03/21 // 라성준 // 관리자 페이징
+     * @return
+     */
+    public int searchMemberCount();
+
+    /**
+     * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 불러오기
+     * @return
+     */
+    public List<galleryVO> AdminGalleryList();
 
     // upload
 

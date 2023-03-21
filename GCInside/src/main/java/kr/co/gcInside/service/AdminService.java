@@ -63,16 +63,32 @@ public class AdminService {
      * 2023/3/16 // 라성준 // 관리자 멤버 불러오기
      * @return
      */
-    public List<MemberVO> SearchMember() {
-        return dao.SearchMember();
+    public List<MemberVO> SearchMember(int start) {
+        return dao.SearchMember(start);
     }
 
     /**
      * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
      * @return
      */
-    public List<MemberVO> searchMembersByCondition(String searchType, String keyword) {
-        return dao.searchMembersByCondition(searchType, keyword);
+    public List<MemberVO> searchMembersByCondition(String searchType, String keyword,int start) {
+        return dao.searchMembersByCondition(searchType, keyword, start);
+    }
+
+    /**
+     * 2023/03/21 // 라성준 // 관리자 페이징
+     * @return
+     */
+    public int searchMemberCount() {
+        return dao.searchMemberCount();
+    }
+
+    /**
+     * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 불러오기
+     * @return
+     */
+    public List<galleryVO> AdminGalleryList() {
+        return dao.AdminGalleryList();
     }
 
     // upload
