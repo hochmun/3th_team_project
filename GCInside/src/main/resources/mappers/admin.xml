@@ -92,6 +92,57 @@
         gell_sanctions_grade
         FROM gc_gell
         ORDER BY `gell_rdate` DESC
+        LIMIT ${start}, 10;
+    </select>
+
+    <!-- 2023/03/22 // 라성준 // 관리자 갤러리 목록 및 검색 -->
+    <select id="searchAdminGalleryList" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT gell_name, gell_grade, gell_address, gell_rdate, gell_manager, gell_status
+        FROM gc_gell
+        <where>
+            <choose>
+                <when test="searchType=='name'">
+                    gell_name LIKE '%${keyword}%'
+                </when>
+                <when test="searchType=='grade'">
+                    <choose>
+                        <when test="keyword=='메인'">
+                            gell_grade = 0
+                        </when>
+                        <when test="keyword=='마이너'">
+                            gell_grade = 1
+                        </when>
+                        <when test="keyword=='미니'">
+                            gell_grade = 2
+                        </when>
+                    </choose>
+                </when>
+                <when test="searchType=='address'">
+                    gell_address LIKE '%${keyword}%'
+                </when>
+                <when test="searchType=='rdate'">
+                    gell_rdate >= #{keyword}
+                </when>
+                <when test="searchType=='manager'">
+                    gell_manager LIKE '%${keyword}%'
+                </when>
+                <when test="searchType=='status'">
+                    <choose>
+                        <when test="keyword=='공개'">
+                            gell_status = 0
+                        </when>
+                        <when test="keyword=='비공개'">
+                            gell_status = 1
+                        </when>
+                        <when test="keyword=='삭제'">
+                            gell_status = 2
+                        </when>
+                    </choose>
+                </when>
+            </choose>
+        </where>
+        ORDER BY `gell_rdate` DESC
+        LIMIT ${start}, 10;
     </select>
 
     <select id="searchMemberCount" resultType="int">

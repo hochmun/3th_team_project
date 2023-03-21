@@ -69,7 +69,18 @@ public interface AdminDAO {
      * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 불러오기
      * @return
      */
-    public List<galleryVO> AdminGalleryList();
+    public List<galleryVO> AdminGalleryList(@Param("start") int start);
+
+    /**
+     * 2023.03.22 // 라성준 // 관리자 갤러리 검색 조건에 따른 갤러리 정보 불러오기
+     * @param searchType
+     * @param keyword
+     * @param start
+     * @return
+     */
+    public List<galleryVO> searchAdminGalleryList(@Param("searchType") String searchType,
+                                                  @Param("keyword") String keyword,
+                                                  @Param("start") int start);
 
     // upload
 

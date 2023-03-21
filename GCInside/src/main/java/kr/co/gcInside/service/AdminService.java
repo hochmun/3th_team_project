@@ -87,8 +87,19 @@ public class AdminService {
      * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 불러오기
      * @return
      */
-    public List<galleryVO> AdminGalleryList() {
-        return dao.AdminGalleryList();
+    public List<galleryVO> AdminGalleryList(int start) {
+        return dao.AdminGalleryList(start);
+    }
+
+    /**
+     * 2023/03/22 // 라성준 // 관리자 갤러리 검색 조건에 따른 갤러리 리스트 정보 불러오기
+     * @param searchType
+     * @param keyword
+     * @param start
+     * @return
+     */
+    public List<galleryVO> searchAdminGalleryList(String searchType, String keyword, int start) {
+        return dao.searchAdminGalleryList(searchType, keyword, start);
     }
 
     // upload

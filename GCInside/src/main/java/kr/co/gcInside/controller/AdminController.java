@@ -72,11 +72,20 @@ public class AdminController {
 
     /**
      * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 get 맵핑
+     * 2023/03/22 // 라성준 // 관리자 갤러리 리스트 검색 조건에 따른 갤러리 정보 불러오기
+     * 2023/03/22 // 라성준 // 페이징 처리
      * @return
      */
     @GetMapping("admin/gallery/gallery_list")
-    public String AdminGalleryList(Model model) {
-        List<galleryVO> list = service.AdminGalleryList();
+    public String AdminGalleryList(Model model,
+                                   @RequestParam Map<String, String> data) {
+        List<galleryVO> list = null;
+
+        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchMemberCount());
+
+        if(data.get("keyword") != null)
+            list = service.searchAdminGalleryList(data.get("searchType"), data.get("keyword"), pagingDTO.getStart());
+        else list = service.AdminGalleryList(pagingDTO.getStart());
 
         model.addAttribute("list", list);
         log.info(list.toString());
