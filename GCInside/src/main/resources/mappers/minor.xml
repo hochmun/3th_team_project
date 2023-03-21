@@ -24,6 +24,10 @@
     <select id="selectminorterms" resultType="kr.co.gcInside.vo.TermsVO">
         SELECT * FROM `gc_terms`;
     </select>
+    <!-- 2023/03/21 // 김동민 // validation -->
+    <select id="countBygellname" resultType="int" parameterType="String">
+        select count(*) from `gc_gell` where gell_name = #{gell_create_name};
+    </select>
 
 
     <!-- upload -->
