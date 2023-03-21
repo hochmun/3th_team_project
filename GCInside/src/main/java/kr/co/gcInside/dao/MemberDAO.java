@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface MemberDAO {
     public int insertMember(MemberVO vo);
     public int countByMemberUid(String member_uid);
+    public int countByMemberEmail(String member_email);
 
 }

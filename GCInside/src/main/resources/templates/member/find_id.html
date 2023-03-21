@@ -8,21 +8,21 @@
                 <section id="pagemenu">
                   <h2 class="blind">페이지 메뉴</h2>
                   <ul class="page_menu clear">
-                    <li><a href="./find_id.html" class="pmenu on">아이디 찾기</a></li>
-                    <li><a href="./reset_pwd.html" class="pmenu">비밀번호 재설정</a></li>
+                    <li><a th:href="@{/member/find_id}" class="pmenu on">아이디 찾기</a></li>
+                    <li><a th:href="@{/member/reset_pwd}" class="pmenu">비밀번호 재설정</a></li>
                   </ul>
                 </section>
                 <section>
                   <div class="cont_head">
                     <h3 class="head_tit">아이디 찾기</h3>
+                    <th:block sec:authentication ="isAnonymous()">
+                    <h3 class="head_tit">아이디 찾기</h3>
+                    </th:block>
                   </div>
                   <div id="contbox" class="con_box brd nomin">
                     <!-- 정보 입력 -->
                     <form action="#" name='findid' method="post" accept-charset="utf-8">
-                        <input type="hidden" name="ci_t" value="b3c90d7b4c58b2f0f23e8c13006e4f0c" />
-                    <input type="hidden" id="encData" name="encData" value="">
-                    <input type="hidden" id="vendor" name="vendor" value="">
-                    <input type="hidden" id="find_id_fail" name="find_id_fail" value="0">
+                    <input type="hidden" id="find_id_fail" name="find_id_fail" value="1">
                     <div class="con innerbox">
                       <h4 class="tit font_red">이메일을 입력해서 찾기</h4>
                       <div class="info_txt">
@@ -31,8 +31,11 @@
                       </div>
                       <div class="bg_box">
                         <div class="form_box">
-                            <input type="text" id="security_code" name="security_code" class="int" title="이메일 입력" placeholder="이메일" maxlength="30">
-                            <button type="button" class="btn_blue small btn_wrfull" onclick="find_id()">확인</button>
+                            <input type="text" id="member_email" name="member_email" class="int" title="이메일 입력" placeholder="이메일" maxlength="30">
+                            <button type="button" class="btn_blue small btn_wrfull" onclick="member_emailResult()">확인</button>
+                          <th:block sec:authorize ="isAnonymous()">
+                            <button type="button" class="btn_blue small btn_wrfull" onclick="member_emailResult()">확인</button>
+                          </th:block>
                         </div>
                       </div>
                       </form>
@@ -43,7 +46,6 @@
                           <p>단, 해당 아이디가 토스 인증으로 이미 인증이 되어있어야 하며 인증이 안 되어있으면 아이디를 찾을 수 없습니다.</p>
                         </div>
                         <div class="btn_box tcenter">
-                          <!--<a href="javascript:;" onclick="open_mobile()"  class="btn_phone angular">휴대폰 인증으로 찾기</a>-->
                           <a href="#" onclick="open_toss()" class="btn_tyeonblue btn_toss">토스 인증으로 찾기</a>
                         </div>
                       </div>
