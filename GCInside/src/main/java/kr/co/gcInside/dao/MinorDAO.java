@@ -27,4 +27,11 @@ public interface MinorDAO {
      * 2023/03/17 // 김동민 // 약관 불러오기
      */
     public List<TermsVO> selectminorterms();
+
+    /**
+     * 2023/03/21 // 김동민 // validation
+     * @param gell_create_name
+     * @return
+     */
+    public int countBygellname(String gell_create_name);
 }

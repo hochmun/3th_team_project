@@ -33,4 +33,14 @@ public class MinorService {
     public List<TermsVO> selectminorterms(){
         return dao.selectminorterms();
     }
+
+    /**
+     * 2023/03/21 // 김동민 // validation
+     * @param gell_create_name
+     * @return
+     */
+    public boolean isdupli(String gell_create_name){
+        int count = dao.countBygellname(gell_create_name);
+        return count > 0;
+    }
 }

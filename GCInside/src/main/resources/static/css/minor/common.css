@@ -168,6 +168,7 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .set_content .cont_input_box{position:relative;display:inline-block}
 .tiptxt{line-height:18px;color:#555}
 .tiptxt.red{color:#d31900}
+.tiptxt.blue{color:#29367c}
 .tiptxt.dot_line,.mini_slow div.dot_line{border-top:1px #d3d3d3 dashed;margin-top:11px;padding-top:12px}
 
 .tiptxt .link_visit{color:#29367c;text-decoration:underline}

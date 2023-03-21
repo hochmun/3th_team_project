@@ -64,16 +64,18 @@
                                             </div>
                                             <div class="cont_box clear">
                                                 <div class="cont_input_box">
-                                                    <input class="t_input chk_str_length" id="gell_create_name" name="gell_create_name" type="text" placeholder="마이너 갤러리 이름을 간단히 넣어주세요." onfocusout="chk_gellname()"> <span class="basic_tit">마이너 갤러리</span>
+                                                    <input class="t_input chk_str_length" id="gell_create_name" name="gell_create_name" type="text" placeholder="마이너 갤러리 이름을 간단히 넣어주세요."> <span class="basic_tit">마이너 갤러리</span>
                                                 </div>
                                                 <span class="max_txt"><span>0</span>/<b>12</b></span>
-                                                <p class="tiptxt red mname_alert_txt_fix">
+                                                <p class="tiptxt red mname_alert_txt_fix" id="nametip1">
                                                     <em class="sp_img tip_deco"></em>이름은 개설 후, 7일 내 1회만 수정할 수 있습니다.
                                                 </p>
-                                                <p class="tiptxt red mname_alert_txt_fix">
+                                                <p class="tiptxt red mname_alert_txt_fix" id="nametip2">
                                                     <em class="sp_img tip_deco"></em>동일한 주제의 마이너 갤러리는 개설이 불가능합니다.
                                                 </p>
-                                                <p id="gell_create_name_tip" style="display:none;">최소2자부터 12자까지 입력가능합니다.</p>
+                                                <p id="gell_create_name_tip" class="tiptxt red mname_alert_txt_fix" style="display: none;">최소2자부터 12자까지 입력가능합니다.</p>
+                                                <p id="duplicationName" class="tiptxt red mname_alert_txt_fix" style="display: none;">중복된 갤러리 이름입니다.</p>
+                                                <p id="noduplicationName" class="tiptxt blue mname_alert_txt_fix" style="display: none;">사용 가능한 갤러리 이름입니다.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -112,6 +114,7 @@
                                                     <b class="font_red"></b> <span class="alert_msg"></span>
                                                 </p>
                                                 <p class="gell_create_address_tip" style="display:none;">최대 20자까지 영문/숫자만 입력 가능합니다.</p>
+                                                <p class="ad_success tiptxt blue" style="display:none;">사용 가능한 갤러리 주소입니다.</p>
                                             </div>
                                         </div>
                                     </div>

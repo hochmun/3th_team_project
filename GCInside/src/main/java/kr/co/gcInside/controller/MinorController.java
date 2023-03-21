@@ -10,8 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 2023/03/16 // 김동민 // 갤러리 개설 기능구현 중
@@ -42,7 +46,23 @@ public class MinorController{
     @PostMapping("m/create")
     public String minorcreate(CreateVO frmCreate){
         service.creategall(frmCreate);
-        return "gall/m/create";
+
+        return "gall/m/index";
     }
+    @ResponseBody
+    @GetMapping("m/chkName")
+    public Map<String, Object> chkName(@RequestParam("gell_create_name") String gell_create_name){
+        Map<String, Object> resultMap =new HashMap<>();
+        boolean isdupli = service.isdupli(gell_create_name);
+        if(isdupli){
+            resultMap.put("result", "fail");
+            resultMap.put("message", "이미 사용 중인 갤러리 명입니다.");
+        } else {
+            resultMap.put("result", "success");
+            resultMap.put("message", "사용 가능한 갤러리 명입니다.");
+        }
+        return resultMap;
+    }
+
 
 }
