@@ -25,17 +25,17 @@
                         <div class="cont_head"><h2>갤러리 목록</h2></div>
                         <div class="admin_info_content">
                             <div class="member_search_box">
-                                <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
-                                    <option value="option1">갤러리명</option>
-                                    <option value="option2">갤러리 이름</option>
-                                    <option value="option3">갤러리 종류</option>
-                                    <option value="option3">카테고리</option>
-                                    <option value="option3">갤러리 개설일</option>
-                                    <option value="option3">갤러리 관리자</option>
-                                    <option value="option3">갤러리 상태</option>
+                                <form th:action="@{/admin/gallery/gallery_list}" method="get">
+                                <select class="admin_member_search_select_box" id="member_search_select_box" name="searchType">
+                                    <option value="name">갤러리 이름</option>
+                                    <option value="grade">갤러리 종류</option>
+                                    <option value="address">카테고리</option>
+                                    <option value="rdate">갤러리 개설일</option>
+                                    <option value="manager">갤러리 관리자</option>
+                                    <option value="status">갤러리 상태</option>
                                 </select>
-                                <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
-                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
+                                <input type="text" id="input-box" name="keyword" placeholder="키워드 입력">
+                                <button type="submit" class="btn_lightgreen" id="submit-button">검색</button>
                                 <!-- 체크박스 -->
                                 <div class="checkbox-group fr">
                                     <input type="checkbox" id="main-gallery" name="gallery" value="main">
