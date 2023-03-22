@@ -14,6 +14,7 @@
 .member_search_box {margin-top: 10px;margin-left: 10px;}
 .admin_info_content > div > select {width: 100px;}
 .admin_info_content > div > button {height: 25px;line-height: 25px;}
+.category_search_box {margin-top: 10px;margin-left: 10px;}
 
 /* 관리자 gnb */
 .admin_aside{width: 270px;height: auto; background: #669933;box-sizing: border-box;}
