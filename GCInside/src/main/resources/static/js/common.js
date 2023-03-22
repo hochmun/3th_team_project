@@ -95,3 +95,55 @@ function ul_selectric(wraper_elm, input_name, value) {
 		toggle_layer($(this).parent());
 	});
 }
+
+$(function(){
+
+    //신설갤 페이지 버튼
+    	$(document).on('click','.new_prev', function(e) {
+    		var type = $(this).attr('data-type');
+    		newPageMove(type);
+    	});
+
+    	//신설갤 페이지 버튼
+    	$(document).on('click','.new_next', function(e) {
+    		var type = $(this).attr('data-type');
+    		newPageMove(type,true);
+    	});
+
+    	//신설갤 갤러리 클릭
+    	$('.newGallTab').click(function(){
+    		if($('.newGallTab').hasClass('on')) return false;
+
+    		$(this).siblings().removeClass('on');
+    		$(this).addClass('on');
+    		$('.new_gall .rank_list').hide();
+    		$('.newPageG .now_num').text('1')
+    		$('.newG_1').show();
+    		$('.new_gall .box_bottom').hide()
+    		$('.newPageG').show();
+    	});
+
+    	//신설갤 마이너 갤러리 클릭
+    	$('.newMgallTab').click(function(){
+    		if($('.newMgallTab').hasClass('on')) return false;
+
+    		$(this).siblings().removeClass('on');
+    		$(this).addClass('on');
+    		$('.new_gall .rank_list').hide();
+    		$('.newPageM .now_num').text('1')
+    		$('.newM_1').show();
+    		$('.new_gall .box_bottom').hide()
+    		$('.newPageM').show();
+    	});
+
+    	//신설갤 미니 갤러리 클릭
+    	$('.new_mini').click(function(){
+    		$(this).siblings().removeClass('on');
+    		$(this).addClass('on');
+    		$('.new_gall .rank_list').hide();
+    		$('.newPageMI .now_num').text('1')
+    		$('.newMI_1').show();
+    		$('.new_gall .box_bottom').hide()
+    		$('.newPageMI').show();
+    	});
+})

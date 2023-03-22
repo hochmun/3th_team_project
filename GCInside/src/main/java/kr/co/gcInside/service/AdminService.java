@@ -102,6 +102,14 @@ public class AdminService {
         return dao.searchAdminGalleryList(searchType, keyword, start);
     }
 
+    /**
+     * 2023/03/22
+     * @return
+     */
+    public int searchAdminGalleryTotal(){
+        return dao.searchAdminGalleryTotal();
+    }
+
     // upload
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 업데이트

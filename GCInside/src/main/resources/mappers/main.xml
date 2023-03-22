@@ -6,6 +6,36 @@
 <mapper namespace="kr.co.gcInside.dao.MainDAO">
     <!-- create -->
     <!-- read -->
+
+    <!-- 2023/03/22 // 라성준 // 메인 인덱스 갤러리 불러오기 -->
+    <select id="MainIndexNewCommunity" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT
+        gell_num, gell_cate, gell_name, gell_address, gell_main_img, gell_info, gell_manager,
+        gell_grade, gell_status, gell_hit, gell_article_count, gell_rdate, gell_wdate,
+        gell_sanctions_rdate, gell_sanctions_wdate, gell_sanctions_grade
+        FROM gc_gell
+        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND `gell_grade` = '0'
+        ORDER BY gell_rdate DESC
+        LIMIT #{start}, 10;
+    </select>
+
+    <!-- 2023/03/22 // 라성준 // 메인 인덱스 마이너 갤러리 불러오기 -->
+    <select id="MainIndexNewMgellCommunity" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT
+        gell_num, gell_cate, gell_name, gell_address, gell_main_img, gell_info, gell_manager,
+        gell_grade, gell_status, gell_hit, gell_article_count, gell_rdate, gell_wdate,
+        gell_sanctions_rdate, gell_sanctions_wdate, gell_sanctions_grade
+        FROM gc_gell
+        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND `gell_grade` = '1'
+        ORDER BY gell_rdate DESC
+        LIMIT #{start}, 10;
+    </select>
+
+    <!-- 마이너 갤러리 개수 -->
+    <select id="MainIndexNewMgellCommunityCount" resultType="int">
+        SELECT COUNT(`gell_num`) FROM `gc_gell`
+        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND `gell_grade` = '1';
+    </select>
     <!-- upload -->
     <!-- delete -->
 </mapper>

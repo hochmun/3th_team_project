@@ -19,7 +19,7 @@
 
                 <div class="admin_right">
                     <section class="admin_main_info">
-                        <div class="cont_head"><h2>갤러리 목록</h2></div>
+                        <div class="cont_head"><h2>회원 목록</h2></div>
                         <div class="admin_info_content">
                             <div class="member_search_box">
                                 <form th:action="@{/admin/member/search}" method="get">
@@ -73,7 +73,7 @@
                         </span>
 
                             <span class="admin_pageing_num">
-                            <a th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
+                            <th:block th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
                                th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
                                 <span th:if="${pageNumber} == ${pagingDTO.currentPage}"
                                       th:text="${pageNumber}">
@@ -82,7 +82,7 @@
                                    th:href="@{${'/admin/member/search'}(pg=${pageNumber})}"
                                    th:text="${pageNumber}">
                                 </a>
-                            </a>
+                            </th:block>
 
                         </span>
                             <span class="admin_pageing_next" th:if="${pagingDTO.currentPage < pagingDTO.lastPage}">

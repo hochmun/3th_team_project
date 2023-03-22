@@ -1021,21 +1021,41 @@
                                         /
                                         <span class="total_num">5</span>
                                     </div>
-                                    <div class="btn_box">
-                                        <button type="button" class="sp_main btn_prev new_prev"></button>
-                                        <button type="button" class="sp_main btn_next new_next on"></button>
+                                    <script>
+                                    const prevBtn = document.querySelector('#newGalleryPrevBtn');
+                                    const nextBtn = document.querySelector('#newGalleryNextBtn');
+
+                                    // prevBtn 또는 nextBtn 클릭 시 이벤트 처리
+                                    prevBtn.addEventListener('click', () => {
+                                        // 이전 내용 가져오기 및 화면 갱신
+                                    });
+
+                                    nextBtn.addEventListener('click', () => {
+                                        // 다음 내용 가져오기 및 화면 갱신
+                                    });
+                                    </script>
+                                    <div id="newGalleryBtnBox" class="btn_box">
+                                        <button type="button" id="newGalleryPrevBtn" class="sp_main btn_prev new_prev"></button>
+                                        <button type="button" id="newGalleryNextBtn" class="sp_main btn_next new_next on"></button>
                                     </div>
                                 </div>
                             </div>
                             <ul class="rank_list newGgallList newG_1" style="display: none;"></ul>
-                            <ul class="rank_list newMgallList newM_1"></ul>
+                            <ul class="rank_list newMgallList newM_1">
+                                <th:block th:each="Mgell:${newMgellCommunityList}">
+                                    <li>
+                                        <a th:href="|@{/}mgall/board/lists?id=${Mgell.gell_address}|"><span class="rank_txt" th:text="${Mgell.gell_name}"></span></a>
+                                    </li>
+                                </th:block>
+
+                            </ul>
                             <ul class="rank_list newMgallList newM_2" style="display: none;"></ul>
                             <div class="box_bottom newPageM">
                                 <div class="pageing">
                                     <div class="page_num">
                                         <strong class="now_num">1</strong>
                                         /
-                                        <span class="total_num">2</span>
+                                        <span class="total_num" th:text="${newgellPagingDTO.groupEnd}">2</span>
                                     </div>
                                     <div class="btn_box">
                                         <button type="button" class="sp_main btn_prev new_prev"></button>

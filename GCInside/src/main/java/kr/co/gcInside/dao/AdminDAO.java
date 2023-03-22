@@ -82,6 +82,12 @@ public interface AdminDAO {
                                                   @Param("keyword") String keyword,
                                                   @Param("start") int start);
 
+    /**
+     * 2023/03/22
+     * @return
+     */
+    public int searchAdminGalleryTotal();
+
     // upload
 
     /**

@@ -81,13 +81,17 @@ public class AdminController {
                                    @RequestParam Map<String, String> data) {
         List<galleryVO> list = null;
 
-        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchMemberCount());
+        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchAdminGalleryTotal());
 
         if(data.get("keyword") != null)
             list = service.searchAdminGalleryList(data.get("searchType"), data.get("keyword"), pagingDTO.getStart());
         else list = service.AdminGalleryList(pagingDTO.getStart());
 
+        log.info("lastPage : "+ pagingDTO.getLastPage());
+
         model.addAttribute("list", list);
+        model.addAttribute("pagingDTO", pagingDTO);
+
         log.info(list.toString());
         return "admin/gallery/gallery_list";
     }
