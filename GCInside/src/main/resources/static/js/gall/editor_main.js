@@ -114,8 +114,8 @@ window.addEventListener('load',function(){
  */
 async function editor_save(){
     editor.save().then((outputData)=>{
-        const parsingoutput = JSON.stringify(outputData);
-        window.parent.article_make(parsingoutput);
+        //const parsingoutput = JSON.stringify(outputData);
+        window.parent.article_make(outputData);
     }).catch((error)=>{
         console.log('Saving failed : ', error)
     })
