@@ -269,3 +269,136 @@
 .hitgall_go:hover{text-decoration:none}
 .hitgall_go::after{content:"";width:5px;height:11px;display:inline-block;vertical-align:0px;margin-left:3px;
 ;background:url(/img/sp_img.png)no-repeat -110px -56px}
+
+/*차단설정*/
+.block_setting_box .pop_info{padding:11px 12px 9px}
+.block_tab{padding-left:19px}
+.block_tab button{width:281px;padding-left:19px;margin:18px 0 15px}
+.tabcontent{overflow-y:scroll;width:579px;padding:0px 19px 0;color:#555}
+.tabcontent.all_setting{padding-bottom:22px;height:384px}
+.tabcontent.part_setting{padding-bottom:17px;height:583px}
+.block_setting_box .part_setting .part_schbox > .set_cont{margin-top:0}
+.part_schbox .radiobox:first-of-type{margin-left:30px}
+.part_schbox .radiobox{margin-left:12px}
+.block_setting_box .inner .pop_info{position:relative;margin:0px 0 6px;padding:13px 12px 10px}
+.block_setting_box .inner .part_setting .pop_info{margin:0px 0 6px}
+.block_setting_box .inner .pop_info h4{display:block;font-size:14px;margin-bottom:2px}
+.block_setting_box .inner .pop_info h4 .icon_mini{margin-top:5px}/*211118 폰트 버그  스타일 추가 1207 */
+.setting_onoff{position:absolute;bottom:9px;right:14px}
+.setting_onoff button{width:66px;height:23px;background-position:0 -241px}
+.setting_onoff button.on{background-position:0 -266px}
+.set_cont{overflow:hidden;position:relative;padding:15px 0 16px;border-bottom:1px dashed #aaa}
+.set_cont:last-of-type{border-bottom:none}
+.setting_off .set_cont .intxt{background:#f3f3f3}
+.cont_tit{display:block;float:left;width:94px;margin-left:8px;font-size:12px;color:#555;font-weight:bold;line-height:30px}
+.intxt{border:1px solid #cecdce;width:378px;height:28px;line-height:28px;padding:0 5px}
+.btn_enroll{position:absolute;right:5px;top:15px;width:66px;height:30px;line-height:30px;background:#f3f3f3;border:1px solid #cecdce;color:#333;font-weight:bold;overflow:hidden}/*210126 아웃라인이슈로 overflow추가*/
+.block_list{overflow:hidden;margin:10px 0 0 86px}
+.block_list.gall{margin:3px 0 0 0}
+.block_list li{float:left;margin-left:15px}
+.block_setting_box .part_setting .block_list.gall li:first-child{margin-left:0}
+
+.block_list span{color:#555;}
+.block_list.gall span{padding-right:0px}
+.block_setting_wrap .block_setting_box .block_list li > button{outline:none}/*0522 크롬 outline업데이트 이슈로 추가*/
+.block_setting_box .block_list.gall .icon_bword_del{margin-left:3px}
+.block_setting_wrap .btn_box{padding:12px 0 17px}
+.block_setting_wrap .btn_box .btn_apply{margin-left:2px}
+.part_setting .gall_sel_tit{line-height:31px}
+.part_schbox{overflow:hidden;margin:16px 5px 26px 5px;position:relative}/*210421*/
+.part_schbox .set_cont{width:262px;padding:0;margin-left:16px}
+.part_schbox .intxt{width:185px}
+.part_schbox .btn_enroll{width:66px;right:0;top:0}
+.block_sch_gall{overflow-y:scroll;float:left;width:534px;height:56px;margin:6px 0 0;padding:10px 0px 8px 16px;border:1px solid #cecdce}
+.block_sch_gall li{float:left;width:128px;line-height:20px}
+.block_sch_gall a{color:#555;display:block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.empty_sch_gall{float:left;width:516px;height:100px;border:1px solid #cecdce;margin-top:6px;padding:10px 16px 8px 16px}
+
+/*특정 IP 대역 입력*/
+.set_content.prevent_code .pop_wrap.type3{margin-top:-8px}
+.pop_content.ipinbox{padding:0}
+.pop_content.ipinbox .pop_info{padding:8px 12px 8px}
+.pop_content.ipinbox .ip_inr{padding:15px 15px 0px}
+.pop_content.ipinbox .ip_inr textarea{width:300px;height:135px;padding:5px;border:1px #bbb solid;color:#555;line-height:16px}
+.pop_content.ipinbox .info_txt{position:relative;padding:8px 17px 0;font-size:12px;line-height:16px;color:#999}
+.pop_content.ipinbox .info_txt .tip_deco999{margin-right:3px}
+.pop_content.ipinbox .btn_box{margin-top:12px;border-top:none;padding-top:0}
+.pop_content.ipinbox .max_txt{position:absolute;right:17px;top:4px;display:block;text-align:right;line-height:24px;color:#555}
+
+.pop_content.ipinbox .ip_inr textarea::-webkit-input-placeholder{color:#999}
+.pop_content.ipinbox .ip_inr textarea:-moz-placeholder{color:#999}
+.pop_content.ipinbox .ip_inr textarea::-moz-placeholder {color:#999}
+.pop_content.ipinbox .ip_inr textarea:-ms-input-placeholder{color:#999}
+
+/*방명록 차단 설정*/
+.pop_content.guestblock{width:398px;}
+.pop_content.guestblock .inner{padding:17px 13px 0}
+.pop_content.guestblock .ip_inr{padding:0}
+.pop_content.guestblock .cont_tit{width:102px;margin-left:0;line-height:16px;color:#333}
+.pop_content.guestblock .box{margin-top:7px}
+.pop_content.guestblock .box:first-child{margin-top:0px}
+.pop_content.guestblock .radiobox input[type="radio"],.pop_content.guestblock  .radiobox input + .checkmark{top:1px}
+.pop_content.guestblock .radiobox label{font-size:12px;color:#555;line-height:15px}/*211118 폰트 버그 line-height:15px추가*/
+.pop_content.guestblock .radiobox{padding-left:18px;margin-left:13px;vertical-align:top;line-height:14px}/*211118 폰트 버그 line-height:16px*/
+.pop_content.guestblock .radiobox:first-child{margin-left:0}
+.pop_content.guestblock .ip_inr{border-top:1px #aaa dashed;margin-top:15px;padding-top:17px}
+.pop_content.guestblock .ip_inr:first-child{border-top:none;margin-top:0;padding-top:0}
+.pop_content.guestblock .ip_inr textarea{width:253px;height:74px;overflow-y:scroll;border:1px #cecdce solid;line-height:18px;padding:7px}
+.pop_content.guestblock .info_txt{clear:both;margin-left:84px;margin-top:7px}
+.pop_content.guestblock .info_txt p{margin-top:2px}
+.pop_content.guestblock .info_txt p:first-child{margin-top:0}
+.pop_content.guestblock .info_txt .tip_deco999{margin-right:1px}
+.pop_content.guestblock .btn_box{margin-top:17px;padding:0 0 25px}
+.pop_content.guestblock .btn_box button{width:58px}
+
+/* 갤러리 개설 신청용 팝업css */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 20px;
+    width: 400px;
+    z-index: 100;
+}
+.close-popup {
+    margin-top: 10px;
+    font-weight: bold;
+}
+.popup-close-button {
+    margin-top: 20px;
+}
+
+.approval-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    line-height: 1.5;
+}
+.approval-popup h3 {
+    margin-top: 0;
+}
+.approval-popup button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0px 17px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.approval-popup button.reject {
+    background-color: #f44336;
+}

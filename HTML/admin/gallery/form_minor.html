@@ -5,12 +5,12 @@
     <title>관리자</title>
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/popup.css">
     <link rel="stylesheet" href="/css/admin/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery-certificate/1.0.0/jquery.certify.min.js"></script>
     <script type="text/javascript" src="/js/admin/gnb.js"></script>
-    <script type="text/javascript" src="/js/management/common.js"></script>
+    <script type="text/javascript" src="/js/admin/member.js"></script>
 </head>
 <body>
     <div class="gcwrap">
@@ -40,8 +40,8 @@
                             <li>
                                 <a href="#">환경설정</a>
                                 <ol>
-                                    <li><a href="#">배너 관리</a></li>
-                                    <li><a href="#">약관 관리</a></li>
+                                    <li><a href="/admin/config/banner.html">배너 관리</a></li>
+                                    <li><a href="/admin/config/terms.html">약관 관리</a></li>
                                 </ol>
                             </li>
                             <li>
@@ -54,9 +54,9 @@
                             <li>
                                 <a href="">갤러리 관리</a>
                                 <ol>
-                                    <li><a href="#">갤러리 목록</a></li>
+                                    <li><a href="/admin/gallery/gallery_list.html">갤러리 목록</a></li>
                                     <li><a href="/admin/gallery/create_main.html">메인 갤러리 생성</a></li>
-                                    <li><a href="#">갤러리 개설 신청</a></li>
+                                    <li><a href="/admin/gallery/form_minor.html">갤러리 개설 신청</a></li>
                                     <li><a href="#">갤러리 승급 신청</a></li>
                                 </ol>
                             </li>
@@ -69,70 +69,229 @@
                         </ul>
                     </aside>
                 </div>
-                <header class="main_make">
-                <div class="page_head clear">
-                    <div class="fl">
-                        <h2>
-                            <a href="#"><span class="fixtit">갤러리</span> 개설 신청</a>
-                        </h2>
-                    </div>
-                </div>
-                </header>
-                <div class="main_make_wrap">
-                    <div class="minor_uadmin_setting">
-                        <table class="minor_block_list del">
-                            <caption>신청 리스트</caption>
-                            <colgroup>
-                                <col style="width:8%">
-                                <col style="width:16%">
-                                <col>
-                                <col style="width:10%">
-                                <col style="width:16%">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th scope="col">신청 번호</th>
-                                    <th scope="col">신청자 식별코드</th>
-                                    <th scope="col">갤러리 이름</th>
-                                    <th scope="col">설명</th>
-                                    <th scope="col">주소</th>
-                                    <th scope="col">카테고리</th>
-                                    <th scope="col">개설이유</th>
-                                    <th scope="col">신청날짜</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                <!-- 개설 이유 글 자르기 -->
+                <script>
+                    function truncateText(selector, maxLength) {
+                      var elements = document.querySelectorAll(selector);
+                      for (var i = 0; i < elements.length; i++) {
+                        var element = elements[i];
+                        var text = element.textContent;
+                        if (text.length > maxLength) {
+                          var truncated = text.substring(0, maxLength) + '...';
+                          element.textContent = truncated;
+                        }
+                      }
+                    }
+                  
+                    document.addEventListener('DOMContentLoaded', function() {
+                      truncateText('.truncate', 7); // 적용할 클래스와 최대 길이 설정
+                    });
+                </script>
 
-                            <tr>
-                                <td class="minnum">4</td>
-                                <td class="minnik">
-                                    <p>놔줘스크립트</p>
-                                    <p>(navascript)</p>
-                                </td>
-                                <td class="minname"><span>강호동 갤러리</span></td>
-                                <td class="mindesc">
-                                    강호동 팬 갤러리 입니다.
-                                </td>
-                                <td class="minaddr">
-                                    <span>https://gall.gcinside.com/ghd</span>
-                                </td>
-                                <td class="mincate">
-                                    <span>연예</span>
-                                </td>
-                                <td class="minreason">
-                                    <span>강호동 팬이라서</span>
-                                </td>
-                                <td class="minday">
-                                    <span>2023.03.14<br>17:40:49</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div class="bottom_paging_box iconpaging"><em>1</em></div>	
-                    </div>
+                <!-- 상세보기 / 개설관리 팝업 창 -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var showDetailButtons = document.querySelectorAll('.show-details');
+                        for (var i = 0; i < showDetailButtons.length; i++) {
+                            showDetailButtons[i].addEventListener('click', showDetails);
+                        }
+
+                        var showApprovalButtons = document.querySelectorAll('.approval');
+                        for (var i = 0; i < showApprovalButtons.length; i++) {
+                            showApprovalButtons[i].addEventListener('click', showApprovalPopup);
+                        }
+
+                        var closeApprovalPopupButton = document.querySelector('.close-approval-popup');
+                        closeApprovalPopupButton.addEventListener('click', closeApprovalPopup);
+
+                        var closePopupButton = document.querySelector('.close-popup');
+                        closePopupButton.addEventListener('click', closePopup);
+
+                    });
+
+                    function showDetails(event) {
+                        event.preventDefault();
+                        var content = event.target.parentNode.parentNode.querySelector('.truncate').dataset.fullText;
+                        var popup = document.querySelector('.popup');
+                        var popupContent = document.querySelector('.popup-content');
+                        popupContent.textContent = content;
+                        popup.style.display = 'block';
+                    }
+
+                    function showApprovalPopup(event) {
+                        event.preventDefault();
+                        var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'block';
+                    }
+
+                    function closePopup() {
+                        var popup = document.querySelector('.popup');
+                        popup.style.display = 'none';
+                    }
+
+                    function closeApprovalPopup() {
+                        var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'none';
+                    }
+                </script>
+  
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>갤러리 개설 신청</h2></div>
+                        <div class="admin_info_content">
+                            <div class="member_search_box">
+                                <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
+                                    <option value="option1">갤러리명</option>
+                                    <option value="option2">아이디</option>
+                                    <option value="option3">신청자</option>
+                                </select>
+                                <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
+                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
+                            </div>
+
+                            <!-- 카테고리별 검색 기능 -->
+                            <div class="category_search_box">
+                                <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
+                                    <option value="">카테고리 전체</option>
+                                    <option data-value="26">연예</option>
+                                    <option data-value="22">국내방송</option>
+                                    <option data-value="31">해외방송</option>
+                                    <option data-value="21">게임</option>
+                                    <option data-value="12">취미</option>
+                                    <option data-value="39">만화/애니</option>
+                                    <option data-value="24">스포츠</option>
+                                    <option data-value="25">스포츠스타</option>
+                                    <option data-value="8">디지털/IT</option>
+                                    <option data-value="15">교통/운송</option>
+                                    <option data-value="7">음식</option>
+                                    <option data-value="16">패션</option>
+                                    <option data-value="23">음악</option>
+                                    <option data-value="6">여행/풍경</option>
+                                    <option data-value="9">합성</option>
+                                    <option data-value="4">생물</option>
+                                    <option data-value="40">건강/심리</option>
+                                    <option data-value="13">학술</option>
+                                    <option data-value="14">교육</option>
+                                    <option data-value="27">대학</option>
+                                    <option data-value="11">수능</option>
+                                    <option data-value="20">직업</option>
+                                    <option data-value="28">정치인/유명인</li>
+                                    <option data-value="17">밀리터리</li>
+                                    <option data-value="41">금융/재테크 </li>
+                                    <option data-value="29">성공/계발</li>
+                                    <option data-value="19">생활</li>
+                                    <option data-value="30">지역</li>
+                                    <option data-value="37">쇼핑/장터</li>
+                                    <option data-value="10">정부/기관</li>
+                                    <option data-value="35">기업</li>
+                                    <option data-value="38">미디어</li>
+                                    <option data-value="5">이슈</li>
+                                    <option data-value="18">성인</li>
+                                    <option data-value="34">기타</li>
+                                    <option data-value="42">공무원</li>
+                                </select>
+                                <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
+                            </div>
+
+                            <table class="admin_table admin_member_list">
+                                <colgroup>
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.8%;">
+                                </colgroup>
+                                <tr>
+                                    <th>신청번호</th>
+                                    <th>갤러리 이름</th>
+                                    <th>주소값</th>
+                                    <th>카테고리</th>
+                                    <th>신청일</th>
+                                    <th>신청자</th>
+                                    <th>갤러리 설명</th>
+                                    <th>관리</th>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>강호동</td>
+                                    <td>ghd</td>
+                                    <td>연예</td>
+                                    <td>23-03-14</td>
+                                    <td>놔줘스크립트</td>
+                                    <td><button class="truncate show-details" data-full-text="유재석 팬 갤러리 견제">유재석 팬 갤러리 견제</button></td>
+                                    <td><button class="approval">[개설관리]</button></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>유재석</td>
+                                    <td>yjs</td>
+                                    <td>연예</td>
+                                    <td>23-03-14</td>
+                                    <td>yourSQL</td>
+                                    <td><button class="truncate show-details" data-full-text="유재석 팬 갤러리 개설 필요">유재석 팬 갤러리 개설 필요</button></td>
+                                    <td><button class="approval">[개설관리]</button></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>건강</td>
+                                    <td>wellbeing</td>
+                                    <td>건강/심리</td>
+                                    <td>23-03-13</td>
+                                    <td>lIIllIlI</td>
+                                    <td><button class="truncate show-details" data-full-text="극단적 웰빙맨들을 잡아 둘 곳이 필요함">극단적 웰빙맨들을 잡아 둘 곳이 필요함</button></td>
+                                    <td><button class="approval">[개설관리]</button></td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>엘더스크롤6</td>
+                                    <td>elder6</td>
+                                    <td>게임</td>
+                                    <td>23-03-12</td>
+                                    <td>tattoo0417</td>
+                                    <td><button class="truncate show-details" data-full-text="하워드를 일하게 해야함">하워드를 일하게 해야함</button></td>
+                                    <td><button class="approval">[개설관리]</button></td>
+                                </tr>
+                            </table>
+                            <div class="popup">
+                                <div class="popup-content"></div>
+                                <button class="close-popup">닫기</button>
+                            </div>
+                            <div class="approval-popup" style="display:none;">
+                                <h3>갤러리 개설 승인/반려</h3>
+                                <p>갤러리 개설 요청을 승인하거나 반려하려면 아래 버튼을 클릭하세요.</p>
+                                <button class="approve">승인</button>
+                                <button class="reject">반려</button>
+                                <button class="close-approval-popup">닫기</button>
+                            </div>
+                        </div>
+
+                        <!-- 페이징 -->
+                        <div class="admin_pageing">
+                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
+
+                            <span class="admin_pageing_num">
+                                <a href="#" class="on">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+                            </span>
+
+                            <span class="admin_pageing_next">다음&nbsp;></span>
+                        </div>
+
+                    </section>
                 </div>
             </div>
         </main>
+
         <footer class="admin_footer gcfoot">
             <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
         </footer>

@@ -1,9 +1,6 @@
 package kr.co.gcInside.dao;
 
-import kr.co.gcInside.vo.MemberVO;
-import kr.co.gcInside.vo.TermsVO;
-import kr.co.gcInside.vo.gall_cate2VO;
-import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -87,6 +84,11 @@ public interface AdminDAO {
      * @return
      */
     public int searchAdminGalleryTotal();
+
+    /**
+     * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 불러오기
+     */
+    public List<CreateVO> galleryRequestList();
 
     // upload
 
