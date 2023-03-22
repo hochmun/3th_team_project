@@ -8,6 +8,7 @@ import kr.co.gcInside.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -120,6 +122,13 @@ public class MemberContoller {
         }
         return resultMap;
     }
+    @PostMapping("member/sendIdCode") // 아이디 찾는 컨트롤러
+    public String sendIdCode(@RequestParam String member_uid){
+        int result = service.selectMemberUid(member_uid);
+
+        return "/index";
+
+    }
 
     @PostMapping("member/sendEmailCode") // 이메일보내는 컨트롤러
     public ResponseEntity<?> sendEmailCode(@RequestParam String email, HttpSession session) throws Exception {
@@ -138,6 +147,7 @@ public class MemberContoller {
         } else { // 인증코드 불일치
             return ResponseEntity.badRequest().body("fail");
         }
-
     }
+
+
 }
