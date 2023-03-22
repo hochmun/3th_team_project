@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -180,5 +182,16 @@ public class AdminController {
         model.addAttribute("list", list);
 
         return "admin/gallery/form_minor";
+    }
+
+    @PostMapping("admin/gallery/form_minor")
+    public String createMinorGallery(CreateVO vo) {
+        try {
+            service.createMinorGallery(vo);
+            return "redirect:/admin/gallery/form_minor";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/admin/gallery/form_minor";
+        }
     }
 }

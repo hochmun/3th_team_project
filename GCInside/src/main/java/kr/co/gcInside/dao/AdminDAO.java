@@ -22,6 +22,11 @@ public interface AdminDAO {
     public int createMainGallery(galleryVO vo);
 
     /**
+     * 2023/03/23 // 김재준 // 관리자 마이너 갤러리 생성
+     */
+    public int createMinorGallery(CreateVO vo);
+
+    /**
      * 2023/03/20 // 심규영 // 관리자 메인 갤러리 생성 셋팅 생성 추가
      * @return
      */

@@ -13,6 +13,20 @@
         WHERE gc_gell_cate2.gell_cate2 = #{gell_cate};
     </insert>
 
+    <!-- 2023/03/22 // 김재준 // 관리자 마이너 갤러리 생성 -->
+    <insert id="createMinorGallery" useGeneratedKeys="true" keyProperty="gell_num">
+        INSERT INTO `gc_gell` (gell_cate, gell_name, gell_address, gell_info, gell_manager, gell_grade, gell_rdate)
+        SELECT SELECT gc_gell_cate2.gell_cate2 = #{gell_create_cate},
+        #{gell_create_name},
+        #{gell_create_address},
+        #{gell_create_intro},
+        #{gell_create_uid},
+        1,
+        NOW()
+        UPDATE gc_admin_gell_create_approve SET gell_create_status = 1
+        WHERE gc_admin_gell_create_approve.gell_create_cate = #{gell_cate} AND gc_admin_gell_create_approve.gell_create_uid = #{gell_manager};
+    </insert>
+
     <!-- 2023/03/20 // 심규영 // 관리자 메인 갤러리 setting 생성 -->
     <insert id="createMainGallerySetting">
         INSERT INTO `gc_gell_setting` SET `setting_gell_num` = #{gell_num};
@@ -185,4 +199,7 @@
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};
     </update>
     <!-- delete -->
+    <delete id="deleteGellCreateApprove" parameterType="kr.co.gcInside.vo.CreateVO">
+        DELETE FROM gc_admin_gell_create_approve WHERE gell_create_uid = #{gell_create_uid}
+    </delete>
 </mapper>

@@ -56,7 +56,24 @@
                         var closePopupButton = document.querySelector('.close-popup');
                         closePopupButton.addEventListener('click', closePopup);
 
+                        var rejectButton = document.querySelector('.reject');
+                        rejectButton.addEventListener('click', showRejectionReason);
+
+                        var submitRejectionButton = document.querySelector('.submit-rejection');
+                        submitRejectionButton.addEventListener('click', submitRejection);
                     });
+
+                    function showRejectionReason() {
+                        var rejectionReasonDiv = document.querySelector('.rejection-reason');
+                        rejectionReasonDiv.style.display = 'block';
+                    }
+
+                    function submitRejection() {
+                        var rejectionReasonText = document.querySelector('.rejection-reason-text').value;
+
+                        closeApprovalPopup();
+                        document.querySelector('.rejection-reason').style.display = 'none';
+                    }
 
                     function showDetails(event) {
                         event.preventDefault();
@@ -111,7 +128,6 @@
 
                             <table class="admin_table admin_member_list">
                                 <colgroup>
-                                    <col style="width: 9.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 9.2%;">
@@ -120,7 +136,6 @@
                                     <col style="width: 14.8%;">
                                 </colgroup>
                                 <tr>
-                                    <th>신청번호</th>
                                     <th>갤러리 이름</th>
                                     <th>주소값</th>
                                     <th>카테고리</th>
@@ -130,11 +145,10 @@
                                     <th>관리</th>
                                 </tr>
                                 <tr th:each="list:${list}">
-                                    <td></td>
                                     <td th:text="${list.gell_create_name}"></td>
                                     <td th:text="${list.gell_create_address}"></td>
                                     <td th:text="${list.gell_create_cate}"></td>
-                                    <td th:text="${#strings.substring(list.gell_create_rdate, 2, 8)}"></td>
+                                    <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
                                     <td th:text="${list.gell_create_uid}"></td>
                                     <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
                                     <td><button class="approval">[개설관리]</button></td>
@@ -144,13 +158,21 @@
                                 <div class="popup-content"></div>
                                 <button class="close-popup">닫기</button>
                             </div>
-                            <div class="approval-popup" style="display:none;">
-                                <h3>갤러리 개설 승인/반려</h3>
-                                <p>갤러리 개설 요청을 승인하거나 반려하려면 아래 버튼을 클릭하세요.</p>
-                                <button class="approve">승인</button>
-                                <button class="reject">반려</button>
-                                <button class="close-approval-popup">닫기</button>
-                            </div>
+                            <form th:action="@{/admin/gallery/form_minor}" method="post">
+                                <div class="approval-popup" style="display:none;">
+                                    <h3>갤러리 개설 승인/반려</h3>
+                                    <p>갤러리 개설 요청을 승인하거나 반려하려면 아래 버튼을 클릭하세요.</p>
+
+                                        <button class="approve" type="submit">승인</button>
+
+                                    <button class="reject">반려</button>
+                                    <div class="rejection-reason" style="display:none;">
+                                        <textarea class="rejection-reason-text" placeholder="반려 사유를 입력하세요"></textarea>
+                                        <button class="submit-rejection">제출</button>
+                                    </div>
+                                    <button class="close-approval-popup">닫기</button>
+                                </div>
+                            </form>
                         </div>
 
                         <!-- 페이징 -->

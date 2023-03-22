@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -36,6 +37,13 @@ public class AdminService {
      */
     public int createMainGallerySetting(int gell_num) {
         return dao.createMainGallerySetting(gell_num);
+    }
+
+    /**
+     * 2023/03/23 // 김재준 // 관리자 마이너 갤러리 생성
+     */
+    public int createMinorGallery(CreateVO vo) {
+        return dao.createMinorGallery(vo);
     }
 
     // read
