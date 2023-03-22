@@ -43,4 +43,13 @@ public class MinorService {
         int count = dao.countBygellname(gell_create_name);
         return count > 0;
     }
+    /**
+     * 2023/03/22 // 김동민 // validation
+     * @param gell_create_address
+     * @return
+     */
+    public boolean isdupliad(String gell_create_address){
+        int count = dao.countBygelladdress(gell_create_address);
+        return count > 0;
+    }
 }

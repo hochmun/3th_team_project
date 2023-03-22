@@ -1,4 +1,4 @@
-var isnameok = false;
+
 function showLayer(layerName){
 	if($("#"+layerName).css("display") == "none"){
 		$("#"+layerName).show();
@@ -33,6 +33,7 @@ $(function() {
 
 /* 갤러리 생성 이름 validation */
 $(function() {
+    var isnameok = false;
     $("input[name='gell_create_name']").focus(function(){
              $('#nametip1').show();
              $('#nametip2').show();
@@ -42,7 +43,6 @@ $(function() {
              isnameok = false;
         });
    $("input[name='gell_create_name']").focusout(function() {
-
      var selectname = document.getElementById("gell_create_name"); // var 키워드 추가
      var gell_create_name = $("input[name='gell_create_name']").val();
      if (selectname.value.length > 1 && selectname.value.length < 13) {
@@ -90,16 +90,31 @@ $(function() {
         isaddressok = false;
     });
     $("input[name='gell_create_address']").focusout(function() {
-    var selectaddress = $("input[name='gell_create_address']").val(); // var 키워드 추가
-    if(selectaddress.length < 1 && selectaddress.length > 21){
+    var gell_create_address = $("input[name='gell_create_address']").val(); // var 키워드 추가
+    if(gell_create_address.length < 1 && gell_create_address.length > 21){
         $('.gell_create_address_tip').show();
         isaddressok = false;
-    }else if(!pattern1.test(selectaddress) && !pattern2.test(selectaddress) && !pattern4.test(selectaddress)){
+    }else if(!pattern1.test(gell_create_address) && !pattern2.test(gell_create_address) && !pattern4.test(gell_create_address)){
         $('.gell_create_address_tip').show();
         isaddressok = false;
     }else{
-        $('.ad_success').show();
-        isaddressok = true;
+    let jsonData = {"gell_create_address":gell_create_address};
+           $.ajax({
+             type : "GET",
+             url : "/GCInside/m/chkAddress",
+             data : jsonData,
+             success : function(data){
+               if(data.result==="success"){
+                 $('.ad_success').show();
+                 $('.ad_fail').hide()
+                 isaddressok = true;
+               }else{
+                 $('.ad_success').hide();
+                 $('.ad_fail').show()
+                 isaddressok = false;
+               }
+             }
+           });
     }
     });
 });
@@ -133,7 +148,6 @@ $(function() {
        }
        $('#frmCreate').submit(); // 폼전송
        alert('성공적으로 마이너 갤러리 생성신청이 완료 되었습니다.')
-
      });
    };
    agree();
