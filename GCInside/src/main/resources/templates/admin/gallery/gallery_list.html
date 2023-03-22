@@ -73,29 +73,37 @@
                                     <td th:text="${gallery.gell_rdate.substring(2, 11)}">19-12-09</td>
                                     <td th:text="${gallery.gell_manager}">아인슈타인</td>
                                     <td th:text="${gallery.gell_status == 0 ? '공개' : gallery.gell_status == 1 ? '비공개' : '삭제'}">공개</td>
-                                    <td><a href="javascript:;" onclick="popup_open()">[설정][보기]</a></td>
+                                    <td><a href="javascript:;" onclick="popup_open()">[자세히 보기]</a></td>
                                 </tr>
                             </table>
                         </div>
 
                         <!-- 페이징 -->
                         <div class="admin_pageing">
-                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
-
-                            <span class="admin_pageing_num">
-                                <a href="#" class="on">1</a>
-                                <a href="#">2</a>
-                                <a href="#">3</a>
-                                <a href="#">4</a>
-                                <a href="#">5</a>
-                                <a href="#">6</a>
-                                <a href="#">7</a>
-                                <a href="#">8</a>
-                                <a href="#">9</a>
-                                <a href="#">10</a>
+                            <span class="admin_pageing_prev" th:if="${pagingDTO.currentPage > 1}">
+                                <a th:href="@{${'/admin/gallery/gallery_list'}(pg=${pagingDTO.currentPage - 1})}">
+                                    &lt; 이전
+                                </a>
                             </span>
 
-                            <span class="admin_pageing_next">다음&nbsp;></span>
+                            <span class="admin_pageing_num">
+                                <th:block th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
+                                   th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
+                                    <span th:if="${pageNumber} == ${pagingDTO.currentPage}"
+                                          th:text="${pageNumber}">
+                                    </span>
+                                    <a th:if="${pageNumber} != ${pagingDTO.currentPage}"
+                                       th:href="@{${'/admin/gallery/gallery_list'}(pg=${pageNumber})}"
+                                       th:text="${pageNumber}">
+                                    </a>
+                                </th:block>
+                            </span>
+
+                            <span class="admin_pageing_next" th:if="${pagingDTO.currentPage < pagingDTO.lastPage}">
+                                <a th:href="@{${'/admin/gallery/gallery_list'}(pg=${pagingDTO.currentPage + 1})}">
+                                    다음 &gt;
+                                </a>
+                            </span>
                         </div>
 
                     </section>
