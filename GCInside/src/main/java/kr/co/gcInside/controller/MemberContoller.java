@@ -6,6 +6,7 @@ import kr.co.gcInside.service.EmailService;
 import kr.co.gcInside.service.MemberService;
 import kr.co.gcInside.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailSender;
@@ -122,12 +123,21 @@ public class MemberContoller {
         }
         return resultMap;
     }
+    /** 2023-03-22
+     * 전인준
+     * 아이디 찾기 컨트롤러 PostMapping
+     *  **/
     @PostMapping("member/sendIdCode") // 아이디 찾는 컨트롤러
-    public String sendIdCode(@RequestParam String member_uid){
-        int result = service.selectMemberUid(member_uid);
-
-        return "/index";
-
+    public String sendIdCode(@RequestParam String member_email)throws EmailException {
+        String result = service.selectMemberIdByEmail(member_email);
+        if(result != null){
+            String subject = "지시인사이드 아이디찾기 안내";
+            String body    = "입력하신 이메일로 조회된 아이디는 " + result + " 입니다.";
+            emailService.sendEmail(member_email, subject, body);
+            return "/index";
+        }else{
+            return "/member/find_id";
+        }
     }
 
     @PostMapping("member/sendEmailCode") // 이메일보내는 컨트롤러

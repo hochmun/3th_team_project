@@ -18,7 +18,7 @@
                   </div>
                   <div id="contbox" class="con_box brd nomin">
                     <!-- 정보 입력 -->
-                    <form action="#" name='findid' method="post" accept-charset="utf-8">
+                    <form th:action="@{/member/sendIdCode}" name='findid' method="post" accept-charset="utf-8">
                     <input type="hidden" id="find_id_fail" name="find_id_fail" value="1">
                     <div class="con innerbox">
                       <h4 class="tit font_red">이메일을 입력해서 찾기</h4>
@@ -44,22 +44,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- //정보 입력 -->
-                    <div id="other_auth_pop" class="pop_wrap type3" style="left:50%;top:50%;margin-left:-159px;margin-top:-100px;display:none;">
-                        <div class="pop_content another_certify">
-                            <div class="pop_head bg"><h3>인증하기</h3></div>
-                            <div class="inr">
-                              <strong class="stit">휴대폰 인증</strong>
-                              <div class="txtbox">
-                                <p>본인 명의의 휴대폰을 통한 본인인증 서비스입니다.</p>
-                              </div>
-                              <div class="btn_box">
-                                <button type="button" class="btn_green small auto" onclick="open_mobile()">휴대폰 인증하기</button>
-                              </div>
-                            </div>
-                          </div>
-                          <button type="button" class="poply_whiteclose" onclick="open_other_auth('close')"><span class="blind">레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>
-                        </div>
                     </div>
                 </section>
               </article>
