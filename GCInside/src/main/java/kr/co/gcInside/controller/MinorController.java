@@ -63,6 +63,20 @@ public class MinorController{
         }
         return resultMap;
     }
+    @ResponseBody
+    @GetMapping("m/chkAddress")
+    public Map<String, Object> chkAddress(@RequestParam("gell_create_address") String gell_create_address){
+        Map<String, Object> resultMap =new HashMap<>();
+        boolean isdupliad = service.isdupliad(gell_create_address);
+        if(isdupliad){
+            resultMap.put("result", "fail");
+            resultMap.put("message", "이미 사용 중인 갤러리 주소입니다.");
+        } else {
+            resultMap.put("result", "success");
+            resultMap.put("message", "사용 가능한 갤러리 주소입니다.");
+        }
+        return resultMap;
+    }
 
 
 }

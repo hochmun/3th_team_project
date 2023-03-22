@@ -4,7 +4,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.gcInside.dao.MinorDAO">
-    <!-- create -->
+    <!-- insert -->
+    <!-- 2023/03/16 // 김동민 // 마이너 갤러리 생성(uid 바꿔야함) -->
     <insert id="creategall" parameterType="kr.co.gcInside.vo.CreateVO">
         INSERT INTO `gc_admin_gell_create_approve` SET
         `gell_create_rdate`   = NOW(),
@@ -16,11 +17,13 @@
         `gell_create_address` = #{gell_create_address},
         `gell_create_reason`  = #{gell_create_reason};
     </insert>
-    <!-- read -->
+    
+    <!-- select -->
+    <!-- 2023/03/16 // 김동민 // 마이너 갤러리 생성시 카테고리 선택 -->
     <select id="selectcate2" resultType="kr.co.gcInside.vo.CreateVO">
         SELECT * from `gc_gell_cate2`;
     </select>
-    <!-- 2023/03/16 // 김동민 //  -->
+    <!-- 2023/03/16 // 김동민 // 마이너 갤러리 생성약관 -->
     <select id="selectminorterms" resultType="kr.co.gcInside.vo.TermsVO">
         SELECT * FROM `gc_terms`;
     </select>
@@ -28,9 +31,14 @@
     <select id="countBygellname" resultType="int" parameterType="String">
         select count(*) from `gc_gell` where gell_name = #{gell_create_name};
     </select>
+    <!-- 2023/03/22 // 김동민 // validation -->
+    <select id="countBygelladdress" resultType="int" parameterType="String">
+        select count(*) from `gc_gell` where gell_address = #{gell_create_address};
+    </select>
+    <!-- 2023/03/22 // 김동민 // 마이너 갤러리 index 흥한 갤러리 select -->
+    <select id="selecthotmgall" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT * FROM `gc_gell` WHERE gell_hit
+    </select>
 
 
-    <!-- upload -->
-
-    <!-- delete -->
 </mapper>

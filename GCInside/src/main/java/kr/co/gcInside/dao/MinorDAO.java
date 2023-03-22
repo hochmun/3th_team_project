@@ -34,4 +34,10 @@ public interface MinorDAO {
      * @return
      */
     public int countBygellname(String gell_create_name);
+    /**
+     * 2023/03/22 // 김동민 // validation
+     * @param gell_create_address
+     * @return
+     */
+    public int countBygelladdress(String gell_create_address);
 }
