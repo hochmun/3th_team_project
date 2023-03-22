@@ -17,6 +17,7 @@ public class SecurityCheckUtil {
     public SecurityInfoDTO getSecurityInfoDTO(MyUserDetails myUserDetails) {
         return new SecurityInfoDTO().builder()
                 .isAnonymous(isAnonymous(myUserDetails))
+                .isAuthenticated(isAuthenticated(myUserDetails))
                 .build();
     }
 
@@ -28,6 +29,16 @@ public class SecurityCheckUtil {
      */
     public boolean isAnonymous(MyUserDetails myUserDetails) {
         if(myUserDetails == null) return true;
+        else return false;
+    }
+
+    /**
+     * 2023/03/22 // 심규영 // 로그인 체크
+     * @param myUserDetails
+     * @return
+     */
+    public boolean isAuthenticated(MyUserDetails myUserDetails) {
+        if(myUserDetails != null) return true;
         else return false;
     }
 

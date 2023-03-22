@@ -3,6 +3,7 @@ package kr.co.gcInside.controller.gall;
 
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
+import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.galleryVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,14 +91,15 @@ public class BoardController {
         if(service.URLCheck(grade,type)) return "index";
         
         // id 값에 따른 갤러리 정보 불러오기
-        // 불러오는 내용
-        // 갤러리 말머리 설정
         galleryVO galleryVO = service.selectGellInfo(data.get("id"));
+
+        // 말머리
 
         // 페이지 종류 전송
         model.addAttribute("type", type);
         model.addAttribute("grade", grade);
         model.addAttribute("galleryVO", galleryVO);
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
 
         return "gall/board/total";
     }
