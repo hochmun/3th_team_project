@@ -5,8 +5,8 @@
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/header@latest');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/list@latest');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/raw');
-// 이미지 링크
-$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest');
+// 심플 이미지
+//$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest');
 // 이미지 저장 기능 
 // 서버 필요
 //$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0');
@@ -45,7 +45,7 @@ window.addEventListener('load',function(){
                 }
             },
             raw: RawTool,
-            simpleImage: SimpleImage,
+            //simpleImage: SimpleImage,
             /*
             image: {
                 class: ImageTool,
@@ -112,11 +112,10 @@ window.addEventListener('load',function(){
  * 2023/03/17 // 심규영 // 데이터 저장 함수
  * 글작성, 글 수정
  */
-function editor_save(){
+async function editor_save(){
     editor.save().then((outputData)=>{
         const parsingoutput = JSON.stringify(outputData);
-        console.log('aritlce data: ', outputData);
-        console.log('article string: ', parsingoutput);
+        window.parent.article_make(parsingoutput);
     }).catch((error)=>{
         console.log('Saving failed : ', error)
     })
