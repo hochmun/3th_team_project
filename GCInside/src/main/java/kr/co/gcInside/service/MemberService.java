@@ -30,8 +30,8 @@ public class MemberService {
         int count = dao.countByMemberEmail(member_email);
         return count > 0;
     }
-    public int selectMemberUid(String member_email){
-        return dao.selectMemberUid(member_email);
+    public String selectMemberIdByEmail(String member_email){
+        return dao.selectMemberIdByEmail(member_email);
     }
 
 }

@@ -251,20 +251,20 @@ let mailList = function(){
 	}
 }
 
+
 // 이메일 인증코드 전송
 let codeSend = function() {
-    let email1 = jQuery.trim($('#email1').val());			//이메일
-	if(typeof(email1) == 'undefined' || email1 == '') {
-		alert('이메일을 입력해 주세요.');
-		$('#email1').focus();
-		return false;
-	}
-	let email2 = jQuery.trim($('#email2').val());			//이메일
-	if(typeof(email2) == 'undefined' || email2 == '') {
-		alert('이메일을 입력해 주세요.');
-		$('#email2').focus();
-		return false;
-	}
+    let isClicked = false; // 클릭 여부 변수
+    let email1 = jQuery.trim($('#email1').val()); //이메일1 값
+    let email2 = jQuery.trim($('#email2').val()); //이메일2 값
+
+	if (typeof(email1) === 'undefined' || email1 === '' ||
+        typeof(email2) === 'undefined' || email2 === '') {
+        alert('이메일을 입력해 주세요.');
+        $('#email1').focus();
+        return false;
+    }
+
 	let email = email1 + "@" + email2;
 	$.ajax({
         url: '/GCInside/member/sendEmailCode',
@@ -272,12 +272,17 @@ let codeSend = function() {
         data: {email: email},
         success: function(response) {
             alert('인증코드가 전송되었습니다.');
+            isClicked = true; // 클릭 여부 변수를 true 로 변경, 중복 클릭 방지
         },
         error: function(error) {
             alert('인증코드 전송에 실패했습니다.');
+        },
+        complete: function(){
+            isClicked = false; // ajax 호출 완료후에 클릭 여부 변수를 재설정
         }
     });
 }
+
 // 이메일 인증코드값 확인
 let AuthCode = function() {
     let code = jQuery.trim($('#code').val());  // 입력한 인증코드
@@ -344,10 +349,23 @@ let member_emailResult = function(){
         type : "get",
         url : '/GCInside/member/checkEmail',
         data : jsonData,
-        success : function(data){
+        success : function(data){ // DB에 이메일 존재하는지 확인
             if(data.result === 'fail'){
                 alert('입력한 이메일을 찾을수없습니다.');
-            }else{}
+            }else{
+                $.ajax({ // 입력한 이메일이 맞을때 이메일 보내기
+                    type : "post",
+                    url : '/GCInside/member/sendIdCode',
+                    data : jsonData,
+                    success : function(data) {
+                        alert("아이디가 해당 이메일로 발송되었습니다.");
+                        location.href = "/GCInside/member/login";
+                    },
+                    error : function(e) {
+                        alert("아이디 발송에 실패했습니다. 다시 시도해 주세요.");
+                    }
+                });
+            }
         }
     });
 };
