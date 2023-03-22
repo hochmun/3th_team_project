@@ -14,6 +14,7 @@
 .member_search_box {margin-top: 10px;margin-left: 10px;}
 .admin_info_content > div > select {width: 100px;}
 .admin_info_content > div > button {height: 25px;line-height: 25px;}
+.category_search_box {margin-top: 10px;margin-left: 10px;}
 
 /* 관리자 gnb */
 .admin_aside{width: 270px;height: auto; background: #669933;box-sizing: border-box;}
@@ -189,6 +190,24 @@
 
 /* 관리자 푸터 */
 .admin_footer > div {color: white;position: relative; top: 25px;}
+
+/* 목록 페이징 */
+.bottom_paging_box {
+position: relative;
+margin-top: 18px;
+text-align: center;
+line-height: 20px;
+}
+.bottom_paging_box.iconpaging {font-size: 0;}
+.gallog_wrap .bottom_paging_box {padding: 37px 0 10px; margin: 0;}
+.bottom_paging_box a, .bottom_paging_box em, .bottom_paging_box span {
+display: inline-block;
+margin-left: 9px;
+font-size: 14px;
+font-weight: bold;
+}
+.bottom_paging_box em {text-decoration: underline; color: #d31900;}
+.bottom_paging_box a:first-child, .bottom_paging_box em:first-child {margin-left: 0;}
 
 .checkbox-group label {
     display: inline-block;

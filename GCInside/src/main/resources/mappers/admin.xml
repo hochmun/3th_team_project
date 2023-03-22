@@ -102,6 +102,29 @@
     <select id="selectGalleryCates" resultType="kr.co.gcInside.vo.gall_cate2VO">
         SELECT * FROM `gc_gell_cate2`;
     </select>
+
+    <!-- 2023/03/22 // 김재준 // 갤러리 개설 신청 list -->
+    <select id="galleryRequestList" resultMap="createResultMap">
+        SELECT gell_create_rdate, gell_create_uid, gell_create_name, gell_create_intro,
+        gell_create_cate, gell_create_address, gell_create_reason
+        FROM gc_admin_gell_create_approve
+        ORDER BY gell_create_rdate DESC;
+    </select>
+
+    <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
+        <result property="gell_create_rdate" column="gell_create_rdate"/>
+        <result property="gell_create_status" column="gell_create_status"/>
+        <result property="gell_create_uid" column="gell_create_uid"/>
+        <result property="gell_create_name" column="gell_create_name"/>
+        <result property="gell_create_intro" column="gell_create_intro"/>
+        <result property="gell_create_cate" column="gell_create_cate"/>
+        <result property="gell_create_address" column="gell_create_address"/>
+        <result property="gell_create_reason" column="gell_create_reason"/>
+        <result property="gell_create_r_reason" column="gell_create_r_reason"/>
+        <result property="gell_cate1" column="gell_cate1"/>
+        <result property="gell_cate2" column="gell_cate2"/>
+        <result property="gell_cate2_name" column="gell_cate2_name"/>
+    </resultMap>
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};

@@ -5,10 +5,7 @@ import kr.co.gcInside.entity.UserEntity;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.AdminService;
 import kr.co.gcInside.utill.PagingUtil;
-import kr.co.gcInside.vo.MemberVO;
-import kr.co.gcInside.vo.TermsVO;
-import kr.co.gcInside.vo.gall_cate2VO;
-import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -153,5 +150,22 @@ public class AdminController {
         log.info("vo 정보 불러오기 : " + vo);
 
         return "redirect:/admin/index";
+    }
+
+    /**
+     * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list get 매핑
+     */
+    @GetMapping("admin/gallery/form_minor")
+    public String galleryRequestList(Model model) {
+        // 갤러리 개설 신청 리스트 불러오기
+        List<CreateVO> list = service.galleryRequestList();
+
+        // 카테고리 이름 불러오기
+        List<gall_cate2VO> cates = service.selectGalleryCates();
+
+        model.addAttribute("cates", cates);
+        model.addAttribute("list", list);
+
+        return "admin/gallery/form_minor";
     }
 }

@@ -1,10 +1,7 @@
 package kr.co.gcInside.service;
 
 import kr.co.gcInside.dao.AdminDAO;
-import kr.co.gcInside.vo.MemberVO;
-import kr.co.gcInside.vo.TermsVO;
-import kr.co.gcInside.vo.gall_cate2VO;
-import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,6 +86,13 @@ public class AdminService {
      */
     public List<galleryVO> AdminGalleryList() {
         return dao.AdminGalleryList();
+    }
+
+    /**
+     * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 불러오기
+     */
+    public List<CreateVO> galleryRequestList() {
+        return dao.galleryRequestList();
     }
 
     // upload
