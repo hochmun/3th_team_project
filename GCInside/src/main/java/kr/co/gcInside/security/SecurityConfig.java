@@ -61,7 +61,6 @@ public class SecurityConfig {
 		.sessionRegistry(sessionRegistry());
 
 		// 전체 접근 가능
-		http.authorizeRequests().antMatchers("/**/**").permitAll();
 		http.authorizeRequests().antMatchers("/index").permitAll();
 
 
@@ -98,7 +97,6 @@ public class SecurityConfig {
 
 		// 전체 접근 가능
 		http.authorizeRequests().antMatchers("/index").permitAll();
-		http.authorizeRequests().antMatchers("/**").permitAll();
 
 		// /index 경로에 대한 로그인 설정
 		http.requestMatchers()

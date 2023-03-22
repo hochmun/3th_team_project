@@ -18,4 +18,7 @@
     <select id="countByMemberEmail" resultType="int" parameterType="String">
         select count(*) from `gc_member` where member_email = #{member_email};
     </select>
+    <select id="selectMemberUid" parameterType="String">
+        SELECT member_uid from `gc_member` WHERE member_email = #{member_email};
+    </select>
 </mapper>

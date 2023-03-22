@@ -15,9 +15,6 @@
                 <section>
                   <div class="cont_head">
                     <h3 class="head_tit">아이디 찾기</h3>
-                    <th:block sec:authentication ="isAnonymous()">
-                    <h3 class="head_tit">아이디 찾기</h3>
-                    </th:block>
                   </div>
                   <div id="contbox" class="con_box brd nomin">
                     <!-- 정보 입력 -->
@@ -33,9 +30,6 @@
                         <div class="form_box">
                             <input type="text" id="member_email" name="member_email" class="int" title="이메일 입력" placeholder="이메일" maxlength="30">
                             <button type="button" class="btn_blue small btn_wrfull" onclick="member_emailResult()">확인</button>
-                          <th:block sec:authorize ="isAnonymous()">
-                            <button type="button" class="btn_blue small btn_wrfull" onclick="member_emailResult()">확인</button>
-                          </th:block>
                         </div>
                       </div>
                       </form>
