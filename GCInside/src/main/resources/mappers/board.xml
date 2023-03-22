@@ -5,6 +5,29 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.gcInside.dao.BoardDAO">
     <!-- create -->
+
+    <!-- 2023/03/22 // 심규영 // 게시물 작성 쿼리문 -->
+    <insert id="insertArticle" parameterType="map">
+        INSERT INTO `gc_gell_article` SET
+        `articlel_gell_num` = #{article_gell_num},
+        `article_login_status` = #{userLogin},
+        <if test="userLogin eq 0">
+            `article_uid` = #{article_uid},
+        </if>
+        <if test="userLogin eq 1">
+            `article_nonmember_uid` = #{nonmember_uid},
+            `article_nonmember_pass` = #{nonmember_pass},
+        </if>
+
+        <if test="sub_cate_info eq 1">
+            `article_sub_cate` = #{sub_cate},
+        </if>
+        `article_title` = #{article_title},
+        `article_content` = #{article_content},
+        `article_regip` = #{article_regip},
+        `article_rdate` = NOW();
+    </insert>
+
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
@@ -34,6 +57,22 @@
             <result column="setting_sub_cate" property="setting_sub_cate"></result>
         </association>
     </resultMap>
+
+    <!-- 2023/03/22 // 심규영 // 갤러리 존재 확인 쿼리문 -->
+    <select id="selectGellCheck" resultType="int">
+        SELECT COUNT(`gell_num`) FROM `gc_gell` WHERE `gell_num` = ${gell_num};
+    </select>
+
+    <!-- 2023/03/22 // 심규영 // 유저 정보 존재 확인 쿼리문 -->
+    <select id="selectMemberCheck" resultType="int">
+        SELECT COUNT(`member_uid`) FROM `gc_member` WHERE `member_uid` = ${member_uid};
+    </select>
+
+    <!-- 2023/03/22 // 심규영 // 말머리 확인 쿼리문 -->
+    <select id="selectSubCateCheck" resultType="int">
+        SELECT COUNT(`sub_cate_num`) FROM `gc_gell_sub_cate` WHERE `sub_cate_gell_num` = ${gell_num} AND `sub_cate_sequence` = ${sub_cate};
+    </select>
+
     <!-- upload -->
     <!-- delete -->
 </mapper>

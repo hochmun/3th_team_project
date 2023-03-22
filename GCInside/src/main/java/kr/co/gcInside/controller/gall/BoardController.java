@@ -5,15 +5,16 @@ import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,7 +38,7 @@ public class BoardController {
      *              m       : 메인
      *              mgall   : 마이너
      *              mini    : 미니
-     *              
+     *
      *      들어오는 값
      *          기본 공통
      *              id              : 갤러리 주소
@@ -89,7 +90,7 @@ public class BoardController {
                         @AuthenticationPrincipal MyUserDetails myUserDetails) {
         // 주소 체크
         if(service.URLCheck(grade,type)) return "index";
-        
+
         // id 값에 따른 갤러리 정보 불러오기
         galleryVO galleryVO = service.selectGellInfo(data.get("id"));
 
@@ -101,6 +102,8 @@ public class BoardController {
         model.addAttribute("galleryVO", galleryVO);
         model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
 
+        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
+
         return "gall/board/total";
     }
 
@@ -111,6 +114,44 @@ public class BoardController {
     @GetMapping("gall/board/editor")
     public String editorIframe(){
         return "gall/board/editor";
+    }
+
+    /**
+     * 2023/03/22 // 심규영 // 글 작성 post 맵핑
+     *      <p>들어오는 값</p><pre>
+     *          article_gell_num    : 게시물이 올라가는 갤러리 번호
+     *          userLogin           : 유저 로그인 정보 (0:회원,1:비회원)
+     *          sub_cate_info       : 말머리 사용 정보 (0:사용안함)
+     *          article_title       : 게시물 제목
+     *          article_content     : 게시물 내용
+     *
+     *          nonmember_uid       : 비회원 아이디
+     *          nonmember_pass      : 비회원 비밀번호
+     *          article_uid         : 회원 아이디
+     *
+     *          sub_cate            : 말머리 번호</pre>
+     */
+    @ResponseBody
+    @PostMapping("gall/board/articleWrite")
+    public Map<String, Object> articleWrite(@RequestBody Map<String, String> data,
+                             HttpServletRequest req) {
+        // 리턴할 결과 값
+        int result = 0;
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        // 추가 유효성 검사
+        if(!service.WriteValidation(data)) { // 유효성 검사 실패시
+            resultMap.put("result", -1);
+            return resultMap;
+        }
+        
+        // 게시글 작성
+        data.put("article_regip", req.getRemoteAddr());
+        result = service.insertArticle(data);
+        resultMap.put("result", result);
+
+        return resultMap;
     }
 
 }
