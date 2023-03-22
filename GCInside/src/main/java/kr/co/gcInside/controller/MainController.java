@@ -33,10 +33,11 @@ public class MainController {
     public String index(Model model) {
         // 신설 마이너 갤러리 페이징
         PagingDTO newgellPagingDTO = new PagingUtil().getPagingDTO(null, service.MainIndexNewMgellCommunityCount());
-        
+
         // 페이징 처리
         List<galleryVO> newMgellCommunityList = service.MainIndexNewMgellCommunity(newgellPagingDTO.getStart());
-
+        List<galleryVO> MainIndexNewCommunity = service.MainIndexNewCommunity(newgellPagingDTO.getStart());
+        model.addAttribute("MainIndexNewCommunity", MainIndexNewCommunity);
         model.addAttribute("newMgellCommunityList", newMgellCommunityList);
         model.addAttribute("newgellPagingDTO", newgellPagingDTO);
 
