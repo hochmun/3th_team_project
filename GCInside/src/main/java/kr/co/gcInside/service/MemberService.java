@@ -33,5 +33,8 @@ public class MemberService {
     public String selectMemberIdByEmail(String member_email){
         return dao.selectMemberIdByEmail(member_email);
     }
+    public String selectMemberPassByUidEmail(String member_uid,String member_email){
+        return dao.selectMemberPassByUidEmail(member_uid,member_email);
+    }
 
 }

@@ -11,5 +11,6 @@ public interface MemberDAO {
     public int countByMemberUid(String member_uid);
     public int countByMemberEmail(String member_email);
     public String selectMemberIdByEmail(String member_email);
+    public String selectMemberPassByUidEmail(String member_uid,String member_email);
 
 }

@@ -44,6 +44,7 @@ public class MemberContoller {
     public String terms() {
         return "member/terms";
     }
+
     // 임시로 밑에 주석에있는 주소 처럼 넣으면 로그아웃 기능됨
     // a태그 사용하면 get방식으로 보내서 로그아웃시 권장되지않는방법
     // <form th:action="@{/logout}" method="post"><button type="submit"></button></form>
