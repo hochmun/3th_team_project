@@ -22,6 +22,11 @@ public interface AdminDAO {
     public int createMainGallery(galleryVO vo);
 
     /**
+     * 2023/03/23 // 김재준 // 관리자 마이너 갤러리 생성
+     */
+    public int createMinorGallery(galleryVO vo);
+
+    /**
      * 2023/03/20 // 심규영 // 관리자 메인 갤러리 생성 셋팅 생성 추가
      * @return
      */
@@ -97,6 +102,11 @@ public interface AdminDAO {
      * @return
      */
     public int updateTerms(@Param("type") String type, @Param("content") String content);
+
+    /**
+     * 2023/03/23 // 김재준 // 갤러리 개설요청 `gell_create_status` 업데이트
+     */
+    public int updateGalleryCreateStatus(@Param("gell_create_num") Integer gell_create_num, @Param("gell_create_status") Integer gell_create_status);
 
     // delete
 }

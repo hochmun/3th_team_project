@@ -13,6 +13,14 @@
         WHERE gc_gell_cate2.gell_cate2 = #{gell_cate};
     </insert>
 
+    <!-- 2023/03/22 // 김재준 // 관리자 마이너 갤러리 생성 -->
+    <insert id="createMinorGallery" useGeneratedKeys="true" keyProperty="gell_num">
+        INSERT INTO `gc_gell` (gell_cate, gell_name, gell_address, gell_info, gell_manager, gell_grade, gell_rdate)
+            SELECT gc_admin_gell_create_approve.gell_create_cate, #{gell_name}, #{gell_address}, #{gell_info}, #{gell_manager}, 0, NOW()
+            FROM gc_admin_gell_create_approve
+            WHERE gc_admin_gell_create_approve.gell_create_cate = #{gell_cate};
+    </insert>
+
     <!-- 2023/03/20 // 심규영 // 관리자 메인 갤러리 setting 생성 -->
     <insert id="createMainGallerySetting">
         INSERT INTO `gc_gell_setting` SET `setting_gell_num` = #{gell_num};
@@ -160,13 +168,14 @@
 
     <!-- 2023/03/22 // 김재준 // 갤러리 개설 신청 list -->
     <select id="galleryRequestList" resultMap="createResultMap">
-        SELECT gell_create_rdate, gell_create_uid, gell_create_name, gell_create_intro,
+        SELECT gell_create_num, gell_create_rdate, gell_create_uid, gell_create_name, gell_create_intro,
         gell_create_cate, gell_create_address, gell_create_reason
         FROM gc_admin_gell_create_approve
-        ORDER BY gell_create_rdate DESC;
+        ORDER BY gell_create_num desc;
     </select>
 
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
+        <result property="gell_create_num" column="gell_create_num"/>
         <result property="gell_create_rdate" column="gell_create_rdate"/>
         <result property="gell_create_status" column="gell_create_status"/>
         <result property="gell_create_uid" column="gell_create_uid"/>
@@ -183,6 +192,12 @@
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};
+    </update>
+
+    <!-- 2023/03/23 // 김재준 // 갤러리 개설 허가 후 신청란 status 변경 -->
+    <update id="updateGalleryCreateStatus" parameterType="kr.co.gcInside.vo.CreateVO">
+        UPDATE `gc_admin_gell_create_approve` SET `gell_create_status` = 1
+        WHERE `gell_create_num` = #{gell_create_num};
     </update>
     <!-- delete -->
 </mapper>

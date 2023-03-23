@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -36,6 +37,13 @@ public class AdminService {
      */
     public int createMainGallerySetting(int gell_num) {
         return dao.createMainGallerySetting(gell_num);
+    }
+
+    /**
+     * 2023/03/23 // 김재준 // 관리자 마이너 갤러리 생성
+     */
+    public int createMinorGallery(galleryVO vo) {
+        return dao.createMinorGallery(vo);
     }
 
     // read
@@ -121,6 +129,13 @@ public class AdminService {
      */
     public int updateTerms(String type, String content) {
         return dao.updateTerms(type, content);
+    }
+
+    /**
+     * 2023/03/23 // 김재준 // 갤러리 개설요청 `gell_create_status` 업데이트
+     */
+    public int updateGalleryCreateStatus(@Param("gell_create_num") Integer gell_create_num, @Param("gell_create_status") Integer gell_create_status) {
+        return dao.updateGalleryCreateStatus(gell_create_num, gell_create_status);
     }
 
     // delete

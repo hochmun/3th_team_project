@@ -3,16 +3,15 @@ package kr.co.gcInside.vo;
  * 2023/03/16 // 김동민 // 갤러리 개설 관련 VO
  */
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 @Data
 public class CreateVO {
+    private int gell_create_num;
     private String gell_create_rdate;
     private int gell_create_status;
     private String gell_create_uid;
@@ -25,4 +24,14 @@ public class CreateVO {
     private int gell_cate1;
     private int gell_cate2;
     private String gell_cate2_name;
+
+    // 추가 필드
+    private int gell_cate;
+    private String gell_manager;
+    private String gell_name;
+    private String gell_address;
+    private String gell_info;
+    private int gell_grade;
+    private int gell_status;
+    private String gell_rdate;
 }

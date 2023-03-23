@@ -56,7 +56,24 @@
                         var closePopupButton = document.querySelector('.close-popup');
                         closePopupButton.addEventListener('click', closePopup);
 
+                        var rejectButton = document.querySelector('.reject');
+                        rejectButton.addEventListener('click', showRejectionReason);
+
+                        var submitRejectionButton = document.querySelector('.submit-rejection');
+                        submitRejectionButton.addEventListener('click', submitRejection);
                     });
+
+                    function showRejectionReason() {
+                        var rejectionReasonDiv = document.querySelector('.rejection-reason');
+                        rejectionReasonDiv.style.display = 'block';
+                    }
+
+                    function submitRejection() {
+                        var rejectionReasonText = document.querySelector('.rejection-reason-text').value;
+
+                        closeApprovalPopup();
+                        document.querySelector('.rejection-reason').style.display = 'none';
+                    }
 
                     function showDetails(event) {
                         event.preventDefault();
@@ -70,6 +87,28 @@
                     function showApprovalPopup(event) {
                         event.preventDefault();
                         var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'block';
+
+                        // 클릭된 행의 정보 추출
+                        var row = event.target.closest('tr');
+                        var num = row.querySelector('td:nth-child(1)').textContent;
+                        var name = row.querySelector('td:nth-child(2)').textContent;
+                        var address = row.querySelector('td:nth-child(3)').textContent;
+                        var category = row.querySelector('td:nth-child(4)').textContent;
+                        var rdate = row.querySelector('td:nth-child(5)').textContent;
+                        var uid = row.querySelector('td:nth-child(6)').textContent;
+                        var reason = row.querySelector('td:nth-child(7) button').dataset.fullText;
+                        var intro = row.querySelector('td:nth-child(8) button').dataset.fullText;
+
+                        // 추출된 정보를 팝업 내부로 전달
+                        popup.querySelector('.num').textContent = num;
+                        popup.querySelector('.name').textContent = name;
+                        popup.querySelector('.address').textContent = address;
+                        popup.querySelector('.category').textContent = category;
+                        popup.querySelector('.rdate').textContent = rdate;
+                        popup.querySelector('.uid').textContent = uid;
+                        popup.querySelector('.reason').textContent = reason;
+                        popup.querySelector('.intro').textContent = intro;
                         popup.style.display = 'block';
                     }
 
@@ -111,46 +150,62 @@
 
                             <table class="admin_table admin_member_list">
                                 <colgroup>
-                                    <col style="width: 9.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 9.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 14.8%;">
+                                    <col style="width: 14.8%;">
                                 </colgroup>
                                 <tr>
-                                    <th>신청번호</th>
                                     <th>갤러리 이름</th>
                                     <th>주소값</th>
                                     <th>카테고리</th>
                                     <th>신청일</th>
                                     <th>신청자</th>
+                                    <th>개설이유</th>
                                     <th>갤러리 설명</th>
                                     <th>관리</th>
                                 </tr>
                                 <tr th:each="list:${list}">
-                                    <td></td>
+                                    <td th:text="${list.gell_create_num}" hidden></td>
                                     <td th:text="${list.gell_create_name}"></td>
                                     <td th:text="${list.gell_create_address}"></td>
                                     <td th:text="${list.gell_create_cate}"></td>
-                                    <td th:text="${#strings.substring(list.gell_create_rdate, 2, 8)}"></td>
+                                    <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
                                     <td th:text="${list.gell_create_uid}"></td>
                                     <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
-                                    <td><button class="approval">[개설관리]</button></td>
+                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
+                                    <td><button class="approval">[관리]</button></td>
                                 </tr>
                             </table>
                             <div class="popup">
                                 <div class="popup-content"></div>
                                 <button class="close-popup">닫기</button>
                             </div>
+
                             <div class="approval-popup" style="display:none;">
                                 <h3>갤러리 개설 승인/반려</h3>
-                                <p>갤러리 개설 요청을 승인하거나 반려하려면 아래 버튼을 클릭하세요.</p>
-                                <button class="approve">승인</button>
+                                <form th:action="@{/admin/gallery/form_minor/approve}" method="post">
+                                    <p hidden>신청번호: <span class="num" name="gell_create_num"></span></p>
+                                    <p>갤러리 이름: <span class="name" name="gell_create_name"></span></p>
+                                    <p>주소: <span class="address" name="gell_create_address"></span></p>
+                                    <p>카테고리: <span class="category" name="gell_create_cate"></span></p>
+                                    <p>신청일: <span class="rdate"></span></p>
+                                    <p>신청자: <span class="uid" name="gell_create_uid"></span></p>
+                                    <p>개설이유: <span class="reason"></span></p>
+                                    <p>갤러리 설명: <span class="intro" name="gell_create_intro"></span></p>
+                                    <button class="approve" type="submit">승인</button>
+                                </form>
                                 <button class="reject">반려</button>
+                                <div class="rejection-reason" style="display:none;">
+                                    <textarea class="rejection-reason-text" placeholder="반려 사유를 입력하세요"></textarea>
+                                    <button class="submit-rejection">제출</button>
+                                </div>
                                 <button class="close-approval-popup">닫기</button>
                             </div>
+
                         </div>
 
                         <!-- 페이징 -->
