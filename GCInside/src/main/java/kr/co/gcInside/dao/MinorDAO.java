@@ -4,6 +4,8 @@ package kr.co.gcInside.dao;
  */
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
+import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -40,4 +42,13 @@ public interface MinorDAO {
      * @return
      */
     public int countBygelladdress(String gell_create_address);
+    /**
+     * 2023/03/23 // 김동민 // 흥한 갤러리 불러오기
+     */
+    public List<galleryVO>selecthotmgall();
+    /**
+     * 2023/03/23 // 김동민 // 흥한 갤러리 순위 불러오기
+     */
+    public List<gell_articleVO>selecthotmgallranking();
+
 }

@@ -4,6 +4,8 @@ import kr.co.gcInside.service.MinorService;
 import kr.co.gcInside.service.TermsService;
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
+import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,11 @@ public class MinorController{
     private TermsService tservice;
 
     @GetMapping(value = {"/m/","m/index"})
-    public String minorindex(){
+    public String minorindex(Model model){
+        List<galleryVO> hot_mgall = service.selecthotmgall();
+        List<gell_articleVO> hot_mgallranking = service.selecthotmgallranking();
+        model.addAttribute("hot_mgall",hot_mgall);
+        model.addAttribute("hot_mgallranking",hot_mgallranking);
         return "gall/m/index";
     }
     @GetMapping("m/create")

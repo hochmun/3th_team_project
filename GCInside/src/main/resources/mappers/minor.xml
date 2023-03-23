@@ -35,10 +35,38 @@
     <select id="countBygelladdress" resultType="int" parameterType="String">
         select count(*) from `gc_gell` where gell_address = #{gell_create_address};
     </select>
-    <!-- 2023/03/22 // 김동민 // 마이너 갤러리 index 흥한 갤러리 select -->
-    <select id="selecthotmgall" resultType="kr.co.gcInside.vo.galleryVO">
-        SELECT * FROM `gc_gell` WHERE gell_hit
-    </select>
+    <!-- 2023/03/23 // 김동민 // 마이너 갤러리 index 흥한 갤러리 select -->
+    <select id="selecthotmgallranking" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT `articlel_gell_num`, COUNT(*)
+        FROM `gc_gell_article`
+        WHERE DATE(article_rdate) = CURDATE()
+        GROUP BY `articlel_gell_num`
+        ORDER BY COUNT(*) DESC;
 
+    </select>
+    <!--오늘 생성된 글의 갯수가 높은순으로 갤러리명만 출력 -->
+    <!--SELECT articlel_gell_num
+    FROM (
+    SELECT articlel_gell_num, COUNT(*) as cnt
+    FROM `gc_gell_article`
+    WHERE DATE(article_rdate) = CURDATE()
+    GROUP BY articlel_gell_num
+    ) AS subquery
+    ORDER BY cnt DESC;
+    -->
+    <!--갤러리명만 출력한것을 gc_gell테이블 gell_num에 일치하는게 있다면 출력하는 쿼리 -->
+    <select id="selecthotmgall" resultType="kr.co.gcInside.vo.galleryVO">
+    SELECT *
+    FROM `gc_gell` WHERE `gell_num` IN (
+    SELECT articlel_gell_num
+    FROM (
+    SELECT articlel_gell_num, COUNT(*) as cnt
+    FROM `gc_gell_article`
+    WHERE DATE(article_rdate) = CURDATE()
+    GROUP BY articlel_gell_num
+    ) AS subquery
+    ORDER BY cnt DESC)
+    ;
+    </select>
 
 </mapper>

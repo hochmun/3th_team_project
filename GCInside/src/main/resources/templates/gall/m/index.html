@@ -59,17 +59,8 @@
                                     <strong>흥한갤 전체 순위</strong>
                                     <span class="inner_txt">전체 마이너 갤러리 순위 중 300위 이내는 흥한갤이 됩니다. (20위 이내는 대흥갤)</span>
                                   </div>
-                                    <ul class="pop_hotmgall_listbox" id="heung_list_ul"  data-heunggall-page="1">
-                                        <li><a href="#"><span class="num font_red">1.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">2.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">3.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">4.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">5.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">6.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">7.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">8.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">9.</span> 갤러리 명</a></li>
-                                        <li><a href="#"><span class="num font_red">10.</span> 갤러리 명</a></li>
+                                    <ul class="pop_hotmgall_listbox" id="heung_list_ul"  data-heunggall-page="1" th:each="hot,i:${hot_mgall}" th:if="${i.count}<=10">
+                                        <li><a href="#"><span class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
                                     </ul>
                                     <div class="btn_box" data-lyr="heung_gall_all_lyr">
                                   <button type="button" class="heung_gall_prev btn_prev on"><span class="blind">이전</span><em class="sp_img icon_prev"></em></button>
@@ -90,19 +81,11 @@
                           </header>
                             <div class="hot_mgall">
                                 <div class="rank_list_box clear">
-                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_1">
-                                        <li><a class="" href="#"><span class="rank_num"><em>1</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>2</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>3</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>4</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>5</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_1" th:each="hot,i:${hot_mgall}" th:if="${i.count}<=5">
+                                        <li><a class="" href="#"><span class="rank_num"><em>[[${i.count}]]</em></span><span class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                     </ol>
-                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_2">
-                                        <li><a class="" href="#"><span class="rank_num"><em>6</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>7</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>8</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>9</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
-                                        <li><a class="" href="#"><span class="rank_num"><em>10</em></span><span class="rank_txt">흥한 마이너 갤러리 명</span></a></li>
+                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_2" th:each="i:${#numbers.sequence(hot_mgall5,10)}">
+                                        <li><a class="" href="#"><span class="rank_num"><em>[[${i}]]</em></span><span class="rank_txt">[[${hot_mgall[i].gell_name}]]</span></a></li>
                                     </ol>
                                 </div>
                             </div>
