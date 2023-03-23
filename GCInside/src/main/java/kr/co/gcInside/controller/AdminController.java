@@ -7,9 +7,11 @@ import kr.co.gcInside.service.AdminService;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,9 +49,10 @@ public class AdminController {
      * 2023/03/16 // 라성준 // 관리자 멤버 불러오기
      * 2023.03.17 // 라성준 // 관리자 검색 조건에 따른 회원 정보 불러오기
      * 2023.03.20 // 라성준 // 관리자 멤버 리스트 페이징
-     *@searchType
-     *@keyword
-     *@return
+     *
+     * @return
+     * @searchType
+     * @keyword
      */
     @GetMapping("admin/member/search")
     public String memberSearch(Model model,
@@ -58,7 +61,7 @@ public class AdminController {
 
         PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchMemberCount());
 
-        if(data.get("keyword") != null)
+        if (data.get("keyword") != null)
             memberList = service.searchMembersByCondition(data.get("searchType"), data.get("keyword"), pagingDTO.getStart());
         else memberList = service.SearchMember(pagingDTO.getStart());
 
@@ -73,6 +76,7 @@ public class AdminController {
      * 2023/03/21 // 라성준 // 관리자 갤러리 리스트 get 맵핑
      * 2023/03/22 // 라성준 // 관리자 갤러리 리스트 검색 조건에 따른 갤러리 정보 불러오기
      * 2023/03/22 // 라성준 // 페이징 처리
+     *
      * @return
      */
     @GetMapping("admin/gallery/gallery_list")
@@ -82,11 +86,11 @@ public class AdminController {
 
         PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchAdminGalleryTotal());
 
-        if(data.get("keyword") != null)
+        if (data.get("keyword") != null)
             list = service.searchAdminGalleryList(data.get("searchType"), data.get("keyword"), pagingDTO.getStart());
         else list = service.AdminGalleryList(pagingDTO.getStart());
 
-        log.info("lastPage : "+ pagingDTO.getLastPage());
+        log.info("lastPage : " + pagingDTO.getLastPage());
 
         model.addAttribute("list", list);
         model.addAttribute("pagingDTO", pagingDTO);
@@ -98,6 +102,7 @@ public class AdminController {
 
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 설정 페이지 get 맵핑
+     *
      * @return
      */
     @GetMapping("admin/config/terms")
@@ -111,9 +116,10 @@ public class AdminController {
 
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 업데이트 post 맵핑
-     *      들어오는 값
-     *      type    => 약관 번호
-     *      content => 약관 내용
+     * 들어오는 값
+     * type    => 약관 번호
+     * content => 약관 내용
+     *
      * @param data
      */
     @ResponseBody
@@ -131,10 +137,11 @@ public class AdminController {
 
     /**
      * 2023/03/16 // 김재준 // 관리자 메인갤러리 생성 get 매핑
+     *
      * @return
      */
     @GetMapping("admin/gallery/create_main")
-    public String createMainGallery (Model model) {
+    public String createMainGallery(Model model) {
 
         List<gall_cate2VO> cates = service.selectGalleryCates();
 
@@ -142,13 +149,15 @@ public class AdminController {
 
         return "admin/gallery/create_main";
     }
+
     /**
      * 2023/03/16 // 김재준 // 관리자 메인갤러리 생성 post 매핑
      * 2023/03/20 // 심규영 // 관리자 메인갤러리 setting 생성 추가
+     *
      * @return
      */
     @PostMapping("admin/gallery/create_main")
-    public String createMainGallery (HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser) {
+    public String createMainGallery(HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser) {
         UserEntity user = myUser.getUser();
 
         vo.setGell_manager(user.getMember_uid());
@@ -184,14 +193,53 @@ public class AdminController {
         return "admin/gallery/form_minor";
     }
 
-    @PostMapping("admin/gallery/form_minor")
-    public String createMinorGallery(CreateVO vo) {
-        try {
-            service.createMinorGallery(vo);
-            return "redirect:/admin/gallery/form_minor";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "redirect:/admin/gallery/form_minor";
-        }
+    /**
+     * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list post 매핑
+     */
+    @PostMapping("admin/gallery/form_minor/create")
+    public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser) {
+        //UserEntity user = myUser.getUser();
+
+        //vo.setGell_manager(user.getMember_uid());
+
+        vo.setGell_name(req.getParameter("gell_create_name"));
+        vo.setGell_address(req.getParameter("gell_create_address"));
+        vo.setGell_info(req.getParameter("gell_create_intro"));
+        vo.setGell_manager(req.getParameter("gell_create_uid"));
+
+        service.createMinorGallery(vo);
+        // 갤러리 셋팅 생성
+        service.createMainGallerySetting(vo.getGell_num());
+
+        log.info("갤러리 생성 : " + vo.getGell_name() + " / " + vo.getGell_address() + " / " + vo.getGell_info() + " / " + vo.getGell_manager());
+        log.info("vo 정보 불러오기 : " + vo);
+
+        return "redirect:/admin/gallery/form_minor";
     }
+
+    /**
+     * 2023/03/23 // 김재준 // 갤러리 개설요청 `gell_create_status` 업데이트
+     */
+    @PostMapping("admin/gallery/form_minor/update")
+    public String updateGalleryCreateStatus(Integer gell_create_status, Integer gell_create_num) {
+        service.updateGalleryCreateStatus(gell_create_status, gell_create_num);
+
+        return "redirect:/admin/gallery/form_minor";
+
+    }
+
+    /**
+     * 2023/03/23 // 김재준 // 갤러리 개설요청 insert, update 트랜잭션
+     */
+    @PostMapping("admin/gallery/form_minor/approve")
+    @Transactional
+    public String createAndApproveMinorGallery(HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser, Integer gell_create_status, Integer gell_create_num) {
+        createMinorGallery(req, model, vo, myUser);
+        updateGalleryCreateStatus(1, gell_create_num);
+
+        return "redirect:/admin/gallery/form_minor";
+    }
+
+
 }
+

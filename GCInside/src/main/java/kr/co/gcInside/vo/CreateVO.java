@@ -8,9 +8,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Data
 @Builder
+@Data
 public class CreateVO {
+    private int gell_create_num;
     private String gell_create_rdate;
     private int gell_create_status;
     private String gell_create_uid;
