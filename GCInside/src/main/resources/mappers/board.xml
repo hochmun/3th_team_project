@@ -31,6 +31,7 @@
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
+    <!-- 2023/03/23 // 심규영 // 갤러지 정보 불러오기 조건(grade) 추가 -->
     <select id="selectGellInfo" resultMap="selectGellInfoResultMap">
         SELECT
             a.`gell_num`,
@@ -42,7 +43,13 @@
             (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_relation_gell_num = a.gell_num) AS re_relation_count
         FROM `gc_gell` AS a
         JOIN `gc_gell_setting` AS b ON a.gell_num = b.setting_gell_num
-        WHERE a.gell_address = #{gell_address};
+        WHERE a.gell_address = #{gell_address} AND a.`gell_grade` =
+        <choose>
+            <when test="grade.equals('m')">0</when>
+            <when test="grade.equals('mgall')">1</when>
+            <when test="grade.equals('mini')">2</when>
+        </choose>
+        ;
     </select>
 
     <resultMap id="selectGellInfoResultMap" type="kr.co.gcInside.vo.galleryVO">

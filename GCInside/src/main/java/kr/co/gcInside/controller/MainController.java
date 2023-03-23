@@ -44,4 +44,13 @@ public class MainController {
         return "index";
     }
 
+    /**
+     * 2023/03/23 // 심규영 // 잘못된 URL 접근 페이지
+     * @return
+     */
+    @GetMapping("error/wrongURL")
+    public String wrongURL() {
+        return "error/wrongURL";
+    }
+
 }
