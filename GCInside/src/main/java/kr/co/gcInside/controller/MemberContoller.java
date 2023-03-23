@@ -95,7 +95,6 @@ public class MemberContoller {
     public String reset_pwd_Result() {
         return "member/reset_pwd_Result";
     }
-    @PostMapping
 
     @ResponseBody
     @GetMapping("member/checkUid")
