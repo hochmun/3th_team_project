@@ -12,11 +12,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import kr.co.gcInside.vo.galleryVO;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 2023/03/08 // 심규영 // 메인 컨트롤러 생성
@@ -33,17 +40,16 @@ public class MainController {
      */
     @GetMapping(value = {"/", "index"})
     public String index(Model model) {
+        Map<String, String> data = new HashMap<>();
+        data.put("grade", "mgall");
+
         // 신설 마이너 갤러리 페이징
-        PagingDTO newgellPagingDTO = new PagingUtil().getPagingDTO(null, service.MainIndexNewMgellCommunityCount());
+        PagingDTO newgellPagingDTO = new PagingUtil().getPagingDTO(null, service.MainIndexNewCommunityCount(data));
 
         // 페이징 처리
-        List<galleryVO> newMgellCommunityList = service.MainIndexNewMgellCommunity(newgellPagingDTO.getStart());
-        List<galleryVO> MainIndexNewCommunity = service.MainIndexNewCommunity(newgellPagingDTO.getStart());
-        List<galleryVO> MainIndexNewMiniCommunity = service.MainIndexNewMiniCommunity(newgellPagingDTO.getStart());
+        List<galleryVO> newMgellCommunityList = service.MainIndexNewmgellCommunity(newgellPagingDTO.getStart());
 
-        model.addAttribute("MainIndexNewCommunity", MainIndexNewCommunity);
         model.addAttribute("newMgellCommunityList", newMgellCommunityList);
-        model.addAttribute("MainIndexNewMiniCommunity", MainIndexNewMiniCommunity);
         model.addAttribute("newgellPagingDTO", newgellPagingDTO);
 
         return "index";
@@ -56,6 +62,47 @@ public class MainController {
     @GetMapping("error/wrongURL")
     public String wrongURL() {
         return "error/wrongURL";
+    }
+
+    /**
+     * 2023/03/23 //
+     * ajax용 페이징 처리
+     *      가져오는 값
+     *          type    : 종류 {new : 신설, hit: 흥한갤, live:실시간}
+     *          grade   : 게시글 종류 {m:메인, mgall:마이너, mini:미니}
+     *          pg      : 페이지
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("mainPagingUtil")
+    public Map<String, Object> mainPagingUtil(@RequestBody Map<String, String> data) {
+
+        PagingDTO pagingDTO = new PagingDTO();
+        Map<String, Object> resultMap = new HashMap<>();
+
+        if(data.get("type").equals("new")) {
+            // 페이징
+            if(data.get("pg") == null) {
+                pagingDTO = new PagingUtil().getPagingDTO(null,service.MainIndexNewCommunityCount(data));
+                resultMap.put("pagingDTO", pagingDTO);
+            }
+
+            // 리스트 목록 불러오기
+            String grade = data.get("grade");
+            List<galleryVO> galleryVOS = new ArrayList<>();
+
+            if(grade.equals("m")) galleryVOS = service.MainIndexNewmCommunity(pagingDTO.getStart());
+            if(grade.equals("mgall")) galleryVOS = service.MainIndexNewmgellCommunity(pagingDTO.getStart());
+            if(grade.equals("mini")) galleryVOS = service.MainIndexNewminiCommunity(pagingDTO.getStart());
+
+            log.info("galleryVOS : "+galleryVOS);
+            resultMap.put("galleryVOS", galleryVOS);
+
+        }
+        
+        log.info("성공");
+        
+        return resultMap;
     }
 
 }

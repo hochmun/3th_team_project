@@ -142,9 +142,41 @@ $(function(){
     		$(this).addClass('on');
     		$('.new_gall .rank_list').hide();
     		$('.newPageMI .now_num').text('1')
-    		$('.newMI_2').show();
-    		$('.rank_list.newMgallList.newM_2').show();
+    		$('.newMI_1').show();
     		$('.new_gall .box_bottom').hide()
     		$('.newPageMI').show();
     	});
+
+        $('.new_mini').one('click',function(){
+
+            const type = $(this).data("type");
+            const grade = $(this).data("grade");
+
+            const jsonData = {"type":type, "grade":grade}
+
+            $.ajax({
+                    url:'/GCInside/mainPagingUtil',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(jsonData),
+                    dataType:'json',
+                    success: function(data) {
+                        if(data.galleryVOS != null) {
+                            // 성공
+                            let li = $('.newM_1 > li:first').clone();
+
+                            console.log(typeof data.galleryVOS);
+
+                            li.find('a').attr('href', 'dd');
+                            li.find('span').text('dd');
+                            $('.newMI_1').append(li);
+                            console.log("li : ",li);
+
+                        } else {
+                            // 실패
+                            alert('실패');
+                        }
+                    }
+                })
+        });
 })
