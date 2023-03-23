@@ -213,6 +213,7 @@ public class AdminController {
 
         log.info("갤러리 생성 : " + vo.getGell_name() + " / " + vo.getGell_address() + " / " + vo.getGell_info() + " / " + vo.getGell_manager());
         log.info("vo 정보 불러오기 : " + vo);
+        log.toString();
 
         return "redirect:/admin/gallery/form_minor";
     }
