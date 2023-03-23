@@ -369,3 +369,65 @@ let member_emailResult = function(){
         }
     });
 };
+
+// 여러개의 ajax 통신시 promise객체 활용하면 코드도 간결해지고 가독성도 좋아짐
+// 비밀번호 재설정 //// resolve(성공),reject(실패) 파라미터
+let password_resetResult = function() {
+    let member_uid = $('#member_uid').val();
+    let member_email = $('#member_email').val();
+    // 입력 체크
+    if (!member_uid) {alert("아이디를 입력해 주세요.");$("#member_uid").focus();return false;}
+    if (!member_email) {alert("이메일을 입력해 주세요.");$("#member_email").focus();return false;}
+
+    function checkUid() {
+    return new Promise(function(resolve, reject) {
+      let jsonData = {"member_uid": member_uid};
+      $.ajax({
+        type: "GET",
+        url: "/GCInside/member/checkUid",
+        data: jsonData,
+        success: function(data) {
+          if (data.result === "success") {
+            reject('입력한 아이디가 존재하지 않습니다.');
+          } else {
+            resolve();
+          }
+        },
+        error: function(e) {
+          reject('서버 에러 발생');
+        }
+      });
+    });
+    }
+    function checkEmail() {
+    return new Promise(function(resolve, reject) {
+      let jsonData = {"member_email": member_email};
+      $.ajax({
+        type: "GET",
+        url: '/GCInside/member/checkEmail',
+        data: jsonData,
+        success: function(data) {
+          if (data.result === 'success') {
+            resolve();
+          } else {
+            reject('입력한 이메일이 존재하지 않습니다.');
+          }
+        },
+        error: function(e) {
+          reject('서버 에러 발생');
+        }
+      });
+    });
+    }
+    // promise 실행순서 .then 진행 , .catch 오류시
+    checkUid()
+    .then(function() {
+      return checkEmail();
+    })
+    .then(function() {
+      location.href = "/GCInside/member/reset_pwd_Result";
+    })
+    .catch(function(error) {
+      alert(error);
+    });
+};

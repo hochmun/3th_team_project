@@ -21,4 +21,8 @@
     <select id="selectMemberIdByEmail" parameterType="String" resultType="String">
         SELECT member_uid from `gc_member` WHERE member_email = #{member_email};
     </select>
+    <select id="selectMemberPassByUidEmail" parameterType="String" resultType="String">
+        SELECT * from `gc_member` WHERE member_uid = #{member_uid} and member_email=#{member_email};
+    </select>
+
 </mapper>
