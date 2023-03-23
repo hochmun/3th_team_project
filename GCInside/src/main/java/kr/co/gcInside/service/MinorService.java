@@ -5,6 +5,8 @@ package kr.co.gcInside.service;
 import kr.co.gcInside.dao.MinorDAO;
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
+import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,4 +54,18 @@ public class MinorService {
         int count = dao.countBygelladdress(gell_create_address);
         return count > 0;
     }
+    /**
+     * 2023/03/23 // 김동민 // 흥한 갤러리 불러오기
+     */
+    public List<galleryVO>selecthotmgall(){
+
+        return dao.selecthotmgall();
+    };
+    /**
+     * 2023/03/23 // 김동민 // 흥한 갤러리 불러오기
+     */
+    public List<gell_articleVO>selecthotmgallranking(){
+
+        return dao.selecthotmgallranking();
+    };
 }
