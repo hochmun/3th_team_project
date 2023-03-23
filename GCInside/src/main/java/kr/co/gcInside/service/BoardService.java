@@ -1,11 +1,15 @@
 package kr.co.gcInside.service;
 
 import kr.co.gcInside.dao.BoardDAO;
+import kr.co.gcInside.dto.PagingDTO;
+import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,6 +45,24 @@ public class BoardService {
      */
     public galleryVO selectGellInfo(String gell_address, String grade) {
         return dao.selectGellInfo(gell_address, grade);
+    }
+
+    /**
+     * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     * @param data
+     * @return
+     */
+    public List<gell_articleVO> selectArticles(Map<String, String> data) {
+        return dao.selectArticles(data);
+    }
+
+    /**
+     * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 총 갯수 가져오기
+     * @param data
+     * @return
+     */
+    public int selectCountArticles(Map<String, String> data) {
+        return dao.selectCountArticles(data);
     }
 
     /**
@@ -110,7 +132,7 @@ public class BoardService {
      *          </pre>
      */
     public boolean WriteValidation(Map<String, String> data) {
-        // 게시물 번호 존재 검사
+        // 갤러리 번호 존재 검사
         int gellCheck = selectGellCheck(data.get("article_gell_num"));
         if(gellCheck == 0) return false;
         
@@ -128,5 +150,21 @@ public class BoardService {
         }
 
         return true;
+    }
+
+    /**
+     * 2023/03/23 // 심규영 // 게시물 리스트 페이징 처리 분리
+     * @param data
+     * @return
+     */
+    public PagingDTO listsPaging(Map<String, String> data) {
+        String count = data.get("list_num");
+        PagingDTO pagingDTO = new PagingDTO();
+
+        // 개수 값이 없을 경우 기본 불러오는 개수 50개
+        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), "50");
+        else pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), count);
+        
+        return pagingDTO;
     }
 }

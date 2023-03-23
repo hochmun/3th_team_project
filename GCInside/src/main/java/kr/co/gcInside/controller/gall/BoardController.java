@@ -1,11 +1,12 @@
 package kr.co.gcInside.controller.gall;
 
 
+import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
+import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.galleryVO;
-import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -39,16 +40,20 @@ public class BoardController {
      *              mgall   : 마이너
      *              mini    : 미니
      *
-     *      들어오는 값
+     *      Map data에 들어오는 값
      *          기본 공통
      *              id              : 갤러리 주소
      *              search_head     : 말머리 번호
-     *              sort_type       : 정렬 타입
+     *              sort_type       : 정렬 타입 (안 씀)
      *              page            : 페이지 번호
      *              list_num        : 출력하는 게시물 개수 번호
      *              exception_mode  : 출력 모드 {recommmend:개념글,notice:공지}
-     *              s_type          : 검색 타입 {}
+     *              s_type          : 검색 타입 {title+content:제목+내용,title:제목,content:내용,user:글쓴이,comment:댓글}
      *              s_keyword       : 검색어
+     *              
+     *      Map data 에 넣는 값
+     *          setting_recommend_standard : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
+     *
      *
      * @param grade
      * @return
@@ -62,6 +67,15 @@ public class BoardController {
 
         // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
         if(galleryVO == null) return "error/wrongURL";
+
+        // data에 개념글 추천수 개수 설정 넣기
+        data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
+        
+        // 페이징 처리
+        PagingDTO pagingDTO = service.listsPaging(data);
+
+        // 게시글 정보 가져오기
+
         
         // model 전송
         model.addAttribute("galleryVO", galleryVO);

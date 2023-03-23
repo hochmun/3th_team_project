@@ -39,6 +39,7 @@
             a.`gell_address`,
             a.`gell_grade`,
             b.`setting_sub_cate`,
+            b.`setting_recommend_standard`,
             (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_gell_num = a.gell_num) AS relation_count,
             (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_relation_gell_num = a.gell_num) AS re_relation_count
         FROM `gc_gell` AS a
@@ -61,9 +62,55 @@
         <result column="re_relation_count" property="re_relation_count"/>
 
         <association property="gellSettingVO" javaType="kr.co.gcInside.vo.Gell_SettingVO">
-            <result column="setting_sub_cate" property="setting_sub_cate"></result>
+            <result column="setting_sub_cate" property="setting_sub_cate"/>
+            <result column="setting_recommend_standard" property="setting_recommend_standard"/>
         </association>
     </resultMap>
+
+    <!-- 2023/03/23 // 심규영 // 게시글 리스트 가져오는 쿼리문 -->
+    <select id="selectArticles" parameterType="map" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT * FROM `gc_gell_article` WHERE
+        <if test="exception_mode == null">`article_status` = '0'</if> <!-- 출력 모드가 없을 경우 기본 설정 -->
+        <if test="exception_mode != null"> <!-- 출력 모드가 있을 경우 -->
+            <if test="exception_mode.equals('notice')">`article_status` = '2'</if>
+            <if test="exception_mode.equals('recommend')">
+                `article_status` = '0'
+                AND
+                `article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
+                OR
+                `article_recommend_status` = '1' <!-- 관리자에 의해 추천글로 표시된 글 -->
+            </if>
+        </if>
+        <if test="search_head != null"> <!-- 말머리 값이 있을 경우 -->
+            AND `article_sub_cate`
+            <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
+            <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
+        </if>
+        ORDER BY
+        ;
+    </select>
+
+    <!-- 2023/03/23 // 심규영 // 게시글 리스트 총 갯수 가져오는 쿼리문 -->
+    <select id="selectCountArticles" parameterType="map" resultType="int">
+        SELECT COUNT(`article_num`) FROM `gc_gell_article` WHERE
+        <if test="exception_mode == null">`article_status` = '0'</if> <!-- 출력 모드가 없을 경우 기본 설정 -->
+        <if test="exception_mode != null"> <!-- 출력 모드가 있을 경우 -->
+            <if test="exception_mode.equals('notice')">`article_status` = '2'</if>
+            <if test="exception_mode.equals('recommend')">
+                `article_status` = '0'
+                AND
+                `article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
+                OR
+                `article_recommend_status` = '1' <!-- 관리자에 의해 추천글로 표시된 글 -->
+            </if>
+        </if>
+        <if test="search_head != null"> <!-- 말머리 값이 있을 경우 -->
+            AND `article_sub_cate`
+            <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
+            <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
+        </if>
+        ;
+    </select>
 
     <!-- 2023/03/22 // 심규영 // 갤러리 존재 확인 쿼리문 -->
     <select id="selectGellCheck" resultType="int">
