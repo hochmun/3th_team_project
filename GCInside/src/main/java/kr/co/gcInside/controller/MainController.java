@@ -3,6 +3,7 @@ package kr.co.gcInside.controller;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.service.MainService;
 import kr.co.gcInside.utill.PagingUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +21,7 @@ import java.util.List;
 /**
  * 2023/03/08 // 심규영 // 메인 컨트롤러 생성
  */
+@Slf4j
 @Controller
 public class MainController {
 
@@ -37,8 +39,11 @@ public class MainController {
         // 페이징 처리
         List<galleryVO> newMgellCommunityList = service.MainIndexNewMgellCommunity(newgellPagingDTO.getStart());
         List<galleryVO> MainIndexNewCommunity = service.MainIndexNewCommunity(newgellPagingDTO.getStart());
+        List<galleryVO> MainIndexNewMiniCommunity = service.MainIndexNewMiniCommunity(newgellPagingDTO.getStart());
+
         model.addAttribute("MainIndexNewCommunity", MainIndexNewCommunity);
         model.addAttribute("newMgellCommunityList", newMgellCommunityList);
+        model.addAttribute("MainIndexNewMiniCommunity", MainIndexNewMiniCommunity);
         model.addAttribute("newgellPagingDTO", newgellPagingDTO);
 
         return "index";

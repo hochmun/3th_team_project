@@ -15,7 +15,7 @@ import java.util.List;
 public interface MainDAO {
 
     /**
-     * 2023.03.22 // 라성준 // 메인인덱스 신설 갤러리 DAO
+     * 2023.03.22 // 라성준 // 메인인덱스 신설 메인 갤러리 DAO
      * @return
      */
     public List<galleryVO> MainIndexNewCommunity(@Param("start") int start);
@@ -26,6 +26,13 @@ public interface MainDAO {
      * @return
      */
     public List<galleryVO> MainIndexNewMgellCommunity(@Param("start") int start);
+
+    /**
+     * 2023.03.23 // 라성준 // 메인인덱스 신설 미니 갤러리 DAO
+     * @param start
+     * @return
+     */
+    public List<galleryVO> MainIndexNewMiniCommunity(@Param("start") int start);
 
     /**
      *  2023.03.22 // 라성준 // 

@@ -142,7 +142,8 @@ $(function(){
     		$(this).addClass('on');
     		$('.new_gall .rank_list').hide();
     		$('.newPageMI .now_num').text('1')
-    		$('.newMI_1').show();
+    		$('.newMI_2').show();
+    		$('.rank_list.newMgallList.newM_2').show();
     		$('.new_gall .box_bottom').hide()
     		$('.newPageMI').show();
     	});
