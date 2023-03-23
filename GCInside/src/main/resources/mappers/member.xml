@@ -21,8 +21,14 @@
     <select id="selectMemberIdByEmail" parameterType="String" resultType="String">
         SELECT member_uid from `gc_member` WHERE member_email = #{member_email};
     </select>
+    <!-- 2023-03-23 // 전인준-->
     <select id="selectMemberPassByUidEmail" parameterType="String" resultType="String">
         SELECT * from `gc_member` WHERE member_uid = #{member_uid} and member_email=#{member_email};
     </select>
+    <!-- 2023-03-24 // 전인준-->
+    <update id="updateMemberPass">
+        update gc_member set member_pass = #{member_pass}
+        where member_uid = #{member_uid} and member_email = #{member_email};
+    </update>
 
 </mapper>
