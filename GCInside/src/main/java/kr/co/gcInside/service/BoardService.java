@@ -35,11 +35,12 @@ public class BoardService {
 
     /**
      * 2023/03/20 // 심규영 // 갤러리 정보 불러오기
+     * 2023/03/23 // 심규영 // 갤러리 정보 불러오기 조건(grade) 추가
      * @param gell_address
      * @return
      */
-    public galleryVO selectGellInfo(String gell_address) {
-        return dao.selectGellInfo(gell_address);
+    public galleryVO selectGellInfo(String gell_address, String grade) {
+        return dao.selectGellInfo(gell_address, grade);
     }
 
     /**

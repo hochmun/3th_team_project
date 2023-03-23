@@ -33,7 +33,7 @@ function top_layer_all_hide() {
 }
 
 // 연관 갤러리
-var open_relation = function(gall_no) {
+var open_relation = function($this) {
 	if($('#relation_popup').css('display') != 'none') {
 		$('#relation_popup').hide();								// 레이어 팝업
 		$('.gall_issuebox button.relate').removeClass('hide');		// 연관 갤러리 버튼

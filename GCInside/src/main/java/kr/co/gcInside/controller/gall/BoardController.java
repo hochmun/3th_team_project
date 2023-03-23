@@ -55,7 +55,18 @@ public class BoardController {
      */
     @GetMapping("{grade}/board/lists")
     public String list(@PathVariable("grade") String grade,
-                       @RequestParam Map<String, String> data) {
+                       @RequestParam Map<String, String> data,
+                       Model model) {
+        // id 값에 따른 갤러리 정보 불러오기
+        galleryVO galleryVO = service.selectGellInfo(data.get("id"), grade);
+
+        // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
+        if(galleryVO == null) return "error/wrongURL";
+        
+        // model 전송
+        model.addAttribute("galleryVO", galleryVO);
+        model.addAttribute("grade", grade);
+        
         return "gall/board/lists";
     }
 
@@ -92,7 +103,10 @@ public class BoardController {
         if(service.URLCheck(grade,type)) return "index";
 
         // id 값에 따른 갤러리 정보 불러오기
-        galleryVO galleryVO = service.selectGellInfo(data.get("id"));
+        galleryVO galleryVO = service.selectGellInfo(data.get("id"), grade);
+
+        // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
+        if(galleryVO == null) return "error/wrongURL";
 
         // 말머리
 

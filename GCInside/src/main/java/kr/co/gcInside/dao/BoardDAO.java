@@ -27,10 +27,11 @@ public interface BoardDAO {
 
     /**
      * 2023/03/20 // 심규영 // 갤러리 정보 불러오기
+     * 2023/03/23 // 심규영 // 갤러리 정보 불러오기 조건(grade) 추가
      * @param gell_address
      * @return
      */
-    public galleryVO selectGellInfo(@Param("gell_address") String gell_address);
+    public galleryVO selectGellInfo(@Param("gell_address") String gell_address, @Param("grade") String grade);
 
     /**
      * 2023/03/22 // 심규영 // 갤러리 존재 유무 확인용
