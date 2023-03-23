@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 2023/03/10 // 심규영 // 메인 DAO 생성
@@ -40,7 +41,7 @@ public interface MainDAO {
      *  마이너 갤러리 개수 가져오기
      * @return
      */
-    public int MainIndexNewMgellCommunityCount();
+    public int MainIndexNewCommunityCount(Map<String, String> data);
 
 
 }

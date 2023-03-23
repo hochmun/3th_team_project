@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MainService {
@@ -19,7 +20,7 @@ public class MainService {
      * 2023.03.22 // 라성준 // 메인 인덱스  메인  신설갤 서비스
      * @return
      */
-    public List<galleryVO> MainIndexNewCommunity (int start) {
+    public List<galleryVO> MainIndexNewmCommunity (int start) {
         return dao.MainIndexNewCommunity(start);
     }
 
@@ -27,7 +28,7 @@ public class MainService {
      * 2023.03.22 // 라성준 // 메인 인덱스  마이너  신설갤 서비스
      * @return
      */
-    public List<galleryVO> MainIndexNewMgellCommunity (int start) {
+    public List<galleryVO> MainIndexNewmgellCommunity (int start) {
         return dao.MainIndexNewMgellCommunity(start);
     }
 
@@ -36,7 +37,7 @@ public class MainService {
      * @param start
      * @return
      */
-    public List<galleryVO> MainIndexNewMiniCommunity (int start) {
+    public List<galleryVO> MainIndexNewminiCommunity (int start) {
         return dao.MainIndexNewMiniCommunity(start);
     }
 
@@ -44,8 +45,8 @@ public class MainService {
      *  마이너 갤러리 개수 가져오기
      * @return
      */
-    public int MainIndexNewMgellCommunityCount() {
-        return dao.MainIndexNewMgellCommunityCount();
+    public int MainIndexNewCommunityCount(Map<String, String> data) {
+        return dao.MainIndexNewCommunityCount(data);
     }
 
 }

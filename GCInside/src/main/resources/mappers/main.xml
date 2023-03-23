@@ -44,9 +44,15 @@
     </select>
 
     <!-- 마이너 갤러리 개수 -->
-    <select id="MainIndexNewMgellCommunityCount" resultType="int">
+    <select id="MainIndexNewCommunityCount" parameterType="map" resultType="int">
         SELECT COUNT(`gell_num`) FROM `gc_gell`
-        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND `gell_grade` = '1';
+        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND `gell_grade` =
+        <choose>
+            <when test="grade.equals('m')">0</when>
+            <when test="grade.equals('mgall')">1</when>
+            <when test="grade.equals('mini')">2</when>
+        </choose>
+        ;
     </select>
     <!-- upload -->
     <!-- delete -->

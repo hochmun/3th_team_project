@@ -1004,9 +1004,9 @@
                                 </span>
                                 <h3 class="tit">신설갤</h3>
                                 <span class="box_menu">
-                                    <a href="javascript:void(0)" class="rank_gall newGallTab">메인</a>
-                                    <a href="javascript:void(0)" class="rank_mgall newMgallTab on">마이너</a>
-                                    <a href="javascript:void(0)" class="rank_mini new_mini">미니</a>
+                                    <a href="javascript:void(0)" class="rank_gall newGallTab" data-type="new" data-grade="m">메인</a>
+                                    <a href="javascript:void(0)" class="rank_mgall newMgallTab on" data-type="new" data-grade="mgall">마이너</a>
+                                    <a href="javascript:void(0)" class="rank_mini new_mini" data-type="new" data-grade="mini">미니</a>
                                 </span>
                             </div>
                             <ul class="rank_list newMIgallList newMI_1" style="display: none;"></ul>
@@ -1027,13 +1027,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <ul class="rank_list newGgallList newG_1" style="display: none;">
-                                <li th:each="m : ${MainIndexNewCommunity}">
-                                    <a th:href="@{/m/board/lists(id=${m.gell_address})}">
-                                        <span class="rank_txt" th:text="${m.gell_name}"></span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <ul class="rank_list newGgallList newG_1" style="display: none;"></ul>
                             <ul class="rank_list newMgallList newM_1">
                                 <th:block th:each="Mgell:${newMgellCommunityList}">
                                     <li>
@@ -1043,13 +1037,7 @@
                                     </li>
                                 </th:block>
                             </ul>
-                            <ul class="rank_list newMgallList newM_2" style="display: none;">
-                                <li th:each="mini : ${MainIndexNewMiniCommunity}">
-                                    <a th:href="@{/mini/board/lists(id=${mini.gell_address})}">
-                                        <span class="rank_txt" th:text="${mini.gell_name}"></span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <ul class="rank_list newMgallList newM_2" style="display: none;"></ul>
                             <div class="box_bottom newPageM">
                                 <div class="pageing">
                                     <div class="page_num">
