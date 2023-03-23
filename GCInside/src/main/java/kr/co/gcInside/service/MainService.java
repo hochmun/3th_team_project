@@ -16,7 +16,7 @@ public class MainService {
     //read
 
     /**
-     * 2023.03.22 // 라성준 // 메인 인덱스 신설갤 서비스
+     * 2023.03.22 // 라성준 // 메인 인덱스  메인  신설갤 서비스
      * @return
      */
     public List<galleryVO> MainIndexNewCommunity (int start) {
@@ -24,11 +24,20 @@ public class MainService {
     }
 
     /**
-     * 2023.03.22 // 라성준 // 메인 인덱스 신설갤 서비스
+     * 2023.03.22 // 라성준 // 메인 인덱스  마이너  신설갤 서비스
      * @return
      */
     public List<galleryVO> MainIndexNewMgellCommunity (int start) {
         return dao.MainIndexNewMgellCommunity(start);
+    }
+
+    /**
+     * 2023.03.23 // 라성준 // 메인 인덱스  미니 신설갤 서비스
+     * @param start
+     * @return
+     */
+    public List<galleryVO> MainIndexNewMiniCommunity (int start) {
+        return dao.MainIndexNewMiniCommunity(start);
     }
 
     /**
