@@ -238,7 +238,7 @@
 							</div>
 							<div class="center_box">
 								<div class="inner">
-									<ul>
+									<ul th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1">
 										<li><a href="javascript:;" class="on">전체</a></li>
 										<li><a href="javascript:;">일반</a></li>
 									</ul>
@@ -273,7 +273,7 @@
 									</th:block>
 									<col>
 									<col style="width: 18%;">
-									<col style="width: 6%;">
+									<col style="width: 7%;">
 									<col style="width: 6%;">
 									<col style="width: 6%;">
 								</colgroup>
@@ -297,155 +297,44 @@
 									<!--
 									<tr class="ub_content us-post" data-no="게시물번호" data-type="게시글 타입(ex.icon_txt, icon_pic, icon_notice, icon_recoming)"></tr>
 									-->
-									<!--공지글 예시-->
-									<tr class="ub_content us-post" data-no="21906" data-type="icon_notice">
-										<td class="gall_num">21906</td>
-										<td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>공지</b></td>
-										<td class="gall_tit ub-word">
-											<a href="#">
-												<em class="icon_img icon_notice"></em>
-												<b>공지 제목</b>
-											</a>
-											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
-										</td>
-										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="" data-loc="list">
-											<b>
-												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
-												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
-												<a class="writer_nikcon">
-													<img th:src="@{/img/fix_managernik.gif}" alt="갤로그로 이동합니다."
-													title="uid** : 갤로그로 이동합니다." width="12" height="11"
-													style="cursor: pointer;margin-left: 2px;">
+
+									<th:block th:each="vo:${gellArticleVOS}">
+										<tr class="ub_content us-post" th:data-no="${vo.article_num}" data-type="icon_txt">
+											<td class="gall_num">1</td>
+											<td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>일반</b></td>
+											<td class="gall_tit ub-word">
+												<a th:href="|@{/}${grade}/board/view/?id=${galleryVO.gell_address}&no=${vo.article_num}&pg=${pagingDTO.currentPage}|">
+													<em class="icon_img icon_txt"></em>
+													<b th:text="${vo.article_title}">일반 글 제목</b>
 												</a>
-											</b>
-										</td>
-										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
-										<td class="gall_count">50924</td>
-										<td class="gall_recommend">72</td>
-									</tr>
-									<!--일반글예시-->
-									<tr class="ub_content us-post" data-no="1" data-type="icon_txt">
-										<td class="gall_num">1</td>
-										<td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>일반</b></td>
-										<td class="gall_tit ub-word">
-											<a href="#">
-												<em class="icon_img icon_txt"></em>
-												<b>일반 글 제목</b>
-											</a>
-											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
-										</td>
-										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
-											<b>
-												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
-												<!-- 비회원 아이피 표시 -->
-												<span class="ip">(000.00)</span>
-												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
-												<!-- 갤로그 있을 경우 표시 ex.유저-->
-												<!--
-												<a class="writer_nikcon">
-													<img src="/img/fix_managernik.gif" alt="갤로그로 이동합니다."
-													title="uid** : 갤로그로 이동합니다." width="12" height="11"
-													style="cursor: pointer;margin-left: 2px;">
-												</a>
-												-->
-											</b>
-										</td>
-										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
-										<td class="gall_count">1033</td>
-										<td class="gall_recommend">12</td>
-									</tr>
-									<!--이미지 포함 글 표시-->
-									<tr class="ub_content us-post" data-no="2" data-type="icon_pic">
-										<td class="gall_num">2</td>
-										<td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>질문</b></td>
-										<td class="gall_tit ub-word">
-											<a href="#">
-												<em class="icon_img icon_pic"></em>
-												<b>일반 글 이미지포함 제목</b>
-											</a>
-											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
-										</td>
-										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
-											<b>
-												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
-												<!-- 비회원 아이피 표시 -->
-												<!--
-												<span class="ip">(000.00)</span>
-												-->
-												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
-												<!-- 갤로그 있을 경우 표시 ex.유저-->
-												<a class="writer_nikcon">
-													<img th:src="@{/img/fix_sub_managernik.gif}" alt="갤로그로 이동합니다."
-													title="uid** : 갤로그로 이동합니다." width="12" height="11"
-													style="cursor: pointer;margin-left: 2px;">
-												</a>
-											</b>
-										</td>
-										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
-										<td class="gall_count">1033</td>
-										<td class="gall_recommend">12</td>
-									</tr>
-									<!-- 추천 글 예시 -->
-									<tr class="ub_content us-post" data-no="4" data-type="icon_recoming">
-										<td class="gall_num">4</td>
-										<td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>정보</b></td>
-										<td class="gall_tit ub-word">
-											<a href="#">
-												<em class="icon_img icon_recomimg"></em>
-												<b>추천 글 제목</b>
-											</a>
-											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
-										</td>
-										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
-											<b>
-												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
-												<!-- 비회원 아이피 표시 -->
-												<!--
-												<span class="ip">(000.00)</span>
-												-->
-												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
-												<!-- 갤로그 있을 경우 표시 ex.유저-->
-												<a class="writer_nikcon">
-													<img th:src="@{/img/fix_nik.gif}" alt="갤로그로 이동합니다."
-													title="uid** : 갤로그로 이동합니다." width="12" height="11"
-													style="cursor: pointer;margin-left: 2px;">
-												</a>
-											</b>
-										</td>
-										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
-										<td class="gall_count">1033</td>
-										<td class="gall_recommend">12</td>
-									</tr>
-									<tr class="ub_content us-post" data-no="5" data-type="icon_txt">
-										<td class="gall_num">5</td>
-										<td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>일반</b></td>
-										<td class="gall_tit ub-word">
-											<a href="#">
-												<em class="icon_img icon_txt"></em>
-												<b>일반 글 제목</b>
-											</a>
-											<a class="reply_num" href="#"><span class="reply_num">[댓글개수]</span></a>
-										</td>
-										<td class="gall_writer ub-writer" data-nick="닉네임" data-uid="uid" data-ip="작성 아이피 번호" data-loc="list">
-											<b>
-												<span class="nickname in" title="닉네임"><em>닉네임</em></span>
-												<!-- 비회원 아이피 표시 -->
-												<!--
-												<span class="ip">(000.00)</span>
-												-->
-												<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
-												<!-- 갤로그 있을 경우 표시 ex.유저-->
-												<a class="writer_nikcon">
-													<img th:src="@{/img/nik.gif}" alt="갤로그로 이동합니다."
-													title="uid** : 갤로그로 이동합니다." width="12" height="11"
-													style="cursor: pointer;margin-left: 2px;">
-												</a>
-											</b>
-										</td>
-										<td class="gall_date" title="0000-00-00 00:00:00">00.00.00</td>
-										<td class="gall_count">1033</td>
-										<td class="gall_recommend">12</td>
-									</tr>
+												<a class="reply_num" href="#"><span class="reply_num" th:text="|[${vo.article_comment_count}]|">[댓글개수]</span></a>
+											</td>
+											<td class="gall_writer ub-writer" th:data-nick="${vo.member_nick}" th:data-uid="${vo.article_uid}" th:data-ip="${vo.article_regip}" data-loc="list">
+												<b>
+													<!-- 회원 아이디 -->
+													<span class="nickname in" th:if="${vo.article_login_status} == 0" th:title="${vo.member_nick}"><em th:text="${vo.member_nick}">닉네임</em></span>
+													<!-- 비회원 아이디, 아이피 표시 -->
+													<th:block th:if="${vo.article_login_status} == 1">
+														<span class="nickname" th:title="${vo.article_nonmember_uid}"><em th:text="${vo.article_nonmember_uid}"></em></span>
+														<span class="ip" th:text="|(${vo.article_regip_sub})|">(000.00)</span>
+													</th:block>
+
+													<!-- 클릭시 갤로그 이동 추후 개발 하기 -->
+													<!-- 갤로그 있을 경우 표시 ex.유저-->
+													<!--
+                                                    <a class="writer_nikcon">
+                                                        <img src="/img/fix_managernik.gif" alt="갤로그로 이동합니다."
+                                                        title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                                                        style="cursor: pointer;margin-left: 2px;">
+                                                    </a>
+                                                    -->
+												</b>
+											</td>
+											<td class="gall_date" th:title="${vo.article_rdate}" th:text="${#strings.substring(vo.article_rdate,2,10)}">00.00.00</td>
+											<td class="gall_count" th:text="${vo.article_hit}">1033</td>
+											<td class="gall_recommend" th:text="${vo.article_recommend_count}">12</td>
+										</tr>
+									</th:block>
 								</tbody>
 							</table>
 						</div>

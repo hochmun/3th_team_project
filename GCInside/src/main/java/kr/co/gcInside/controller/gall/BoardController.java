@@ -7,6 +7,7 @@ import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,8 +54,9 @@ public class BoardController {
      *              s_keyword       : 검색어
      *              
      *      Map data 에 넣는 값
-     *          setting_recommend_standard : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
-     *
+     *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
+     *          start                       : 페이지 시작 값
+     *          gell_num                    : 겔러리 번호
      *
      * @param grade
      * @return
@@ -75,10 +78,14 @@ public class BoardController {
         PagingDTO pagingDTO = service.listsPaging(data);
 
         // 게시글 정보 가져오기
+        data.put("start", pagingDTO.getStart()+"");
+        data.put("gell_num", galleryVO.getGell_num()+"");
+        List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
 
-        
         // model 전송
         model.addAttribute("galleryVO", galleryVO);
+        model.addAttribute("gellArticleVOS", gellArticleVOS);
+        model.addAttribute("pagingDTO", pagingDTO);
         model.addAttribute("grade", grade);
         
         return "gall/board/lists";

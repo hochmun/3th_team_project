@@ -23,7 +23,7 @@ public class gell_articleVO {
     private String article_content;
     private int article_hit;
     private int article_comment_count;
-    private int article_recomment_count;
+    private int article_recommend_count;
     private int article_be_recommend;
     private int article_recommend_status;
     private String article_regip;
@@ -32,4 +32,14 @@ public class gell_articleVO {
     private String article_rdate;
     private String article_wdate;
     private String article_w_uid;
+
+    // 추가 필드
+    private String member_nick;
+    private String article_regip_sub;
+
+    // Getter
+    public String getArticle_regip_sub() {
+        String a = article_regip.substring(0, article_regip.indexOf('.',4));
+        return a;
+    }
 }
