@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.internet.MimeMessage;
@@ -91,8 +92,26 @@ public class MemberContoller {
         return "member/reset_pwd";
     }
 
-    @GetMapping("member/reset_pwd_Result")
-    public String reset_pwd_Result() {
+    /**
+     * 2023-03-24 // 전인준
+     * 비밀번호 업데이트 POST컨트롤러
+     * */
+    @Transactional
+    @PostMapping("member/reset_pwd_Result")
+    public String reset_pwd_Result(MemberVO vo, HttpSession session) {
+        if(vo != null && vo.getMember_uid() != null && vo.getMember_email() != null
+        && vo.getMember_pass() != null){
+            log.info("1:"+vo.getMember_uid());
+            log.info("2:"+vo.getMember_email());
+            log.info("3:"+vo.getMember_pass());
+            int result = service.updateMemberPass(vo);
+            log.info("result :" + result);
+            if(result > 0){
+                session.setAttribute("resetSuccess", true);
+                return "redirect:/member/login"+result; // 비밀번호 변경 성공시
+            }
+        }
+        session.setAttribute("resetSuccess", false);
         return "member/reset_pwd_Result";
     }
 

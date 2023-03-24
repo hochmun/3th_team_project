@@ -24,14 +24,10 @@
         </div>
         <div class="bg_box">
           <div class="form_box">
-          <form action="#" name='reset_pwd_Result' method="post" accept-charset="utf-8">
-          <input type="hidden" id="encData" name="encData" value="">
-          <input type="hidden" id="vendor" name="vendor" value="">
-          <input type="hidden" id="user_id" name="user_id" class="int" title="아이디" placeholder="아이디" maxlength="20">
-          <input type="hidden" id="security_code" name="security_code" class="int" title="이메일 입력" placeholder="이메일" maxlength="30">
-          <input type="text" id="user_pw1" name="user_pw1" class="int" title="비밀번호" placeholder="변경하실비밀번호" maxlength="20">
-          <input type="text" id="user_pw2" name="user_pw2" class="int" title="비밀번호 재입력" placeholder="변경하실비밀번호 재입력" maxlength="20">
-                  <button type="button" class="btn_blue small btn_wrfull" onclick="password_reset()">확인</button>
+          <form th:action="@{/member/reset_pwd_Result}" onsubmit="return password_reset_update()" name='reset_pwd_Result' method="post" accept-charset="utf-8">
+          <input type="password" id="member_pass" name="member_pass" class="int" title="비밀번호" placeholder="변경하실비밀번호" maxlength="20">
+          <input type="password" id="member_pass1" name="member_pass1" class="int" title="비밀번호 재입력" placeholder="변경하실비밀번호 재입력" maxlength="20">
+                  <button type="submit" class="btn_blue small btn_wrfull">확인</button>
           </form>
           </div>
         </div>

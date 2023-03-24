@@ -370,19 +370,22 @@ let member_emailResult = function(){
     });
 };
 
+// 2023-03-23  전인준
 // 여러개의 ajax 통신시 promise객체 활용하면 코드도 간결해지고 가독성도 좋아짐
 // 비밀번호 재설정 //// resolve(성공),reject(실패) 파라미터
 let password_resetResult = function() {
-    let member_uid = $('#member_uid').val();
-    let member_email = $('#member_email').val();
-    // 입력 체크
-    if (!member_uid) {alert("아이디를 입력해 주세요.");$("#member_uid").focus();return false;}
-    if (!member_email) {alert("이메일을 입력해 주세요.");$("#member_email").focus();return false;}
+let member_uid = $('#member_uid').val();
+let member_email = $('#member_email').val();
 
-    function checkUid() {
+// 입력 체크
+if (!member_uid) {alert("아이디를 입력해 주세요.");$("#member_uid").focus();return false;}
+if (!member_email) {alert("이메일을 입력해 주세요.");$("#member_email").focus();return false;}
+
+// DB 아이디 조회
+function checkUid() {
     return new Promise(function(resolve, reject) {
-      let jsonData = {"member_uid": member_uid};
-      $.ajax({
+    let jsonData = {"member_uid": member_uid};
+    $.ajax({
         type: "GET",
         url: "/GCInside/member/checkUid",
         data: jsonData,
@@ -396,10 +399,12 @@ let password_resetResult = function() {
         error: function(e) {
           reject('서버 에러 발생');
         }
-      });
+        });
     });
-    }
-    function checkEmail() {
+}
+
+// DB 이메일 조회
+function checkEmail() {
     return new Promise(function(resolve, reject) {
       let jsonData = {"member_email": member_email};
       $.ajax({
@@ -418,16 +423,69 @@ let password_resetResult = function() {
         }
       });
     });
-    }
+}
+
+// /reset_pwd_Result 폼으로 보낼때 인풋 데이터 설정
+function submitResetPwdForm(uid, email) {
+    let form = document.createElement('form');
+    form.method = 'post';
+    form.action = "/GCInside/member/reset_pwd_Result";
+
+    let input1 = document.createElement('input');
+    input1.type = 'hidden';
+    input1.name = 'member_uid';
+    input1.value = uid;
+    form.appendChild(input1);
+
+    let input2 = document.createElement('input');
+    input2.type = 'hidden';
+    input2.name = 'member_email';
+    input2.value = email;
+    form.appendChild(input2);
+
+    document.body.appendChild(form);
+    form.submit();
+    console.log(form.innerHTML);
+}
     // promise 실행순서 .then 진행 , .catch 오류시
     checkUid()
     .then(function() {
       return checkEmail();
     })
     .then(function() {
-      location.href = "/GCInside/member/reset_pwd_Result";
+     submitResetPwdForm(member_uid,member_email);
     })
     .catch(function(error) {
       alert(error);
     });
 };
+
+// 2023-03-24 // 전인준
+// 비밀번호 재설정시 유효성 검사
+function password_reset_update(){
+pw_check = false; //비밀번호체크
+let member_pass = $('#member_pass').val();
+let member_pass1 = $('#member_pass1').val();
+// 입력 체크
+    if (!member_pass1) {
+    alert("변경하실 비밀번호를 입력해 주세요.");
+    $("#member_pass").focus();
+    return false;
+    }
+    if (!member_pass2) {
+    alert("변경하실 비밀번호를 재입력해 주세요.");
+    $("#member_pass1").focus();
+    return false;
+    }
+    if (!/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+])[a-zA-Z0-9!@#$%^&*()_+]{8,20}$/.test(member_pass1)) {
+    alert("비밀번호는 8~20자리로 영문,숫자,특수문자로 구성되어야 합니다.");
+    $("#member_pass").focus();
+    return false;
+    }
+    if (member_pass1 !== member_pass2) {
+    alert("변경하실 비밀번호가 일치하지 않습니다.");
+    $("#member_pass1").focus();
+    return false;
+    }
+pw_check = true;
+}
