@@ -34,9 +34,9 @@ public class MinorController{
     @GetMapping(value = {"/m/","m/index"})
     public String minorindex(Model model){
         List<galleryVO> hot_mgall = service.selecthotmgall();
-        List<gell_articleVO> hot_mgallranking = service.selecthotmgallranking();
+        List<galleryVO> new_mgall = service.selectnewmgall();
         model.addAttribute("hot_mgall",hot_mgall);
-        model.addAttribute("hot_mgallranking",hot_mgallranking);
+        model.addAttribute("new_mgall",new_mgall);
         return "gall/m/index";
     }
     @GetMapping("m/create")

@@ -64,4 +64,7 @@ public class galleryVO {
     public void setGell_cate2(String gell_cate2) {
         this.gell_cate2 = Integer.parseInt(gell_cate2);
     }
+
+    private int cnt;
+    private int rank;
 }

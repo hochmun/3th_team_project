@@ -59,8 +59,14 @@
                                     <strong>흥한갤 전체 순위</strong>
                                     <span class="inner_txt">전체 마이너 갤러리 순위 중 300위 이내는 흥한갤이 됩니다. (20위 이내는 대흥갤)</span>
                                   </div>
-                                    <ul class="pop_hotmgall_listbox" id="heung_list_ul"  data-heunggall-page="1" th:each="hot,i:${hot_mgall}" th:if="${i.count}<=10">
-                                        <li><a href="#"><span class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
+                                    <ul class="pop_hotmgall_listbox" id="heung_list_ul"  data-heunggall-page="1">
+                                        <li th:each="hot,i:${hot_mgall}" th:if="${i.count}<=100"><a href="#"><span class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
+                                    </ul>
+                                    <ul class="pop_hotmgall_listbox" id="heung_list_ul_2"  data-heunggall-page="2" style="display: none;">
+                                        <li th:each="hot,i:${hot_mgall}" th:if="${i.count} > 100 and ${i.count}<=200"><a href="#"><span class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
+                                    </ul>
+                                    <ul class="pop_hotmgall_listbox" id="heung_list_ul_3"  data-heunggall-page="3" style="display: none;">
+                                        <li th:each="hot,i:${hot_mgall}" th:if="${i.count} > 200 and ${i.count}<=300"><a href="#"><span class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
                                     </ul>
                                     <div class="btn_box" data-lyr="heung_gall_all_lyr">
                                   <button type="button" class="heung_gall_prev btn_prev on"><span class="blind">이전</span><em class="sp_img icon_prev"></em></button>
@@ -81,11 +87,11 @@
                           </header>
                             <div class="hot_mgall">
                                 <div class="rank_list_box clear">
-                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_1" th:each="hot,i:${hot_mgall}" th:if="${i.count}<=5">
-                                        <li><a class="" href="#"><span class="rank_num"><em>[[${i.count}]]</em></span><span class="rank_txt">[[${hot.gell_name}]]</span></a></li>
+                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_1" >
+                                        <li th:each="hot,i:${hot_mgall}" th:if="${i.count}<=5"><a class="" href="#"><span class="rank_num"><em>[[${i.count}]]</em></span><span class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                     </ol>
-                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_2" th:each="i:${#numbers.sequence(hot_mgall5,10)}">
-                                        <li><a class="" href="#"><span class="rank_num"><em>[[${i}]]</em></span><span class="rank_txt">[[${hot_mgall[i].gell_name}]]</span></a></li>
+                                    <ol class="rank_list mgall fl" id="hot_mgallery_list_2" >
+                                        <li th:each="hot,i:${hot_mgall}" th:if="${i.count} > 5 and ${i.count} <= 10"><a class="" href="#"><span class="rank_num"><em>[[${i.count}]]</em></span><span class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                     </ol>
                                 </div>
                             </div>
@@ -103,18 +109,7 @@
                             </header>
                             <div class="new_mgall" id="new_mgallery_div">
                                 <ul class="newmgall_list">
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
-                                        <li><a href="#">신설 마이너 갤러리 명</a></li>
+                                        <li th:each="newmgall:${new_mgall}"><a href="#">[[${newmgall.gell_name}]]</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -141,15 +136,11 @@
                                 <!-- 실시간 북적 갤러리 한줄 노출 -->
                                 <div class="one_ranklist">
                                   <ol class="rank_list mgall">
-                                    <li id="rank_no">
-                                      <a id="rank_num_1" href="#">
-                                      <span class="rank_num"><em>1</em></span>
-                                      <span class="rank_txt">실시간북적 1</span>
+                                    <li id="rank_no" th:each="hot,i:${hot_mgall}">
+                                      <a id="rank_num" href="#">
+                                      <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                      <span class="rank_txt">[[${hot.gell_name}]]</span>
                                       </a>
-                                      <a id="rank_num_2" href="#">
-                                        <span class="rank_num"><em>2</em></span>
-                                        <span class="rank_txt">실시간북적 2</span>
-                                        </a>
                                     </li>
                                   </ol>
                                 </div>
