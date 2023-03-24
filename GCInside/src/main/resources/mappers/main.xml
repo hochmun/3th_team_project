@@ -51,6 +51,7 @@
             <when test="grade.equals('m')">0</when>
             <when test="grade.equals('mgall')">1</when>
             <when test="grade.equals('mini')">2</when>
+            <otherwise>0</otherwise>
         </choose>
         ;
     </select>

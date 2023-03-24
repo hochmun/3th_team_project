@@ -76,6 +76,8 @@ public class MainController {
     @ResponseBody
     @PostMapping("mainPagingUtil")
     public Map<String, Object> mainPagingUtil(@RequestBody Map<String, String> data) {
+        log.info("data : "+data.toString());
+
 
         PagingDTO pagingDTO = new PagingDTO();
         Map<String, Object> resultMap = new HashMap<>();
@@ -85,6 +87,12 @@ public class MainController {
             if(data.get("pg") == null) {
                 pagingDTO = new PagingUtil().getPagingDTO(null,service.MainIndexNewCommunityCount(data));
                 resultMap.put("pagingDTO", pagingDTO);
+            }
+
+            // 페이지 값이 있을 경우
+            if(data.get("pg") != null) {
+                pagingDTO = new PagingDTO();
+                pagingDTO.setStart(Integer.parseInt(data.get("pg")));
             }
 
             // 리스트 목록 불러오기
