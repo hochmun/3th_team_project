@@ -1,5 +1,6 @@
 package kr.co.gcInside.dao;
 
+import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -33,6 +34,13 @@ public interface BoardDAO {
      * @return
      */
     public galleryVO selectGellInfo(@Param("gell_address") String gell_address, @Param("grade") String grade);
+
+    /**
+     * 2023/03/24 // 심규영 // 갤러리 부매니저 정보 가져오기
+     * @param gell_num
+     * @return
+     */
+    public List<Gell_sub_managerVO> selectSubManagerInfo(@Param("gell_num") int gell_num);
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기

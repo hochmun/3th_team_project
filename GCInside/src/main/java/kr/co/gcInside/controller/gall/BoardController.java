@@ -6,6 +6,7 @@ import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.utill.SecurityCheckUtil;
+import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
@@ -64,12 +65,16 @@ public class BoardController {
     @GetMapping("{grade}/board/lists")
     public String list(@PathVariable("grade") String grade,
                        @RequestParam Map<String, String> data,
-                       Model model) {
+                       Model model,
+                       @AuthenticationPrincipal MyUserDetails myUserDetails) {
         // id 값에 따른 갤러리 정보 불러오기
         galleryVO galleryVO = service.selectGellInfo(data.get("id"), grade);
 
         // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
         if(galleryVO == null) return "error/wrongURL";
+        
+        // 갤러리 서브 매니저 정보 가져오기
+        List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());
 
         // data에 개념글 추천수 개수 설정 넣기
         data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
@@ -84,9 +89,13 @@ public class BoardController {
 
         // model 전송
         model.addAttribute("galleryVO", galleryVO);
+        model.addAttribute("gellSubManagerVOS", gellSubManagerVOS);
         model.addAttribute("gellArticleVOS", gellArticleVOS);
         model.addAttribute("pagingDTO", pagingDTO);
         model.addAttribute("grade", grade);
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
+
+        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
         
         return "gall/board/lists";
     }

@@ -91,19 +91,20 @@ window.addEventListener('load',function(){
          * 글 수정시 기본 글 불러오기
          * 글 보기시 글 불러오기
          */
-        data: {},
+        //data: {},
 
         /**
          * 2023/03/17 // 심규영
          * 읽기 전용 설정
          * 글 보기 페이지 에서 써도 될듯?
          */
-        readOnly: false,
+        //readOnly: false,
+        //autofocus: true,
         onReady: () => {
             /**
              * 2023/03/17 // 심규영 // 드래그 드롭
              */
-            new DragDrop(editor);
+            //new DragDrop(editor);
         },
     });
 })
@@ -119,4 +120,11 @@ async function editor_save(){
     }).catch((error)=>{
         console.log('Saving failed : ', error)
     })
+}
+
+function editor_readOnly() {
+    editor.readOnly.toggle();
+}
+
+function editor_data_load(inputData) {
 }

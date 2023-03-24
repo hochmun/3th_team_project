@@ -37,13 +37,19 @@
             a.`gell_num`,
             a.`gell_name`,
             a.`gell_address`,
+            a.`gell_main_img`,
+            a.`gell_info`,
+            a.`gell_manager`,
             a.`gell_grade`,
+            a.`gell_rdate`,
+            c.`member_nick`,
             b.`setting_sub_cate`,
             b.`setting_recommend_standard`,
             (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_gell_num = a.gell_num) AS relation_count,
             (SELECT COUNT(relation_num) FROM `gc_gell_relation_gell` WHERE relation_relation_gell_num = a.gell_num) AS re_relation_count
         FROM `gc_gell` AS a
         JOIN `gc_gell_setting` AS b ON a.gell_num = b.setting_gell_num
+        JOIN `gc_member` AS c ON a.`gell_manager` = c.`member_uid`
         WHERE a.gell_address = #{gell_address} AND a.`gell_grade` =
         <choose>
             <when test="grade.equals('m')">0</when>
@@ -57,7 +63,12 @@
         <id column="gell_num" property="gell_num"/>
         <result column="gell_name" property="gell_name"/>
         <result column="gell_address" property="gell_address"/>
+        <result column="gell_main_img" property="gell_main_img"/>
+        <result column="gell_info" property="gell_info"/>
+        <result column="gell_manager" property="gell_manager"/>
         <result column="gell_grade" property="gell_grade"/>
+        <result column="gell_rdate" property="gell_rdate"/>
+        <result column="member_nick" property="member_nick"/>
         <result column="relation_count" property="relation_count"/>
         <result column="re_relation_count" property="re_relation_count"/>
 
@@ -66,6 +77,13 @@
             <result column="setting_recommend_standard" property="setting_recommend_standard"/>
         </association>
     </resultMap>
+
+    <!-- 2023/03/24 // 심규영 // 갤러리 부매니저 정보 가져오는 쿼리문 -->
+    <select id="selectSubManagerInfo" resultType="kr.co.gcInside.vo.Gell_sub_managerVO">
+        SELECT a.*, b.`member_nick` FROM `gc_gell_sub_manager` AS a
+        JOIN `gc_member` AS b ON a.`sub_manager_uid` = b.`member_uid`
+        WHERE `sub_manager_gell_num` = #{gell_num};
+    </select>
 
     <!-- 2023/03/23 // 심규영 // 게시글 리스트 가져오는 쿼리문 -->
     <select id="selectArticles" parameterType="map" resultType="kr.co.gcInside.vo.gell_articleVO">

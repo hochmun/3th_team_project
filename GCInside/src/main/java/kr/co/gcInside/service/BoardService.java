@@ -3,6 +3,7 @@ package kr.co.gcInside.service;
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.utill.PagingUtil;
+import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
 import org.apache.ibatis.annotations.Param;
@@ -45,6 +46,15 @@ public class BoardService {
      */
     public galleryVO selectGellInfo(String gell_address, String grade) {
         return dao.selectGellInfo(gell_address, grade);
+    }
+
+    /**
+     * 2023/03/24 // 심규영 // 갤러리 부매니저 정보 가져오기
+     * @param gell_num
+     * @return
+     */
+    public List<Gell_sub_managerVO> selectSubManagerInfo(int gell_num) {
+        return dao.selectSubManagerInfo(gell_num);
     }
 
     /**

@@ -36,6 +36,8 @@ public class galleryVO {
     private int relation_count;
     /** 연관 갤러리로 추가한 갤러리 개수 */
     private int re_relation_count;
+    /** 2023/03/24 // 심규영 // 갤러리 매니저 닉네임 필드 추가 */
+    private String member_nick;
     
     // 추가 필드 vo 연결
     private Gell_SettingVO gellSettingVO;

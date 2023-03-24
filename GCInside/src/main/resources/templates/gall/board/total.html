@@ -343,22 +343,13 @@
                     <div class="inner clear">
                       <div class="writing_view_box">
                         <div class="write_div" style="overflow:hidden;width:900px;">
-                          <p><br></p>
-                          <p style="text-align:left;">
-                            <a href="#" target="_blank">
-                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
-                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
-                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
-                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
-                              <img src="https://via.placeholder.com/1100x900" width="1100" height="900" style="border:0px;">
-                            </a>
-                          </p>
-                          <p style="text-align:left;">이미지 올렸는데 왜 안올라가죠? 장난하나요? </p>
-                          <p><br></p>
-                          <div style='clear:both;'>
-                            <br><br>
-                            <b>출처: OO 갤러리 <a href='#' target='_blank'>[원본 보기]</a></b>
-                          </div>
+                          <iframe th:src="@{/gall/board/editor}" id="editor_iframe2" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+
+                          <script>
+                            window.addEventListener('load', function(){
+                                document.getElementById('editor_iframe2').contentWindow.editor_readOnly();
+                            })
+                          </script>
                         </div>
                       </div>
 
