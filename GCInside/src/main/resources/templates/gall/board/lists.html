@@ -122,30 +122,32 @@
 										<div class="minor_intro_box clear">
 											<div class="img_contbox clear">
 												<div class="bgcover">
-													<a href="javascript:imgPop('이미지주소,menubar=no,toolbar=no,location=no,status=no,width=550,height=350');" class="mintro_imgbox in_img">
-														<span class="cover" style="background-image: url('이미지주소');"></span>
+													<a href="javascript:;" class="mintro_imgbox in_img">
+														<span th:if="${galleryVO.gell_main_img} != null" class="cover" style="background-image: url('이미지주소');"></span>
 													</a>
 												</div>
 												<div class="mintro_txtbox">
-													<p class="mintro_txt">갤러리 소개글</p>
+													<p class="mintro_txt" th:text="${galleryVO.gell_info}">갤러리 소개글</p>
 												</div>
 											</div>
 											<div class="info_contbox">
 												<div class="info_cont">
 													<strong class="tit">매니저</strong>
 													<p class="cont">
-														<span class="mng_nick">닉네임(아이디)</span>
+														<span class="mng_nick" th:text="|${galleryVO.member_nick}(${galleryVO.gell_manager})|">닉네임(아이디)</span>
 													</p>
 												</div>
 												<div class="info_cont">
 													<strong class="tit">부매니저</strong>
 													<p class="cont">
-														<span class="mng_nick">닉네임(<span>아이디...</span>)</span>
+														<span class="mng_nick" th:each="vo:${gellSubManagerVOS}">[[${vo.member_nick}]](<span th:title="${vo.sub_manager_uid}"
+															><th:block th:if="${#strings.length(vo.sub_manager_uid)} > 8">[[${#strings.substring(vo.sub_manager_uid,0,7)}]]...</th:block
+															><th:block th:if="${#strings.length(vo.sub_manager_uid)} <= 8">[[${vo.sub_manager_uid}]]</th:block></span>)</span>
 													</p>
 												</div>
 												<div class="info_cont">
 													<strong class="tit">개설일</strong>
-													<p class="cont">0000-00-00</p>
+													<p class="cont" th:text="${#strings.substring(galleryVO.gell_rdate, 0, 10)}">0000-00-00</p>
 												</div>
 												<div class="info_cont">
 													<button type="button" class="font_lightblue btn_mngadmin_report">갤러리 관리 내역</button>
@@ -354,25 +356,21 @@
 						<div class="bottom_paging_wrap">
 							<!-- 페이징 메인 -->
 							<div class="bottom_paging_box iconpaging">
-								<a href="javascript:;" class="sp_pagingicon page_first">처음</a>
-								<a href="javascript:;" class="sp_pagingicon page_prev">이전</a>
-								<em>16</em>
-								<a href="javascript:;">17</a>
-								<a href="javascript:;">18</a>
-								<a href="javascript:;">19</a>
-								<a href="javascript:;">20</a>
-								<a href="javascript:;">21</a>
-								<a href="javascript:;">22</a>
-								<a href="javascript:;">23</a>
-								<a href="javascript:;">24</a>
-								<a href="javascript:;">25</a>
-								<a href="javascript:;">26</a>
-								<a href="javascript:;">27</a>
-								<a href="javascript:;">28</a>
-								<a href="javascript:;">29</a>
-								<a href="javascript:;">30</a>
-								<a href="javascript:;" class="sp_pagingicon page_next">다음</a>
-								<a href="javascript:;" class="sp_pagingicon page_end">끝</a>
+								<th:block th:if="${pagingDTO.groupStart gt 1}">
+									<a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=1|" class="sp_pagingicon page_first">처음</a>
+									<a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${pagingDTO.groupStart -1}|" class="sp_pagingicon page_prev">이전</a>
+								</th:block>
+
+								<th:block th:each="i:${#numbers.sequence(pagingDTO.groupStart,pagingDTO.groupEnd)}">
+									<em th:if="${pagingDTO.currentPage eq i}" th:text="${i}"></em>
+									<a th:if="${pagingDTO.currentPage ne i}" th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${i}|" th:text="${i}">17</a>
+								</th:block>
+
+								<th:block th:if="${pagingDTO.groupEnd lt pagingDTO.lastPage}">
+									<a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${pagingDTO.groupEnd + 1}|" class="sp_pagingicon page_next">다음</a>
+									<a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${pagingDTO.lastPage}|" class="sp_pagingicon page_end">끝</a>
+								</th:block>
+
 							</div>
 							
 							<!-- 페이지 이동 버튼 -->
@@ -449,9 +447,28 @@
 					<!-- 로그인 창 -->
 					<div>
 						<!-- 로그인 정보 -->
-						<div id="login_box" class="login_box">
-							<div class="user_info newarea" data-alarmid>
-								<strong th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
+						<div id="login_box" class="login_box" >
+							<div class="user_info newarea">
+								<th:block th:if="${authorize.isAnonymous}">
+									<strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
+								</th:block>
+
+								<th:block th:if="${authorize.isAuthenticated}">
+									<!-- a 클릭시 유저 설정으로 이동 -->
+									<a href="javascript:;" class="fl">
+										<strong class="nickname in"><em th:text="${user.member_nick}"></em></strong>님
+									</a>
+									<!-- 클릭시 갤로그로 이동 -->
+									<strong class="writer_nikcon" th:title="|${#strings.substring(user.member_uid,0, #strings.length(user.member_uid) - 2)}** : 갤로그로 이동합니다.|" style="cursor:pointer" onclick>
+										<img th:src="@{/img/nik.gif}" width="12" height="11" style="margin-left:2px;">
+									</strong>
+									<!-- 클릭시 유저 설정 으로 이동 -->
+									<a href="javascript:;"><span class="sp_img user_infogo"></span></a>
+									<!-- 로그아웃 버튼 -->
+									<div class="logout_boxbtn fr">
+										<button type="button" onclick="location.href='/GCInside/logout'" class="btn_inout logout">로그아웃</button>
+									</div>
+								</th:block>
 							</div>
 
 							<div class="user_option">
