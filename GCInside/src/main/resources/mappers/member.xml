@@ -23,7 +23,9 @@
     </select>
     <!-- 2023-03-23 // 전인준-->
     <select id="selectMemberPassByUidEmail" parameterType="String" resultType="String">
-        SELECT * from `gc_member` WHERE member_uid = #{member_uid} and member_email=#{member_email};
+        SELECT * FROM `gc_member` WHERE member_uid = #{member_uid}
+        UNION
+        SELECT * FROM `gc_member` WHERE member_email = #{member_email};
     </select>
     <!-- 2023-03-24 // 전인준-->
     <update id="updateMemberPass">
