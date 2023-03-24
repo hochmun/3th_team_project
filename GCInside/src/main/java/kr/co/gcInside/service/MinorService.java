@@ -62,10 +62,9 @@ public class MinorService {
         return dao.selecthotmgall();
     };
     /**
-     * 2023/03/23 // 김동민 // 흥한 갤러리 불러오기
+     * 2023/03/24 // 김동민 // 신설 갤러리 불러오기
      */
-    public List<gell_articleVO>selecthotmgallranking(){
-
-        return dao.selecthotmgallranking();
-    };
+    public List<galleryVO>selectnewmgall(){
+        return dao.selectnewmgall();
+    }
 }

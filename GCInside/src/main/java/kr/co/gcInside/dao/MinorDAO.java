@@ -47,8 +47,8 @@ public interface MinorDAO {
      */
     public List<galleryVO>selecthotmgall();
     /**
-     * 2023/03/23 // 김동민 // 흥한 갤러리 순위 불러오기
+     * 2023/03/24 // 김동민 // 신설 갤러리 불러오기
      */
-    public List<gell_articleVO>selecthotmgallranking();
+    public List<galleryVO>selectnewmgall();
 
 }

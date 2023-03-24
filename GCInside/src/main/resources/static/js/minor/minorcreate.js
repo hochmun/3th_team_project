@@ -1,11 +1,4 @@
 
-function showLayer(layerName){
-	if($("#"+layerName).css("display") == "none"){
-		$("#"+layerName).show();
-	} else {
-		$("#"+layerName).hide();
-	}
-}
 
 //카테고리 펼치기
 function showOptions() {
@@ -152,3 +145,4 @@ $(function() {
    };
    agree();
  });
+
