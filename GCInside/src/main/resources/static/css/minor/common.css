@@ -1556,3 +1556,5 @@ background:url(/img/sp_img.png) no-repeat;background-position:-283px -200px}
 li:first-child .reply_box{margin:0px 0 0px 30px}
 .reply_list li{padding:9px 12px 7px;border-top:1px solid #ddd}
 .reply_list li:first-child{margin-top:0px}
+
+.ip{font-family:tahoma,sans-serif;font-size:11px;color:#999}

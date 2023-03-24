@@ -69,7 +69,9 @@
 
     <!-- 2023/03/23 // 심규영 // 게시글 리스트 가져오는 쿼리문 -->
     <select id="selectArticles" parameterType="map" resultType="kr.co.gcInside.vo.gell_articleVO">
-        SELECT * FROM `gc_gell_article` WHERE
+        SELECT a.*, b.`member_nick` FROM `gc_gell_article` AS a
+        left JOIN `gc_member` AS b ON a.`article_uid` = b.`member_uid`
+        WHERE
         <if test="exception_mode == null">`article_status` = '0'</if> <!-- 출력 모드가 없을 경우 기본 설정 -->
         <if test="exception_mode != null"> <!-- 출력 모드가 있을 경우 -->
             <if test="exception_mode.equals('notice')">`article_status` = '2'</if>
@@ -86,7 +88,11 @@
             <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
             <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
         </if>
-        ORDER BY
+        AND `articlel_gell_num` = #{gell_num}
+        ORDER BY `article_num` DESC
+        LIMIT ${start},
+        <if test="list_num == null">50</if>
+        <if test="list_num != null">${list_num}</if>
         ;
     </select>
 
