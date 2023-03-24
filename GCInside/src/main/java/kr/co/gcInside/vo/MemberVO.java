@@ -33,6 +33,7 @@ public class MemberVO {
     private String email1;
     private String email2;
     private String regip;
+    private String member_pass1;
 
     private int member_count;
 }

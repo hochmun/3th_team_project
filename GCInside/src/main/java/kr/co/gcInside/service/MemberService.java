@@ -37,7 +37,7 @@ public class MemberService {
         return dao.selectMemberPassByUidEmail(member_uid,member_email);
     }
     public int updateMemberPass(MemberVO vo){
-        vo.setMember_pass(encoder.encode(vo.getMember_pass()));
+        vo.setMember_pass(encoder.encode(vo.getMember_pass1()));
         return dao.updateMemberPass(vo);
     }
 

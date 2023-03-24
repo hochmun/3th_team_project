@@ -428,7 +428,7 @@ function checkEmail() {
 // /reset_pwd_Result 폼으로 보낼때 인풋 데이터 설정
 function submitResetPwdForm(uid, email) {
     let form = document.createElement('form');
-    form.method = 'post';
+    form.method = 'GET';
     form.action = "/GCInside/member/reset_pwd_Result";
 
     let input1 = document.createElement('input');
@@ -466,6 +466,8 @@ function password_reset_update(){
 pw_check = false; //비밀번호체크
 let member_pass = $('#member_pass').val();
 let member_pass1 = $('#member_pass1').val();
+let member_uid = $('#member_uid').val();
+let member_email = $('#member_email').val();
 // 입력 체크
     if (!member_pass1) {
     alert("변경하실 비밀번호를 입력해 주세요.");
@@ -487,5 +489,7 @@ let member_pass1 = $('#member_pass1').val();
     $("#member_pass1").focus();
     return false;
     }
+
+    //window.location.href = '/GCInside/member/reset_pwd_Result?member_uid='+member_uid+'&member_email='+member_email;
 pw_check = true;
 }
