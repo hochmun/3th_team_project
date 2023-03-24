@@ -31,7 +31,8 @@ public class galleryVO {
     // 추가필드
     private int gell_cate2;
     private String gell_cate2_name;
-    private String gell_create_cate;
+    private Integer gell_create_cate;
+    private Integer gell_create_num;
     /** 연관 갤러리 개수 */
     private int relation_count;
     /** 연관 갤러리로 추가한 갤러리 개수 */
@@ -43,21 +44,6 @@ public class galleryVO {
     private Gell_SettingVO gellSettingVO;
 
     // 추가 get, set
-    // gell_num int -> String 변환
-    public int getGell_num() {
-        return gell_num;
-    }
-    public void setGell_num(String gell_num) {
-        this.gell_num = Integer.parseInt(gell_num);
-    }
-
-    // gell_cate int -> String 변환
-    public int getGell_cate() {
-        return gell_cate;
-    }
-    public void setGell_cate(String gell_cate) {
-        this.gell_cate = Integer.parseInt(gell_cate);
-    }
 
     // gell_cate2 int -> String 변환
     public int getGell_cate2() {

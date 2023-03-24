@@ -25,13 +25,20 @@ public class CreateVO {
     private int gell_cate2;
     private String gell_cate2_name;
 
-    // 추가 필드
-    private int gell_cate;
-    private String gell_manager;
-    private String gell_name;
-    private String gell_address;
-    private String gell_info;
-    private int gell_grade;
-    private int gell_status;
-    private String gell_rdate;
+    // 추가 get, set
+    // gell_create_num int => string 변환
+    public int getGell_create_num() {
+        return gell_create_num;
+    }
+    public void setGell_create_num(String gell_create_num) {
+        this.gell_create_num = Integer.parseInt(gell_create_num);
+    }
+
+    // gell_create_cate int => string 변환
+    public int getGell_create_cate() {
+        return gell_create_cate;
+    }
+    public void setGell_create_cate(String gell_create_cate) {
+        this.gell_create_cate = Integer.parseInt(gell_create_cate);
+    }
 }
