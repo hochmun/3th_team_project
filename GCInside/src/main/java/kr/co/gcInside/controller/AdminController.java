@@ -197,16 +197,22 @@ public class AdminController {
     @PostMapping("admin/gallery/form_minor/create")
     public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo) {
         // 갤러리 개설 신청 리스트 불러오기
+        log.info("1-1");
         List<CreateVO> list = service.galleryRequestList();
 
+        log.info("1-2");
         vo.setGell_name(req.getParameter("gell_create_name"));
         vo.setGell_address(req.getParameter("gell_create_address"));
         vo.setGell_info(req.getParameter("gell_create_intro"));
         vo.setGell_manager(req.getParameter("gell_create_uid"));
+        log.info(vo.toString());
 
+        log.info("1-3");
         service.createMinorGallery(vo);
+        log.info("1-4");
         // 갤러리 셋팅 생성
         service.createMainGallerySetting(vo.getGell_num());
+        log.info("1-5");
 
         model.addAttribute("list", list);
 
@@ -232,8 +238,12 @@ public class AdminController {
     public String createAndApproveMinorGallery(HttpServletRequest req, Model model, galleryVO vo, Integer gell_create_status, Integer gell_create_num) {
         log.info("vo값 = {}", vo); // vo 값 로깅
         log.info("update = ", updateGalleryCreateStatus(gell_create_status, gell_create_num)); // update 값 로깅
+        log.info("1");
         createMinorGallery(req, model, vo);
+        log.info("2");
         updateGalleryCreateStatus(1, gell_create_num);
+        log.info("3");
+
 
         return "redirect:/admin/gallery/form_minor";
     }
