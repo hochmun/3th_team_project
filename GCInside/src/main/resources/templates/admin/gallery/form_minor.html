@@ -49,6 +49,21 @@
                         for (var i = 0; i < showApprovalButtons.length; i++) {
                             showApprovalButtons[i].addEventListener('click', showApprovalPopup);
                         }
+                        document.querySelector('.approval').addEventListener('click', function() {
+                            const gellNum = this.parentElement.parentElement.querySelector('.gell_create_num').innerText;
+                            const gellName = this.parentElement.parentElement.querySelector('.gell_create_name').innerText;
+                            const gellAddress = this.parentElement.parentElement.querySelector('.gell_create_address').innerText;
+                            const gellCate = this.parentElement.parentElement.querySelector('.gell_create_cate').innerText;
+                            const gellUid = this.parentElement.parentElement.querySelector('.gell_create_uid').innerText;
+                            const gellIntro = this.parentElement.parentElement.querySelector('.gell_create_intro').innerText;
+
+                            document.querySelector('[name="gell_create_num"]').value = gellNum;
+                            document.querySelector('[name="gell_create_name"]').value = gellName;
+                            document.querySelector('[name="gell_create_address"]').value = gellAddress;
+                            document.querySelector('[name="gell_create_cate"]').value = gellCate;
+                            document.querySelector('[name="gell_create_uid"]').value = gellUid;
+                            document.querySelector('[name="gell_create_intro"]').value = gellIntro;
+                        });
 
                         var closeApprovalPopupButton = document.querySelector('.close-approval-popup');
                         closeApprovalPopupButton.addEventListener('click', closeApprovalPopup);
@@ -62,6 +77,8 @@
                         var submitRejectionButton = document.querySelector('.submit-rejection');
                         submitRejectionButton.addEventListener('click', submitRejection);
                     });
+
+
 
                     function showRejectionReason() {
                         var rejectionReasonDiv = document.querySelector('.rejection-reason');
@@ -102,13 +119,26 @@
 
                         // 추출된 정보를 팝업 내부로 전달
                         popup.querySelector('.num').textContent = num;
+                        popup.querySelector('#gell_create_num').value = num;
+
                         popup.querySelector('.name').textContent = name;
+                        popup.querySelector('#gell_create_name').value = name;
+
                         popup.querySelector('.address').textContent = address;
+                        popup.querySelector('.#gell_create_address').value = address;
+
                         popup.querySelector('.category').textContent = category;
+                        popup.querySelector('#gell_create_cate').value = category;
+
                         popup.querySelector('.rdate').textContent = rdate;
+
                         popup.querySelector('.uid').textContent = uid;
+                        popup.querySelector('#gell_create_uid').value = uid;
+
                         popup.querySelector('.reason').textContent = reason;
+
                         popup.querySelector('.intro').textContent = intro;
+                        popup.querySelector('#gell_create_intro').value = intro;
                         popup.style.display = 'block';
                     }
 
@@ -188,16 +218,23 @@
                             <div class="approval-popup" style="display:none;">
                                 <h3>갤러리 개설 승인/반려</h3>
                                 <form th:action="@{/admin/gallery/form_minor/approve}" method="post">
-                                    <p hidden>신청번호: <span class="num" name="gell_create_num"></span></p>
-                                    <p>갤러리 이름: <span class="name" name="gell_create_name"></span></p>
-                                    <p>주소: <span class="address" name="gell_create_address"></span></p>
-                                    <p>카테고리: <span class="category" name="gell_create_cate"></span></p>
+                                    <p hidden>신청번호: <span class="num"></span></p>
+                                    <input type="hidden" name="gell_create_num" id="gell_create_num" value=""/>
+                                    <p>갤러리 이름: <span class="name"></span></p>
+                                    <input type="hidden" name="gell_create_name" id="gell_create_name" value=""/>
+                                    <p>주소: <span class="address"></span></p>
+                                    <input type="hidden" name="gell_create_address" id="gell_create_address" value=""/>
+                                    <p>카테고리: <span class="category"></span></p>
+                                    <input type="hidden" name="gell_create_cate" id="gell_create_cate" value=""/>
                                     <p>신청일: <span class="rdate"></span></p>
-                                    <p>신청자: <span class="uid" name="gell_create_uid"></span></p>
+                                    <p>신청자: <span class="uid"></span></p>
+                                    <input type="hidden" name="gell_create_uid" id="gell_create_uid" value=""/>
                                     <p>개설이유: <span class="reason"></span></p>
-                                    <p>갤러리 설명: <span class="intro" name="gell_create_intro"></span></p>
+                                    <p>갤러리 설명: <span class="intro"></span></p>
+                                    <input type="hidden" name="gell_create_intro" id="gell_create_intro" value=""/>
                                     <button class="approve" type="submit">승인</button>
                                 </form>
+
                                 <button class="reject">반려</button>
                                 <div class="rejection-reason" style="display:none;">
                                     <textarea class="rejection-reason-text" placeholder="반려 사유를 입력하세요"></textarea>

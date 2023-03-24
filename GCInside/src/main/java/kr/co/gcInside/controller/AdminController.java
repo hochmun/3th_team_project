@@ -184,11 +184,9 @@ public class AdminController {
         // 갤러리 개설 신청 리스트 불러오기
         List<CreateVO> list = service.galleryRequestList();
 
-        // 카테고리 이름 불러오기
-        List<gall_cate2VO> cates = service.selectGalleryCates();
-
-        model.addAttribute("cates", cates);
         model.addAttribute("list", list);
+
+        log.info("list : " + list);
 
         return "admin/gallery/form_minor";
     }
@@ -197,10 +195,9 @@ public class AdminController {
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list post 매핑
      */
     @PostMapping("admin/gallery/form_minor/create")
-    public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser) {
-        //UserEntity user = myUser.getUser();
-
-        //vo.setGell_manager(user.getMember_uid());
+    public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo) {
+        // 갤러리 개설 신청 리스트 불러오기
+        List<CreateVO> list = service.galleryRequestList();
 
         vo.setGell_name(req.getParameter("gell_create_name"));
         vo.setGell_address(req.getParameter("gell_create_address"));
@@ -211,9 +208,7 @@ public class AdminController {
         // 갤러리 셋팅 생성
         service.createMainGallerySetting(vo.getGell_num());
 
-        log.info("갤러리 생성 : " + vo.getGell_name() + " / " + vo.getGell_address() + " / " + vo.getGell_info() + " / " + vo.getGell_manager());
-        log.info("vo 정보 불러오기 : " + vo);
-        log.toString();
+        model.addAttribute("list", list);
 
         return "redirect:/admin/gallery/form_minor";
     }
@@ -234,8 +229,10 @@ public class AdminController {
      */
     @PostMapping("admin/gallery/form_minor/approve")
     @Transactional
-    public String createAndApproveMinorGallery(HttpServletRequest req, Model model, galleryVO vo, @AuthenticationPrincipal MyUserDetails myUser, Integer gell_create_status, Integer gell_create_num) {
-        createMinorGallery(req, model, vo, myUser);
+    public String createAndApproveMinorGallery(HttpServletRequest req, Model model, galleryVO vo, Integer gell_create_status, Integer gell_create_num) {
+        log.info("vo값 = {}", vo); // vo 값 로깅
+        log.info("update = ", updateGalleryCreateStatus(gell_create_status, gell_create_num)); // update 값 로깅
+        createMinorGallery(req, model, vo);
         updateGalleryCreateStatus(1, gell_create_num);
 
         return "redirect:/admin/gallery/form_minor";
@@ -243,4 +240,3 @@ public class AdminController {
 
 
 }
-

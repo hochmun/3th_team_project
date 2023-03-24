@@ -16,9 +16,9 @@
     <!-- 2023/03/22 // 김재준 // 관리자 마이너 갤러리 생성 -->
     <insert id="createMinorGallery" useGeneratedKeys="true" keyProperty="gell_num">
         INSERT INTO `gc_gell` (gell_cate, gell_name, gell_address, gell_info, gell_manager, gell_grade, gell_rdate)
-            SELECT gc_admin_gell_create_approve.gell_create_cate, #{gell_name}, #{gell_address}, #{gell_info}, #{gell_manager}, 0, NOW()
-            FROM gc_admin_gell_create_approve
-            WHERE gc_admin_gell_create_approve.gell_create_cate = #{gell_cate};
+        SELECT #{gell_cate}, #{gell_name}, #{gell_address}, #{gell_info}, #{gell_manager}, 1, NOW()
+        FROM `gc_admin_gell_create_approve` as a
+        WHERE a.gell_create_num = #{gell_create_num};
     </insert>
 
     <!-- 2023/03/20 // 심규영 // 관리자 메인 갤러리 setting 생성 -->
@@ -50,7 +50,7 @@
         ORDER BY `member_rdate` DESC
         LIMIT ${start}, 10;
     </select>
-    
+
 
     <!-- 2023/03/17 // 라성준 // 관리자 회원 목록 및 검색 -->
     <select id="searchMembersByCondition" resultType="kr.co.gcInside.vo.MemberVO">
