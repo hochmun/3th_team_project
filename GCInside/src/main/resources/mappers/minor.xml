@@ -10,7 +10,7 @@
         INSERT INTO `gc_admin_gell_create_approve` SET
         `gell_create_rdate`   = NOW(),
         `gell_create_status`  = '0',
-        `gell_create_uid`     = 'qwe123',
+        `gell_create_uid`     = #{gell_create_uid},
         `gell_create_name`    = #{gell_create_name},
         `gell_create_intro`   = #{gell_create_intro},
         `gell_create_cate`    = #{gell_cate2},
@@ -75,7 +75,7 @@
         AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
         );
     </update>
-    <!-- 오늘의 랭킹 -->
+    <!--
     <update id="updatehotmgalltodayrank">
         SET @RANK := 0;
         UPDATE `gc_gell` AS `gell`
@@ -112,4 +112,15 @@
     ON `gell`.`gell_num` = `ranking`.`gell_num`
     SET `gell`.`gell_today_rank` = `ranking`.`rank`;
     </update>
+     -->
+    <!-- 2023/03/27 // 김동민 // 마이너 갤러리 select-->
+    <select id="selectminorgall" resultType="kr.co.gcInside.vo.galleryVO">
+        select * from `gc_gell` where `gell_grade`='1';
+    </select>
+    <select id="mgallcatecnt" resultType="int">
+        select count(*) from `gc_gell` where `gell_grade`='1' and `gell_cate`=#{gell_cate};
+    </select>
+    <select id="mgallcate2cnt" resultType="String">
+        select count(*) from `gc_gell` where `gell_grade`='1' and `gell_cate`='2';
+    </select>
 </mapper>
