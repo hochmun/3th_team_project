@@ -18,6 +18,50 @@
                 <aside th:replace="~{fragment/gnb_fragment::adminGnb}"></aside>
 
             </div>
+                <script>
+                window.addEventListener('DOMContentLoaded', function () {
+                    function searchGallery() {
+                      // 선택한 검색 조건, 입력한 검색어 가져오기.
+                      var selectBox = document.getElementById("member_search_select_box");
+                      var searchOption = selectBox.options[selectBox.selectedIndex].value;
+                      var searchKeyword = document.getElementById("input-box").value;
+
+                      // 검색 결과 표시할 테이블 가져오기.
+                      var table = document.querySelector(".admin_member_list");
+
+                      // 테이블 내 모든 행 가져와서 반복.
+                      var rows = table.querySelectorAll("tr");
+                      for (var i = 1; i < rows.length; i++) {
+                        var row = rows[i];
+
+                        // 선택한 검색 조건에 따라 해당 칼럼 값을 가져오기.
+                        var searchTarget;
+                        if (searchOption == "option1") {
+                          searchTarget = row.cells[1].textContent;
+                        } else if (searchOption == "option2") {
+                          searchTarget = row.cells[5].textContent;
+                        }
+
+                        // 검색어 포함된 결과만 보여주고, 그 외 결과 숨기기.
+                        if (searchTarget.includes(searchKeyword)) {
+                          row.style.display = "";
+                        } else {
+                          row.style.display = "none";
+                        }
+                      }
+                    }
+                    // 검색 버튼에 이벤트 핸들러 등록
+                    document.getElementById("submit-button").addEventListener("click", searchGallery);
+                    // 엔터키 눌러도 검색 기능 실행
+                    document.getElementById("input-box").addEventListener("keyup", function(event) {
+                      if (event.keyCode === 13) {
+                        event.preventDefault();
+                        document.getElementById("submit-button").click();
+                        }
+                    });
+                });
+                </script>
+
                 <!-- 개설 이유 글 자르기 -->
                 <script>
                     function truncateText(selector, maxLength) {
@@ -94,7 +138,7 @@
 
                     function showDetails(event) {
                         event.preventDefault();
-                        var content = event.target.parentNode.parentNode.querySelector('.truncate').dataset.fullText;
+                        var content = event.target.dataset.fullText;
                         var popup = document.querySelector('.popup');
                         var popupContent = document.querySelector('.popup-content');
                         popupContent.innerHTML = content; // textContent 대신 innerHTML 사용
@@ -114,8 +158,9 @@
                         var category = row.querySelector('td:nth-child(4)').textContent;
                         var rdate = row.querySelector('td:nth-child(5)').textContent;
                         var uid = row.querySelector('td:nth-child(6)').textContent;
-                        var reason = row.querySelector('td:nth-child(7) button').dataset.fullText;
-                        var intro = row.querySelector('td:nth-child(8) button').dataset.fullText;
+                        var intro = row.querySelector('td:nth-child(7) button').dataset.fullText;
+                        var reason = row.querySelector('td:nth-child(8) button').dataset.fullText;
+                        var stat = row.querySelector('td:nth-child(9)').textContent;
 
                         // 추출된 정보를 팝업 내부로 전달
                         popup.querySelector('.num').textContent = num;
@@ -125,7 +170,7 @@
                         popup.querySelector('#gell_create_name').value = name;
 
                         popup.querySelector('.address').textContent = address;
-                        popup.querySelector('.#gell_create_address').value = address;
+                        popup.querySelector('#gell_create_address').value = address;
 
                         popup.querySelector('.category').textContent = category;
                         popup.querySelector('#gell_create_cate').value = category;
@@ -135,10 +180,17 @@
                         popup.querySelector('.uid').textContent = uid;
                         popup.querySelector('#gell_create_uid').value = uid;
 
-                        popup.querySelector('.reason').textContent = reason;
-
                         popup.querySelector('.intro').textContent = intro;
                         popup.querySelector('#gell_create_intro').value = intro;
+
+                        popup.querySelector('.reason').textContent = reason;
+
+                        popup.querySelector('.stat').textContent = stat;
+                        popup.querySelector('#gell_create_status').value = stat;
+
+                        popup.querySelector('#gell_create_num_reject').value = num;
+                        popup.querySelector('#gell_create_status_reject').value = stat;
+
                         popup.style.display = 'block';
                     }
 
@@ -160,8 +212,7 @@
                             <div class="member_search_box">
                                 <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
                                     <option value="option1">갤러리명</option>
-                                    <option value="option2">아이디</option>
-                                    <option value="option3">신청자</option>
+                                    <option value="option2">신청자</option>
                                 </select>
                                 <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
                                 <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
@@ -171,9 +222,7 @@
                             <div class="category_search_box">
                                 <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
                                     <option value="">카테고리 전체</option>
-                                    <th:block th:each="cate:${cates}">
-                                        <option th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></option>
-                                    </th:block>
+                                    <option th:each="cate:${cates}" th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></option>
                                 </select>
                                 <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
                             </div>
@@ -194,19 +243,20 @@
                                     <th>카테고리</th>
                                     <th>신청일</th>
                                     <th>신청자</th>
-                                    <th>개설이유</th>
                                     <th>갤러리 설명</th>
+                                    <th>개설이유</th>
                                     <th>관리</th>
                                 </tr>
-                                <tr th:each="list:${list}">
+                                <tr th:each="list:${list}" th:if="${list.gell_create_status == 0}">
                                     <td th:text="${list.gell_create_num}" hidden></td>
                                     <td th:text="${list.gell_create_name}"></td>
                                     <td th:text="${list.gell_create_address}"></td>
-                                    <td th:text="${list.gell_create_cate}"></td>
+                                    <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
                                     <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
                                     <td th:text="${list.gell_create_uid}"></td>
-                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
                                     <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
+                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
+                                    <td th:text="${list.gell_create_status}"hidden></td>
                                     <td><button class="approval">[관리]</button></td>
                                 </tr>
                             </table>
@@ -229,17 +279,23 @@
                                     <p>신청일: <span class="rdate"></span></p>
                                     <p>신청자: <span class="uid"></span></p>
                                     <input type="hidden" name="gell_create_uid" id="gell_create_uid" value=""/>
-                                    <p>개설이유: <span class="reason"></span></p>
                                     <p>갤러리 설명: <span class="intro"></span></p>
                                     <input type="hidden" name="gell_create_intro" id="gell_create_intro" value=""/>
+                                    <p>개설이유: <span class="reason"></span></p>
+                                    <p hidden>신청상태: <span class="stat"></span></p>
+                                    <input type="hidden" name="gell_create_status" id="gell_create_status" value=""/>
                                     <button class="approve" type="submit">승인</button>
                                 </form>
 
                                 <button class="reject">반려</button>
-                                <div class="rejection-reason" style="display:none;">
-                                    <textarea class="rejection-reason-text" placeholder="반려 사유를 입력하세요"></textarea>
-                                    <button class="submit-rejection">제출</button>
-                                </div>
+                                <form th:action="@{/admin/gallery/form_minor/reject}" method="post">
+                                    <input type="hidden" name="gell_create_num" id="gell_create_num_reject" value=""/>
+                                    <input type="hidden" name="gell_create_status" id="gell_create_status_reject" value=""/>
+                                    <div class="rejection-reason" style="display:none;">
+                                        <textarea class="rejection-reason-text" name="gell_create_r_reason" placeholder="반려 사유를 입력하세요"></textarea>
+                                        <button class="submit-rejection" type="submit">제출</button>
+                                    </div>
+                                </form>
                                 <button class="close-approval-popup">닫기</button>
                             </div>
 
@@ -269,8 +325,33 @@
                 </div>
             </div>
         </main>
+        <script>
+          // 카테고리 검색 버튼 클릭 시
+          document.getElementById('category-submit-button').addEventListener('click', function() {
+            // 선택한 카테고리 값 가져오기
+            var selectedCate = document.getElementById('category_search_select_box').value;
 
-        <footer class="admin_footer gcfoot">
+            // 모든 tr 요소 가져오기
+            var trs = document.querySelectorAll('table tbody tr');
+
+            // 선택한 카테고리 값과 일치하는 tr 요소만 보이도록 필터링
+            for (var i = 0; i < trs.length; i++) {
+              var tr = trs[i];
+              var createCate = tr.querySelector('td:nth-child(4)');
+              var cateValue = null;
+              if (createCate) {
+                cateValue = createCate.getAttribute('th:data-value');
+              }
+              if (selectedCate == '' || cateValue == selectedCate) {
+                tr.style.display = 'table-row';
+              } else {
+                tr.style.display = 'none';
+              }
+            }
+          });
+        </script>
+
+    <footer class="admin_footer gcfoot">
             <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
         </footer>
     </div>

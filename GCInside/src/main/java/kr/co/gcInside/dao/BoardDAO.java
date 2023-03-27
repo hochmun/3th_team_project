@@ -95,6 +95,13 @@ public interface BoardDAO {
      */
     public int selectSubCateCheck(@Param("sub_cate") String sub_cate, @Param("gell_num") String gell_num);
 
+    /**
+     * 2023/03/27 // 심규영 // 비회원 게시글 비밀번호 체크
+     * @param data
+     * @return
+     */
+    public int selectNonmemberCheck(Map<String, String> data);
+
     // upload
     // delete
 }
