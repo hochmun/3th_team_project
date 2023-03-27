@@ -163,7 +163,7 @@
               </div>
             </article>
 
-
+            <!-- 글 작성 -->
             <th:block th:if="${type} != 'view'">
               <!-- 2023/03/22 // 심규영 // 글 작성 및 수정 js 추가 -->
               <script type="text/javascript" th:src="@{/js/gall/editor_modify.js}"></script>
@@ -277,6 +277,13 @@
                     </div>
                   </div>
 
+                  <!-- 2023/03/27 // 심규영 // readOnly 풀기 -->
+                  <script>
+                    window.addEventListener('load', function(){
+                        document.getElementById('editor_iframe').contentWindow.editor_readOnly();
+                    })
+                  </script>
+
                   <!-- 글 작성 타입 선택 -->
                   <div class="write_type_box">
                     <!-- 비밀글 -->
@@ -321,41 +328,55 @@
                       <h3>
                         <!-- 글 말머리 -->
                         <span class="title_headtext"></span>
-                        <span class="title_subject">제목내용...gif</span>
+                        <span class="title_subject" th:text="${articleVO.article_title}">제목내용...gif</span>
                         <span class="title_device"></span>
                       </h3>
                       <!-- 글 정보 -->
-                      <div class="gall_writer ub-writer" data-nick="KB" data-uid="" data-ip="112.148" data-loc="view">
+                      <div class="gall_writer ub-writer">
                         <div class="fl">
-                          <span class='nickname' title='KB'><em>KB</em></span><span class="ip">(112.148)</span>
-                          <span class="gall_date" title="2021-04-13 17:44:09">2021.04.13 17:44:09</span>
+                          <th:block th:if="${articleVO.article_login_status eq 0}">
+                            <!-- 회원 -->
+                            <span class='nickname in' th:title="${articleVO.member_nick}"><em th:text="${articleVO.member_nick}">KB</em></span>
+                          </th:block>
+
+                          <th:block th:if="${articleVO.article_login_status eq 1}">
+                            <!-- 비회원 -->
+                            <span class='nickname' th:title='${articleVO.article_nonmember_uid}'><em th:text="${articleVO.article_nonmember_uid}">KB</em></span>
+                            <span class="ip" th:text="|(${articleVO.getArticle_regip_sub})|">(112.148)</span>
+                          </th:block>
+
+                          <span class="gall_date" th:title="${articleVO.article_rdate}" th:text="${articleVO.article_rdate}">2021.04.13 17:44:09</span>
                         </div>
                         <div class="fr">
-                          <span class="gall_count">조회 123456</span>
-                          <span class="gall_reply_num">추천 123</span>
-                          <span class="gall_comment"><a href="#">댓글 123</a></span>
+                          <span class="gall_count" th:text="|조회 ${articleVO.article_hit}|">조회 123456</span>
+                          <span class="gall_reply_num" th:text="|추천 ${articleVO.article_recommend_count}|">추천 123</span>
+                          <span class="gall_comment"><a href="#focus_cmt" th:text="|댓글 ${articleVO.article_comment_count}|">댓글 123</a></span>
                         </div>
                       </div>
                     </div>
                   </header>
 
                   <div class="gallview_contents">
-                    <div class="inner clear">
+                    <div  class="inner clear">
                       <div class="writing_view_box">
                         <div class="write_div" style="overflow:hidden;width:900px;">
-                          <iframe th:src="@{/gall/board/editor}" id="editor_iframe2" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                          <iframe th:src="@{/gall/board/editor(no=${articleVO.article_num})}" id="editor_iframe2" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
 
+                          <!-- 2023/03/26 // 심규영 // 글 내용 불러오기 -->
+                          <!-- 2023/03/27 // 심규영 // readOnly 설정 제거 // 사유 => 페이지가 로드 된후 변경 할 시 속도가 느림 -->
+                          <!--
                           <script>
                             window.addEventListener('load', function(){
-                                document.getElementById('editor_iframe2').contentWindow.editor_readOnly();
+                                document.getElementById('editor_iframe2').contentWindow.editor_data_load([(${articleVO.article_content})]);
                             })
                           </script>
+                          -->
                         </div>
                       </div>
 
                       <!-- 본문 우측 광고 -->
                       <div class="con_banner writing_banbox" style="position:relative;min-width:160px; min-height:600px;">
-                        <img src="https://via.placeholder.com/160x600" width="160" height="600" style="border:0px;">
+                        <img th:src="@{/img/tem/160x600.png}" width="160" height="600" style="border:0px;">
                       </div>
                       <!-- //본문 우측 광고-->
 
@@ -365,9 +386,12 @@
                         <div class="inner_box">
                           <div class="inner">
                             <div class="up_num_box">
-                              <p class="up_num font_red" id="recommend_view_up_5">124</p>
-                              <p class="sup_num"><span class="writer_nikcon"><img th:src="@{/img/fix_nik.gif}" alt="고정닉"></span>
-                                <span class="font_blue smallnum" id="recommend_view_up_fix_5">17</span>
+                              <!-- 전체 추천 수 -->
+                              <p class="up_num font_red" id="recommend_view_up_5" th:text="${articleVO.article_recommend_count}">124</p>
+
+                              <!-- 회원 추천 수 -->
+                              <p class="sup_num"><span class="writer_nikcon"><img th:src="@{/img/fix_nik.gif}" alt="회원"></span>
+                                <span class="font_blue smallnum" id="recommend_view_up_fix_5">0</span>
                               </p>
                             </div>
                             <button type="button" class="btn_recom_up on" data-no="5"><span class="blind">개념 추천</span><em class="sp_img icon_recom_up"></em></button>
@@ -375,7 +399,8 @@
                           <div class="inner">
                             <button type="button" class="btn_recom_down" data-no="5"><span class="blind">개념 비추천</span><em class="sp_img icon_recom_down"></em></button>
                             <div class="down_num_box">
-                              <p class="down_num" id="recommend_view_down_5">3</p>
+                              <!-- 비 추천 수 -->
+                              <p class="down_num" id="recommend_view_down_5" th:text="${articleVO.article_be_recommend}">3</p>
                             </div>
                           </div>
                         </div>
@@ -389,7 +414,7 @@
 
                       <!-- 본문 하단 광고 -->
                       <div style="width:100%;overflow:hidden;text-align:center;margin-top:10px;">
-                        <img src="https://via.placeholder.com/728x90" width="728" height="90" style="border:0px;">
+                        <img th:src="@{/img/tem/728x90.png}" width="728" height="90" style="border:0px;">
                       </div>
                       <!-- //본문 하단 광고 -->
 
@@ -925,7 +950,7 @@
               <!-- 오른쪽 배너 -->
               <!-- width 300px 고정 최소 높이 250px -->
               <div class="rightbanner1">
-                <a href="javascript:;"><img src="https://via.placeholder.com/300x500" alt=""></a>
+                <a href="javascript:;"><img th:src="@{/img/tem/300x500.png}" alt=""></a>
               </div>
 
               <!-- 실시간 베스트 -->
@@ -947,7 +972,7 @@
                       <div class="rcontimg_box">
                         <a href="#" class="inner logClass">
                                             <span class="img_box">
-                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                                <img th:src="@{/img/tem/132x132.png}" style="position:relative;top:-17px;">
                                             </span>
                           <div class="txt_box">
                             <strong>글 제목</strong>
@@ -957,7 +982,7 @@
                       <div class="rcontimg_box">
                         <a href="#" class="inner logClass">
                                             <span class="img_box">
-                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                                <img th:src="@{/img/tem/132x132.png}" style="position:relative;top:-17px;">
                                             </span>
                           <div class="txt_box">
                             <strong>글 제목</strong>
@@ -967,7 +992,7 @@
                       <div class="rcontimg_box" style="display:none;">
                         <a href="#" class="inner logClass">
                                             <span class="img_box">
-                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                                <img th:src="@{/img/tem/132x132.png}" style="position:relative;top:-17px;">
                                             </span>
                           <div class="txt_box">
                             <strong>글 제목</strong>
@@ -977,7 +1002,7 @@
                       <div class="rcontimg_box" style="display:none;">
                         <a href="#" class="inner logClass">
                                             <span class="img_box">
-                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                                <img th:src="@{/img/tem/132x132.png}" style="position:relative;top:-17px;">
                                             </span>
                           <div class="txt_box">
                             <strong>글 제목</strong>
@@ -1016,7 +1041,7 @@
                       <div class="rcontimg_box">
                         <a href="#" class="inner logClass" target="_blank">
                                             <span class="img_box">
-                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                                <img th:src="@{/img/tem/132x132.png}" style="position:relative;top:-17px;">
                                             </span>
                           <div class="txt_box">
                             <strong>글 제목</strong>
@@ -1026,7 +1051,7 @@
                       <div class="rcontimg_box">
                         <a href="#" class="inner logClass" target="_blank">
                                             <span class="img_box">
-                                                <img src="https://via.placeholder.com/132x132" style="position:relative;top:-17px;">
+                                                <img th:src="@{/img/tem/132x132.png}" style="position:relative;top:-17px;">
                                             </span>
                           <div class="txt_box">
                             <strong>글 제목</strong>
@@ -1087,7 +1112,7 @@
                   <div class="rcont_hit rhit_list">
                     <a href="#" class="inner logClass">
                                     <span class="img_box">
-                                        <img src="https://via.placeholder.com/270x200">
+                                        <img th:src="@{/img/tem/270x200.png}">
                                       <!-- n년전 -->
                                         <span class="sp_years icon_years" style="display: none;"></span>
                                     </span>

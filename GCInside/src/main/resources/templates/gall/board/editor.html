@@ -13,6 +13,14 @@
 <body>
     <div>
         <div id="editorjs"></div>
+
+        <th:block th:if="${articleVO} != null">
+            <script>
+                window.addEventListener('load', function(){
+                    editor_data_load([(${articleVO.article_content})]);
+                });
+            </script>
+        </th:block>
     </div>
 </body>
 </html>

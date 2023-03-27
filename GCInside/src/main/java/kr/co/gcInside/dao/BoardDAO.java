@@ -50,6 +50,23 @@ public interface BoardDAO {
     public List<gell_articleVO> selectArticles(Map<String, String> data);
 
     /**
+     * 2023/03/26 // 심규영 // 갤러리 게시물 가져오기
+     *      사용 하는 정보
+     *          article_num(no)             : 게시물 번호
+     *          articlel_gel_num(gell_num)  : 해당 게시물이 있는 갤러리 번호
+     * @param data
+     * @return
+     */
+    public gell_articleVO selectArticle(Map<String, String> data);
+
+    /**
+     * 2023/03/27 // 심규영 // 갤러리 게시물 가져오기 에디터용
+     * @param no
+     * @return
+     */
+    public gell_articleVO selectArticleEditor(@Param("no") String no);
+
+    /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 총 갯수 가져오기
      * @param data
      * @return

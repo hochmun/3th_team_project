@@ -120,7 +120,9 @@ public class BoardController {
      *          수정, 보기
      *              no : 글 번호
      *              pg : 페이지 번호
-     *
+     *              
+     *      data에 집어 넣는 값
+     *          gell_num : 겔러리 번호
      * @param grade
      * @return
      */
@@ -138,12 +140,21 @@ public class BoardController {
         // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
         if(galleryVO == null) return "error/wrongURL";
 
-        // 말머리
+        // 글 번호가 있을 경우 글 내용 불러오기
+        data.put("gell_num", galleryVO.getGell_num()+""); // data에 갤러리 번호 널기
+        gell_articleVO articleVO = null;
+        if(data.get("no") != null) {
+            articleVO = service.selectArticle(data);
+
+            // 해당 게시글 정보가 없을 경우 잘못된 접근z
+            if(articleVO == null) return "error/wrongURL";
+        }
 
         // 페이지 종류 전송
         model.addAttribute("type", type);
         model.addAttribute("grade", grade);
         model.addAttribute("galleryVO", galleryVO);
+        model.addAttribute("articleVO", articleVO);
         model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
 
         if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
@@ -153,10 +164,18 @@ public class BoardController {
 
     /**
      * 2023/03/16 // 심규영 // 글 작성 에디터 iframe 주소
+     *      들어오는 값
+     *          no
      * @return
      */
     @GetMapping("gall/board/editor")
-    public String editorIframe(){
+    public String editorIframe(@RequestParam Map<String, String> data, Model model){
+
+        gell_articleVO articleVO = null;
+        if(data.get("no") != null) articleVO = service.selectArticleEditor(data.get("no"));
+
+        model.addAttribute("articleVO", articleVO);
+
         return "gall/board/editor";
     }
 

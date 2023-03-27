@@ -11,7 +11,9 @@ $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/raw');
 // 서버 필요
 //$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest');
-$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/embed@latest');
+/** 2023/03/27 // 심규영 // embed 수정 (최신화) */
+$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/embed@2.5.3/dist/bundle.min.js');
+//$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/embed@latest');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/quote@latest');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/underline@latest');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/inline-code@1.4.0/dist/bundle.min.js');
@@ -69,7 +71,6 @@ window.addEventListener('load',function(){
                         instagram: true,
                         facebook: true,
                         twitter: true,
-                        twitch_video: true,
                     }
                 },
                 inlineToolbar: true,
@@ -91,20 +92,31 @@ window.addEventListener('load',function(){
          * 글 수정시 기본 글 불러오기
          * 글 보기시 글 불러오기
          */
-        //data: {},
+         /** 2023/03/26 // 심규영 // Cannot read properties of undefined (reading 'holder') bug 수정 */
+        data: {
+            time: (new Date()).getTime(),
+            version: '2.27.0',
+            blocks: [{
+                type:'paragraph',
+                data: {
+                    text: '<p></p>'
+                }
+            }]
+        },
 
         /**
          * 2023/03/17 // 심규영
          * 읽기 전용 설정
          * 글 보기 페이지 에서 써도 될듯?
          */
-        //readOnly: false,
+         /* 2023/03/27 // 심규영 // 기본 수정 불가로 변경 **/
+        readOnly: true,
         //autofocus: true,
         onReady: () => {
             /**
              * 2023/03/17 // 심규영 // 드래그 드롭
              */
-            //new DragDrop(editor);
+            new DragDrop(editor);
         },
     });
 })
@@ -122,9 +134,16 @@ async function editor_save(){
     })
 }
 
+/** 2023/03/24 // 심규영 // readOnly 설정 변경 // 수정 가능 으로 변경 */
 function editor_readOnly() {
-    editor.readOnly.toggle();
+    editor.isReady.then(()=>{
+        editor.readOnly.toggle();
+    });
 }
 
+/** 2023/03/26 // 심규영 // 데이터 불러오기 (글 보기, 수정) */
 function editor_data_load(inputData) {
+    editor.isReady.then(()=>{
+        editor.render(inputData);
+    });
 }
