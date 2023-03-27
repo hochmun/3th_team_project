@@ -1,5 +1,6 @@
 package kr.co.gcInside.controller;
 
+import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.MinorService;
 import kr.co.gcInside.service.TermsService;
 import kr.co.gcInside.vo.CreateVO;
@@ -8,6 +9,7 @@ import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,15 +33,24 @@ public class MinorController{
     @Autowired
     private TermsService tservice;
 
-    @GetMapping(value = {"/m/","m/index"})
+    @GetMapping(value = {"/mgall/","mgall/index"})
     public String minorindex(Model model){
         List<galleryVO> hot_mgall = service.selecthotmgall();
         List<galleryVO> new_mgall = service.selectnewmgall();
+        List<galleryVO> mgall = service.selectminorgall();
+
+        String mgallcate1cnt = service.mgallcate1cnt();
+        String mgallcate2cnt = service.mgallcate2cnt();
+
+        model.addAttribute("cate1cnt",mgallcate1cnt);
+        model.addAttribute("cate2cnt",mgallcate2cnt);
+
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
-        return "gall/m/index";
+        model.addAttribute("mgall",mgall);
+        return "gall/mgall/index";
     }
-    @GetMapping("m/create")
+    @GetMapping("mgall/create")
     public String minorcreateview(Model model){
         List<CreateVO> cate2 = service.selectcate2();
         model.addAttribute("cate2",cate2);
@@ -47,16 +58,17 @@ public class MinorController{
         TermsVO data2 = tservice.selectTerm(22);
         model.addAttribute("termdata1", data1);
         model.addAttribute("termdata2", data2);
-        return "gall/m/create";
+        return "gall/mgall/create";
     }
-    @PostMapping("m/create")
-    public String minorcreate(CreateVO frmCreate){
+    @PostMapping("mgall/create")
+    public String minorcreate(CreateVO frmCreate,@AuthenticationPrincipal MyUserDetails myUserDetails){
+        if(myUserDetails != null)frmCreate.setGell_create_uid(myUserDetails.getUsername());
         service.creategall(frmCreate);
 
-        return "gall/m/index";
+        return "redirect:/mgall/index";
     }
     @ResponseBody
-    @GetMapping("m/chkName")
+    @GetMapping("mgall/chkName")
     public Map<String, Object> chkName(@RequestParam("gell_create_name") String gell_create_name){
         Map<String, Object> resultMap =new HashMap<>();
         boolean isdupli = service.isdupli(gell_create_name);
@@ -70,7 +82,7 @@ public class MinorController{
         return resultMap;
     }
     @ResponseBody
-    @GetMapping("m/chkAddress")
+    @GetMapping("mgall/chkAddress")
     public Map<String, Object> chkAddress(@RequestParam("gell_create_address") String gell_create_address){
         Map<String, Object> resultMap =new HashMap<>();
         boolean isdupliad = service.isdupliad(gell_create_address);

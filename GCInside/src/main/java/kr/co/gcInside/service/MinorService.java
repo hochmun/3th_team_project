@@ -6,11 +6,11 @@ import kr.co.gcInside.dao.MinorDAO;
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
 import kr.co.gcInside.vo.galleryVO;
-import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Slf4j
 @Service
@@ -67,4 +67,24 @@ public class MinorService {
     public List<galleryVO>selectnewmgall(){
         return dao.selectnewmgall();
     }
+    /**
+     * 2023/03/27 // 김동민 // 마이너 갤러리 불러오기
+     */
+    public List<galleryVO>selectminorgall(){
+        return dao.selectminorgall();
+    }
+    public List<Integer> mgallcate1cnt(){
+
+        List<Integer> counts = new ArrayList<>();
+
+        for(int cate=1 ; cate<=10 ; cate++){
+            int count = dao.mgallcatecnt(cate);
+            counts.add(count);
+        }
+
+        return counts;
+    };
+    public String mgallcate2cnt(){
+        return dao.mgallcate2cnt();
+    };
 }

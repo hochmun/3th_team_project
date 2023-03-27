@@ -5,9 +5,7 @@ package kr.co.gcInside.dao;
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
 import kr.co.gcInside.vo.galleryVO;
-import kr.co.gcInside.vo.gell_articleVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -51,4 +49,13 @@ public interface MinorDAO {
      */
     public List<galleryVO>selectnewmgall();
 
+    /**
+     * 2023/03/27 // 김동민 // 마이너 갤러리 불러오기
+     */
+    public List<galleryVO>selectminorgall();
+    /**
+     * 2023/03/27 // 김동민 // 연애,게임 갤러리 수 불러오기
+     */
+    public int mgallcatecnt(int gell_cate);
+    public String mgallcate2cnt();
 }

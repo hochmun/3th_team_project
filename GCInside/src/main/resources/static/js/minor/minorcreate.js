@@ -1,5 +1,3 @@
-
-
 //카테고리 펼치기
 function showOptions() {
   var selectArea = document.getElementById("gell_create_cate");
@@ -26,7 +24,7 @@ $(function() {
 
 /* 갤러리 생성 이름 validation */
 $(function() {
-    var isnameok = false;
+    isnameok = false;
     $("input[name='gell_create_name']").focus(function(){
              $('#nametip1').show();
              $('#nametip2').show();
@@ -42,7 +40,7 @@ $(function() {
        let jsonData = {"gell_create_name":gell_create_name};
        $.ajax({
          type : "GET",
-         url : "/GCInside/m/chkName",
+         url : "/GCInside/mgall/chkName",
          data : jsonData,
          success : function(data){
            if(data.result==="success"){
@@ -94,7 +92,7 @@ $(function() {
     let jsonData = {"gell_create_address":gell_create_address};
            $.ajax({
              type : "GET",
-             url : "/GCInside/m/chkAddress",
+             url : "/GCInside/mgall/chkAddress",
              data : jsonData,
              success : function(data){
                if(data.result==="success"){
