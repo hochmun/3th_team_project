@@ -24,7 +24,9 @@
         </div>
         <div class="bg_box">
           <div class="form_box">
-          <form th:action="@{/member/reset_pwd_Result}" onsubmit="return password_reset_update()" name='reset_pwd_Result' method="post" accept-charset="utf-8">
+          <form th:action="@{/member/reset_pwd_Update}" onsubmit="return password_reset_update()" name='reset_pwd_Result' method="post" accept-charset="utf-8" id="reset_pwd_Result">
+              <input type="hidden" id="member_uid" name="member_uid" th:value="${member_uid}">
+              <input type="hidden" id="member_email" name="member_email" th:value="${member_email}">
               <input type="password" id="member_pass" name="member_pass" class="int" title="비밀번호" placeholder="변경하실비밀번호" maxlength="20">
               <input type="password" id="member_pass1" name="member_pass1" class="int" title="비밀번호 재입력" placeholder="변경하실비밀번호 재입력" maxlength="20">
               <button type="submit" class="btn_blue small btn_wrfull">확인</button>
