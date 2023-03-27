@@ -17,7 +17,7 @@
         <th:block th:if="${articleVO} != null">
             <script>
                 window.addEventListener('load', function(){
-                    editor_data_load([(${articleVO.article_content})]);
+                        editor_data_load([(${articleVO.article_content})])
                 });
             </script>
         </th:block>

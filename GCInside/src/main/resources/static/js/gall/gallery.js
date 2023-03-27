@@ -8,6 +8,36 @@ $(()=>{
         else $layer.hide();
 
     })
+
+    // 비밀 번호 입력 확인 버튼 클릭시
+    $('.btn_ok').click(function(e){
+		e.preventDefault();
+
+        const id = $('#nm_id').val();
+        const no = $('#nm_no').val();
+        const pass = $('#nm_password').val();
+
+        // json
+        const jsonData = {"id":id,"no":no,"pass":pass}
+
+        // ajax 전송
+        $.ajax({
+            url:'/GCInside/gall/board/nonmemberPassCheck',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            dataType:'json',
+            success: function(data) {
+                if(data.result > 0) {
+                    // 성공
+                    location.reload();
+                } else {
+                    // 실패
+                    alert('비밀번호가 틀렸습니다.');
+                }
+            }
+        })
+    })
 })
 
 // 상단 설정 열기
@@ -77,4 +107,12 @@ const writeAndModifyPageHref = function($this) {
     const grade = $this.data("grade");
     const id = $this.data("id");
     location.href='/GCInside/'+grade+'/board/lists?id='+id;
+}
+
+// 페이지 이동 함수
+const goModify = function($this) {
+    const grade = $this.data("grade");
+    const id = $this.data("id");
+    const no = $this.data("no");
+    location.href = '/GCInside/'+grade+'/board/modify/?id='+id+'&no='+no;
 }

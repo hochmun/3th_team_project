@@ -166,6 +166,15 @@
         SELECT COUNT(`sub_cate_num`) FROM `gc_gell_sub_cate` WHERE `sub_cate_gell_num` = ${gell_num} AND `sub_cate_sequence` = ${sub_cate};
     </select>
 
+    <!-- 2023/03/27 // 심규영 // 비회원 게시글 비밀번호 체크 쿼리문 -->
+    <select id="selectNonmemberCheck" parameterType="map" resultType="int">
+        SELECT COUNT(`article_num`) FROM `gc_gell_article` WHERE
+            `article_num` = #{no}
+        AND `articlel_gell_num` = #{id}
+        AND `article_login_status` = 1
+        AND `article_nonmember_pass` = #{pass};
+    </select>
+
     <!-- upload -->
     <!-- delete -->
 </mapper>

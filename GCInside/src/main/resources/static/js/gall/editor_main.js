@@ -123,9 +123,8 @@ window.addEventListener('load',function(){
 
 /**
  * 2023/03/17 // 심규영 // 데이터 저장 함수
- * 글작성, 글 수정
  */
-async function editor_save(){
+function editor_save(){
     editor.save().then((outputData)=>{
         //const parsingoutput = JSON.stringify(outputData);
         window.parent.article_make(outputData);
@@ -134,10 +133,23 @@ async function editor_save(){
     })
 }
 
+/**
+ * 2023/03/27 // 심규영 // 데이터 수정
+ */
+function editor_modify(){
+    editor.save().then((outputData)=>{
+        window.parent.article_modify(outputData);
+    }).catch((error)=>{
+        console.log('Saving failed : ', error);
+    });
+}
+
 /** 2023/03/24 // 심규영 // readOnly 설정 변경 // 수정 가능 으로 변경 */
 function editor_readOnly() {
     editor.isReady.then(()=>{
         editor.readOnly.toggle();
+    }).catch((error)=>{
+        console.log('readOnly failed : ',error);
     });
 }
 
@@ -145,5 +157,7 @@ function editor_readOnly() {
 function editor_data_load(inputData) {
     editor.isReady.then(()=>{
         editor.render(inputData);
+    }).catch((error)=>{
+        console.log('dataLoad failed : ',error);
     });
 }

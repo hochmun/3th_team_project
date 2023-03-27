@@ -163,159 +163,207 @@
               </div>
             </article>
 
-            <!-- 글 작성 -->
+            <!-- 글 작성 및 수정 -->
             <th:block th:if="${type} != 'view'">
-              <!-- 2023/03/22 // 심규영 // 글 작성 및 수정 js 추가 -->
-              <script type="text/javascript" th:src="@{/js/gall/editor_modify.js}"></script>
 
-              <!-- 글 작성 메인 -->
+              <!-- 글 작성 및 수정 메인 -->
               <article id="write_wrap" class="clear">
-                <form action="#" id="frm" name="frm">
-                  <!-- 해당 갤러리 번호 -->
-                  <input type="hidden" id="article_gell_num" th:value="${galleryVO.gell_num}">
-                  <!-- 유저 로그인 정보 -->
-                  <input type="hidden" id="userLogin" name="userLogin" th:value="${authorize.isAuthenticated == true ? '0' : '1'}">
-                  <!-- 유저 아이디 -->
-                  <input type="hidden" id="article_uid" name="article_uid" th:if="${authorize.isAuthenticated}" th:value="${user.member_uid}">
-                  <!-- 말머리 옵션 확인 -->
-                  <input type="hidden" id="sub_cate_info" name="sub_cate_info" th:value="${galleryVO.gellSettingVO.setting_sub_cate}">
-                  <!-- 갤러리 타입 -->
-                  <input type="hidden" id="grade" name="grade" th:value="${grade}">
-                  <!-- 갤러리 주소 -->
-                  <input type="hidden" id="id" name="id" th:value="${galleryVO.gell_address}">
 
-                  <!-- 제목 -->
-                  <div class="clear">
-                    <!-- 제목 작성 필드 -->
-                    <fieldset>
-                      <div class="blind"></div>
-                      <!-- 닉네임, 비밀번호 -->
-                      <th:block th:if="${authorize.isAnonymous}">
-                        <div class="input_box input_infotxt">
-                          <label for="name" class="txt_placeholder"></label>
-                          <input id="name" class="put_inquiry f_blank" type="text" name="name" maxlength = "15" placeholder="닉네임">
+                <th:block th:if="${type} == 'write' or (${type} == 'modify' and ${articleVO.article_login_status} == 0) or (${type} == 'modify' and ${passCheck} == true)">
+                  <!-- 2023/03/22 // 심규영 // 글 작성 및 수정 js 추가 -->
+                  <script type="text/javascript" th:src="@{/js/gall/editor_modify.js}"></script>
+
+                  <form action="#" id="frm" name="frm">
+
+                    <!-- 해당 갤러리 번호 -->
+                    <input type="hidden" id="article_gell_num" th:value="${galleryVO.gell_num}">
+
+                    <th:block th:if="${type} == 'write'"><!-- 글 작성 시 -->
+                      <!-- 유저 로그인 정보 -->
+                      <input type="hidden" id="userLogin" name="userLogin" th:value="${authorize.isAuthenticated == true ? '0' : '1'}">
+                      <!-- 유저 아이디 -->
+                      <input type="hidden" id="article_uid" name="article_uid" th:if="${authorize.isAuthenticated}" th:value="${user.member_uid}">
+                      <!-- 갤러리 타입 -->
+                      <input type="hidden" id="grade" name="grade" th:value="${grade}">
+                    </th:block>
+
+                    <th:block th:if="${type} == 'modify'"><!-- 글 수정 시 -->
+                      <!-- 해당 글 번호 -->
+                      <input type="hidden" id="modify-no" value="${articleVO.article_num}">
+
+                    </th:block>
+
+
+                    <!-- 말머리 옵션 확인 -->
+                    <input type="hidden" id="sub_cate_info" name="sub_cate_info" th:value="${galleryVO.gellSettingVO.setting_sub_cate}">
+
+                    <!-- 갤러리 주소 -->
+                    <input type="hidden" id="id" name="id" th:value="${galleryVO.gell_address}">
+
+                    <!-- 제목 -->
+                    <div class="clear">
+                      <!-- 제목 작성 필드 -->
+                      <fieldset>
+                        <div class="blind"></div>
+                        <!-- 닉네임, 비밀번호 -->
+                        <th:block th:if="${authorize.isAnonymous} and ${type} == 'write'">
+                          <div class="input_box input_infotxt">
+                            <label for="name" class="txt_placeholder"></label>
+                            <input id="name" class="put_inquiry f_blank" type="text" name="name" maxlength = "15" placeholder="닉네임">
+                          </div>
+
+                          <div class="input_box input_infotxt">
+                            <label for="password" class="txt_placeholder" ></label>
+                            <input id="password" class="put_inquiry f_blank" type="password" name="password" maxlength = '20' autocomplete="new-password" placeholder="비밀번호">
+                          </div>
+                        </th:block>
+
+
+                        <!-- 말머리 -->
+                        <div class="write_subject clear" th:if="${galleryVO.gellSettingVO.setting_sub_cate} != 0">
+                          <strong class="tit">말머리</strong>
+                          <ul class="subject_list clear">
+                            <li class="sel" data-no = "0" onclick = "write_headtext(this)"><em class="sp_img"></em>일반</li>
+                            <li class="" data-no = "40" onclick = "write_headtext(this)">창작</li>
+                            <li class="" data-no = "120" onclick = "write_headtext(this)">번역</li>
+                            <li class="" data-no = "130" onclick = "write_headtext(this)">JP</li>
+                            <li class="" data-no = "50" onclick = "write_headtext(this)">짤</li>
+                            <li class="" data-no = "10" onclick = "write_headtext(this)">정보/공략</li>
+                            <li class="" data-no = "110" onclick = "write_headtext(this)">총력/시험</li>
+                            <li class="" data-no = "140" onclick = "write_headtext(this)">질문</li>
+                            <li class="" data-no = "20" onclick = "write_headtext(this)">공!지</li>
+                            <li class="" data-no = "80" onclick = "write_headtext(this)">친구/서클</li>
+                            <li class="" data-no = "150" onclick = "write_headtext(this)">대회</li>
+                            <li class="" data-no = "170" onclick = "write_headtext(this)">교환</li>
+                          </ul>
                         </div>
 
-                        <div class="input_box input_infotxt">
-                          <label for="password" class="txt_placeholder" ></label>
-                          <input id="password" class="put_inquiry f_blank" type="password" name="password" maxlength = '20' autocomplete="new-password" placeholder="비밀번호">
+                        <!-- 글 제목 -->
+                        <div class="input_box input_write_tit">
+                          <input type="text" id="article_title" class="put_inquiry f_blank" name="article_title" placeholder="제목을 입력해 주십시오."
+                                 th:value="${articleVO} != null ? ${articleVO.article_title} : null">
                         </div>
-                      </th:block>
 
+                      </fieldset>
 
-                      <!-- 말머리 -->
-                      <div class="write_subject clear" th:if="${galleryVO.gellSettingVO.setting_sub_cate} != 0">
-                        <strong class="tit">말머리</strong>
-                        <ul class="subject_list clear">
-                          <li class="sel" data-no = "0" onclick = "write_headtext(this)"><em class="sp_img"></em>일반</li>
-                          <li class="" data-no = "40" onclick = "write_headtext(this)">창작</li>
-                          <li class="" data-no = "120" onclick = "write_headtext(this)">번역</li>
-                          <li class="" data-no = "130" onclick = "write_headtext(this)">JP</li>
-                          <li class="" data-no = "50" onclick = "write_headtext(this)">짤</li>
-                          <li class="" data-no = "10" onclick = "write_headtext(this)">정보/공략</li>
-                          <li class="" data-no = "110" onclick = "write_headtext(this)">총력/시험</li>
-                          <li class="" data-no = "140" onclick = "write_headtext(this)">질문</li>
-                          <li class="" data-no = "20" onclick = "write_headtext(this)">공!지</li>
-                          <li class="" data-no = "80" onclick = "write_headtext(this)">친구/서클</li>
-                          <li class="" data-no = "150" onclick = "write_headtext(this)">대회</li>
-                          <li class="" data-no = "170" onclick = "write_headtext(this)">교환</li>
-                        </ul>
-                      </div>
+                      <!-- 작성 정보 박스 -->
+                      <div class="write_infobox">
+                        <!-- 내용 -->
 
-                      <!-- 글 제목 -->
-                      <div class="input_box input_write_tit">
-                        <input type="text" id="article_title" class="put_inquiry f_blank" name="article_title" placeholder="제목을 입력해 주십시오.">
-                      </div>
+                        <!-- 비회원 글쓰기 시 출력 -->
+                        <p th:if="${authorize.isAnonymous} and ${type} == 'write'">쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</p>
 
-                    </fieldset>
+                        <!-- 기본 출력 -->
+                        <p>
+                          음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질 수 있습니다.
+                          <button type="button" class="layer_show" layer="copyright_law">[저작권법 안내]</button
+                          >&nbsp;<button type="button" class="layer_show" layer="post_guide">[게시물 활용 안내]</button>
+                        </p>
 
-                    <!-- 작성 정보 박스 -->
-                    <div class="write_infobox">
-                      <!-- 내용 -->
-
-                      <!-- 비회원 글쓰기 시 출력 -->
-                      <p th:if="${authorize.isAnonymous}">쉬운 비밀번호를 입력하면 타인의 수정, 삭제가 쉽습니다.</p>
-
-                      <!-- 기본 출력 -->
-                      <p>
-                        음란물, 차별, 비하, 혐오 및 초상권, 저작권 침해 게시물은 민, 형사상의 책임을 질 수 있습니다.
-                        <button type="button" class="layer_show" layer="copyright_law">[저작권법 안내]</button
-                        >&nbsp;<button type="button" class="layer_show" layer="post_guide">[게시물 활용 안내]</button>
-                      </p>
-
-                      <!-- 저작권법 팝업 -->
-                      <div class="pop_wrap type2 layer_guide" id="copyright_law" style="margin-left: 534px; margin-top: 1px;display: none;">
-                        <div class="pop_content copyright_law">
-                          <div class="pop_head dashed"><h3>저작권법 안내</h3></div>
-                          <div class="guide_txtbox"><p>이용자가 불법복제물을 게재, 유통하면 이에 대한 경고 및 불법복제물의 삭제 또는 전송 중단 조치를 할 수 있으며, 경고를 받은 이용자에게 사용 정지를 할 수 있습니다.(관련 법률: 저작권법 제133조 의 제1항 및 제2항)</p></div>
+                        <!-- 저작권법 팝업 -->
+                        <div class="pop_wrap type2 layer_guide" id="copyright_law" style="margin-left: 534px; margin-top: 1px;display: none;">
+                          <div class="pop_content copyright_law">
+                            <div class="pop_head dashed"><h3>저작권법 안내</h3></div>
+                            <div class="guide_txtbox"><p>이용자가 불법복제물을 게재, 유통하면 이에 대한 경고 및 불법복제물의 삭제 또는 전송 중단 조치를 할 수 있으며, 경고를 받은 이용자에게 사용 정지를 할 수 있습니다.(관련 법률: 저작권법 제133조 의 제1항 및 제2항)</p></div>
+                          </div>
+                          <button type="button" class="under poply_close"><em class="sp_img icon_lyclose"></em></button>
                         </div>
-                        <button type="button" class="under poply_close"><em class="sp_img icon_lyclose"></em></button>
-                      </div>
 
-                      <!-- 게시물 활용 안내 팝업 -->
-                      <div class="pop_wrap type2 layer_guide" id="post_guide" style="margin-left: 628px; margin-top: 1px;display: none;">
-                        <div class="pop_content post_guide">
-                          <div class="pop_head dashed"><h3>게시물 활용 안내</h3></div>
-                          <div class="guide_txtbox"><p>이용자가 게시한 게시물의 저작권은 게시한 이용자에게 귀속됩니다. 단, 회사는 서비스의 운영, 전시, 전송, 배포, 홍보의 목적으로 회원의 별도의 허락 없이 무상으로 저작권법에 규정하는 범위 내에서 이용자가 등록한 게시물을 사용 할 수 있습니다.(세부조항 ‘이용약관’ 제 13조 와 동일)</p></div>
+                        <!-- 게시물 활용 안내 팝업 -->
+                        <div class="pop_wrap type2 layer_guide" id="post_guide" style="margin-left: 628px; margin-top: 1px;display: none;">
+                          <div class="pop_content post_guide">
+                            <div class="pop_head dashed"><h3>게시물 활용 안내</h3></div>
+                            <div class="guide_txtbox"><p>이용자가 게시한 게시물의 저작권은 게시한 이용자에게 귀속됩니다. 단, 회사는 서비스의 운영, 전시, 전송, 배포, 홍보의 목적으로 회원의 별도의 허락 없이 무상으로 저작권법에 규정하는 범위 내에서 이용자가 등록한 게시물을 사용 할 수 있습니다.(세부조항 ‘이용약관’ 제 13조 와 동일)</p></div>
+                          </div>
+                          <button type="button" class="under poply_close"><em class="sp_img icon_lyclose"></em></button>
                         </div>
-                        <button type="button" class="under poply_close"><em class="sp_img icon_lyclose"></em></button>
                       </div>
                     </div>
-                  </div>
 
-                  <!-- 광고 -->
-                  <div style="height: 90px;">
-                    <div style="height: 90px;display: flex;">
-                      <img src="https://via.placeholder.com/728x125" alt="">
+                    <!-- 광고 -->
+                    <div style="height: 90px;">
+                      <div style="height: 90px;display: flex;">
+                        <img src="https://via.placeholder.com/728x125" alt="">
+                      </div>
                     </div>
-                  </div>
 
-                  <!-- 에디터 컨테이너 -->
-                  <div class="editor_wrap">
-                    <div id="tx_trex_container" class="tx-editor-container" style="border:1px solid #b5b5b5;">
-                      <iframe th:src="@{/gall/board/editor}" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                    <!-- 에디터 컨테이너 -->
+                    <div class="editor_wrap">
+                      <div id="tx_trex_container" class="tx-editor-container" style="border:1px solid #b5b5b5;">
+                        <iframe th:if="${type} == 'write'" th:src="@{/gall/board/editor}" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                        <iframe th:if="${type} == 'modify'" th:src="|@{/}gall/board/editor?no=${articleVO.article_num}|" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                      </div>
                     </div>
-                  </div>
 
-                  <!-- 2023/03/27 // 심규영 // readOnly 풀기 -->
-                  <script>
+
+
+                    <!-- 2023/03/27 // 심규영 // readOnly 풀기 -->
+                    <script>
                     window.addEventListener('load', function(){
                         document.getElementById('editor_iframe').contentWindow.editor_readOnly();
                     })
-                  </script>
+                    </script>
 
-                  <!-- 글 작성 타입 선택 -->
-                  <div class="write_type_box">
-                    <!-- 비밀글 -->
-                    <div class="inner"></div>
 
-                    <!-- 고정글 -->
-                    <div class="inner"></div>
-                  </div>
 
-                  <!-- 취소 / 등록 버튼 -->
-                  <div class="btn_box write fr" style="margin-top:15px;">
-                    <!-- 취소 -->
-                    <button type="button" class="btn_grey cancle" onclick="$('#leave_confirm_box').show()">취소</button>
-                    <!-- 등록 -->
-                    <button type="button" class="btn_lightpurple write"
-                            onclick="$('#editor_iframe').get(0).contentWindow.editor_save();">등록</button>
-                    <!-- 글 작성 취소 팝업  -->
-                    <div id="leave_confirm_box" class="pop_wrap type2" style="left: 50%;top: -322px;margin-left: -619px;display: none;">
-                      <div class="pop_content write_ly">
-                        <div class="pop_head bg"><h3>글쓰기</h3></div>
-                        <div class="write_cont">
-                          <p class="txt">글 작성을 취소하시겠습니까?</p>
-                          <div class="btn_box">
-                            <button type="button" class="btn_grey small" onclick="$('#leave_confirm_box').hide()">취소</button>
-                            <button type="button" class="btn_blue small" th:onclick="writeAndModifyPageHref($(this));" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}">확인</button>
+                    <!-- 글 작성 타입 선택 -->
+                    <div class="write_type_box">
+                      <!-- 비밀글 -->
+                      <div class="inner"></div>
+
+                      <!-- 고정글 -->
+                      <div class="inner"></div>
+                    </div>
+
+                    <!-- 취소 / 등록 버튼 -->
+                    <div class="btn_box write fr" style="margin-top:15px;">
+                      <!-- 취소 -->
+                      <button type="button" class="btn_grey cancle" onclick="$('#leave_confirm_box').show()">취소</button>
+                      <!-- 등록 -->
+                      <button th:if="${type} == 'write'" type="button" class="btn_lightpurple write"
+                              onclick="$('#editor_iframe').get(0).contentWindow.editor_save();">등록</button>
+                      <!-- 수정 -->
+                      <button th:if="${type} == 'modify'" type="button" class="btn_lightpurple write"
+                              onclick="$('#editor_iframe').get(0).contentWindow.editor_modify();">수정</button>
+                      <!-- 글 작성 취소 팝업  -->
+                      <div id="leave_confirm_box" class="pop_wrap type2" style="left: 50%;top: -322px;margin-left: -619px;display: none;">
+                        <div class="pop_content write_ly">
+                          <div class="pop_head bg"><h3>글쓰기</h3></div>
+                          <div class="write_cont">
+                            <p class="txt">글 작성을 취소하시겠습니까?</p>
+                            <div class="btn_box">
+                              <button type="button" class="btn_grey small" onclick="$('#leave_confirm_box').hide()">취소</button>
+                              <button type="button" class="btn_blue small" th:onclick="writeAndModifyPageHref($(this));" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}">확인</button>
+                            </div>
                           </div>
+                          <button type="button" class="poply_whiteclose" onclick="$('#leave_confirm_box').hide()"><em class="sp_img icon_whiteclose"></em></button>
                         </div>
-                        <button type="button" class="poply_whiteclose" onclick="$('#leave_confirm_box').hide()"><em class="sp_img icon_whiteclose"></em></button>
                       </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                </th:block>
+
+                <th:block th:if="${type} == 'modify' and ${articleVO.article_login_status} == 1 and ${passCheck} == null">
+                  <form action="#">
+                    <input type="hidden" name="nm_id" id="nm_id" th:value="${galleryVO.gell_num}">
+                    <input type="hidden" name="nm_no" id="nm_no" th:value="${articleVO.article_num}">
+                    <article>
+                      <div class="no_memberwrap">
+                        <div class="no_member_cont">
+                          <div class="inner">
+                            <b class="txt">비밀번호를 입력하세요.</b>
+                            <input class="pw_inquiry" id="nm_password" name="nm_password" type="password" title="비밀번호 입력">
+                            <div class="btn_box">
+                              <button type="button" onclick="javascript:history.back();" class="btn_grey small">취소</button>
+                              <button type="button" class="btn_blue small btn_ok">확인</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </form>
+                </th:block>
+
               </article>
             </th:block>
 
@@ -364,6 +412,7 @@
 
                           <!-- 2023/03/26 // 심규영 // 글 내용 불러오기 -->
                           <!-- 2023/03/27 // 심규영 // readOnly 설정 제거 // 사유 => 페이지가 로드 된후 변경 할 시 속도가 느림 -->
+                          <!-- 2023/03/27 // 심규영 // 글 내용 불러오기는 editor getmapping 컨트롤러 내부에서 해결함 // embed 내용 불러오기 오류 관련 -->
                           <!--
                           <script>
                             window.addEventListener('load', function(){
@@ -439,7 +488,7 @@
                               <!-- 겔러리 관리자 일 경우 체크 박스 출력 -->
                               <span class="checkbox">
                                 <!-- 전체 글 선택 -->
-                                <input type="checkbox" id="comment_chk_all"><em class="checkmark"></em>
+                                <input type="checkbox" id="comment_chk_all"><em class="checkmark" style="top: 5px;"></em>
                               </span>
 
                               <!-- 댓글 갯수 -->
@@ -621,8 +670,22 @@
                           <button type="button" class="btn_white concept">개념글</button>
                         </div>
                         <div class="fr">
-                          <button type="button" class="btn_grey modify">수정</button>
-                          <button type="button" class="btn_grey cancle">삭제</button>
+                          <!-- 해당 글이 회원이 작성한 글이면 수정 삭제는 비회원 로그인 시 안보임 -->
+                          <th:block th:if="${articleVO.article_login_status eq 0}">
+                            <th:block th:if="${authorize.isAuthenticated}"><!-- 로그인 인증 을 받은 경우 -->
+                              <th:block th:if="${articleVO.article_uid eq user.member_uid}"><!-- 글 작성자와 로그인 유저 비교 같은 경우 -->
+                                <button type="button" class="btn_grey modify" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goModify($(this));">수정</button>
+                                <button type="button" class="btn_grey cancle">삭제</button>
+                              </th:block>
+                            </th:block>
+                          </th:block>
+
+                          <!-- 해당 글이 비회원 유저의 작성 글일 경우 -->
+                          <th:block th:if="${articleVO.article_login_status eq 1}"><!-- 그냥 보여 줌 -->
+                            <button type="button" class="btn_grey modify" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goModify($(this));">수정</button>
+                            <button type="button" class="btn_grey cancle">삭제</button>
+                          </th:block>
+
                           <button type="button" class="btn_blue write">글쓰기</button>
                         </div>
                       </div>
@@ -935,7 +998,7 @@
                 <!-- 로그인 정보 -->
                 <div id="login_box" class="login_box">
                   <div class="user_info newarea" data-alarmid>
-                    <strong onclick="location='/member/login'" style="cursor: pointer;">로그인해 주세요.</strong>
+                    <strong onclick="location='/GCInside/member/login'" style="cursor: pointer;">로그인해 주세요.</strong>
                   </div>
 
                   <div class="user_option">
