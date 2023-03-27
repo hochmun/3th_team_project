@@ -114,6 +114,18 @@
         ;
     </select>
 
+    <!-- 2023/03/26 // 심규영 // 해당 게시글 정보 불러오는 쿼리문 -->
+    <select id="selectArticle" parameterType="map" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT a.*, b.`member_nick` FROM `gc_gell_article` AS a
+        left JOIN `gc_member` AS b ON a.`article_uid` = b.`member_uid`
+        WHERE `article_num` = #{no} AND `articlel_gell_num` = #{gell_num};
+    </select>
+
+    <!-- 2023/03/27 // 심규영 // 게시글 내용 불러오는 쿼리문 -->
+    <select id="selectArticleEditor" parameterType="map" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT `article_content` FROM `gc_gell_article` WHERE `article_num` = #{no};
+    </select>
+
     <!-- 2023/03/23 // 심규영 // 게시글 리스트 총 갯수 가져오는 쿼리문 -->
     <select id="selectCountArticles" parameterType="map" resultType="int">
         SELECT COUNT(`article_num`) FROM `gc_gell_article` WHERE
@@ -142,8 +154,9 @@
     </select>
 
     <!-- 2023/03/22 // 심규영 // 유저 정보 존재 확인 쿼리문 -->
+    <!-- 2023/03/27 // 심규영 // 글작성 에러 수정 -->
     <select id="selectMemberCheck" resultType="int">
-        SELECT COUNT(`member_uid`) FROM `gc_member` WHERE `member_uid` = ${member_uid};
+        SELECT COUNT(`member_uid`) FROM `gc_member` WHERE `member_uid` = #{member_uid};
     </select>
 
     <!-- 2023/03/22 // 심규영 // 말머리 확인 쿼리문 -->

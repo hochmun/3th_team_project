@@ -211,9 +211,9 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .checkbox.type1 input + .checkmark{position:absolute;top:0;left:0;display:block;width:17px;height:17px;background-position:-197px -294px}
 .checkbox.type1 input:checked + .checkmark{top:0;left:0px;width:17px;height:17px;background-position:-197px -275px;z-index:1}
 .minor_make_wrap .checkbox input[type="checkbox"]{width:298px;height:110px;left:-61px;top:-24px }
-.checkmark{background-image:url("/img/sp_img.png");background-repeat:no-repeat}
+.checkmark{background-image:url(/GCInside/img/sp_img.png);background-repeat:no-repeat}
 /*체크 라디오 버튼 디자인 공통*/
-.checkmark{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);background-repeat:no-repeat}/*churl*/
+.checkmark{background-image:url(/GCInside/img/sp_img.png);background-repeat:no-repeat}/*churl*/
 /*라디오 버튼 디자인*/
 .radiobox{position:relative;display:inline-block;line-height:31px;padding-left:23px}
 .radiobox input[type="radio"]{position:absolute;left:0;top:8px;margin:0;opacity:0;z-index:2;cursor:pointer}
@@ -1449,7 +1449,7 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .view_comment .cmt_mdf_del{top:3px}
 .view_comment .reply_info .cmt_mdf_del{right:0}
 .cmt_mdf_del button{color:#999}
-.btn_cmt_delete{background:url(/img/sp_img.png);background-position:-268px -200px;font-size:0;line-height:0;width:13px;height:13px;vertical-align:top}
+.btn_cmt_delete{background:url(/GCInside/img/sp_img.png);background-position:-268px -200px;font-size:0;line-height:0;width:13px;height:13px;vertical-align:top}
 .cmt_nickbox{float:left;width:132px;margin-right:33px;margin-top:3px;line-height:13px}
 .cmt_nickbox:empty{display:none}
 .album .cmt_nickbox{margin-right:15px}
@@ -1549,7 +1549,7 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .reply_info .usertxt,.del_reply,.reply_info .comment_dccon{position:relative;width:774px;padding-left:16px;cursor:default}
 .reply .comment_dccon{padding-left:16px}
 .reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
-background:url(/img/sp_img.png) no-repeat;background-position:-283px -200px}
+background:url(/GCInside/img/sp_img.png) no-repeat;background-position:-283px -200px}
 .album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
 .comment_box .reply{overflow:hidden;height:0}
 .reply_box{margin:0px 0 12px 30px;padding:0px 0 0;border:1px solid #ddd;background:#fafafa;border-width:0  1px 1px 1px}

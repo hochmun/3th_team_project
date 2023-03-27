@@ -38,8 +38,18 @@ public class gell_articleVO {
     private String article_regip_sub;
 
     // Getter
+
+    /**
+     * 2023/03/27 // 심규영 // 0:0:0:0:0:0:0:1 에러 수정
+     * @return
+     */
     public String getArticle_regip_sub() {
-        String a = article_regip.substring(0, article_regip.indexOf('.',4));
-        return a;
+        if(!article_regip.equals("0:0:0:0:0:0:0:1")) {
+            String a = article_regip.substring(0, article_regip.indexOf('.',4));
+            return a;
+        } else {
+            return "0:0:0";
+        }
+
     }
 }
