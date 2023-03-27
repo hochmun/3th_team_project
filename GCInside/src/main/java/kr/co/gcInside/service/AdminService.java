@@ -134,8 +134,15 @@ public class AdminService {
     /**
      * 2023/03/23 // 김재준 // 갤러리 개설요청 `gell_create_status` 업데이트
      */
-    public int updateGalleryCreateStatus(@Param("gell_create_num") Integer gell_create_num, @Param("gell_create_status") Integer gell_create_status) {
-        return dao.updateGalleryCreateStatus(gell_create_num, gell_create_status);
+    public void updateGalleryCreateStatus(CreateVO cvo) {
+        dao.updateGalleryCreateStatus(cvo);
+    }
+
+    /**
+     * 2023/03/27 // 김재준 // 갤러리 개설 반려사유 업데이트
+     */
+    public void updaterejectReason(CreateVO cvo) {
+        dao.updaterejectReason(cvo);
     }
 
     // delete
