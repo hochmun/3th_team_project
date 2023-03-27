@@ -177,6 +177,16 @@
         ORDER BY gell_create_num desc;
     </select>
 
+    <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 category -->
+    <select id="searchByCategory" resultMap="createResultMap">
+        SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
+        a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
+        FROM gc_admin_gell_create_approve as a
+        JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
+        WHERE a.gell_create_cate = #{category}
+        ORDER BY gell_create_num desc;
+    </select>
+
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
         <result property="gell_create_num" column="gell_create_num"/>
         <result property="gell_create_rdate" column="gell_create_rdate"/>

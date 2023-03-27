@@ -326,29 +326,41 @@
             </div>
         </main>
         <script>
-          // 카테고리 검색 버튼 클릭 시
-          document.getElementById('category-submit-button').addEventListener('click', function() {
-            // 선택한 카테고리 값 가져오기
-            var selectedCate = document.getElementById('category_search_select_box').value;
+            $("#category-submit-button").on("click", function() {
+                var selectedCategory = $("#category_search_select_box option:selected").data("value");
 
-            // 모든 tr 요소 가져오기
-            var trs = document.querySelectorAll('table tbody tr');
+                $.ajax({
+                    url: "form_minor/searchByCategory",
+                    type: "GET",
+                    data: {category: selectedCategory},
+                    dataType: "json",
+                    success: function(data) {
+                        updateTable(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            });
 
-            // 선택한 카테고리 값과 일치하는 tr 요소만 보이도록 필터링
-            for (var i = 0; i < trs.length; i++) {
-              var tr = trs[i];
-              var createCate = tr.querySelector('td:nth-child(4)');
-              var cateValue = null;
-              if (createCate) {
-                cateValue = createCate.getAttribute('th:data-value');
-              }
-              if (selectedCate == '' || cateValue == selectedCate) {
-                tr.style.display = 'table-row';
-              } else {
-                tr.style.display = 'none';
-              }
-            }
-          });
+                function updateTable(data) {
+                    var tableBody = $(".admin_table.admin_member_list tbody");
+                    tableBody.empty();
+
+                    data.forEach(function(item) {
+                        var row = "<tr>";
+                        row += "<td>" + item.gell_create_name + "</td>";
+                        row += "<td>" + item.gell_create_address + "</td>";
+                        row += "<td data-value='" + item.gell_cate2 + "'>" + item.gell_cate2 + "</td>";
+                        row += "<td>" + item.gell_create_rdate.substring(2, 10) + "</td>";
+                        row += "<td>" + item.gell_create_uid + "</td>";
+                        row += "<td><button class='truncate show-details' data-full-text='" + item.gell_create_intro + "'>" + item.gell_create_intro + "</button></td>";
+                        row += "<td><button class='truncate show-details' data-full-text='" + item.gell_create_reason + "'>" + item.gell_create_reason + "</button></td>";
+                        row += "<td><button class='approval'>[관리]</button></td>";
+                        row += "</tr>";
+                        tableBody.append(row);
+                    });
+                }
         </script>
 
     <footer class="admin_footer gcfoot">

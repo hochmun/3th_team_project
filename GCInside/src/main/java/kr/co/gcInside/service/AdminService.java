@@ -122,6 +122,13 @@ public class AdminService {
         return dao.galleryRequestList();
     }
 
+    /**
+     * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색
+     */
+    public List<CreateVO> searchByCategory(int category) {
+        return dao.searchByCategory(category);
+    }
+
     // upload
     /**
      * 2023/03/10 // 심규영 // 관리자 약관 업데이트
