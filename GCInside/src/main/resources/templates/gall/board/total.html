@@ -175,30 +175,29 @@
 
                   <form action="#" id="frm" name="frm">
 
+                    <!-- 공통 -->
                     <!-- 해당 갤러리 번호 -->
                     <input type="hidden" id="article_gell_num" th:value="${galleryVO.gell_num}">
+                    <!-- 말머리 옵션 확인 -->
+                    <input type="hidden" id="sub_cate_info" name="sub_cate_info" th:value="${galleryVO.gellSettingVO.setting_sub_cate}">
+                    <!-- 갤러리 주소 -->
+                    <input type="hidden" id="id" name="id" th:value="${galleryVO.gell_address}">
+                    <!-- 갤러리 타입 -->
+                    <input type="hidden" id="grade" name="grade" th:value="${grade}">
 
                     <th:block th:if="${type} == 'write'"><!-- 글 작성 시 -->
                       <!-- 유저 로그인 정보 -->
                       <input type="hidden" id="userLogin" name="userLogin" th:value="${authorize.isAuthenticated == true ? '0' : '1'}">
                       <!-- 유저 아이디 -->
                       <input type="hidden" id="article_uid" name="article_uid" th:if="${authorize.isAuthenticated}" th:value="${user.member_uid}">
-                      <!-- 갤러리 타입 -->
-                      <input type="hidden" id="grade" name="grade" th:value="${grade}">
                     </th:block>
 
                     <th:block th:if="${type} == 'modify'"><!-- 글 수정 시 -->
                       <!-- 해당 글 번호 -->
-                      <input type="hidden" id="modify-no" value="${articleVO.article_num}">
-
+                      <input type="hidden" id="modify_no" th:value="${articleVO.article_num}">
+                      <!-- uid -->
+                      <input type="hidden" id="modify_uid" th:value="${articleVO.article_uid}">
                     </th:block>
-
-
-                    <!-- 말머리 옵션 확인 -->
-                    <input type="hidden" id="sub_cate_info" name="sub_cate_info" th:value="${galleryVO.gellSettingVO.setting_sub_cate}">
-
-                    <!-- 갤러리 주소 -->
-                    <input type="hidden" id="id" name="id" th:value="${galleryVO.gell_address}">
 
                     <!-- 제목 -->
                     <div class="clear">
@@ -291,14 +290,14 @@
                     <div class="editor_wrap">
                       <div id="tx_trex_container" class="tx-editor-container" style="border:1px solid #b5b5b5;">
                         <iframe th:if="${type} == 'write'" th:src="@{/gall/board/editor}" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
-                        <iframe th:if="${type} == 'modify'" th:src="|@{/}gall/board/editor?no=${articleVO.article_num}|" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                        <iframe th:if="${type} == 'modify'" th:src="|@{/}gall/board/editor?no=${articleVO.article_num}&type=modify|" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
                       </div>
                     </div>
 
 
 
                     <!-- 2023/03/27 // 심규영 // readOnly 풀기 -->
-                    <script>
+                    <script th:if="${type} == 'write'">
                     window.addEventListener('load', function(){
                         document.getElementById('editor_iframe').contentWindow.editor_readOnly();
                     })
@@ -344,7 +343,7 @@
                 </th:block>
 
                 <th:block th:if="${type} == 'modify' and ${articleVO.article_login_status} == 1 and ${passCheck} == null">
-                  <form action="#">
+                  <form action="javascript:;">
                     <input type="hidden" name="nm_id" id="nm_id" th:value="${galleryVO.gell_num}">
                     <input type="hidden" name="nm_no" id="nm_no" th:value="${articleVO.article_num}">
                     <article>
@@ -408,7 +407,7 @@
                     <div  class="inner clear">
                       <div class="writing_view_box">
                         <div class="write_div" style="overflow:hidden;width:900px;">
-                          <iframe th:src="@{/gall/board/editor(no=${articleVO.article_num})}" id="editor_iframe2" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                          <iframe th:src="@{/gall/board/editor(no=${articleVO.article_num}, type=view)}" id="editor_iframe2" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
 
                           <!-- 2023/03/26 // 심규영 // 글 내용 불러오기 -->
                           <!-- 2023/03/27 // 심규영 // readOnly 설정 제거 // 사유 => 페이지가 로드 된후 변경 할 시 속도가 느림 -->

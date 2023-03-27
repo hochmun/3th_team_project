@@ -172,3 +172,67 @@ function article_make(content) {
     })
 
 }
+
+// 글 수정
+function article_modify(content) {
+    const id = $('#id').val(); // 갤러리 주소, 페이지 이동 용
+    const grade = $('#grade').val(); // 갤러리 종류, 페이지 이동 용
+
+    const gell_num = $('#article_gell_num').val(); // 겔러리 번호
+    const sub_cate_info = $('#sub_cate_info').val(); // 말머리 사용 정보
+    const modify_no = $('#modify_no').val(); // 게시물 번호
+    const modify_uid = $('#modify_uid').val(); // 게시물 작성자 uid
+    const article_title = $('#article_title').val();
+
+    // 말머리 사용 시 말머리 번호 가져오기
+    let sub_cate;
+    if(sub_cate_info > 0) sub_cate = $('.sel').data('no');
+
+    // 제목 검사
+    if(article_title == '' || typeof article_title == 'undefined') {
+        alert('제목을 입력 하십시오.');
+        return;
+    }
+
+    // 내용 검사
+    if(content.blocks.length == 0) {
+        alert('내용을 입력 하십시오.');
+        return;
+    }
+
+    // jsonData 작성
+    const jsonData = {
+        "gell_num":gell_num,
+        "modify_no":modify_no,
+        "modify_uid":modify_uid,
+        "article_title":article_title,
+        "content":JSON.stringify(content),
+        "sub_cate":sub_cate
+    }
+
+    // ajax 전송
+    $.ajax({
+        url:'/GCInside/gall/board/articleModify',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(jsonData),
+        dataType:'json',
+        success: function(data) {
+            if(data.result > 0) {
+                // 성공
+                location.href = '/GCInside/'+grade+'/board/view/?id='+id+'&no='+modify_no;
+                return;
+            } else if (data.result == -1) {
+                // 유저 확인 오류
+                alert('게시글 작성자가 아닙니다.');
+                location.href = '/GCInside/index';
+                return;
+            } else {
+                // 실패
+                alert('글 작성에 실패 하였습니다.');
+                return;
+            }
+        }
+    });
+
+}

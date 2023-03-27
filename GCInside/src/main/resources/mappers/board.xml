@@ -33,6 +33,7 @@
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
     <!-- 2023/03/23 // 심규영 // 갤러지 정보 불러오기 조건(grade) 추가 -->
     <!-- 2023/03/27 // 심규영 // 메인 갤러리 정보 불러오기 오류 해결 -->
+    <!-- 2023/03/28 // 심규영 // 메인 갤러리 정보 불러오기 버그 최종 해결 -->
     <select id="selectGellInfo" resultMap="selectGellInfoResultMap">
         SELECT
             a.`gell_num`,
@@ -53,10 +54,9 @@
         JOIN `gc_member` AS c ON a.`gell_manager` = c.`member_uid`
         WHERE a.gell_address = #{gell_address} AND a.`gell_grade` =
         <choose>
-            <when test="grade.equals('m')">0</when>
-            <when test="grade.equals('mgall')">1</when>
-            <when test="grade.equals('mini')">2</when>
-            <otherwise>0</otherwise>
+            <when test='grade.equals("m")'>0</when>
+            <when test='grade.equals("mgall")'>1</when>
+            <when test='grade.equals("mini")'>2</when>
         </choose>
         ;
     </select>
@@ -176,5 +176,13 @@
     </select>
 
     <!-- upload -->
+    <update id="updateArticle" parameterType="map">
+        UPDATE `gc_gell_article` SET
+            `article_title` = #{article_title},
+            `article_content` = #{content}
+        WHERE `article_num` = #{modify_no} AND `articlel_gell_num` = #{gell_num}
+        <if test='!modify_uid.equals("")'>AND `article_uid` = #{modify_uid}</if>
+    </update>
+    
     <!-- delete -->
 </mapper>

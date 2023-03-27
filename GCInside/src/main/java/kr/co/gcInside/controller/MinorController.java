@@ -39,7 +39,7 @@ public class MinorController{
         List<galleryVO> new_mgall = service.selectnewmgall();
         List<galleryVO> mgall = service.selectminorgall();
 
-        String mgallcate1cnt = service.mgallcate1cnt();
+        List<Integer> mgallcate1cnt = service.mgallcate1cnt();
         String mgallcate2cnt = service.mgallcate2cnt();
 
         model.addAttribute("cate1cnt",mgallcate1cnt);

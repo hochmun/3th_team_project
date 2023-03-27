@@ -153,10 +153,26 @@ function editor_readOnly() {
     });
 }
 
-/** 2023/03/26 // 심규영 // 데이터 불러오기 (글 보기, 수정) */
-function editor_data_load(inputData) {
+/** 2023/03/26 // 심규영 // 데이터 불러오기 (글 수정) */
+/** 2023/03/27 // 심규영 // embed 버그 수정 */
+function editor_data_load1(inputData) {
     editor.isReady.then(()=>{
         editor.render(inputData);
+    }).then(()=>{
+        editor.readOnly.toggle();
+    }).then(()=>{
+        $(parent.document).find('#editor_iframe').css('height',$('html').height()+'px');
+    }).catch((error)=>{
+        console.log('dataLoad failed : ',error);
+    });
+}
+
+/** 2023/03/28 // 심규영 // 데이터 불러오기 (글 보기) */
+function editor_data_load2(inputData) {
+    editor.isReady.then(()=>{
+        editor.render(inputData);
+    }).then(()=>{
+        $(parent.document).find('#editor_iframe2').css('height',$('html').height()+'px');
     }).catch((error)=>{
         console.log('dataLoad failed : ',error);
     });
