@@ -824,3 +824,26 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 
 
   .new_gall .rank_list li{margin-bottom:8px }
+
+  /* 로그인 */
+  .login_box{position:relative;margin-bottom:15px;background:#fff}
+  .user_info{height:62px;line-height:44px;font-size:14px;color:#29367c}
+  .user_info strong{display:inline-block;max-width:235px;padding-right:2px;vertical-align:top;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+  .user_info,.user_option{padding:0 18px}
+  .user_option{height:70px;line-height:70px;background:#f3f3f3;text-align:center;clear:both}
+  .user_option span a{font-size:12px;font-weight:bold}
+  .user_option span:first-child::before{content:"";font-size:11px;color:#ccc;padding:0 0 0 0;vertical-align:1px}
+  .user_option span::before{content:"|";font-size:11px;color:#ccc;padding:0 18px 0 13px;vertical-align:1px}
+  .right_content .login_box .user_option{white-space:nowrap}
+
+  .newarea.user_info strong{max-width:153px;padding-right:0}
+  .newarea.user_info strong:hover{cursor:pointer }
+  .newarea.user_info a{line-height:44px;font-size:14px;color:#29367c}
+  .newarea.user_info a:hover{text-decoration:none}
+  .newarea.user_info .writer_nikcon:hover{cursor:pointer}
+  .user_infogo{display:inline-block;font-size:12px;font-weight:bold;color:#29367c;line-height:100% }
+  .user_infogo:hover{text-decoration:none }
+  .newarea .user_infogo{display:inline-block;width:7px;height:11px;background-position:-236px -1024px;margin-left:3px;line-height:26px}
+
+  .login_box .newarea .logout_boxbtn{line-height:100%;padding-top:9px}
+  .login_box .newarea .btn_inout{width:63px;height:27px;line-height:25px;font-size:12px;border:1px solid #29367c;background:#3b4890;text-align:center;color:#fff;font-weight:bold;text-shadow:0px 1px #1d2761}

@@ -42,7 +42,15 @@ public class MainService {
     }
 
     /**
-     *  마이너 갤러리 개수 가져오기
+     * 2023.03.27 // 라성준 // 메인 인덱스 롤링갤러리 서비스
+     * @return
+     */
+    public List<galleryVO> MainIndexRollingGall () {
+        return dao.MainIndexRollingGall();
+    }
+
+    /**
+     * 2023.03.24 // 라성준 // 마이너 갤러리 개수 가져오기
      * @return
      */
     public int MainIndexNewCommunityCount(Map<String, String> data) {

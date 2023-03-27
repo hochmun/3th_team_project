@@ -43,7 +43,7 @@
         LIMIT #{start}, 10;
     </select>
 
-    <!-- 마이너 갤러리 개수 -->
+    <!-- 2023/03/24 // 라성준 // 마이너 갤러리 개수 -->
     <select id="MainIndexNewCommunityCount" parameterType="map" resultType="int">
         SELECT COUNT(`gell_num`) FROM `gc_gell`
         WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH) AND `gell_grade` =
@@ -55,6 +55,18 @@
         </choose>
         ;
     </select>
+
+    <!-- 2023/03/27 // 라성준 // 메인 인덱스 갤러리 순회 무작위 불러오기 -->
+    <select id="MainIndexRollingGall" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT
+        gell_num, gell_cate, gell_name, gell_address, gell_grade
+        FROM gc_gell
+        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+        ORDER BY RAND()
+        LIMIT 0, 10;
+    </select>
+
+
     <!-- upload -->
     <!-- delete -->
 </mapper>

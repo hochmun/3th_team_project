@@ -1,11 +1,14 @@
 package kr.co.gcInside.controller;
 
 import kr.co.gcInside.dto.PagingDTO;
+import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.MainService;
 import kr.co.gcInside.utill.PagingUtil;
+import kr.co.gcInside.utill.SecurityCheckUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -39,7 +42,7 @@ public class MainController {
      * 2023.03.22 // 라성준 // 메인 신설갤 불러오기
      */
     @GetMapping(value = {"/", "index"})
-    public String index(Model model) {
+    public String index(Model model, @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Map<String, String> data = new HashMap<>();
         data.put("grade", "mgall");
 
@@ -51,6 +54,9 @@ public class MainController {
 
         model.addAttribute("newMgellCommunityList", newMgellCommunityList);
         model.addAttribute("newgellPagingDTO", newgellPagingDTO);
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
+
+        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
 
         return "index";
     }
@@ -65,7 +71,8 @@ public class MainController {
     }
 
     /**
-     * 2023/03/23 //
+     * 2023/03/23 // 심규영 //
+     * 2023/03/24 // 라성준 //
      * ajax용 페이징 처리
      *      가져오는 값
      *          type    : 종류 {new : 신설, hit: 흥한갤, live:실시간}
@@ -113,4 +120,17 @@ public class MainController {
         return resultMap;
     }
 
+
+    @ResponseBody
+    @PostMapping("/RollingGall")
+    public Map<String, Object> RollingGall(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<galleryVO> MainIndexRollingGall = service.MainIndexRollingGall();
+        resultMap.put("MainIndexRollingGall", MainIndexRollingGall);
+
+        if(MainIndexRollingGall != null) resultMap.put("result", 1);
+
+        return resultMap;
+    }
 }

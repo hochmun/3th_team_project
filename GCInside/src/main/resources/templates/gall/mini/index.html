@@ -1,13 +1,13 @@
 <!-- 2023/03/10 // 김동민 // 미니갤러리 index 페이지 화면구현 중 -->
 <!-- 2023/03/13 // 김동민 // 미니갤러리 index 페이지 화면구현 완료 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/minor/common.css">
-    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/minor/common.css}">
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
@@ -26,9 +26,9 @@
                 <!-- 메인 로고 -->
                 <h1 class="gc_logo">
                     <div>
-                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
+                        <img th:src="@{/img/gcinside,  s-1104992098.png}" alt="겔시인사이드">
+                        <a class="_blank" th:href="@{/}"></a>
+                        <a class="_top" th:href="@{/}"></a>
                     </div>
                 </h1>
 
@@ -58,7 +58,7 @@
             <nav class="gnb clear">
                 <ul class="gnb_list clear">
                     <li>
-                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
+                        <a th:href="@{/m/index}" class="hover_gnb link_gnb">갤러리</a>
                         <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
                         <!-- 2차메뉴 -->
                         <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
@@ -73,8 +73,8 @@
                             </ul>
                         </div>
                     </li>
-                    <li><a href="#">마이너갤</a></li>
-                    <li><a href="#">미니갤</a></li>
+                    <li><a th:href="@{/mgall/index}">마이너갤</a></li>
+                    <li><a th:href="@{/mini/index}">미니갤</a></li>
                 </ul>
 
                 <!-- 어제 게시글, 댓글 등록 수 -->
@@ -480,22 +480,7 @@
             </article>
           </main>
         <!-- 푸터 -->
-        <footer class="gcfoot">
-            <div class="gc_all">
-            </div>   
-                
-
-            <div class="info_policy">
-                <a href="#">회사소개</a>
-                <a href="#">제휴안내</a>
-                <a href="#">광고안내</a>
-                <a href="#">이용약관</a>
-                <a href="#"><b>개인정보처리방침</b></a>
-                <a href="#">청소년보호정책</a>
-            </div>
-
-            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
-        </footer>
+        <footer th:replace="~{fragment/footer_fragment::gallFooter}"></footer>
 
     </div>
 </body>

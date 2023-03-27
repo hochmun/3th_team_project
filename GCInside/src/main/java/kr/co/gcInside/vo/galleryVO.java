@@ -55,4 +55,9 @@ public class galleryVO {
 
     private int cnt;
     private int rank;
+
+    // grade 문자 리턴
+    public String getGell_grade_str(){
+        return (gell_grade == 0) ? "m" : (gell_grade == 1) ? "mgall" : "mini";
+    }
 }
