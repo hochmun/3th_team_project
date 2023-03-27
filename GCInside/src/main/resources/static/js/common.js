@@ -350,3 +350,8 @@ const new_gall_list = function($this) {
     })
 }
 
+
+
+
+
+

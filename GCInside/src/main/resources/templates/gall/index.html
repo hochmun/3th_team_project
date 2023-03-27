@@ -1,21 +1,22 @@
 <!-- 2023/03/14 // 김동민 // 갤러리 index 페이지 화면구현 중 -->
 <!-- 2023/03/15 // 김동민 // 갤러리 index 페이지 화면구현 완료 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/minor/common.css">
-    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/minor/common.css}">
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/js/navigation.js"></script>
-    <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
-    <script type="text/javascript" src="/js/ctr_cookie.js"></script>
-    <script src="/js/minor/minor.js"></script>
+    <script type="text/javascript" th:src="@{/js/navigation.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
+    <script type="text/javascript" th:src="@{/js/lately_visit_new.js}"></script>
+    <script type="text/javascript" th:src="@{/js/ctr_cookie.js}"></script>
+    <script th:src="@{/js/minor/minor.js}"></script>
 </head>
 
 <body>
@@ -28,9 +29,9 @@
                 <!-- 메인 로고 -->
                 <h1 class="gc_logo">
                     <div>
-                        <img src="/img/gcinside,  s-1104992098.png" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
+                        <img th:src="@{/img/gcinside,  s-1104992098.png}" alt="겔시인사이드">
+                        <a class="_blank" th:href="{/}"></a>
+                        <a class="_top" th:href="{/}"></a>
                     </div>
                 </h1>
 

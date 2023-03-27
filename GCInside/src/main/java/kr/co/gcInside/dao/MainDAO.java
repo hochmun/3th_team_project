@@ -36,6 +36,12 @@ public interface MainDAO {
     public List<galleryVO> MainIndexNewMiniCommunity(@Param("start") int start);
 
     /**
+     * 2023.03.27 // 라성준 // 메인인덱스 롤링갤러리 DAO
+     * @return
+     */
+    public List<galleryVO> MainIndexRollingGall();
+
+    /**
      *  2023.03.22 // 라성준 // 
      *  페이징
      *  마이너 갤러리 개수 가져오기

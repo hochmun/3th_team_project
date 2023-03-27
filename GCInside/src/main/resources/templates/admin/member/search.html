@@ -67,26 +67,26 @@
                         <!-- 페이징 -->
                         <div class="admin_pageing">
                         <span class="admin_pageing_prev" th:if="${pagingDTO.currentPage > 1}">
-                            <a th:href="@{${'/admin/member/search'}(pg=${pagingDTO.currentPage - 1})}">
+                            <a th:href="@{${'/admin/member/search'}(pg=${pagingDTO.currentPage - 1}, searchType=${searchType}, keyword=${keyword})}">
                                 &lt; 이전
                             </a>
                         </span>
 
                             <span class="admin_pageing_num">
                             <th:block th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
-                               th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
+                                      th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
                                 <span th:if="${pageNumber} == ${pagingDTO.currentPage}"
                                       th:text="${pageNumber}">
                                 </span>
                                 <a th:if="${pageNumber} != ${pagingDTO.currentPage}"
-                                   th:href="@{${'/admin/member/search'}(pg=${pageNumber})}"
+                                   th:href="@{${'/admin/member/search'}(pg=${pageNumber}, searchType=${searchType}, keyword=${keyword})}"
                                    th:text="${pageNumber}">
                                 </a>
                             </th:block>
-
                         </span>
+
                             <span class="admin_pageing_next" th:if="${pagingDTO.currentPage < pagingDTO.lastPage}">
-                            <a th:href="@{${'/admin/member/search'}(pg=${pagingDTO.currentPage + 1})}">
+                            <a th:href="@{${'/admin/member/search'}(pg=${pagingDTO.currentPage + 1}, searchType=${searchType}, keyword=${keyword})}">
                                 다음 &gt;
                             </a>
                         </span>

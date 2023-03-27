@@ -43,6 +43,37 @@
             </dl>
             <dl class="rollingGall">
               <dt><span>갤러리 순회</span></dt>
+                <a href="#" id="rollingGallA">
+                    <span class="rank_txt" text=""></span>
+                </a>
+
+                <script>
+                    $(()=>{
+                        let jsonData = {}
+
+                        $.ajax({
+                            url:'/GCInside/RollingGall',         // Ajax 요청을 보낼 URL
+                            method: 'POST',                         // HTTP 요청 메소드 (POST)
+                            contentType: 'application/json',        // 서버로 전송할 데이터의 타입 (JSON)
+                            data: JSON.stringify(jsonData),         // 서버로 전송할 데이터 (jsonData)
+                            dataType:'json',                        // 서버에서 받아올 데이터의 타입 (JSON)
+                            success: function(data){                // Ajax 요청이 성공했을 때 실행할 함수
+                                if(data.result > 0) {
+                                    data.MainIndexRollingGall.forEach((vo)=>{
+                                        let $a = $('#rollingGallA').clone();
+                                        $a.attr('href','/GCInside/'+vo.gell_grade_str+'/board/lists?id='+vo.gell_address);
+                                        $a.find('span').text(vo.gell_name);
+                                        $('.rollingGall').append($a);
+                                    });
+                                    $('#rollingGallA').hide();
+                                } else {
+                                    console.log('실패');
+
+                                }
+                            }
+                        })
+                    })
+                </script>
             </dl>
             <dl>
               <dt><a href="#" target="_blank">갤시뉴스</a></dt>
@@ -148,6 +179,24 @@
             </div>
         </div>
 
+
+        <div class="info_policy">
+            <a th:href="@{/company/index}">회사소개</a>
+            <a th:href="@{/company/index#alliance}">제휴안내</a>
+            <a th:href="@{/ad/index}">광고안내</a>
+            <a th:href="@{/terms/policy}">이용약관</a>
+            <a th:href="@{/terms/privacy}"><b>개인정보처리방침</b></a>
+            <a th:href="@{/terms/youth_policy}">청소년보호정책</a>
+        </div>
+
+        <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+    </footer>
+
+    <!-- 2023/03/27 // 라성준 // gall 푸터 공통 -->
+    <footer class="gcfoot" th:fragment="gallFooter">
+    <footer class="gcfoot">
+        <div class="gc_all">
+        </div>
 
         <div class="info_policy">
             <a th:href="@{/company/index}">회사소개</a>

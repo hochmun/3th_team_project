@@ -80,30 +80,29 @@
 
                         <!-- 페이징 -->
                         <div class="admin_pageing">
-                            <span class="admin_pageing_prev" th:if="${pagingDTO.currentPage > 1}">
-                                <a th:href="@{${'/admin/gallery/gallery_list'}(pg=${pagingDTO.currentPage - 1})}">
-                                    &lt; 이전
-                                </a>
-                            </span>
+                      <span class="admin_pageing_prev" th:if="${pagingDTO.currentPage > 1}">
+                        <a th:href="@{${'/admin/gallery/gallery_list'}(pg=${pagingDTO.currentPage - 1}, searchType=${param.searchType}, keyword=${param.keyword})}">
+                          &lt; 이전
+                        </a>
+                      </span>
 
                             <span class="admin_pageing_num">
-                                <th:block th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
-                                   th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
-                                    <span th:if="${pageNumber} == ${pagingDTO.currentPage}"
-                                          th:text="${pageNumber}">
-                                    </span>
-                                    <a th:if="${pageNumber} != ${pagingDTO.currentPage}"
-                                       th:href="@{${'/admin/gallery/gallery_list'}(pg=${pageNumber})}"
-                                       th:text="${pageNumber}">
-                                    </a>
-                                </th:block>
-                            </span>
-
+                        <th:block th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
+                                  th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
+                          <span th:if="${pageNumber} == ${pagingDTO.currentPage}"
+                                th:text="${pageNumber}">
+                          </span>
+                          <a th:if="${pageNumber} != ${pagingDTO.currentPage}"
+                             th:href="@{${'/admin/gallery/gallery_list'}(pg=${pageNumber}, searchType=${param.searchType}, keyword=${param.keyword})}"
+                             th:text="${pageNumber}">
+                          </a>
+                        </th:block>
+                      </span>
                             <span class="admin_pageing_next" th:if="${pagingDTO.currentPage < pagingDTO.lastPage}">
-                                <a th:href="@{${'/admin/gallery/gallery_list'}(pg=${pagingDTO.currentPage + 1})}">
-                                    다음 &gt;
-                                </a>
-                            </span>
+                        <a th:href="@{${'/admin/gallery/gallery_list'}(pg=${pagingDTO.currentPage + 1}, searchType=${param.searchType}, keyword=${param.keyword})}">
+                          다음 &gt;
+                        </a>
+                      </span>
                         </div>
 
                     </section>
