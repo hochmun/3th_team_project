@@ -16,8 +16,9 @@
     <!-- 2023/03/22 // 김재준 // 관리자 마이너 갤러리 생성 -->
     <insert id="createMinorGallery" useGeneratedKeys="true" keyProperty="gell_num">
         INSERT INTO `gc_gell` (gell_cate, gell_name, gell_address, gell_info, gell_manager, gell_grade, gell_rdate)
-        SELECT #{gell_cate}, #{gell_name}, #{gell_address}, #{gell_info}, #{gell_manager}, 1, NOW()
+        SELECT b.gell_cate2, #{gell_name}, #{gell_address}, #{gell_info}, #{gell_manager}, 1, NOW()
         FROM `gc_admin_gell_create_approve` as a
+        JOIN `gc_gell_cate2` as b ON a.gell_create_cate = b.gell_cate2
         WHERE a.gell_create_num = #{gell_create_num};
     </insert>
 
@@ -25,6 +26,7 @@
     <insert id="createMainGallerySetting">
         INSERT INTO `gc_gell_setting` SET `setting_gell_num` = #{gell_num};
     </insert>
+
     <!-- read -->
     <!-- 2023/03/10 // 심규영 // 관리자 약관 불러오기 -->
     <select id="selectTerms" resultType="kr.co.gcInside.vo.TermsVO">
@@ -168,9 +170,10 @@
 
     <!-- 2023/03/22 // 김재준 // 갤러리 개설 신청 list -->
     <select id="galleryRequestList" resultMap="createResultMap">
-        SELECT gell_create_num, gell_create_rdate, gell_create_uid, gell_create_name, gell_create_intro,
-        gell_create_cate, gell_create_address, gell_create_reason
-        FROM gc_admin_gell_create_approve
+        SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
+        a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
+        FROM gc_admin_gell_create_approve as a
+        JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
         ORDER BY gell_create_num desc;
     </select>
 
@@ -197,6 +200,12 @@
     <!-- 2023/03/23 // 김재준 // 갤러리 개설 허가 후 신청란 status 변경 -->
     <update id="updateGalleryCreateStatus" parameterType="kr.co.gcInside.vo.CreateVO">
         UPDATE `gc_admin_gell_create_approve` SET `gell_create_status` = 1
+        WHERE `gell_create_num` = #{gell_create_num};
+    </update>
+
+    <!-- 2023/03/27 // 김재준 //  개설 신청 반려 사유 입력 -->
+    <update id="updaterejectReason" parameterType="kr.co.gcInside.vo.CreateVO">
+        UPDATE `gc_admin_gell_create_approve` SET `gell_create_status` = 2, `gell_create_r_reason` = #{gell_create_r_reason}
         WHERE `gell_create_num` = #{gell_create_num};
     </update>
     <!-- delete -->

@@ -181,10 +181,14 @@ public class AdminController {
      */
     @GetMapping("admin/gallery/form_minor")
     public String galleryRequestList(Model model) {
+        // 카테고리명 불러오기용
+        List<gall_cate2VO> cates = service.selectGalleryCates();
+
         // 갤러리 개설 신청 리스트 불러오기
         List<CreateVO> list = service.galleryRequestList();
 
         model.addAttribute("list", list);
+        model.addAttribute("cates", cates);
 
         log.info("list : " + list);
 
@@ -194,59 +198,35 @@ public class AdminController {
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list post 매핑
      */
-    @PostMapping("admin/gallery/form_minor/create")
-    public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo) {
+    @PostMapping("admin/gallery/form_minor/approve")
+    public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo, CreateVO cvo) {
         // 갤러리 개설 신청 리스트 불러오기
-        log.info("1-1");
         List<CreateVO> list = service.galleryRequestList();
 
-        log.info("1-2");
         vo.setGell_name(req.getParameter("gell_create_name"));
         vo.setGell_address(req.getParameter("gell_create_address"));
         vo.setGell_info(req.getParameter("gell_create_intro"));
         vo.setGell_manager(req.getParameter("gell_create_uid"));
-        log.info(vo.toString());
 
-        log.info("1-3");
         service.createMinorGallery(vo);
-        log.info("1-4");
         // 갤러리 셋팅 생성
         service.createMainGallerySetting(vo.getGell_num());
-        log.info("1-5");
+        service.updateGalleryCreateStatus(cvo);
 
         model.addAttribute("list", list);
 
         return "redirect:/admin/gallery/form_minor";
     }
 
-    /**
-     * 2023/03/23 // 김재준 // 갤러리 개설요청 `gell_create_status` 업데이트
-     */
-    @PostMapping("admin/gallery/form_minor/update")
-    public String updateGalleryCreateStatus(Integer gell_create_status, Integer gell_create_num) {
-        service.updateGalleryCreateStatus(gell_create_status, gell_create_num);
+    @PostMapping("admin/gallery/form_minor/reject")
+    public String updaterejectReason(HttpServletRequest req, CreateVO cvo, Model model) {
 
-        return "redirect:/admin/gallery/form_minor";
+        cvo.setGell_create_r_reason(req.getParameter("gell_create_r_reason"));
 
-    }
-
-    /**
-     * 2023/03/23 // 김재준 // 갤러리 개설요청 insert, update 트랜잭션
-     */
-    @PostMapping("admin/gallery/form_minor/approve")
-    @Transactional
-    public String createAndApproveMinorGallery(HttpServletRequest req, Model model, galleryVO vo, Integer gell_create_status, Integer gell_create_num) {
-        log.info("vo값 = {}", vo); // vo 값 로깅
-        log.info("update = ", updateGalleryCreateStatus(gell_create_status, gell_create_num)); // update 값 로깅
-        log.info("1");
-        createMinorGallery(req, model, vo);
-        log.info("2");
-        updateGalleryCreateStatus(1, gell_create_num);
-        log.info("3");
-
-
+        service.updaterejectReason(cvo);
+        log.info("갤러리 개설 거절 사유 : " + cvo.getGell_create_r_reason());
+        log.info("갤러리 개설 거절 사유 vo : " + cvo.getGell_create_status());
         return "redirect:/admin/gallery/form_minor";
     }
-
 
 }
