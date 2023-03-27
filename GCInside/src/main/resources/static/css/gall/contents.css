@@ -465,3 +465,16 @@ tbody tr:hover{background:#f3f3f3}
 .gall_list.empty td{color:#555;height:250px}
 .gall_list.empty .empty_list td{height:25px;color:#333}/*200708 게시글 없음시 설문or 공지등록*/
 .gall_list.empty tr:hover{background:none}
+
+/*비회원 글 수정,삭제 비밀번호 입력*/
+.no_memberwrap{width:400px;margin:125px auto 125px}
+.no_member_cont .btn_box{border-top:0;padding:15px 0 0}
+.no_member_cont{width:394px;height:165px;padding-top:48px;border:3px solid #29367c;background:#fff}
+.no_member_cont .inner{width:176px;margin:0 auto}
+.no_member_cont .inner .txt{display:block;font-size:15px;color:#29367c;text-align:center}
+.pw_inquiry{width:164px;height:37px;padding:0 5px;margin-top:14px;background:#f3f3f3;border:1px solid #cecdce}
+.pw_inquiry:focus{background:#fff}
+.no_member_cont .btn_blue.small{margin-left:2px}
+.no_member_cont .btn_grey.small{margin-left:0}
+.no_memberwrap .btn_box{position:relative}
+.no_memberwrap .no_member_cont .btn_box button:nth-child(2){position:absolute;margin-left:5px}

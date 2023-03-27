@@ -4,7 +4,6 @@ package kr.co.gcInside.controller.gall;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
-import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
@@ -17,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,6 +102,8 @@ public class BoardController {
 
     /**
      * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료
+     * 2023/03/22 // 심규영 // 글 쓰기 기본 기능 구현 완료
+     * 2023/03/27 // 심규영 // 글 보기 기본 기능 구현 완료
      *
      *      restAPI 정보
      *          grade => 갤러리 등급 정보
@@ -123,6 +125,10 @@ public class BoardController {
      *              
      *      data에 집어 넣는 값
      *          gell_num : 겔러리 번호
+     *          
+     *      session 값
+     *          nonmemberPassCheck :
+     *          
      * @param grade
      * @return
      */
@@ -130,7 +136,8 @@ public class BoardController {
     public String board(@PathVariable("grade") String grade, @PathVariable("type") String type,
                         @RequestParam Map<String, String> data,
                         Model model,
-                        @AuthenticationPrincipal MyUserDetails myUserDetails) {
+                        @AuthenticationPrincipal MyUserDetails myUserDetails,
+                        HttpSession session) {
         // 주소 체크
         if(service.URLCheck(grade,type)) return "index";
 
@@ -148,6 +155,13 @@ public class BoardController {
 
             // 해당 게시글 정보가 없을 경우 잘못된 접근z
             if(articleVO == null) return "error/wrongURL";
+        }
+        
+        // 세션값 가져오기
+        if(session.getAttribute("nonmemberPassCheck") != null) {
+            boolean passCheck = (Boolean) session.getAttribute("nonmemberPassCheck");
+            session.removeAttribute("nonmemberPassCheck");
+            model.addAttribute("passCheck", passCheck);
         }
 
         // 페이지 종류 전송
@@ -213,6 +227,32 @@ public class BoardController {
         data.put("article_regip", req.getRemoteAddr());
         result = service.insertArticle(data);
         resultMap.put("result", result);
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/03/27 // 심규영 // 비회원 비밀 번호 확인
+     *      들어오는 값
+     *          id      : 갤러리 번호
+     *          no      : 게시글 번호
+     *          pass    : 게시글 비밀번호
+     * 
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/nonmemberPassCheck")
+    public Map<String, Object> nonmemberPassCheck(@RequestBody Map<String, String> data, HttpSession session){
+        // 리턴 하는 map
+        Map<String, Object> resultMap = new HashMap<>();
+
+        // 비밀 번호 체크
+        int result = service.selectNonmemberCheck(data);
+        resultMap.put("result", result);
+
+        if(result > 0) {
+            session.setAttribute("nonmemberPassCheck", true);
+        }
 
         return resultMap;
     }
