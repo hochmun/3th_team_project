@@ -134,7 +134,7 @@ async function editor_save(){
     })
 }
 
-/** 2023/03/24 // 심규영 // 읽기 전용으로 수정 */
+/** 2023/03/24 // 심규영 // readOnly 설정 변경 // 수정 가능 으로 변경 */
 function editor_readOnly() {
     editor.isReady.then(()=>{
         editor.readOnly.toggle();
