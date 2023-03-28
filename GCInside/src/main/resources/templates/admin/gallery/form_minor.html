@@ -221,7 +221,7 @@
                             <!-- 카테고리별 검색 기능 -->
                             <div class="category_search_box">
                                 <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
-                                    <option value="">카테고리 전체</option>
+                                    <option value="" selected>카테고리 전체</option>
                                     <option th:each="cate:${cates}" th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></option>
                                 </select>
                                 <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
@@ -237,28 +237,32 @@
                                     <col style="width: 14.8%;">
                                     <col style="width: 14.8%;">
                                 </colgroup>
-                                <tr>
-                                    <th>갤러리 이름</th>
-                                    <th>주소값</th>
-                                    <th>카테고리</th>
-                                    <th>신청일</th>
-                                    <th>신청자</th>
-                                    <th>갤러리 설명</th>
-                                    <th>개설이유</th>
-                                    <th>관리</th>
-                                </tr>
-                                <tr th:each="list:${list}" th:if="${list.gell_create_status == 0}">
-                                    <td th:text="${list.gell_create_num}" hidden></td>
-                                    <td th:text="${list.gell_create_name}"></td>
-                                    <td th:text="${list.gell_create_address}"></td>
-                                    <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
-                                    <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
-                                    <td th:text="${list.gell_create_uid}"></td>
-                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
-                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
-                                    <td th:text="${list.gell_create_status}"hidden></td>
-                                    <td><button class="approval">[관리]</button></td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>갤러리 이름</th>
+                                        <th>주소값</th>
+                                        <th>카테고리</th>
+                                        <th>신청일</th>
+                                        <th>신청자</th>
+                                        <th>갤러리 설명</th>
+                                        <th>개설이유</th>
+                                        <th>관리</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="list:${list}" th:if="${list.gell_create_status == 0}">
+                                        <td th:text="${list.gell_create_num}" hidden></td>
+                                        <td th:text="${list.gell_create_name}"></td>
+                                        <td th:text="${list.gell_create_address}"></td>
+                                        <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
+                                        <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
+                                        <td th:text="${list.gell_create_uid}"></td>
+                                        <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
+                                        <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
+                                        <td th:text="${list.gell_create_status}"hidden></td>
+                                        <td><button class="approval">[관리]</button></td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div class="popup">
                                 <div class="popup-content"></div>
@@ -326,29 +330,109 @@
             </div>
         </main>
         <script>
-          // 카테고리 검색 버튼 클릭 시
-          document.getElementById('category-submit-button').addEventListener('click', function() {
-            // 선택한 카테고리 값 가져오기
-            var selectedCate = document.getElementById('category_search_select_box').value;
+            $("#category-submit-button").on("click", function() {
+                var selectedCategory = $("#category_search_select_box option:selected").data("value");
+                if (!selectedCategory) {
+                    selectedCategory = "";
+                }
 
-            // 모든 tr 요소 가져오기
-            var trs = document.querySelectorAll('table tbody tr');
+                $.ajax({
+                    url: "form_minor/searchByCategory",
+                    type: "GET",
+                    data: {category: selectedCategory},
+                    dataType: "json",
+                    success: function(data) {
+                        updateTable(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error: " + error);
+                    }
+                });
+            });
 
-            // 선택한 카테고리 값과 일치하는 tr 요소만 보이도록 필터링
-            for (var i = 0; i < trs.length; i++) {
-              var tr = trs[i];
-              var createCate = tr.querySelector('td:nth-child(4)');
-              var cateValue = null;
-              if (createCate) {
-                cateValue = createCate.getAttribute('th:data-value');
-              }
-              if (selectedCate == '' || cateValue == selectedCate) {
-                tr.style.display = 'table-row';
-              } else {
-                tr.style.display = 'none';
-              }
-            }
-          });
+                function updateTable(data) {
+                    var tableBody = $(".admin_table.admin_member_list");
+                    tableBody.empty();
+                    var row = "<tr>";
+                        row += "<th>갤러리 이름</th>"
+                        row += "<th>주소값</th>"
+                        row += "<th>카테고리</th>"
+                        row += "<th>신청일</th>"
+                        row += "<th>신청자</th>"
+                        row += "<th>갤러리 설명</th>"
+                        row += "<th>개설이유</th>"
+                        row += "<th>관리</th>"
+                        row += "</tr>"
+                        tableBody.append(row);
+                    data.forEach(function(item) {
+                        if (item.gell_create_status == 0) {
+                            var row = "<tr>";
+                            row += "<td class='gell_create_num' hidden>" + item.gell_create_num + "</td>";
+                            row += "<td class='gell_create_name'>" + item.gell_create_name + "</td>";
+                            row += "<td class='gell_create_address'>" + item.gell_create_address + "</td>";
+                            row += "<td data-value='" + item.gell_cate2 + "' class='gell_create_cate'>" + item.gell_cate2 + "</td>";
+                            row += "<td class='gell_create_rdate'>" + item.gell_create_rdate.substring(2, 10) + "</td>";
+                            row += "<td class='gell_create_uid'>" + item.gell_create_uid + "</td>";
+                            row += "<td><button class='truncate show-details' data-full-text='" + item.gell_create_intro + "'>" + item.gell_create_intro + "</button></td>";
+                            row += "<td><button class='truncate show-details' data-full-text='" + item.gell_create_reason + "'>" + item.gell_create_reason + "</button></td>";
+                            row += "<td class='gell_create_status' hidden>" + item.gell_create_status + "</td>";
+                            row += "<td><button class='approval'>[관리]</button></td>";
+                            row += "</tr>";
+                            tableBody.append(row);
+                        }
+                    });
+                    truncateText('.truncate', 7);
+                    var showDetailButtons = document.querySelectorAll('.show-details');
+                    for (var i = 0; i < showDetailButtons.length; i++) {
+                        showDetailButtons[i].addEventListener('click', showDetails);
+                    }
+                    var showApprovalButtons = document.querySelectorAll('.approval');
+                    for (var i = 0; i < showApprovalButtons.length; i++) {
+                        showApprovalButtons[i].addEventListener('click', showApprovalPopup);
+                    }
+                }
+
+                window.addEventListener('DOMContentLoaded', function() {
+                function searchGallery() {
+                    // 선택한 검색 조건, 입력한 검색어 가져오기.
+                    var selectBox = document.getElementById("member_search_select_box");
+                    var searchOption = selectBox.options[selectBox.selectedIndex].value;
+                    var searchKeyword = document.getElementById("input-box").value;
+
+                    // 검색 결과 표시할 테이블 가져오기.
+                    var table = document.querySelector(".admin_member_list tbody");
+
+                    // 검색어 포함된 결과만 보여주고, 그 외 결과 숨기기.
+                    var rows = table.querySelectorAll("tr");
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        var columns = row.querySelectorAll("td");
+                        var shouldDisplay = false;
+                        for (var j = 0; j < columns.length; j++) {
+                            var columnText = columns[j].textContent.trim();
+                            if (columnText.includes(searchKeyword)) {
+                                shouldDisplay = true;
+                                break;
+                            }
+                        }
+                        if (shouldDisplay) {
+                            row.style.display = "";
+                        } else {
+                            row.style.display = "none";
+                        }
+                    }
+                }
+
+                // 검색 버튼에 이벤트 핸들러 등록
+                document.getElementById("submit-button").addEventListener("click", searchGallery);
+                // 엔터키 눌러도 검색 기능 실행
+                document.getElementById("input-box").addEventListener("keyup", function(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        document.getElementById("submit-button").click();
+                    }
+                });
+            });
         </script>
 
     <footer class="admin_footer gcfoot">

@@ -95,6 +95,17 @@ public interface AdminDAO {
      */
     public List<CreateVO> galleryRequestList();
 
+    /**
+     * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 총 개수
+     * @return
+     */
+    public int galleryRequestTotal();
+
+    /**
+     * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 
+     */
+    public List<CreateVO> searchByCategory(int category);
+
     // upload
 
     /**

@@ -168,12 +168,27 @@
         SELECT * FROM `gc_gell_cate2`;
     </select>
 
+    <!-- 2023/03/16 // 김재준 // 갤러리 개설신청 리스트 총 개수  -->
+    <select id="galleryRequestTotal" resultType="int">
+        select count(`gell_create_num`) from `gc_admin_gell_create_approve` where gell_create_status = 0;
+    </select>
+
     <!-- 2023/03/22 // 김재준 // 갤러리 개설 신청 list -->
     <select id="galleryRequestList" resultMap="createResultMap">
         SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
         FROM gc_admin_gell_create_approve as a
         JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
+        ORDER BY gell_create_num desc;
+    </select>
+
+    <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 category -->
+    <select id="searchByCategory" resultMap="createResultMap">
+        SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
+        a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
+        FROM gc_admin_gell_create_approve as a
+        JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
+        WHERE a.gell_create_cate = #{category}
         ORDER BY gell_create_num desc;
     </select>
 
