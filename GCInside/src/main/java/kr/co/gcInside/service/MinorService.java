@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 @Slf4j
 @Service
 public class MinorService {
@@ -80,31 +77,14 @@ public class MinorService {
 
         List<Integer> counts = new ArrayList<>();
 
-        for(int cate=1 ; cate<=2 ; cate++){
-            int count = dao.mgallcate1cnt(cate);
+        for(int cate=1 ; cate<=10 ; cate++){
+            int count = dao.mgallcatecnt(cate);
             counts.add(count);
         }
 
         return counts;
     };
-    public List<Map<Integer,Integer>> rankdiff(){
-        List<Map<Integer,Integer>> today = dao.todayrank();
-        List<Map<Integer,Integer>> yesterday =dao.yesterdayrank();
-        List<Map<Integer,Integer>> diffList = new ArrayList<>();
-        log.info("rankdiff");
-        for (Map<Integer,Integer> map1 : yesterday) {
-            for (Map<Integer,Integer> map2: today) {
-                if (map1.keySet().equals(map2.keySet())) { // 키가 같은 경우
-                    Map<Integer,Integer> diffMap = new HashMap<>(); // 차이 값을 저장할 맵
-                    for (Integer key : map1.keySet()) {
-                        int diff = map1.get(key) - map2.get(key); // 값의 차이 계산
-                        diffMap.put(key, diff); // 차이 값을 맵에 추가
-                    }
-                    diffList.add(diffMap); // 차이 값을 저장하는 맵을 리스트에 추가
-                    break;
-                }
-            }
-        }
-        return diffList;
+    public String mgallcate2cnt(){
+        return dao.mgallcate2cnt();
     };
 }
