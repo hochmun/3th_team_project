@@ -2,8 +2,10 @@ package kr.co.gcInside.controller;
 
 
 import com.sun.istack.NotNull;
+import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.EmailService;
 import kr.co.gcInside.service.MemberService;
+import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.EmailException;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.MailSender;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -87,7 +90,11 @@ public class MemberContoller {
     }
 
     @GetMapping("member/find_id")
-    public String find_id() {
+    public String find_id(@AuthenticationPrincipal MyUserDetails myUserDetails,
+                          Model model) {
+
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
+
         return "member/find_id";
     }
 
@@ -162,9 +169,9 @@ public class MemberContoller {
             String subject = "지시인사이드 아이디찾기 안내";
             String body    = "입력하신 이메일로 조회된 아이디는 " + result + " 입니다.";
             emailService.sendEmail(member_email, subject, body);
-            return "/index";
+            return "redirect:/index";
         }else{
-            return "/member/find_id";
+            return "redirect:/member/find_id";
         }
     }
 
