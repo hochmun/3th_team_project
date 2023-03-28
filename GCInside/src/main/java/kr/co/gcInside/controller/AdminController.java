@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.URLDecoder;
@@ -194,8 +195,6 @@ public class AdminController {
         model.addAttribute("list", list);
         model.addAttribute("cates", cates);
 
-        log.info("list : " + list);
-
         return "admin/gallery/form_minor";
     }
 
@@ -204,8 +203,6 @@ public class AdminController {
      */
     @PostMapping("admin/gallery/form_minor/approve")
     public String createMinorGallery(HttpServletRequest req, Model model, galleryVO vo, CreateVO cvo) {
-        // 갤러리 개설 신청 리스트 불러오기
-        List<CreateVO> list = service.galleryRequestList();
 
         vo.setGell_name(req.getParameter("gell_create_name"));
         vo.setGell_address(req.getParameter("gell_create_address"));
@@ -216,8 +213,6 @@ public class AdminController {
         // 갤러리 셋팅 생성
         service.createMainGallerySetting(vo.getGell_num());
         service.updateGalleryCreateStatus(cvo);
-
-        model.addAttribute("list", list);
 
         return "redirect:/admin/gallery/form_minor";
     }
@@ -235,7 +230,11 @@ public class AdminController {
 
     @GetMapping("/admin/gallery/form_minor/searchByCategory")
     @ResponseBody
-    public List<CreateVO> searchByCategory(@RequestParam("category") int category) {
-        return service.searchByCategory(category);
+    public List<CreateVO> searchByCategory(@RequestParam("category") String category) {
+        if(category.isEmpty()) {
+            return service.galleryRequestList();
+        }
+
+        return service.searchByCategory(Integer.parseInt(category));
     }
 }
