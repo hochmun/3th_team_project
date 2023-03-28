@@ -75,52 +75,60 @@
         AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
         );
     </update>
-    <!--
+
     <update id="updatehotmgalltodayrank">
+        UPDATE `gc_gell` SET `gell_today_rank` = NULL;
         SET @RANK := 0;
         UPDATE `gc_gell` AS `gell`
         INNER JOIN (
         SELECT `gell_num`, @rank := @rank + 1 AS `rank`
         FROM `gc_gell`
         WHERE `gell_today_article_count` > 0
+        AND `gell_grade` = '1'
         ORDER BY `gell_today_article_count` DESC
         ) AS `ranking`
         ON `gell`.`gell_num` = `ranking`.`gell_num`
         SET `gell`.`gell_today_rank` = `ranking`.`rank`;
     </update>
     <update id="updatehotmgallyesterdayrank">
-    SET @rank := 0;
-    UPDATE `gc_gell` AS `gell`
-    INNER JOIN (
-    SELECT `gc_gell`.`gell_num`, `subquery`.`cnt`, @rank := @rank + 1 AS `rank`
-    FROM `gc_gell`
-    LEFT JOIN (
-    SELECT `articlel_gell_num`, COUNT(*) AS `cnt`
-    FROM `gc_gell_article`
-    WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
-    GROUP BY `articlel_gell_num`
-    ) AS `subquery`
-    ON `gc_gell`.`gell_num` = `subquery`.`articlel_gell_num`
-    WHERE `gc_gell`.`gell_num` IN (
-    SELECT `articlel_gell_num`
-    FROM `gc_gell_article`
-    WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
-    GROUP BY `articlel_gell_num`
-    )
-    ORDER BY `subquery`.`cnt` DESC
-    ) AS `ranking`
-    ON `gell`.`gell_num` = `ranking`.`gell_num`
-    SET `gell`.`gell_today_rank` = `ranking`.`rank`;
+        UPDATE `gc_gell` SET `gell_yesterday_rank` = NULL;
+        SET @rank := 0;
+        UPDATE `gc_gell` AS `gell`
+        INNER JOIN (
+        SELECT `gc_gell`.`gell_num`, `subquery`.`cnt`, @rank := @rank + 1 AS `rank`
+        FROM `gc_gell`
+        LEFT JOIN (
+        SELECT `articlel_gell_num`, COUNT(*) AS `cnt`
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        AND `gell_grade` = '1'
+        GROUP BY `articlel_gell_num`
+        ) AS `subquery`
+        ON `gc_gell`.`gell_num` = `subquery`.`articlel_gell_num`
+        WHERE `gc_gell`.`gell_num` IN (
+        SELECT `articlel_gell_num`
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY `articlel_gell_num`
+        )
+        ORDER BY `subquery`.`cnt` DESC
+        ) AS `ranking`
+        ON `gell`.`gell_num` = `ranking`.`gell_num`
+        SET `gell`.`gell_yesterday_rank` = `ranking`.`rank`;
     </update>
-     -->
+    <select id="todayrank" resultType="java.util.Map">
+        select `gell_num`,`gell_today_rank` from `gc_gell` WHERE `gell_today_rank`>='1';
+    </select>
+
+    <select id="yesterdayrank" resultType="java.util.Map">
+        select `gell_num`,`gell_yesterday_rank` from `gc_gell` WHERE `gell_yesterday_rank`>='1';
+    </select>
     <!-- 2023/03/27 // 김동민 // 마이너 갤러리 select-->
     <select id="selectminorgall" resultType="kr.co.gcInside.vo.galleryVO">
         select * from `gc_gell` where `gell_grade`='1';
     </select>
-    <select id="mgallcatecnt" resultType="int">
-        select count(*) from `gc_gell` where `gell_grade`='1' and `gell_cate`=#{gell_cate};
-    </select>
-    <select id="mgallcate2cnt" resultType="String">
-        select count(*) from `gc_gell` where `gell_grade`='1' and `gell_cate`='2';
+    <!-- 2023/03/28 // 김동민 // 마이너 갤러리 카테고리별 갤러리 갯수-->
+    <select id="mgallcate1cnt" resultType="int">
+        select count(*) from `gc_gell` where `gell_grade`='1' and `gell_cate`=#{cate};
     </select>
 </mapper>
