@@ -163,6 +163,24 @@ public class BoardController {
             session.removeAttribute("nonmemberPassCheck");
             model.addAttribute("passCheck", passCheck);
         }
+        
+        // 페이지 타입이 글 보기 일 경우
+        if(type.equals("view")) {
+            // data에 개념글 추천수 개수 설정 넣기
+            data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
+
+            // 페이징 처리
+            PagingDTO pagingDTO = service.listsPaging(data);
+
+            // 게시글 정보 가져오기
+            data.put("start", pagingDTO.getStart()+"");
+            data.put("gell_num", galleryVO.getGell_num()+"");
+            List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
+            
+            // 모델
+           model.addAttribute("gellArticleVOS", gellArticleVOS);
+           model.addAttribute("pagingDTO", pagingDTO);
+        }
 
         // 페이지 종류 전송
         model.addAttribute("type", type);
@@ -174,6 +192,51 @@ public class BoardController {
         if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
 
         return "gall/board/total";
+    }
+
+    /**
+     * 2023/03/28 // 심규영 // 삭제 페이지 get 맵핑
+     *      data 들어오는 값
+     *          id : 갤러리 주소
+     *          no : 게시글 번호
+     * @param grade
+     * @return
+     */
+    @GetMapping("{grade}/board/delete/")
+    public String delete(@PathVariable("grade") String grade,
+                         @RequestParam Map<String, String> data,
+                         Model model,
+                         @AuthenticationPrincipal MyUserDetails myUserDetails,
+                         HttpSession session) {
+        // id 값에 따른 갤러리 정보 불러오기
+        galleryVO galleryVO = service.selectGellInfo(data.get("id"), grade);
+
+        // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
+        if(galleryVO == null) return "error/wrongURL";
+
+        // 글 내용 불러오기
+        data.put("gell_num", galleryVO.getGell_num()+""); // data에 갤러리 번호 널기
+        gell_articleVO articleVO = service.selectArticle(data);
+
+        // 해당 게시글 정보가 없을 경우 잘못된 접근z
+        if(articleVO == null) return "error/wrongURL";
+
+        // 세션값 가져오기
+        if(session.getAttribute("nonmemberPassCheck") != null) {
+            boolean passCheck = (Boolean) session.getAttribute("nonmemberPassCheck");
+            session.removeAttribute("nonmemberPassCheck");
+            model.addAttribute("passCheck", passCheck);
+        }
+
+        // 모델 전송
+        model.addAttribute("grade", grade);
+        model.addAttribute("galleryVO", galleryVO);
+        model.addAttribute("articleVO", articleVO);
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
+
+        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
+
+        return "gall/board/delete";
     }
 
     /**
@@ -234,6 +297,28 @@ public class BoardController {
     }
 
     /**
+     * 2023/03/28 // 심규영 // 글 작성 post 맵핑
+     *      data 들어오는 값
+     *          no                  : 게시물 번호
+     *          login_info          : 로그인 상태
+     *          comment_uid         : 회원 uid
+     *          comment_name        : 비회원 name
+     *          comment_password    : 비회원 password
+     *          comment_content     : 댓글 내용
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/commentWrite")
+    public Map<String, Object> commentWrite(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+        
+        // 댓글 작성
+
+        return resultMap;
+    }
+
+    /**
      * 2023/03/28 // 심규영 // 글 수정 post mapping
      *      data 들어오는 값
      *          gell_num        : 겔러리 번호
@@ -254,17 +339,48 @@ public class BoardController {
         
         // modify_uid의 값이 있을 경우 작성자와 수정자의 uid 일치 확인
         if(!data.get("modify_uid").equals("") && myUserDetails != null) {
-            if(data.get("modify_uid") != myUserDetails.getUser().getMember_uid()) {
+            if(!data.get("modify_uid").equals(myUserDetails.getUser().getMember_uid())) {
                 resultMap.put("result", -1);
                 return resultMap;
             }
         }
-        
+
         // 게시글 업데이트
         int result = service.updateArticle(data);
         resultMap.put("result", result);
 
         return resultMap;
+    }
+
+    /**
+     * 2023/03/28 // 심규영 // 게시글 삭제 Post 맵핑
+     *      data 에 들어오는 값
+     *          gell_num        : 갤러리 번호
+     *          article_num     : 게시물 번호
+     *          id              : 갤러리 주소
+     *          grade           : 갤러리 종류
+     *          article_uid     : 게시글 작성자 uid
+     *          
+     *      data 에 넣는 값
+     *          delete_uid      : 삭제하는 유저 uid
+     */
+    @PostMapping("gall/board/articleDelete")
+    public String articleDelete(@RequestParam Map<String,String> data,
+                                @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        // modify_uid의 값이 있을 경우 작성자와 수정자의 uid 일치 확인
+        if(!data.get("article_uid").equals("") && myUserDetails != null) {
+            if(!data.get("article_uid").equals(myUserDetails.getUser().getMember_uid())) {
+                return "redirect:/error/wrongURL";
+            }
+        }
+
+        // data 넣기
+        if(myUserDetails != null) data.put("delete_uid", myUserDetails.getUser().getMember_uid());
+
+        // 게시글 삭제
+        service.updateDeleteArticle(data);
+        
+        return "redirect:/"+data.get("grade")+"/board/lists?id="+data.get("id");
     }
 
     /**

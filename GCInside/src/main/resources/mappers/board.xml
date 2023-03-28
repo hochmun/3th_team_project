@@ -176,6 +176,7 @@
     </select>
 
     <!-- upload -->
+    <!-- 2023/03/28 // 심규영 // 게시글 수정 쿼리문 -->
     <update id="updateArticle" parameterType="map">
         UPDATE `gc_gell_article` SET
             `article_title` = #{article_title},
@@ -183,6 +184,18 @@
         WHERE `article_num` = #{modify_no} AND `articlel_gell_num` = #{gell_num}
         <if test='!modify_uid.equals("")'>AND `article_uid` = #{modify_uid}</if>
     </update>
-    
+
+    <!-- 2023/03/28 // 심규영 // 게시글 삭제 쿼리문 -->
+    <update id="updateDeleteArticle" parameterType="map">
+        UPDATE `gc_gell_article` SET
+            `article_status` = 1,
+            `article_wdate` = NOW()
+            <if test='delete_uid != null'>
+                , `article_w_uid` = #{delete_uid}
+            </if>
+
+        WHERE `article_num` = #{article_num} AND `articlel_gell_num` = #{gell_num}
+    </update>
+
     <!-- delete -->
 </mapper>
