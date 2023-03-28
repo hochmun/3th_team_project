@@ -126,6 +126,9 @@ public interface BoardDAO {
      *          id              : 갤러리 주소
      *          grade           : 갤러리 종류
      *          article_uid     : 게시글 작성자 uid
+     *
+     *      data 에 넣는 값
+     *          delete_uid      : 삭제하는 유저 uid
      * @param data
      * @return
      */

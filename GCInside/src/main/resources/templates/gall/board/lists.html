@@ -234,7 +234,7 @@
 						<!-- 상단 탭 -->
 						<div class="list_array_option clear">
 							<div class="array_tab left_box">
-								<button type="button" class="on">전체글</button>
+								<button type="button" class="on" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this))">전체글</button>
 								<button type="button">개념글</button>
 								<button type="button">공지</button>
 							</div>
@@ -344,11 +344,11 @@
 						<!-- 하단 버튼 박스 -->
 						<div class="list_bottom_btnbox">
 							<div class="fl">
-								<button type="button" class="list_bottom btn_blue">전체글</button>
+								<button type="button" class="list_bottom btn_blue" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this))">전체글</button>
 								<button type="button" class="list_bottom btn_white">개념글</button>
 							</div>
 							<div class="fr">
-								<button type="button" id="btn_write" class="btn_blue write">글쓰기</button>
+								<button type="button" id="btn_write" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
 							</div>
 						</div>
 

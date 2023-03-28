@@ -620,25 +620,28 @@
 
                       <div class="fl">
                         <!-- 회원 일 경우 -->
-                        <div class="user_info_input id" style="display:none;">
-                          <label class>homoon</label>
+                        <div th:if="${authorize.isAuthenticated}" class="user_info_input id">
+                          <label th:text="${user.member_uid}"></label>
                           <!-- id 뒤에 유저 uid-->
-                          <input type="hidden" name="name" id="name_me03454" value="homoon">
+                          <input type="hidden" name="comment_uid" id="comment_uid" th:value="${user.member_uid}">
                         </div>
 
                         <!-- 비회원 일 경우 -->
-                        <div class="user_info_input">
-                          <label class="blind">닉네임</label>
-                          <input type="text" id="name_5" name = "name"
-                                 placeholder="닉네임" onfocus="this.style.background='#FFFFFF'"
-                                 maxlength="20">
-                        </div>
-                        <div class="user_info_input">
-                          <label class="blind">비밀번호</label>
-                          <input type="password" id="password_5" name = "password"
-                                 placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'"
-                                 maxlength = "20">
-                        </div>
+                        <th:block th:if="${authorize.isAnonymous}">
+                          <div class="user_info_input">
+                            <label class="blind">닉네임</label>
+                            <input type="text" id="comment_name" name = "name"
+                                   placeholder="닉네임" onfocus="this.style.background='#FFFFFF'"
+                                   maxlength="20">
+                          </div>
+                          <div class="user_info_input">
+                            <label class="blind">비밀번호</label>
+                            <input type="password" id="comment_password" name = "password"
+                                   placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'"
+                                   maxlength = "20">
+                          </div>
+                        </th:block>
+
                       </div>
 
                       <div class="cmt_txt_cont">
@@ -647,15 +650,13 @@
                             타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 제재를 받을 수 있습니다.<br>
                             Shift+Enter 키를 동시에 누르면 줄바꿈이 됩니다.
                           </label>
-                          <textarea id="memo_5" onfocus="$('.cmt_textarea_label').hide();"
-                                    maxlength="400"></textarea>
+                          <textarea id="comment_content" onfocus="$('.cmt_textarea_label').hide();" maxlength="400"></textarea>
                         </div>
                         <div class="cmt_cont_bottm clear">
-                          <div class="dccon_guidebox">
-                          </div>
-                          <div class="fr">
-                            <button type="button" class="btn_blue btn_svc small repley_add" data-no = "5">등록</button>
-                            <button type="button" class="btn_lightblue btn_svc small repley_add_vote" data-no = "5">등록+추천</button>
+                          <div class="dccon_guidebox"></div>
+                          <div class="fr" style="margin-top:10px;">
+                            <button type="button" class="btn_blue btn_svc small repley_add" th:data-no="${articleVO.article_num}" th:data-login_info="${authorize.isAuthenticated}" onclick="commentWrite($(this))">등록</button>
+                            <button type="button" class="btn_lightblue btn_svc small repley_add_vote" th:data-no="${articleVO.article_num}" style="display:none;">등록+추천</button>
                           </div>
                         </div>
                       </div>
@@ -665,7 +666,7 @@
                   <!-- 전체글 / 개념글 / 수정 / 삭제 / 글쓰기 영역 버튼 -->
                   <div class="view_bottom_btnbox clear">
                     <div class="fl">
-                      <button type="button" class="btn_blue concept">전체글</button>
+                      <button type="button" class="btn_blue concept" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this))">전체글</button>
                       <button type="button" class="btn_white concept">개념글</button>
                     </div>
                     <div class="fr">
@@ -685,7 +686,7 @@
                         <button type="button" class="btn_grey cancle" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goDelete($(this));">삭제</button>
                       </th:block>
 
-                      <button type="button" class="btn_blue write">글쓰기</button>
+                      <button type="button" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
                     </div>
                   </div>
                 </div>
@@ -777,11 +778,11 @@
                 <!-- 하단 버튼 박스 -->
                 <div class="list_bottom_btnbox">
                   <div class="fl">
-                    <button type="button" class="list_bottom btn_blue">전체글</button>
+                    <button type="button" class="list_bottom btn_blue" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this));">전체글</button>
                     <button type="button" class="list_bottom btn_white">개념글</button>
                   </div>
                   <div class="fr">
-                    <button type="button" id="btn_write" class="btn_blue write">글쓰기</button>
+                    <button type="button" id="btn_write" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
                   </div>
                 </div>
 

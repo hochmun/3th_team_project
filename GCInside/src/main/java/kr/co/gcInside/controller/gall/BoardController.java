@@ -297,6 +297,28 @@ public class BoardController {
     }
 
     /**
+     * 2023/03/28 // 심규영 // 글 작성 post 맵핑
+     *      data 들어오는 값
+     *          no                  : 게시물 번호
+     *          login_info          : 로그인 상태
+     *          comment_uid         : 회원 uid
+     *          comment_name        : 비회원 name
+     *          comment_password    : 비회원 password
+     *          comment_content     : 댓글 내용
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/commentWrite")
+    public Map<String, Object> commentWrite(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+        
+        // 댓글 작성
+
+        return resultMap;
+    }
+
+    /**
      * 2023/03/28 // 심규영 // 글 수정 post mapping
      *      data 들어오는 값
      *          gell_num        : 겔러리 번호
@@ -317,12 +339,12 @@ public class BoardController {
         
         // modify_uid의 값이 있을 경우 작성자와 수정자의 uid 일치 확인
         if(!data.get("modify_uid").equals("") && myUserDetails != null) {
-            if(data.get("modify_uid") != myUserDetails.getUser().getMember_uid()) {
+            if(!data.get("modify_uid").equals(myUserDetails.getUser().getMember_uid())) {
                 resultMap.put("result", -1);
                 return resultMap;
             }
         }
-        
+
         // 게시글 업데이트
         int result = service.updateArticle(data);
         resultMap.put("result", result);
@@ -338,16 +360,22 @@ public class BoardController {
      *          id              : 갤러리 주소
      *          grade           : 갤러리 종류
      *          article_uid     : 게시글 작성자 uid
+     *          
+     *      data 에 넣는 값
+     *          delete_uid      : 삭제하는 유저 uid
      */
     @PostMapping("gall/board/articleDelete")
     public String articleDelete(@RequestParam Map<String,String> data,
                                 @AuthenticationPrincipal MyUserDetails myUserDetails) {
         // modify_uid의 값이 있을 경우 작성자와 수정자의 uid 일치 확인
         if(!data.get("article_uid").equals("") && myUserDetails != null) {
-            if(data.get("article_uid") != myUserDetails.getUser().getMember_uid()) {
+            if(!data.get("article_uid").equals(myUserDetails.getUser().getMember_uid())) {
                 return "redirect:/error/wrongURL";
             }
         }
+
+        // data 넣기
+        if(myUserDetails != null) data.put("delete_uid", myUserDetails.getUser().getMember_uid());
 
         // 게시글 삭제
         service.updateDeleteArticle(data);
