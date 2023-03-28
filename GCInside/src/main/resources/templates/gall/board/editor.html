@@ -15,9 +15,14 @@
         <div id="editorjs"></div>
 
         <th:block th:if="${articleVO} != null">
-            <script>
+            <script th:if="${data.type} == 'modify'">
                 window.addEventListener('load', function(){
-                        editor_data_load([(${articleVO.article_content})])
+                        editor_data_load1([(${articleVO.article_content})])
+                });
+            </script>
+            <script th:if="${data.type} == 'view'">
+                window.addEventListener('load', function(){
+                        editor_data_load2([(${articleVO.article_content})])
                 });
             </script>
         </th:block>

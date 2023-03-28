@@ -103,5 +103,20 @@ public interface BoardDAO {
     public int selectNonmemberCheck(Map<String, String> data);
 
     // upload
+
+    /**
+     * 2023/03/28 // 심규영 // 글 수정 기능
+     *      data 들어오는 값
+     *          gell_num        : 겔러리 번호
+     *          modify_no       : 수정 하는 게시글 번호
+     *          modify_uid      : 수정 하는 게시글 작성자 아이디 ("")
+     *          article_title   : 수정 하는 게시글 제목
+     *          content         : 수정 하는 게시글 내용
+     *          sub_cate        : 말머리(null)
+     * @param data
+     * @return
+     */
+    public int updateArticle(Map<String,String> data);
+
     // delete
 }

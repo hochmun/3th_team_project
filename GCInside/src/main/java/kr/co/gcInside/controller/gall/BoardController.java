@@ -179,7 +179,8 @@ public class BoardController {
     /**
      * 2023/03/16 // 심규영 // 글 작성 에디터 iframe 주소
      *      들어오는 값
-     *          no
+     *          no      : 게시물 번호
+     *          type    : 페이지 타입(글 보기, 글 수정)
      * @return
      */
     @GetMapping("gall/board/editor")
@@ -189,6 +190,7 @@ public class BoardController {
         if(data.get("no") != null) articleVO = service.selectArticleEditor(data.get("no"));
 
         model.addAttribute("articleVO", articleVO);
+        model.addAttribute("data", data);
 
         return "gall/board/editor";
     }
@@ -226,6 +228,40 @@ public class BoardController {
         // 게시글 작성
         data.put("article_regip", req.getRemoteAddr());
         result = service.insertArticle(data);
+        resultMap.put("result", result);
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/03/28 // 심규영 // 글 수정 post mapping
+     *      data 들어오는 값
+     *          gell_num        : 겔러리 번호
+     *          modify_no       : 수정 하는 게시글 번호
+     *          modify_uid      : 수정 하는 게시글 작성자 아이디 ("")
+     *          article_title   : 수정 하는 게시글 제목
+     *          content         : 수정 하는 게시글 내용
+     *          sub_cate        : 말머리(null)
+     *          
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/articleModify")
+    public Map<String, Object> articleModify(@RequestBody Map<String,String> data,
+                                             @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        Map<String, Object> resultMap = new HashMap<>();
+        
+        // modify_uid의 값이 있을 경우 작성자와 수정자의 uid 일치 확인
+        if(!data.get("modify_uid").equals("") && myUserDetails != null) {
+            if(data.get("modify_uid") != myUserDetails.getUser().getMember_uid()) {
+                resultMap.put("result", -1);
+                return resultMap;
+            }
+        }
+        
+        // 게시글 업데이트
+        int result = service.updateArticle(data);
         resultMap.put("result", result);
 
         return resultMap;
