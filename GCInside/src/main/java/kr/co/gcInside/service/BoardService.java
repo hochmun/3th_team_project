@@ -3,6 +3,7 @@ package kr.co.gcInside.service;
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.utill.PagingUtil;
+import kr.co.gcInside.vo.Gell_commentVO;
 import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
@@ -34,6 +35,14 @@ public class BoardService {
      */
     public int insertArticle(Map<String, String> data) {
         return dao.insertArticle(data);
+    }
+
+    /**
+     * 2023/03/28 // 심규영 // 댓글 작성 DAO
+     * @return
+     */
+    public int insertComment(Gell_commentVO vo) {
+        return dao.insertComment(vo);
     }
 
     // read
@@ -133,6 +142,15 @@ public class BoardService {
         return dao.selectNonmemberCheck(data);
     }
 
+    /**
+     * 2023/03/29 // 심규영 // 게시물 댓글 불러오기 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_commentVO> selectComments(int article_num) {
+        return dao.selectComments(article_num);
+    }
+
     // upload
 
     /**
@@ -164,6 +182,15 @@ public class BoardService {
      */
     public int updateDeleteArticle(Map<String, String> data) {
         return dao.updateDeleteArticle(data);
+    }
+
+    /**
+     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능
+     * @param article_num
+     * @return
+     */
+    public int updateArticleCommentCount(String article_num) {
+        return dao.updateArticleCommentCount(article_num);
     }
 
     // delete
@@ -238,5 +265,38 @@ public class BoardService {
         else pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), count);
         
         return pagingDTO;
+    }
+
+    /**
+     * 2023/03/29 // 심규영 // VO에 담기
+     * <pre>     data 들어오는 값
+     *          no                  : 게시물 번호
+     *          login_info          : 로그인 상태
+     *          comment_uid         : 회원 uid
+     *          comment_name        : 비회원 name
+     *          comment_password    : 비회원 password
+     *          comment_content     : 댓글 내용
+     *
+     *      data 에 넣는 값
+     *          regip               : 작성자 주소</pre>
+     * @param data
+     * @return
+     */
+    public Gell_commentVO commentVOInsert(Map<String,String> data) {
+        Gell_commentVO commentVO = new Gell_commentVO();
+
+        commentVO.setComment_article_num(Integer.parseInt(data.get("no")));
+        commentVO.setComment_content(data.get("comment_content"));
+        commentVO.setComment_regip(data.get("regip"));
+        if(data.get("login_info").equals("true")) {
+            commentVO.setComment_login_status(0);
+            commentVO.setComment_uid(data.get("comment_uid"));
+        } else {
+            commentVO.setComment_login_status(1);
+            commentVO.setComment_nonmember_name(data.get("comment_name"));
+            commentVO.setComment_nonmember_password(data.get("comment_password"));
+        }
+
+        return commentVO;
     }
 }

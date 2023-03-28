@@ -8,6 +8,7 @@
 
   <title>[[${galleryVO.gell_name}]] 갤러리 - 커뮤니티 포털 사이트</title>
   <link rel="stylesheet" th:href="@{/css/gall/editor.css}">
+  <script type="text/javascript" th:src="@{/js/gall/comment.js}"></script>
 </head>
 <body>
   <div class="gcwrap width1160 list_wrap">
@@ -479,19 +480,19 @@
 
                     <!-- 댓글 영역 상단 -->
                     <!-- id의 뒤쪽 숫자는 게시글의 번호 -->
-                    <div id="comment_wrap_10" class="comment_wrap" data-article-no="10">
+                    <div th:id="|comment_wrap_${articleVO.article_num}|" class="comment_wrap show" th:data-article-no="${articleVO.article_num}">
 
                       <!-- 댓글 개수 / 댓글 상단 부분 -->
                       <div class="comment_count">
                         <div class="fl num_box">
                           <!-- 겔러리 관리자 일 경우 체크 박스 출력 -->
-                          <span class="checkbox">
+                          <span class="checkbox" style="display:none;">
                             <!-- 전체 글 선택 -->
                             <input type="checkbox" id="comment_chk_all"><em class="checkmark" style="top: 5px;"></em>
                           </span>
 
                           <!-- 댓글 갯수 -->
-                          전체 댓글 <em class="font_red"><span id="comment_total">0</span></em>개
+                          전체 댓글 <em class="font_red"><span id="comment_total" th:text="${articleVO.article_comment_count}">0</span></em>개
 
                           <!-- 댓글 나열 선택 박스 -->
                           <div class="select_box array_latest">
@@ -524,95 +525,104 @@
                           <button type="button" class="btn_cmt_refresh" data-no="5" data-sort="">새로고침</button>
                         </div>
                       </div>
-                    </div>
 
-                    <!-- 댓글 영역 본문 -->
-                    <div class="comment_box">
-                      <!-- 댓글 목록 -->
-                      <ul class="cmt_list">
-                        <!-- id의 번호는 댓글 번호 -->
-                        <li id="comment_li_20000" class="ub-content">
-                          <div class="cmt_info clear" data-no="20000" data-article-no="10">
-                            <div class="cmt_nickbox">
-                              <span class="gall_writer ub-writer" data-nick="ㅇㅇ" data-uid="" data-ip="">
-                                <span class="nickname">
-                                  <em title="ㅇㅇ">ㅇㅇ</em>
-                                  <span class="ip">(00.00)</span>
+                      <!-- 댓글 영역 본문 -->
+                      <div class="comment_box">
+                        <!-- 댓글 목록 -->
+                        <ul class="cmt_list">
+                          <!-- id의 번호는 댓글 번호 -->
+                          <th:block th:each="commentVO:${commentVOS}">
+                            <li th:id="|comment_li_${commentVO.comment_num}|" class="ub-content">
+                              <div class="cmt_info clear" th:data-no="${commentVO.comment_num}" th:data-article-no="${commentVO.comment_article_num}">
+                                <div class="cmt_nickbox">
+                                <span th:if="${commentVO.comment_login_status} == 1" class="gall_writer ub-writer"
+                                      th:data-name="${commentVO.comment_nonmember_name}"
+                                      th:data-ip="${commentVO.comment_regip}">
+                                  <span class="nickname">
+                                    <em th:title="${commentVO.comment_nonmember_name}" th:text="${commentVO.comment_nonmember_name}">ㅇㅇ</em>
+                                    <span class="ip" th:text="|(${commentVO.comment_regip_sub})|">(00.00)</span>
+                                  </span>
                                 </span>
-                              </span>
-                            </div>
 
-                            <div class="clear cmt_txtbox btn_reply_write_all">
-                              <p class="usertxt ub-word">zzzzz</p>
-                            </div>
+                                  <span th:if="${commentVO.comment_login_status} == 0" class="gall_writer ub-writer"
+                                        th:data-nick="${commentVO.member_nick}"
+                                        th:data-uid="${commentVO.comment_uid}">
+                                  <span class="nickname in" th:title="${commentVO.member_nick}">
+                                    <em th:text="${commentVO.member_nick}">ㅇㅇ</em>
+                                  </span>
+                                  <a class="writer_nikcon">
+                                    <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="cursor:pointer;"
+                                         th:title="|${commentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
+                                  </a>
+                                </span>
+                                </div>
 
-                            <div class="fr clear">
-                              <span class="date_time">03.20 00:00:00</span>
+                                <div class="clear cmt_txtbox btn_reply_write_all">
+                                  <p class="usertxt ub-word" th:text="${commentVO.comment_content}">zzzzz</p>
+                                </div>
 
-                              <!--
-                                  type : cmt:댓글, rcmt:답글
-                                  no : 댓글 번호
-                                  my : N:본인거 아님,Y:본인 거
-                              -->
-                              <div class="cmt_mdf_del" data-type="cmt" re-no="1" data-my="N" data-article-no="10" data-pwd-pop="N">
-                                <button type="button" class="btn_cmt_delete">삭제</button>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
+                                <div class="fr clear">
+                                  <span class="date_time" th:text="${commentVO.comment_rdate}">03.20 00:00:00</span>
 
-                        <!-- 답글 형식 -->
-                        <li>
-                          <div class="reply show">
-                            <div class="reply_box">
-                              <ul class="reply_list">
-                                <li id="reply_li_20001" class="ub-content">
-                                  <div class="reply_info clear" data-no="20001">
-                                    <div class="cmt_nickbox">
-                                      <span class="gall_writer ub-writer" data-nick="다스마스터" data-uid="gofyd889" data-ip="">
-                                        <span class="nickname in">
-                                          <em title="다스마스터">다스마스터</em>
-                                          <span class="ip">(00.00)</span>
-                                        </span>
-                                      </span>
-                                    </div>
-
-                                    <div class="clear cmt_txtbox">
-                                      <p class="usertxt ub-word">zzzzz</p>
-                                    </div>
-
-                                    <div class="fr clear">
-                                      <span class="date_time">03.20 00:00:00</span>
-
-                                      <!--
-                                          type : cmt:댓글, rcmt:답글
-                                          no : 댓글 번호
-                                          my : N:본인거 아님,Y:본인 거
-                                      -->
-                                      <div class="cmt_mdf_del" data-type="cmt" re-no="1" data-my="N" data-article-no="10" data-pwd-pop="N">
-                                        <button type="button" class="btn_cmt_delete">삭제</button>
-                                      </div>
-                                    </div>
+                                  <div class="cmt_mdf_del" data-type="cmt" th:data-comment_no="${commentVO.comment_num}" th:data-article-no="${commentVO.comment_article_num}">
+                                    <button type="button" class="btn_cmt_delete">삭제</button>
                                   </div>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="reply show">
+                                <div class="reply_box" style="display:none;">
+                                  <ul class="reply_list">
+                                    <!--
+                                    <li id="reply_li_20001" class="ub-content">
+                                      <div class="reply_info clear" data-no="20001">
+                                        <div class="cmt_nickbox">
+                                          <span class="gall_writer ub-writer" data-nick="다스마스터" data-uid="gofyd889" data-ip="">
+                                            <span class="nickname in">
+                                              <em title="다스마스터">다스마스터</em>
+                                              <span class="ip">(00.00)</span>
+                                            </span>
+                                          </span>
+                                        </div>
 
-                      <!-- 댓글 페이징 -->
-                      <div class="bottom_paging_box iconpaging">
-                        <!-- 관리자 버튼 박스 -->
-                        <div class="useradmin_btnbox"></div>
+                                        <div class="clear cmt_txtbox">
+                                          <p class="usertxt ub-word">zzzzz</p>
+                                        </div>
 
-                        <!-- 페이징 -->
-                        <div class="cmt_paging"></div>
+                                        <div class="fr clear">
+                                          <span class="date_time">03.20 00:00:00</span>
 
-                        <!-- 본문보기 / 댓글 보기 설정 / 새로고침 -->
-                        <div class="cmt_inner"></div>
+                                          <div class="cmt_mdf_del" data-type="cmt" re-no="1" data-my="N" data-article-no="10" data-pwd-pop="N">
+                                            <button type="button" class="btn_cmt_delete">삭제</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </li>
+                                    -->
+                                  </ul>
+                                </div>
+                              </div>
+                            </li>
+                          </th:block>
+
+                        </ul>
+
+                        <!-- 댓글 페이징 -->
+                        <div class="bottom_paging_box iconpaging">
+                          <!-- 관리자 버튼 박스 -->
+                          <div class="useradmin_btnbox"></div>
+
+                          <!-- 페이징 -->
+                          <div class="cmt_paging"></div>
+
+                          <!-- 본문보기 / 댓글 보기 설정 / 새로고침 -->
+                          <div class="cmt_inner"></div>
+                        </div>
                       </div>
                     </div>
+
+
 
                     <!-- 댓글 작성 -->
                     <!-- 코멘트 입력 -->
@@ -1124,3 +1134,61 @@
   </div>
 </body>
 </html>
+<li id="comment_sample" class="ub-content" style="display:none;">
+  <div class="cmt_info clear" data-no="" data-article-no="">
+    <div class="cmt_nickbox">
+      <span class="gall_writer ub-writer" data-name="" data-ip="">
+        <span class="nickname" title="">
+          <em></em>
+          <span class="ip"></span>
+        </span>
+        <a class="writer_nikcon">
+          <img src="/GCInside/img/nik.gif" border="0" width="12" height="11" style="cursor:pointer;"title="">
+        </a>
+      </span>
+    </div>
+
+    <div class="clear cmt_txtbox btn_reply_write_all">
+      <p class="usertxt ub-word"></p>
+    </div>
+
+    <div class="fr clear">
+      <span class="date_time"></span>
+
+      <div class="cmt_mdf_del" data-type="cmt" data-comment_no="" data-article-no="">
+        <button type="button" class="btn_cmt_delete">삭제</button>
+      </div>
+    </div>
+  </div>
+</li>
+<li id="re_comment_sample" style="display:none;">
+  <div class="reply show">
+    <div class="reply_box">
+      <ul class="reply_list">
+        <li id="reply_li_" class="ub-content">
+          <div class="reply_info clear" data-no="">
+            <div class="cmt_nickbox">
+              <span class="gall_writer ub-writer" data-nick="" data-uid="" data-ip="">
+                <span class="nickname">
+                  <em title=""></em>
+                  <span class="ip"></span>
+                </span>
+              </span>
+            </div>
+
+            <div class="clear cmt_txtbox">
+              <p class="usertxt ub-word"></p>
+            </div>
+
+            <div class="fr clear">
+              <span class="date_time"></span>
+              <div class="cmt_mdf_del">
+                <button type="button" class="btn_cmt_delete">삭제</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</li>

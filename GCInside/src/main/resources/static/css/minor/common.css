@@ -1490,6 +1490,7 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .comment_box .bottom_paging_box .cmt_inner{position:absolute;right:0;top:0;margin-top:23px;font-size:0}/*201217*/
 .comment_box .bottom_paging_box .useradmin_btnbox{position:absolute;left:0;top:0;margin-top:10px}
 .comment_box .bottom_paging_box .cmt_inner .icon_cmt_more{margin-left:4px}
+.comment_wrap .bottom_paging_box{border-top:1px #eee solid}
 
 /*댓글*/
 .comment_wrap{overflow:hidden;width:100%;height:38px;margin-top:15px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333}
@@ -1550,7 +1551,6 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .reply .comment_dccon{padding-left:16px}
 .reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
 background:url(/GCInside/img/sp_img.png) no-repeat;background-position:-283px -200px}
-.album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
 .comment_box .reply{overflow:hidden;height:0}
 .reply_box{margin:0px 0 12px 30px;padding:0px 0 0;border:1px solid #ddd;background:#fafafa;border-width:0  1px 1px 1px}
 li:first-child .reply_box{margin:0px 0 0px 30px}
@@ -1558,3 +1558,71 @@ li:first-child .reply_box{margin:0px 0 0px 30px}
 .reply_list li:first-child{margin-top:0px}
 
 .ip{font-family:tahoma,sans-serif;font-size:11px;color:#999}
+
+/*댓글*/
+.comment_wrap{overflow:hidden;width:100%;height:38px;margin-top:15px;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333}
+.comment_wrap.show,.gall_listwrap.album .comment_wrap.show,.comment_box .reply.show{/**/overflow:visible;height:100%}
+.comment_box .reply.show:after{clear:both;display:block;visibility:hidden;content:""}
+.icon_red_show,.icon_red_hide{display:inline-block;width:9px;height:5px;margin-left:5px}
+.icon_red_show{background-position:-128px -50px;vertical-align:1px}
+.icon_red_hide{background-position:-121px 0;vertical-align:2px}
+.gall_listwrap.album .comment_wrap{height:38px;margin-top:0}
+.comment_count{height:38px;line-height:38px;font-weight:bold}
+.comment_count .checkbox input[type="checkbox"]{top:11px}
+.comment_count .checkbox input + .checkmark{top:11px}
+.comment_count .checkbox input:checked + .checkmark{top:11px}
+.comment_count:after{clear:both;display:block;visibility:hidden;content:""}
+.cmt_bg_box{padding:0 15px;background:#f3f3f3;border:1px solid #eee;border-width:1px 0 1px 0}
+.btn_setreply{overflow:hidden;height:21px;margin:-1px 0 0 71px}
+.icon_setreply{display:inline-block;width:21px;height:21px;;background-position:-143px -275px}
+.reply .cmt_bg_box{border:1px solid #ddd;border-width:1px 0 0px 0}
+.cmt_bg_box.comment_more,.cmt_bg_box.reply_more{padding:0;text-align:center}
+.bnt_comment_more,.bnt_reply_more{width:100%;height:38px;color:#555;font-weight:bold;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px}
+.icon_comment_more{display:inline-block;width:11px;height:6px;margin-left:7px;background-position:-115px -50px;vertical-align:1px}
+.bnt_reply_more.close .icon_comment_more{background-position:-102px -50px}
+.btn_cmt_close,.btn_cmt_close span,.btn_cmt_refresh,.btn_cmt_open, .comment_wrap .contgo{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","맑은 고딕",arial,굴림,Gulim,sans-serif;font-size:13px;color:#333;font-weight:bold;outline:none}
+.comment_count > .fr{font-size:0}
+.comment_count > .fr > *::before, .bottom_paging_box > .cmt_inner  > *::before, .ltrwrap .usertxt span::before
+{content:"";display:inline-block;width:1px;height:12px;margin:0 10px 0 9px;background:#ccc;vertical-align:-1px}
+.comment_count > .fr > *:first-child::before, .bottom_paging_box > .cmt_inner  > *:first-child::before, .ltrwrap .usertxt span:first-child::before{display: none}
+.bottom_paging_box > .cmt_inner  > .btn_cmt_close span{margin-left:0}
+.comment_count > .fr > .btn_cmt_refresh::before, .bottom_paging_box > .cmt_inner  > .btn_cmt_refresh::before{margin-left:11px}
+.comment_wrap .contgo{vertical-align:middle;line-height:15px}
+.comment_wrap .bottom_paging_box .contgo{vertical-align:middle;line-height:15px}
+.comment_wrap .contgo:hover{text-decoration:none}
+
+
+.icon_cmt_more{display:inline-block;width:9px;height:5px;background-position:-115px -43px;margin-left:4px;vertical-align:2px}
+.btn_cmt_close .icon_cmt_more{background-position:-84px -52px}
+.btn_cmt_refresh .icon_cmt_more{vertical-align:2px}
+.cmt_info{position:relative;padding:9px 12px 7px;border-top:1px solid #eee}
+.view_comment .cmt_info{padding:9px 3px 7px 3px}
+
+.dory .cmt_info{padding:12px 2px 10px 2px}
+.reply_list li.dory .cmt_txtbox{margin:3px 0}
+.album .dory .cmt_info{padding:12px 12px 10px}
+.cmt_list li:first-child .cmt_info{border-top:none}
+.cmt_bg_box .cmt_info{padding-top:19px}
+.cmt_txtbox{float:left}
+.cmt_info p{line-height:20px}
+.usertxt,.comment_wrap .comment_dccon{width:820px;cursor:pointer}
+.usertxt{float:left;line-height:20px;cursor:pointer;word-break:break-all;overflow:hidden}
+.album .usertxt,.album .comment_wrap .comment_dccon{max-width:518px}
+.event_wrap .usertxt{cursor:default}
+.uservoice{margin-top:6px}
+.date_time{float:left;font-size:12px;color:#999;vertical-align:top;margin-top:1px}
+.dory .date_time{display:none}
+.reply_info{position:relative}
+.cmt_list li:first-child .reply{padding:12px 0;border-top:none}
+.cmt_list li:first-child .reply li:first-child{margin-top:0}
+.reply_info .usertxt,.del_reply,.reply_info .comment_dccon{position:relative;width:774px;padding-left:16px;cursor:default}
+.reply .comment_dccon{padding-left:16px}
+.reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
+background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat;background-position:-283px -200px}
+.del_reply{color:#999;line-height:20px;padding-left:0;float:left}
+.album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
+.comment_box .reply{overflow:hidden;height:0}
+.reply_box{margin:0px 0 12px 30px;padding:0px 0 0;border:1px solid #ddd;background:#fafafa;border-width:0  1px 1px 1px}
+li:first-child .reply_box{margin:0px 0 0px 30px}
+.reply_list li{padding:9px 12px 7px;border-top:1px solid #ddd}
+.reply_list li:first-child{margin-top:0px}

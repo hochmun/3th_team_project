@@ -1,5 +1,6 @@
 package kr.co.gcInside.dao;
 
+import kr.co.gcInside.vo.Gell_commentVO;
 import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
@@ -24,6 +25,12 @@ public interface BoardDAO {
      * @return
      */
     public int insertArticle(Map<String, String> data);
+
+    /**
+     * 2023/03/28 // 심규영 // 댓글 작성 DAO
+     * @return
+     */
+    public int insertComment(Gell_commentVO vo);
 
     // read
 
@@ -102,6 +109,13 @@ public interface BoardDAO {
      */
     public int selectNonmemberCheck(Map<String, String> data);
 
+    /**
+     * 2023/03/29 // 심규영 // 게시물 댓글 불러오기 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_commentVO> selectComments(@Param("article_num") int article_num);
+
     // upload
 
     /**
@@ -133,6 +147,13 @@ public interface BoardDAO {
      * @return
      */
     public int updateDeleteArticle(Map<String, String> data);
+
+    /**
+     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능
+     * @param article_num
+     * @return
+     */
+    public int updateArticleCommentCount(@Param("article_num") String article_num);
 
     // delete
 }
