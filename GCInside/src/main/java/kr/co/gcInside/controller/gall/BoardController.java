@@ -163,6 +163,24 @@ public class BoardController {
             session.removeAttribute("nonmemberPassCheck");
             model.addAttribute("passCheck", passCheck);
         }
+        
+        // 페이지 타입이 글 보기 일 경우
+        if(type.equals("view")) {
+            // data에 개념글 추천수 개수 설정 넣기
+            data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
+
+            // 페이징 처리
+            PagingDTO pagingDTO = service.listsPaging(data);
+
+            // 게시글 정보 가져오기
+            data.put("start", pagingDTO.getStart()+"");
+            data.put("gell_num", galleryVO.getGell_num()+"");
+            List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
+            
+            // 모델
+           model.addAttribute("gellArticleVOS", gellArticleVOS);
+           model.addAttribute("pagingDTO", pagingDTO);
+        }
 
         // 페이지 종류 전송
         model.addAttribute("type", type);
