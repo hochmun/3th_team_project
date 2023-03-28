@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
  * 2023.03.27 // 라성준 // 컨트롤러 생성
  */
 @Controller
-public class Mindex {
+public class MainGallController {
 
     /**
      * 2023.03.27 // 라성준 //
      * 갤러리 메인화면 맵핑
      */
-    @GetMapping(value = {"/mini/","m/index"})
+    @GetMapping(value = {"m/","m/index"})
     public String m() {
         return "gall/m/index";
     }

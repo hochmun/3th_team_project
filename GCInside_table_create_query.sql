@@ -15,6 +15,19 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_member` (
   `member_regip` VARCHAR(100) NOT NULL,
   `member_status` TINYINT NOT NULL DEFAULT 0,
   `member_rdate` DATETIME NOT NULL,
+
+## 2023/03/28 // 심규영 // 갤러리 조회수 기록 테이블 생성 쿼리문
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_hit_log` (
+  `hit_gell_num` INT NOT NULL,
+  `hit_rdate` DATETIME NOT NULL,
+  PRIMARY KEY (`hit_gell_num`),
+  INDEX `rdate` (`hit_rdate` DESC) VISIBLE,
+  CONSTRAINT `fk_gc_gell_hit_log_gc_gell1`
+    FOREIGN KEY (`hit_gell_num`)
+    REFERENCES `GC_Inside`.`gc_gell` (`gell_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
   `member_wdate` DATETIME NULL,
   `member_sanctions_rdate` DATETIME NULL,
   `member_sanctions_wdate` DATETIME NULL,
@@ -406,6 +419,19 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_sub_m_power` (
   CONSTRAINT `fk_gc_gell_sub_m_power_gc_member1`
     FOREIGN KEY (`sub_m_p_uid`)
     REFERENCES `GC_Inside`.`gc_member` (`member_uid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+## 2023/03/28 // 심규영 // 갤러리 조회수 기록 테이블 생성 쿼리문
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_hit_log` (
+  `hit_gell_num` INT NOT NULL,
+  `hit_rdate` DATETIME NOT NULL,
+  PRIMARY KEY (`hit_gell_num`),
+  INDEX `rdate` (`hit_rdate` DESC),
+  CONSTRAINT `fk_gc_gell_hit_log_gc_gell1`
+    FOREIGN KEY (`hit_gell_num`)
+    REFERENCES `GC_Inside`.`gc_gell` (`gell_num`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
