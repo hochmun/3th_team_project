@@ -12,8 +12,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.ConcurrentSessionFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 
 @EnableWebSecurity
 public class SecurityConfig {
@@ -33,6 +39,12 @@ public class SecurityConfig {
 
 		// 전체 접근 가능
 		http.authorizeRequests().antMatchers("/index").permitAll();
+		
+		// 로그인된 사용자는 member/login페이지 접근불가
+		http.authorizeRequests().antMatchers("/member/login").anonymous();
+		
+		// 로그인된 사용자가 member/login페이지 접근시 accessDeniedPage 주소로 이동시킴 (포워드)
+		http.exceptionHandling().accessDeniedPage("/index");
 
 		//iframe 동일 도메인 접근 허용
 		http.headers().frameOptions().sameOrigin();
@@ -50,10 +62,11 @@ public class SecurityConfig {
 		http.csrf().disable();
 
 		// 로그아웃 설정
-		/* 기존 방식.invalidateHttpSession,.logoutRequestMatcher(New AntPath...)
-		이 되지않아서 멤버컨트롤러에서 임시해결 */
 		http.logout()
-				.logoutUrl("/logout");
+		.invalidateHttpSession(true) // 세션 삭제
+		.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+		.logoutSuccessUrl("/index") //로그아웃성공시 이동할 url
+		.deleteCookies("JSESSIONID");
 
 		http.userDetailsService(service);
 
@@ -76,4 +89,5 @@ public class SecurityConfig {
 			SecurityContextHolder.clearContext();
 		});
 	}
+
 }
