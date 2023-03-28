@@ -10,7 +10,7 @@ $(()=>{
     })
 
     // 비밀 번호 입력 확인 버튼 클릭시
-    $('.btn_ok').click(function(e){
+    $('#btn_ok').click(function(e){
 		e.preventDefault();
 
         const id = $('#nm_id').val();
@@ -115,4 +115,12 @@ const goModify = function($this) {
     const id = $this.data("id");
     const no = $this.data("no");
     location.href = '/GCInside/'+grade+'/board/modify/?id='+id+'&no='+no;
+}
+
+// 페이지 이동 함수
+const goDelete = function($this) {
+    const grade = $this.data("grade");
+    const id = $this.data("id");
+    const no = $this.data("no");
+    location.href = '/GCInside/'+grade+'/board/delete/?id='+id+'&no='+no;
 }

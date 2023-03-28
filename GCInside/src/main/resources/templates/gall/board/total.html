@@ -354,7 +354,7 @@
                             <input class="pw_inquiry" id="nm_password" name="nm_password" type="password" title="비밀번호 입력">
                             <div class="btn_box">
                               <button type="button" onclick="javascript:history.back();" class="btn_grey small">취소</button>
-                              <button type="button" class="btn_blue small btn_ok">확인</button>
+                              <button type="button" class="btn_blue small btn_ok" id="btn_ok">확인</button>
                             </div>
                           </div>
                         </div>
@@ -674,7 +674,7 @@
                             <th:block th:if="${authorize.isAuthenticated}"><!-- 로그인 인증 을 받은 경우 -->
                               <th:block th:if="${articleVO.article_uid eq user.member_uid}"><!-- 글 작성자와 로그인 유저 비교 같은 경우 -->
                                 <button type="button" class="btn_grey modify" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goModify($(this));">수정</button>
-                                <button type="button" class="btn_grey cancle">삭제</button>
+                                <button type="button" class="btn_grey cancle" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goDelete($(this));">삭제</button>
                               </th:block>
                             </th:block>
                           </th:block>
@@ -682,7 +682,7 @@
                           <!-- 해당 글이 비회원 유저의 작성 글일 경우 -->
                           <th:block th:if="${articleVO.article_login_status eq 1}"><!-- 그냥 보여 줌 -->
                             <button type="button" class="btn_grey modify" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goModify($(this));">수정</button>
-                            <button type="button" class="btn_grey cancle">삭제</button>
+                            <button type="button" class="btn_grey cancle" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goDelete($(this));">삭제</button>
                           </th:block>
 
                           <button type="button" class="btn_blue write">글쓰기</button>

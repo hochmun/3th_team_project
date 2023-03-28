@@ -151,6 +151,21 @@ public class BoardService {
         return dao.updateArticle(data);
     }
 
+    /**
+     * 2023/03/28 // 심규영 // 글 삭제 기능
+     *      data 에 들어오는 값
+     *          gell_num        : 갤러리 번호
+     *          article_num     : 게시물 번호
+     *          id              : 갤러리 주소
+     *          grade           : 갤러리 종류
+     *          article_uid     : 게시글 작성자 uid
+     * @param data
+     * @return
+     */
+    public int updateDeleteArticle(Map<String, String> data) {
+        return dao.updateDeleteArticle(data);
+    }
+
     // delete
     // service
 

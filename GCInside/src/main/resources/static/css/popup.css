@@ -402,3 +402,13 @@
 .approval-popup button.reject {
     background-color: #f44336;
 }
+
+/*회원 글 삭제 로봇*/
+.empty_pagewrap{width:400px;margin:125px auto 125px}
+.empty_pagewrap .pop_wrap{position:static}
+/*로봇*/
+.pop_content.robot{min-width:300px;font-size:14px;color:#29367c;line-height:24px;text-align:center;padding:25px}
+.pop_wrap .robot .btn_box{border-top:none;padding:15px 0 0;margin-left:0}
+.robot_framebox{width:302px;margin:25px auto 0;line-height:100%}
+
+.pop_wrap.type5{border:3px solid #29367c}
