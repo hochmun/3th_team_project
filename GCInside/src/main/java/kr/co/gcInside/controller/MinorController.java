@@ -37,17 +37,17 @@ public class MinorController{
     public String minorindex(Model model){
         List<galleryVO> hot_mgall = service.selecthotmgall();
         List<galleryVO> new_mgall = service.selectnewmgall();
-        //List<galleryVO> mgall = service.selectminorgall();
+        List<galleryVO> mgall = service.selectminorgall();
 
-        //String mgallcate1cnt = service.mgallcate1cnt();
-        //String mgallcate2cnt = service.mgallcate2cnt();
+        String mgallcate1cnt = service.mgallcate1cnt();
+        String mgallcate2cnt = service.mgallcate2cnt();
 
-        //model.addAttribute("cate1cnt",mgallcate1cnt);
-        //model.addAttribute("cate2cnt",mgallcate2cnt);
+        model.addAttribute("cate1cnt",mgallcate1cnt);
+        model.addAttribute("cate2cnt",mgallcate2cnt);
 
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
-        //model.addAttribute("mgall",mgall);
+        model.addAttribute("mgall",mgall);
         return "gall/mgall/index";
     }
     @GetMapping("mgall/create")
