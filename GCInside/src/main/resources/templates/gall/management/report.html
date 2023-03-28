@@ -1,25 +1,8 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/popup.css">
-    <link rel="stylesheet" href="/css/basic.css">
-    <link rel="stylesheet" href="/css/management/common.css">
-    <link rel="stylesheet" href="/css/management/minor.css">
-    <link rel="stylesheet" href="/css/management/research.css">
-    <link rel="stylesheet" href="/css/management/contents.css">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.css"></script>
-
-    <script type="text/javascript" src="/js/navigation.js"></script>
-    <script type="text/javascript" src="/js/management/common.js"></script>
-    <script type="text/javascript" src="/js/lately_visit_new.js"></script>
-    <script type="text/javascript" src="/js/management/ctr_cookie.js"></script>
-    <script type="text/javascript" src="/js/management/managements.js"></script>
+    <!-- 헤드영역 -->
+    <th:block th:replace="~{fragment/head_fragment::managementHead}"></th:block>
 </head>
 <body>
     <div class="gcwrap">
@@ -31,7 +14,7 @@
                 <!-- 메인 로고 -->
                 <h1 class="gc_logo">
                     <div>
-                        <img src="/img/gcinside_main_logo.png" alt="겔시인사이드">
+                        <img th:src="@{/img/gcinside_main_logo.png}" alt="겔시인사이드">
                         <a class="_blank" href="#"></a>
                         <a class="_top" href="#"></a>
                     </div>
@@ -57,38 +40,7 @@
             </div>
         </header>
         <!-- gnb -->
-        <div class="gnb_bar">
-            <nav class="gnb clear">
-                <ul class="gnb_list clear">
-                    <li>
-                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
-                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
-                        <!-- 2차메뉴 -->
-                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
-                            <span class="sp_img depth_bg"></span>
-                            <ul class="depth2_list" >
-                                <li><a href="#">게임</a></li>
-                                <li><a href="#">연예/방송</a></li>
-                                <li><a href="#">스포츠</a></li>
-                                <li><a href="#">교육/금융/IT</a></li>
-                                <li><a href="#">여행/음식/생물</a></li>
-                                <li><a href="#">취미/생활</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="#">마이너갤</a></li>
-                    <li><a href="#">미니갤</a></li>
-                </ul>
-
-                <!-- 어제 게시글, 댓글 등록 수 -->
-                <div class="gall_exposure">
-                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
-                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
-                    <div class="ltr"><a href="#">로터리 응모</a></div>
-                </div>
-
-            </nav>
-        </div>
+        <div th:replace="~{fragment/gnb_fragment::mainGnb}"></div>
 
         <!-- 최근 방문 탭 -->
         <div class="visit_bookmark">
@@ -140,13 +92,13 @@
                 <section id="left_cont_wrap"  class="left_content">
                     <h2 class="blind">왼쪽 컨텐츠 영역</h2>
                     <ul class="minor_uadmin_menu">
-                        <li><a href="/gall/management/index.html" class="">기본 설정</a></li>
-                        <li><a href="/gall/management/gallery.html" class="">갤러리 설정</a></li>
-                        <li><a href="/gall/management/block.html" class="">차단 목록 </a></li>
-                        <li><a href="/gall/management/delete.html" class="">삭제 목록 </a></li>
-                        <li><a href="/gall/management/submanager.html" class="">부매니저</a></li>
+                        <li><a th:href="@{/gall/management/index}" class="">기본 설정</a></li>
+                        <li><a th:href="@{/gall/management/gallery}" class="">갤러리 설정</a></li>
+                        <li><a th:href="@{/gall/management/block}" class="">차단 목록 </a></li>
+                        <li><a th:href="@{/gall/management/delete}" class="">삭제 목록 </a></li>
+                        <li><a th:href="@{/gall/management/submanager}" class="">부매니저</a></li>
                         <li><a href="#" onclick="alert('매니저 위임은 개설일 기준으로 7일 이후 가능합니다.');return false;" class=>매니저 위임</a></li>
-                        <li><a href="/gall/management/report.html" class="on">관리 기록</a></li>
+                        <li><a th:href="@{/gall/management/report}" class="on">관리 기록</a></li>
                     </ul>
                 </section>      
 
@@ -179,86 +131,86 @@
                             <!-- 210421 추가-->
                             <div class="fr" id="public_set_div">
                                 <button type="button" class="btn_grey smaller" onclick="get_public_set('setting')">관리 기록 공개 설정</button>
-                                <script id="public-set-tmpl" type="text/x-jquery-tmpl">
-                                    <div id="pop_public_set" class="pop_wrap type3 lightpurple" style="right:0;top:35px;">
-                                        <!-- pop_content mngsetbox submng -->
-                                        <div class="pop_content mngsetbox open_mngset">
-                                            <div class="pop_head bg"><h3>${public_set_txt} 공개 설정</h3></div>
-                                            <div class="pop_info">
-                                                <h4 class="">${public_set_txt}</h4>
-                                                <span class="radiobox">
-                                                    <input type="radio" id="public_set_y" name="public_set" value="1" {{if public_set == 1}}checked{{/if}} onclick="public_set_click(1)">
-                                                    <em class="checkmark"></em>
-                                                    <label for="setting_list">공개</label>
-                                                </span>
-                                                <span class="radiobox">
-                                                    <input type="radio" id="public_set_n" name="public_set" value="0" {{if public_set == 0}}checked{{/if}} onclick="public_set_click(0)">
-                                                    <em class="checkmark"></em>
-                                                    <label for="public_set_n">비공개</label>
-                                                </span>
-                                                <input type="hidden" id="prev_public_set" name="prev_public_set" value="${public_set }">
-                                            </div>
-                                            <!-- inner -->
-                                            <div class="inner">
-                                                <!-- 처리한 매니저 정보 -->
-                                                <div class="mng_option handler">
-                                                    <!-- box -->
-                                                    <div class="box">
-                                                        <h4>처리한 매니저 정보</h4>
-                                                        <span class="radiobox">
-                                                            <input type="radio" id="manager_set_y" name="manager_set" value="1" {{if manager_set == 1}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>
-                                                            <em class="checkmark"></em>
-                                                            <label for="manager_set_y">공개</label>
-                                                        </span>
-                                                        <span class="radiobox">
-                                                            <input type="radio" id="manager_set_n" name="manager_set" value="0" {{if manager_set == 0}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>
-                                                            <em class="checkmark"></em>
-                                                            <label for="manager_set_n">비공개</label>
-                                                        </span>
-                                                        <p class="tip"><em class="sp_img tip_deco999"></em>공개 선택 시, 처리한 매니저의 식별 코드와 닉네임이 공개됩니다.</p>
-                                                    </div>
-                                                    <!-- //box -->
-                                                </div>
-                                                <!-- //처리한 매니저 정보 -->
-                                                <!-- 공개 기간 범위 -->
-                                                <div class="mng_option period">
-                                                    <!-- box -->
-                                                    <div class="box">
-                                                        <h4>공개 기간 범위</h4>
-                                                        <span class="radiobox">
-                                                            <input type="radio" id="public_days_3" name="public_days" value="3" {{if public_days == 3}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>
-                                                            <em class="checkmark"></em>
-                                                            <label for="public_days_3">최근 3일</label>
-                                                        </span>
-                                    
-                                                        <span class="radiobox">
-                                                            <input type="radio" id="block_days_7" name="public_days" value="7" {{if public_days == 7}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>
-                                                            <em class="checkmark"></em>
-                                                            <label for="public_days_7">최근 7일</label>
-                                                        </span>
-                                    
-                                                        <span class="radiobox">
-                                                            <input type="radio" id="public_days_30" name="public_days" value="30" {{if public_days == 30}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>
-                                                            <em class="checkmark"></em>
-                                                            <label for="public_days_30">최근 30일</label>
-                                                        </span>
-                                                        <p class="tip"><em class="sp_img tip_deco999"></em>선택한 기간의 관리 기록만 이용자에게 노출합니다.</p>
-                                                    </div>
-                                                    <!-- //box -->
-                                                </div>
-                                            <!-- //공개 기간 범위 -->
-                                            </div>
-                                            <!-- //inner -->
-                                            <div class="btn_box">
-                                                <button type="button" class="btn_blue small btn_lightpurple" onclick="set_public('${set_type}')">확인</button>
-                                            </div>
-                                        </div>
-                                        <!-- //pop_content mngsetbox submng -->
-                                        <button type="button" class="poply_whiteclose" onclick="$('#pop_public_set').remove()"><span class="blind">레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>
-                                        </div>
-                                    </div>
-                                        <!-- //210421 추가-->
-                                </script>
+<!--                                <script id="public-set-tmpl" type="text/x-jquery-tmpl">-->
+<!--                                    <div id="pop_public_set" class="pop_wrap type3 lightpurple" style="right:0;top:35px;">-->
+<!--                                        &lt;!&ndash; pop_content mngsetbox submng &ndash;&gt;-->
+<!--                                        <div class="pop_content mngsetbox open_mngset">-->
+<!--                                            <div class="pop_head bg"><h3>${public_set_txt} 공개 설정</h3></div>-->
+<!--                                            <div class="pop_info">-->
+<!--                                                <h4 class="">${public_set_txt}</h4>-->
+<!--                                                <span class="radiobox">-->
+<!--                                                    <input type="radio" id="public_set_y" name="public_set" value="1" {{if public_set == 1}}checked{{/if}} onclick="public_set_click(1)">-->
+<!--                                                    <em class="checkmark"></em>-->
+<!--                                                    <label for="setting_list">공개</label>-->
+<!--                                                </span>-->
+<!--                                                <span class="radiobox">-->
+<!--                                                    <input type="radio" id="public_set_n" name="public_set" value="0" {{if public_set == 0}}checked{{/if}} onclick="public_set_click(0)">-->
+<!--                                                    <em class="checkmark"></em>-->
+<!--                                                    <label for="public_set_n">비공개</label>-->
+<!--                                                </span>-->
+<!--                                                <input type="hidden" id="prev_public_set" name="prev_public_set" value="${public_set }">-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; inner &ndash;&gt;-->
+<!--                                            <div class="inner">-->
+<!--                                                &lt;!&ndash; 처리한 매니저 정보 &ndash;&gt;-->
+<!--                                                <div class="mng_option handler">-->
+<!--                                                    &lt;!&ndash; box &ndash;&gt;-->
+<!--                                                    <div class="box">-->
+<!--                                                        <h4>처리한 매니저 정보</h4>-->
+<!--                                                        <span class="radiobox">-->
+<!--                                                            <input type="radio" id="manager_set_y" name="manager_set" value="1" {{if manager_set == 1}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>-->
+<!--                                                            <em class="checkmark"></em>-->
+<!--                                                            <label for="manager_set_y">공개</label>-->
+<!--                                                        </span>-->
+<!--                                                        <span class="radiobox">-->
+<!--                                                            <input type="radio" id="manager_set_n" name="manager_set" value="0" {{if manager_set == 0}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>-->
+<!--                                                            <em class="checkmark"></em>-->
+<!--                                                            <label for="manager_set_n">비공개</label>-->
+<!--                                                        </span>-->
+<!--                                                        <p class="tip"><em class="sp_img tip_deco999"></em>공개 선택 시, 처리한 매니저의 식별 코드와 닉네임이 공개됩니다.</p>-->
+<!--                                                    </div>-->
+<!--                                                    &lt;!&ndash; //box &ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash; //처리한 매니저 정보 &ndash;&gt;-->
+<!--                                                &lt;!&ndash; 공개 기간 범위 &ndash;&gt;-->
+<!--                                                <div class="mng_option period">-->
+<!--                                                    &lt;!&ndash; box &ndash;&gt;-->
+<!--                                                    <div class="box">-->
+<!--                                                        <h4>공개 기간 범위</h4>-->
+<!--                                                        <span class="radiobox">-->
+<!--                                                            <input type="radio" id="public_days_3" name="public_days" value="3" {{if public_days == 3}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>-->
+<!--                                                            <em class="checkmark"></em>-->
+<!--                                                            <label for="public_days_3">최근 3일</label>-->
+<!--                                                        </span>-->
+<!--                                    -->
+<!--                                                        <span class="radiobox">-->
+<!--                                                            <input type="radio" id="block_days_7" name="public_days" value="7" {{if public_days == 7}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>-->
+<!--                                                            <em class="checkmark"></em>-->
+<!--                                                            <label for="public_days_7">최근 7일</label>-->
+<!--                                                        </span>-->
+<!--                                    -->
+<!--                                                        <span class="radiobox">-->
+<!--                                                            <input type="radio" id="public_days_30" name="public_days" value="30" {{if public_days == 30}}checked{{/if}} {{if public_set == 0}}disabled{{/if}}>-->
+<!--                                                            <em class="checkmark"></em>-->
+<!--                                                            <label for="public_days_30">최근 30일</label>-->
+<!--                                                        </span>-->
+<!--                                                        <p class="tip"><em class="sp_img tip_deco999"></em>선택한 기간의 관리 기록만 이용자에게 노출합니다.</p>-->
+<!--                                                    </div>-->
+<!--                                                    &lt;!&ndash; //box &ndash;&gt;-->
+<!--                                                </div>-->
+<!--                                            &lt;!&ndash; //공개 기간 범위 &ndash;&gt;-->
+<!--                                            </div>-->
+<!--                                            &lt;!&ndash; //inner &ndash;&gt;-->
+<!--                                            <div class="btn_box">-->
+<!--                                                <button type="button" class="btn_blue small btn_lightpurple" onclick="set_public('${set_type}')">확인</button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        &lt;!&ndash; //pop_content mngsetbox submng &ndash;&gt;-->
+<!--                                        <button type="button" class="poply_whiteclose" onclick="$('#pop_public_set').remove()"><span class="blind">레이어 닫기</span><em class="sp_img icon_whiteclose"></em></button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                        &lt;!&ndash; //210421 추가&ndash;&gt;-->
+<!--                                </script>-->
                             </div>
                         </div>
                         <table class="minor_block_list reportlist">
@@ -327,18 +279,8 @@
             </div>
         </main>
         <!-- 푸터 -->
-        <footer class="gcfoot">
-            <div class="info_policy">
-                <a href="/company/index.html">회사소개</a>
-                <a href="/company/index.html#alliance">제휴안내</a>
-                <a href="/ad/index.html">광고안내</a>
-                <a href="/terms/policy.html">이용약관</a>
-                <a href="/terms/privacy.html"><b>개인정보처리방침</b></a>
-                <a href="/terms/youth_policy.html">청소년보호정책</a>
-            </div>
-
-            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
-        </footer>
+        <!-- 푸터영역 -->
+        <th:block th:replace="~{fragment/footer_fragment::adFooter}"></th:block>
 
     </div>
 </body>

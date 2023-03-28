@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="darkmode">
+<html lang="ko" class="darkmode" xmlns:th="http://www.thymeleaf.org">
 <head> 
 	<meta charset="UTF-8">
 	<title>개인 프로젝트 참고용  미니 갤러리</title>
@@ -128,7 +128,7 @@
 		  <legend class="blind">통합검색</legend>
 		  <div  class="top_search clear">
 			<div class="inner_search">
-			  <input class="in_keyword" type="text" name="search" id="preSWord" title="검색어 입력" value="" placeholder="갤러리 & 통합검색" accesskey="f" type="search" autocomplete="off" onfocus="show_search_keywords(this)">
+<!--			  <input class="in_keyword" type="text" name="search" id="preSWord" title="검색어 입력" value="" placeholder="갤러리 & 통합검색" accesskey="f" type="search" autocomplete="off" onfocus="show_search_keywords(this)">-->
 			</div>
 			<button type="submit" class="sp_img bnt_search" id="searchSubmit"><span class="blind">검색</span></button>
 		  </div>
@@ -242,9 +242,9 @@ lately_gall_init('qivreg', '개인 프로젝트 참고용 ', 'MI');
 	<li><a href="https://gall.dcinside.com/{{if type == 'MI'}}mini/{{/if}}${code_id}">${name}</a>{{if type == 'MI'}}<em class="icon_mini">미니갤러리</em>{{else type == 'M'}}<em class="icon_minor">ⓜ</em>{{/if}}</li>
 </script>
 <!-- 즐겨찾기 갤러리 리스트-->
-<script id="favorite_gallsall-tmpl" type="text/x-jquery-tmpl">	
-	<li {{if type == 'MI'}}class="mi" {{else type == 'M'}} class="m" {{/if}} style ='display:none;'><a href="http://gall.dcinside.com/{{if type == 'MI'}}mini/{{/if}}${code_id}">${name}</a>{{if type == 'MI'}}<em class="icon_mini">미니갤러리</em>{{else type == 'M'}}<em class="icon_minor">ⓜ</em>{{/if}}</li>
-</script>
+<!--<script id="favorite_gallsall-tmpl" type="text/x-jquery-tmpl">	-->
+<!--	<li {{if type == 'MI'}}class="mi" {{else type == 'M'}} class="m" {{/if}} style ='display:none;'><a href="http://gall.dcinside.com/{{if type == 'MI'}}mini/{{/if}}${code_id}">${name}</a>{{if type == 'MI'}}<em class="icon_mini">미니갤러리</em>{{else type == 'M'}}<em class="icon_minor">ⓜ</em>{{/if}}</li>-->
+<!--</script>-->
 
 <div class="visit_bookmark" id ="visit_history">
       <!-- newvisit_history.vst 최근 방문 -->
