@@ -7,6 +7,7 @@ import kr.co.gcInside.service.MemberService;
 import kr.co.gcInside.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.EmailException;
+import org.apache.coyote.Request;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -95,31 +96,30 @@ public class MemberContoller {
         return "member/reset_pwd";
     }
 
-    @GetMapping("member/reset_pwd_Result")
-    public String reset_pwdResult_Result() {
-        return "member/reset_pwd_Result";
-    }
     /**
      * 2023-03-24 // 전인준
-     * 비밀번호 업데이트 POST컨트롤러
+     * 비밀번호 입력 POST컨트롤러
+     * 2023-03-27 //
      * */
     @PostMapping("member/reset_pwd_Result")
-    public String reset_pwd_Result(MemberVO vo,@RequestParam("member_pass")String member_pass,
-    @RequestParam("member_pass1") String member_pass1) {
-        vo.getMember_uid();
-        vo.getMember_email();
-        vo.getMember_pass();
-        vo.getMember_pass1();
-        if(member_pass != null && member_pass1 != null){
-            int result = service.updateMemberPass(vo);
-            log.info("result : "+result);
-            log.info("vo.getMember_uid() : "+vo.getMember_uid());
-            log.info("vo.getMember_email() : "+vo.getMember_email());
-            log.info("vo.getMember_pass() : "+vo.getMember_pass());
-            log.info("vo.getMember_pass1() : "+vo.getMember_pass1());
-            return "redirect:/member/login?success"+result;
+    public String reset_pwd_Result(@RequestParam("member_uid") String uid, @RequestParam("member_email") String email, Model model) {
+        model.addAttribute("member_uid", uid);
+        model.addAttribute("member_email", email);
+        return "member/reset_pwd_result";
+    }
+
+    /**
+     * 2023-03-27 // 전인준
+     * 비밀번호 업데이트 컨트롤러
+     * */
+    @PostMapping("member/reset_pwd_Update")
+    public String reset_pwd_Update(@RequestParam("member_uid") String uid, @RequestParam("member_email") String email,@RequestParam("member_pass") String member_pass
+            ,@RequestParam("member_pass1") String member_pass1,MemberVO vo){
+        int result = service.updateMemberPass(vo);
+        if(result > 0){
+            return "redirect:/member/login?"+result;
         }else {
-            return "/member/reset_pwd";
+            return "member/reset_pwd_Result";
         }
     }
 

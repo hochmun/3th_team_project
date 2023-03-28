@@ -374,13 +374,13 @@ let member_emailResult = function(){
 // 여러개의 ajax 통신시 promise객체 활용하면 코드도 간결해지고 가독성도 좋아짐
 // 비밀번호 재설정 //// resolve(성공),reject(실패) 파라미터
 let password_resetResult = function() {
+event.preventDefault(); // 유효성검사되기전에 폼전송 방지
 let member_uid = $('#member_uid').val();
 let member_email = $('#member_email').val();
 
 // 입력 체크
 if (!member_uid) {alert("아이디를 입력해 주세요.");$("#member_uid").focus();return false;}
 if (!member_email) {alert("이메일을 입력해 주세요.");$("#member_email").focus();return false;}
-
 // DB 아이디 조회
 function checkUid() {
     return new Promise(function(resolve, reject) {
@@ -425,56 +425,35 @@ function checkEmail() {
     });
 }
 
-// /reset_pwd_Result 폼으로 보낼때 인풋 데이터 설정
-function submitResetPwdForm(uid, email) {
-    let form = document.createElement('form');
-    form.method = 'GET';
-    form.action = "/GCInside/member/reset_pwd_Result";
 
-    let input1 = document.createElement('input');
-    input1.type = 'hidden';
-    input1.name = 'member_uid';
-    input1.value = uid;
-    form.appendChild(input1);
-
-    let input2 = document.createElement('input');
-    input2.type = 'hidden';
-    input2.name = 'member_email';
-    input2.value = email;
-    form.appendChild(input2);
-
-    document.body.appendChild(form);
-    form.submit();
-    console.log(form.innerHTML);
-}
-    // promise 실행순서 .then 진행 , .catch 오류시
-    checkUid()
-    .then(function() {
-      return checkEmail();
-    })
-    .then(function() {
-     submitResetPwdForm(member_uid,member_email);
-    })
-    .catch(function(error) {
-      alert(error);
-    });
-};
+// promise 실행순서 .then 진행 , .catch 오류시
+      checkUid()
+      .then(function() {
+        return checkEmail();
+      })
+      .then(function() {
+        // 여기서 reset_pwd는 폼의 name
+        // 아이디, 이메일 유효성 검사가 모두 통과한 경우 폼 전송
+        document.reset_pwd.submit();
+      })
+      .catch(function(error) {
+        alert(error);
+      });
+  };
 
 // 2023-03-24 // 전인준
 // 비밀번호 재설정시 유효성 검사
 function password_reset_update(){
 pw_check = false; //비밀번호체크
-let member_pass = $('#member_pass').val();
-let member_pass1 = $('#member_pass1').val();
-let member_uid = $('#member_uid').val();
-let member_email = $('#member_email').val();
+let member_pass = $('#member_pass').val(); // 변경할 비밀번호
+let member_pass1 = $('#member_pass1').val(); // 재입력
 // 입력 체크
-    if (!member_pass1) {
+    if (!member_pass) {
     alert("변경하실 비밀번호를 입력해 주세요.");
     $("#member_pass").focus();
     return false;
     }
-    if (!member_pass2) {
+    if (!member_pass1) {
     alert("변경하실 비밀번호를 재입력해 주세요.");
     $("#member_pass1").focus();
     return false;
@@ -484,12 +463,10 @@ let member_email = $('#member_email').val();
     $("#member_pass").focus();
     return false;
     }
-    if (member_pass1 !== member_pass2) {
+    if (member_pass !== member_pass1) {
     alert("변경하실 비밀번호가 일치하지 않습니다.");
     $("#member_pass1").focus();
     return false;
     }
-
-    //window.location.href = '/GCInside/member/reset_pwd_Result?member_uid='+member_uid+'&member_email='+member_email;
 pw_check = true;
 }
