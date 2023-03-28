@@ -319,7 +319,8 @@ public class BoardController {
     @ResponseBody
     @PostMapping("gall/board/commentWrite")
     public Map<String, Object> commentWrite(@RequestBody Map<String, String> data,
-                                            HttpServletRequest req) {
+                                            HttpServletRequest req,
+                                            @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Map<String, Object> resultMap = new HashMap<>();
 
         // data 에 regip 등록
@@ -333,6 +334,9 @@ public class BoardController {
 
         // 댓글 작성시 댓글 수 증가
         service.updateArticleCommentCount(data.get("no"));
+        
+        // 닉네임 가져오기
+        if(myUserDetails != null) commentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
 
         // resultMap 에 result 등록
         resultMap.put("result", result);

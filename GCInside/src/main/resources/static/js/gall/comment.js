@@ -54,8 +54,10 @@ const commentWrite = function($this) {
                 $comment_li.attr('id','comment_li_'+data.commentVO.comment_num);
 
                 if(data.commentVO.comment_login_status == 0) {
-                    $comment_li.find('.nickname').attr('title', data.commentVO.comment_uid);
-                    $comment_li.find('.nickname > em').text(data.commentVO.comment_uid);
+                    $comment_li.find('.nickname').attr('title', data.commentVO.member_nick);
+                    $comment_li.find('.nickname > em').text(data.commentVO.member_nick);
+                    $comment_li.find('.ip').hide();
+                    $comment_li.find('.writer_nikcon > img').attr('title', data.commentVO.comment_uid_sub+' : 갤로그로 이동합니다.');
                 } else {
                     $comment_li.find('.nickname').attr('title', data.commentVO.comment_nonmember_name);
                     $comment_li.find('.nickname > em').text(data.commentVO.comment_nonmember_name);
@@ -67,7 +69,7 @@ const commentWrite = function($this) {
                 }
 
                 $comment_li.find('.usertxt').text(data.commentVO.comment_content);
-                $comment_li.find('.date_time').text(new Date().toISOString().replace('T',' ').slice(0, -5));
+                $comment_li.find('.date_time').text(new Date(new Date().getTime() + (9*60*60*1000)).toISOString().replace('T',' ').slice(0, -5));
 
                 $comment_li.show();
 
