@@ -47,6 +47,25 @@
             `comment_rdate` = NOW();
     </insert>
 
+    <!-- 2023/03/29 // 심규영 // 대댓글 작성 쿼리문 -->
+    <insert id="insertReComment" parameterType="kr.co.gcInside.vo.Gell_re_commentVO"
+            keyProperty="re_comment_num" useGeneratedKeys="true">
+        INSERT INTO `gc_gell_re_comment` SET
+            `re_comment_oir_num` = #{re_comment_oir_num},
+            `re_comment_article_num` = #{re_comment_article_num},
+            `re_comment_content` = #{re_comment_content},
+            `re_comment_login_status` = #{re_comment_login_status},
+            <if test='re_comment_login_status == 0'>
+                `re_comment_uid` = #{re_comment_uid},
+            </if>
+            <if test='re_comment_login_status == 1'>
+                `re_comment_nonmember_name` = #{re_comment_nonmember_name},
+                `re_comment_nonmember_password` = #{re_comment_nonmember_password},
+            </if>
+            `re_comment_regip` = #{re_comment_regip},
+            `re_comment_rdate` = NOW();
+    </insert>
+
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
@@ -196,9 +215,42 @@
 
     <!-- 2023/03/29 // 심규영 // 게시글 댓글 리스트 불러오는 쿼리문 -->
     <select id="selectComments" resultType="kr.co.gcInside.vo.Gell_commentVO">
-        SELECT a.*, b.`member_nick` FROM `gc_gell_comment` AS a
-        left JOIN `gc_member` AS b ON a.`comment_uid` = b.`member_uid`
-        WHERE `comment_article_num` = #{article_num};
+        SELECT * FROM
+            (
+                SELECT
+                    `comment_num`,
+                    NULL AS `re_comment_num`,
+                    `comment_article_num`,
+                    `comment_content`,
+                    `comment_login_status`,
+                    `comment_uid`,
+                    `comment_nonmember_name`,
+                    `comment_nonmember_password`,
+                    `comment_regip`,
+                    `comment_re_count`,
+                    `comment_status`,
+                    `comment_rdate`,
+                    '0' AS `comment_type`
+                FROM `gc_gell_comment`
+                UNION ALL
+                SELECT
+                    `re_comment_oir_num` AS `comment_num`,
+                    `re_comment_num`,
+                    `re_comment_article_num`,
+                    `re_comment_content`,
+                    `re_comment_login_status`,
+                    `re_comment_uid`,
+                    `re_comment_nonmember_name`,
+                    `re_comment_nonmember_password`,
+                    `re_comment_regip`,
+                    NULL AS `comment_re_count`,
+                    `re_comment_status`,
+                    `re_comment_rdate` AS `comment_rdate`,
+                    '1' AS `comment_type`
+                FROM `gc_gell_re_comment`
+            ) AS a
+        WHERE `comment_article_num` = #{article_num}
+        ORDER BY `comment_num` ASC, `comment_rdate` ASC;
     </select>
 
     <!-- upload -->
@@ -228,6 +280,13 @@
         UPDATE `gc_gell_article` SET
             `article_comment_count` = `article_comment_count` + 1
         WHERE `article_num` = #{article_num};
+    </update>
+
+    <!-- 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 쿼리문 -->
+    <update id="updateCommentReCount">
+        UPDATE `gc_gell_comment` SET
+            `comment_re_count` = `comment_re_count` + 1
+        WHERE `comment_num` = #{comment_num};
     </update>
 
     <!-- delete -->
