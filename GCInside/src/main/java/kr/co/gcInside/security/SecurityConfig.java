@@ -11,6 +11,7 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.session.ConcurrentSessionFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -43,8 +44,8 @@ public class SecurityConfig {
 		// 로그인된 사용자는 member/login페이지 접근불가
 		http.authorizeRequests().antMatchers("/member/login").anonymous();
 		
-		// 로그인된 사용자가 member/login페이지 접근시 accessDeniedPage 주소로 이동시킴 (포워드)
-		http.exceptionHandling().accessDeniedPage("/index");
+		// 로그인된 사용자가 member/login페이지 접근시 handle()함수 url로 이동시킴 (리다이렉트)
+		http.exceptionHandling().accessDeniedHandler(handle());
 
 		//iframe 동일 도메인 접근 허용
 		http.headers().frameOptions().sameOrigin();
@@ -88,6 +89,16 @@ public class SecurityConfig {
 			// 세션이 만료될 때 로그아웃 처리를 수행합니다.
 			SecurityContextHolder.clearContext();
 		});
+	}
+	/**
+	 * 2023-03-29 // 전인준
+	 * 403 forbidden 페이지접근시 리다이렉트 메서드
+	 * */
+	@Bean
+	public AccessDeniedHandler handle(){
+		return (request,response,accessDeniedException) -> {
+			response.sendRedirect("/GCInside/index");
+		};
 	}
 
 }

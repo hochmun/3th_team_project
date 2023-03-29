@@ -53,30 +53,6 @@ public class MemberContoller {
         return "member/terms";
     }
 
-    // 임시로 밑에 주석에있는 주소 처럼 넣으면 로그아웃 기능됨
-    // a태그 사용하면 get방식으로 보내서 로그아웃시 권장되지않는방법
-    // <form th:action="@{/logout}" method="post"><button type="submit"></button></form>
-    @PostMapping("/logout")
-    public String logout(HttpServletRequest request, HttpServletResponse response){
-        // 세션 무효
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
-        // 쿠키 삭제
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                cookie.setValue("");
-                cookie.setMaxAge(0);
-                cookie.setPath("/");
-                response.addCookie(cookie);
-            }
-        }
-        // 로그아웃 후 리다이렉트할 페이지
-        return "redirect:/index";
-    }
-
     @GetMapping("member/register")
     public String register() {
         return "member/register";
