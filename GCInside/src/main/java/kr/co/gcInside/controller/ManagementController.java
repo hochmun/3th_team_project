@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,11 +31,14 @@ public class ManagementController {
      * @return
      */
     @GetMapping("gall/management/index")
-    public String index (@RequestParam Map<String, String> data) {
+    public String index (@RequestParam Map<String, String> data, Model model) {
         Map<String, Object> stringObjectMap = service.selectArticleAndSetting(data.get("id"));
 
-        log.info("map : "+stringObjectMap.toString());
+
+
+        log.info("map : " + (stringObjectMap != null ? stringObjectMap.toString() : null));
         log.info("address : "+data.get("id"));
+        model.addAttribute("stringObjectMap", stringObjectMap);
 
         return "gall/management/index";
     }
