@@ -592,7 +592,7 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 
 /* 로그인 버튼 */
 .btn_inout{border:1px solid #29367c;background:#3b4890;text-align:center;color:#fff;font-weight:bold;text-shadow:0px 1px #1d2761}
-.btn_inout.login{width:65px;height:78px;line-height:35px;margin-top:0px;font-size:14px}
+.btn_inout.login{width:65px;height:60px;line-height:35px;margin-top:20px;font-size:14px} /*아이디 체크박스 공간만드려 추가 기존 height: 78px -> 60px, margin-top : 0 -> 20px 으로수정*/
 
 /* 로그인 옵션 */
 .options{margin:14px 12px 0;padding-top:13px;border-top:1px dashed #aaa;position:relative}
