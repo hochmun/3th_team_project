@@ -26,40 +26,54 @@ public class ManagementController {
     private ManagementService service;
 
     /**
+     * 2023.03.29 // 라성준 //
      *      들어오는 값
      *          id : 갤러리 주소(gell_address)
+     *          cate : 갤러리 카테고리(gell_cate)
      * @return
      */
     @GetMapping("gall/management/index")
     public String index (@RequestParam Map<String, String> data, Model model) {
-        Map<String, Object> stringObjectMap = service.selectArticleAndSetting(data.get("id"));
-
-
-
-        log.info("map : " + (stringObjectMap != null ? stringObjectMap.toString() : null));
-        log.info("address : "+data.get("id"));
-        model.addAttribute("stringObjectMap", stringObjectMap);
+        if(data.containsKey("cate")) {
+            String cate = data.get("cate");
+            Map<String, Object> stringObjectMap = service.selectArticleAndSettingCate(cate);
+            if (stringObjectMap == null) {
+                return "error/wrongURL";
+            }
+            model.addAttribute("stringObjectMap", stringObjectMap);
+        } else {
+            if(!service.modelInput(data, model)) return "error/wrongURL";
+        }
 
         return "gall/management/index";
     }
 
     @GetMapping("gall/management/delete")
-    public String delete () {
+    public String delete (@RequestParam Map<String, String> data, Model model) {
+        if(!service.modelInput(data, model)) return "error/wrongURL";
+
         return "gall/management/delete";
+
     }
 
     @GetMapping("gall/management/gallery")
-    public String gallery () {
+    public String gallery (@RequestParam Map<String, String> data, Model model) {
+        if(!service.modelInput(data, model)) return "error/wrongURL";
+
         return "gall/management/gallery";
     }
 
     @GetMapping("gall/management/report")
-    public String report () {
+    public String report (@RequestParam Map<String, String> data, Model model) {
+        if(!service.modelInput(data, model)) return "error/wrongURL";
+
         return "gall/management/report";
     }
 
     @GetMapping("gall/management/submanager")
-    public String submanager () {
+    public String submanager (@RequestParam Map<String, String> data, Model model) {
+        if(!service.modelInput(data, model)) return "error/wrongURL";
+
         return "gall/management/submanager";
     }
 
@@ -69,7 +83,9 @@ public class ManagementController {
     }
 
     @GetMapping("gall/management/block")
-    public String block(){
+    public String block(@RequestParam Map<String, String> data, Model model){
+        if(!service.modelInput(data, model)) return "error/wrongURL";
+
         return "gall/management/block";
     }
 }
