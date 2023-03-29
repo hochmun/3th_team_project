@@ -28,6 +28,25 @@
         `article_rdate` = NOW();
     </insert>
 
+    <!-- 2023/03/29 // 심규영 // 댓글 작성 쿼리문 -->
+    <insert id="insertComment" parameterType="kr.co.gcInside.vo.Gell_commentVO"
+            keyProperty="comment_num" useGeneratedKeys="true">
+        INSERT INTO `gc_gell_comment` SET
+            `comment_article_num` = #{comment_article_num},
+            `comment_content` = #{comment_content},
+            <if test='comment_login_status == 0'>
+                `comment_login_status` = 0,
+                `comment_uid` = #{comment_uid},
+            </if>
+            <if test='comment_login_status == 1'>
+                `comment_login_status` = 1,
+                `comment_nonmember_name` = #{comment_nonmember_name},
+                `comment_nonmember_password` = #{comment_nonmember_password},
+            </if>
+            `comment_regip` = #{comment_regip},
+            `comment_rdate` = NOW();
+    </insert>
+
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
@@ -175,6 +194,13 @@
         AND `article_nonmember_pass` = #{pass};
     </select>
 
+    <!-- 2023/03/29 // 심규영 // 게시글 댓글 리스트 불러오는 쿼리문 -->
+    <select id="selectComments" resultType="kr.co.gcInside.vo.Gell_commentVO">
+        SELECT a.*, b.`member_nick` FROM `gc_gell_comment` AS a
+        left JOIN `gc_member` AS b ON a.`comment_uid` = b.`member_uid`
+        WHERE `comment_article_num` = #{article_num};
+    </select>
+
     <!-- upload -->
     <!-- 2023/03/28 // 심규영 // 게시글 수정 쿼리문 -->
     <update id="updateArticle" parameterType="map">
@@ -195,6 +221,13 @@
             </if>
 
         WHERE `article_num` = #{article_num} AND `articlel_gell_num` = #{gell_num}
+    </update>
+
+    <!-- 2023/03/29 // 심규영 // 게시글 댓글 수 증가 쿼리문 -->
+    <update id="updateArticleCommentCount">
+        UPDATE `gc_gell_article` SET
+            `article_comment_count` = `article_comment_count` + 1
+        WHERE `article_num` = #{article_num};
     </update>
 
     <!-- delete -->

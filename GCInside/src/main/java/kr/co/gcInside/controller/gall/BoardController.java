@@ -5,6 +5,7 @@ import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
+import kr.co.gcInside.vo.Gell_commentVO;
 import kr.co.gcInside.vo.Gell_sub_managerVO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
@@ -101,11 +102,11 @@ public class BoardController {
     }
 
     /**
-     * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료
-     * 2023/03/22 // 심규영 // 글 쓰기 기본 기능 구현 완료
+     * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료<br>
+     * 2023/03/22 // 심규영 // 글 쓰기 기본 기능 구현 완료<br>
      * 2023/03/27 // 심규영 // 글 보기 기본 기능 구현 완료
      *
-     *      restAPI 정보
+     * <pre>     restAPI 정보
      *          grade => 갤러리 등급 정보
      *              m       : 메인
      *              mgall   : 마이너
@@ -127,7 +128,7 @@ public class BoardController {
      *          gell_num : 겔러리 번호
      *          
      *      session 값
-     *          nonmemberPassCheck :
+     *          nonmemberPassCheck :</pre>
      *          
      * @param grade
      * @return
@@ -177,9 +178,13 @@ public class BoardController {
             data.put("gell_num", galleryVO.getGell_num()+"");
             List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
             
+            // 댓글 정보 가져오기
+            List<Gell_commentVO> commentVOS = service.selectComments(articleVO.getArticle_num());
+            
             // 모델
-           model.addAttribute("gellArticleVOS", gellArticleVOS);
-           model.addAttribute("pagingDTO", pagingDTO);
+            model.addAttribute("gellArticleVOS", gellArticleVOS);
+            model.addAttribute("pagingDTO", pagingDTO);
+            model.addAttribute("commentVOS", commentVOS);
         }
 
         // 페이지 종류 전송
@@ -298,22 +303,44 @@ public class BoardController {
 
     /**
      * 2023/03/28 // 심규영 // 글 작성 post 맵핑
-     *      data 들어오는 값
+     * <pre>     data 들어오는 값
      *          no                  : 게시물 번호
      *          login_info          : 로그인 상태
      *          comment_uid         : 회원 uid
      *          comment_name        : 비회원 name
      *          comment_password    : 비회원 password
      *          comment_content     : 댓글 내용
+     *      
+     *      data 에 넣는 값
+     *          regip               : 작성자 주소</pre>
      * @param data
-     * @return
+     * @return result => {0:실패, 1:성공}
      */
     @ResponseBody
     @PostMapping("gall/board/commentWrite")
-    public Map<String, Object> commentWrite(@RequestBody Map<String, String> data) {
+    public Map<String, Object> commentWrite(@RequestBody Map<String, String> data,
+                                            HttpServletRequest req,
+                                            @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Map<String, Object> resultMap = new HashMap<>();
+
+        // data 에 regip 등록
+        data.put("regip", req.getRemoteAddr());
+        
+        // vo에 담기
+        Gell_commentVO commentVO = service.commentVOInsert(data);
         
         // 댓글 작성
+        int result = service.insertComment(commentVO);
+
+        // 댓글 작성시 댓글 수 증가
+        service.updateArticleCommentCount(data.get("no"));
+        
+        // 닉네임 가져오기
+        if(myUserDetails != null) commentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
+
+        // resultMap 에 result 등록
+        resultMap.put("result", result);
+        resultMap.put("commentVO", commentVO);
 
         return resultMap;
     }
