@@ -562,6 +562,10 @@ font-size:11px;text-align:center;box-sizing:border-box;vertical-align:text-top;}
 .miniwrap .one_ranklist .rank_num{background:#6f6dd9;border:1px #4f4dc6 solid}
 .miniwrap .mgall .rank_num{background:#6f6dd9;border:1px #4f4dc6 solid}
 .btn_lightpurple_round{border:1px solid #4f4dc6;background:#6f6dd9;text-shadow: 0px -1px #4d4cce}
+.ico_ranking{position:absolute;right:0;top:0;display:inline-block;width:9px;height:10px;margin-top:6px;vertical-align:top}
+.ico_ranking.up{background-position:-121px 0}
+.ico_ranking.down{background-position:-140px 0}
+.ico_ranking.same{background-position:-158px 0}
 /*카테고리*/
 .miniwrap .gallmain{border-bottom:1px #6f6dd9 solid}
 .minicate_wrap .catehead{height:38px;line-height:38px;border-bottom:1px #ccc solid;padding:0 10px 0 9px}

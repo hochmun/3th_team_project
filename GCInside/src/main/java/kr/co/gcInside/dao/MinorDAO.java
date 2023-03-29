@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 @Repository
@@ -54,8 +55,24 @@ public interface MinorDAO {
      */
     public List<galleryVO>selectminorgall();
     /**
-     * 2023/03/27 // 김동민 // 연애,게임 갤러리 수 불러오기
+     * 2023/03/27 // 김동민 // 갤러리 수 불러오기
+     * for문에서 cate 값을 갤러리 수만큼 늘리면 된다
      */
-    public int mgallcatecnt(int gell_cate);
-    public String mgallcate2cnt();
+    public int mgallcate1cnt(int cate);
+
+    /**
+     * 2023/03/28 // 김동민 // 랭크차 구하기
+     * @return
+     */
+    public List<Map<Integer,Integer>> todayrank();
+    public List<Map<Integer,Integer>> yesterdayrank();
+    /**
+     * 2023/03/29 // 김동민 // 어제,오늘 랭크 업데이트
+     */
+
+    public void updatehotmgallyesterdayrank();
+
+    public void updatehotmgalltodayrank();
+    public void initrank();
+    public void resetrank();
 }
