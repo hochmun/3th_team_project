@@ -7,10 +7,16 @@
 
     <!-- create -->
     <!-- read -->
-    <!-- 2023.03.28 // 라성준 // 매니지먼트 값 불러오기-->
+    <!-- 2023.03.28 // 라성준 // 매니지먼트 address 값 불러오기-->
     <select id="selectArticleAndSetting" resultType="hashmap">
-        SELECT * FROM `gc_gell` AS a
-        JOIN `gc_gell_setting` AS b ON a.`gell_num` = b.`setting_gell_num` WHERE `gell_address` = #{address};
+        SELECT a.*, b.* FROM `gc_gell` AS a
+        JOIN `gc_gell_setting` AS b ON a.`gell_num` = b.`setting_gell_num` WHERE `gell_address` = #{gell_address};
+    </select>
+
+    <!-- 2023.03.29 // 라성준 // 매니지먼트 cate 값 불러오기 -->
+    <select id="selectArticleAndSettingCate" resultType="hashmap">
+        SELECT a.*, b.* FROM `gc_gell` AS a
+        JOIN `gc_gell_setting` AS b ON a.`gell_num` = b.`setting_gell_num` WHERE `gell_cate` = #{gell_cate};
     </select>
 
     <!-- upload -->

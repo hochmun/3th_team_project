@@ -72,7 +72,14 @@
 
                         <div class="lock"><em class="sp_img icon_minilock"></em><span class="blind">비공개</span></div>
 
-                        <h2><a href="#">ㅇㅇㅇ  갤러리<div class="pagehead_titicon ngall sp_img"><span class="blind">미니</span></div></a></h2>
+                        <h2>
+                            <a th:href="|@{/}mgall/board/lists?id=${stringObjectMap.gell_address}|">
+                                <span th:text="|${stringObjectMap.gell_name} 갤러리|">ㅇㅇㅇ  갤러리</span>
+                                <div class="pagehead_titicon ngall sp_img">
+                                    <span class="blind">미니</span>
+                                </div>
+                            </a>
+                        </h2>
 
 
                         <div class="useradmin_go">
@@ -92,13 +99,13 @@
                 <section id="left_cont_wrap"  class="left_content">
                     <h2 class="blind">왼쪽 컨텐츠 영역</h2>
                     <ul class="minor_uadmin_menu">
-                        <li><a th:href="@{/gall/management/index}" class="">기본 설정</a></li>
-                        <li><a th:href="@{/gall/management/gallery}" class="">갤러리 설정</a></li>
-                        <li><a th:href="@{/gall/management/block}" class="on">차단 목록 </a></li>
-                        <li><a th:href="@{/gall/management/delete}" class="">삭제 목록 </a></li>
-                        <li><a th:href="@{/gall/management/submanager}" class="">부매니저</a></li>
+                        <li><a th:href="|@{/}gall/management/index?id=${stringObjectMap.gell_address}|" class="">기본 설정</a></li>
+                        <li><a th:href="|@{/}gall/management/gallery?id=${stringObjectMap.gell_address}|" class="">갤러리 설정</a></li>
+                        <li><a th:href="|@{/}gall/management/block?id=${stringObjectMap.gell_address}|" class="on">차단 목록 </a></li>
+                        <li><a th:href="|@{/}gall/management/delete?id=${stringObjectMap.gell_address}|" class="">삭제 목록 </a></li>
+                        <li><a th:href="|@{/}gall/management/submanager?id=${stringObjectMap.gell_address}|" class="">부매니저</a></li>
                         <li><a href="#" onclick="alert('매니저 위임은 개설일 기준으로 7일 이후 가능합니다.');return false;" class=>매니저 위임</a></li>
-                        <li><a th:href="@{/gall/management/report}" class="">관리 기록</a></li>
+                        <li><a th:href="|@{/}gall/management/report?id=${stringObjectMap.gell_address}|" class="">관리 기록</a></li>
                     </ul>
 
 
