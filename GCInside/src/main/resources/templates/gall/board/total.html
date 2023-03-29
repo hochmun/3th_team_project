@@ -532,32 +532,32 @@
                         <ul class="cmt_list">
                           <!-- id의 번호는 댓글 번호 -->
                           <th:block th:each="commentVO:${commentVOS}">
-                            <li th:id="|comment_li_${commentVO.comment_num}|" class="ub-content">
+                            <li th:id="|comment_li_${commentVO.comment_num}|" class="ub-content" th:data-rcnt="${commentVO.comment_re_count}">
                               <div class="cmt_info clear" th:data-no="${commentVO.comment_num}" th:data-article-no="${commentVO.comment_article_num}">
                                 <div class="cmt_nickbox">
-                                <span th:if="${commentVO.comment_login_status} == 1" class="gall_writer ub-writer"
-                                      th:data-name="${commentVO.comment_nonmember_name}"
-                                      th:data-ip="${commentVO.comment_regip}">
-                                  <span class="nickname">
-                                    <em th:title="${commentVO.comment_nonmember_name}" th:text="${commentVO.comment_nonmember_name}">ㅇㅇ</em>
-                                    <span class="ip" th:text="|(${commentVO.comment_regip_sub})|">(00.00)</span>
+                                  <span th:if="${commentVO.comment_login_status} == 1" class="gall_writer ub-writer"
+                                        th:data-name="${commentVO.comment_nonmember_name}"
+                                        th:data-ip="${commentVO.comment_regip}">
+                                    <span class="nickname">
+                                      <em th:title="${commentVO.comment_nonmember_name}" th:text="${commentVO.comment_nonmember_name}">ㅇㅇ</em>
+                                      <span class="ip" th:text="|(${commentVO.comment_regip_sub})|">(00.00)</span>
+                                    </span>
                                   </span>
-                                </span>
 
                                   <span th:if="${commentVO.comment_login_status} == 0" class="gall_writer ub-writer"
                                         th:data-nick="${commentVO.member_nick}"
                                         th:data-uid="${commentVO.comment_uid}">
-                                  <span class="nickname in" th:title="${commentVO.member_nick}">
-                                    <em th:text="${commentVO.member_nick}">ㅇㅇ</em>
+                                    <span class="nickname in" th:title="${commentVO.member_nick}">
+                                      <em th:text="${commentVO.member_nick}">ㅇㅇ</em>
+                                    </span>
+                                    <a class="writer_nikcon">
+                                      <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="cursor:pointer;"
+                                           th:title="|${commentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
+                                    </a>
                                   </span>
-                                  <a class="writer_nikcon">
-                                    <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="cursor:pointer;"
-                                         th:title="|${commentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
-                                  </a>
-                                </span>
                                 </div>
 
-                                <div class="clear cmt_txtbox btn_reply_write_all">
+                                <div class="clear cmt_txtbox btn_reply_write_all" th:data-no="${commentVO.comment_num}">
                                   <p class="usertxt ub-word" th:text="${commentVO.comment_content}">zzzzz</p>
                                 </div>
 
@@ -567,40 +567,6 @@
                                   <div class="cmt_mdf_del" data-type="cmt" th:data-comment_no="${commentVO.comment_num}" th:data-article-no="${commentVO.comment_article_num}">
                                     <button type="button" class="btn_cmt_delete">삭제</button>
                                   </div>
-                                </div>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="reply show">
-                                <div class="reply_box" style="display:none;">
-                                  <ul class="reply_list">
-                                    <!--
-                                    <li id="reply_li_20001" class="ub-content">
-                                      <div class="reply_info clear" data-no="20001">
-                                        <div class="cmt_nickbox">
-                                          <span class="gall_writer ub-writer" data-nick="다스마스터" data-uid="gofyd889" data-ip="">
-                                            <span class="nickname in">
-                                              <em title="다스마스터">다스마스터</em>
-                                              <span class="ip">(00.00)</span>
-                                            </span>
-                                          </span>
-                                        </div>
-
-                                        <div class="clear cmt_txtbox">
-                                          <p class="usertxt ub-word">zzzzz</p>
-                                        </div>
-
-                                        <div class="fr clear">
-                                          <span class="date_time">03.20 00:00:00</span>
-
-                                          <div class="cmt_mdf_del" data-type="cmt" re-no="1" data-my="N" data-article-no="10" data-pwd-pop="N">
-                                            <button type="button" class="btn_cmt_delete">삭제</button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </li>
-                                    -->
-                                  </ul>
                                 </div>
                               </div>
                             </li>
@@ -1161,34 +1127,78 @@
     </div>
   </div>
 </li>
-<li id="re_comment_sample" style="display:none;">
+<!-- class="reply_list" id="reply_list_${no}"-->
+<li id="re_comment_none_sample" style="display:none;">
   <div class="reply show">
     <div class="reply_box">
       <ul class="reply_list">
-        <li id="reply_li_" class="ub-content">
-          <div class="reply_info clear" data-no="">
-            <div class="cmt_nickbox">
+
+      </ul>
+    </div>
+  </div>
+</li>
+<!-- reply_li_${no} -->
+<li id="re_comment_sample" class="ub-content">
+  <div class="reply_info clear" data-no="">
+    <div class="cmt_nickbox">
               <span class="gall_writer ub-writer" data-nick="" data-uid="" data-ip="">
                 <span class="nickname">
                   <em title=""></em>
                   <span class="ip"></span>
                 </span>
               </span>
-            </div>
+    </div>
 
-            <div class="clear cmt_txtbox">
-              <p class="usertxt ub-word"></p>
-            </div>
+    <div class="clear cmt_txtbox">
+      <p class="usertxt ub-word"></p>
+    </div>
 
-            <div class="fr clear">
-              <span class="date_time"></span>
-              <div class="cmt_mdf_del">
-                <button type="button" class="btn_cmt_delete">삭제</button>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
+    <div class="fr clear">
+      <span class="date_time"></span>
+      <div class="cmt_mdf_del">
+        <button type="button" class="btn_cmt_delete">삭제</button>
+      </div>
+    </div>
+  </div>
+</li>
+<!-- reply_empty_${no} -->
+<li id="reply_box_sample" style="display:none;">
+  <div class="cmt_write_box small clear" id="cmt_write_box" data-no="">
+    <div class="fl">
+      <!-- 회원 일 경우 -->
+      <div th:if="${authorize.isAuthenticated}" class="user_info_input id">
+        <label th:text="${user.member_uid}"></label>
+        <!-- id 뒤에 유저 uid-->
+        <input type="hidden" name="comment_uid" id="reply_uid" th:value="${user.member_uid}">
+      </div>
+
+      <!-- 비회원 일 경우 -->
+      <th:block th:if="${authorize.isAnonymous}">
+        <div class="user_info_input">
+          <label class="blind">닉네임</label>
+          <input type="text" id="reply_name" name = "name"
+                 placeholder="닉네임" onfocus="this.style.background='#FFFFFF'"
+                 maxlength="20">
+        </div>
+        <div class="user_info_input">
+          <label class="blind">비밀번호</label>
+          <input type="password" id="reply_password" name = "password"
+                 placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'"
+                 maxlength = "20">
+        </div>
+      </th:block>
+    </div>
+
+    <div class="cmt_txt_cont">
+      <div class="cmt_write">
+        <textarea id="reply_content" maxlength="400"></textarea>
+      </div>
+      <div class="cmt_cont_bottm clear">
+        <div class="fr">
+          <button class="btn_blue btn_svc small reply_add" data-no="" th:data-login_info="${authorize.isAuthenticated}"
+                  th:data-article_num="${articleVO.article_num}" onclick="re_comment_write($(this))">등록</button>
+        </div>
+      </div>
     </div>
   </div>
 </li>

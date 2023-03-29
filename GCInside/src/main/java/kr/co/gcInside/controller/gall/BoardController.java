@@ -5,10 +5,7 @@ import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
-import kr.co.gcInside.vo.Gell_commentVO;
-import kr.co.gcInside.vo.Gell_sub_managerVO;
-import kr.co.gcInside.vo.galleryVO;
-import kr.co.gcInside.vo.gell_articleVO;
+import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -341,6 +338,53 @@ public class BoardController {
         // resultMap 에 result 등록
         resultMap.put("result", result);
         resultMap.put("commentVO", commentVO);
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/03/29 // 심규영 // 대댓글 작성 post mapping
+     * <pre>     data 들어오는 값
+     *          re_comment_ori_num              : 댓글 번호
+     *          re_comment_article_num          : 게시글 번호
+     *          re_comment_content              : 대댓글 내용
+     *          login_info                      : 로그인 여부 {true, false}
+     *          re_comment_uid                  : 회원 uid
+     *          re_comment_nonmember_name       : 비회원 name
+     *          re_comment_nonmember_password   : 비회원 password
+     *          
+     *      data 넣는 값
+     *          regip                           : 대댓글 작성자 ip</pre>
+     * @param data
+     * @param req
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/reCommentWrite")
+    public Map<String, Object> reCommentWrite(@RequestBody Map<String, String> data,
+                                              HttpServletRequest req,
+                                              @AuthenticationPrincipal MyUserDetails myUserDetails) {
+        Map<String, Object> resultMap = new HashMap<>();
+        
+        // regip 넣기
+        data.put("regip", req.getRemoteAddr());
+        
+        // VO에 값 넣기
+        Gell_re_commentVO reCommentVO = service.reCommentVOInsert(data);
+        
+        // 댓글 작성
+        int result = service.insertReComment(reCommentVO);
+        
+        // 댓글 작성시 댓글 수 증가 및 댓글의 대댓글 수 증가
+        service.updateArticleCommentCount(data.get("re_comment_article_num"));
+        service.updateCommentReCount(data.get("re_comment_ori_num"));
+
+        // 닉네임 가져오기
+        if(myUserDetails != null) reCommentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
+
+        // resultMap 에 result 등록
+        resultMap.put("result", result);
+        resultMap.put("commentVO", reCommentVO);
 
         return resultMap;
     }

@@ -41,6 +41,9 @@ public class Gell_commentVO {
     
     // 추가 컬럼
     private String member_nick;
+    /** 2023/03/29 // 심규영 // 댓글 및 대댓글 불러오기 */
+    private int re_comment_num; // 대댓글 번호
+    private int comment_type; //  댓글, 대댓글 구분용 {0:댓글,1:대댓글}
 
     // getter
 

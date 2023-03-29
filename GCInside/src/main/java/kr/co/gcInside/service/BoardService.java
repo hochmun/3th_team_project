@@ -3,10 +3,7 @@ package kr.co.gcInside.service;
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.utill.PagingUtil;
-import kr.co.gcInside.vo.Gell_commentVO;
-import kr.co.gcInside.vo.Gell_sub_managerVO;
-import kr.co.gcInside.vo.galleryVO;
-import kr.co.gcInside.vo.gell_articleVO;
+import kr.co.gcInside.vo.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +40,15 @@ public class BoardService {
      */
     public int insertComment(Gell_commentVO vo) {
         return dao.insertComment(vo);
+    }
+
+    /**
+     * 2023/03/29 // 심규영 // 대댓글 작성 DAO
+     * @param vo
+     * @return
+     */
+    public int insertReComment(Gell_re_commentVO vo) {
+        return dao.insertReComment(vo);
     }
 
     // read
@@ -193,6 +199,15 @@ public class BoardService {
         return dao.updateArticleCommentCount(article_num);
     }
 
+    /**
+     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능
+     * @param comment_num
+     * @return
+     */
+    public int updateCommentReCount(String comment_num) {
+        return dao.updateCommentReCount(comment_num);
+    }
+
     // delete
     // service
 
@@ -298,5 +313,39 @@ public class BoardService {
         }
 
         return commentVO;
+    }
+
+    /**
+     * 2023/03/29 // 심규영 // VO에 담기
+     * <pre>     data 들어오는 값
+     *          re_comment_ori_num              : 댓글 번호
+     *          re_comment_article_num          : 게시글 번호
+     *          re_comment_content              : 대댓글 내용
+     *          login_info                      : 로그인 여부 {true, false}
+     *          re_comment_uid                  : 회원 uid
+     *          re_comment_nonmember_name       : 비회원 name
+     *          re_comment_nonmember_password   : 비회원 password
+     *
+     *      data 넣는 값
+     *          regip                           : 대댓글 작성자 ip</pre>
+     * @param data
+     * @return
+     */
+    public Gell_re_commentVO reCommentVOInsert(Map<String, String> data) {
+        Gell_re_commentVO reCommentVO = new Gell_re_commentVO();
+
+        reCommentVO.setRe_comment_oir_num(Integer.parseInt(data.get("re_comment_ori_num")));
+        reCommentVO.setRe_comment_article_num(Integer.parseInt(data.get("re_comment_article_num")));
+        reCommentVO.setRe_comment_content(data.get("re_comment_content"));
+        reCommentVO.setRe_comment_login_status(data.get("login_info").equals("true") ? 0 : 1);
+        if(data.get("login_info").equals("true")) {
+            reCommentVO.setRe_comment_uid(data.get(""));
+        } else {
+            reCommentVO.setRe_comment_nonmember_name(data.get("re_comment_nonmember_name"));
+            reCommentVO.setRe_comment_nonmember_password(data.get("re_comment_nonmember_password"));
+        }
+        reCommentVO.setRe_comment_regip(data.get("regip"));
+
+        return reCommentVO;
     }
 }

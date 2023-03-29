@@ -1,9 +1,6 @@
 package kr.co.gcInside.dao;
 
-import kr.co.gcInside.vo.Gell_commentVO;
-import kr.co.gcInside.vo.Gell_sub_managerVO;
-import kr.co.gcInside.vo.galleryVO;
-import kr.co.gcInside.vo.gell_articleVO;
+import kr.co.gcInside.vo.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -31,6 +28,13 @@ public interface BoardDAO {
      * @return
      */
     public int insertComment(Gell_commentVO vo);
+
+    /**
+     * 2023/03/29 // 심규영 // 대댓글 작성 DAO
+     * @param vo
+     * @return
+     */
+    public int insertReComment(Gell_re_commentVO vo);
 
     // read
 
@@ -154,6 +158,13 @@ public interface BoardDAO {
      * @return
      */
     public int updateArticleCommentCount(@Param("article_num") String article_num);
+
+    /**
+     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능
+     * @param comment_num
+     * @return
+     */
+    public int updateCommentReCount(@Param("comment_num") String comment_num);
 
     // delete
 }
