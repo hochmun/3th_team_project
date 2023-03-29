@@ -3,6 +3,7 @@ package kr.co.gcInside.controller;
 import kr.co.gcInside.service.ManagementService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,11 +37,11 @@ public class ManagementController {
     public String index (@RequestParam Map<String, String> data, Model model) {
         if(data.containsKey("cate")) {
             String cate = data.get("cate");
-            Map<String, Object> stringObjectMap = service.selectArticleAndSettingCate(cate);
-            if (stringObjectMap == null) {
+            Map<String, Object> stringObjectMapCate = service.selectArticleAndSettingCate(cate);
+            if (stringObjectMapCate == null) {
                 return "error/wrongURL";
             }
-            model.addAttribute("stringObjectMap", stringObjectMap);
+            model.addAttribute("stringObjectMapCate", stringObjectMapCate);
         } else {
             if(!service.modelInput(data, model)) return "error/wrongURL";
         }

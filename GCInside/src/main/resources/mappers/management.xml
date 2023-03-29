@@ -15,8 +15,17 @@
 
     <!-- 2023.03.29 // 라성준 // 매니지먼트 cate 값 불러오기 -->
     <select id="selectArticleAndSettingCate" resultType="hashmap">
-        SELECT a.*, b.* FROM `gc_gell` AS a
-        JOIN `gc_gell_setting` AS b ON a.`gell_num` = b.`setting_gell_num` WHERE `gell_cate` = #{gell_cate};
+        SELECT a.*, b.*,
+        CASE
+            WHEN a.gell_cate = 0 THEN '게임'
+            WHEN a.gell_cate = 1 THEN '음악'
+            WHEN a.gell_cate = 2 THEN '영화'
+            WHEN a.gell_cate = 3 THEN '운동'
+            WHEN a.gell_cate = 19 THEN '자연'
+            ELSE '기타'
+        END AS gell_cate_text
+        FROM gc_gell a JOIN gc_gell_setting b ON a.gell_num = b.setting_gell_num
+        WHERE a.gell_cate = #{gell_cate}
     </select>
 
     <!-- upload -->
