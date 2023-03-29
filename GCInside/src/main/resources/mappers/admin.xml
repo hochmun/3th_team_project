@@ -179,7 +179,8 @@
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
         FROM gc_admin_gell_create_approve as a
         JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
-        ORDER BY gell_create_num desc;
+        ORDER BY gell_create_num desc
+        LIMIT #{start}, 11;
     </select>
 
     <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 category -->
@@ -189,8 +190,21 @@
         FROM gc_admin_gell_create_approve as a
         JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
         WHERE a.gell_create_cate = #{category}
-        ORDER BY gell_create_num desc;
+        ORDER BY gell_create_num desc
+        LIMIT #{start}, 11;
     </select>
+
+    <!-- 23/03/28 // 김재준 // 관리자 갤러리 신청 리스트 검색 시 검색 결과 총 개수 가져오기
+    <select id="searchByCategoryTotal" resultType="int">
+        SELECT COUNT(`gell_create_num`) FROM `gc_admin_gell_create_approve`
+        WHERE
+        <if test="searchOption == 'option1'">
+            `gell_create_name` LIKE CONCAT('%',#{searchKeyword},'%')
+        </if>
+        <if test="searchOption == 'option2'">
+            `gell_create_uid` LIKE CONCAT('%',#{searchKeyword},'%')
+        </if>
+    </select>-->
 
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
         <result property="gell_create_num" column="gell_create_num"/>

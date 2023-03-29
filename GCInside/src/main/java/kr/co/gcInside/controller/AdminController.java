@@ -185,15 +185,38 @@ public class AdminController {
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list get 매핑
      */
     @GetMapping("admin/gallery/form_minor")
-    public String galleryRequestList(Model model) {
+    public String galleryRequestList(Model model,
+        @RequestParam(name = "pg", required = false, defaultValue = "1") int pg) {
         // 카테고리명 불러오기용
         List<gall_cate2VO> cates = service.selectGalleryCates();
 
+        // 페이징 처리
+        int perPage = 11;
+        int total = service.galleryRequestTotal();
+
+        int start = (pg - 1) * perPage;
+        int end = start + perPage;
+
+        int lastPage = (int) Math.ceil((double) total / perPage);
+
+        int groupSize = 10;
+        int groupStart = ((pg-1) / groupSize) * groupSize + 1;
+        int groupEnd = Math.min(groupStart + groupSize - 1, lastPage);
+
         // 갤러리 개설 신청 리스트 불러오기
-        List<CreateVO> list = service.galleryRequestList();
+        List<CreateVO> list = service.galleryRequestList(start, perPage);
+
+        PagingDTO pagingDTO = PagingDTO.builder()
+                .lastPage(lastPage)
+                .groupStart(groupStart)
+                .groupEnd(groupEnd)
+                .currentPage(pg)
+                .start(start)
+                .build();
 
         model.addAttribute("list", list);
         model.addAttribute("cates", cates);
+        model.addAttribute("pagingDTO", pagingDTO);
 
         return "admin/gallery/form_minor";
     }
@@ -230,11 +253,12 @@ public class AdminController {
 
     @GetMapping("/admin/gallery/form_minor/searchByCategory")
     @ResponseBody
-    public List<CreateVO> searchByCategory(@RequestParam("category") String category) {
+    public List<CreateVO> searchByCategory(@RequestParam("category") String category,
+                                           @RequestParam(name = "pg", required = false, defaultValue = "1") int pg) {
         if(category.isEmpty()) {
-            return service.galleryRequestList();
+            return service.galleryRequestList((pg-1)*11, 11);
         }
 
-        return service.searchByCategory(Integer.parseInt(category));
+        return service.searchByCategory((pg-1)*11, 11, Integer.parseInt(category));
     }
 }

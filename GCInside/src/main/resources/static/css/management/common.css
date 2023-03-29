@@ -1,8 +1,8 @@
 @charset "utf-8";
 @import url("https://fonts.googleapis.com/earlyaccess/nanumgothic.css");/*나눔고딕 웹폰트*/
 /*공통*/
-.sp_img{background-image:url("/img/sp_img.png");background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
-.sp_bgimg{background-image:url("/img/sp_bgimg.png");background-repeat:no-repeat}
+.sp_img{background-image:url("/GCInside/img/sp_img.png");background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
+.sp_bgimg{background-image:url("/GCInside/img/sp_bgimg.png");background-repeat:no-repeat}
 .sp_loginout{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_loginout.png?1);background-repeat:no-repeat}
 .sp_years{position:absolute;right:0px;top:0;display:block;background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_years.png);background-repeat:no-repeat}/*업로드전 경로 변경 churl*/
 .sp_sns{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_sns.png);background-repeat:no-repeat}
@@ -204,7 +204,7 @@ input:-ms-input-placeholder{color:#aaa}
 /*220331 통합검색 개편 - 검색어 자동완성 / 최근 검색어 */
 .txtbtn_more{position:absolute;top:5px;right:4px;line-height:normal;padding:5px;color:#999;font-weight:normal;;text-decoration:underline}
 .txtbtn_more:after{content:'';display:inline-block;width:5px;height:9px;margin-left:3px;
-background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);background-position:-110px -58px
+background-image:url(/GCInside/img/sp_img.png);background-position:-110px -58px
 }
 .auto_wordwrap .wordmark{font-weight:bold}
 .auto_wordwrap .btn_latelydel{position:absolute;top:5px;right:4px;height:26px;line-height:100%;padding:5px;color:#999;text-decoration:underline }
@@ -224,7 +224,7 @@ background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);bac
 .saveonfo .checkbox.round.blue .round_label .inr{font-size:12px;color:#3b4890;/*text-shadow:0.5px 0.5px #474747*/}
 
 .btn_autoword_del{vertical-align:top;outline:none;position:absolute;top:5px;right:7px;padding:0 5px}
-.icon_autoword_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat -127px -153px;cursor:pointer}
+.icon_autoword_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(/GCInside/img/sp_img.png) no-repeat -127px -153px;cursor:pointer}
 
 
 .gcheader .wrap_search .word_close{position:relative;height:35px;line-height:35px;background:none;border-top:1px #29367c solid}/*220331 스타일 추가*/
@@ -466,7 +466,7 @@ button.on .icon_favorite{background-position:-121px -15px}
 .area_links .user_data_list .icon_go{display:inline-block;width:5px;height:9px;margin-left:6px;background-position:-36px -45px;right:1px;top:8px}
 .area_nickname .btn_user_data{text-decoration:underline;font-weight:bold}
 .area_nickname .btn_user_data::after{content:"";display:inline-block;width:9px;height:5px;margin-left:2px;vertical-align:2px;
-background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png?07203)no-repeat -198px -1024px }
+background:url(/GCInside/img/sp_img.png?07203)no-repeat -198px -1024px }
 .area_nickname .btn_user_data.on::after{background-position:-217px -1024px }
 .gchead .pop_wrap.type3{z-index:4010}
 /*//작성자 정보*/
@@ -500,7 +500,7 @@ background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png?07203)no-r
 .list_wrap .visit_bookmark ~ .wrap_inner .concept_txtlist, .list_wrap .visit_bookmark ~ #container .concept_txtlist{padding-bottom:21px}/*220419*/
 
 .concept_txtlist li{overflow:hidden;line-height:22px}
-.concept_txtlist li a::before{content:"";display:inline-block;width:8px;height:12px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat -298px -18px}/*churl*/
+.concept_txtlist li a::before{content:"";display:inline-block;width:8px;height:12px;background:url(/GCInside/img/sp_img.png) no-repeat -298px -18px}/*churl*/
 .concept_txtlist li a{float:left;width:453px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
 .listwrap .concept_txtlist li a{width:307px}
 .writer{float:right}
@@ -528,7 +528,7 @@ background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png?07203)no-r
 .visit_list li:first-child{margin-left:0}
 .visit_list .icon_mini{vertical-align:top;height:24px;line-height:100%;margin-top:12px;margin-left:0}/*201215-1 추가*/
 .btn_visit_del{height:36px;vertical-align:top;outline:none;position:absolute;top:0;right:0}/*201215 position:absolute;top:0;right:0 추가*/
-.icon_visit_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat -127px -153px;cursor:pointer}/*churl*/
+.icon_visit_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(/GCInside/img/sp_img.png) no-repeat -127px -153px;cursor:pointer}/*churl*/
 .visit_list li a{display:inline-block;width:114px;margin-right:5px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
 .visit_list li a.mini{max-width:96px;width:auto;margin-right:2px}/*201215-1 추가*/
 .left_content .visit_list li{width:121px}/*201215-1 추가*/
@@ -659,7 +659,7 @@ background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png?07203)no-r
 .one_ranklist .rank_list{margin-top:3px;padding:0 0 2px}
 
 /*블릿*/
-.dccon_infobox p{padding-left:9px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) -297px -17px no-repeat}/*churl*/
+.dccon_infobox p{padding-left:9px;background:url(/GCInside/img/sp_img.png) -297px -17px no-repeat}/*churl*/
 .tip_deco{display:inline-block;width:9px;height:9px;background-position:-190px -201px;margin-right:5px}
 .tip_deco999{display:inline-block;width:9px;height:9px;background-position:-278px -217px}/*mini*/
 .tip_deco_black{display:inline-block;width:9px;height:9px;background-position:-177px -201px;margin-right:5px}
@@ -971,7 +971,7 @@ th .select_box{float:none}
 /*//select  디자인*/
 
 /*체크 라디오 버튼 디자인 공통*/
-.checkmark{background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);background-repeat:no-repeat}/*churl*/
+.checkmark{background-image:url(/GCInside/img/sp_img.png);background-repeat:no-repeat}/*churl*/
 /*라디오 버튼 디자인*/
 .radiobox{position:relative;display:inline-block;line-height:31px;padding-left:23px}
 .radiobox input[type="radio"]{position:absolute;left:0;top:8px;margin:0;opacity:0;z-index:2;cursor:pointer}
@@ -1270,7 +1270,7 @@ input.int.bg:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 in
 .reply_info .usertxt,.del_reply,.reply_info .comment_dccon{position:relative;width:774px;padding-left:16px;cursor:default}
 .reply .comment_dccon{padding-left:16px}
 .reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
-background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat;background-position:-283px -200px}/*churl*/
+background:url(/GCInside/img/sp_img.png) no-repeat;background-position:-283px -200px}/*churl*/
 .del_reply{color:#999;line-height:20px;padding-left:0;float:left}
 .album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
 .comment_box .reply{overflow:hidden;height:0}
@@ -1345,7 +1345,7 @@ li:first-child .reply_box{margin:0px 0 0px 30px}
 .view_comment .cmt_mdf_del{top:3px}
 .view_comment .reply_info .cmt_mdf_del{right:0}
 .cmt_mdf_del button{color:#999}
-.btn_cmt_delete{background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);background-position:-268px -200px;font-size:0;line-height:0;width:13px;height:13px;vertical-align:top}/*churl*/
+.btn_cmt_delete{background:url(/GCInside/img/sp_img.png);background-position:-268px -200px;font-size:0;line-height:0;width:13px;height:13px;vertical-align:top}/*churl*/
 .cmt_nickbox{float:left;width:132px;margin-right:33px;margin-top:3px;line-height:13px}/*211118 폰트 버그 line-height:13px 추가*/
 .cmt_nickbox:empty{display:none}
 .album .cmt_nickbox{margin-right:15px}
@@ -1613,7 +1613,7 @@ background-color:#fff;border:1px solid #dfe1ee;color:#555;font-weight:bold}/*190
 .power_link .btn_blue_round.h21{margin-top:0px}
 .power_link .link_upinfo{margin-top:5px;color:#29367c;text-decoration:underline;font-size:11px}/*220502 font-size 추가*/
 .power_link .link_upinfo::after{content:" ";display:inline-block;width:5px;height:9px;margin-left:3px;
-background-image:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png);background-position:-124px -58px}
+background-image:url(/GCInside/img/sp_img.png);background-position:-124px -58px}
 
 /*본문*/
 .view_wrap .power_link{display:inline-block;width:auto;margin:0 auto;min-width:970px;text-align:left}/*220512*/
@@ -1717,7 +1717,7 @@ background:url(https://nstatic.dcinside.com/dc/w/images/icon_bluesmini1.png?0406
 /*220808 다른 인증 사용하기*/
 .another_go{position:absolute;text-align:right;box-sizing:border-box;bottom:20px;right:20px;font-size:12px}
 .another_go a{color:#29367c}
-.another_go::before{content:"";width:5px;height:11px;display:inline-block;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png)no-repeat -124px -57px}
+.another_go::before{content:"";width:5px;height:11px;display:inline-block;background:url(/GCInside/img/sp_img.png)no-repeat -124px -57px}
  .another_go a{text-decoration:underline;font-size:12px}
 /*//220808 다른 인증 사용하기*/
 

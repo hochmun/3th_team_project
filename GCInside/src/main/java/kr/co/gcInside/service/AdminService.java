@@ -118,8 +118,8 @@ public class AdminService {
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 불러오기
      */
-    public List<CreateVO> galleryRequestList() {
-        return dao.galleryRequestList();
+    public List<CreateVO> galleryRequestList(int start, int perPage) {
+        return dao.galleryRequestList(start, perPage);
     }
 
     /**
@@ -132,8 +132,17 @@ public class AdminService {
     /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색
      */
-    public List<CreateVO> searchByCategory(int category) {
-        return dao.searchByCategory(category);
+    public List<CreateVO> searchByCategory(int category, int start, int perPage) {
+        return dao.searchByCategory(category, start, perPage);
+    }
+
+    /**
+     * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 총 개수
+     * @param category
+     * @return
+     */
+    public int searchByCategoryTotal(int category) {
+        return dao.searchByCategoryTotal(category);
     }
 
     // upload
