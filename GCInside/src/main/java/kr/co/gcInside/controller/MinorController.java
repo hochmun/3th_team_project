@@ -33,18 +33,33 @@ public class MinorController{
     @Autowired
     private TermsService tservice;
 
+    /**
+     * 2023/03/28 // 김동민 // 마이너 인덱스 순위변동 기능구현 중
+     * @param model
+     * @return
+     */
     @GetMapping(value = {"/mgall/","mgall/index"})
     public String minorindex(Model model){
+        service.initrank();
+        log.info("initrank");
+        service.resetrank();
+        log.info("resetrankyesday");
+        service.updatehotmgallyesterdayrank();
+        log.info("updateyesrank");
+        service.resetrank();
+        log.info("resetranktoday");
+        service.updatehotmgalltodayrank();
+        log.info("updatetorank");
         List<galleryVO> hot_mgall = service.selecthotmgall();
         List<galleryVO> new_mgall = service.selectnewmgall();
         List<galleryVO> mgall = service.selectminorgall();
 
         List<Integer> mgallcate1cnt = service.mgallcate1cnt();
-        String mgallcate2cnt = service.mgallcate2cnt();
 
         model.addAttribute("cate1cnt",mgallcate1cnt);
-        model.addAttribute("cate2cnt",mgallcate2cnt);
 
+        model.addAttribute("rankdiff",service.rankdiff());
+        model.addAttribute("cate1cnt",service.mgallcate1cnt());
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
         model.addAttribute("mgall",mgall);
