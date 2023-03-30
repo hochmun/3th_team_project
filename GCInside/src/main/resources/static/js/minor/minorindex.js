@@ -39,50 +39,80 @@ $(function() {
     });
 
     // 실북갤 1위-10위/11위-20위 클릭
-    $('.rank_more').click(function(){
-        var type = $(this).attr('rank_type'); // 현재 타입
-        if(type == 'high') type = 1;
-        else type = parseInt(type);
+    var currentRankList = 1; // 현재 보이는 리스트 번호
 
-        // 기존 1~10위 숨기기
-        $('.rank_high li').each(function() {
-            var rank = $(this).find('.rank_num em').text();
-            if (rank <= 10) {
-                $(this).hide();
-            }
-        });
+    $('.rank_more').click(function() {
+      // 현재 보이는 리스트 숨김
+      $(".rank_high" + currentRankList).css('display', 'none');
 
-        // 11위부터 보여주기
-        $('.rank_high li').each(function() {
-            var rank = $(this).find('.rank_num em').text();
-            if (rank > 10) {
-                $(this).show();
-            }
-        });
+      // 다음 리스트 번호 계산
+      currentRankList = currentRankList + 1;
+      if (currentRankList > 3) { // 리스트가 3개까지이므로 3을 초과하면 1로 되돌림
+        currentRankList = 1;
+      }
 
-        // 버튼 텍스트 변경 및 rank_type 속성 변경
-        var rank_txt = ['1위 - 10위', '11위 - 20위', '21위 - 30위', '31위 - 40위', '41위 - 50위', '1위 - 10위'];
-        var rank_txt_num = type + 1;
-        if(type >= 5) {
-            type = 0;
-            rank_txt_num = 1;
+      // 다음 리스트 보이기
+      while ($(".rank_high" + currentRankList + " li").length === 0) {
+        // li 태그가 없는 경우 다음 리스트를 보여줌
+        currentRankList = currentRankList + 1;
+        if (currentRankList > 3) { // 리스트가 3개까지이므로 3을 초과하면 1로 되돌림
+          currentRankList = 1;
         }
-        $('.rank_more').text(rank_txt[rank_txt_num]);
-        $('.rank_more').attr('rank_type',type+1);
+      }
+      $(".rank_high" + currentRankList).css('display', 'block');
     });
 });
-var hotTotalPage = 30;
-	$('#btn_hotminor_prev').click(function(){
 
-		var page = $('.hot_mgall_box .btn_paging').data('page')
-		if(page <= 1) page = hotTotalPage;
-		else page = page - 1;
-		getHotMgallList(page)
-	});
-	$('#btn_hotminor_next').click(function(){
 
-		var page = $('.hot_mgall_box .btn_paging').data('page')
-		if(page >= hotTotalPage) page = 1;
-		else page = page + 1;
-		getHotMgallList(page)
-	});
+/*function thumb_view(e, src) {
+    if (!e) {
+    e = window.event; // fallback for older browsers
+    }
+  if (src == "" || src == "null") {
+    src = "https://via.placeholder.com/50x50.png";
+  }
+  src = src.replace('http://', 'https://');
+
+  $("#gallery_thumb_img").attr("src", src);
+  var ex_obj = document.getElementById('gallery_thumb_div');
+  if (!e) e = window.event;
+  pos = abspos(e);
+  ex_obj.style.left = pos.x + "px";
+  ex_obj.style.top = (pos.y + 10) + "px";
+  ex_obj.style.display = ex_obj.style.display == 'none' ? 'block' : 'none';
+}
+
+function thumb_hide(e) {
+  var ex_obj = document.getElementById('gallery_thumb_div');
+  ex_obj.style.display = 'none';
+}
+*/
+$(document).ready(function() {
+  var mLength = $(".cate li").length;
+  var cateCount = 1;
+  var cateLimit = 7; // 제한할 .cate 개수
+
+  $(".cate").each(function() {
+    if ($(this).find("li").length > 10) {
+      // .cate가 제한 개수 이상인 경우에는 생성하지 않음
+      if(cateCount >= cateLimit) {
+        return;
+      }
+
+      $(this).after('<div class="cate cate-' + cateCount + '"><ul></ul></div>');
+      cateCount = cateCount + 1;
+
+      var mIndex = 0;
+      while ($(this).find("li").length > 10) {
+        var li = $(this).find("li:eq(10)");
+        $(".cate-" + (cateCount - 1) + " ul").append(li);
+        mIndex = mIndex + 1;
+      }
+
+      $(".cate-" + (cateCount - 1) + " li a").on("mouseout", thumb_hide)
+           .on("mouseover", function(event) {
+              thumb_view(event, 'https://via.placeholder.com/50x50');
+            });
+    }
+  });
+});

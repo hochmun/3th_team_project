@@ -39,22 +39,7 @@
 
     <!--갤러리명만 출력한것을 gc_gell이랑 비교 후 cnt 가 높은 순으로 정렬  -->
     <select id="selecthotmgall" resultType="kr.co.gcInside.vo.galleryVO">
-        SELECT `gc_gell`.*, `subquery`.`cnt`
-        FROM `gc_gell`
-        LEFT JOIN (
-        SELECT `articlel_gell_num`, COUNT(*) AS `cnt`
-        FROM `gc_gell_article`
-        WHERE DATE(`article_rdate`) = CURDATE()
-        GROUP BY `articlel_gell_num`
-        ) AS `subquery`
-        ON `gc_gell`.`gell_num` = `subquery`.`articlel_gell_num`
-        WHERE `gc_gell`.`gell_num` IN (
-        SELECT `articlel_gell_num`
-        FROM `gc_gell_article`
-        WHERE DATE(`article_rdate`) = CURDATE()
-        GROUP BY `articlel_gell_num`
-        )
-        ORDER BY `subquery`.`cnt` DESC;
+        select * from `gc_gell` WHERE `gell_today_rank`>='1' ORDER BY `gell_today_rank` ASC;
     </select>
     <!-- 2023/03/23 // 김동민 // 마이너 갤러리 index 신설 갤러리 select -->
     <!-- BETWEEN 으로 오늘로부터 1주일 범위 행들을 선택 DATE_SUB는 오늘에서 1주일을 뺀 값, 절대값으로 오늘과 gell_rdate의 차를 구해 그 수가 적을 수록 가까운 날짜 -->
@@ -71,7 +56,7 @@
         SET `gell_today_article_count` = (
         SELECT COUNT(*)
         FROM `gc_gell_article`
-        WHERE DATE(`article_rdate`) = CURDATE()
+            WHERE DATE(`article_rdate`) = CURDATE()
         AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
         );
     </update>
@@ -117,20 +102,15 @@
         ON `gell`.`gell_num` = `ranking`.`gell_num`
         SET `gell`.`gell_yesterday_rank` = `ranking`.`rank`;
     </update>
-<!--
-    <resultMap type="map" id="selectMapList">
-        <result column="gell_num" property="gell_num"/>
-        <result column="gell_today_rank" property="todayrank"/>
-    </resultMap>
 
-    <select id="todayrank" resultType="selectMapList">
+    <select id="todayrank" resultType="kr.co.gcInside.vo.galleryVO">
         select `gell_num`,`gell_today_rank` from `gc_gell` WHERE `gell_today_rank`>='1';
     </select>
 
-    <select id="yesterdayrank" resultType="selectMapList">
+    <select id="yesterdayrank" resultType="kr.co.gcInside.vo.galleryVO">
         select `gell_num`,`gell_yesterday_rank` from `gc_gell` WHERE `gell_yesterday_rank`>='1';
     </select>
--->
+
     <!-- 2023/03/27 // 김동민 // 마이너 갤러리 select-->
     <select id="selectminorgall" resultType="kr.co.gcInside.vo.galleryVO">
         select * from `gc_gell` where `gell_grade`='1';

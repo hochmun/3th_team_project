@@ -69,11 +69,6 @@
                                         <li th:each="hot,i:${hot_mgall}" th:if="${i.count} > 200 and ${i.count}<=300"><a href="#"><span class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
                                     </ul>
                                     <div class="btn_box" data-lyr="heung_gall_all_lyr">
-                                  <button type="button" class="heung_gall_prev btn_prev on"><span class="blind">이전</span><em class="sp_img icon_prev"></em></button>
-                                  <div class="page_num"><strong class="now_num" data-heung-gall-page="1" data-heung-gall-totalpage="3">1</strong>
-                                  <span>/<span class="total_num">3</span>
-                                  </span></div>
-                                  <button type="button" class="heung_gall_next btn_next on"><span class="blind">다음</span><em class="sp_img icon_next"></em></button>
                                   </div>
                                 </div>
                                 <button type="button" class="under poply_close" onclick="showLayer('heung_gall_all_lyr')"><span class="blind">갤러리 전체보기 레이어 닫기</span><em class="sp_img icon_lyclose"></em></button>
@@ -137,13 +132,12 @@
                                       <a id="rank_num" th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${hot.gell_address})}">
                                           <span class="rank_num"><em>[[${i.count}]]</em></span>
                                           <span class="rank_txt">[[${hot.gell_name}]]</span>
-                                          <div th:each="diffMap, j : ${rankdiff}">
-                                              <div th:if="${diffMap.get(j.index) != null}">
-                                                  <div th:with="key=${diffMap.get(j.index).keySet().iterator().next()}, value=${diffMap.get(j.index).values().iterator().next()}">
-                                                      <span class="rank_state" th:if="${key == hot.gell_num}" th:text="${value}"></span>
-                                                      <span th:if="${value}>=1" class="sp_img ico_ranking up"></span>
-                                                      <span th:if="${value}<=-1" class="sp_img ico_ranking down"></span>
-                                                  </div>
+                                          <div th:each="diff, j : ${rankdiff}">
+                                              <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                      <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                      <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                      <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                      <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
                                               </div>
                                           </div>
                                       </a>
@@ -151,30 +145,61 @@
                                   </ol>
                                 </div>
                                 <!-- //실시간 북적 갤러리 한줄 노출 -->
-                             <!-- 실시간 북적 갤러리 1~20위 10개씩 노출 -->
+                             <!-- 실시간 북적 갤러리 1~30위 10개씩 노출 -->
                               <div class="all_ranklist" style="display:none;right:0;top:0">
                                 <div class="box_tit">
                                   <h3 class="tit">마이너 갤러리</h3>
                                 </div>
-                                <ol class="rank_list mgall rank_high" style="display:blcok"><!--1~10위-->
+                                <ol class="rank_list mgall rank_high1" style="display:blcok"><!--1~10위-->
                                       <li th:each="hot,i:${hot_mgall}" th:if="${i.count} < 11">
                                         <a th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${hot.gell_address})}">
                                             <span class="rank_num"><em>[[${i.count}]]</em></span>
                                             <!-- 2023/03/28 // 김동민 // 랭크차 구하기 -->
                                             <span class="rank_txt">[[${hot.gell_name}]]</span>
-                                            <span th:each="diffMap, j : ${rankdiff}">
-                                              <span th:if="${diffMap.get(j.index) != null}">
-                                                <span th:with="key=${diffMap.get(j.index).keySet().iterator().next()}"></span>
-                                                <span th:with="value=${diffMap.get(j.index).values().iterator().next()}"></span>
-                                                <span class="rank_state" th:if="${key == hot.gell_num}" th:text="${value}"></span>
-                                                <span th:if="${value}>=1" class="sp_img ico_ranking up"></span>
-                                                <span th:if="${value}<=-1" class="sp_img ico_ranking down"></span>
-                                              </span>
-                                            </span>
+                                            <div th:each="diff, j : ${rankdiff}">
+                                                <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                    <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                    <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                    <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                    <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                                </div>
+                                            </div>
                                         </a>
                                       </li>
                                 </ol>
-                                <div class="box_bottom rank_more" rank_type="high">1위 - 10위</div>
+                                  <ol class="rank_list mgall rank_high2" style="display:none;"><!--11~20위-->
+                                      <li th:each="hot,i:${hot_mgall}" th:if="${i.count} >= 11 and ${i.count} < 21">
+                                          <a th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${hot.gell_address})}">
+                                              <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                              <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                              <div th:each="diff, j : ${rankdiff}">
+                                                  <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                      <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                      <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                      <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                      <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                                  </div>
+                                              </div>
+                                          </a>
+                                      </li>
+                                  </ol>
+                                  <ol class="rank_list mgall rank_high3" style="display:none;"><!--21~30위-->
+                                      <li th:each="hot,i:${hot_mgall}" th:if="${i.count} >= 21 and ${i.count} < 31">
+                                          <a th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${hot.gell_address})}">
+                                              <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                              <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                              <div th:each="diff, j : ${rankdiff}">
+                                                  <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                      <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                      <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                      <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                      <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                                  </div>
+                                              </div>
+                                          </a>
+                                      </li>
+                                  </ol>
+                                <div class="box_bottom rank_more" rank_type="high">다음</div>
                               </div>
                               <!-- //실시간 북적 갤러리 1~20위 10개씩 리스트 -->
                             </div>
@@ -211,10 +236,10 @@
                     <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
                 </button></h4>
                 <div class="cate">
-                    <ul style="height: 574px;">
+                    <ul>
                         <li th:each="m:${mgall}" th:if="${m.gell_cate} == '2'">
                             <a class="colortxt" th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${m.gell_address})}" target="_parent" onmouseout="thumb_hide();"
-                               onmouseover="thumb_view(event,'https://via.placeholder.com/50x50');">[[${m.gell_name}]]</a>
+                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${m.gell_name}]]</a>
                         </li>
                     </ul>
                 </div>
@@ -230,7 +255,7 @@
                     <ul>
                         <li th:each="m:${mgall}" th:if="${m.gell_cate} == '1'">
                             <a class="colortxt" th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${m.gell_address})}" target="_parent" onmouseout="thumb_hide();"
-                               onmouseover="thumb_view(event,'https://via.placeholder.com/50x50')">[[${m.gell_name}]]</a>
+                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50')">[[${m.gell_name}]]</a>
                         </li>
                     </ul>
                 </div>
@@ -246,7 +271,7 @@
                         <ul>
                             <li>
                                 <a class="colortxt" href="#" target="_parent" onmouseout="thumb_hide();"
-                                   onmouseover="thumb_view(event,'https://via.placeholder.com/50x50')">정치인</a>
+                                   onmouseover="thumb_view(e,'https://via.placeholder.com/50x50')">정치인</a>
                             </li>
                         </ul>
                     </div>
@@ -255,6 +280,7 @@
           </div>
         </section>
     </article>
+                <div id="gallery_thumb_div" style="border-width:0px; border-style:none; width:0px; height:14px; position:absolute; left:0px; top:0px; z-index:4002;display:none" class="shadow"><img src="" id="gallery_thumb_img" style="width:120px;height:80px"></div>
             </div>
         </main>
 

@@ -64,15 +64,22 @@ public interface MinorDAO {
      * 2023/03/28 // 김동민 // 랭크차 구하기
      * @return
      */
-    public List<Map<Integer,Integer>> todayrank();
-    public List<Map<Integer,Integer>> yesterdayrank();
+    public List<galleryVO> todayrank();
+    public List<galleryVO> yesterdayrank();
     /**
      * 2023/03/29 // 김동민 // 어제,오늘 랭크 업데이트
      */
 
     public void updatehotmgallyesterdayrank();
-
     public void updatehotmgalltodayrank();
+
+    /**
+     * 2023/03/29 // 김동민 // 랭크 업데이트 전 테이블 칼럼 초기화, RANK변수 초기화
+     */
     public void initrank();
     public void resetrank();
+    /**
+     * 2023/03/30 // 김동민 // 갤러리별 오늘 게시물 작성수 업데이트
+     */
+    public void todayarticlecount();
 }
