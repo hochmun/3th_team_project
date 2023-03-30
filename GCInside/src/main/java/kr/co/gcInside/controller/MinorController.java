@@ -40,16 +40,8 @@ public class MinorController{
      */
     @GetMapping(value = {"/mgall/","mgall/index"})
     public String minorindex(Model model){
-        service.initrank();
-        log.info("initrank");
-        service.resetrank();
-        log.info("resetrankyesday");
-        service.updatehotmgallyesterdayrank();
-        log.info("updateyesrank");
-        service.resetrank();
-        log.info("resetranktoday");
-        service.updatehotmgalltodayrank();
-        log.info("updatetorank");
+        service.minorinit();
+        log.info("! minor rank update !");
         List<galleryVO> hot_mgall = service.selecthotmgall();
         List<galleryVO> new_mgall = service.selectnewmgall();
         List<galleryVO> mgall = service.selectminorgall();
@@ -67,6 +59,12 @@ public class MinorController{
         model.addAttribute("mgall",mgall);
         return "gall/mgall/index";
     }
+
+    /**
+     * 2023/03/16~ // 김동민 // minorgall create
+     * @param model
+     * @return
+     */
     @GetMapping("mgall/create")
     public String minorcreateview(Model model){
         List<CreateVO> cate2 = service.selectcate2();
@@ -77,6 +75,13 @@ public class MinorController{
         model.addAttribute("termdata2", data2);
         return "gall/mgall/create";
     }
+
+    /**
+     * 2023/03/16~ // 김동민 // minorgall create
+     * @param frmCreate
+     * @param myUserDetails
+     * @return
+     */
     @PostMapping("mgall/create")
     public String minorcreate(CreateVO frmCreate,@AuthenticationPrincipal MyUserDetails myUserDetails){
         if(myUserDetails != null)frmCreate.setGell_create_uid(myUserDetails.getUsername());
@@ -84,6 +89,12 @@ public class MinorController{
 
         return "redirect:/mgall/index";
     }
+
+    /**
+     * 2023/03/16~ // 김동민 // minorgall validation
+     * @param gell_create_name
+     * @return
+     */
     @ResponseBody
     @GetMapping("mgall/chkName")
     public Map<String, Object> chkName(@RequestParam("gell_create_name") String gell_create_name){
@@ -98,6 +109,12 @@ public class MinorController{
         }
         return resultMap;
     }
+
+    /**
+     * 2023/03/16~ // 김동민 // minorgall validation
+     * @param gell_create_address
+     * @return
+     */
     @ResponseBody
     @GetMapping("mgall/chkAddress")
     public Map<String, Object> chkAddress(@RequestParam("gell_create_address") String gell_create_address){

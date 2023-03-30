@@ -100,48 +100,53 @@ public class MinorService {
         return counts;
     }
 
-    ;
+    /**
+     * 2023/03/30 // 김동민 // rank 차 구하기
+     * @return
+     */
+        public List<galleryVO> rankdiff() {
+            List<galleryVO> today = dao.todayrank();
+            List<galleryVO> yesterday = dao.yesterdayrank();
+            List<galleryVO> resultList = new ArrayList<>();
 
-    public List<Map<Integer, Integer>> rankdiff() {
-        List<Map<Integer, Integer>> today = dao.todayrank();
-        List<Map<Integer, Integer>> yesterday = dao.yesterdayrank();
-        List<Map<Integer, Integer>> diffList = new ArrayList<>();
-        log.info("today :",today.toString());
-        log.info("yesterday :",yesterday.toString());
-        for (Map<Integer, Integer> map1 : yesterday) {
-            for (Map<Integer, Integer> map2 : today) {
-                if (map1.keySet().equals(map2.keySet())) { // 키가 같은 경우
-                    Map<Integer, Integer> diffMap = new HashMap<>(); // 차이 값을 저장할 맵
-                    for (Integer key : map1.keySet()) {
-                        int diff = map1.get(key) - map2.get(key); // 값의 차이 계산
-                        diffMap.put(key, diff); // 차이 값을 맵에 추가
+            for (galleryVO yes : yesterday) {
+                for (galleryVO to : today) {
+                    if (yes.getGell_num() == to.getGell_num()) {
+                        int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
+                        galleryVO gelldiff = new galleryVO();
+                        gelldiff.setGell_num(yes.getGell_num());
+                        gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
+                        gelldiff.setGell_today_rank(to.getGell_today_rank());
+                        gelldiff.setGell_rank_diff(diff);
+                        resultList.add(gelldiff);
                     }
-                    diffList.add(diffMap); // 차이 값을 저장하는 맵을 리스트에 추가
-                    break;
                 }
             }
+
+            return resultList;
         }
-        log.info(diffList.toString());
-        return diffList;
-    }
 
     /**
      * 2023/03/29 // 김동민 // 어제,오늘 랭크 업데이트
      * initrank 0으로 rank초기화
      * resetrank sql rank 변수 초기화
+     * 2023/03/30 // 김동민 // 갤러리별 오늘 게시물 작성수 업데이트
+     * 2023/03/30 // 김동민 // 서비스 한번만 들리게 하기
      */
+    public void minorinit(){
+        dao.initrank(); /* gc_gell 테이블 랭크 칼럼 초기화 */
+        log.info("initrank");
+        dao.todayarticlecount(); /* gc_gell_article에서 갤러리별 오늘 게시물 작성수 업데이트*/
+        log.info("todayarticleupdate");
+        dao.resetrank();/* 쿼리문 변수 rank 초기화 */
+        log.info("resetrankyesday");
+        dao.updatehotmgallyesterdayrank(); /* 어제 게시글 개수 기준으로 어제랭킹 update */
+        log.info("updateyesrank");
+        dao.resetrank(); /* 쿼리문 변수 rank 초기화 */
+        log.info("resetranktoday");
+        dao.updatehotmgalltodayrank(); /* 오늘 게시글 개수 기준으로 오늘 랭킹 update */
+        log.info("updatetorank");
 
-    public void updatehotmgallyesterdayrank(){
-        dao.updatehotmgallyesterdayrank();
-    };
-    public void updatehotmgalltodayrank(){
-        dao.updatehotmgalltodayrank();
-    };
-    public void initrank(){
-      dao.initrank();
-    };
-    public void resetrank(){
-        dao.resetrank();
     }
 
 }

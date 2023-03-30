@@ -39,7 +39,13 @@ public class galleryVO {
     private int re_relation_count;
     /** 2023/03/24 // 심규영 // 갤러리 매니저 닉네임 필드 추가 */
     private String member_nick;
-    
+    /** 2023/03/30 // 김동민 // 갤러리 today,yesterday rank , 갤러리별 오늘 게시글 개수 */
+    private int gell_today_rank;
+    private int gell_yesterday_rank;
+    private int gell_today_article_count;
+    private int gell_rank_diff;
+
+
     // 추가 필드 vo 연결
     private Gell_SettingVO gellSettingVO;
 
