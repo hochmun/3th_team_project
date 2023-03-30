@@ -345,10 +345,11 @@
 .empty_visit{float:left;padding-left:19px;font-size:12px;color:#999}
 
 .newvisit_history .bnt_visit_prev, .newvisit_history .bnt_visit_next{top:13px}
-.newvisit_history .bnt_visit_prev{margin-left:15px;margin-right:9px}
+.newvisit_history .bnt_visit_prev{margin-left:15px;margin-right:9px;top:0} /** 2023/03/30 // 심규영 // top:0 // 에러 수정 */
 .newvisit_history .bnt_visit_next{right:51px}
 
 .newvisit_history {
+    display: flex;/** 2023/03/30 // 심규영 // 에러 수정 */
     position: relative;
     width: 1000px;
     height: 38px;
