@@ -16,6 +16,7 @@ $(document).ready(function(){
     if(userLoginId !== ""){
     	$("#checksaveid").prop("checked", true);
     }
+
     // 아이디 저장하기 체크박스 변경 이벤트
     $("#checksaveid").change(function() {
         if($(this).is(":checked")) { // 체크박스 체크됨
@@ -25,25 +26,27 @@ $(document).ready(function(){
             deleteCookie("userLoginId"); // 쿠키 삭제
         }
     });
-    // 체크박스 해제시 쿠키 삭제 (체크가 실시간으로 되어있는지 확인이안되서 두번눌러야 deleteCookie실행됨..)
+    // 체크박스 해제시 쿠키 삭제
     $("#checksaveid").click(function() {
-      if(!$(this).is(":checked") || getCookie("userLoginId") != null){  // 체크 해제시
+      if(!$(this).is(":checked")){  // 체크 해제시
         deleteCookie("userLoginId");  // 쿠키 삭제
         $("input[name='member_uid']").val("");  // member_uid 값 공백 처리
       }
     });
-
     // 아이디 저장하기가 체크 된 상태에서, member_uid를 입력한 경우
     $("input[name='member_uid']").keyup(function(){
     	if($("#checksaveid").is(":checked")){  //checked true
-            var userLoginId = $("input[name='member_uid']").val();
+            var userLoginId = $(this).val();
             setCookie("userLoginId", userLoginId, 7); // 7일 동안 쿠키 보관
+        }else{
+            deleteCookie("userLoginId");
+            $("#checksaveid").prop("checked", false);
         }
     });
 
     if (getCookie("userLoginId")) {
         $("input[name='member_uid']").val(getCookie("userLoginId"));
-        $("input[name='member_pwd']").focus();
+        $("input[name='member_pass']").focus();
     }
 });
 // 쿠키 생성
@@ -58,7 +61,7 @@ function setCookie(cookieName, value, exdays){
 function deleteCookie(cookieName){
     var expireDate = new Date();
     expireDate.setDate(expireDate.getDate() - 1);
-    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString(); + "; path=/";
 }
 
 // 쿠키 가져오기

@@ -84,9 +84,23 @@ public class MemberContoller {
      * 비밀번호 입력 POST컨트롤러
      * 2023-03-27 //
      * */
+
+    /**
+     * 2023-03-31 // 전인준
+     * cookie는 비밀번호 재설정에 기존 쿠키설정이 적용되 값이 사라짐,
+     * 컨트롤러에서 쿠키 생성
+     * */
     @PostMapping("member/reset_pwd_Result")
-    public String reset_pwd_Result(@RequestParam("member_uid") String uid, @RequestParam("member_email") String email, Model model) {
-        model.addAttribute("member_uid", uid);
+    public String reset_pwd_Result(HttpServletRequest req,HttpServletResponse response,Model model) {
+        String id = req.getParameter("member_uid");
+        String email = req.getParameter("member_email");
+
+        // 쿠키 설정
+        Cookie cookie = new Cookie("userLoginId", id);
+        cookie.setMaxAge(60 * 60 * 24 * 7); // 7일간 유효
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        model.addAttribute("member_uid", id);
         model.addAttribute("member_email", email);
         return "member/reset_pwd_result";
     }
