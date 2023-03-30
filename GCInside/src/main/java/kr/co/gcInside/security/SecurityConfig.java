@@ -41,10 +41,11 @@ public class SecurityConfig {
 		// 전체 접근 가능
 		http.authorizeRequests().antMatchers("/index").permitAll();
 		
-		// 로그인된 사용자는 member/login페이지 접근불가
+		// 로그인(인증)된 사용자는 페이지 접근불가
 		http.authorizeRequests().antMatchers("/member/login").anonymous();
-		
-		// 로그인된 사용자가 member/login페이지 접근시 handle()함수 url로 이동시킴 (리다이렉트)
+		http.authorizeRequests().antMatchers("/member/register").anonymous();
+
+		// 로그인된 사용자가 403(권한없는)페이지 접근시 handle()함수 url로 이동시킴 (리다이렉트)
 		http.exceptionHandling().accessDeniedHandler(handle());
 
 		//iframe 동일 도메인 접근 허용
