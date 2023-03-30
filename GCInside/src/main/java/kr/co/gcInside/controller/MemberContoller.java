@@ -88,7 +88,7 @@ public class MemberContoller {
     public String reset_pwd_Result(@RequestParam("member_uid") String uid, @RequestParam("member_email") String email, Model model) {
         model.addAttribute("member_uid", uid);
         model.addAttribute("member_email", email);
-        return "member/reset_pwd_result";
+        return "member/reset_pwd_Result"; /** 2023/03/30 // 심규영 // 대소문자 구분  */
     }
 
     /**
