@@ -35,16 +35,7 @@ public class ManagementController {
      */
     @GetMapping("gall/management/index")
     public String index (@RequestParam Map<String, String> data, Model model) {
-        if(data.containsKey("cate")) {
-            String cate = data.get("cate");
-            Map<String, Object> stringObjectMap = service.selectArticleAndSetting(cate);
-            if (stringObjectMap == null) {
-                return "error/wrongURL";
-            }
-            model.addAttribute("stringObjectMap", stringObjectMap);
-        } else {
-            if(!service.modelInput(data, model)) return "error/wrongURL";
-        }
+        if(!service.modelInput(data, model)) return "error/wrongURL";
 
         return "gall/management/index";
     }
