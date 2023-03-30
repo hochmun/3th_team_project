@@ -1099,10 +1099,10 @@
     <footer class="gcfoot" th:replace="~{fragment/footer_fragment::boardFooter}"></footer>
   </div>
 </body>
-</html>
-<li id="comment_sample" class="ub-content" style="display:none;">
-  <div class="cmt_info clear" data-no="" data-article-no="">
-    <div class="cmt_nickbox">
+<th:block th:if="${type} == 'view'">
+  <li id="comment_sample" class="ub-content" style="display:none;">
+    <div class="cmt_info clear" data-no="" data-article-no="">
+      <div class="cmt_nickbox">
       <span class="gall_writer ub-writer" data-name="" data-ip="">
         <span class="nickname" title="">
           <em></em>
@@ -1112,93 +1112,97 @@
           <img src="/GCInside/img/nik.gif" border="0" width="12" height="11" style="cursor:pointer;"title="">
         </a>
       </span>
-    </div>
+      </div>
 
-    <div class="clear cmt_txtbox btn_reply_write_all">
-      <p class="usertxt ub-word"></p>
-    </div>
+      <div class="clear cmt_txtbox btn_reply_write_all">
+        <p class="usertxt ub-word"></p>
+      </div>
 
-    <div class="fr clear">
-      <span class="date_time"></span>
+      <div class="fr clear">
+        <span class="date_time"></span>
 
-      <div class="cmt_mdf_del" data-type="cmt" data-comment_no="" data-article-no="">
-        <button type="button" class="btn_cmt_delete">삭제</button>
+        <div class="cmt_mdf_del" data-type="cmt" data-comment_no="" data-article-no="">
+          <button type="button" class="btn_cmt_delete">삭제</button>
+        </div>
       </div>
     </div>
-  </div>
-</li>
-<!-- class="reply_list" id="reply_list_${no}"-->
-<li id="re_comment_none_sample" style="display:none;">
-  <div class="reply show">
-    <div class="reply_box">
-      <ul class="reply_list">
+  </li>
+  <!-- class="reply_list" id="reply_list_${no}"-->
+  <li id="re_comment_none_sample" style="display:none;">
+    <div class="reply show">
+      <div class="reply_box">
+        <ul class="reply_list">
 
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-</li>
-<!-- reply_li_${no} -->
-<li id="re_comment_sample" class="ub-content">
-  <div class="reply_info clear" data-no="">
-    <div class="cmt_nickbox">
+  </li>
+  <!-- reply_li_${no} -->
+  <li id="re_comment_sample" class="ub-content">
+    <div class="reply_info clear" data-no="">
+      <div class="cmt_nickbox">
               <span class="gall_writer ub-writer" data-nick="" data-uid="" data-ip="">
                 <span class="nickname">
                   <em title=""></em>
                   <span class="ip"></span>
                 </span>
               </span>
-    </div>
-
-    <div class="clear cmt_txtbox">
-      <p class="usertxt ub-word"></p>
-    </div>
-
-    <div class="fr clear">
-      <span class="date_time"></span>
-      <div class="cmt_mdf_del">
-        <button type="button" class="btn_cmt_delete">삭제</button>
-      </div>
-    </div>
-  </div>
-</li>
-<!-- reply_empty_${no} -->
-<li id="reply_box_sample" style="display:none;">
-  <div class="cmt_write_box small clear" id="cmt_write_box" data-no="">
-    <div class="fl">
-      <!-- 회원 일 경우 -->
-      <div th:if="${authorize.isAuthenticated}" class="user_info_input id">
-        <label th:text="${user.member_uid}"></label>
-        <!-- id 뒤에 유저 uid-->
-        <input type="hidden" name="comment_uid" id="reply_uid" th:value="${user.member_uid}">
       </div>
 
-      <!-- 비회원 일 경우 -->
-      <th:block th:if="${authorize.isAnonymous}">
-        <div class="user_info_input">
-          <label class="blind">닉네임</label>
-          <input type="text" id="reply_name" name = "name"
-                 placeholder="닉네임" onfocus="this.style.background='#FFFFFF'"
-                 maxlength="20">
-        </div>
-        <div class="user_info_input">
-          <label class="blind">비밀번호</label>
-          <input type="password" id="reply_password" name = "password"
-                 placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'"
-                 maxlength = "20">
-        </div>
-      </th:block>
-    </div>
-
-    <div class="cmt_txt_cont">
-      <div class="cmt_write">
-        <textarea id="reply_content" maxlength="400"></textarea>
+      <div class="clear cmt_txtbox">
+        <p class="usertxt ub-word"></p>
       </div>
-      <div class="cmt_cont_bottm clear">
-        <div class="fr">
-          <button class="btn_blue btn_svc small reply_add" data-no="" th:data-login_info="${authorize.isAuthenticated}"
-                  th:data-article_num="${articleVO.article_num}" onclick="re_comment_write($(this))">등록</button>
+
+      <div class="fr clear">
+        <span class="date_time"></span>
+        <div class="cmt_mdf_del">
+          <button type="button" class="btn_cmt_delete">삭제</button>
         </div>
       </div>
     </div>
-  </div>
-</li>
+  </li>
+  <!-- reply_empty_${no} -->
+  <li id="reply_box_sample" style="display:none;">
+    <div class="cmt_write_box small clear" id="cmt_write_box" data-no="">
+      <div class="fl">
+        <!-- 회원 일 경우 -->
+        <div th:if="${authorize.isAuthenticated}" class="user_info_input id">
+          <label th:text="${user.member_uid}"></label>
+          <!-- id 뒤에 유저 uid-->
+          <input type="hidden" name="comment_uid" id="reply_uid" th:value="${user.member_uid}">
+        </div>
+
+        <!-- 비회원 일 경우 -->
+        <th:block th:if="${authorize.isAnonymous}">
+          <div class="user_info_input">
+            <label class="blind">닉네임</label>
+            <input type="text" id="reply_name" name = "name"
+                   placeholder="닉네임" onfocus="this.style.background='#FFFFFF'"
+                   maxlength="20">
+          </div>
+          <div class="user_info_input">
+            <label class="blind">비밀번호</label>
+            <input type="password" id="reply_password" name = "password"
+                   placeholder="비밀번호" onfocus="this.style.background='#FFFFFF'"
+                   maxlength = "20">
+          </div>
+        </th:block>
+      </div>
+
+      <div class="cmt_txt_cont">
+        <div class="cmt_write">
+          <textarea id="reply_content" maxlength="400"></textarea>
+        </div>
+        <div class="cmt_cont_bottm clear">
+          <div class="fr">
+            <button class="btn_blue btn_svc small reply_add" data-no="" th:data-login_info="${authorize.isAuthenticated}"
+                    th:data-article_num="${articleVO.article_num}" onclick="re_comment_write($(this))">등록</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</th:block>
+</html>
+
+
