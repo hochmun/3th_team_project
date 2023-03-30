@@ -14,7 +14,6 @@ import java.util.Map;
 @Repository
 public interface ManagementDAO {
     public Map<String, Object> selectArticleAndSetting(@Param("gell_address") String gell_address);
-    public Map<String, Object> selectArticleAndSettingCate(@Param("gell_cate") String gell_cate);
 
 
 }

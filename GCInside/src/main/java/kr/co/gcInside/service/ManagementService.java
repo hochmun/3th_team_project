@@ -29,20 +29,6 @@ public class ManagementService {
         return dao.selectArticleAndSetting(gell_address);
     }
 
-    /**
-     * 2023.03.29 // 라성준 // 매니지먼트 서비스 cate
-     * @param gell_cate
-     * @return
-     */
-    public Map<String, Object> selectArticleAndSettingCate(String gell_cate) {
-        Map<String, Object> resultMap = dao.selectArticleAndSettingCate(gell_cate);
-        if(resultMap == null) {
-
-        }
-        String gellCateText = resultMap.get("gell_cate_text").toString();
-        resultMap.put("gell_cate_text", gellCateText);
-        return resultMap;
-    }
 
     /**
      * 2023.03.29 // 라성준 //

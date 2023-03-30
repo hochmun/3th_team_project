@@ -37,11 +37,11 @@ public class ManagementController {
     public String index (@RequestParam Map<String, String> data, Model model) {
         if(data.containsKey("cate")) {
             String cate = data.get("cate");
-            Map<String, Object> stringObjectMapCate = service.selectArticleAndSettingCate(cate);
-            if (stringObjectMapCate == null) {
+            Map<String, Object> stringObjectMap = service.selectArticleAndSetting(cate);
+            if (stringObjectMap == null) {
                 return "error/wrongURL";
             }
-            model.addAttribute("stringObjectMapCate", stringObjectMapCate);
+            model.addAttribute("stringObjectMap", stringObjectMap);
         } else {
             if(!service.modelInput(data, model)) return "error/wrongURL";
         }
