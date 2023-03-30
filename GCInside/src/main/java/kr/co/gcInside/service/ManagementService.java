@@ -35,7 +35,13 @@ public class ManagementService {
      * @return
      */
     public Map<String, Object> selectArticleAndSettingCate(String gell_cate) {
-        return dao.selectArticleAndSettingCate(gell_cate);
+        Map<String, Object> resultMap = dao.selectArticleAndSettingCate(gell_cate);
+        if(resultMap == null) {
+
+        }
+        String gellCateText = resultMap.get("gell_cate_text").toString();
+        resultMap.put("gell_cate_text", gellCateText);
+        return resultMap;
     }
 
     /**
