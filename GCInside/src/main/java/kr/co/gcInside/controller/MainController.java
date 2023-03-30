@@ -83,9 +83,6 @@ public class MainController {
     @ResponseBody
     @PostMapping("mainPagingUtil")
     public Map<String, Object> mainPagingUtil(@RequestBody Map<String, String> data) {
-        log.info("data : "+data.toString());
-
-
         PagingDTO pagingDTO = new PagingDTO();
         Map<String, Object> resultMap = new HashMap<>();
 
@@ -110,12 +107,8 @@ public class MainController {
             if(grade.equals("mgall")) galleryVOS = service.MainIndexNewmgellCommunity(pagingDTO.getStart());
             if(grade.equals("mini")) galleryVOS = service.MainIndexNewminiCommunity(pagingDTO.getStart());
 
-            log.info("galleryVOS : "+galleryVOS);
             resultMap.put("galleryVOS", galleryVOS);
-
         }
-        
-        log.info("성공");
         
         return resultMap;
     }

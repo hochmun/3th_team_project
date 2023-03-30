@@ -58,7 +58,9 @@ public class MinorController{
 
         model.addAttribute("cate1cnt",mgallcate1cnt);
 
+        /** 2023/03/30 // 심규영 // 마이너 인텍스 접속에러 처리용 임시 주석
         model.addAttribute("rankdiff",service.rankdiff());
+         */
         model.addAttribute("cate1cnt",service.mgallcate1cnt());
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
