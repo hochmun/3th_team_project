@@ -290,7 +290,7 @@
                 <!-- 에디터 컨테이너 -->
                 <div class="editor_wrap">
                   <div id="tx_trex_container" class="tx-editor-container" style="border:1px solid #b5b5b5;">
-                    <iframe th:if="${type} == 'write'" th:src="@{/gall/board/editor}" id="editor_iframe1" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                    <iframe th:if="${type} == 'write'" th:src="|@{/}gall/board/editor?type=write|" id="editor_iframe1" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
                     <iframe th:if="${type} == 'modify'" th:src="|@{/}gall/board/editor?no=${articleVO.article_num}&type=modify|" id="editor_iframe1" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
                   </div>
                 </div>
@@ -298,11 +298,13 @@
 
 
                 <!-- 2023/03/27 // 심규영 // readOnly 풀기 -->
+                <!--
                 <script th:if="${type} == 'write'">
                 window.addEventListener('load', function(){
                     document.getElementById('editor_iframe1').contentWindow.editor_readOnly();
                 })
                 </script>
+                -->
 
                 <script>
                   window.addEventListener('load',function(){
@@ -349,10 +351,10 @@
                   <button type="button" class="btn_grey cancle" onclick="$('#leave_confirm_box').show()">취소</button>
                   <!-- 등록 -->
                   <button th:if="${type} == 'write'" type="button" class="btn_lightpurple write"
-                          onclick="$('#editor_iframe').get(0).contentWindow.editor_save();">등록</button>
+                          onclick="$('#editor_iframe1').get(0).contentWindow.editor_save();">등록</button>
                   <!-- 수정 -->
                   <button th:if="${type} == 'modify'" type="button" class="btn_lightpurple write"
-                          onclick="$('#editor_iframe').get(0).contentWindow.editor_modify();">수정</button>
+                          onclick="$('#editor_iframe1').get(0).contentWindow.editor_modify();">수정</button>
                   <!-- 글 작성 취소 팝업  -->
                   <div id="leave_confirm_box" class="pop_wrap type2" style="left: 50%;top: -322px;margin-left: -619px;display: none;">
                     <div class="pop_content write_ly">

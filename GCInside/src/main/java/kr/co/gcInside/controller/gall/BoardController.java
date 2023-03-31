@@ -245,7 +245,7 @@ public class BoardController {
      * 2023/03/16 // 심규영 // 글 작성 에디터 iframe 주소
      *      들어오는 값
      *          no      : 게시물 번호
-     *          type    : 페이지 타입(글 보기, 글 수정)
+     *          type    : 페이지 타입(글 보기, 글 수정, 글 쓰기)
      * @return
      */
     @GetMapping("gall/board/editor")
