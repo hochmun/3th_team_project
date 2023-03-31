@@ -290,8 +290,8 @@
                 <!-- 에디터 컨테이너 -->
                 <div class="editor_wrap">
                   <div id="tx_trex_container" class="tx-editor-container" style="border:1px solid #b5b5b5;">
-                    <iframe th:if="${type} == 'write'" th:src="@{/gall/board/editor}" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
-                    <iframe th:if="${type} == 'modify'" th:src="|@{/}gall/board/editor?no=${articleVO.article_num}&type=modify|" id="editor_iframe" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                    <iframe th:if="${type} == 'write'" th:src="@{/gall/board/editor}" id="editor_iframe1" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+                    <iframe th:if="${type} == 'modify'" th:src="|@{/}gall/board/editor?no=${articleVO.article_num}&type=modify|" id="editor_iframe1" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
                   </div>
                 </div>
 
@@ -300,8 +300,36 @@
                 <!-- 2023/03/27 // 심규영 // readOnly 풀기 -->
                 <script th:if="${type} == 'write'">
                 window.addEventListener('load', function(){
-                    document.getElementById('editor_iframe').contentWindow.editor_readOnly();
+                    document.getElementById('editor_iframe1').contentWindow.editor_readOnly();
                 })
+                </script>
+
+                <script>
+                  window.addEventListener('load',function(){
+                      const target = document.getElementById('editor_iframe1')
+                      .contentWindow.document.querySelector('.codex-editor__redactor');
+
+                      const $editor_html = $('#editor_iframe1').contents().find('html');
+
+                      const $editor_iframe = $('#editor_iframe1');
+
+                      const observer = new MutationObserver(mutations => {
+                          mutations.forEach(mutation => {
+                              $editor_iframe.css('height',$editor_html.height()+'px');
+                          })
+                      })
+
+                      const config = {
+                          childList: true,
+                          attributes: true,
+                          characterData: false,
+                          subtree: true,
+                          attributeOldValue: false,
+                          characterDataOldValue: false
+                      };
+
+                      observer.observe(target, config);
+                  });
                 </script>
 
 
@@ -409,6 +437,34 @@
                   <div class="writing_view_box">
                     <div class="write_div" style="overflow:hidden;width:900px;">
                       <iframe th:src="@{/gall/board/editor(no=${articleVO.article_num}, type=view)}" id="editor_iframe2" frameborder="0"scrolling="no" style="overflow-x:hidden;overflow:auto;width:100%;min-height:400px;"></iframe>
+
+                      <script>
+                        window.addEventListener('load',function(){
+                            const target = document.getElementById('editor_iframe2')
+                            .contentWindow.document.querySelector('.codex-editor__redactor');
+
+                            const $editor_html = $('#editor_iframe2').contents().find('html');
+
+                            const $editor_iframe = $('#editor_iframe2');
+
+                            const observer = new MutationObserver(mutations => {
+                                mutations.forEach(mutation => {
+                                    $editor_iframe.css('height',$editor_html.height()+'px');
+                                })
+                            })
+
+                            const config = {
+                                childList: true,
+                                attributes: true,
+                                characterData: false,
+                                subtree: true,
+                                attributeOldValue: false,
+                                characterDataOldValue: false
+                            };
+
+                            observer.observe(target, config);
+                        });
+                      </script>
 
                       <!-- 2023/03/26 // 심규영 // 글 내용 불러오기 -->
                       <!-- 2023/03/27 // 심규영 // readOnly 설정 제거 // 사유 => 페이지가 로드 된후 변경 할 시 속도가 느림 -->

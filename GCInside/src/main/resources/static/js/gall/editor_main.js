@@ -146,11 +146,7 @@ function editor_modify(){
 
 /** 2023/03/24 // 심규영 // readOnly 설정 변경 // 수정 가능 으로 변경 */
 function editor_readOnly() {
-    editor.isReady.then(()=>{
-        editor.readOnly.toggle();
-    }).catch((error)=>{
-        console.log('readOnly failed : ',error);
-    });
+    editor.readOnly.toggle();
 }
 
 /** 2023/03/26 // 심규영 // 데이터 불러오기 (글 수정) */
@@ -160,8 +156,7 @@ function editor_data_load1(inputData) {
         editor.render(inputData);
     }).then(()=>{
         editor.readOnly.toggle();
-    }).then(()=>{
-        $(parent.document).find('#editor_iframe').css('height',$('html').height()+'px');
+        //$(parent.document).find('#editor_iframe1').css('height',$('html').height()+'px');
     }).catch((error)=>{
         console.log('dataLoad failed : ',error);
     });
@@ -172,7 +167,7 @@ function editor_data_load2(inputData) {
     editor.isReady.then(()=>{
         editor.render(inputData);
     }).then(()=>{
-        $(parent.document).find('#editor_iframe2').css('height',$('html').height()+'px');
+       //$(parent.document).find('#editor_iframe2').css('height',$('html').height()+'px');
     }).catch((error)=>{
         console.log('dataLoad failed : ',error);
     });
