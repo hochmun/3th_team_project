@@ -146,7 +146,12 @@ function editor_modify(){
 
 /** 2023/03/24 // 심규영 // readOnly 설정 변경 // 수정 가능 으로 변경 */
 function editor_readOnly() {
-    editor.readOnly.toggle();
+    editor.isReady.then(()=>{
+        editor.readOnly.toggle();
+    }).catch((error)=>{
+        console.log('dataLoad failed : ',error);
+    })
+
 }
 
 /** 2023/03/26 // 심규영 // 데이터 불러오기 (글 수정) */
