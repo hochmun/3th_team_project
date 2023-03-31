@@ -37,16 +37,18 @@ $(()=>{
 /*
 2023/03/22 // 심규영 // 에디터 컨테이너 동적 높이 조절 위치 옮김
 */
+/*
 window.addEventListener('load',function(){
-    const target = document.getElementById('editor_iframe')
+    const target = document.getElementById('editor_iframe');
     .contentWindow.document.querySelector('.codex-editor__redactor');
 
     const $editor_html = $('#editor_iframe').contents().find('html');
+
     const $editor_iframe = $('#editor_iframe');
 
     const observer = new MutationObserver(mutations => {
         mutations.forEach(mutation => {
-            $editor_iframe.css('height',$editor_html.height()+'px')
+            $editor_iframe.css('height',$editor_html.height()+'px');
         })
     })
 
@@ -60,7 +62,8 @@ window.addEventListener('load',function(){
     };
 
     observer.observe(target, config);
-})
+});
+*/
 
 // 글 작성
 function article_make(content) {
