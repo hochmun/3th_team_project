@@ -25,101 +25,101 @@ $.getScript('https://cdn.jsdelivr.net/npm/editorjs-drag-drop@1.1.13/dist/bundle.
 
 let editor;
 
-window.addEventListener('load',function(){
+function editor_start(type) {
     editor = new EditorJS({
-        holder: 'editorjs',
-        tools:{
-            header: {
-                class: Header,
-                shortcut: 'CMD+SHIFT+H',
-                config: {
-                    placeHolder: '제목 입력',
-                    levels: [2, 3, 4],
-                    defaultLevel: 3
+            holder: 'editorjs',
+            tools:{
+                header: {
+                    class: Header,
+                    shortcut: 'CMD+SHIFT+H',
+                    config: {
+                        placeHolder: '제목 입력',
+                        levels: [2, 3, 4],
+                        defaultLevel: 3
+                    },
+                    inlineToolbar:['link']
                 },
-                inlineToolbar:['link']
-            },
-            list: { 
-                class: List, 
-                inlineToolbar: true,
-                config: {
-                    defaultStyle: 'ordered'
-                }
-            },
-            raw: RawTool,
-            //simpleImage: SimpleImage,
-            /*
-            image: {
-                class: ImageTool,
-                config: {
-                    endpoints: {
-                        byFile: 'http://127.0.0.1:5500/gall/board/uploadFile',
-                        byUrl: 'http://127.0.0.1:5500/gall/board/fetchUrl',
-                    }
-                }
-            }
-            */
-            checklist: {
-                class: Checklist,
-                inlineToolbar: true,
-            },
-            embed: {
-                class: Embed,
-                config: {
-                    services: {
-                        youtube: true,
-                        instagram: true,
-                        facebook: true,
-                        twitter: true,
+                list: {
+                    class: List,
+                    inlineToolbar: true,
+                    config: {
+                        defaultStyle: 'ordered'
                     }
                 },
-                inlineToolbar: true,
-            },
-            quote: {
-                class: Quote,
-            },
-            underline: {
-                class: Underline,
-            },
-            inlineCode: InlineCode,
-            code: CodeTool,
-            Marker: Marker
-        },
-
-        /**
-         * 2023/03/17 // 심규영
-         * 저장된 데이터 입력
-         * 글 수정시 기본 글 불러오기
-         * 글 보기시 글 불러오기
-         */
-         /** 2023/03/26 // 심규영 // Cannot read properties of undefined (reading 'holder') bug 수정 */
-        data: {
-            time: (new Date()).getTime(),
-            version: '2.27.0',
-            blocks: [{
-                type:'paragraph',
-                data: {
-                    text: '<p></p>'
+                raw: RawTool,
+                //simpleImage: SimpleImage,
+                /*
+                image: {
+                    class: ImageTool,
+                    config: {
+                        endpoints: {
+                            byFile: 'http://127.0.0.1:5500/gall/board/uploadFile',
+                            byUrl: 'http://127.0.0.1:5500/gall/board/fetchUrl',
+                        }
+                    }
                 }
-            }]
-        },
+                */
+                checklist: {
+                    class: Checklist,
+                    inlineToolbar: true,
+                },
+                embed: {
+                    class: Embed,
+                    config: {
+                        services: {
+                            youtube: true,
+                            instagram: true,
+                            facebook: true,
+                            twitter: true,
+                        }
+                    },
+                    inlineToolbar: true,
+                },
+                quote: {
+                    class: Quote,
+                },
+                underline: {
+                    class: Underline,
+                },
+                inlineCode: InlineCode,
+                code: CodeTool,
+                Marker: Marker
+            },
 
-        /**
-         * 2023/03/17 // 심규영
-         * 읽기 전용 설정
-         * 글 보기 페이지 에서 써도 될듯?
-         */
-         /* 2023/03/27 // 심규영 // 기본 수정 불가로 변경 **/
-        readOnly: true,
-        //autofocus: true,
-        onReady: () => {
             /**
-             * 2023/03/17 // 심규영 // 드래그 드롭
+             * 2023/03/17 // 심규영
+             * 저장된 데이터 입력
+             * 글 수정시 기본 글 불러오기
+             * 글 보기시 글 불러오기
              */
-            new DragDrop(editor);
-        },
-    });
-})
+             /** 2023/03/26 // 심규영 // Cannot read properties of undefined (reading 'holder') bug 수정 */
+            data: {
+                time: (new Date()).getTime(),
+                version: '2.27.0',
+                blocks: [{
+                    type:'paragraph',
+                    data: {
+                        text: '<p></p>'
+                    }
+                }]
+            },
+
+            /**
+             * 2023/03/17 // 심규영
+             * 읽기 전용 설정
+             * 글 보기 페이지 에서 써도 될듯?
+             */
+             /* 2023/03/27 // 심규영 // 기본 수정 불가로 변경 **/
+            readOnly: type == 'view' ? true : false,
+            //autofocus: true,
+            onReady: () => {
+                /**
+                 * 2023/03/17 // 심규영 // 드래그 드롭
+                 */
+                new DragDrop(editor);
+            },
+        });
+}
 
 /**
  * 2023/03/17 // 심규영 // 데이터 저장 함수
@@ -156,12 +156,9 @@ function editor_readOnly() {
 
 /** 2023/03/26 // 심규영 // 데이터 불러오기 (글 수정) */
 /** 2023/03/27 // 심규영 // embed 버그 수정 */
-function editor_data_load1(inputData) {
+async function editor_data_load1(inputData) {
     editor.isReady.then(()=>{
         editor.render(inputData);
-    }).then(()=>{
-        editor.readOnly.toggle();
-        //$(parent.document).find('#editor_iframe1').css('height',$('html').height()+'px');
     }).catch((error)=>{
         console.log('dataLoad failed : ',error);
     });
