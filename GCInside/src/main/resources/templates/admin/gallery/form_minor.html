@@ -18,17 +18,13 @@
                 <aside th:replace="~{fragment/gnb_fragment::adminGnb}"></aside>
 
             </div>
-                <script>
+            <script>
                 window.addEventListener('DOMContentLoaded', function () {
-                    function searchGallery(pg = 1) {
+                    function searchGallery() {
                       // 선택한 검색 조건, 입력한 검색어 가져오기.
                       var selectBox = document.getElementById("member_search_select_box");
                       var searchOption = selectBox.options[selectBox.selectedIndex].value;
                       var searchKeyword = document.getElementById("input-box").value;
-
-                      // 페이지 번호, 페이지당 list 갯수
-                      var perPage = 11;
-                      var start = (pg - 1) * perPage;
 
                       // 검색 결과 표시할 테이블 가져오기.
                       var table = document.querySelector(".admin_member_list");
@@ -38,7 +34,7 @@
                       for (var i = 1; i < rows.length; i++) {
                         var row = rows[i];
 
-                        // 선택한 검색 조건에 따라 해당 칼럼 값 가져오기.
+                        // 선택한 검색 조건에 따라 해당 칼럼 값을 가져오기.
                         var searchTarget;
                         if (searchOption == "option1") {
                           searchTarget = row.cells[1].textContent;
@@ -52,41 +48,10 @@
                         } else {
                           row.style.display = "none";
                         }
-
-                        // 페이징
-                        if (i > start && i <= (start + perPage)) {
-                            row.style.display = "";
-                        }else {
-                            row.style.display = "none";
-                        }
                       }
-
-                      // 페이징 버튼 생성
-                      var paging = document.querySelector(".admin_pageing_num");
-                      paging.innerHTML = "";
-                      var lastPage = Math.ceil((rows.length - 1) / perPage);
-                      var groupStart = Math.floor((pg - 1) / 5) * 5 + 1;
-                      var groupEnd = groupStart + 4 > lastPage ? lastPage : groupStart + 4;
-                      for (var i = groupStart; i <= groupEnd; i++) {
-                        var button = document.createElement("a");
-                        button.innerText = i;
-                        button.href = "#";
-                        button.classList.add("on");
-                        if (i == pg) {
-                          button.classList.add("on");
-                        }else {
-                          button.onclick = function() {
-                            searchGallery(this.innerText);
-                          };
-                        }
-                        paging.appendChild(button);
-                        }
                     }
-
                     // 검색 버튼에 이벤트 핸들러 등록
-                    document.getElementById("submit-button").addEventListener("click", function() {
-                      searchGallery();
-                    });
+                    document.getElementById("submit-button").addEventListener("click", searchGallery);
                     // 엔터키 눌러도 검색 기능 실행
                     document.getElementById("input-box").addEventListener("keyup", function(event) {
                       if (event.keyCode === 13) {
@@ -342,32 +307,20 @@
 
                         <!-- 페이징 -->
                         <div class="admin_pageing">
-                            <span class="admin_pageing_prev">
-                                <a href="#" th:if="${pagingDTO.currentPage != 1}"
-                                th:href="@{/admin/gallery/form_minor(pg=${pagingDTO.currentPage - 1}, perPage=11)}">
-                                    <&nbsp;이전
-                                </a>
-                            </span>
-
+                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
                             <span class="admin_pageing_num">
-                                <span th:if="${pagingDTO.groupStart > 1}">
-                                    <a th:href="@{/admin/gallery/form_minor(pg=1, perPage=11)}" class="on">1</a>
-                                </span>
-                                <span th:each="pg : ${#numbers.sequence(pagingDTO.groupStart, pagingDTO.groupEnd)}">
-                                    <a th:class="${pg == pagingDTO.currentPage} ? 'on' : ''"
-                                       th:href="@{/admin/gallery/form_minor(pg=${pg}, perPage=11)}" th:text="${pg}"></a>
-                                </span>
-                                <span th:if="${pagingDTO.groupEnd < pagingDTO.lastPage}">
-                                    <a th:href="@{/admin/gallery/form_minor(pg=${pagingDTO.lastPage}, perPage=11)}">[pagingDTO.lastPage]</a>
-                                </span>
+                                <a href="#" class="on">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
                             </span>
-
-                            <span class="admin_pageing_next">
-                                <a href="#" th:if="${pagingDTO.currentPage != pagingDTO.lastPage}"
-                                   th:href="@{/admin/gallery/form_minor(pg=${pagingDTO.currentPage + 1}, perPage=11)}">
-                                다음&nbsp;>
-                                </a>
-                            </span>
+                            <span class="admin_pageing_next">다음&nbsp;></span>
                         </div>
 
                     </section>
