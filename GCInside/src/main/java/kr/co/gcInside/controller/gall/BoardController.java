@@ -176,12 +176,12 @@ public class BoardController {
             List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
             
             // 댓글 정보 가져오기
-            List<Gell_commentVO> commentVOS = service.selectComments(articleVO.getArticle_num());
-            
+            Map<String,List<Gell_commentVO>> commentMap = service.selectComments(articleVO.getArticle_num());
+
             // 모델
             model.addAttribute("gellArticleVOS", gellArticleVOS);
             model.addAttribute("pagingDTO", pagingDTO);
-            model.addAttribute("commentVOS", commentVOS);
+            model.addAttribute("commentMap", commentMap);
         }
 
         // 페이지 종류 전송

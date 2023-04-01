@@ -251,7 +251,8 @@
             ) AS a
         left JOIN `gc_member` AS b ON a.`comment_uid` = b.`member_uid`
         WHERE `comment_article_num` = #{article_num}
-        ORDER BY `comment_num` ASC, `comment_rdate` ASC;
+        ORDER BY `comment_num` ASC, `comment_rdate` ASC
+        LIMIT 0, 100;
     </select>
 
     <!-- upload -->

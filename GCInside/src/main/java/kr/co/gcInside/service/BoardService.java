@@ -2,18 +2,24 @@ package kr.co.gcInside.service;
 
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
+import kr.co.gcInside.utill.DeduplicationUtils;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 2023/03/20 // 심규영 // 보드 서비스 생성
  */
+@Slf4j
 @Service
 public class BoardService {
 
@@ -22,7 +28,9 @@ public class BoardService {
      */
     @Autowired
     private BoardDAO dao;
-    
+
+    private DeduplicationUtils deduplicationUtils;
+
     // create
 
     /**
@@ -150,11 +158,39 @@ public class BoardService {
 
     /**
      * 2023/03/29 // 심규영 // 게시물 댓글 불러오기 기능
+     * <pre>     댓글 리스트 출력 조건
+     *          1. 댓글 페이지 당 출력 개수는 댓글, 대댓글 포함 100개 (페이징 처리 필요, mapper, 쿼리문 에서 처리)
+     *          2. 삭제된 댓글은 삭제된 댓글 표시 => 삭제된 댓글의 대댓글 표시 용 (js,html 에서 처리)
+     *              2-1. 삭제된 댓글은 대댓글 입력 못 하게 막아야함 (js,html 에서 처리)
+     *          3. 페이지 시작 부분이 대댓글 일 수 도 있음
+     *              3-1.쿼리문으로 불러 올때 중복 제거 사용? (X)
+     *                  3-1-1.쿼리문으로 불러온 리스트를 서비스 단에서 처리 하는게 맞음
+     *              3-2.중복이 제거 될 경우 맨앞이 대댓글이 아닌 이상 대댓글 제거 됨
+     *              3-3.제거된 리스트에서 대댓글이 출력될 경우를 thymeleaf 내에서 처리 하면 됨</pre>
+     *      
      * @param article_num
-     * @return
+     * @return Map에 담기는 값<br>
+     *      "reCommentVOS"  : 대댓글 리스트<br>
+     *      "commentVOS"    : 댓글, 대댓글 포함 리스트, 중복 제거 됨
      */
-    public List<Gell_commentVO> selectComments(int article_num) {
-        return dao.selectComments(article_num);
+    public Map<String,List<Gell_commentVO>> selectComments(int article_num) {
+        Map<String, List<Gell_commentVO>> commentLists = new HashMap<>(); // 댓글 리스트와 대댓글 리스트를 담을 map
+
+        List<Gell_commentVO> allCommentVOS = dao.selectComments(article_num); // 댓글 리스트
+
+        /* 대댓글 리스트 */
+        List<Gell_commentVO> reCommentVOS = allCommentVOS.stream()
+                .filter(gellCommentVO -> gellCommentVO.getComment_type() == 1) // 대댓글인 경우만
+                .collect(Collectors.toList()); // 리스트로 출력
+        commentLists.put("reCommentVOS", reCommentVOS);
+
+        /* 중복이 제거된 리스트 // 대댓글이 제외 되고 댓글 만 있는 리스트 또는 부모 댓글이 없고 대댓글만 존재 */
+        List<Gell_commentVO> commentVOS = allCommentVOS.stream()
+                .filter(deduplicationUtils.distinctByKey(Gell_commentVO::getComment_num)) // 중복제거
+                .collect(Collectors.toList()); // 리스트 로 출력
+        commentLists.put("commentVOS", commentVOS);
+
+        return commentLists;
     }
 
     // upload
