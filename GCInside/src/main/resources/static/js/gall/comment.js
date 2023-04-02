@@ -1,5 +1,6 @@
 $(()=>{
     /** 2023/03/29 // 심규영 // 대댓글 등록 팝업창 띄우기 */
+    /** 2023/04/02 // 심규영 // 대댓글 작성창 오류 fix */
     $('.btn_reply_write_all').click(function(){
         const no = $(this).data("no"); // 대댓글 팝업 창을 여는 댓글 번호
         const $parent = $('#comment_li_'+no); // 부모 요소 가져오기
@@ -11,25 +12,19 @@ $(()=>{
             $non_comment.find('.reply_list').attr('id','reply_list_'+no); // no 추가
             $non_comment.show();// display:none; 지우기
             $parent.after($non_comment); // 샘플 붙여 넣기
-            $parent.data("rcnt", 1); // 대댓글 갯수 늘리기
+            //$parent.data("rcnt", 1); // 대댓글 갯수 늘리기
         }
 
         if($('#reply_empty_'+no).length > 0) { // 대댓글 창이 있을 경우
-            if($parent.data("rcnt") == 1) { // 대댓글 개수가 대댓글 작성 박스 하나 일 경우
-                $('#reply_empty_last_li_'+no).remove();
-                $parent.data("rcnt", 0); // 대댓글 갯수 줄이기
-            } else { // 다른 대댓글이 있을 경우
-                $('#reply_empty_'+no).remove(); // 대댓글 팝업 창만 지우기
-            }
-        } else { // 대댓글 창이 없을 경우
-
-            const last_no = $('.reply_write_box').find('#cmt_write_box').data("no");
-            if($('#comment_li_'+last_no).data("rcnt") == 1) {
+            const last_no = $('.reply_write_box').find('#cmt_write_box').data("no"); // 대댓글 창이 있는 댓글 번호 가져오기
+            if($('#comment_li_'+last_no).data("rcnt") == 1) { // 해당 댓글의 대댓글이 대댓글 입력 참 뿐일 경우
                 $('#reply_empty_last_li_'+last_no).remove();
                 $('#comment_li_'+last_no).data("rcnt",0);
-            } else {
+            } else { // 다른 댓글이 있을 경우
                 $('.reply_write_box').remove(); // 대댓글 작성 상자 만 닫기
+                $('#comment_li_'+last_no).data("rcnt",$('#comment_li_'+last_no).data("rcnt") - 1); // 대댓글 갯수 빼기
             }
+        } else { // 대댓글 창이 없을 경우
 
             // 대댓글 작성 박스 복사해서 붙이기
             const $reply_box = $('#reply_box_sample').clone(); // 대댓글 작성 박스 복사
@@ -39,8 +34,8 @@ $(()=>{
             $reply_box.find('.reply_add').data("no", no);
             $reply_box.show(); // display:none; 지우기
             $('#reply_list_'+no).prepend($reply_box); // 대댓글 리스트 맨 앞에 대댓글 작성 박스 붙이기
+            $('#comment_li_'+no).data("rcnt",$('#comment_li_'+no).data("rcnt") + 1); // 대댓글 갯수 증가
         }
-
     });
 });
 
