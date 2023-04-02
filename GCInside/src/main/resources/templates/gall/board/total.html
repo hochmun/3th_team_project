@@ -639,7 +639,7 @@
                                       <ul class="reply_list" th:id="|reply_list_${commentVO.comment_num}|">
                                         <th:block th:each="recommentVO:${commentMap.reCommentVOS}">
                                           <th:block th:if="${recommentVO.comment_num eq commentVO.comment_num}">
-                                            <li th:id="|reply_li_${recommentVO.comment_num}|" class="ub-content">
+                                            <li th:id="|reply_li_${recommentVO.re_comment_num}|" class="ub-content">
                                               <div class="reply_info clear" th:data-no="${recommentVO.re_comment_num}">
                                                 <div class="cmt_nickbox">
                                                   <span th:if="${recommentVO.comment_login_status} == 1" class="gall_writer ub-writer"
@@ -1306,15 +1306,15 @@
     </div>
   </li>
   <!-- reply_li_${no} -->
-  <li id="re_comment_sample" class="ub-content">
+  <li id="re_comment_sample" class="ub-content" style="display:none;">
     <div class="reply_info clear" data-no="">
       <div class="cmt_nickbox">
-              <span class="gall_writer ub-writer" data-nick="" data-uid="" data-ip="">
-                <span class="nickname">
-                  <em title=""></em>
-                  <span class="ip"></span>
-                </span>
-              </span>
+        <span class="gall_writer ub-writer" data-nick="" data-uid="" data-name="" data-ip="">
+          <span class="nickname" title="">
+            <em></em>
+            <span class="ip"></span>
+          </span>
+        </span>
       </div>
 
       <div class="clear cmt_txtbox">

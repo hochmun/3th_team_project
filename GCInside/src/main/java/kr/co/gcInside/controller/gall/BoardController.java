@@ -299,7 +299,7 @@ public class BoardController {
     }
 
     /**
-     * 2023/03/28 // 심규영 // 글 작성 post 맵핑
+     * 2023/03/28 // 심규영 // 댓글 작성 post 맵핑
      * <pre>     data 들어오는 값
      *          no                  : 게시물 번호
      *          login_info          : 로그인 상태
@@ -374,7 +374,7 @@ public class BoardController {
         
         // 댓글 작성
         int result = service.insertReComment(reCommentVO);
-        
+
         // 댓글 작성시 댓글 수 증가 및 댓글의 대댓글 수 증가
         service.updateArticleCommentCount(data.get("re_comment_article_num"));
         service.updateCommentReCount(data.get("re_comment_ori_num"));
