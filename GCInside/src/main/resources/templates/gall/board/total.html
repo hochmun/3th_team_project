@@ -590,6 +590,7 @@
                         <ul class="cmt_list">
                           <!-- id의 번호는 댓글 번호 -->
                           <th:block th:each="commentVO:${commentMap.commentVOS}">
+                            <!-- 타입이 댓글 일 때 -->
                             <th:block th:if="${commentVO.comment_type eq 0}">
                               <li th:id="|comment_li_${commentVO.comment_num}|" class="ub-content" th:data-rcnt="${commentVO.comment_re_count}">
                                 <div class="cmt_info clear" th:data-no="${commentVO.comment_num}" th:data-article-no="${commentVO.comment_article_num}">
@@ -630,6 +631,7 @@
                                 </div>
                               </li>
 
+                              <!-- 대댓글이 존재 할때 -->
                               <th:block th:if="${commentVO.comment_re_count gt 0}">
                                 <li>
                                   <div class="reply show">
@@ -682,6 +684,60 @@
                                 </li>
                               </th:block>
 
+                            </th:block>
+
+                            <!-- 타입이 대댓글 일 떄 // 페이지를 이동 했는데 첫 글이 대댓글 일 때 -->
+                            <th:block th:if="${commentVO.comment_type eq 1}">
+                              <!-- 대댓글과 같은 부모 댓글을 가진 대댓글 까지 전부 출력 -->
+                              <li>
+                                <div class="reply show">
+                                  <div class="reply_box">
+                                    <ul class="reply_list" th:id="|reply_list_${commentVO.comment_num}|">
+                                      <th:block th:each="reCommentVO:${commentMap.reCommentVOS}">
+                                        <th:block th:if="${reCommentVO.comment_num eq commentVO.comment_num}">
+                                          <li th:id="|reply_li_${recommentVO.comment_num}|" class="ub-content">
+                                            <div class="reply_info clear" th:data-no="${recommentVO.re_comment_num}">
+                                              <div class="cmt_nickbox">
+                                                  <span th:if="${recommentVO.comment_login_status} == 1" class="gall_writer ub-writer"
+                                                        th:data-name="${recommentVO.comment_nonmember_name}"
+                                                        th:data-ip="${recommentVO.comment_regip}">
+                                                    <span class="nickname">
+                                                      <em th:title="${recommentVO.comment_nonmember_name}" th:text="${recommentVO.comment_nonmember_name}">ㅇㅇ</em>
+                                                      <span class="ip" th:text="|(${recommentVO.comment_regip_sub})|">(00.00)</span>
+                                                    </span>
+                                                  </span>
+
+                                                <span th:if="${recommentVO.comment_login_status} == 0" class="gall_writer ub-writer"
+                                                      th:data-nick="${recommentVO.member_nick}"
+                                                      th:data-uid="${recommentVO.comment_uid}">
+                                                    <span class="nickname in" th:title="${recommentVO.member_nick}">
+                                                      <em th:text="${recommentVO.member_nick}">ㅇㅇ</em>
+                                                    </span>
+                                                    <a class="writer_nikcon">
+                                                      <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="cursor:pointer;"
+                                                           th:title="|${recommentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
+                                                    </a>
+                                                  </span>
+                                              </div>
+
+                                              <div class="clear cmt_txtbox">
+                                                <p class="usertxt ub-word" th:text="${recommentVO.comment_content}"></p>
+                                              </div>
+
+                                              <div class="fr clear">
+                                                <span class="date_time" th:text="${recommentVO.comment_rdate}"></span>
+                                                <div class="cmt_mdf_del">
+                                                  <button type="button" class="btn_cmt_delete">삭제</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </li>
+                                        </th:block>
+                                      </th:block>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </li>
                             </th:block>
                           </th:block>
                         </ul>
