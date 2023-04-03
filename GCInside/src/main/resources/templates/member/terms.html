@@ -194,12 +194,11 @@
                         </div>
                         <div class="policy_check">
                           <span class="checkbox">
-                            <input type="checkbox" id="service_agree" disabled>
+                            <input type="checkbox" id="service_agree" class="normal">
                             <em class="checkmark"></em>
                             <label for="service_agree">내용을 확인하였으며, 동의합니다.</label>
                           </span>
                         </div>
-                            <span style="float: right; padding: 15px; color: blue;">• 스크롤을 내리면 동의체크가 가능합니다.</span>
                       </div>
                       <!-- //서비스 이용약관 -->
                       <!-- 개인정보 수집 및 이용 약관 -->
@@ -585,15 +584,20 @@
         
                             <div class="policy_check">
                               <span class="checkbox">
-                                <input type="checkbox" id="personal_agree" disabled>
+                                <input type="checkbox" id="personal_agree" class="normal">
                                 <em class="checkmark"></em>
                                 <label for="personal_agree">내용을 확인하였으며, 동의합니다.</label>
                               </span>
+
                             </div>
-                              <span style="float: right; padding: 15px; color: blue;">• 스크롤을 내리면 동의체크가 가능합니다.</span>
-                          </div>
+
                           <!-- //개인정보 수집 및 이용 약관 -->
-                      <div class="btn_box clear">
+                      <div class="btn_box clear" style="margin-left: 671px;margin-top: 40px;font-size: 11.65px;">
+                          <span class="checkbox">
+                                <input type="checkbox" id="checkbox_all">
+                                <em class="checkmark"></em>
+                                <label for="checkbox_all">&nbsp;전체 동의</label>
+                              </span>
                         <div class="fr">
                           <a th:href="@{/member/register}"><button type="button" id="policy_agree" class="btn_grey small bnt_next">다음</button></a>
                         </div>
@@ -608,32 +612,6 @@
     $(function(){
         agreeInit();
     });
-</script>
-<script>
-const scroll1 = document.querySelectorAll('#scroll1'); <!--이용약관 스크롤-->
-const scroll2 = document.querySelectorAll('#scroll2'); <!--개인정보처리방침 스크롤-->
-const serviceAgreeCheckbox = document.getElementById('service_agree');
-const personalAgreeCheckbox = document.getElementById('personal_agree');
-scroll1.forEach((scroll) => {
-  scroll.addEventListener('scroll', () => {
-    // 스크롤바 위치가 맨 아래인 경우에만 체크박스를 클릭할 수 있도록 처리
-    if (scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight) {
-      serviceAgreeCheckbox.disabled = false; // 체크박스 활성화
-    } else {
-      serviceAgreeCheckbox.disabled = true; // 체크박스 비활성화
-    }
-  });
-});
-scroll2.forEach((scroll) => {
-  scroll.addEventListener('scroll', () => {
-    // 스크롤바 위치가 맨 아래인 경우에만 체크박스를 클릭할 수 있도록 처리
-    if (scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight) {
-      personalAgreeCheckbox.disabled = false; // 체크박스 활성화
-    } else {
-      personalAgreeCheckbox.disabled = true; // 체크박스 비활성화
-    }
-  });
-});
 </script>
 <th:block th:replace="~{member/_footer}"></th:block>
 </div>
