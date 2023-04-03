@@ -20,50 +20,46 @@
             </div>
             <script>
                 window.addEventListener('DOMContentLoaded', function () {
-                    function searchGallery() {
-                      // 선택한 검색 조건, 입력한 검색어 가져오기.
-                      var selectBox = document.getElementById("member_search_select_box");
-                      var searchOption = selectBox.options[selectBox.selectedIndex].value;
-                      var searchKeyword = document.getElementById("input-box").value;
+                  function searchGallery() {
+                    // 선택한 검색 조건, 입력한 검색어 가져오기.
+                    var selectBox = document.getElementById("member_search_select_box");
+                    var searchOption = selectBox.options[selectBox.selectedIndex].value;
+                    var searchKeyword = document.getElementById("input-box").value;
 
-                      // 검색 결과 표시할 테이블 가져오기.
-                      var table = document.querySelector(".admin_member_list");
-
-                      // 테이블 내 모든 행 가져와서 반복.
-                      var rows = table.querySelectorAll("tr");
-                      for (var i = 1; i < rows.length; i++) {
-                        var row = rows[i];
-
-                        // 선택한 검색 조건에 따라 해당 칼럼 값을 가져오기.
-                        var searchTarget;
-                        if (searchOption == "option1") {
-                          searchTarget = row.cells[1].textContent;
-                        } else if (searchOption == "option2") {
-                          searchTarget = row.cells[5].textContent;
-                        }
-
-                        // 검색어 포함된 결과만 보여주고, 그 외 결과 숨기기.
-                        if (searchTarget.includes(searchKeyword)) {
-                          row.style.display = "";
-                        } else {
-                          row.style.display = "none";
-                        }
+                    // Ajax 요청 보내기
+                    $.ajax({
+                      url: "/api/gallery/search",
+                      type: "POST",
+                      data: {
+                        searchOption: searchOption,
+                        searchKeyword: searchKeyword
+                      },
+                      success: function(result) {
+                        // 서버에서 받아온 데이터를 테이블에 업데이트
+                        var table = document.querySelector(".admin_member_list");
+                        table.innerHTML = result;
+                      },
+                      error: function(xhr, status, error) {
+                        console.log(error);
                       }
-                    }
-                    // 검색 버튼에 이벤트 핸들러 등록
-                    document.getElementById("submit-button").addEventListener("click", searchGallery);
-                    // 엔터키 눌러도 검색 기능 실행
-                    document.getElementById("input-box").addEventListener("keyup", function(event) {
-                      if (event.keyCode === 13) {
-                        event.preventDefault();
-                        document.getElementById("submit-button").click();
-                        }
                     });
+                  }
+
+                  // 검색 버튼에 이벤트 핸들러 등록
+                  document.getElementById("submit-button").addEventListener("click", searchGallery);
+
+                  // 엔터키 눌러도 검색 기능 실행
+                  document.getElementById("input-box").addEventListener("keyup", function(event) {
+                    if (event.keyCode === 13) {
+                      event.preventDefault();
+                      document.getElementById("submit-button").click();
+                    }
+                  });
                 });
                 </script>
 
-                <!-- 개설 이유 글 자르기 -->
-                <script>
+            <!-- 개설 이유 글 자르기 -->
+            <script>
                     function truncateText(selector, maxLength) {
                       var elements = document.querySelectorAll(selector);
                       for (var i = 0; i < elements.length; i++) {
@@ -75,14 +71,14 @@
                         }
                       }
                     }
-                  
+
                     document.addEventListener('DOMContentLoaded', function() {
                       truncateText('.truncate', 7); // 적용할 클래스와 최대 길이 설정
                     });
                 </script>
 
-                <!-- 상세보기 / 개설관리 팝업 창 -->
-                <script>
+            <!-- 상세보기 / 개설관리 팝업 창 -->
+            <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         var showDetailButtons = document.querySelectorAll('.show-details');
                         for (var i = 0; i < showDetailButtons.length; i++) {
@@ -204,111 +200,111 @@
                         popup.style.display = 'none';
                     }
                 </script>
-  
-                <div class="admin_right">
-                    <section class="admin_main_info">
-                        <div class="cont_head"><h2>갤러리 개설 신청</h2></div>
-                        <div class="admin_info_content">
-                            <div class="member_search_box">
-                                <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
-                                    <option value="option1">갤러리명</option>
-                                    <option value="option2">신청자</option>
-                                </select>
-                                <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
-                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
-                            </div>
 
-                            <!-- 카테고리별 검색 기능 -->
-                            <div class="category_search_box">
-                                <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
-                                    <option value="" selected>카테고리 전체</option>
-                                    <option th:each="cate:${cates}" th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></option>
-                                </select>
-                                <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
-                            </div>
-
-                            <table class="admin_table admin_member_list">
-                                <colgroup>
-                                    <col style="width: 14.2%;">
-                                    <col style="width: 14.2%;">
-                                    <col style="width: 9.2%;">
-                                    <col style="width: 14.2%;">
-                                    <col style="width: 14.2%;">
-                                    <col style="width: 14.8%;">
-                                    <col style="width: 14.8%;">
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th>갤러리 이름</th>
-                                        <th>주소값</th>
-                                        <th>카테고리</th>
-                                        <th>신청일</th>
-                                        <th>신청자</th>
-                                        <th>갤러리 설명</th>
-                                        <th>개설이유</th>
-                                        <th>관리</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="list:${list}" th:if="${list.gell_create_status == 0}">
-                                        <td th:text="${list.gell_create_num}" hidden></td>
-                                        <td th:text="${list.gell_create_name}"></td>
-                                        <td th:text="${list.gell_create_address}"></td>
-                                        <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
-                                        <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
-                                        <td th:text="${list.gell_create_uid}"></td>
-                                        <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
-                                        <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
-                                        <td th:text="${list.gell_create_status}"hidden></td>
-                                        <td><button class="approval">[관리]</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="popup">
-                                <div class="popup-content"></div>
-                                <button class="close-popup">닫기</button>
-                            </div>
-
-                            <div class="approval-popup" style="display:none;">
-                                <h3>갤러리 개설 승인/반려</h3>
-                                <form th:action="@{/admin/gallery/form_minor/approve}" method="post">
-                                    <p hidden>신청번호: <span class="num"></span></p>
-                                    <input type="hidden" name="gell_create_num" id="gell_create_num" value=""/>
-                                    <p>갤러리 이름: <span class="name"></span></p>
-                                    <input type="hidden" name="gell_create_name" id="gell_create_name" value=""/>
-                                    <p>주소: <span class="address"></span></p>
-                                    <input type="hidden" name="gell_create_address" id="gell_create_address" value=""/>
-                                    <p>카테고리: <span class="category"></span></p>
-                                    <input type="hidden" name="gell_create_cate" id="gell_create_cate" value=""/>
-                                    <p>신청일: <span class="rdate"></span></p>
-                                    <p>신청자: <span class="uid"></span></p>
-                                    <input type="hidden" name="gell_create_uid" id="gell_create_uid" value=""/>
-                                    <p>갤러리 설명: <span class="intro"></span></p>
-                                    <input type="hidden" name="gell_create_intro" id="gell_create_intro" value=""/>
-                                    <p>개설이유: <span class="reason"></span></p>
-                                    <p hidden>신청상태: <span class="stat"></span></p>
-                                    <input type="hidden" name="gell_create_status" id="gell_create_status" value=""/>
-                                    <button class="approve" type="submit">승인</button>
-                                </form>
-
-                                <button class="reject">반려</button>
-                                <form th:action="@{/admin/gallery/form_minor/reject}" method="post">
-                                    <input type="hidden" name="gell_create_num" id="gell_create_num_reject" value=""/>
-                                    <input type="hidden" name="gell_create_status" id="gell_create_status_reject" value=""/>
-                                    <div class="rejection-reason" style="display:none;">
-                                        <textarea class="rejection-reason-text" name="gell_create_r_reason" placeholder="반려 사유를 입력하세요"></textarea>
-                                        <button class="submit-rejection" type="submit">제출</button>
-                                    </div>
-                                </form>
-                                <button class="close-approval-popup">닫기</button>
-                            </div>
-
+            <div class="admin_right">
+                <section class="admin_main_info">
+                    <div class="cont_head"><h2>갤러리 개설 신청</h2></div>
+                    <div class="admin_info_content">
+                        <div class="member_search_box">
+                            <select class="admin_member_search_select_box" id="member_search_select_box" name="select-box">
+                                <option value="option1">갤러리명</option>
+                                <option value="option2">신청자</option>
+                            </select>
+                            <input type="text" id="input-box" name="input-box" placeholder="키워드 입력">
+                            <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
                         </div>
 
-                        <!-- 페이징 -->
-                        <div class="admin_pageing">
-                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
-                            <span class="admin_pageing_num">
+                        <!-- 카테고리별 검색 기능 -->
+                        <div class="category_search_box">
+                            <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
+                                <option value="" selected>카테고리 전체</option>
+                                <option th:each="cate:${cates}" th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></option>
+                            </select>
+                            <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
+                        </div>
+
+                        <table class="admin_table admin_member_list">
+                            <colgroup>
+                                <col style="width: 14.2%;">
+                                <col style="width: 14.2%;">
+                                <col style="width: 9.2%;">
+                                <col style="width: 14.2%;">
+                                <col style="width: 14.2%;">
+                                <col style="width: 14.8%;">
+                                <col style="width: 14.8%;">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>갤러리 이름</th>
+                                <th>주소값</th>
+                                <th>카테고리</th>
+                                <th>신청일</th>
+                                <th>신청자</th>
+                                <th>갤러리 설명</th>
+                                <th>개설이유</th>
+                                <th>관리</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="list:${list}" th:if="${list.gell_create_status == 0}">
+                                <td th:text="${list.gell_create_num}" hidden></td>
+                                <td th:text="${list.gell_create_name}"></td>
+                                <td th:text="${list.gell_create_address}"></td>
+                                <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
+                                <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
+                                <td th:text="${list.gell_create_uid}"></td>
+                                <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
+                                <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
+                                <td th:text="${list.gell_create_status}"hidden></td>
+                                <td><button class="approval">[관리]</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="popup">
+                            <div class="popup-content"></div>
+                            <button class="close-popup">닫기</button>
+                        </div>
+
+                        <div class="approval-popup" style="display:none;">
+                            <h3>갤러리 개설 승인/반려</h3>
+                            <form th:action="@{/admin/gallery/form_minor/approve}" method="post">
+                                <p hidden>신청번호: <span class="num"></span></p>
+                                <input type="hidden" name="gell_create_num" id="gell_create_num" value=""/>
+                                <p>갤러리 이름: <span class="name"></span></p>
+                                <input type="hidden" name="gell_create_name" id="gell_create_name" value=""/>
+                                <p>주소: <span class="address"></span></p>
+                                <input type="hidden" name="gell_create_address" id="gell_create_address" value=""/>
+                                <p>카테고리: <span class="category"></span></p>
+                                <input type="hidden" name="gell_create_cate" id="gell_create_cate" value=""/>
+                                <p>신청일: <span class="rdate"></span></p>
+                                <p>신청자: <span class="uid"></span></p>
+                                <input type="hidden" name="gell_create_uid" id="gell_create_uid" value=""/>
+                                <p>갤러리 설명: <span class="intro"></span></p>
+                                <input type="hidden" name="gell_create_intro" id="gell_create_intro" value=""/>
+                                <p>개설이유: <span class="reason"></span></p>
+                                <p hidden>신청상태: <span class="stat"></span></p>
+                                <input type="hidden" name="gell_create_status" id="gell_create_status" value=""/>
+                                <button class="approve" type="submit">승인</button>
+                            </form>
+
+                            <button class="reject">반려</button>
+                            <form th:action="@{/admin/gallery/form_minor/reject}" method="post">
+                                <input type="hidden" name="gell_create_num" id="gell_create_num_reject" value=""/>
+                                <input type="hidden" name="gell_create_status" id="gell_create_status_reject" value=""/>
+                                <div class="rejection-reason" style="display:none;">
+                                    <textarea class="rejection-reason-text" name="gell_create_r_reason" placeholder="반려 사유를 입력하세요"></textarea>
+                                    <button class="submit-rejection" type="submit">제출</button>
+                                </div>
+                            </form>
+                            <button class="close-approval-popup">닫기</button>
+                        </div>
+
+                    </div>
+
+                    <!-- 페이징 -->
+                    <div class="admin_pageing">
+                        <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
+                        <span class="admin_pageing_num">
                                 <a href="#" class="on">1</a>
                                 <a href="#">2</a>
                                 <a href="#">3</a>
@@ -320,13 +316,13 @@
                                 <a href="#">9</a>
                                 <a href="#">10</a>
                             </span>
-                            <span class="admin_pageing_next">다음&nbsp;></span>
-                        </div>
+                        <span class="admin_pageing_next">다음&nbsp;></span>
+                    </div>
 
-                    </section>
-                </div>
+                </section>
             </div>
-        </main>
+        </div>
+    </main>
     <script>
         $("#category-submit-button").on("click", function() {
             var selectedCategory = $("#category_search_select_box option:selected").data("value");
@@ -392,8 +388,8 @@
         </script>
 
     <footer class="admin_footer gcfoot">
-            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
-        </footer>
-    </div>
+        <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+    </footer>
+</div>
 </body>
 </html>
