@@ -18,7 +18,7 @@
 
     <!-- upload -->
     <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
-    <update id="updateGellSetting" parameterType="Gell_SettingVO">
+    <update id="updateGellSetting" parameterType="kr.co.gcInside.vo.Gell_SettingVO">
         UPDATE gell_setting
         SET setting_member = #{setting_member},
         setting_non_nick = #{setting_non_nick},
