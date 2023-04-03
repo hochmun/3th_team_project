@@ -17,6 +17,34 @@
 
 
     <!-- upload -->
+    <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
+    <update id="updateGellSetting" parameterType="kr.co.gcInside.vo.Gell_SettingVO">
+        UPDATE `gell_setting`
+        SET setting_member = #{setting_member},
+        setting_non_nick = #{setting_non_nick},
+        setting_article_open_s = #{setting_article_open_s},
+        setting_recommend_standard = #{setting_recommend_standard},
+        setting_be_recommend = #{setting_be_recommend},
+        setting_be_recommend_standard = #{setting_be_recommend_standard},
+        setting_sub_cate = #{setting_sub_cate},
+        setting_basic_cate = #{setting_basic_cate},
+        setting_p_word = #{setting_p_word},
+        setting_p_word_list = #{setting_p_word_list},
+        setting_auto_article_delete = #{setting_auto_article_delete},
+        setting_secret = #{setting_secret},
+        setting_notice = #{setting_notice},
+        setting_fix_s = #{setting_fix_s},
+        setting_fix_num = #{setting_fix_num},
+        setting_fix_time = #{setting_fix_time},
+        setting_adult = #{setting_adult}
+        WHERE setting_gell_num = #{setting_gell_num};
+    </update>
+
+    <select id="selectGellSetting" parameterType="int" resultType="kr.co.gcInside.vo.Gell_SettingVO">
+        SELECT *
+        FROM gell_setting
+        WHERE setting_gell_num = #{gellNum};
+    </select>
     <!-- delete -->
 
 </mapper>

@@ -1,6 +1,7 @@
 package kr.co.gcInside.service;
 
 import kr.co.gcInside.dao.ManagementDAO;
+import kr.co.gcInside.vo.Gell_SettingVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -44,6 +45,17 @@ public class ManagementService {
 
         model.addAttribute("stringObjectMap", stringObjectMap);
         return true;
+    }
+
+    /**
+     * 2023.04.03 // 라성준 //
+     * 갤러리 업데이트 서비스
+     * @param vo
+     * @return
+     */
+    public boolean updateGellSetting(Gell_SettingVO vo) {
+        int result = dao.updateGellSetting(vo);
+        return result > 0;
     }
 
 }
