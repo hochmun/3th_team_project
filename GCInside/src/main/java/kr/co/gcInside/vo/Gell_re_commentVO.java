@@ -27,4 +27,19 @@ public class Gell_re_commentVO {
     
     // 추가 컬럼
     private String member_nick;
+
+    // getter
+
+    /**
+     * 2023/04/02 // 심규영 // regip 잘라서 리턴
+     * @return
+     */
+    public String getRe_comment_regip_sub() {
+        if(!re_comment_regip.equals("0:0:0:0:0:0:0:1")) {
+            String a = re_comment_regip.substring(0, re_comment_regip.indexOf('.',4));
+            return a;
+        } else {
+            return "0:0:0";
+        }
+    }
 }
