@@ -1,6 +1,7 @@
 package kr.co.gcInside.dao;
 
 
+import kr.co.gcInside.vo.Gell_SettingVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -14,6 +15,16 @@ import java.util.Map;
 @Repository
 public interface ManagementDAO {
     public Map<String, Object> selectArticleAndSetting(@Param("gell_address") String gell_address);
+
+
+    /**
+     * 2023.04.03 // 랴성준 //
+     * 매니지먼트 설정 정보 업데이트
+     * @param setting
+     * @return
+     */
+    public int updateGellSetting(Gell_SettingVO setting);
+
 
 
 }

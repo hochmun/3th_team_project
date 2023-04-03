@@ -37,6 +37,13 @@ public class ManagementController {
     public String index (@RequestParam Map<String, String> data, Model model) {
         if(!service.modelInput(data, model)) return "error/wrongURL";
 
+        String gell_address = data.get("id");
+        Map<String, Object> stringObjectMap = service.selectArticleAndSetting(gell_address);
+        if (stringObjectMap == null) {
+            return "error/wrongURL";
+        }
+        model.addAttribute("stringObjectMap", stringObjectMap);
+
         return "gall/management/index";
     }
 
