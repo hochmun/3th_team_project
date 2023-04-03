@@ -18,8 +18,8 @@
 
     <!-- upload -->
     <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
-    <update id="updateGellSetting" parameterType="Gell_SettingVO">
-        UPDATE gell_setting
+    <update id="updateGellSetting" parameterType="kr.co.gcInside.vo.Gell_SettingVO">
+        UPDATE `gell_setting`
         SET setting_member = #{setting_member},
         setting_non_nick = #{setting_non_nick},
         setting_article_open_s = #{setting_article_open_s},
@@ -37,13 +37,13 @@
         setting_fix_num = #{setting_fix_num},
         setting_fix_time = #{setting_fix_time},
         setting_adult = #{setting_adult}
-        WHERE setting_gell_num = #{setting_gell_num}
+        WHERE setting_gell_num = #{setting_gell_num};
     </update>
 
-    <select id="selectGellSetting" parameterType="int" resultType="Gell_SettingVO">
+    <select id="selectGellSetting" parameterType="int" resultType="kr.co.gcInside.vo.Gell_SettingVO">
         SELECT *
         FROM gell_setting
-        WHERE setting_gell_num = #{gellNum}
+        WHERE setting_gell_num = #{gellNum};
     </select>
     <!-- delete -->
 
