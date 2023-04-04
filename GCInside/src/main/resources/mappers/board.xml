@@ -215,7 +215,13 @@
 
     <!-- 2023/03/29 // 심규영 // 게시글 댓글 리스트 불러오는 쿼리문 -->
     <select id="selectComments" resultType="kr.co.gcInside.vo.Gell_commentVO">
-        SELECT a.*, b.`member_nick` FROM
+        (SELECT
+            a.*,
+            b.`member_nick`
+            <if test='type.equals("R")'> <!-- 댓글 많은 순 -->
+            , COALESCE(a.`comment_re_count`, c.`comment_re_count`) AS `re_count`
+            </if>
+        FROM
             (
                 SELECT
                     `comment_num`,
@@ -250,9 +256,26 @@
                 FROM `gc_gell_re_comment`
             ) AS a
         left JOIN `gc_member` AS b ON a.`comment_uid` = b.`member_uid`
+        <if test='type.equals("R")'> <!-- 댓글 많은 순 -->
+            LEFT JOIN `gc_gell_comment` AS c ON a.`comment_num` = c.`comment_num`
+        </if>
         WHERE `comment_article_num` = #{article_num}
-        ORDER BY `comment_num` ASC, `comment_rdate` ASC
-        LIMIT 0, 100;
+        ORDER BY
+            <if test='type.equals("R")'>`re_count` DESC,`comment_num` DESC,`comment_rdate` ASC</if>
+            <if test='type.equals("D")'>`comment_num` DESC,`comment_rdate` DESC</if>
+            <if test='type.equals("N")'>`comment_num` DESC,`comment_rdate` ASC</if>
+        LIMIT ${start}, 100)
+        <if test='type.equals("D")'> <!-- 등록순 -->
+            ORDER BY `comment_num` ASC,
+        </if>
+        <if test='type.equals("N")'> <!-- 최신순 -->
+            ORDER BY `comment_num` DESC,
+        </if>
+        <if test='type.equals("R")'> <!-- 최신순 -->
+            ORDER BY `re_count` DESC, `comment_num` DESC,
+        </if>
+        `comment_rdate` ASC
+        ;
     </select>
 
     <!-- upload -->

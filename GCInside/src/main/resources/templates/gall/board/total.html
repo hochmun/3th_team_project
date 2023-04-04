@@ -561,7 +561,7 @@
                             </select>
 
                             <div class="select_area" onclick="layerOpen($('#commentSortLayer'))">
-                              <span class="comment_sort_txt">등록순</span>
+                              <span class="comment_sort_txt" id="comment_sort_txt" data-sort="D">등록순</span>
                               <span class="blind">정렬 기준선택</span>
                               <em class="sp_img icon_option_more"></em>
                             </div>
@@ -587,7 +587,7 @@
                       <!-- 댓글 영역 본문 -->
                       <div class="comment_box">
                         <!-- 댓글 목록 -->
-                        <ul class="cmt_list">
+                        <ul class="cmt_list" id="cmt_list" th:data-article_no="${articleVO.article_num}">
                           <!-- id의 번호는 댓글 번호 -->
                           <th:block th:each="commentVO:${commentMap.commentVOS}">
                             <!-- 타입이 댓글 일 때 -->
@@ -598,8 +598,8 @@
                                     <span th:if="${commentVO.comment_login_status} == 1" class="gall_writer ub-writer"
                                           th:data-name="${commentVO.comment_nonmember_name}"
                                           th:data-ip="${commentVO.comment_regip}">
-                                      <span class="nickname">
-                                        <em th:title="${commentVO.comment_nonmember_name}" th:text="${commentVO.comment_nonmember_name}">ㅇㅇ</em>
+                                      <span class="nickname" th:title="${commentVO.comment_nonmember_name}">
+                                        <em th:text="${commentVO.comment_nonmember_name}">ㅇㅇ</em>
                                         <span class="ip" th:text="|(${commentVO.comment_regip_sub})|">(00.00)</span>
                                       </span>
                                     </span>
@@ -645,8 +645,8 @@
                                                   <span th:if="${recommentVO.comment_login_status} == 1" class="gall_writer ub-writer"
                                                         th:data-name="${recommentVO.comment_nonmember_name}"
                                                         th:data-ip="${recommentVO.comment_regip}">
-                                                    <span class="nickname">
-                                                      <em th:title="${recommentVO.comment_nonmember_name}" th:text="${recommentVO.comment_nonmember_name}">ㅇㅇ</em>
+                                                    <span class="nickname" th:title="${recommentVO.comment_nonmember_name}">
+                                                      <em  th:text="${recommentVO.comment_nonmember_name}">ㅇㅇ</em>
                                                       <span class="ip" th:text="|(${recommentVO.comment_regip_sub})|">(00.00)</span>
                                                     </span>
                                                   </span>
@@ -695,37 +695,37 @@
                                     <ul class="reply_list" th:id="|reply_list_${commentVO.comment_num}|">
                                       <th:block th:each="reCommentVO:${commentMap.reCommentVOS}">
                                         <th:block th:if="${reCommentVO.comment_num eq commentVO.comment_num}">
-                                          <li th:id="|reply_li_${recommentVO.comment_num}|" class="ub-content">
-                                            <div class="reply_info clear" th:data-no="${recommentVO.re_comment_num}">
+                                          <li th:id="|reply_li_${reCommentVO.re_comment_num}|" class="ub-content">
+                                            <div class="reply_info clear" th:data-no="${reCommentVO.re_comment_num}">
                                               <div class="cmt_nickbox">
-                                                  <span th:if="${recommentVO.comment_login_status} == 1" class="gall_writer ub-writer"
-                                                        th:data-name="${recommentVO.comment_nonmember_name}"
-                                                        th:data-ip="${recommentVO.comment_regip}">
+                                                  <span th:if="${reCommentVO.comment_login_status} == 1" class="gall_writer ub-writer"
+                                                        th:data-name="${reCommentVO.comment_nonmember_name}"
+                                                        th:data-ip="${reCommentVO.comment_regip}">
                                                     <span class="nickname">
-                                                      <em th:title="${recommentVO.comment_nonmember_name}" th:text="${recommentVO.comment_nonmember_name}">ㅇㅇ</em>
-                                                      <span class="ip" th:text="|(${recommentVO.comment_regip_sub})|">(00.00)</span>
+                                                      <em th:title="${reCommentVO.comment_nonmember_name}" th:text="${reCommentVO.comment_nonmember_name}">ㅇㅇ</em>
+                                                      <span class="ip" th:text="|(${reCommentVO.comment_regip_sub})|">(00.00)</span>
                                                     </span>
                                                   </span>
 
-                                                <span th:if="${recommentVO.comment_login_status} == 0" class="gall_writer ub-writer"
-                                                      th:data-nick="${recommentVO.member_nick}"
-                                                      th:data-uid="${recommentVO.comment_uid}">
-                                                    <span class="nickname in" th:title="${recommentVO.member_nick}">
-                                                      <em th:text="${recommentVO.member_nick}">ㅇㅇ</em>
+                                                <span th:if="${reCommentVO.comment_login_status} == 0" class="gall_writer ub-writer"
+                                                      th:data-nick="${reCommentVO.member_nick}"
+                                                      th:data-uid="${reCommentVO.comment_uid}">
+                                                    <span class="nickname in" th:title="${reCommentVO.member_nick}">
+                                                      <em th:text="${reCommentVO.member_nick}">ㅇㅇ</em>
                                                     </span>
                                                     <a class="writer_nikcon">
                                                       <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="cursor:pointer;"
-                                                           th:title="|${recommentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
+                                                           th:title="|${reCommentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
                                                     </a>
                                                   </span>
                                               </div>
 
                                               <div class="clear cmt_txtbox">
-                                                <p class="usertxt ub-word" th:text="${recommentVO.comment_content}"></p>
+                                                <p class="usertxt ub-word" th:text="${reCommentVO.comment_content}"></p>
                                               </div>
 
                                               <div class="fr clear">
-                                                <span class="date_time" th:text="${recommentVO.comment_rdate}"></span>
+                                                <span class="date_time" th:text="${reCommentVO.comment_rdate}"></span>
                                                 <div class="cmt_mdf_del">
                                                   <button type="button" class="btn_cmt_delete">삭제</button>
                                                 </div>
@@ -1266,7 +1266,8 @@
   </div>
 </body>
 <th:block th:if="${type} == 'view'">
-  <li id="comment_sample" class="ub-content" style="display:none;">
+  <!-- id="comment_li_${no}" -->
+  <li id="comment_sample" class="ub-content" data-rcnt="" style="display:none;">
     <div class="cmt_info clear" data-no="" data-article-no="">
       <div class="cmt_nickbox">
       <span class="gall_writer ub-writer" data-name="" data-ip="">
@@ -1311,6 +1312,10 @@
           <span class="nickname" title="">
             <em></em>
             <span class="ip"></span>
+            <a class="writer_nikcon" style="display:none;">
+              <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="cursor:pointer;"
+                   title="|${recommentVO.comment_uid_sub} : 갤로그로 이동합니다.|">
+            </a>
           </span>
         </span>
       </div>

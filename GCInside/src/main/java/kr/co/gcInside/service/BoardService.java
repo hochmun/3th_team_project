@@ -173,10 +173,10 @@ public class BoardService {
      *      "reCommentVOS"  : 대댓글 리스트<br>
      *      "commentVOS"    : 댓글, 대댓글 포함 리스트, 중복 제거 됨
      */
-    public Map<String,List<Gell_commentVO>> selectComments(int article_num) {
+    public Map<String,List<Gell_commentVO>> selectComments(int article_num, int start, String type) {
         Map<String, List<Gell_commentVO>> commentLists = new HashMap<>(); // 댓글 리스트와 대댓글 리스트를 담을 map
 
-        List<Gell_commentVO> allCommentVOS = dao.selectComments(article_num); // 댓글 리스트
+        List<Gell_commentVO> allCommentVOS = dao.selectComments(article_num, start, type); // 댓글 리스트
 
         /* 대댓글 리스트 */
         List<Gell_commentVO> reCommentVOS = allCommentVOS.stream()
