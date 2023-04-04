@@ -24,6 +24,7 @@ public class gell_articleVO {
     private int article_hit;
     private int article_comment_count;
     private int article_recommend_count;
+    private int article_member_recommend_count; /* 2023/04/03 // 심규영 // 유저 추천 수 추가 */ 
     private int article_be_recommend;
     private int article_recommend_status;
     private String article_regip;
