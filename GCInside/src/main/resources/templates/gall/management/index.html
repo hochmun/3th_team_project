@@ -133,10 +133,13 @@
                                     <div class="set_enable" style="display:none;">
                                         <div class="cont_box clear">
                                             <div class="cont_input_box">
-                                                <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="미니 갤러리 이름을 간단히 넣어주세요." onfocusout="return chk_name()" data-org="ㅇㅇㅇ " value="ㅇㅇㅇ ">
-                                                <span class="basic_tit">미니 갤러리</span>
+                                                <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="미니 갤러리 이름을 간단히 넣어주세요."
+                                                       onfocusout="return chk_name()" data-org="[[${stringObjectMap.gell_name}]]" th:value="${stringObjectMap.gell_name}" />
+                                                <span th:if="${stringObjectMap.gell_grade == 0}" th:text="메인갤러리" class="basic_tit"></span>
+                                                <span th:if="${stringObjectMap.gell_grade == 1}" th:text="마이너갤러리" class="basic_tit"></span>
+                                                <span th:if="${stringObjectMap.gell_grade == 2}" th:text="미니갤러리" class="basic_tit"></span>
                                             </div>
-                                            <span class="max_txt"><span>12</span>/<b>12</b></span>
+                                            <span class="max_txt" ><span>12</span>/<b>12</b></span>
                                             <p class="tiptxt red"><em class="sp_img tip_deco"></em>이름은 개설 후, 7일 내 1회만 수정 가능합니다.</p>
 
 

@@ -63,4 +63,10 @@ public class Gell_SettingVO {
     private int setting_fix_num;
     private int setting_fix_time;
     private int setting_adult;
+
+    /**
+     * 2023.04.04 // 라성준 //
+     * 추가 필드
+     */
+    private String mg_name;
 }
