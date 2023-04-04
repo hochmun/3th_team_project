@@ -1,12 +1,28 @@
 $(()=>{
 
     // 게시글 갯수 선택 창 열기, 닫기
-    $('.select_area').click(function(){
+    $('#aritlce_num').click(function(){
         const $layer = $('#listSizeLayer');
 
         if($layer.css('display') == 'none') $layer.show();
         else $layer.hide();
 
+    })
+
+    // 게시글 목록 하단 검색 타입 창 열기, 닫기
+    $('#search_type').click(function(){
+        const $layer = $('#searchTypeLayer');
+
+        if($layer.css('display') == 'none') $layer.show();
+        else $layer.hide();
+
+    });
+
+    $('#commentSort').click(function(){
+        const $layer = $('#commentSortLayer');
+
+        if($layer.css('display') == 'none') $layer.show();
+        else $layer.hide();
     })
 
     // 비밀 번호 입력 확인 버튼 클릭시
@@ -39,6 +55,12 @@ $(()=>{
         })
     })
 })
+
+/** 2023/04/03 // 심규영 // 레이어 창 열고 닫기 함수 */
+function layerOpen ($layer) {
+    if($layer.css('display') == 'none') $layer.show();
+    else $layer.hide();
+}
 
 // 상단 설정 열기
 function setting_layer() {

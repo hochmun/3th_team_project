@@ -229,3 +229,34 @@ const re_comment_write = function($this) {
             }
         });
 }
+
+/** 2023/04/03 // 심규영 // 페이지 로드 될시 페이징 처리 */
+const comment_papging = function() {
+    totalCommentNum = parseInt($('#comment_total').text()); // 전체 댓글 개수
+
+    const pagingDTO = PostPaging(1,totalCommentNum,100);
+
+}
+
+/** 2023/04/03 // 심규영 // 페이징 Post 처리 */
+function PostPaging(pg,total,count) {
+    const jsonData = {
+        "pg":pg,
+        "total":total,
+        "count":count
+    }
+
+    $.ajax({
+        url:'/GCInside/utils/pagingPage',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(jsonData),
+        dataType:'json',
+        success: function(data) {
+            return data.pagingDTO;
+        },
+        error : function(request,status,error){
+            alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+        },
+    });
+}

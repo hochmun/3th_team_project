@@ -1,6 +1,6 @@
 <!-- 2023/03/20 // 심규영 // 글 수정, 글 보기, 글 쓰기 공통 작업 -->
 <!DOCTYPE html>
-<html lang="en"
+<html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -560,13 +560,13 @@
                               <option value="R">답글수</option>
                             </select>
 
-                            <div class="select_area">
+                            <div class="select_area" onclick="layerOpen($('#commentSortLayer'))">
                               <span class="comment_sort_txt">등록순</span>
                               <span class="blind">정렬 기준선택</span>
                               <em class="sp_img icon_option_more"></em>
                             </div>
 
-                            <ul class="option_box" id="commentSortLayer_5" data-no="5" style="left:-1px;top:19px;display:none">
+                            <ul class="option_box" id="commentSortLayer" data-no="5" style="left:-1px;top:19px;display:none">
                               <li class="comment_sort" data-sort="D">등록순</li>
                               <li class="comment_sort" data-sort="N">최신순</li>
                               <li class="comment_sort" data-sort="R">답글순</li>
@@ -748,15 +748,20 @@
                           <div class="useradmin_btnbox"></div>
 
                           <!-- 페이징 -->
-                          <div class="cmt_paging"></div>
+                          <div class="cmt_paging" onload="comment_papging()">
+                            <a class="sp_pagingicon page_first" href="javascript:;">처음</a>
+                            <a class="sp_pagingicon page_prev" href="javascript:;">이전</a>
+                            <em>1</em>
+                            <a href="javascript:;">2</a>
+                            <a class="sp_pagingicon page_next" href="javascript:;">다음</a>
+                            <a class="sp_pagingicon page_end" href="javascript:;">끝</a>
+                          </div>
 
                           <!-- 본문보기 / 댓글 보기 설정 / 새로고침 -->
                           <div class="cmt_inner"></div>
                         </div>
                       </div>
                     </div>
-
-
 
                     <!-- 댓글 작성 -->
                     <!-- 코멘트 입력 -->
@@ -984,7 +989,7 @@
                     <div class="buttom_search_wrap clear">
                       <!-- 검색 종류 선택 -->
                       <div class="select_box bottom_array fl">
-                        <div class="select_area">
+                        <div class="select_area" onclick="layerOpen($('#searchTypeLayer'))">
                           <!-- 선택한 내용 출력 -->
                           <span id="search_type_txt">제목+내용</span>
 
@@ -1370,6 +1375,15 @@
       </div>
     </div>
   </li>
+  <!-- 댓글 페이징 샘플 -->
+  <div class="cmt_paging_sample" style="display:none;">
+    <a class="sp_pagingicon page_first" href="javascript:;">처음</a>
+    <a class="sp_pagingicon page_prev" href="javascript:;">이전</a>
+    <em></em>
+    <a href="javascript:;"></a>
+    <a class="sp_pagingicon page_next" href="javascript:;">다음</a>
+    <a class="sp_pagingicon page_end" href="javascript:;">끝</a>
+  </div>
 </th:block>
 </html>
 

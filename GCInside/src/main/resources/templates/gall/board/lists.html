@@ -249,7 +249,7 @@
 							<div class="right_box">
 								<div class="output_array clear" style="display: block;">
 									<div class="select_box array_num">
-										<div class="select_area"><a href="javascript:;"><!--현재 페이지 개수-->50개<em class="sp_img icon_option_more"></em></a></div>
+										<div class="select_area" onclick="layerOpen($('#listSizeLayer'))"><a href="javascript:;"><!--현재 페이지 개수-->50개<em class="sp_img icon_option_more"></em></a></div>
 										<ul id="listSizeLayer" class="option_box" style="left:0;top:20px;display:none;">
 											<li><a href="javascript:;">30개</a></li>
 											<li><a href="javascript:;">50개</a></li>
@@ -407,7 +407,7 @@
 								<div class="buttom_search_wrap clear">
 									<!-- 검색 종류 선택 -->
 									<div class="select_box bottom_array fl">
-										<div class="select_area">
+										<div class="select_area" onclick="layerOpen($('#searchTypeLayer'))">
 											<!-- 선택한 내용 출력 -->
 											<span id="search_type_txt">제목+내용</span>
 
