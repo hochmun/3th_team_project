@@ -115,10 +115,16 @@ public interface BoardDAO {
 
     /**
      * 2023/03/29 // 심규영 // 게시물 댓글 불러오기 기능
+     *      필요한 값
+     *          pg          : 댓글을 불러오는 페이지
+     *          article_num : 게시글 번호
+     *          type        : 댓글 정렬 타입
      * @param article_num
      * @return
      */
-    public List<Gell_commentVO> selectComments(@Param("article_num") int article_num);
+    public List<Gell_commentVO> selectComments(@Param("article_num") int article_num,
+                                               @Param("start") int start,
+                                               @Param("type") String type);
 
     // upload
 

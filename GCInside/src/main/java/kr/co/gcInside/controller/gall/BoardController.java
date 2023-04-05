@@ -167,7 +167,7 @@ public class BoardController {
             // data에 개념글 추천수 개수 설정 넣기
             data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
 
-            // 페이징 처리
+            // 게시글 페이징 처리
             PagingDTO pagingDTO = service.listsPaging(data);
 
             // 게시글 정보 가져오기
@@ -175,8 +175,11 @@ public class BoardController {
             data.put("gell_num", galleryVO.getGell_num()+"");
             List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
             
+            // 댓글, 대댓글 목록 페이징 처리
+            // 전체 댓글 수 가져오는 쿼리문 사용 할 필요 없음, 게시물 정보에 포함 되어 있음
+            
             // 댓글 정보 가져오기
-            Map<String,List<Gell_commentVO>> commentMap = service.selectComments(articleVO.getArticle_num());
+            Map<String,List<Gell_commentVO>> commentMap = service.selectComments(articleVO.getArticle_num(),0,"D");
 
             // 모델
             model.addAttribute("gellArticleVOS", gellArticleVOS);
@@ -476,6 +479,27 @@ public class BoardController {
         if(result > 0) {
             session.setAttribute("nonmemberPassCheck", true);
         }
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/04 // 심규영 // 댓글 목록 불러오기
+     *      data 에 들어오는 값
+     *          start : 페이지 시작 글 번호
+     *          article_num : 게시물 번호
+     *          type : 정렬 타입
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/getCommentList")
+    public Map<String, Object> getCommentList(@RequestBody Map<String, String> data) {
+        Map<String,Object> resultMap = new HashMap<>();
+
+        // 댓글 목록 불러오기
+        Map<String, List<Gell_commentVO>> commentLists = service.selectComments(Integer.parseInt(data.get("article_num")), Integer.parseInt(data.get("start")), data.get("type"));
+        resultMap.put("commentLists", commentLists);
 
         return resultMap;
     }
