@@ -22,6 +22,7 @@ public class UtilController {
      *      pg    : 현제 페이지
      *      total : 페이징 할 데이터의 전체 갯수
      *      count : 페이징 할 데이터의 페이지 당 갯수
+     *      groupCount : 그룹당 페이지 개수
      * @return
      */
     @ResponseBody
@@ -29,7 +30,7 @@ public class UtilController {
     public Map<String, Object> PagingPage(@RequestBody Map<String, String> data) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"),Integer.parseInt(data.get("total")),data.get("count"));
+        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"),Integer.parseInt(data.get("total")),data.get("count"),data.get("groupCount"));
         resultMap.put("pagingDTO", pagingDTO);
 
         return resultMap;

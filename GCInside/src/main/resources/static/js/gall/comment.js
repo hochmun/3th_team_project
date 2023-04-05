@@ -426,7 +426,8 @@ function PostPaging(pg,total,count) {
         const jsonData = {
             "pg":pg,
             "total":total,
-            "count":count
+            "count":count,
+            "groupCount":15
         }
 
         $.ajax({
