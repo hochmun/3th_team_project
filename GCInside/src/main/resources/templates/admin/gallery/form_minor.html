@@ -28,12 +28,13 @@
 
                     // Ajax 요청 보내기
                     $.ajax({
-                      url: "/api/gallery/search",
-                      type: "POST",
+                      url: "/form_minor/searchByKeyword",
+                      type: "GET",
                       data: {
-                        searchOption: searchOption,
-                        searchKeyword: searchKeyword
+                        option: searchOption,
+                        keyword: searchKeyword
                       },
+                      dataType: "json",
                       success: function(result) {
                         // 서버에서 받아온 데이터를 테이블에 업데이트
                         var table = document.querySelector(".admin_member_list");
@@ -56,7 +57,7 @@
                     }
                   });
                 });
-                </script>
+            </script>
 
             <!-- 개설 이유 글 자르기 -->
             <script>
