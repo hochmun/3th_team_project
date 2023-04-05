@@ -11,6 +11,20 @@ let agreeInit = function(){
             return false;
         }
     });
+    // 전체동의 체크박스 클릭시 약관모두 선택
+    $("#all_agree").click(function(){
+        let isChecked = $(this).is(":checked");
+        $('input:checkbox[id="service_agree"]').prop("checked", isChecked);
+        $('input:checkbox[id="personal_agree"]').prop("checked", isChecked);
+    });
+    // 약관 체크여부로 전체동의 체크
+    $('input:checkbox[id="service_agree"], input:checkbox[id="personal_agree"]').click(function(){
+        if(!$('input:checkbox[id="service_agree"]').is(":checked") || !$('input:checkbox[id="personal_agree"]').is(":checked")){
+            $('#all_agree').prop("checked", false);
+        } else {
+            $('#all_agree').prop("checked", true);
+        }
+    });
 }
 /* 회원가입 폼 */
 let formInit = function(){
@@ -61,4 +75,28 @@ let formInit = function(){
 	});
 };
 
-
+/*  스크롤바 내릴때 체크박스 동의가능 //////////
+const scroll1 = document.querySelectorAll('#scroll1'); <!--이용약관 스크롤-->
+const scroll2 = document.querySelectorAll('#scroll2'); <!--개인정보처리방침 스크롤-->
+const serviceAgreeCheckbox = document.getElementById('service_agree');
+const personalAgreeCheckbox = document.getElementById('personal_agree');
+scroll1.forEach((scroll) => {
+  scroll.addEventListener('scroll', () => {
+    // 스크롤바 위치가 맨 아래인 경우에만 체크박스를 클릭할 수 있도록 처리
+    if (scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight) {
+      serviceAgreeCheckbox.disabled = false; // 체크박스 활성화
+    } else {
+      serviceAgreeCheckbox.disabled = true; // 체크박스 비활성화
+    }
+  });
+});
+scroll2.forEach((scroll) => {
+  scroll.addEventListener('scroll', () => {
+    // 스크롤바 위치가 맨 아래인 경우에만 체크박스를 클릭할 수 있도록 처리
+    if (scroll.scrollTop + scroll.clientHeight >= scroll.scrollHeight) {
+      personalAgreeCheckbox.disabled = false; // 체크박스 활성화
+    } else {
+      personalAgreeCheckbox.disabled = true; // 체크박스 비활성화
+    }
+  });
+});*/
