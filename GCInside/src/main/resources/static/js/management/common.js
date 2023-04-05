@@ -863,7 +863,7 @@ $(function () {
 	$(document).on('click', '.user_nick_nm,.nickname', function (e) {
 		get_user_data(this);
 	});
-	
+
 	/* 로그 링크 처리 */
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////
 	$(document).on('click', '.logClass', function(){
@@ -872,9 +872,9 @@ $(function () {
 		var depth1 = $(this).attr('depth1');
 		// 타겟 코드 - 힛, 이슈, 올드힛 등
 		var depth2 = $(this).attr('depth2');
-		
+
 		var depth3 = $(this).attr('depth3'); //댓글 돌이용 article_no
-		
+
 		$.ajax({
 			type : "POST",
 			cache: false,
@@ -894,7 +894,7 @@ $(function () {
 			}
 		});
 	});
-	
+
 	$('#btn_user_lyr').click(function(){
 		if($('#user_data_lyr').css('display') == 'block'){
 			$('#user_data_lyr').hide();
