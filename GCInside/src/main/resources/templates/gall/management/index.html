@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="set_enable" style="display:none;">
                                     <div class="cont_box">
-                                        <textarea class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요." onfocusout="return chk_desc()">~~~~하기 위한 갤러리</textarea>
+                                        <textarea th:text="${stringObjectMap.gell_info}" class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요." onfocusout="return chk_desc()">~~~~하기 위한 갤러리</textarea>
                                         <div class="clear">
                                             <span class="max_txt"><span>20</span>/<b>200</b></span>
                                         </div>
