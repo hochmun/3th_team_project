@@ -259,7 +259,7 @@
         <if test='type.equals("R")'> <!-- 댓글 많은 순 -->
             LEFT JOIN `gc_gell_comment` AS c ON a.`comment_num` = c.`comment_num`
         </if>
-        WHERE `comment_article_num` = #{article_num}
+        WHERE a.`comment_article_num` = #{article_num}
         ORDER BY
             <if test='type.equals("R")'>`re_count` DESC,`comment_num` DESC,`comment_rdate` ASC</if>
             <if test='type.equals("D")'>`comment_num` DESC,`comment_rdate` DESC</if>
@@ -271,7 +271,7 @@
         <if test='type.equals("N")'> <!-- 최신순 -->
             ORDER BY `comment_num` DESC,
         </if>
-        <if test='type.equals("R")'> <!-- 최신순 -->
+        <if test='type.equals("R")'> <!-- 댓글 많은 순 -->
             ORDER BY `re_count` DESC, `comment_num` DESC,
         </if>
         `comment_rdate` ASC
@@ -312,6 +312,13 @@
         UPDATE `gc_gell_comment` SET
             `comment_re_count` = `comment_re_count` + 1
         WHERE `comment_num` = #{comment_num};
+    </update>
+
+    <!-- 2023/04/05 // 심규영 // 게시글 조회수 증가 쿼리문 -->
+    <update id="updateArticleHitCount">
+        UPDATE `gc_gell_article` SET
+            `article_hit` = `article_hit` +1
+        WHERE `article_num` = #{article_num};
     </update>
 
     <!-- delete -->

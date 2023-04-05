@@ -244,6 +244,15 @@ public class BoardService {
         return dao.updateCommentReCount(comment_num);
     }
 
+    /**
+     * 2023/04/05 // 심규영 // 게시물 조회수 증가 쿼리문
+     * @param article_num
+     * @return
+     */
+    public int updateArticleHitCount(int article_num) {
+        return dao.updateArticleHitCount(article_num);
+    }
+
     // delete
     // service
 

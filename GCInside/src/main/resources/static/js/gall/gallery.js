@@ -56,6 +56,14 @@ $(()=>{
     })
 })
 
+/** 2023/04/05 // 심규영 // 댓글 열기 및 닫기 */
+function CommentOpen($this){
+    if($this.attr('class') == 'btn_cmt_close') $this.attr('class', 'btn_cmt_open');
+    else $this.attr('class', 'btn_cmt_close');
+
+    layerOpen($('.comment_box'));
+}
+
 /** 2023/04/03 // 심규영 // 레이어 창 열고 닫기 함수 */
 function layerOpen ($layer) {
     if($layer.css('display') == 'none') $layer.show();
