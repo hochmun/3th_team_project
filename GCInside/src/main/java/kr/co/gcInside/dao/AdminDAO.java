@@ -107,11 +107,21 @@ public interface AdminDAO {
     public List<CreateVO> searchByCategory(int category);
 
     /**
+     * 2023/04/03 // 김재준 // 관리자 갤러리 개설신청 키워드 검색
+     */
+    public List<CreateVO> searchByKeyword(String keyword, String option);
+
+    /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 총 개수
      * @param category
      * @return
      */
     public int searchByCategoryTotal(int category);
+
+    /**
+     * 2023/04/03 // 김재준 // 관리자 갤러리 개설신청 키워드 검색 총 개수
+     */
+    public int searchByKeywordTotal(String keyword, String option);
 
     // upload
 
