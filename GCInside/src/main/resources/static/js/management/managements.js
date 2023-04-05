@@ -232,6 +232,7 @@ function update_name() {
     var mgall_name_new	= $("#mg_name").val();
     var mgall_name_org	= $("#mg_name").attr('data-org');
     var reason			= $("#reason").val();
+    var _GALLERY_TYPE_ = "M";
 
     if(mgall_name_new == ''){
         alert('이름을 입력해주세요.');
@@ -245,13 +246,12 @@ function update_name() {
 
     $.ajax({
         type: "POST",
-        url: "/ajax/managements_ajax/request_update_name",
-        data: { 'ci_t' : csrf_token, 'gallery_id': mgall_id, '_GALLTYPE_': _GALLERY_TYPE_, 'ko_name': mgall_name_new ,'reason' : reason },
+        url: "/GCInside/gall/management/index",
 		dataType : 'json',
         cache : false,
         async : false,
         success: function(ajaxData) {
-        	
+
 			if(ajaxData.result == "success") {
 				if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
 					alert(ajaxData.msg);
