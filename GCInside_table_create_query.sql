@@ -442,6 +442,7 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_recommend_log` (
   `recommend_article_num` INT NOT NULL,
   `recommend_regip` VARCHAR(100) NOT NULL,
   `recommend_rdate` DATE NOT NULL,
+  `recommend_type` TINYINT(1) NOT NULL,
   CONSTRAINT `fk_gc_gell_recommend_log_gc_gell_article1`
     FOREIGN KEY (`recommend_article_num`)
     REFERENCES `GC_Inside`.`gc_gell_article` (`article_num`)
