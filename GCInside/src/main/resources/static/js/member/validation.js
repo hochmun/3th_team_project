@@ -277,15 +277,40 @@ let codeSend = function() {
         url: '/GCInside/member/sendEmailCode',
         type: 'POST',
         data: {email: email},
+        async:false, // 메일 전송이 완료될 동안 다른 행동 불가능하게 화면이 멈춤 (바꿀예정)
+        beforeSend: function(xhr){
+            if(isClicked){ // 중복 클릭 방지
+                alert('이미 인증코드를 전송하였습니다.');
+                xhr.abort(); // ajax 요청 취소
+            }
+        },
         success: function(response) {
             alert('인증코드가 전송되었습니다.');
             isClicked = true; // 클릭 여부 변수를 true 로 변경, 중복 클릭 방지
+
+            // 인증코드 전송 완료 후 5분 타이머 시작
+            let limitTime = 5 * 60; // 제한시간 5분
+            let countdownTime = setInterval(function(){
+                if(limitTime <= 0){
+                    clearInterval(countdownTime); // 타이머 종료
+                    $('#time_text').text('인증 코드를 재발급받아주세요.');
+                }
+                let minute = Math.floor(limitTime / 60);
+                let second = limitTime % 60;
+                $('#time_text').text(minute + '분' + second + '초 남았습니다.');
+                $('#time_text').show();
+                limitTime--;
+                }, 1000);
+
+                setTimeout(function(){ // 타이머 종료 후 코드 재전송 클릭여부 변수 재설정
+                    isClicked = false;
+                }, limitTime * 1000);
         },
         error: function(error) {
             alert('인증코드 전송에 실패했습니다.');
         },
-        complete: function(){
-            isClicked = false; // ajax 호출 완료후에 클릭 여부 변수를 재설정
+        complete:function(){ // ajax 호출 완료후에 클릭여부 재설정
+            isClicked = false;
         }
     });
 }
