@@ -235,4 +235,14 @@ public class AdminController {
 
         return service.searchByCategory(Integer.parseInt(category));
     }
+
+    @GetMapping("/admin/gallery/form_minor/searchByKeyword")
+    @ResponseBody
+    public List<CreateVO> searchByKeyword(@RequestParam("keyword") String keyword, @RequestParam("option") String option) {
+        if (keyword.isEmpty()) {
+            return service.galleryRequestList();
+        }
+
+        return service.searchByKeyword(keyword, option);
+    }
 }

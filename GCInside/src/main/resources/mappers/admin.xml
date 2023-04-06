@@ -192,18 +192,6 @@
         ORDER BY gell_create_num desc;
     </select>
 
-    <!-- 23/03/28 // 김재준 // 관리자 갤러리 신청 리스트 검색 시 검색 결과 총 개수 가져오기
-    <select id="searchByCategoryTotal" resultType="int">
-        SELECT COUNT(`gell_create_num`) FROM `gc_admin_gell_create_approve`
-        WHERE
-        <if test="searchOption == 'option1'">
-            `gell_create_name` LIKE CONCAT('%',#{searchKeyword},'%')
-        </if>
-        <if test="searchOption == 'option2'">
-            `gell_create_uid` LIKE CONCAT('%',#{searchKeyword},'%')
-        </if>
-    </select>-->
-
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
         <result property="gell_create_num" column="gell_create_num"/>
         <result property="gell_create_rdate" column="gell_create_rdate"/>
