@@ -3,6 +3,53 @@ $(()=>{
     commentPageMove(1);
 });
 
+/** 2023/04/06 // 심규영 // 게시글 추천 및 비추천 클릭 함수 */
+const reCommendClick = ($this, type) => {
+    const article_num = $('#no').val();
+    const articlel_gell_num = $('#gell_num').val();
+
+    // jsonData
+    const jsonData = {
+        "article_num":article_num,
+        "articlel_gell_num":articlel_gell_num,
+        "type":type
+    }
+
+    //ajax
+    $.ajax({
+            url:'/GCInside/gall/board/setRecommendArticle',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            dataType:'json',
+            success: function(data) {
+                console.log(data);
+                console.log(data.result2);
+
+                if(data.result1 > 0) {
+                    if(type == 0) alert('추천은 1일 1회만 가능합니다.');
+                    if(type == 1) alert('비추천은 1일 1회만 가능합니다.');
+                }
+
+                if(data.result2 != 'undefined' && data.result2 > 0) { // 추천, 비추천 성공
+                    if(type == 0){ // 추천 일 경우
+                        // 추천 값 동적 증가
+                        $('#recommend_view_up').text(parseInt($('#recommend_view_up').text())+1); // 추천 수 증가
+                        $('.gall_reply_num').text('추천 ' + $('#recommend_view_up').text()); // 페이지 상단 추천 수 증가
+                        if(data.login_type == '0') $('#recommend_view_up_fix').text(parseInt($('#recommend_view_up_fix').text())+1); // 회원 추천 수 증가
+                    } else { // 비추천 일 경우
+                        // 비추천 값 동적 증가
+                        $('#recommend_view_down').text(parseInt($('#recommend_view_down').text())+1); // 추천 수 증가
+                    }
+                }
+
+                if(data.result2 != 'undefined' && data.result2 == 0) { // 실패
+                    alert('오류!');
+                }
+            }
+        })
+}
+
 /** 2023/04/05 // 심규영 // 글 순서 선택 함수 */
 function comment_type_select($this) {
     const sort = $this.data('sort'); // 정렬 값 가져오기

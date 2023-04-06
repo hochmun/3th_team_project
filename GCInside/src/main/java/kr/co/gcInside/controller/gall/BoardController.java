@@ -508,4 +508,49 @@ public class BoardController {
         return resultMap;
     }
 
+    /**
+     * 2023/04/06 // 심규영 // 추천, 비추천 처리 Post 맵핑
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *          
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/setRecommendArticle")
+    public Map<String, Object> setRecommendArticle(@RequestBody Map<String, String> data,
+                                                   @AuthenticationPrincipal MyUserDetails myUserDetails,
+                                                   HttpServletRequest req) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        // 추천 하는 유저의 로그인 상태 확인
+        if(myUserDetails != null) data.put("login_type", "0"); //회원
+        else data.put("login_type", "1"); // 비회원
+        
+        // 추천 하기전 24시간 이내 추천 기록 확인
+        data.put("regip", req.getRemoteAddr());
+        int result1 = service.selectCountRecommendLog(data);
+        if(result1 > 0){ // 오늘 추천 기록이 있으면
+            resultMap.put("result1",result1);
+            return resultMap; // 반환
+        }
+
+        // 추천, 비추천 처리
+        int result2 = service.updateArticleRecommendCount(data);
+        resultMap.put("result2", result2);
+        
+        if(result2 > 0) { // 추천 처리에 성공했을 경우 로그 남기기
+            service.insertRecommendLog(data);
+        }
+
+        resultMap.put("login_type", data.get("login_type")); // 로그인 상태 전송
+
+        return resultMap;
+    }
+
 }

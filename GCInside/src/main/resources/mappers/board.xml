@@ -66,6 +66,15 @@
             `re_comment_rdate` = NOW();
     </insert>
 
+    <!-- 2023/04/06 // 심규영 // 추천 로그 남기는 쿼리문 -->
+    <insert id="insertRecommendLog" parameterType="map">
+        INSERT INTO `gc_gell_recommend_log` SET
+            `recommend_article_num` = #{article_num},
+            `recommend_regip` = #{regip},
+            `recommend_rdate` = CURDATE(),
+            `recommend_type` = #{type};
+    </insert>
+
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
@@ -278,6 +287,16 @@
         ;
     </select>
 
+    <!-- 2023/04/06 // 심규영 // 추천 기록 조회 쿼리문 -->
+    <select id="selectCountRecommendLog" parameterType="map" resultType="int">
+        SELECT COUNT(`recommend_article_num`) AS 'count' FROM `gc_gell_recommend_log`
+        WHERE
+            `recommend_article_num`= #{article_num} AND
+            `recommend_regip` = #{regip} AND
+            `recommend_rdate` = CURDATE() AND
+            `recommend_type` = #{type};
+    </select>
+
     <!-- upload -->
     <!-- 2023/03/28 // 심규영 // 게시글 수정 쿼리문 -->
     <update id="updateArticle" parameterType="map">
@@ -319,6 +338,21 @@
         UPDATE `gc_gell_article` SET
             `article_hit` = `article_hit` +1
         WHERE `article_num` = #{article_num};
+    </update>
+
+    <!-- 2023/04/06 // 심규영 // 게시글 추천, 비추천 증가 쿼리문 -->
+    <update id="updateArticleRecommendCount" parameterType="map">
+        UPDATE `gc_gell_article` SET
+            <if test='type.equals("0")'> <!-- 추천 일 경우 -->
+                `article_recommend_count` = `article_recommend_count` + 1
+                <if test='login_type.equals("0")'> <!-- 추천 이면서 로그인 상태일 경우 유저 추천 수 도 증가 -->
+                    , `article_member_recommend_count` = `article_member_recommend_count` + 1
+                </if>
+            </if>
+            <if test='type.equals("1")'> <!-- 비추천 일 경우 -->
+                `article_be_recommend` = `article_be_recommend` + 1
+            </if>
+        WHERE `article_num` = #{article_num} AND `articlel_gell_num` = #{articlel_gell_num};
     </update>
 
     <!-- delete -->
