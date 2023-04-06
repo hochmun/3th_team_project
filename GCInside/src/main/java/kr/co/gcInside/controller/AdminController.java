@@ -226,7 +226,7 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
-    @GetMapping("/admin/gallery/form_minor/searchByCategory")
+    @GetMapping("admin/gallery/form_minor/searchByCategory")
     @ResponseBody
     public List<CreateVO> searchByCategory(@RequestParam("category") String category) {
         if(category.isEmpty()) {
@@ -236,13 +236,13 @@ public class AdminController {
         return service.searchByCategory(Integer.parseInt(category));
     }
 
-    @GetMapping("/admin/gallery/form_minor/searchByKeyword")
+    @GetMapping("admin/gallery/form_minor/searchByKeyword")
     @ResponseBody
-    public List<CreateVO> searchByKeyword(@RequestParam("keyword") String keyword, @RequestParam("option") String option) {
+    public List<CreateVO> searchByKeyword(@RequestParam("keyword") String keyword) {
         if (keyword.isEmpty()) {
             return service.galleryRequestList();
         }
 
-        return service.searchByKeyword(keyword, option);
+        return service.searchByKeyword(keyword);
     }
 }
