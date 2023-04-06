@@ -59,6 +59,23 @@ public class BoardService {
         return dao.insertReComment(vo);
     }
 
+    /**
+     * 2023/04/06 // 심규영 // 추천, 비추천 기록 남기는 기능
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     * @return
+     */
+    public int insertRecommendLog(Map<String,String> data) {
+        return dao.insertRecommendLog(data);
+    }
+
     // read
 
     /**
@@ -193,6 +210,22 @@ public class BoardService {
         return commentLists;
     }
 
+    /**
+     * 2023/04/06 // 심규영 // 추천 기록 확인 기능
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     */
+    public int selectCountRecommendLog(Map<String, String> data) {
+        return dao.selectCountRecommendLog(data);
+    }
+
     // upload
 
     /**
@@ -251,6 +284,22 @@ public class BoardService {
      */
     public int updateArticleHitCount(int article_num) {
         return dao.updateArticleHitCount(article_num);
+    }
+
+    /**
+     * 2023/04/06 // 심규영 // 게시글 추천, 비추천 증가 쿼리문
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}</pre>
+     * @param data
+     * @return
+     */
+    public int updateArticleRecommendCount(Map<String, String> data) {
+        return dao.updateArticleRecommendCount(data);
     }
 
     // delete
