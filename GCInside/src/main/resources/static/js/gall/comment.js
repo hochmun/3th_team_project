@@ -1,13 +1,19 @@
 $(()=>{
-
-    /** 2023/04/04 // 심규영 // 이벤트 함수 분리 */
-    $('.btn_reply_write_all').click(function(){
-        recommentWriteBoxOpen($(this));
-    });
-
-    /** 2023/04/04 // 심규영 // 처음 로딩시 페이징 처리 / comment.js */
-    comment_papging(1);
+    /** 2023/04/05 // 심규영 // 글 보기 처음 로딩시 댓글 목록 처리 */
+    commentPageMove(1);
 });
+
+/** 2023/04/05 // 심규영 // 글 순서 선택 함수 */
+function comment_type_select($this) {
+    const sort = $this.data('sort'); // 정렬 값 가져오기
+    const sortName = $this.text(); // 정렬 이름 가져오기
+
+    $('#commentSortLayer').hide(); // 정렬 선택창 닫기
+
+    $('#comment_sort_txt').data('sort',sort).text(sortName); // 선택 값 변경
+
+    commentPageMove(1); // 1 페이지 로 새로고침
+}
 
 /** 2023/03/29 // 심규영 // 대댓글 등록 팝업창 띄우기 */
 /** 2023/04/02 // 심규영 // 대댓글 작성창 오류 fix */
@@ -105,35 +111,13 @@ const commentWrite = function($this) {
         success: function(data) {
             if(data.result > 0) {
                 // 성공
-                const $comment_li = $('#comment_sample').clone();
+                const $comment_li = setComment_box(data.commentVO);
 
-                $comment_li.attr('id','comment_li_'+data.commentVO.comment_num);
-                $comment_li.data('rcnt', 0); // 대댓글 개수 입력
-
-                $comment_li.find('.btn_reply_write_all').data("no",data.commentVO.comment_num); // 댓글 번호 입력
-                $comment_li.find('.btn_reply_write_all').click(function(){recommentWriteBoxOpen($(this));}); // 클릭 이벤트 함수 등록
-
-                if(data.commentVO.comment_login_status == 0) {
-                    $comment_li.find('.nickname').attr('title', data.commentVO.member_nick);
-                    $comment_li.find('.nickname > em').text(data.commentVO.member_nick);
-                    $comment_li.find('.ip').hide();
-                    $comment_li.find('.writer_nikcon > img').attr('title', data.commentVO.comment_uid_sub+' : 갤로그로 이동합니다.');
-                } else {
-                    $comment_li.find('.nickname').attr('title', data.commentVO.comment_nonmember_name);
-                    $comment_li.find('.nickname > em').text(data.commentVO.comment_nonmember_name);
-                    $comment_li.find('.nickname > span.ip').text('('+data.commentVO.comment_regip_sub+')');
-                    $comment_li.find('.writer_nikcon').html('');
-
-                    $('#comment_name').val('');
-                    $('#comment_password').val('');
-                }
-
-                $comment_li.find('.usertxt').text(data.commentVO.comment_content);
-                $comment_li.find('.date_time').text(new Date(new Date().getTime() + (9*60*60*1000)).toISOString().replace('T',' ').slice(0, -5));
-
-                $comment_li.show();
-
+                // 댓글 동적 등록
                 $('.cmt_list').append($comment_li);
+
+                // 동적 댓글 등록 전 현제 페이지가 1이 아닐 경우 1페이지로 돌아가기
+                if($('#cmt_paging > em').text != '1') commentPageMove(1);
 
                 $('#comment_content').val('');
             } else {
@@ -261,7 +245,7 @@ const commentPageMove = async function(pg){
     await setCommentLists(data);
 
     // 댓글 맨 위로 이동
-    location.href = '#focus_cmt';
+    //location.href = '#focus_cmt';
 }
 
 /** 2023/04/04 // 심규영 // 댓글 리스트 출력 함수 */
@@ -410,7 +394,7 @@ const comment_papging = async function(pg) {
 
     for(let i = pagingDTO.groupStart; i <= pagingDTO.groupEnd; i++){
         if(pagingDTO.currentPage == i) $('<em>').text(i).appendTo('#cmt_paging');
-        else $('<a>').attr('href','javascript:commentPageMove('+i+')').text(i).appendTo('#cmt_paging');
+        else $('<a>').attr('href','#focus_cmt').attr('onclick','commentPageMove('+i+')').text(i).appendTo('#cmt_paging');
     }
 
     if(pagingDTO.groupEnd < pagingDTO.lastPage) { // 다음 페이지가 있을 경우

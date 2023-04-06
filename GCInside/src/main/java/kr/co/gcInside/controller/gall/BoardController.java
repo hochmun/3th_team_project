@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -175,16 +177,12 @@ public class BoardController {
             data.put("gell_num", galleryVO.getGell_num()+"");
             List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
             
-            // 댓글, 대댓글 목록 페이징 처리
-            // 전체 댓글 수 가져오는 쿼리문 사용 할 필요 없음, 게시물 정보에 포함 되어 있음
+            // 해당 게시글 조회 수 증가
+            service.updateArticleHitCount(articleVO.getArticle_num());
             
-            // 댓글 정보 가져오기
-            Map<String,List<Gell_commentVO>> commentMap = service.selectComments(articleVO.getArticle_num(),0,"D");
-
             // 모델
             model.addAttribute("gellArticleVOS", gellArticleVOS);
             model.addAttribute("pagingDTO", pagingDTO);
-            model.addAttribute("commentMap", commentMap);
         }
 
         // 페이지 종류 전송
@@ -338,6 +336,9 @@ public class BoardController {
         // 닉네임 가져오기
         if(myUserDetails != null) commentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
 
+        // 현재 날짜 저장
+        commentVO.setComment_rdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
         // resultMap 에 result 등록
         resultMap.put("result", result);
         resultMap.put("commentVO", commentVO);
@@ -384,6 +385,9 @@ public class BoardController {
 
         // 닉네임 가져오기
         if(myUserDetails != null) reCommentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
+
+        // 현재 날짜 저장
+        reCommentVO.setRe_comment_rdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         // resultMap 에 result 등록
         resultMap.put("result", result);
