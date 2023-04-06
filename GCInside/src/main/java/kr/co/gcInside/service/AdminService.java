@@ -139,8 +139,8 @@ public class AdminService {
     /**
      * 2023/04/03 // 김재준 // 관리자 갤러리 개설신청 키워드 검색
      */
-    public List<CreateVO> searchByKeyword(String keyword, String option) {
-        return dao.searchByKeyword(keyword, option);
+    public List<CreateVO> searchByKeyword(String keyword) {
+        return dao.searchByKeyword(keyword);
     }
 
     /**

@@ -28,7 +28,7 @@
 
                     // Ajax 요청 보내기
                     $.ajax({
-                      url: "/form_minor/searchByKeyword",
+                      url: "form_minor/searchByKeyword",
                       type: "GET",
                       data: {
                         option: searchOption,
@@ -38,7 +38,49 @@
                       success: function(result) {
                         // 서버에서 받아온 데이터를 테이블에 업데이트
                         var table = document.querySelector(".admin_member_list");
-                        table.innerHTML = result;
+                        table.innerHTML = "";
+                        if (result.length == 0) {
+                          table.innerHTML = "<tr><td colspan='6'>검색 결과가 없습니다.</td></tr>";
+                          return;
+                        }
+                        var html = "";
+                            html += "<tr>";
+                            html += "<th>갤러리 이름</th>"
+                            html += "<th>주소값</th>"
+                            html += "<th>카테고리</th>"
+                            html += "<th>신청일</th>"
+                            html += "<th>신청자</th>"
+                            html += "<th>갤러리 설명</th>"
+                            html += "<th>개설이유</th>"
+                            html += "<th>관리</th>"
+                            html += "</tr>"
+                        table.innerHTML = html;
+                        result.forEach(function(item) {
+                          if(item.gell_create_status == 0) {
+                            var html = "<tr>";
+                            html += "<td class='gell_create_num' hidden>" + item.gell_create_num + "</td>";
+                            html += "<td class='gell_create_name'>" + item.gell_create_name + "</td>";
+                            html += "<td class='gell_create_address'>" + item.gell_create_address + "</td>";
+                            html += "<td data-value='" + item.gell_cate2 + "' class='gell_create_cate'>" + item.gell_cate2 + "</td>";
+                            html += "<td class='gell_create_rdate'>" + item.gell_create_rdate.substring(2, 10) + "</td>";
+                            html += "<td class='gell_create_uid'>" + item.gell_create_uid + "</td>";
+                            html += "<td><button class='truncate show-details' data-full-text='" + item.gell_create_intro + "'>" + item.gell_create_intro + "</button></td>";
+                            html += "<td><button class='truncate show-details' data-full-text='" + item.gell_create_reason + "'>" + item.gell_create_reason + "</button></td>";
+                            html += "<td class='gell_create_status' hidden>" + item.gell_create_status + "</td>";
+                            html += "<td><button class='approval'>[관리]</button></td>";
+                            html += "</tr>";
+                            table.innerHTML = html;
+                          }
+                        });
+                        truncateText('.truncate', 7);
+                        var showDetailButtons = document.querySelectorAll('.show-details');
+                        for (var i = 0; i < showDetailButtons.length; i++) {
+                          showDetailButtons[i].addEventListener('click', showDetails);
+                        }
+                        var showApprovalButtons = document.querySelectorAll('.approval');
+                        for (var i = 0; i < showApprovalButtons.length; i++) {
+                          showApprovalButtons[i].addEventListener('click', showApprovalPopup);
+                        }
                       },
                       error: function(xhr, status, error) {
                         console.log(error);
@@ -51,10 +93,10 @@
 
                   // 엔터키 눌러도 검색 기능 실행
                   document.getElementById("input-box").addEventListener("keyup", function(event) {
-                    if (event.keyCode === 13) {
-                      event.preventDefault();
-                      document.getElementById("submit-button").click();
-                    }
+                  if (event.keyCode === 13) {
+                  event.preventDefault();
+                  document.getElementById("submit-button").click();
+                  }
                   });
                 });
             </script>
