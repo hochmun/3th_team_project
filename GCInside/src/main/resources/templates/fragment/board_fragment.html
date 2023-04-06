@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <th:block th:fragment="aritcle_list(galleryVO,grade,pagingDTO)">
+      <!-- 갤러리 리스트 -->
+      <div class="gall_listwrap list">
+          <table class="gall_list">
+              <!-- 열 설정 -->
+              <colgroup>
+                  <col style="width: 7%;">
+                  <th:block th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"> <!-- 말머리 설정이 켜져 있을 경우 표시 -->
+                      <col style="width: 51px;">
+                  </th:block>
+                  <col>
+                  <col style="width: 18%;">
+                  <col style="width: 7%;">
+                  <col style="width: 6%;">
+                  <col style="width: 6%;">
+              </colgroup>
+              <!-- 게시글 헤더 -->
+              <thead>
+              <tr>
+                  <th scope="col">번호</th>
+                  <th:block th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1">
+                      <th scope="col">말머리</th>
+                  </th:block>
+                  <th scope="col">제목</th>
+                  <th scope="col">글쓴이</th>
+                  <th scope="col">작성일</th>
+                  <th scope="col">조회</th>
+                  <th scope="col">추천</th>
+              </tr>
+              </thead>
+              <!-- 게시글 목록 -->
+              <tbody>
+              <th:block th:each="vo:${gellArticleVOS}">
+                  <tr class="ub_content us-post" th:data-no="${vo.article_num}" data-type="icon_txt">
+                      <td class="gall_num">1</td>
+                      <td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>일반</b></td>
+                      <td class="gall_tit ub-word">
+                          <a th:href="|@{/}${grade}/board/view/?id=${galleryVO.gell_address}&no=${vo.article_num}&pg=${pagingDTO.currentPage}|">
+                              <em class="icon_img icon_txt"></em>
+                              <b th:text="${vo.article_title}">일반 글 제목</b>
+                          </a>
+                          <a class="reply_num" href="#"><span class="reply_num" th:text="|[${vo.article_comment_count}]|">[댓글개수]</span></a>
+                      </td>
+                      <td class="gall_writer ub-writer" th:data-nick="${vo.member_nick}" th:data-uid="${vo.article_uid}" th:data-ip="${vo.article_regip}" data-loc="list">
+                          <b>
+                              <!-- 회원 아이디 -->
+                              <th:block th:if="${vo.article_login_status} == 0">
+                                  <span class="nickname in"  th:title="${vo.member_nick}"><em th:text="${vo.member_nick}">닉네임</em></span>
+                                  <a class="writer_nikcon">
+                                      <img th:src="@{/img/nik.gif}" alt="갤로그로 이동합니다."
+                                           title="uid** : 갤로그로 이동합니다." width="12" height="11"
+                                           style="cursor: pointer;margin-left: 2px;">
+                                  </a>
+                              </th:block>
+
+                              <!-- 비회원 아이디, 아이피 표시 -->
+                              <th:block th:if="${vo.article_login_status} == 1">
+                                  <span class="nickname" th:title="${vo.article_nonmember_uid}"><em th:text="${vo.article_nonmember_uid}"></em></span>
+                                  <span class="ip" th:text="|(${vo.article_regip_sub})|">(000.00)</span>
+                              </th:block>
+                          </b>
+                      </td>
+                      <td class="gall_date" th:title="${vo.article_rdate}" th:text="${#strings.substring(vo.article_rdate,2,10)}">00.00.00</td>
+                      <td class="gall_count" th:text="${vo.article_hit}">1033</td>
+                      <td class="gall_recommend" th:text="${vo.article_recommend_count}">12</td>
+                  </tr>
+              </th:block>
+              </tbody>
+          </table>
+      </div>
+
+      <!-- 하단 버튼 박스 -->
+      <div class="list_bottom_btnbox">
+          <div class="fl">
+              <button type="button" class="list_bottom btn_blue" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this));">전체글</button>
+              <button type="button" class="list_bottom btn_white">개념글</button>
+          </div>
+          <div class="fr">
+              <button type="button" id="btn_write" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
+          </div>
+      </div>
+
+      <!-- 페이징 -->
+      <div class="bottom_paging_wrap">
+          <!-- 페이징 메인 -->
+          <div class="bottom_paging_box iconpaging">
+              <th:block th:if="${pagingDTO.groupStart gt 1}">
+                  <a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=1|" class="sp_pagingicon page_first">처음</a>
+                  <a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${pagingDTO.groupStart -1}|" class="sp_pagingicon page_prev">이전</a>
+              </th:block>
+
+              <th:block th:each="i:${#numbers.sequence(pagingDTO.groupStart,pagingDTO.groupEnd)}">
+                  <em th:if="${pagingDTO.currentPage eq i}" th:text="${i}"></em>
+                  <a th:if="${pagingDTO.currentPage ne i}" th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${i}|" th:text="${i}">17</a>
+              </th:block>
+
+              <th:block th:if="${pagingDTO.groupEnd lt pagingDTO.lastPage}">
+                  <a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${pagingDTO.groupEnd + 1}|" class="sp_pagingicon page_next">다음</a>
+                  <a th:href="|@{/}${grade}/board/lists?id=${galleryVO.gell_address}&pg=${pagingDTO.lastPage}|" class="sp_pagingicon page_end">끝</a>
+              </th:block>
+          </div>
+
+          <!-- 페이지 이동 버튼 -->
+          <div class="bottom_movebox">
+              <button type="button" class="btn_grey_roundbg btn_schmove">
+                  페이지이동
+                  <span class="sp_img icon_schmove"></span>
+              </button>
+          </div>
+
+          <!-- 페이지 이동 버튼 팝업 창 -->
+          <div class="pop_wrap type3 move_page_lyr" style="top:-121px;right:0px;display:none;">
+              <!-- 팝업 창 메인 -->
+              <div class="pop_content schmove">
+                  <div class="pop_head"><h3>페이지 이동</h3></div>
+                  <div class="inner page">
+                      <div class="hint_txt">이동할 페이지 번호를 입력하세요.</div>
+                      <div class="moveset">
+                          <span class="tit">페이지</span>
+                          <input type="text" name="move_page" value="16">
+                          <span class="num total_page">999</span>
+                          <button type="button" class="btn_blue small move_page_btn">이동</button>
+                      </div>
+                  </div>
+              </div>
+              <!-- 팝업 창 닫기 버튼 -->
+              <button type="button" class="poply_bgblueclose"><em class="sp_img icon_bgblueclose"></em></button>
+          </div>
+      </div>
+
+      <!-- 갤러리 내 검색 폼 -->
+      <form name="frmSearch" method="post">
+          <fieldset>
+              <div class="buttom_search_wrap clear">
+                  <!-- 검색 종류 선택 -->
+                  <div class="select_box bottom_array fl">
+                      <div class="select_area" onclick="layerOpen($('#searchTypeLayer'))">
+                          <!-- 선택한 내용 출력 -->
+                          <span id="search_type_txt">제목+내용</span>
+
+                          <!-- 아이콘 -->
+                          <span class="inner"><em class="sp_img icon_option_more"></em></span>
+                      </div>
+
+                      <!-- 선택 팝업 창 -->
+                      <ul id="searchTypeLayer" class="option_box" style="left:-1px;top:36px;display:none;">
+                          <!-- onclick 함수 사용 -->
+                          <li>제목+내용</li>
+                          <li>제목</li>
+                          <li>내용</li>
+                          <li>글쓴이</li>
+                          <li>댓글</li>
+                      </ul>
+                  </div>
+
+                  <!-- 검색 내용 입력 -->
+                  <div class="bottom_search fl clear">
+                      <!-- 입력 칸 -->
+                      <div class="inner_search">
+                          <input type="text" class="in_keyword" name="search_keyword" title="검색어 입력">
+                      </div>
+
+                      <!-- 검색 아이콘 및 버튼 -->
+                      <button class="sp_img bnt_search"></button>
+                  </div>
+              </div>
+          </fieldset>
+      </form>
+  </th:block>
+</body>
+</html>
