@@ -51,6 +51,13 @@ public interface BoardDAO {
      */
     public int insertRecommendLog(Map<String,String> data);
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회 기록
+     * @param gell_num
+     * @return
+     */
+    public int insertGellHitLog(@Param("gell_num") int gell_num);
+
     // read
 
     /**
@@ -70,6 +77,22 @@ public interface BoardDAO {
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     *      Map data에 들어오는 값
+     *          기본 공통
+     *              id              : 갤러리 주소
+     *              search_head     : 말머리 번호
+     *              sort_type       : 정렬 타입 (안 씀)
+     *              page            : 페이지 번호
+     *              list_num        : 출력하는 게시물 개수 번호
+     *              exception_mode  : 출력 모드 {recommmend:개념글,notice:공지}
+     *              s_type          : 검색 타입 {title+content:제목+내용,title:제목,content:내용,user:글쓴이,comment:댓글}
+     *              s_keyword       : 검색어
+     *
+     *      Map data 에 넣는 값
+     *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
+     *          start                       : 페이지 시작 값
+     *          gell_num                    : 겔러리 번호
+     *          total                       : 전체 게시글 개수
      * @param data
      * @return
      */
@@ -221,6 +244,20 @@ public interface BoardDAO {
      * @return
      */
     public int updateArticleRecommendCount(Map<String, String> data);
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문
+     * @param gell_num
+     * @return
+     */
+    public int updateGellHitCount(@Param("gell_num") int gell_num);
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 기능
+     * @param gell_num
+     * @return
+     */
+    public int updateGellArticleCount(@Param("gell_num") int gell_num);
 
     // delete
 }

@@ -40,14 +40,14 @@
               <tbody>
               <th:block th:each="vo:${gellArticleVOS}">
                   <tr class="ub_content us-post" th:data-no="${vo.article_num}" data-type="icon_txt">
-                      <td class="gall_num">1</td>
+                      <td class="gall_num" th:text="${vo.num}">1</td>
                       <td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>일반</b></td>
                       <td class="gall_tit ub-word">
                           <a th:href="|@{/}${grade}/board/view/?id=${galleryVO.gell_address}&no=${vo.article_num}&pg=${pagingDTO.currentPage}|">
-                              <em class="icon_img icon_txt"></em>
+                              <em class="icon_img" th:classappend="${vo.article_recommend_count ge galleryVO.gellSettingVO.setting_recommend_standard} ? 'icon_recomimg' : 'icon_txt'"></em>
                               <b th:text="${vo.article_title}">일반 글 제목</b>
                           </a>
-                          <a class="reply_num" href="#"><span class="reply_num" th:text="|[${vo.article_comment_count}]|">[댓글개수]</span></a>
+                          <a class="reply_num" th:href="|@{/}${grade}/board/view/?id=${galleryVO.gell_address}&no=${vo.article_num}&pg=${pagingDTO.currentPage}#focus_cmt|"><span class="reply_num" th:text="|[${vo.article_comment_count}]|">[댓글개수]</span></a>
                       </td>
                       <td class="gall_writer ub-writer" th:data-nick="${vo.member_nick}" th:data-uid="${vo.article_uid}" th:data-ip="${vo.article_regip}" data-loc="list">
                           <b>
@@ -81,7 +81,7 @@
       <div class="list_bottom_btnbox">
           <div class="fl">
               <button type="button" class="list_bottom btn_blue" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this));">전체글</button>
-              <button type="button" class="list_bottom btn_white">개념글</button>
+              <button type="button" class="list_bottom btn_white" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" data-exception_mode="recommend" onclick="articlePageHerf($(this))">개념글</button>
           </div>
           <div class="fr">
               <button type="button" id="btn_write" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>

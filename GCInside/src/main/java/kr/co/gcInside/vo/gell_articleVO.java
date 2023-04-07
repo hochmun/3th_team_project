@@ -37,6 +37,7 @@ public class gell_articleVO {
     // 추가 필드
     private String member_nick;
     private String article_regip_sub;
+    private int num; /** 2023/04/07 // 심규영 // 게시글 번호 입력 */
 
     // Getter
 

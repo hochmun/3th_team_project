@@ -48,7 +48,7 @@ public class BoardController {
      *              id              : 갤러리 주소
      *              search_head     : 말머리 번호
      *              sort_type       : 정렬 타입 (안 씀)
-     *              page            : 페이지 번호
+     *              pg            : 페이지 번호
      *              list_num        : 출력하는 게시물 개수 번호
      *              exception_mode  : 출력 모드 {recommmend:개념글,notice:공지}
      *              s_type          : 검색 타입 {title+content:제목+내용,title:제목,content:내용,user:글쓴이,comment:댓글}
@@ -58,6 +58,7 @@ public class BoardController {
      *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
      *          start                       : 페이지 시작 값
      *          gell_num                    : 겔러리 번호
+     *          total                       : 전체 게시글 개수
      *
      * @param grade
      * @return
@@ -72,6 +73,10 @@ public class BoardController {
 
         // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
         if(galleryVO == null) return "error/wrongURL";
+
+        // 갤러리 조회 수 증가
+        service.insertGellHitLog(galleryVO.getGell_num());
+        service.updateGellHitCount(galleryVO.getGell_num());
         
         // 갤러리 서브 매니저 정보 가져오기
         List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());
@@ -80,11 +85,12 @@ public class BoardController {
         data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
         
         // 페이징 처리
+        data.put("gell_num", galleryVO.getGell_num()+"");
         PagingDTO pagingDTO = service.listsPaging(data);
 
         // 게시글 정보 가져오기
         data.put("start", pagingDTO.getStart()+"");
-        data.put("gell_num", galleryVO.getGell_num()+"");
+        data.put("total", galleryVO.getGell_article_count()+"");
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
 
         // model 전송
@@ -169,12 +175,13 @@ public class BoardController {
             // data에 개념글 추천수 개수 설정 넣기
             data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
 
-            // 게시글 페이징 처리
+            // 게시글 목록 페이징 처리
             PagingDTO pagingDTO = service.listsPaging(data);
 
-            // 게시글 정보 가져오기
+            // 게시글 목록 정보 가져오기
             data.put("start", pagingDTO.getStart()+"");
             data.put("gell_num", galleryVO.getGell_num()+"");
+            data.put("total", galleryVO.getGell_article_count()+""); // 게시글 전체 갯수
             List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
             
             // 해당 게시글 조회 수 증가
@@ -295,6 +302,9 @@ public class BoardController {
         data.put("article_regip", req.getRemoteAddr());
         result = service.insertArticle(data);
         resultMap.put("result", result);
+        
+        // 게시글 작성 완료시 갤러리 게시글 개수 증가
+        if(result > 0) service.updateGellArticleCount(data.get("article_gell_num"));
 
         return resultMap;
     }
@@ -375,6 +385,7 @@ public class BoardController {
         
         // VO에 값 넣기
         Gell_re_commentVO reCommentVO = service.reCommentVOInsert(data);
+        log.info("re_comment_login_status : "+reCommentVO.getRe_comment_login_status());
         
         // 댓글 작성
         int result = service.insertReComment(reCommentVO);

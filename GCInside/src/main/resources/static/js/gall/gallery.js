@@ -133,6 +133,16 @@ const gt_toggle_issue = function(btn_elm) {
 }
 
 // 페이지 리스트 이동 함수
+const articlePageHerf = ($this) => {
+    const grade = $this.data("grade");
+    const id = $this.data("id");
+    const exception_mode = $this.data("exception_mode");
+
+    let href = '/GCInside/'+grade+'/board/lists?id='+id+'&exception_mode='+exception_mode;
+
+    location.href = href;
+};
+
 const writeAndModifyPageHref = function($this) {
     const grade = $this.data("grade");
     const id = $this.data("id");

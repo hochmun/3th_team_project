@@ -76,6 +76,15 @@ public class BoardService {
         return dao.insertRecommendLog(data);
     }
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회 기록
+     * @param gell_num
+     * @return
+     */
+    public int insertGellHitLog(int gell_num) {
+        return dao.insertGellHitLog(gell_num);
+    }
+
     // read
 
     /**
@@ -99,6 +108,8 @@ public class BoardService {
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     *  출력 조건
+     *      1. 게시글 번호 지정 해야함
      * @param data
      * @return
      */
@@ -302,6 +313,24 @@ public class BoardService {
         return dao.updateArticleRecommendCount(data);
     }
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문
+     * @param gell_num
+     * @return
+     */
+    public int updateGellHitCount(int gell_num){
+        return dao.updateGellHitCount(gell_num);
+    }
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 기능
+     * @param gell_num
+     * @return
+     */
+    public int updateGellArticleCount(String gell_num) {
+        return dao.updateGellArticleCount(Integer.parseInt(gell_num));
+    }
+
     // delete
     // service
 
@@ -370,8 +399,8 @@ public class BoardService {
         PagingDTO pagingDTO = new PagingDTO();
 
         // 개수 값이 없을 경우 기본 불러오는 개수 50개
-        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), "50");
-        else pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), count);
+        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), selectCountArticles(data), "50", "15");
+        else pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), selectCountArticles(data), count, "15");
         
         return pagingDTO;
     }
@@ -433,7 +462,7 @@ public class BoardService {
         reCommentVO.setRe_comment_content(data.get("re_comment_content"));
         reCommentVO.setRe_comment_login_status(data.get("login_info").equals("true") ? 0 : 1);
         if(data.get("login_info").equals("true")) {
-            reCommentVO.setRe_comment_uid(data.get(""));
+            reCommentVO.setRe_comment_uid(data.get("re_comment_uid"));
         } else {
             reCommentVO.setRe_comment_nonmember_name(data.get("re_comment_nonmember_name"));
             reCommentVO.setRe_comment_nonmember_password(data.get("re_comment_nonmember_password"));
