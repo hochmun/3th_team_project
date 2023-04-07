@@ -235,8 +235,8 @@
 						<div class="list_array_option clear">
 							<div class="array_tab left_box">
 								<button type="button" class="on" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this))">전체글</button>
-								<button type="button">개념글</button>
-								<button type="button">공지</button>
+								<button type="button" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" data-exception_mode="recommend" onclick="articlePageHerf($(this))">개념글</button>
+								<button type="button" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" data-exception_mode="notice" onclick="articlePageHerf($(this))">공지</button>
 							</div>
 							<div class="center_box">
 								<div class="inner">

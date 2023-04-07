@@ -160,21 +160,22 @@
             ) AS a
         left JOIN `gc_member` AS b ON a.`article_uid` = b.`member_uid`) AS d
         WHERE
-        <if test="exception_mode == null">`article_status` = '0'</if> <!-- 출력 모드가 없을 경우 기본 설정 -->
-        <if test="exception_mode != null"> <!-- 출력 모드가 있을 경우 -->
-            <if test="exception_mode.equals('notice')">`article_status` = '2'</if> <!-- 공지 글 -->
-            <if test="exception_mode.equals('recommend')"> <!-- 추천 글 -->
+        <choose>
+            <when test='exception_mode == null or exception_mode.equals("")'>`article_status` = '0'</when>
+            <when test='exception_mode.equals("notice")'>`article_status` = '2'</when>
+            <when test='exception_mode.equals("recommend")'>
                 `article_status` = '0'
                 AND
-                (`article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
+                `article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
                 OR
-                `article_recommend_status` = '1') <!-- 관리자에 의해 추천글로 표시된 글 -->
-            </if>
-        </if>
+                `article_recommend_status` = '1' <!-- 관리자에 의해 추천글로 표시된 글 -->
+            </when>
+            <otherwise>`article_status` = '0'</otherwise>
+        </choose>
         <if test="search_head != null"> <!-- 말머리 값이 있을 경우 -->
             AND `article_sub_cate`
-            <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
-            <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
+            <if test='search_head.equals("0")'>IS null</if> <!-- 일반 -->
+            <if test='!search_head.equals("0")'>= #{search_head}</if> <!-- 그외 -->
         </if>
         LIMIT 0,
         <if test="list_num == null">50</if> <!-- 페이지 당 글 개수 -->
@@ -197,23 +198,25 @@
     <!-- 2023/03/23 // 심규영 // 게시글 리스트 총 갯수 가져오는 쿼리문 -->
     <select id="selectCountArticles" parameterType="map" resultType="int">
         SELECT COUNT(`article_num`) FROM `gc_gell_article` WHERE
-        <if test="exception_mode == null">`article_status` = '0'</if> <!-- 출력 모드가 없을 경우 기본 설정 -->
-        <if test="exception_mode != null"> <!-- 출력 모드가 있을 경우 -->
-            <if test="exception_mode.equals('notice')">`article_status` = '2'</if>
-            <if test="exception_mode.equals('recommend')">
+        `articlel_gell_num` = #{gell_num}
+        <choose>
+            <when test='exception_mode == null or exception_mode.equals("")'>AND `article_status` = '0'</when>
+            <when test='exception_mode.equals("notice")'>AND `article_status` = '2'</when>
+            <when test='exception_mode.equals("recommend")'>
+                AND
                 `article_status` = '0'
                 AND
                 `article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
                 OR
                 `article_recommend_status` = '1' <!-- 관리자에 의해 추천글로 표시된 글 -->
-            </if>
-        </if>
+            </when>
+            <otherwise>AND `article_status` = '0'</otherwise>
+        </choose>
         <if test="search_head != null"> <!-- 말머리 값이 있을 경우 -->
             AND `article_sub_cate`
-            <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
-            <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
+            <if test='search_head.equals("0")'>IS null</if> <!-- 일반 -->
+            <if test='!search_head.equals("0")'>= #{search_head}</if> <!-- 그외 -->
         </if>
-        AND `articlel_gell_num` = #{gell_num}
         ;
     </select>
 

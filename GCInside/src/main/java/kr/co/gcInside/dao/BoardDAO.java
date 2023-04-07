@@ -77,6 +77,22 @@ public interface BoardDAO {
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     *      Map data에 들어오는 값
+     *          기본 공통
+     *              id              : 갤러리 주소
+     *              search_head     : 말머리 번호
+     *              sort_type       : 정렬 타입 (안 씀)
+     *              page            : 페이지 번호
+     *              list_num        : 출력하는 게시물 개수 번호
+     *              exception_mode  : 출력 모드 {recommmend:개념글,notice:공지}
+     *              s_type          : 검색 타입 {title+content:제목+내용,title:제목,content:내용,user:글쓴이,comment:댓글}
+     *              s_keyword       : 검색어
+     *
+     *      Map data 에 넣는 값
+     *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
+     *          start                       : 페이지 시작 값
+     *          gell_num                    : 겔러리 번호
+     *          total                       : 전체 게시글 개수
      * @param data
      * @return
      */
