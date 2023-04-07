@@ -38,6 +38,8 @@ public class gell_articleVO {
     private String member_nick;
     private String article_regip_sub;
 
+    private String gell_name; /* 2023/04/07 // 김동민 // 인덱스 페이지 게시물 출력시 필요한 갤러리명 */
+    private String gell_address; /* 2023/04/07 // 김동민 // 인덱스 페이지 게시물 출력시 필요한 갤러리명 */
     // Getter
 
     /**

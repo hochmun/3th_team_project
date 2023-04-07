@@ -64,8 +64,8 @@ public interface MinorDAO {
      * 2023/03/28 // 김동민 // 랭크차 구하기
      * @return
      */
-    public List<galleryVO> todayrank();
-    public List<galleryVO> yesterdayrank();
+    public List<galleryVO> mgalltodayrank();
+    public List<galleryVO> mgallyesterdayrank();
     /**
      * 2023/03/29 // 김동민 // 어제,오늘 랭크 업데이트
      */
