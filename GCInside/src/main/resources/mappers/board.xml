@@ -55,10 +55,10 @@
             `re_comment_article_num` = #{re_comment_article_num},
             `re_comment_content` = #{re_comment_content},
             `re_comment_login_status` = #{re_comment_login_status},
-            <if test='re_comment_login_status == 0'>
+            <if test="re_comment_login_status eq 0">
                 `re_comment_uid` = #{re_comment_uid},
             </if>
-            <if test='re_comment_login_status == 1'>
+            <if test="re_comment_login_status eq 1">
                 `re_comment_nonmember_name` = #{re_comment_nonmember_name},
                 `re_comment_nonmember_password` = #{re_comment_nonmember_password},
             </if>

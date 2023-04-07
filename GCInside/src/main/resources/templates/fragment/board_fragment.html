@@ -47,7 +47,7 @@
                               <em class="icon_img icon_txt"></em>
                               <b th:text="${vo.article_title}">일반 글 제목</b>
                           </a>
-                          <a class="reply_num" href="#"><span class="reply_num" th:text="|[${vo.article_comment_count}]|">[댓글개수]</span></a>
+                          <a class="reply_num" th:href="|@{/}${grade}/board/view/?id=${galleryVO.gell_address}&no=${vo.article_num}&pg=${pagingDTO.currentPage}#focus_cmt|"><span class="reply_num" th:text="|[${vo.article_comment_count}]|">[댓글개수]</span></a>
                       </td>
                       <td class="gall_writer ub-writer" th:data-nick="${vo.member_nick}" th:data-uid="${vo.article_uid}" th:data-ip="${vo.article_regip}" data-loc="list">
                           <b>

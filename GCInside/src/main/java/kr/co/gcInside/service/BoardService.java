@@ -433,7 +433,7 @@ public class BoardService {
         reCommentVO.setRe_comment_content(data.get("re_comment_content"));
         reCommentVO.setRe_comment_login_status(data.get("login_info").equals("true") ? 0 : 1);
         if(data.get("login_info").equals("true")) {
-            reCommentVO.setRe_comment_uid(data.get(""));
+            reCommentVO.setRe_comment_uid(data.get("re_comment_uid"));
         } else {
             reCommentVO.setRe_comment_nonmember_name(data.get("re_comment_nonmember_name"));
             reCommentVO.setRe_comment_nonmember_password(data.get("re_comment_nonmember_password"));

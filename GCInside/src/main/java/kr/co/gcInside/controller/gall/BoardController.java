@@ -375,6 +375,7 @@ public class BoardController {
         
         // VO에 값 넣기
         Gell_re_commentVO reCommentVO = service.reCommentVOInsert(data);
+        log.info("re_comment_login_status : "+reCommentVO.getRe_comment_login_status());
         
         // 댓글 작성
         int result = service.insertReComment(reCommentVO);
