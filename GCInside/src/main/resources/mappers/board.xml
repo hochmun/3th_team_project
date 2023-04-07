@@ -75,6 +75,13 @@
             `recommend_type` = #{type};
     </insert>
 
+    <!-- 2023/04/07 // 심규영 // 갤러리 조회수 기록 남기는 쿼리문 -->
+    <insert id="insertGellHitLog">
+        INSERT INTO `gc_gell_hit_log` SET
+            hit_gell_num = #{gell_num},
+            hit_rdate = NOW();
+    </insert>
+
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
@@ -353,6 +360,13 @@
                 `article_be_recommend` = `article_be_recommend` + 1
             </if>
         WHERE `article_num` = #{article_num} AND `articlel_gell_num` = #{articlel_gell_num};
+    </update>
+
+    <!-- 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문 -->
+    <update id="updateGellHitCount">
+        UPDATE `gc_gell` SET
+            `gell_hit` = `gell_hit` +1
+        WHERE `gell_num` = #{gell_num};
     </update>
 
     <!-- delete -->

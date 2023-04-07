@@ -72,6 +72,10 @@ public class BoardController {
 
         // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
         if(galleryVO == null) return "error/wrongURL";
+
+        // 갤러리 조회 수 증가
+        service.insertGellHitLog(galleryVO.getGell_num());
+        service.updateGellHitCount(galleryVO.getGell_num());
         
         // 갤러리 서브 매니저 정보 가져오기
         List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());

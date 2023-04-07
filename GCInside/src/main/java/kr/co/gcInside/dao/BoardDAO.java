@@ -51,6 +51,13 @@ public interface BoardDAO {
      */
     public int insertRecommendLog(Map<String,String> data);
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회 기록
+     * @param gell_num
+     * @return
+     */
+    public int insertGellHitLog(@Param("gell_num") int gell_num);
+
     // read
 
     /**
@@ -221,6 +228,13 @@ public interface BoardDAO {
      * @return
      */
     public int updateArticleRecommendCount(Map<String, String> data);
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문
+     * @param gell_num
+     * @return
+     */
+    public int updateGellHitCount(@Param("gell_num") int gell_num);
 
     // delete
 }

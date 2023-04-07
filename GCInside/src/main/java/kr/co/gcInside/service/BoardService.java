@@ -76,6 +76,15 @@ public class BoardService {
         return dao.insertRecommendLog(data);
     }
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회 기록
+     * @param gell_num
+     * @return
+     */
+    public int insertGellHitLog(int gell_num) {
+        return dao.insertGellHitLog(gell_num);
+    }
+
     // read
 
     /**
@@ -302,6 +311,15 @@ public class BoardService {
         return dao.updateArticleRecommendCount(data);
     }
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문
+     * @param gell_num
+     * @return
+     */
+    public int updateGellHitCount(int gell_num){
+        return dao.updateGellHitCount(gell_num);
+    }
+
     // delete
     // service
 
@@ -370,8 +388,8 @@ public class BoardService {
         PagingDTO pagingDTO = new PagingDTO();
 
         // 개수 값이 없을 경우 기본 불러오는 개수 50개
-        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), "50");
-        else pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), count);
+        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), "50", "15");
+        else pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), count, "15");
         
         return pagingDTO;
     }
