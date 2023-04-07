@@ -185,13 +185,19 @@ public class AdminController {
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list get 매핑
      */
     @GetMapping("admin/gallery/form_minor")
-    public String galleryRequestList(Model model) {
+    public String galleryRequestList(Model model,
+                                     @RequestParam Map<String, String> data) {
         // 카테고리명 불러오기용
         List<gall_cate2VO> cates = service.selectGalleryCates();
         // 갤러리 개설 신청 리스트 불러오기
-        List<CreateVO> list = service.galleryRequestList();
+        List<CreateVO> list = null;
+
+        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.galleryRequestTotal());
+
+        list = service.galleryRequestList(pagingDTO.getStart());
         model.addAttribute("list", list);
         model.addAttribute("cates", cates);
+        model.addAttribute("pagingDTO", pagingDTO);
 
         return "admin/gallery/form_minor";
     }
@@ -226,23 +232,19 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
-    @GetMapping("admin/gallery/form_minor/searchByCategory")
+    @PostMapping("admin/gallery/form_minor/searchByCategory")
     @ResponseBody
-    public List<CreateVO> searchByCategory(@RequestParam("category") String category) {
-        if(category.isEmpty()) {
-            return service.galleryRequestList();
-        }
+    public List<CreateVO> searchByCategory(@RequestParam("category") String category,
+                                           @RequestParam Map<String, String> data) {
 
-        return service.searchByCategory(Integer.parseInt(category));
+        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchByCategoryTotal(Integer.parseInt(category)));
+
+        if (category.isEmpty()) {
+            return service.galleryRequestList(pagingDTO.getStart());
+        }
+        log.info(pagingDTO.toString());
+
+        return service.searchByCategory(Integer.parseInt(category), pagingDTO.getStart());
     }
 
-    @GetMapping("admin/gallery/form_minor/searchByKeyword")
-    @ResponseBody
-    public List<CreateVO> searchByKeyword(@RequestParam("keyword") String keyword) {
-        if (keyword.isEmpty()) {
-            return service.galleryRequestList();
-        }
-
-        return service.searchByKeyword(keyword);
-    }
 }

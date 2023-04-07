@@ -93,7 +93,7 @@ public interface AdminDAO {
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 불러오기
      */
-    public List<CreateVO> galleryRequestList();
+    public List<CreateVO> galleryRequestList(@Param("start") int start);
 
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 총 개수
@@ -104,16 +104,10 @@ public interface AdminDAO {
     /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 
      */
-    public List<CreateVO> searchByCategory(int category);
-
-    /**
-     * 2023/04/03 // 김재준 // 관리자 갤러리 개설신청 키워드 검색
-     */
-    public List<CreateVO> searchByKeyword(String keyword);
+    public List<CreateVO> searchByCategory(@Param("category") int category, @Param("start") int start);
 
     /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 총 개수
-     * @param category
      * @return
      */
     public int searchByCategoryTotal(int category);
