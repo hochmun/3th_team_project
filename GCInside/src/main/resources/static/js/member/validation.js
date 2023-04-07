@@ -260,6 +260,7 @@ let mailList = function(){
 
 
 let isClicked = false; // 클릭 여부 변수
+let isTimerRunning = false; // 타이머 실행 여부 변수
 // 이메일 인증코드 전송
 let codeSend = function() {
     let email1 = jQuery.trim($('#email1').val()); //이메일1 값
@@ -277,8 +278,10 @@ let codeSend = function() {
 	if(isClicked){
 	    return false;
 	}
+	if (isTimerRunning) { // 타이머 실행 중이면 코드 재전송 막기
+        return false;
+    }
 	isClicked = true;
-
 	$.ajax({
         type : "get",
         url : '/GCInside/member/checkEmail',
@@ -288,26 +291,21 @@ let codeSend = function() {
                 alert('이미 사용중인 이메일입니다.');
                 isClicked = false;
             }else{
-
              isClicked = true; // 중복클릭방지
              $.ajax({
                  url: '/GCInside/member/sendEmailCode',
                  type: 'POST',
                  data: {email: email},
                  success: function(response) {
-                     /*if(limitTime != null){
-                          alert('유효한 인증코드가 있습니다. 메일을 확인해주세요');
-                          return false;
-                     }*/
                      alert('인증코드가 전송되었습니다.');
                      isClicked = true; // 클릭 여부 변수를 true 로 변경, 중복 클릭 방지
-
                      // 인증코드 전송 완료 후 5분 타이머 시작
                      let limitTime = 5 * 60; // 제한시간 5분
                      let countdownTime = setInterval(function(){
                          if(limitTime <= 0){
                              clearInterval(countdownTime); // 타이머 종료
                              $('#time_text').text('인증 코드를 재발급받아주세요.');
+                             isTimerRunning = false;
                          }
                          let minute = Math.floor(limitTime / 60);
                          let second = limitTime % 60;
@@ -316,8 +314,10 @@ let codeSend = function() {
                          limitTime--;
                          }, 1000);
 
+                         isTimerRunning = true; // 타이머변수 중복클릭방지
                          setTimeout(function(){ // 타이머 종료 후 코드 재전송 클릭여부 변수 재설정
                              isClicked = false;
+                             isTimerRunning = false;
                          }, limitTime * 1000);
                  },
                  error: function(error) {
@@ -328,8 +328,8 @@ let codeSend = function() {
                      isClicked = false;
                  }
              });
-            }
-        }
+           }
+         }
     });
 };
 
