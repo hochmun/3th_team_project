@@ -58,6 +58,7 @@ public class BoardController {
      *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
      *          start                       : 페이지 시작 값
      *          gell_num                    : 겔러리 번호
+     *          total                       : 전체 게시글 개수
      *
      * @param grade
      * @return
@@ -89,6 +90,8 @@ public class BoardController {
         // 게시글 정보 가져오기
         data.put("start", pagingDTO.getStart()+"");
         data.put("gell_num", galleryVO.getGell_num()+"");
+        data.put("total", galleryVO.getGell_article_count()+"");
+        log.info("total : "+galleryVO.getGell_article_count());
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
 
         // model 전송
@@ -299,6 +302,9 @@ public class BoardController {
         data.put("article_regip", req.getRemoteAddr());
         result = service.insertArticle(data);
         resultMap.put("result", result);
+        
+        // 게시글 작성 완료시 갤러리 게시글 개수 증가
+        if(result > 0) service.updateGellArticleCount(data.get("article_gell_num"));
 
         return resultMap;
     }

@@ -40,7 +40,7 @@
               <tbody>
               <th:block th:each="vo:${gellArticleVOS}">
                   <tr class="ub_content us-post" th:data-no="${vo.article_num}" data-type="icon_txt">
-                      <td class="gall_num">1</td>
+                      <td class="gall_num" th:text="${vo.num}">1</td>
                       <td class="gall_subject" th:if="${galleryVO.gellSettingVO.setting_sub_cate} == 1"><b>일반</b></td>
                       <td class="gall_tit ub-word">
                           <a th:href="|@{/}${grade}/board/view/?id=${galleryVO.gell_address}&no=${vo.article_num}&pg=${pagingDTO.currentPage}|">

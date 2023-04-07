@@ -108,6 +108,8 @@ public class BoardService {
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     *  출력 조건
+     *      1. 게시글 번호 지정 해야함
      * @param data
      * @return
      */
@@ -318,6 +320,15 @@ public class BoardService {
      */
     public int updateGellHitCount(int gell_num){
         return dao.updateGellHitCount(gell_num);
+    }
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 기능
+     * @param gell_num
+     * @return
+     */
+    public int updateGellArticleCount(String gell_num) {
+        return dao.updateGellArticleCount(Integer.parseInt(gell_num));
     }
 
     // delete

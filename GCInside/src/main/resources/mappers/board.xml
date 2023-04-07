@@ -98,6 +98,7 @@
             a.`gell_manager`,
             a.`gell_grade`,
             a.`gell_rdate`,
+            a.`gell_article_count`,
             c.`member_nick`,
             b.`setting_sub_cate`,
             b.`setting_recommend_standard`,
@@ -124,6 +125,7 @@
         <result column="gell_manager" property="gell_manager"/>
         <result column="gell_grade" property="gell_grade"/>
         <result column="gell_rdate" property="gell_rdate"/>
+        <result column="gell_article_count" property="gell_article_count"/>
         <result column="member_nick" property="member_nick"/>
         <result column="relation_count" property="relation_count"/>
         <result column="re_relation_count" property="re_relation_count"/>
@@ -142,19 +144,33 @@
     </select>
 
     <!-- 2023/03/23 // 심규영 // 게시글 리스트 가져오는 쿼리문 -->
+    <!-- 2023/04/07 // 심규영 // 게시글 리스트 가져오는 쿼리문 추가 수정 -->
     <select id="selectArticles" parameterType="map" resultType="kr.co.gcInside.vo.gell_articleVO">
-        SELECT a.*, b.`member_nick` FROM `gc_gell_article` AS a
-        left JOIN `gc_member` AS b ON a.`article_uid` = b.`member_uid`
+        SELECT * FROM
+        (SELECT
+            @rownum := @rownum - 1 AS `num`,
+            a.*,
+            b.`member_nick`
+        FROM
+            (SELECT @rownum := ${total} + 1 - ${start}) AS r,
+            (
+                SELECT * FROM `gc_gell_article`
+                WHERE `articlel_gell_num` = #{gell_num} ORDER BY `article_num` DESC
+                LIMIT ${start},
+                <if test="list_num == null">50</if> <!-- 페이지 당 글 개수 -->
+                <if test="list_num != null">${list_num}</if>
+            ) AS a
+        left JOIN `gc_member` AS b ON a.`article_uid` = b.`member_uid`) AS d
         WHERE
         <if test="exception_mode == null">`article_status` = '0'</if> <!-- 출력 모드가 없을 경우 기본 설정 -->
         <if test="exception_mode != null"> <!-- 출력 모드가 있을 경우 -->
-            <if test="exception_mode.equals('notice')">`article_status` = '2'</if>
-            <if test="exception_mode.equals('recommend')">
+            <if test="exception_mode.equals('notice')">`article_status` = '2'</if> <!-- 공지 글 -->
+            <if test="exception_mode.equals('recommend')"> <!-- 추천 글 -->
                 `article_status` = '0'
                 AND
-                `article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
+                (`article_recommend_count` >= ${setting_recommend_standard} <!-- 추천글 기준보다 크거나 같다 -->
                 OR
-                `article_recommend_status` = '1' <!-- 관리자에 의해 추천글로 표시된 글 -->
+                `article_recommend_status` = '1') <!-- 관리자에 의해 추천글로 표시된 글 -->
             </if>
         </if>
         <if test="search_head != null"> <!-- 말머리 값이 있을 경우 -->
@@ -162,11 +178,6 @@
             <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
             <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
         </if>
-        AND `articlel_gell_num` = #{gell_num}
-        ORDER BY `article_num` DESC
-        LIMIT ${start},
-        <if test="list_num == null">50</if>
-        <if test="list_num != null">${list_num}</if>
         ;
     </select>
 
@@ -366,6 +377,13 @@
     <update id="updateGellHitCount">
         UPDATE `gc_gell` SET
             `gell_hit` = `gell_hit` +1
+        WHERE `gell_num` = #{gell_num};
+    </update>
+
+    <!-- 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 쿼리문 -->
+    <update id="updateGellArticleCount">
+        UPDATE `gc_gell` SET
+            `gell_article_count` = `gell_article_count` + 1
         WHERE `gell_num` = #{gell_num};
     </update>
 

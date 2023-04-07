@@ -236,5 +236,12 @@ public interface BoardDAO {
      */
     public int updateGellHitCount(@Param("gell_num") int gell_num);
 
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 기능
+     * @param gell_num
+     * @return
+     */
+    public int updateGellArticleCount(@Param("gell_num") int gell_num);
+
     // delete
 }
