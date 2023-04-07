@@ -170,7 +170,7 @@
 
     <!-- 2023/03/16 // 김재준 // 갤러리 개설신청 리스트 총 개수  -->
     <select id="galleryRequestTotal" resultType="int">
-        select count(`gell_create_num`) from `gc_admin_gell_create_approve` where gell_create_status = 0;
+        select count(`gell_create_num`) from `gc_admin_gell_create_approve` where `gell_create_status` = 0;
     </select>
 
     <!-- 2023/03/22 // 김재준 // 갤러리 개설 신청 list -->
@@ -179,36 +179,29 @@
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
         FROM gc_admin_gell_create_approve as a
         JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
-        ORDER BY gell_create_num desc;
+        WHERE a.gell_create_status = 0
+        ORDER BY `gell_create_num` DESC
+        LIMIT ${start}, 10;
+    </select>
+
+    <select id="searchByCategoryTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM gc_admin_gell_create_approve AS a
+        JOIN gc_gell_cate2 AS b ON a.gell_create_cate = b.gell_cate2
+        WHERE a.gell_create_cate = #{category} AND a.gell_create_status = 0
     </select>
 
     <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 category -->
-    <select id="searchByCategory" resultMap="createResultMap">
+    <select id="searchByCategory" resultMap="createResultMap" parameterType="kr.co.gcInside.dto.PagingDTO">
         SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
-        FROM gc_admin_gell_create_approve as a
-        JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
-        WHERE a.gell_create_cate = #{category}
-        ORDER BY gell_create_num desc;
+        FROM gc_admin_gell_create_approve AS a
+        JOIN gc_gell_cate2 AS b ON a.gell_create_cate = b.gell_cate2
+        WHERE a.gell_create_cate = #{category} AND a.gell_create_status = 0
+        ORDER BY gell_create_num DESC
+        LIMIT #{start}, 10;
     </select>
 
-    <select id="searchByKeyword" resultMap="createResultMap">
-        SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
-        a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
-        FROM gc_admin_gell_create_approve as a
-        JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
-        <where>
-            <choose>
-                <when test="option=='option1'">
-                    a.gell_create_name like concat('%', #{keyword}, '%')
-                </when>
-                <when test="option=='option2'">
-                    a.gell_create_uid like concat('%', #{keyword}, '%')
-                </when>
-            </choose>
-        </where>
-        ORDER BY gell_create_num desc;
-    </select>
 
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
         <result property="gell_create_num" column="gell_create_num"/>
