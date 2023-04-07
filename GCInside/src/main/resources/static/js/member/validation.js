@@ -259,9 +259,9 @@ let mailList = function(){
 }
 
 
+let isClicked = false; // 클릭 여부 변수
 // 이메일 인증코드 전송
 let codeSend = function() {
-    let isClicked = false; // 클릭 여부 변수
     let email1 = jQuery.trim($('#email1').val()); //이메일1 값
     let email2 = jQuery.trim($('#email2').val()); //이메일2 값
 
@@ -273,47 +273,65 @@ let codeSend = function() {
     }
 
 	let email = email1 + "@" + email2;
+	let jsonData = {"member_email":email};
+	if(isClicked){
+	    return false;
+	}
+	isClicked = true;
+
 	$.ajax({
-        url: '/GCInside/member/sendEmailCode',
-        type: 'POST',
-        data: {email: email},
-        async:false, // 메일 전송이 완료될 동안 다른 행동 불가능하게 화면이 멈춤 (바꿀예정)
-        beforeSend: function(xhr){
-            if(isClicked){ // 중복 클릭 방지
-                alert('이미 인증코드를 전송하였습니다.');
-                xhr.abort(); // ajax 요청 취소
+        type : "get",
+        url : '/GCInside/member/checkEmail',
+        data : jsonData,
+        success : function(data){ // DB에 이메일 존재하는지 확인
+            if(data.result === 'success'){
+                alert('이미 사용중인 이메일입니다.');
+                isClicked = false;
+            }else{
+
+             isClicked = true; // 중복클릭방지
+             $.ajax({
+                 url: '/GCInside/member/sendEmailCode',
+                 type: 'POST',
+                 data: {email: email},
+                 success: function(response) {
+                     /*if(limitTime != null){
+                          alert('유효한 인증코드가 있습니다. 메일을 확인해주세요');
+                          return false;
+                     }*/
+                     alert('인증코드가 전송되었습니다.');
+                     isClicked = true; // 클릭 여부 변수를 true 로 변경, 중복 클릭 방지
+
+                     // 인증코드 전송 완료 후 5분 타이머 시작
+                     let limitTime = 5 * 60; // 제한시간 5분
+                     let countdownTime = setInterval(function(){
+                         if(limitTime <= 0){
+                             clearInterval(countdownTime); // 타이머 종료
+                             $('#time_text').text('인증 코드를 재발급받아주세요.');
+                         }
+                         let minute = Math.floor(limitTime / 60);
+                         let second = limitTime % 60;
+                         $('#time_text').text(minute + '분' + second + '초 남았습니다.');
+                         $('#time_text').show();
+                         limitTime--;
+                         }, 1000);
+
+                         setTimeout(function(){ // 타이머 종료 후 코드 재전송 클릭여부 변수 재설정
+                             isClicked = false;
+                         }, limitTime * 1000);
+                 },
+                 error: function(error) {
+                     alert('인증코드 전송에 실패했습니다.');
+                     isClicked = false;
+                 },
+                 complete:function(){ // ajax 호출 완료후에 클릭여부 재설정
+                     isClicked = false;
+                 }
+             });
             }
-        },
-        success: function(response) {
-            alert('인증코드가 전송되었습니다.');
-            isClicked = true; // 클릭 여부 변수를 true 로 변경, 중복 클릭 방지
-
-            // 인증코드 전송 완료 후 5분 타이머 시작
-            let limitTime = 5 * 60; // 제한시간 5분
-            let countdownTime = setInterval(function(){
-                if(limitTime <= 0){
-                    clearInterval(countdownTime); // 타이머 종료
-                    $('#time_text').text('인증 코드를 재발급받아주세요.');
-                }
-                let minute = Math.floor(limitTime / 60);
-                let second = limitTime % 60;
-                $('#time_text').text(minute + '분' + second + '초 남았습니다.');
-                $('#time_text').show();
-                limitTime--;
-                }, 1000);
-
-                setTimeout(function(){ // 타이머 종료 후 코드 재전송 클릭여부 변수 재설정
-                    isClicked = false;
-                }, limitTime * 1000);
-        },
-        error: function(error) {
-            alert('인증코드 전송에 실패했습니다.');
-        },
-        complete:function(){ // ajax 호출 완료후에 클릭여부 재설정
-            isClicked = false;
         }
     });
-}
+};
 
 // 이메일 인증코드값 확인
 let AuthCode = function() {
