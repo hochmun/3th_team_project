@@ -85,11 +85,11 @@ public class BoardController {
         data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
         
         // 페이징 처리
+        data.put("gell_num", galleryVO.getGell_num()+"");
         PagingDTO pagingDTO = service.listsPaging(data);
 
         // 게시글 정보 가져오기
         data.put("start", pagingDTO.getStart()+"");
-        data.put("gell_num", galleryVO.getGell_num()+"");
         data.put("total", galleryVO.getGell_article_count()+"");
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
 

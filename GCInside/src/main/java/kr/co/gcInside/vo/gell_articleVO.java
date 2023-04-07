@@ -22,7 +22,6 @@ public class gell_articleVO {
     private String article_title;
     private String article_content;
     private int article_hit;
-    private int gell_article_count; /* 2023/04/07 // 심규영 // 겔러리 게시글 개수 추가 */
     private int article_comment_count;
     private int article_recommend_count;
     private int article_member_recommend_count; /* 2023/04/03 // 심규영 // 유저 추천 수 추가 */ 

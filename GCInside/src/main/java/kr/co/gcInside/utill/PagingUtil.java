@@ -2,12 +2,14 @@ package kr.co.gcInside.utill;
 
 
 import kr.co.gcInside.dto.PagingDTO;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 페이징 처리 도구<br>
  * 2023/03/23 // 심규영 // 페이지당 게시물 개수 지정 가능하게 변경
  * @since 2023/02/09 // 심규영 // 페이징 처리 도구 생성
  */
+@Slf4j
 public class PagingUtil {
 
     /**
@@ -72,8 +74,8 @@ public class PagingUtil {
      * @param lastPage 마지막 페이지 번호
      * @return 그룹 시작 번호, 그룹 끝 번호
      */
-    public int[] getPageGroup(int currentPage, int lastPage, int groupCount) {
-        int groupCurrent = (int) Math.ceil(currentPage / (double)groupCount);
+    public int[] getPageGroup(int currentPage, int lastPage, int groupCount, int count) {
+        int groupCurrent = (int) Math.ceil(currentPage / (double)count);
         int groupStart = (groupCurrent - 1) * groupCount + 1;
         int groupEnd = groupCurrent * groupCount;
 
@@ -95,7 +97,7 @@ public class PagingUtil {
         int start = getLimitStart(currentPage, 10);
         int lastPage = getLastPageNum(total, 10);
         int pageStartNum = getPageStartNum(total, start);
-        int groups[] = getPageGroup(currentPage, lastPage, 10);
+        int groups[] = getPageGroup(currentPage, lastPage, 10, 10);
 
         return new PagingDTO(groups[0], groups[1], currentPage,lastPage,start);
     }
@@ -114,7 +116,7 @@ public class PagingUtil {
         int start = getLimitStart(currentPage, countNum);
         int lastPage = getLastPageNum(total, countNum);
         int pageStartNum = getPageStartNum(total, start);
-        int groups[] = getPageGroup(currentPage, lastPage, countNum);
+        int groups[] = getPageGroup(currentPage, lastPage, countNum, countNum);
 
         return new PagingDTO(groups[0], groups[1], currentPage,lastPage,start);
     }
@@ -133,7 +135,7 @@ public class PagingUtil {
         int start = getLimitStart(currentPage, countNum);
         int lastPage = getLastPageNum(total, countNum);
         int pageStartNum = getPageStartNum(total, start);
-        int groups[] = getPageGroup(currentPage, lastPage, groupCountNum);
+        int groups[] = getPageGroup(currentPage, lastPage, groupCountNum, countNum);
 
         return new PagingDTO(groups[0], groups[1], currentPage,lastPage,start);
     }

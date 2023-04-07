@@ -213,6 +213,7 @@
             <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
             <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
         </if>
+        AND `articlel_gell_num` = #{gell_num}
         ;
     </select>
 
