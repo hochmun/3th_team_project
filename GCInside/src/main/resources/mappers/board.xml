@@ -156,9 +156,7 @@
             (
                 SELECT * FROM `gc_gell_article`
                 WHERE `articlel_gell_num` = #{gell_num} ORDER BY `article_num` DESC
-                LIMIT ${start},
-                <if test="list_num == null">50</if> <!-- 페이지 당 글 개수 -->
-                <if test="list_num != null">${list_num}</if>
+                LIMIT ${start}, 200
             ) AS a
         left JOIN `gc_member` AS b ON a.`article_uid` = b.`member_uid`) AS d
         WHERE
@@ -178,6 +176,9 @@
             <if test="search_head.equals('0')">IS null</if> <!-- 일반 -->
             <if test="!search_head.equals('0')">= #{search_head}</if> <!-- 그외 -->
         </if>
+        LIMIT 0,
+        <if test="list_num == null">50</if> <!-- 페이지 당 글 개수 -->
+        <if test="list_num != null">${list_num}</if>
         ;
     </select>
 

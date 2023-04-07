@@ -91,7 +91,6 @@ public class BoardController {
         data.put("start", pagingDTO.getStart()+"");
         data.put("gell_num", galleryVO.getGell_num()+"");
         data.put("total", galleryVO.getGell_article_count()+"");
-        log.info("total : "+galleryVO.getGell_article_count());
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
 
         // model 전송
