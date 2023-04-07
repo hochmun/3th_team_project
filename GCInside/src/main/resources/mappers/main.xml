@@ -66,7 +66,91 @@
         LIMIT 0, 10;
     </select>
 
+    <!-- 2023/04/07 // 김동민 // 개념글(임시로 추천수 1이상)불러오기 (수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
+    <select id="selecthotarticle" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT a.gell_name,a.gell_address,  b.*
+        FROM gc_gell AS a
+        JOIN gc_gell_article AS b
+        ON a.gell_num = b.articlel_gell_num where b.article_recommend_count >=1 and a.gell_grade = 0;
+    </select>
 
+    <!-- 2023/04/07 // 김동민 // 메인 흥한 갤러리 불러오기 -->
+    <!--갤러리명만 출력한것을 gc_gell이랑 비교 후 cnt 가 높은 순으로 정렬  -->
+    <select id="selecthotgall" resultType="kr.co.gcInside.vo.galleryVO">
+        select * from `gc_gell` WHERE `gell_today_rank`>='1' and `gell_grade`='0' ORDER BY `gell_today_rank` ASC;
+    </select>
+    <!-- 2023/04/07 // 김동민 // 갤러리 신설 갤러리 불러오기 -->
+    <!-- BETWEEN 으로 오늘로부터 1주일 범위 행들을 선택 DATE_SUB는 오늘에서 1주일을 뺀 값, 절대값으로 오늘과 gell_rdate의 차를 구해 그 수가 적을 수록 가까운 날짜 -->
+    <select id="selectnewgall" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT *
+        FROM `gc_gell`
+        WHERE `gell_rdate` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE() and `gell_grade`='0'
+        ORDER BY ABS(DATEDIFF(CURDATE(), gell_rdate))
+        LIMIT 12;
+    </select>
+    <!-- 2023/04/07 // 김동민 //  랭킹확인용 오늘의 게시글 개수-->
+    <update id="todayarticlecount">
+        UPDATE `gc_gell`
+        SET `gell_today_article_count` = (
+        SELECT COUNT(*)
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = CURDATE()
+        AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
+        );
+    </update>
+    <!-- 2023/04/07 // 김동민 // rank칼럼 초기화-->
+    <update id="initrank">
+        UPDATE `gc_gell` SET
+        `gell_today_rank` = NULL , `gell_yesterday_rank` = NULL where `gell_grade`='1';
+    </update>
+    <!-- 2023/04/07 // 김동민 // sql rank초기화 -->
+    <update id ="resetrank">
+        SET @RANK := 0;
+    </update>
+    <!-- 2023/04/07 // 김동민 // 오늘 갤러리 랭크 업데이트-->
+    <update id="updatehotgalltodayrank">
+        UPDATE gc_gell AS gell
+        INNER JOIN (
+        SELECT gell_num, @rank := @rank + 1 AS rank
+        FROM gc_gell
+        WHERE gell_today_article_count > 0 AND gell_grade = '0'
+        ORDER BY gell_today_article_count DESC
+        ) AS ranking
+        ON gell.gell_num = ranking.gell_num
+        SET gell.gell_today_rank = ranking.rank;
+    </update>
+    <!-- 2023/04/07 // 김동민 // 어제 갤러리 랭크 업데이트-->
+    <update id="updatehotgallyesterdayrank">
+        UPDATE `gc_gell` AS `gell`
+        INNER JOIN (
+        SELECT `gc_gell`.`gell_num`, `subquery`.`cnt`, @rank := @rank + 1 AS `rank`
+        FROM `gc_gell`
+        LEFT JOIN (
+        SELECT `articlel_gell_num`, COUNT(*) AS `cnt`
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY `articlel_gell_num`
+        ) AS `subquery`
+        ON `gc_gell`.`gell_num` = `subquery`.`articlel_gell_num`
+        WHERE `gc_gell`.`gell_num` IN (
+        SELECT `articlel_gell_num`
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY `articlel_gell_num`
+        ) AND `gc_gell`.`gell_grade` = '0'
+        ORDER BY `subquery`.`cnt` DESC
+        ) AS `ranking`
+        ON `gell`.`gell_num` = `ranking`.`gell_num`
+        SET `gell`.`gell_yesterday_rank` = `ranking`.`rank`;
+    </update>
+    <!-- 2023/04/07 // 김동민 // 오늘 갤러리 랭크 가져오기-->
+    <select id="mtodayrank" resultType="kr.co.gcInside.vo.galleryVO">
+        select `gell_num`,`gell_today_rank` from `gc_gell` WHERE `gell_today_rank`>='1' and `gell_grade`='0';
+    </select>
+    <!-- 2023/04/07 // 김동민 // 어제 갤러리 랭크 가져오기-->
+    <select id="myesterdayrank" resultType="kr.co.gcInside.vo.galleryVO">
+        select `gell_num`,`gell_yesterday_rank` from `gc_gell` WHERE `gell_yesterday_rank`>='1' and `gell_grade`='0';
+    </select>
     <!-- upload -->
     <!-- delete -->
 </mapper>

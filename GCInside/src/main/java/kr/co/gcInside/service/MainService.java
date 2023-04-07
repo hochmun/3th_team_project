@@ -2,12 +2,17 @@ package kr.co.gcInside.service;
 
 import kr.co.gcInside.dao.MainDAO;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class MainService {
 
@@ -57,4 +62,55 @@ public class MainService {
         return dao.MainIndexNewCommunityCount(data);
     }
 
+    /**
+     * 2023/04/07 // 김동민 // 개념글(임시로 추천수1이상 글) 출력
+     */
+    public List<gell_articleVO> selecthotarticle(){
+
+        return dao.selecthotarticle();
+    }
+    /**
+     * 2023/04/07 // 김동민 // 흥한갤러리 관련 minor에서 사용했던 코드 메인에 적용
+     */
+    public List<galleryVO> selecthotgall() {
+        return dao.selecthotgall();
+    } /* 흥한 갤러리 불러오기*/
+    public List<galleryVO> selectnewgall() {
+        return dao.selectnewgall();
+    } /* 신설 갤러리 불러오기*/
+    public List<galleryVO> rankdiff() {
+        List<galleryVO> today = dao.mtodayrank();
+        List<galleryVO> yesterday = dao.myesterdayrank();
+        List<galleryVO> resultList = new ArrayList<>();
+
+        for (galleryVO yes : yesterday) {
+            for (galleryVO to : today) {
+                if (yes.getGell_num() == to.getGell_num()) {
+                    int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
+                    galleryVO gelldiff = new galleryVO();
+                    gelldiff.setGell_num(yes.getGell_num());
+                    gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
+                    gelldiff.setGell_today_rank(to.getGell_today_rank());
+                    gelldiff.setGell_rank_diff(diff);
+                    resultList.add(gelldiff);
+                }
+            }
+        }
+        return resultList;
+    } /* 갤러리 랭크차 구하기 */
+    public void gallinit(){
+        dao.initrank(); /* gc_gell 테이블 랭크 칼럼 초기화 */
+        log.info("initrank");
+        dao.todayarticlecount(); /* gc_gell_article에서 갤러리별 오늘 게시물 작성수 업데이트*/
+        log.info("todayarticleupdate");
+        dao.resetrank();/* 쿼리문 변수 rank 초기화 */
+        log.info("resetrankyesday");
+        dao.updatehotgallyesterdayrank(); /* 어제 게시글 개수 기준으로 어제랭킹 update */
+        log.info("updateyesrank");
+        dao.resetrank(); /* 쿼리문 변수 rank 초기화 */
+        log.info("resetranktoday");
+        dao.updatehotgalltodayrank(); /* 오늘 게시글 개수 기준으로 오늘 랭킹 update */
+        log.info("updatetorank");
+
+    } /* 불러오기 전 초기 작업 */
 }

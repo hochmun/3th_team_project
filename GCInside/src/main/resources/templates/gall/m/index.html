@@ -1,4 +1,3 @@
-
 <!-- 2023/03/14 // 김동민 // 갤러리 index 페이지 화면구현 중 -->
 <!-- 2023/03/15 // 김동민 // 갤러리 index 페이지 화면구현 완료 -->
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
                 <header class="cont_head">
                     <h3 class="head_tit"><a href="javascript:void(0);" class="recomTit">개념글</a></h3>
                 </header>
-                <div class="pageing_box gallmain">  
+                <div class="pageing_box gallmain">
                     <div class="page_num">
                         <strong class="now_num" id="recomNum">1</strong>/<span class="total_num"
                                                                                id="recomTotal">3</span>
@@ -37,157 +36,78 @@
                             class="sp_img icon_bluenext"></em></button>
                 </div>
                 <ul class="cont_list img recomImg">
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
+                    <li class="bgcover" style="" th:each="hotarticle,i :${hotarticle}" th:if="${i.index} <= 5">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
                                 <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
+                                    <span class="cover" style="background-image:url(https://via.placeholder.com/50x50)"></span>
                                     <em class="blind">소개 이미지</em>
                                 </span>
                             <div class="txt_box">
                                 <div class="box">
-                                    <strong class="tit">글 제목</strong>
+                                    <strong class="tit">[[${hotarticle.article_title}]]</strong>
                                     <div class="info">
-                                        <span>갤러리명</span><span>작성시간</span>
+                                        <span>[[${hotarticle.gell_name}]]</span><span>[[${hotarticle.article_rdate.substring(5,10)}]]</span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </li>
-
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-
                 </ul>
                 <ul class="cont_list txt recomTxt">
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
+                    <li style="" th:each="hotarticle,i:${hotarticle}" th:if="${i.index >= 6 and i.index <= 15}">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend" >
+                            <strong>[[|[${hotarticle.gell_name.substring(0,1)}갤]|]] </strong>
+                            [[${hotarticle.article_title}]] </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[ex] </strong>
-                            글제목 </a>
+                </ul>
+                <ul class="cont_list img recomImg" style="display:none;">
+                    <li class="bgcover" style="" th:each="hotarticle, i: ${hotarticle}" th:if="${i.index >= 16 and i.index <= 21}">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
+                                <span class="img_box ">
+                                    <span class="cover" style="background-image:url(https://via.placeholder.com/50x50)"></span>
+                                    <em class="blind">소개 이미지</em>
+                                </span>
+                            <div class="txt_box">
+                                <div class="box">
+                                    <strong class="tit">[[${hotarticle.article_title}]]</strong>
+                                    <div class="info">
+                                        <span>[[${hotarticle.gell_name}]]</span><span>[[${hotarticle.article_rdate.substring(5,10)}]]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[동기] </strong>
-                            글제목 </a>
+                </ul>
+                <ul class="cont_list txt recomTxt" style="display:none;">
+                    <li  th:each="hotarticle,i:${hotarticle}" th:if="${i.index >= 22 and i.index <= 31}">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend" >
+                            <strong>[[|[${hotarticle.gell_name.substring(0,1)}갤]|]] </strong>
+                            [[${hotarticle.article_title}]] </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[동물,기타 갤러리] </strong>
-                            글제목 </a>
+                </ul>
+                <ul class="cont_list img recomImg" style="display:none;">
+                    <li class="bgcover" style="" th:each="hotarticle, i: ${hotarticle}" th:if="${i.index >= 32 and i.index <= 37}">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
+                                <span class="img_box ">
+                                    <span class="cover" style="background-image:url(https://via.placeholder.com/50x50)"></span>
+                                    <em class="blind">소개 이미지</em>
+                                </span>
+                            <div class="txt_box">
+                                <div class="box">
+                                    <strong class="tit">[[${hotarticle.article_title}]]</strong>
+                                    <div class="info">
+                                        <span>[[${hotarticle.gell_name}]]</span><span>[[${hotarticle.article_rdate.substring(5,10)}]]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
+                </ul>
+                <ul class="cont_list txt recomTxt" style="display:none;">
+                    <li  th:each="hotarticle,i:${hotarticle}" th:if="${i.index >= 38 and i.index <= 47}">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend" >
+                            <strong>[[|[${hotarticle.gell_name.substring(0,1)}갤]|]] </strong>
+                            [[${hotarticle.article_title}]] </a>
                     </li>
                 </ul>
                 <div class="hotcate_list clear">

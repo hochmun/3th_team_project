@@ -105,10 +105,19 @@ public class MinorService {
      * @return
      */
         public List<galleryVO> rankdiff() {
-            List<galleryVO> today = dao.todayrank();
-            List<galleryVO> yesterday = dao.yesterdayrank();
+            List<galleryVO> today = dao.mgalltodayrank();
+            List<galleryVO> yesterday = dao.mgallyesterdayrank();
             List<galleryVO> resultList = new ArrayList<>();
-
+            /* 0407 김동민 작업 중*/
+            /* if (yesterday == null) {  // yesterday가 null인 경우 today의 랭킹 차이만 계산하여 결과 리스트에 추가
+                for (galleryVO to : today) {
+                    galleryVO gelldiff = new galleryVO();
+                    gelldiff.setGell_num(to.getGell_num());
+                    gelldiff.setGell_today_rank(to.getGell_today_rank());
+                    gelldiff.setGell_rank_diff(-to.getGell_today_rank());
+                    resultList.add(gelldiff);
+                }
+                */
             for (galleryVO yes : yesterday) {
                 for (galleryVO to : today) {
                     if (yes.getGell_num() == to.getGell_num()) {

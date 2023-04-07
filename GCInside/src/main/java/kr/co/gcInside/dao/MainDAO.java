@@ -1,6 +1,7 @@
 package kr.co.gcInside.dao;
 
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_articleVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -49,5 +50,21 @@ public interface MainDAO {
      */
     public int MainIndexNewCommunityCount(Map<String, String> data);
 
+    /**
+     * 2023/04/07 // 김동민 // 개념글(임시로 추천수1이상 글) 출력
+     */
+    public List<gell_articleVO> selecthotarticle();
 
+    /**
+     * 2023/04/07 // 김동민 // 흥한갤러리 관련 minor에서 사용했던 코드 메인에 적용
+     */
+    public List<galleryVO>selecthotgall();      // 흥한 갤러리 불러오기
+    public List<galleryVO>selectnewgall();     // 갤러리 신설 갤러리 불러오기
+    public List<galleryVO> mtodayrank();        // 오늘 갤러리 랭크 가져오기
+    public List<galleryVO> myesterdayrank();    // 어제 갤러리 랭크 가져오기
+    public void updatehotgallyesterdayrank();   // 어제 갤러리 랭크 업데이트
+    public void updatehotgalltodayrank();       // 오늘 갤러리 랭크 업데이트
+    public void initrank();                     // rank칼럼 초기화
+    public void resetrank();                    // sql rank초기화
+    public void todayarticlecount();            // 랭킹확인용 오늘의 게시글 개수
 }
