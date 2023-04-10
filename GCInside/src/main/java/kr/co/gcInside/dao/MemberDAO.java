@@ -1,7 +1,9 @@
 package kr.co.gcInside.dao;
 
 import kr.co.gcInside.vo.MemberVO;
+import kr.co.gcInside.vo.TermsVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Mapper
