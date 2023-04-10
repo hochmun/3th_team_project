@@ -102,35 +102,35 @@ public class MinorService {
 
     /**
      * 2023/03/30 // 김동민 // rank 차 구하기
+     * 2023/04/10 // 김동민 // rank 차 어제 랭크 없을 때 랭크 0 으로 출력
      * @return
      */
         public List<galleryVO> rankdiff() {
             List<galleryVO> today = dao.mgalltodayrank();
             List<galleryVO> yesterday = dao.mgallyesterdayrank();
             List<galleryVO> resultList = new ArrayList<>();
-            /* 0407 김동민 작업 중*/
-            /* if (yesterday == null) {  // yesterday가 null인 경우 today의 랭킹 차이만 계산하여 결과 리스트에 추가
-                for (galleryVO to : today) {
-                    galleryVO gelldiff = new galleryVO();
-                    gelldiff.setGell_num(to.getGell_num());
-                    gelldiff.setGell_today_rank(to.getGell_today_rank());
-                    gelldiff.setGell_rank_diff(-to.getGell_today_rank());
-                    resultList.add(gelldiff);
-                }
-                */
-            for (galleryVO yes : yesterday) {
-                for (galleryVO to : today) {
-                    if (yes.getGell_num() == to.getGell_num()) {
-                        int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
-                        galleryVO gelldiff = new galleryVO();
-                        gelldiff.setGell_num(yes.getGell_num());
-                        gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
-                        gelldiff.setGell_today_rank(to.getGell_today_rank());
-                        gelldiff.setGell_rank_diff(diff);
-                        resultList.add(gelldiff);
+
+                log.info("yesterday",yesterday.toString());
+                    for (galleryVO yes : yesterday) {
+                        for (galleryVO to : today) {
+                            if (yes.getGell_num() == to.getGell_num()) {
+                                int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
+                                galleryVO gelldiff = new galleryVO();
+                                gelldiff.setGell_num(yes.getGell_num());
+                                gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
+                                gelldiff.setGell_today_rank(to.getGell_today_rank());
+                                gelldiff.setGell_rank_diff(diff);
+                                resultList.add(gelldiff);
+                            }else{
+                                galleryVO gelldiff = new galleryVO();
+                                gelldiff.setGell_num(to.getGell_num());
+                                gelldiff.setGell_today_rank(to.getGell_today_rank());
+                                gelldiff.setGell_rank_diff(0);
+                                resultList.add(gelldiff);
+                            }
+                        }
                     }
-                }
-            }
+                
 
             return resultList;
         }

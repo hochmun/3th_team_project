@@ -132,68 +132,11 @@
                                             <span class="inner_txt">전체 갤러리 순위 중 300위 이내는 흥한갤이 됩니다. (20위 이내는
                                                     대흥갤)</span>
                                         </div>
-                                        <ul class="pop_hotmgall_listbox" id="heung_list_ul" data-heunggall-page="1">
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">1.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">2.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">3.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">4.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">5.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">6.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">7.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">8.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">9.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">10.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">11.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">12.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">13.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">14.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">15.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">16.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">17.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">18.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">19.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">20.</span> 갤러리 명</a></li>
+                                        <ul class="pop_hotmgall_listbox" data-heunggall-page="1">
+                                            <li th:each="hot,i:${hot}" th:if="${i.index}<=99"><a th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span
+                                                    class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
                                         </ul>
+
                                         <div class="btn_box" data-lyr="heung_gall_all_lyr">
                                             <button type="button" class="heung_gall_prev btn_prev on"><span
                                                     class="blind">이전</span><em
@@ -227,53 +170,22 @@
                         <div class="hot_gall">
                             <div class="rank_list_box clear hot_gallery_list">
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>1</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>2</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>3</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>4</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>5</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <li th:each="hot,i:${hot}" th:if="${i.index}<5"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>6</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>7</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>8</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>9</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>10</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <li th:each="hot,i:${hot}" th:if="${i.index}>=5 and ${i.index}<10"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>11</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>12</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>13</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>14</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>15</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <li th:each="hot,i:${hot}" th:if="${i.index}>=10 and ${i.index}<15"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>16</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>17</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>18</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>19</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>20</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <li th:each="hot,i:${hot}" th:if="${i.index}>=15 and ${i.index}<20"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
+
                             </div>
                         </div>
                     </div>
