@@ -53,6 +53,10 @@ public class TermsService {
                 typeName = "개인정보처리방침(개인정보처리방침 쉬운버전)"; break;
             case 14:
                 typeName = "청소년 보호정책"; break;
+            case 100:
+                typeName = "회원가입 서비스이용약관"; break;
+            case 101:
+                typeName = "회원가입 개인정보처리방침"; break;
         }
         return typeName;
 
