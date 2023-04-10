@@ -30,6 +30,8 @@ public class MainGallController {
         List<galleryVO> hot_gall = service.selecthotgall();
         List<galleryVO> new_gall = service.selectnewgall();
         model.addAttribute("hotarticle",service.selecthotarticle());
+        model.addAttribute("hot",hot_gall);
+        model.addAttribute("new",new_gall);
         return "gall/m/index";
 
     }
