@@ -15,11 +15,10 @@
         WHERE `gell_address` = #{gell_address};
     </select>
 
-
     <!-- upload -->
     <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
     <update id="updateGellSetting" parameterType="kr.co.gcInside.vo.Gell_SettingVO">
-        UPDATE `gell_setting`
+        UPDATE `gc_gell_setting`
         SET setting_member = #{setting_member},
         setting_non_nick = #{setting_non_nick},
         setting_article_open_s = #{setting_article_open_s},
@@ -38,6 +37,11 @@
         setting_fix_time = #{setting_fix_time},
         setting_adult = #{setting_adult}
         WHERE setting_gell_num = #{setting_gell_num};
+    </update>
+
+    <!-- 2023.04.10 // 라성준 // 갤러리 업데이트 -->
+    <update id="updateGell" parameterType="kr.co.gcInside.vo.galleryVO">
+        UPDATE gc_gell SET gell_name=#{gell_name} WHERE gell_num=#{gell_num}
     </update>
 
     <select id="selectGellSetting" parameterType="int" resultType="kr.co.gcInside.vo.Gell_SettingVO">

@@ -2,6 +2,7 @@ package kr.co.gcInside.dao;
 
 
 import kr.co.gcInside.vo.Gell_SettingVO;
+import kr.co.gcInside.vo.galleryVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -18,13 +19,14 @@ public interface ManagementDAO {
 
 
     /**
-     * 2023.04.03 // 랴성준 //
+     * 2023.04.03 // 라성준 //
      * 매니지먼트 설정 정보 업데이트
      * @param setting
      * @return
      */
     public int updateGellSetting(Gell_SettingVO setting);
-
-
+    public int updateGell(galleryVO vo);
 
 }
+
+
