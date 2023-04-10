@@ -583,6 +583,7 @@ public class BoardController {
         try {
             result = service.selectCommentPassCheck(data);
         } catch (Exception e){
+            log.error(e.getMessage());
             result = 0;
         }
 
