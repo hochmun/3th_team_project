@@ -2,6 +2,7 @@ package kr.co.gcInside.controller;
 
 import kr.co.gcInside.service.ManagementService;
 import kr.co.gcInside.vo.Gell_SettingVO;
+import kr.co.gcInside.vo.galleryVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
@@ -51,28 +52,37 @@ public class ManagementController {
      * @param data
      * @return
      */
+    @ResponseBody
     @PostMapping("gall/management/index")
-    public String index(@RequestParam Map<String, String> data) {
+    public Map<String, Object> index(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+
         String gell_name = data.get("gell_name");
         String mg_name = data.get("mg_name");
+        String id = data.get("id");
+        String grade = data.get("grade");
 
         // gell_name 갤러리 정보 가져옴
-        Map<String, Object> stringObjectMap = service.selectArticleAndSetting(gell_name);
+        galleryVO stringObjectMap = service.selectArticleAndSetting(id, grade);
 
         if (stringObjectMap == null) {
             throw new RuntimeException("갤러리 정보가 존재하지 않습니다.");
         }
 
-        Gell_SettingVO settingVO = (Gell_SettingVO) stringObjectMap.get("gell_setting");
+        Gell_SettingVO settingVO = stringObjectMap.getGellSettingVO();
         settingVO.setMg_name(mg_name);
 
         boolean result = service.updateGellSetting(settingVO);
+        resultMap.put("result", result);
 
+        /*
         if (!result) {
             throw new RuntimeException("갤러리 설정 업데이트에 실패했습니다.");
         }
+         */
 
-        return "redirect:/gall/management/index?id=" + gell_name;
+        //return "redirect:/gall/management/index?id=" + id;
+        return resultMap;
     }
 
     @GetMapping("gall/management/delete")

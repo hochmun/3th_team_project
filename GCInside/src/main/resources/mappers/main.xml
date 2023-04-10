@@ -71,7 +71,7 @@
         SELECT a.gell_name,a.gell_address,  b.*
         FROM gc_gell AS a
         JOIN gc_gell_article AS b
-        ON a.gell_num = b.articlel_gell_num where b.article_recommend_count >=1 and a.gell_grade = 0;
+        ON a.gell_num = b.articlel_gell_num where b.article_recommend_count >=1 and a.gell_grade = 0 ORDER BY `article_rdate` desc;
     </select>
 
     <!-- 2023/04/07 // 김동민 // 메인 흥한 갤러리 불러오기 -->

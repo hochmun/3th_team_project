@@ -178,6 +178,19 @@ public interface BoardDAO {
      */
     public int selectCountRecommendLog(Map<String, String> data);
 
+    /**
+     * 2023/04/10 // 심규영 // 댓글 비밀번호 확인
+     *  data 들어오는 값
+     *      password    : 비밀번호
+     *      type        : 댓글, 대댓글 확인
+     *      re_no       : 댓글, 대댓글 번호
+     *
+     *      re : 댓글일 경우 '', 대댓글 일 경우 "re_"
+     * @param data
+     * @return
+     */
+    public int selectCommentPassCheck(Map<String,String> data);
+
     // upload
 
     /**
