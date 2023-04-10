@@ -322,6 +322,12 @@
             `recommend_type` = #{type};
     </select>
 
+    <!-- 2023/04/10 // 심규영 // 댓글 비밀번호 체크 -->
+    <select id="selectCommentPassCheck" parameterType="map" resultType="int">
+        SELECT COUNT('${re}comment_num') FROM `gc_gell_${re}comment`
+        WHERE `${re}comment_num` = ${re_no} AND `${re}comment_nonmember_password` = ${password};
+    </select>
+
     <!-- upload -->
     <!-- 2023/03/28 // 심규영 // 게시글 수정 쿼리문 -->
     <update id="updateArticle" parameterType="map">

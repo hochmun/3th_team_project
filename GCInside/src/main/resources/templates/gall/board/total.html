@@ -406,6 +406,7 @@
             <input type="hidden" id="no" name="no" th:value="${articleVO.article_num}">
             <input type="hidden" id="pg" name="pg" value="">
             <input type="hidden" id="gell_type" name="gell_type" th:value="${grade}">
+            <input th:if="${user} != null" type="hidden" id="uid" name="uid" th:value="${user.member_uid}">
           </form>
 
           <div class="view_content_wrap">
@@ -955,16 +956,16 @@
 </body>
 <th:block th:if="${type} == 'view'">
   <!-- id="comment_li_${no}" -->
-  <li id="comment_sample" class="ub-content" data-rcnt="" style="display:none;">
-    <div class="cmt_info clear" data-no="" data-article-no="">
+  <li id="comment_sample" class="ub-content" style="display:none;">
+    <div class="cmt_info clear">
       <div class="cmt_nickbox">
-      <span class="gall_writer ub-writer" data-name="" data-ip="">
-        <span class="nickname" title="">
+      <span class="gall_writer ub-writer">
+        <span class="nickname">
           <em></em>
           <span class="ip"></span>
         </span>
         <a class="writer_nikcon">
-          <img src="/GCInside/img/nik.gif" border="0" width="12" height="11" style="cursor:pointer;"title="">
+          <img src="/GCInside/img/nik.gif" border="0" width="12" height="11" style="cursor:pointer;">
         </a>
       </span>
       </div>
@@ -976,7 +977,7 @@
       <div class="fr clear">
         <span class="date_time"></span>
 
-        <div class="cmt_mdf_del" data-type="cmt" data-comment_no="" data-article-no="">
+        <div class="cmt_mdf_del">
           <button type="button" class="btn_cmt_delete">삭제</button>
         </div>
       </div>
@@ -994,10 +995,10 @@
   </li>
   <!-- reply_li_${no} -->
   <li id="re_comment_sample" class="ub-content" style="display:none;">
-    <div class="reply_info clear" data-no="">
+    <div class="reply_info clear">
       <div class="cmt_nickbox">
-        <span class="gall_writer ub-writer" data-nick="" data-uid="" data-name="" data-ip="">
-          <span class="nickname" title="">
+        <span class="gall_writer ub-writer">
+          <span class="nickname">
             <em></em>
             <span class="ip"></span>
             <a class="writer_nikcon" style="display:none;">
@@ -1022,7 +1023,7 @@
   </li>
   <!-- reply_empty_${no} -->
   <li id="reply_box_sample" style="display:none;">
-    <div class="cmt_write_box small clear" id="cmt_write_box" data-no="">
+    <div class="cmt_write_box small clear" id="cmt_write_box">
       <div class="fl">
         <!-- 회원 일 경우 -->
         <div th:if="${authorize.isAuthenticated}" class="user_info_input id">
@@ -1054,7 +1055,7 @@
         </div>
         <div class="cmt_cont_bottm clear">
           <div class="fr">
-            <button class="btn_blue btn_svc small reply_add" data-no="" th:data-login_info="${authorize.isAuthenticated}"
+            <button class="btn_blue btn_svc small reply_add" th:data-login_info="${authorize.isAuthenticated}"
                     th:data-article_num="${articleVO.article_num}" onclick="re_comment_write($(this))">등록</button>
           </div>
         </div>
