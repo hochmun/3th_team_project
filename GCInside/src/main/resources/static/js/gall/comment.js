@@ -3,6 +3,106 @@ $(()=>{
     commentPageMove(1);
 });
 
+/**
+ 2023/04/10 // 심규영 // 댓글 삭제 버튼 클릭
+ 댓글 등록 할때 이벤트 리스너로 등록 하기
+*/
+const removeCommentClick = ($this) => {
+    // 데이터 받기
+    const type = $this.parent().data('type');
+    const comment_no = $this.parent().data('comment_no');
+    const re_comment_no = $this.parent().data('re_comment_no');
+    const articleNo = $this.parent().data('articleNo');
+    const my = $this.parent().data('my');
+
+    // 유효성 검사
+
+
+    // 비회원 댓글일 경우 비밀번호 확인 창 출력
+    if(my == 'N') {
+        removeCommentPasswordCheckBoxOpen($this, type);
+        return;
+    }
+
+    // 회원 댓글 유저 동일 검사는 쿼리문 실행 하면서 확인
+};
+
+/** 2023/04/10 // 심규영 // 댓글, 대댓글 삭제 비밀번호 확인 함수 */
+const removeCommentPassCheck = async ($this) => {
+    const password = $this.parent().find('#cmt_password').val(); // 비밀번호
+    const type = $this.parent().data('type');
+    const re_no = $this.parent().data('re_no');
+
+    // 유효성 검사
+    if(password == "") {
+        alert("비밀번호를 입력 하세요");
+        return;
+    }
+
+    // jsonData
+    const jsonData = {
+        "password":password,
+        "type":type,
+        "re_no":re_no
+    }
+
+    // 비밀번호 확인용 ajax전송
+    const result = await removeCommentCheckAjax(jsonData);
+
+    // 결과 확인
+    if(result) { // 비번 맞음
+        $this.parent().parent().data('my','Y');
+        alert('비밀번호 맞음!');
+    } else { // 비번 틀림
+        alert('비밀번호가 틀렸습니다.');
+        return;
+    }
+
+};
+
+/** 2023/04/10 // 심규영 // 댓글, 대댓글 삭제 비밀번호 검사 ajax 함수 */
+const removeCommentCheckAjax = (jsonData) => {
+    return new Promise(function(resolve, reject){
+        $.ajax({
+            url:'/GCInside/gall/board/commentPassCheck',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            dataType:'json',
+            success: function(data) {
+                return resolve(data.result > 0);
+            },
+            error : function(request,status,error){
+                reject(new Error("code = "+ request.status + " message = " + request.responseText + " error = " + error));
+            },
+        });
+    });
+};
+
+/** 2023/04/10 // 심규영 // 댓글, 대댓글 삭제 팝업창 여는 함수 */
+const removeCommentPasswordCheckBoxOpen = ($this, type) => {
+    $('#cmt_delpw_box').remove(); // 이미 띄워저 있는 팝업창 삭제
+
+    const $div = $('<div>');
+    $div.attr('id', 'cmt_delpw_box');
+    $div.attr('class', 'cmt_delpw_box');
+    $div.attr('style', 'margin: -16px 0 0 -242px;')
+    $div.data('type', type);
+
+    if(type == 'cmt') $div.data('re_no', $this.parent().data('comment_no'));
+    else $div.data('re_no', $this.parent().data('re_comment_no'));
+
+    $('<input>').attr('type','password').attr('title', '비밀번호').attr('placeholder','비밀번호').attr('id','cmt_password').attr('class','cmt_delpw').appendTo($div);
+    $('<button>').attr('type','button').attr('class','btn_ok').text('확인').click(function(){removeCommentPassCheck($(this))}).appendTo($div);
+
+    const $button = $('<button>').attr('type','button').attr('class','btn_cmtpw_close').click(()=>{$('#cmt_delpw_box').remove()})
+    $('<em>').attr('class','sp_img icon_cmtpw_close').appendTo($button);
+    $button.appendTo($div);
+
+    $div.appendTo($this.parent());
+    $div.find('#cmt_password').focus();
+};
+
 /** 2023/04/06 // 심규영 // 게시글 추천 및 비추천 클릭 함수 */
 const reCommendClick = ($this, type) => {
     const article_num = $('#no').val();
@@ -265,6 +365,14 @@ const re_comment_write = function($this) {
                 $re_comment.find('.usertxt').text(data.commentVO.re_comment_content);// 대댓글 내용
                 $re_comment.find('.date_time').text(new Date(new Date().getTime() + (9*60*60*1000)).toISOString().replace('T',' ').slice(0, -5));// 대댓글 작성 시간
 
+                $re_comment.find('.cmt_mdf_del').data('comment_no',data.commentVO.re_comment_oir_num); // 부모 댓글 번호
+                $re_comment.find('.cmt_mdf_del').data('re_comment_no',data.commentVO.re_comment_num); // 대댓글 번호
+                $re_comment.find('.cmt_mdf_del').data('article-no',data.commentVO.re_comment_article_num); // 댓글을 작성한 게시글 번호
+                $re_comment.find('.cmt_mdf_del').data('type', 'rcmt'); // 대댓글 타입
+                $re_comment.find('.cmt_mdf_del').data('my', 'Y');
+
+                $re_comment.find('.btn_cmt_delete').click(function(){removeCommentClick($(this));}); // 댓글 삭제 버튼 이벤트 등록
+
                 // 대댓글 동적 입력
                 $('#reply_list_'+no).append($re_comment);
             } else {
@@ -371,8 +479,19 @@ function setComment_box(commentVO){
 
     $comment_li.find('.date_time').text(commentVO.comment_rdate); // 작성 날짜 입력
 
-    $comment_li.find('.cmt_mdf_del').data('comment_no',commentVO.comment_num);
-    $comment_li.find('.cmt_mdf_del').data('article-no',commentVO.comment_article_num);
+    // 댓글이 회원 댓글이고 접속한 유저의 댓글일 경우
+    if(commentVO.comment_login_status == 0 && commentVO.comment_uid != $('#uid').val()){
+        $comment_li.find('.btn_cmt_delete').remove();
+        $comment_li.find('.cmt_mdf_del').data('my', 'Y');
+    } else {
+        $comment_li.find('.cmt_mdf_del').data('my', 'N');
+    }
+
+    $comment_li.find('.cmt_mdf_del').data('comment_no',commentVO.comment_num); // 댓글 번호
+    $comment_li.find('.cmt_mdf_del').data('article-no',commentVO.comment_article_num); // 댓글을 작성한 게시글 번호
+    $comment_li.find('.cmt_mdf_del').data('type', 'cmt'); // 댓글 타입
+
+    $comment_li.find('.btn_cmt_delete').click(function(){removeCommentClick($(this));}); // 댓글 삭제 버튼 이벤트 등록
 
     return $comment_li;
 }
@@ -403,6 +522,21 @@ function setRe_comment_box(reCommentVO){
 
     $re_comment_box.find('.usertxt').text(reCommentVO.comment_content); // 대댓글 내용 입력
     $re_comment_box.find('.date_time').text(reCommentVO.comment_rdate); // 대댓글 작성 날짜 입력
+
+    // 대댓글이 회원 대댓글이고 접속한 유저의 대댓글일 경우
+    if(reCommentVO.comment_login_status == 0 && reCommentVO.comment_uid != $('#uid').val()){
+        $re_comment_box.find('.btn_cmt_delete').remove();
+        $re_comment_box.find('.cmt_mdf_del').data('my', 'Y');
+    } else {
+        $re_comment_box.find('.cmt_mdf_del').data('my', 'N');
+    }
+
+    $re_comment_box.find('.cmt_mdf_del').data('comment_no',reCommentVO.comment_num); // 부모 댓글 번호
+    $re_comment_box.find('.cmt_mdf_del').data('re_comment_no',reCommentVO.re_comment_num); // 대댓글 번호
+    $re_comment_box.find('.cmt_mdf_del').data('article-no',reCommentVO.comment_article_num); // 댓글을 작성한 게시글 번호
+    $re_comment_box.find('.cmt_mdf_del').data('type', 'rcmt'); // 대댓글 타입
+
+    $re_comment_box.find('.btn_cmt_delete').click(function(){removeCommentClick($(this));}); // 댓글 삭제 버튼 이벤트 등록
 
     return $re_comment_box;
 }

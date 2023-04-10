@@ -564,4 +564,35 @@ public class BoardController {
         return resultMap;
     }
 
+    /**
+     * 2023/04/10 // 심규영 // 댓글,대댓글 비밀번호 일치 확인
+     *  data 들어오는 값
+     *      password    : 비밀번호
+     *      type        : 댓글, 대댓글 확인
+     *      re_no       : 댓글, 대댓글 번호
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/commentPassCheck")
+    public Map<String, Object> CommentPassCheck(@RequestBody Map<String,String> data,
+                                                HttpSession session) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        try {
+            result = service.selectCommentPassCheck(data);
+        } catch (Exception e){
+            log.error(e.getMessage());
+            result = 0;
+        }
+
+        // 추가 유효성 검증 용
+        // html 내부에서의 조작 예방
+        if(result > 0) session.setAttribute("commentPassCheck", true);
+
+        resultMap.put("result", result);
+
+        return resultMap;
+    }
 }
