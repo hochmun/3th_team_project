@@ -205,8 +205,7 @@ function chk_name() {
 
 	$.ajax({
 		type: "POST",
-		url: "/ajax/managements_ajax/chk_name",
-		data: { 'ci_t' : csrf_token, 'gallery_id': mgall_id, '_GALLTYPE_': _GALLERY_TYPE_, 'ko_name': mgall_name_new ,'reason' : reason },
+		url: "/GCInside/gall/management/index",
 		dataType : 'json',
 		cache : false,
 		async : false,
@@ -229,10 +228,10 @@ function chk_name() {
 
 // 갤러리 이름 변경
 function update_name() {
-    var mgall_name_new	= $("#mg_name").val();
-    var mgall_name_org	= $("#mg_name").attr('data-org');
-    var reason			= $("#reason").val();
-    var _GALLERY_TYPE_ = "M";
+    var mgall_name_new = $("#mg_name").val();
+    var mgall_name_org = $("#mg_name").attr('data-org');
+    var reason = $("#reason").val();
+    const grade = $('#grade').val();
 
     if(mgall_name_new == ''){
         alert('이름을 입력해주세요.');
@@ -240,34 +239,41 @@ function update_name() {
     }
 
     if(mgall_name_org === mgall_name_new) {
-        alert('기존 이름과 동일 합니다.');
+        alert('기존 이름과 동일합니다.');
         return;
     }
 
-    $.ajax({
-        type: "POST",
-        url: "/GCInside/gall/management/index",
-		dataType : 'json',
-        cache : false,
-        async : false,
-        success: function(ajaxData) {
+    var data = {
+        "id": $("#mg_name").data('id'),
+        "gell_name": mgall_name_org,
+        "mg_name": mgall_name_new, // 변경된 이름을 전달
+        "reason": reason,
+        "grade":grade
+    };
 
-			if(ajaxData.result == "success") {
-				if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
-					alert(ajaxData.msg);
-				}
-				location.reload(true);
-			} else {
-				if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
-					if(ajaxData.msg == '이미 존재합니다.') {
-						if(_GALLERY_TYPE_ == 'M') {
-							ajaxData.msg += ' <a href="//gall.dcinside.com/' + ajaxData.exists_info['NAME']+ '" class="link_visit golnk" href="" target="_blank">방문하기></a>';
-						}
-					}
-					$( ".name_fail_msg" ).html( "<b class='font_red point-red'>X</b> " + ajaxData.msg).show();
-				}
-			}
-		}
+    console.log(data);
+
+    $.ajax({
+        url: "/GCInside/gall/management/index",
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
+        success: function(ajaxData) {
+        if(ajaxData.result == false) location.href =  location.href;
+        /*
+            if(ajaxData.result == "success") {
+                if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
+                    alert(ajaxData.msg);
+                }
+                location.reload(true);
+            } else {
+                if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
+                    $( ".name_fail_msg" ).html( "<b class='font_red point-red'>X</b> " + ajaxData.msg).show();
+                }
+            }
+            */
+        }
     });
 }
 
