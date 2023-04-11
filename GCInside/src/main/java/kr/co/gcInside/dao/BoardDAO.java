@@ -191,6 +191,14 @@ public interface BoardDAO {
      */
     public int selectCommentPassCheck(Map<String,String> data);
 
+    /**
+     * 2023/04/11 // 심규영 // 글 정보 가져오는 기능
+     * @param re => 댓글 대댓글 구분용
+     * @param comment_no => 댓글, 대댓글 번호
+     * @return
+     */
+    public Gell_commentVO selectCommentInfo(@Param("re") String re, @Param("comment_no") String comment_no);
+
     // upload
 
     /**
@@ -224,18 +232,20 @@ public interface BoardDAO {
     public int updateDeleteArticle(Map<String, String> data);
 
     /**
-     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능
+     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능<br>
+     * 2023/04/11 // 심규영 // 댓글 또는 대댓글 삭제시 댓글 개수 감소 기능 추가
      * @param article_num
      * @return
      */
-    public int updateArticleCommentCount(@Param("article_num") String article_num);
+    public int updateArticleCommentCount(@Param("article_num") String article_num, @Param("type") String type);
 
     /**
-     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능
+     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능<br>
+     * 2023/04/11 // 심규영 // 대댓글 삭제시 대댓글 수 갑소 기능 추가
      * @param comment_num
      * @return
      */
-    public int updateCommentReCount(@Param("comment_num") String comment_num);
+    public int updateCommentReCount(@Param("comment_num") String comment_num, @Param("type") String type);
 
     /**
      * 2023/04/05 // 심규영 // 게시물 조회수 증가 쿼리문
@@ -271,6 +281,20 @@ public interface BoardDAO {
      * @return
      */
     public int updateGellArticleCount(@Param("gell_num") int gell_num);
+
+    /**
+     * 2023/04/11 // 심규영 // 갤러리 댓글 삭제 기능
+     *  data 들어오는 값
+     *      type            : 댓글, 대댓글 종류 표시 {cmt:댓글, rcmt:대댓글}
+     *      comment_no      : 댓글 번호 or 대댓글의 부모 번호
+     *      re_comment_no   : 대댓글 번호
+     *      articleNo       : 게시물 번호
+     *      my              : 본인 인증 확인
+     *      re              : re_,
+     * @param data
+     * @return
+     */
+    public int updateCommentDelete(Map<String,String> data);
 
     // delete
 }
