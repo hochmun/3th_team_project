@@ -184,25 +184,44 @@
         LIMIT ${start}, 10;
     </select>
 
+    <!-- 2023/04/08 // 김재준 // 갤러리 개설 신청 카테고리 검색 결과 count -->
     <select id="searchByCategoryTotal" parameterType="map" resultType="int">
         SELECT COUNT(*)
         FROM gc_admin_gell_create_approve AS a
         JOIN gc_gell_cate2 AS b ON a.gell_create_cate = b.gell_cate2
-        WHERE a.gell_create_cate = #{category} AND a.gell_create_status = 0
+        <where>
+            <choose>
+                <when test="category == ''">
+                    a.gell_create_status = 0
+                </when>
+                <when test="category != ''">
+                    a.gell_create_cate = #{category} AND a.gell_create_status = 0
+                </when>
+            </choose>
+        </where>
     </select>
 
-    <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 category -->
-    <select id="searchByCategory" resultMap="createResultMap" parameterType="kr.co.gcInside.dto.PagingDTO">
+    <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 카테고리별 검색 -->
+    <select id="searchByCategory" resultMap="createResultMap">
         SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
         FROM gc_admin_gell_create_approve AS a
         JOIN gc_gell_cate2 AS b ON a.gell_create_cate = b.gell_cate2
-        WHERE a.gell_create_cate = #{category} AND a.gell_create_status = 0
+        <where>
+            <choose>
+                <when test="category == ''">
+                    a.gell_create_status = 0
+                </when>
+                <when test="category != ''">
+                    a.gell_create_cate = #{category} AND a.gell_create_status = 0
+                </when>
+            </choose>
+        </where>
         ORDER BY gell_create_num DESC
         LIMIT #{start}, 10;
     </select>
 
-
+    <!-- 2023/03/22 // 김재준 // createVO resultMap -->
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
         <result property="gell_create_num" column="gell_create_num"/>
         <result property="gell_create_rdate" column="gell_create_rdate"/>
@@ -218,6 +237,7 @@
         <result property="gell_cate2" column="gell_cate2"/>
         <result property="gell_cate2_name" column="gell_cate2_name"/>
     </resultMap>
+
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};

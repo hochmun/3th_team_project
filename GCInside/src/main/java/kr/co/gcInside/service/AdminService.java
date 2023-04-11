@@ -138,8 +138,6 @@ public class AdminService {
 
     /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 총 개수
-     * @param category
-     * @return
      */
     public int searchByCategoryTotal(int category) {
         return dao.searchByCategoryTotal(category);
