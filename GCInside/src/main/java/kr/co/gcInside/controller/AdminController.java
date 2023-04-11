@@ -191,13 +191,24 @@ public class AdminController {
         List<gall_cate2VO> cates = service.selectGalleryCates();
         // 갤러리 개설 신청 리스트 불러오기
         List<CreateVO> list = null;
+        int category = 0;
 
-        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.galleryRequestTotal());
+        if (data.get("category") != null && !data.get("category").isEmpty()){
+            category = Integer.parseInt(data.get("category"));
+            int totalCount = service.searchByCategoryTotal(category);
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            list = service.searchByCategory(Integer.parseInt(data.get("category")), pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }else{
+            int totalCount = service.galleryRequestTotal();
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            list = service.galleryRequestList(pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }
 
-        list = service.galleryRequestList(pagingDTO.getStart());
         model.addAttribute("list", list);
         model.addAttribute("cates", cates);
-        model.addAttribute("pagingDTO", pagingDTO);
+        model.addAttribute("selectedCategory", category);
 
         return "admin/gallery/form_minor";
     }
@@ -221,6 +232,9 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
+    /**
+     * 2023/03/27 // 김재준 // 갤러리 개설 반려사유 업데이트
+     */
     @PostMapping("admin/gallery/form_minor/reject")
     public String updaterejectReason(HttpServletRequest req, CreateVO cvo, Model model) {
 
@@ -232,19 +246,8 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
-    @PostMapping("admin/gallery/form_minor/searchByCategory")
-    @ResponseBody
-    public List<CreateVO> searchByCategory(@RequestParam("category") String category,
-                                           @RequestParam Map<String, String> data) {
-
-        PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), service.searchByCategoryTotal(Integer.parseInt(category)));
-
-        if (category.isEmpty()) {
-            return service.galleryRequestList(pagingDTO.getStart());
-        }
-        log.info(pagingDTO.toString());
-
-        return service.searchByCategory(Integer.parseInt(category), pagingDTO.getStart());
+    @GetMapping("admin/gallery/advan_main")
+    public String advanceToMainList(){
+        return "admin/gallery/advan_main";
     }
-
 }
