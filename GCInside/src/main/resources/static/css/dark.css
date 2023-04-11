@@ -1,0 +1,1680 @@
+@charset "utf-8";
+/*배경 이미지*/
+.darkmode .sp_main{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_main_dark.png?0524)}
+.darkmode .sp_loginout, .darkmode .login_wrap .checkmark{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_loginout_dark.png?0524)}
+.darkmode .sp_img,
+.darkmode .power_link .link_upinfo::after,
+.darkmode .temsave_info_box p:before,
+.darkmode .concept_con .con_list.txt li,
+.darkmode .dccon_infobox p,
+.darkmode .concept_txtlist li a::before,
+.darkmode .noacs_img::after,
+.darkmode .woman_img::after,
+.darkmode .dccon_guide .guide_txtbox li, .darkmode .adult_img::after,
+.darkmode .integrate_cont.video_result .adult .sch_result_imgbox span::before,
+.darkmode .restriction_off .txt::before,
+.darkmode .integrate_schwrap .gall_result_more:after,
+.darkmode .txtbtn_more:after,/*220506*/
+.darkmode .btn_write.txt::before,
+.darkmode .hitgall_go::after,
+.darkmode .time_best .tab_btn:after,/*220530*/
+.darkmode .allview_go:after,/*220630*/
+.darkmode .area_nickname .btn_user_data::after,
+.darkmode .another_go::before,/*220808*/
+.darkmode .txtmark_gallset li a::after,/*220913*/
+.darkmode .txtmark_setting_wrap .another_go::after,
+.darkmode .ppchk .checkmark/*230214 ai*/
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_img_dark.png?2)}
+.darkmode .num_img{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_num_dark.png?0524)}
+.darkmode .txt_img{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_minor_txt_dark.png?0524)}
+.darkmode .ranking_tit{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_minor_txt_dark.png?0524)}
+.darkmode .icon_wikimore{background-position:-28px -56px}
+.darkmode .sp_otp{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_twostep_dark.png?0524)}
+.darkmode .mini_infoimg{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/mibg_dark.png?0524)}
+.darkmode .mintro_imgbox{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/minorbg_dark.png?0524)}
+.darkmode .miniwrap .mintro_imgbox{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/mibg_dark.png?0524)}
+.darkmode .write_infobox p::before{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_img_dark.png?0524)}
+.darkmode .icon_mini{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/icon_mini_dark.gif?0524)}
+.darkmode .twostep_encourage .sp_otptxtimg{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_otptxtimg3_dark.png?0524)}/*220513 파일명 수정*/
+.darkmode .twostep_encourage.thirdimg .sp_otptxtimg{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_otptxtimg3_dark.png?0524)}/*211025 회원정보 개편*/
+.darkmode .srsbg{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/series_icon_dark.png?0524)}/*211208 시리즈*/
+.darkmode .sp_pagingicon{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_pagingicon_dark.png?0524)}/*페이징 아이콘*/
+.darkmode .icon_bluemini1{background:url(https://nstatic.dcinside.com/dc/w/images/dark/icon_bluesmini1_dark.png?0404)no-repeat 0 0}
+.darkmode .icon_mini1, .darkmode .restriction .icon_bluemini1{background:url(https://nstatic.dcinside.com/dc/w/images/dark/icon_smini1_dark.png?0524)no-repeat 0 0}
+
+.darkmode .cont_list.img .img_box,
+.darkmode .cont_list.img .img_box,
+.darkmode .content_box .img_box,
+.darkmode .hit_con .img_box,
+.darkmode .sec_con .img_box,
+.darkmode .dna_con .img_box,
+.darkmode .issue_zoom .img_box,
+.darkmode .con_list .img_box,
+.darkmode .pop_content.gall_info .imgbox/*220913 갤러리 정보 레이어*/
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/img_none1_dark.jpg)}
+.darkmode .btn_cmt_delete{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_img_dark.png?0524)}
+.darkmode .btn_depth::after{background:url(https://nstatic.dcinside.com/dc/w/images/icon_down_dark.gif)no-repeat 0 0}
+.darkmode .btn_depth.open::after{background:url(https://nstatic.dcinside.com/dc/w/images/icon_up_dark.gif)no-repeat 0 0}
+.darkmode .file_txtinfo p::before{background:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_img_dark.png)no-repeat -297px -239px}
+.darkmode .upload_bgimg, .darkmode .sp_bgimg{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_bgimg_dark.png)}
+.darkmode .access_limit.gall_list.case1 tbody::before{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/blur1_dark.png)}
+.darkmode .access_limit.gall_list.case2 tbody::before{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/blur2_dark.png)}
+.darkmode .access_limit.gall_list.case3 tbody::before{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/blur3_dark.png)}
+.darkmode .access_limit.gall_list.case4 tbody::before{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/blur4_dark.png)}
+.darkmode .access_limit.gall_list.case5 tbody::before{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/blur5_dark.png)}
+.darkmode .integrate_cont.video_result .adult .sch_result_imgbox span{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/bg_mandu_dark.png)}
+.darkmode .sp_years{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_years_dark.png?0524)}/*220520 야간모드개선 추가 - 힛갤러리 n년전*/
+.darkmode .granking_img{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_ranking_dark.png)}/*220913 갤러리 순위 */
+.darkmode .gnumimg, .darkmode .img_wi{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_num1_dark.png)}/*220913 갤러리 정보 순위 숫자*/
+
+.darkmode .album .gall_list tbody tr:hover,  .darkmode .gall_list.empty tbody tr:hover, .darkmode .dccon_storage_table tr:hover, .darkmode .noacs_img.sp_img, .darkmode .adult_img.sp_img, .darkmode .woman_img.sp_img{background:none}
+.darkmode .hide .icon_relate_more{background-position:-84px -52px}
+.darkmode .icon_option_more.up{background-position:-70px -35px}
+.darkmode .icon_option_more.dw{background-position:-81px -35px}
+
+.darkmode .sp_image, .darkmode .nftsale_wrap .nft_precautions .tit::before, .darkmode .nftsale_wrap .dayset > button.sel::before,
+.darkmode .nftsale_wrap .btn_open, .darkmode .statusbox::before, .darkmode .mynft .btn_tbsort.ch:after, .darkmode .del .jean_thumb .thumb::before,
+.darkmode .mynft .day .btn_detail::before, .darkmode .nftpublish_box .annae_box .step_txt::before,
+.darkmode .annae_txtbox::before, .darkmode .lynft_annae .bunch::before, .darkmode .lynft_annae .step4
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_image_dark.png?1)}
+
+.darkmode .lynft_annae h3.tit{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/nft_annae_txtimg_dark.png) }
+
+
+.nfttem .infobox .gallname .icon_bluemini2{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/icon_bluesmini2_dark.png)}
+
+/*************************** 배경색 ***************************/
+.darkmode .toast_msg span{background:rgba(255,255,255,0.9)}
+.darkmode .round_check:checked + .round_label{background:rgba(79,77,198,0.8)}/*만들기 체크박스*/
+.darkmode .round_check + .round_label{background:rgba(204,204,204,0.8)}/*만들기 체크박스*/
+.darkmode .mini_openset .box_con.rd.chk{background:rgba(184,183,233,0.8)}
+.darkmode .blue .round_check:checked + .round_label{background:rgba(122,134,175,0.8)}/*background:rgba(113,123,175,0.8*/
+
+.darkmode .gall_list tbody .tbt.bg{background:#292929}/*실시간 베스트*/
+
+.darkmode .btn_enroll, .darkmode .btn_add, .darkmode .bnt_ytube_up, .darkmode .key_search_area li a, .darkmode .fileupbox .file_bntup,
+/***갤로그***/
+.darkmode .gallog_set .btn_fileup,
+/*어드민*/
+.darkmode .btn_submng_out
+{background:#686868}
+
+.darkmode .left_content, .darkmode .ad_bottom_list, .darkmode .dcfoot,
+html.darkmode, .darkmode body,
+.darkmode .btn_recommend_box, .darkmode .issuebox, .darkmode .all_ranklist,
+.darkmode .privacy_box, .darkmode .gall_guide, .darkmode .select_box.dccon_use, .darkmode .pop_tipbox.minor_tip .inner,
+.darkmode .under_paging, .darkmode .realtime_menu li a.on, .darkmode .integrate_schwrap .small_searchbox,
+.darkmode .integrate_schwrap .bottom_cont_box, .darkmode .mandu_pop .cate_group .tit, .darkmode .pop_wrap .inner_search, .darkmode .mandu_tab_box > button.on, .darkmode .mandu_pop .tab_content,
+.darkmode .calendar_wrap .inner, .darkmode .autodeltime_set .calendar_wrap .inner, .darkmode .cover,
+.darkmode .gcfoot, .darkmode .foot /*푸터부분추가*/
+/*******갤로그*******/
+.darkmode.dgallog .innerbox, .darkmode .gallog_wrap, .darkmode .gallog_wrap .headbox, .darkmode .gallog_wrap .conent_wrap,
+.darkmode .miniwrap .minor_uadmin_setting .tab_box button.on,
+/*만들기*/
+.darkmode .minor_make_chk .scroll,
+.darkmode.dgallog .guestbook .cont_listbox li.replys,
+.darkmode .pop_wrap.srs .inner,
+.darkmode input, .darkmode textarea,
+.darkmode .auto_wordwrap, .darkmode .inp_txt, .darkmode .input_box,
+.darkmode .box_bottom, .darkmode .wk_box,
+.darkmode .user_option,
+.darkmode .visitab_box > button.on,
+.darkmode .pop_wrap .my_minor_mini .tab_menubox button.on,
+.darkmode .pop_wrap .my_minor_mini .tab_menubox button:first-child.on,
+.darkmode .pop_wrap .my_minor_mini .block_tab button.on,
+.darkmode .pop_wrap .my_minor_mini .block_tab button:first-child.on,
+.darkmode .login_box, .darkmode .rcont_wiki,
+.darkmode .user_data_list,
+.darkmode .cmt_bg_box,
+.darkmode .user_info_input.id input, .darkmode .user_info_input,
+.darkmode .visit .tab_content,
+.darkmode .pop_wrap .my_minor_mini,
+.darkmode .btn_dccon_hot,
+.darkmode .btn_dccon_setting,
+.darkmode .mini_pwcheck .pw_inquiry,
+.darkmode .no_memberwrap.vote .pw_inquiry, .darkmode .mintro_imgbox img, .darkmode .mini_infoimg img, .darkmode .vote_categorybox,.darkmode .votetxt_addbox,
+.darkmode .bg_grey, .darkmode .timeset .select_arraybox, .darkmode .timeset .select_area, .darkmode .pop_wrap.gray2px .migall_state.restriction,
+.darkmode .pop_wrap.file.youtube .in_keyword, .darkmode .file.moviecast .setting .inbox, .darkmode .uplink_inbox.unselected input,
+.darkmode .unselected .sauce_inbox textarea, .darkmode .red .btn_tab, .darkmode .tx-holder, .darkmode .calendar_wrap .inner,
+.darkmode .tx-attach-box .tx-attach-list, .darkmode .tx-attach-box .tx-upload-progress, .darkmode .file_urlbox,
+/*어드민*/
+.darkmode .guide_cont.mng .code_input, .darkmode .m_relate, .darkmode .guide_cont, .darkmode .deco_redround,
+.darkmode .miniwrap .minor_uadmin_setting .mintro_imgbox img,
+.darkmode .tx-canvas, .darkmode #tx_canvas_wysiwyg,
+.darkmode .wrap_search .pop_wrap .pop_content.visit,
+.darkmode .taginput,
+.darkmode .svc_overtxt.bg,
+.darkmode .no_memberwrap .pw_inquiry,
+.darkmode .add_subject_list .t_input.add,/*220315 추가*/
+.darkmode .nftpublish_wrap .operatingbox, .darkmode .klip_sqrconnect .bg_grey, .darkmode .pop_tipbox.ly_infotip .inner, .darkmode .btnline_turquoise,/*nft*/
+.darkmode .nftsale_wrap .inputbox, .darkmode .ly_twostep .code_inputbox .code_input,
+.darkmode .nftpublish_box .annae_box .step_tit
+{background-color:#151515}/*220315 121212 -> 151515*/
+
+.darkmode .tx-content-container,
+.darkmode .innerbox.emptypage,/*220315 추가*/
+.darkmode .view_comment input/*220518 본문 댓글 닉네임 비밀번호 input내 인라인스타일로 배경색 들어감 확인 대응*/
+{background:#151515!important}
+
+.darkmode .newvisit_layer,
+.darkmode .adult_wrap .con_box.bluebrd, .darkmode .noaccess_wrap .con_box.bluebrd, .darkmode .delet_wrap .con_box.bluebrd,
+.darkmode .woman_wrap .con_box.bluebrd,
+.darkmode .video_infobox,
+.darkmode .mandudel .user_option li > span,
+.darkmode .visit_bookmark .pop_wrap.gray1px
+{background:#181818}
+
+.darkmode #write_wrap{background:#191919 }
+
+.darkmode select,
+.darkmode .select_box.array_latest,
+.darkmode .select_arraybox,
+.darkmode .select_area,
+.darkmode .select_box.dccon_use, .darkmode .bg_grey,
+.darkmode .subject_morelist,
+.darkmode .pop_wrap,
+.darkmode .pop_tipbox .inner,
+.darkmode .calendar_wrap .select_arraybox,
+.darkmode .pop_content .calendar_wrap .select_arraybox,
+.darkmode .vote_content .timeset .calendar_wrap .select_arraybox,
+.darkmode .option_sort.gallog_set .select_arraybox,
+.darkmode .select_box.array_latest,
+.darkmode .select_arraybox,
+.darkmode .option_sort.mandu .select_arraybox,
+.darkmode .phone .option_sort .select_arraybox,
+.darkmode .wonbon_box .inner, .darkmode .vote_box,
+.darkmode .vote_wrap.voteingbox .box_head,
+.darkmode .no_member_cont, .darkmode .mandu_pop .cate_group .tit, .darkmode .write_subject > .tit, .darkmode .vote_wrap.makebox, .darkmode .vote_wrap .left_box,  .darkmode .vote_tit .catetit_input, .darkmode .btn_albumlist, .darkmode .btn_boardlist,
+.darkmode .vote_content .nocheck .dayin, .darkmode .timeset .nocheck .select_arraybox, .darkmode .timeset .nocheck .select_area,
+.darkmode .miniwrap #write_wrap .put_inquiry[readonly="readonly"], .darkmode .miniwrap .view_comment .user_info_input input[readonly="readonly"],
+.darkmode .dcwiki > button, .darkmode .img_uplist li, .darkmode .local_search, .darkmode .file.moviecast .setting .group .option_box, .darkmode .dccon_search_none, .darkmode  .info_viewtxt,
+.darkmode .voteingbox  .vote_categorybox.output:hover, .darkmode .paging_btnbox, .darkmode .box_bottom, .darkmode .file .content_box, .darkmode .unselected .sauce_inbox textarea,
+.darkmode .dccon_storage_table tr, .darkmode .crt, .darkmode .img_uplist, .darkmode .tx-attach-box .tx-attach-list li.tx-hovered,
+/***갤로그***/
+.darkmode .gallog_set.bg_color input, .darkmode.dgallog .calendar_wrap .inner,
+/*어드민*/
+.darkmode .bg_greybox, .darkmode .complete_txt, .darkmode .cloreason_write_box, .darkmode .add_subject_list .t_input, .darkmode .btn_addsubject .inner, .darkmode .guide_cont .gcont_head, .darkmode .guide_cont.mng .bg_box,
+.darkmode .miniwrap .sogaeimg_tit,
+/*210225*/
+.darkmode .wk_content .tit > span, .darkmode .wk_content.list .wk_box,
+.darkmode .auto_wordwrap.small .word_close, .darkmode .write_subject::before,
+.darkmode .integrate_cont.video_result .adult .sch_result_imgbox span,
+.darkmode .srs_box,
+.darkmode .con_box.bluebrd .bg_grey,/*2203015 151515 에서 이동*/
+.darkmode .btn_write.txt,
+.darkmode .left_content.result .result_guide p,/*220715*/
+.darkmode .nlist_sns .urlcopy_box .btn,
+.darkmode .nftsale_wrap .optionbox > .right,/*nft*/
+.darkmode .pop_content.nftsale_wrap .calendar_wrap .cal_option.select .select_arraybox,
+.darkmode .jean_list.del .thumb, .darkmode .nftfoot .inr
+{background-color:#252525}/*220315*/
+
+.darkmode .og-wrap{background-color:#252525!important}/*220926 오픈 그래프*/
+
+.darkmode .bg_jingrey, .darkmode .subject_inner, .darkmode .dccon_infobox, .darkmode .tab_btnlist li, .darkmode .btn_dccon_next, .darkmode .btn_dccon_prev,
+.darkmode .miniwrap .user_info_input.id input, .darkmode .user_info_input.id label, .darkmode .pop_info, .darkmode .viewtxt_cont .tbox, .darkmode .vote_wrap.voteingbox .vote_content,
+.darkmode .vote_wrap.voteingbox .btnbox, .darkmode .file_txtinfo.bg, .darkmode .add_area, .darkmode .youtube_search, .darkmode .dccon_tab_btnbox,
+/*어드민*/
+.darkmode .guide_cont .bg_box,
+/*만들기*/
+.darkmode .mini_openset .box_con.rd,
+.darkmode .validchk_box input:disabled,
+.darkmode .twostep_encourage .inner .box.top,/*220315*/
+.darkmode .nftsale_info .box, .darkmode .wallet_adrcheck .box, .darkmode .nftsale_wrap .balance,/*nft*/
+.darkmode .nftstate_infobox.left .box, .darkmode .ly_walletbox .inner.bg_grey, .darkmode .sortb .box .inr, .darkmode .lymy_wallet .box, .darkmode .nftpublish_infobox .bg_box,
+.darkmode.dgallog .gallog_wrap.nft .walletinfo .box,
+.darkmode .ai_cont, .darkmode .ai_wrap .area .box .tit, .darkmode .ai_refer_wrap .list .tit, .darkmode .ai_make .inr3 .info_txt,
+.darkmode .ai_make textarea:disabled,/*230214 ai*/
+.darkmode .klip_qrbox .bunch .tabbox, .darkmode .lynft_annae .bg_box/*nft*/
+{background:#353535}/*#f3f3f3*/
+
+.darkmode .mng_subject_sel, .darkmode .mng_subject_sel .select_area, .darkmode .nomem_comment_info,
+.darkmode .btn_hitgall, .darkmode .btn_snsmore, .darkmode .btn_report,
+.darkmode .btn_user_control, .darkmode .btn_search_nickid, .darkmode .btn_recent_list,
+.darkmode .temsave_info_box,
+.darkmode .pop_dcseries .headbox,
+.darkmode .btn_nhitgall,
+.darkmode .btn_silbechu,/*220530*/
+.darkmode .urlcopy_box .intxt[readonly],
+.darkmode .nftdealwrap .list, .darkmode .nftsale_wrap .optionbox,
+.darkmode .nftsale_wrap .cmstable th,
+.darkmode .nftpublish_box .right.annae
+{background:#343434}/*f8f8f8*/
+
+.darkmode .recom_bottom_box, .darkmode .user_control, .darkmode .local_search .top_search,
+/*******갤로그********/
+.darkmode.dgallog body, .darkmode.dgallog,
+.darkmode .btn_recommend_box.morebox .btn_snsmore::before, .darkmode .btn_recommend_box.morebox .btn_report::before, .darkmode .btn_recommend_box.morebox .btn_silbechu::before,/*220530*/
+.darkmode .mynft .btn_nftmore/*nft*/
+{background:#454545}
+
+.darkmode .nftsale_wrap .optionbox::before{background-color:#484848}
+
+.darkmode .minicate_wrap .mini_new .tit{background:#938bc0}
+
+.darkmode .box_menu > a:before, .darkmode .info_cont .tit::before, .darkmode .exchange .info_txt p::before, .darkmode .hotgall_tip .minor_tip_txt > p::before,
+/*갤로그*/
+.darkmode .tip_deco_dot,
+.darkmode .nftpublish_box .annae_box .step_txt > p::before/*nft*/
+{background:#999}
+
+.darkmode .rcont_list li a::before, .darkmode .blue .round_check + .round_label,
+.darkmode .btn_haeji/*nft*/
+{background:#888}
+
+
+.darkmode .vote_box button.modify, .darkmode .integrate_cont.video_result .dsc_sub span::before, .darkmode .btn_walletoff{background:#666}/*210825*/
+
+.darkmode .day_issue_list li a:before, .darkmode .tab_comm li a:before, .darkmode .album_head .gall_writer .fr > span::before,
+.darkmode .album_head .gall_date::before, .darkmode .minigall_infobox span::before, .darkmode .vote_optioninfo span::before,
+.darkmode .vote_content .result_box .barbox, .darkmode .mini_autodeltime::before,  .darkmode .integrate_schwrap .fix_txt:after,
+.darkmode .btn_cmt_refresh::before, .darkmode .btn_cmt_refresh::before, .darkmode .comment_count > .fr > *::before,  .darkmode .bottom_paging_box > .cmt_inner > *::before,
+.darkmode .main_content .options > a:after, .darkmode .main_content .user_option > span:before, .darkmode .minicate_wrap .catehead h3 ::after,
+.darkmode .minor_uadmin_setting .mini_slow_time .cont_boxtit::before,
+.darkmode .best_info span::before,
+.darkmode .result .result_box .bar,
+.darkmode .ltrwrap .validchk::before, .darkmode .ltrwrap .usertxt span::before,
+.darkmode .integrate_cont .btn_sort_box .btn_sort.txt::before,
+.darkmode .integrate_cont .sortoption .option::before, .darkmode .integrate_gallinfo .info::before,
+.darkmode .auto_wordwrap .sch_ranking + span::before,
+.darkmode .wallet_state::before, .darkmode .sorta button::before, .darkmode .sortb .box::before,
+.darkmode .jean_onoffbox::before, .darkmode .mynft table.list td.state > button::before, .darkmode .summary_infobox .inr > span::before,
+.darkmode .nftpublish_infobox .wallet_state button.fixsize::before,
+.darkmode .ai_make .btn_imgup, .darkmode .ai_make a.btn_refer::before,/*230214 ai*/
+.darkmode .jean_infobox .infobox .gallname::before/*nft*/
+ {background:#555}
+
+.darkmode .over_alt, .darkmode .gallview_head .gall_writer .fr > span::before, .darkmode .gallview_head .gall_date::before{background:#444}
+
+.darkmode .info_policy a:before, .darkmode .all_bottom .list a:before, .darkmode .nickname.me, .darkmode .miniwrap .modify_img .sogaeimg_box .sogaeimg_tit strong::after,
+.dgallog.darkmode .gallog_cont.comments .galltit,
+.darkmode.dgallog .guestbook .replys .nickname,
+.darkmode .dcconlayer .select_box.select_arraybox, .darkmode .dcconlayer .select_box.select_arraybox .select_area,/*220315*/
+.darkmode .bg_yeonblue,/*nft 151515 배경의 80% c7cad0  / 90% dde1e8*/
+.darkmode .nft_publishban,
+.darkmode .pop_content.nftsale_wrap .cal_option.bg_box
+{background:#333}
+
+.darkmode .word_tit,
+.darkmode .in_keyword, .darkmode .login_wrap, .darkmode .content_box,
+.darkmode .btn_cash,
+.darkmode .mbl_go,
+.darkmode .cmt_write_box, .darkmode .reply_box,
+.darkmode .visit_history, .darkmode .visitab_box > button, .darkmode .gall_list tbody tr:hover,
+.darkmode .gallview_head .gall_comment a, .darkmode .box_head, .darkmode .cate_tit,
+.darkmode .daybox.sel, .darkmode .realtime_menu li a,
+.darkmode .miniinfo_pop .function .bg, .darkmode .minor_tip_txt.bg, .darkmode .chk_opt, .darkmode .integrate_schwrap .fix_element,
+.darkmode .notfound_txt, .darkmode .mns_appoint .self_certify.chk_opt + .chk_opt, .darkmode .pop_content.mns_closing .btn_bottom, .darkmode .setting_off .set_cont .intxt, .darkmode .bottom_array .option_box, .darkmode .user_info,
+.darkmode .minigall_infobox, .darkmode .option_box, .darkmode .minor_ranking_box, .darkmode .option_sort .select_arraybox .option_box, .darkmode .integrate_relation, .darkmode .subject_select.small .option_box, .darkmode .adult_report, .darkmode .gall_report, .darkmode .con_box.bluebrd,
+.darkmode .restriction_off,
+/***갤로그***/
+.darkmode.dgallog .cont_listbox li.my,
+/*만들기*/
+.darkmode .minor_make_info, .darkmode .ex_cont,
+.darkmode .dccon_list_box,
+.darkmode .research_titbox,
+.darkmode .newvisit_history,
+.darkmode.dgallog .nomem_comment_info, .darkmode.dgallog .guestbook .cont_listbox li.comments, .darkmode .inner_search .word_del,
+.darkmode .permit_list .line_box,
+.darkmode .vdo_thumsel, .darkmode .vdo_thumlist li,
+.darkmode .srs_list li,
+.darkmode .integrate_cont .prevention_txtbox,
+.darkmode .dc_series,/*220315 181818에서 이동*/
+.darkmode .state_tip .ly_infotip_txt.bg, .darkmode .pop_content.nftsale_wrap .calendar_wrap.type1.blue .daybox.sel,/*nft*/
+.darkmode .nfttem.noimg1 .thumb, .darkmode .dcnftbox .sogae_txtbox,
+.darkmode .nftpublish_box .annae_box .step_txt
+{background:#222}/*f5f5f5*/
+
+.darkmode .dchead .auto_wordwrap .word_list li:hover, .darkmode .dchead .auto_wordwrap .word_list li.search_key:hover{background:#222!important}
+
+.darkmode .integrate_schwrap .gnb_bar,
+.darkmode .mandu_tab_box > button,
+.darkmode .pop_wrap .my_minor_mini .tab_menubox button,
+.darkmode .option_sort.dccon .select_arraybox .option_box,
+.darkmode .nftsale_wrap .operating,
+.darkmode .aiguide_wrap/*230214 ai*/
+{background:#252525}
+
+.darkmode .join_tip .inner, .darkmode .pop_tipbox.secret_tip, .darkmode .pop_tipbox.hitgalltip .inner,
+.darkmode .tip_box3 .inner,
+.darkmode .tip_box3.nft_tip .inner, .darkmode .mynft .right_box .tip_box2/*nft*/
+{background:#80a636}
+
+
+
+.darkmode .red .btn_tab.on,
+/*갤로그*/
+.darkmode .cont_head .tit::before,
+.darkmode .rank_list.red .rank_num,/*실시간 북적, 실시간 검색어*/
+.darkmode .tip_deco_dot.red,
+.darkmode .dotred::before,/*블릿*/
+.darkmode .pop_chang .info_txt p.font_red::before,/*가입 인증 이메일 변경*/
+.darkmode .fix_grouplist li.sel .fix_btn,/*공지등 갤러리 지정*/
+.darkmode .ai_make .inr3 .info_txt p.font_red::before/*230214 ai*/
+{background:#c33333}
+
+
+.darkmode .mgall .rank_num, .darkmode .btn_red.mgall_make_go{background:#e88c02}/*노랑*/
+
+/*파랑*/
+.darkmode .word_close, .darkmode .allgall_search, .darkmode .bottom_search, .darkmode .bottom_array .select_area .inner, .darkmode .bottom_array, .darkmode .yeonblue .popbtn_bgblueclose{background-color:#333d77}
+.darkmode .gnb_bar, .darkmode .rank_list.blue .rank_num, .darkmode .btn_boardlist.on, .darkmode .btn_albumlist.on, .darkmode .gallog_wrap .bar,
+.darkmode.dgallog .choice_sect button::before,/*갤로그*/
+.darkmode .add_subject, /*어드민*/
+.darkmode .area_links .btn_top_loginout,
+.darkmode .btn_dccon_infoview, .darkmode .pop_wrap.file .pop_head, .darkmode .pop_wrap .pop_head.bg,
+.darkmode .vote_wrap.makebox .box_head,
+.darkmode .klip_qrbox .bunch .tabbox .tab.on/*nft*/
+{background:#333d77}
+/*.darkmode .gall .rank_num, .darkmode .btn_inout 220315 삭제*/
+
+
+.darkmode .writing_day button, .darkmode .writing_info .tit, .darkmode .yeonblue  .twostep_encourage + .popbtn_bgblueclose{background:#374384}
+
+.darkmode .yeonblue .twostep_encourage + .popbtn_bgblueclose,
+.darkmode .blue .round_check:checked + .round_label
+{background:#3b4890 }/*220315 2단계 인증으로 보안을 강화하세요 otp안내 레이어*/
+
+.darkmode .integrate_schwrap .bnt_smallsearch{background:#497dce}
+
+.darkmode .choice_sect button.on::after, .darkmode .dcheader.bg{background:#273272}
+
+
+.darkmode .depth2, .darkmode .depthbox,.darkmode .subject_list .sel,
+.darkmode .popbtn_bgblueclose, .darkmode .mandu.poply_close/*0413*/
+{background:#242f67}
+
+.darkmode .gnb_list li a.deco, .darkmode .gall_exposure .ltr a{background:#282e61}/*0419 0503*/
+
+.darkmode .result ol:first-child li:first-child .result_bar,.darkmode .vote_content .result_bar.pick{background:#626da6}
+
+/*보라*/
+.darkmode .pop_wrap.type3.lightpurple .pop_head.bg,
+.darkmode .miniwrap .one_ranklist .rank_num, .darkmode .minigall .rank_num, .darkmode .hot_minigall .rank_num, .darkmode .miniwrap .mgall .rank_num, .darkmode .miniwrap .subject_list .sel,
+.darkmode .pop_wrap.lightpurple .word_close, .darkmode .lightpurple .allgall_search, .darkmode .miniwrap .bottom_search, .darkmode .miniwrap .bottom_array .select_area .inner, .darkmode .miniwrap .bottom_array,
+.darkmode .miniwrap .add_subject,
+.darkmode .miniwrap .guide_cont.mng .btn_codeok
+{background:#5c5bb1}
+
+.darkmode .btn_boardlist.on .inner, .darkmode .btn_albumlist .inner, .darkmode .btn_boardlist .inner{background:#7a86af}/*220315 717baf */
+
+
+.darkmode .ltrdate .icon_win.green, .darkmode .ltrdate .icon_win.gift{background:#047f2d}/*220818 추가*/
+
+.darkmode .state_tip .ly_infotip_txt.bg p::before,
+.darkmode .ai_make .inr3 .info_txt p::before/*230214 ai*/
+{background:#ccc}
+
+.darkmode .notfound_info > p::before, .darkmode .nftpublish_box .agree_chk .bg_yeonblue p::before,
+.darkmode .precautions_list p::before
+{background:#bbb}
+
+.darkmode .tx-attach-box .tx-attach-preview{background:#eee}
+.darkmode .tx-attach-box .tx-attach-list li.tx-clicked{background:#a4b2ca}
+.darkmode .dc_series em{background:#888!important}
+
+.darkmode.dgallog .hidetxt .galltit, .darkmode.dgallog .gallog_cont.comments .hidetxt .galltit, .darkmode .gallog_cont.comments .hidetxt .galltit,
+.darkmode .gall_list tbody tr.search:hover, .darkmode .mandudel .user_option,
+.darkmode .wrap_search .word_close,
+.darkmode .power_link, .darkmode .integrate_cont.power_link, .darkmode .ly_walletbox,/*220502 추가*/
+.darkmode.dgallog .nfttem .state/*nft*/
+{background:none}
+
+.darkmode .pop_content.gall_info .imgbox .cover{background-color:transparent}/*220913*/
+
+
+.darkmode .btn_klip_connect, .darkmode .cmt_nftconnect{background:#3563d4}/*386ce9 -> 3563d4 90% 색*/
+.darkmode .pop_tipbox.tip_dk .inner,
+.darkmode .ly_walletbox .toast_msg span, .darkmode .toast_msg.toast_wallet span, .darkmode .toast_msg.jean_cancel span, .darkmode .toast_msg.panmae_cancel span/*nft*/
+{background-color:rgba(0,0,0, 0.7)}
+.darkmode .dcnft_go{background:#9e6b9f}
+.darkmode .nft .state .inr .box, .darkmode .jajubox{background:#8c308c}/*993399 90%*/
+.darkmode .cheongbox{background:#025e5e}/*90%*/
+
+.darkmode .ai_make .optbox .opt{background:#5f7d5f}/*230214 ai*/
+.darkmode .ai_make .pp_recom_box{background:rgba(66,79,66, 0.8) }/*f5fdef*//*230214 ai*/
+
+/*************************** //배경색 ***************************/
+
+
+/*************************** 폰트컬러 ***************************/
+
+.darkmode .red .btn_tab.on{color:#f4e1df}/*빨간 배경 흰색*/
+.darkmode .area_links .btn_top_loginout, .darkmode .over_alt,
+/*어드민*/
+.darkmode .add_subject,
+.darkmode .source_share .btn_blue, /*210825*/
+.darkmode .btn_klip_connect, .darkmode .dcnft_go, .darkmode .nft .state .inr .box, .darkmode .jajubox, .darkmode .mynft .right_box .tip_box2 .inner .txt,/*nft*/
+.darkmode .klip_qrbox .bunch .tabbox .tab.on
+{color:#eee}/*보라 파랑 배경에 흰색*/
+
+.darkmode .integrate_schwrap .bnt_smallsearch, .darkmode .subject_list .sel, .darkmode .btn_search_nickid, .darkmode .btn_recent_list{color:#eee}
+
+.darkmode .btn_enroll, .darkmode .btn_add, .darkmode .bnt_ytube_up, .darkmode .rcont_issue .txt_box, .darkmode .issue_zoom .txt_box, .darkmode .key_search_area li a, .darkmode .fileupbox .btn_fileup,
+/***갤로그***/
+.darkmode .gallog_set .btn_fileup,
+/*어드민*/
+.darkmode .btn_submng_out,
+/*210225*/
+.darkmode .con_list .txt_box .tit,
+.darkmode .btn_inout,
+.darkmode .pop_tipbox.tip_box3 .inner .txt,/*220913 추가*/
+.darkmode .ai_make .btn_imgup, .darkmode .ai_make .optbox .opt,/*230214 ai*/
+.darkmode .btn_nftedit/*nft*/
+{color:#eee}/*220315 ccc-> eee*/
+
+.darkmode .login_wrap, .darkmode .info_details,
+.darkmode .btn_noti_alldel, .darkmode .btn_noti_setting, .darkmode .btn_noti_alldel, .darkmode .pop_hotgall_listbox li a, .darkmode .allgall_sch_cont .tit,
+.darkmode  .in_keyword,
+.darkmode .tab_menubox button, .darkmode .block_tab button, .darkmode .mns_appoint, .darkmode .up_mgall_box .tit, .darkmode .integrate_schwrap .gnb_list li a,
+ .darkmode .txt_plusminus.plus, .darkmode .dcon_name,
+.darkmode .inp_txt, .darkmode .write_subject > .tit, .darkmode .pop_hotgall_listbox li a.restriction .num, .darkmode .migall_state .inner > .tit span,
+.darkmode .inner_search .word_del .word,
+.darkmode .integrate_cont .prevention_txtbox,
+.darkmode .nfttem.noimg1 .thumb .titin, .darkmode .nfttem.noimg2 .thumb .titin, .darkmode .nfttem.noimg2 .titin .day, .darkmode .nfttem.noimg1 .titin .day,/*nft*/
+.darkmode.dgallog .gallog_wrap.nft .walletinfo .nickname
+{color:#ddd}/*220315 bbb-> ddd*/
+
+.darkmode textarea, .darkmode input,
+.darkmode .concept_txtbox strong, .darkmode a, .darkmode td, .darkmode th, .darkmode .content_box,
+.darkmode .concept_con .tit a, .darkmode .day_issue_list li a, .darkmode .day_issue, .darkmode .center_box ul li a, .darkmode .user_data_list li a, .darkmode .writer_info,
+.darkmode .minor_intro_box, .darkmode .mini_set, .darkmode .gall_list.empty td, .darkmode .block_sel, .darkmode .migall_state .inner > b,
+.darkmode .migall_state .inner > .txt,
+.darkmode .concept_txtlist .writer, .darkmode .comment_wrap, .darkmode .btn_cmt_close, .darkmode  .btn_cmt_close span, .darkmode  .btn_cmt_refresh, .darkmode  .btn_cmt_open, .darkmode  .comment_wrap .contgo,
+.darkmode .bnt_comment_more, .darkmode .bnt_reply_more,
+.darkmode .pop_content.access_restrict,  .darkmode .minor_block .radiobox, .darkmode .subject_inner, .darkmode .pop_tipbox .inner, .darkmode .write_type_box .pop_tipbox .inner,
+.darkmode .checkbox, .darkmode .pop_content.mns_closing .btn_bottom, .darkmode .pop_content.mns_closing,
+.darkmode .pop_content.ipinbox .ip_inr textarea,  .darkmode .my_minor .inner, .darkmode .pop_tipbox.minor_tip .inner,
+.darkmode .pop_hotmgall_listbox li a, /*.darkmode .writing_view_box, */.darkmode .box_head,
+.darkmode .under_catelist .under_listbox li a, .darkmode .box_tit, .darkmode .cate ul li a,
+.darkmode .under_catelist .under_listbox li a, .darkmode .dccon_guide, .darkmode .hitup_ly .txt, .darkmode .write_ly .txt,
+ .darkmode .gall_guide .caption_box, .darkmode .pop_wrap .pop_content,
+.darkmode .relation_wrap .pop_info b, .darkmode .pop_wrap .my_minor_mini li a, .darkmode .notice_mng .notice_txt,
+ .darkmode .block_gallname, .darkmode .cont_tit, .darkmode .view_content_wrap, .darkmode .view_content_wrap,
+.darkmode .vote_wrap.voteingbox .box_head h3,
+.darkmode .vote_categorybox, .darkmode .votetxt_addbox, .darkmode .btn_votepreview, .darkmode .dccon_search_none,
+ .darkmode .dccon_search .in_keyword, .darkmode .dcconlayer  .select_area, .darkmode .voteingbox .btnbox .rtxt,
+.darkmode .vote_content .result_txt,.darkmode .mng_absence_tip, .darkmode .miniinfo_pop .function .bg .tit,
+ .darkmode .miniinfo_pop .function .bg .txt, .darkmode .miniinfo_pop .inner, .darkmode .btn_noagain, .darkmode .integrate_relation .tit,
+.darkmode .view_block_setting .intxt, .darkmode .mandu_num, .darkmode .mandu_pop .cate_group .tit,
+ .darkmode .mandu_pop .cate_group, .darkmode .exchange .info_txt, .darkmode .write_infobox, .darkmode .write_infobox p > button,
+.darkmode .subject_list li, .darkmode .vote_content .group .tit, .darkmode .vote_content .group, .darkmode .btn_write_type,
+ .darkmode .adult_report, .darkmode .gall_report, .darkmode .inner_txt, .darkmode .block_list span,
+.darkmode .autodeltime_set .inner, .darkmode .ext_upload .file_txtinfo.bg, .darkmode .upload_selbox .radiobox.small label,
+ .darkmode .file_upbox li span, .darkmode .pop_wrap.file.youtube .in_keyword, .darkmode .loding_caunt, .darkmode .loding_name, .darkmode .file.moviecast .basicstxt,
+ .darkmode .file.moviecast .setting .tit, .darkmode .relation_wrap .pop_info b, .darkmode .gall_issuebox button,
+.darkmode .viewtxt_cont .tbox, .darkmode .info_details, .darkmode .pop_wrap .my_minor_mini .inner.my_minor_empty,
+ .darkmode .pop_wrap .my_minor_mini .inner.my_minor_empty, .darkmode .status, .darkmode .mgall_list_wrap a, .darkmode .mini_list_wrap a,
+ .darkmode .vote_tit .catetit_input, .darkmode .box_infotxt, .darkmode .pwcam .info_txt, .darkmode .ly_restriction_off .tit, .darkmode .ly_restriction_off .inner, .darkmode .restriction_off,
+ /***갤로그***/
+ .darkmode .gallog_blockset .scr_settxt, .darkmode .gallog_bgset .gallog_set .int > input, .darkmode.dgallog .bg_color .deco, .darkmode.dgallog .calendar_box thead th,  .darkmode.dgallog .day,
+ /*어드민*/
+ .darkmode .bg_greybox, .darkmode .complete_txt, .darkmode .closing_cont_txtbox .tiptxt, .darkmode .cloreason_write_box, .darkmode .sub_mng_list, .darkmode .form_group, .darkmode .guide_cont.mng .gcont_box,
+ .darkmode .set_btn button, .darkmode .relate_wordlist.set span, .darkmode .guide_cont .gcont_box, .darkmode .miniwrap .modify_img .sogaeimg_box .sogaeimg_tit .tiptxt, .darkmode .miniwrap .minor_uadmin_setting .tab_box button,
+ .darkmode .minor_uadmin_top .sort,
+ /*만들기*/
+ .darkmode .radiobox.middle label, .darkmode .mini_openset .infotxt, .darkmode .mini_openset .minimake_tip, .darkmode .miniwrap .make_form_cont .form_group .set_tit,
+ .darkmode .minor_make_chk .agree_chk .checkbox > label, .darkmode .lightpurple .pop_content.self_certify .inner .inner_box, .darkmode .page_head .fixtit,
+ .darkmode .mini_openset .box .checkbox,
+ .darkmode .besttxt > p, .darkmode .pop_content.mngsetbox h4, .darkmode .pop_content.mngsetbox .checkbox, .darkmode .pop_content.mngsetbox .radiobox,
+ .darkmode .pop_content.mng_reportlist .tablist_head .menu li button,
+ .darkmode .pop_tipbox.hitsel_allday .tit, .darkmode .select_info .tit,
+ .darkmode .pop_content.hitgall .bottom_box,
+ .darkmode .pop_content.guestblock .cont_tit, .darkmode .gallog_setting.three .selbox,
+ .darkmode .sch_comment tbody tr.tic *, .darkmode .pop_content.schmove .hint_txt, .darkmode .pop_content.schmove .inner, .darkmode .pop_content .moveset .num::before,
+ .darkmode .vdo_formbox .con_tit, .darkmode .vdo_formbox .con_inr, .darkmode .vdo_formbox,
+ .darkmode .wtmk_guide label,
+ .darkmode .svc_overtxt,
+ .darkmode .cmt_write_box .vote_infotxt,
+ .darkmode .srs_temday, .darkmode .pop_dcseries .srs_intit input,
+ .darkmode .pop_content.ltrdate .inr .info, .darkmode .pop_content.ltrdate thead th, .darkmode .pop_content.ltrdate table td,
+.darkmode .pop_content.ltrdate .bottom_paging_box a, .darkmode .ltrwrap .validchk_box, .darkmode .ltrwrap .validchk input,
+.darkmode .integrate_cont .btn_sort.txt, .darkmode .sch_comment tbody .tic .gall_writer b,
+.darkmode .vdo_formbox .con_inr textarea, .darkmode .user_data_list .btn_user_out,
+ .darkmode.dgallog .cont a, .darkmode.dgallog .select_info .tit, .darkmode.dgallog .writer_info, .darkmode .pop_content.ipinbox.guestblock .ip_inr textarea,
+.darkmode .pop_content.guestblock .radiobox label, .darkmode.dgallog .cont, .darkmode.dgallog .cmt_write_box.gallog .cmt_txt_cont textarea,
+.darkmode .mini_infotxt .tit, .darkmode .minor_wrap.gallmain .left_content .mgall_info .txt,
+.darkmode .integrate_cont, .darkmode .notfound_info, .darkmode .notfound_txt,/*220315 추가*/
+.darkmode .integrate_cont .sortoption .option,
+.darkmode .visit_bookmark .tabslist li button,
+.darkmode .btn_upmgall_more,
+.darkmode .tx-colorpallete p.tx-pallete-input input,/*20523 야간모드 개선*/
+.darkmode .nlist_sns .description,
+.darkmode .area_links .notice_listwrap a,
+.darkmode .another_certify .inr,/*220808*/
+.darkmode .pop_content.gall_info .gallinfo .day, .darkmode .pop_content.gall_info .gallinfo, /*220913*/
+.darkmode .txtmark_gallset li a,/*220913*/
+.darkmode .og-tit, .darkmode .write_div .og-tit, .darkmode .og-loading,/*221108 .darkmode .write_div .og-tit 추가*/
+.darkmode .ly_walletbox .toast_msg span,/*nft*/
+.darkmode .btn_nfteasy, .darkmode .toast_msg.toast_wallet span,
+.darkmode .pop_wrap .pop_content.nftsale_wrap,.darkmode .price,
+.darkmode .nftpublish_box .right .txtbox, .darkmode .klip_sqrconnect .tipinfobox, .darkmode .klip_qrbox, .darkmode .nft_complete .bigt,
+.darkmode .ai_wrap, .darkmode .ai_refer_wrap .list .tit, .darkmode .ai_make .hd h4, .darkmode .ai_make .ai_imgup, .darkmode .ai_make .inr2 .stxt,/*230214 ai*/
+.darkmode .ai_make .inr3 .info_txt, .darkmode .ai_make .inr3 .checkbox label, .darkmode .aiguide_wrap,/*230214 ai*/
+.darkmode .lynft_annae .annae_txtbox p, .darkmode .statusbox,  .darkmode .nft_publishban .bigt, .darkmode .nftdealwrap .list td, .darkmode .wallet_adr,/*nft*/
+.darkmode .btn_nftdeal, .darkmode .toast_msg.jean_cancel span, .darkmode .toast_msg.panmae_cancel span, .darkmode .nftsale_wrap .inputbox > input,
+.darkmode .sortb .box .inr button, .darkmode .lynft_onoffset .nickname, .darkmode .ly_twostep .inner, .darkmode .ly_twostep .btn_box .tit,
+.darkmode .ly_twostep .code_inputbox .code_input, .darkmode .ly_codeadd .form_box .int, .darkmode .month_sort .placeholder, .darkmode .sortb .box .tit,
+.darkmode .mynft table.list td.day, .darkmode .mynft .btn_nftmore, .darkmode .jean_infobox .infobox .nftname .name,
+.darkmode .mynft .btn_tbsort, .darkmode .mynft .btn_txtgrey, .darkmode .lymy_wallet .inner h4, .darkmode .my_klayinfo .klay,
+.darkmode .nftpublish_infobox > h3, .darkmode .nftpublish_infobox .nfttem, .darkmode .nftpublish_infobox .wallet_statebox .stat_tit, .darkmode .ly_sogae .tit,
+.darkmode .lynft_annae .bunch
+{color:#ccc}/*220315 aaa->ccc*/
+
+.darkmode .dc_series div, .darkmode .dc_series, .darkmode .og-txt, .darkmode .og-gallname, .darkmode .og-inr{color:#ccc!important}/*220315 aaa->ccc*/
+
+.darkmode .write_div  .video_txt p, .darkmode .video_txt p, .darkmode .source_share_in, .darkmode .tx-canvas textarea.source_share_in{color:#ccc!important}/*220315 aaa->ccc*/
+
+.darkmode .content_box a, .darkmode .word_list li a, .darkmode .concept_con a, .darkmode .login_set, .darkmode .pop_visit_list li a, .darkmode .favorite_list .list_box li a,
+.darkmode .pop_hot_mgall .inner_txt, .darkmode .pop_hot_gall .inner_txt, .darkmode .category_solt_area ul li a, .darkmode .hot_gall_box .rank_list li .rank_txt, .darkmode .mini_infotxt .txt,
+.darkmode .minicate_wrap .mini_new .lists li a, .darkmode .privacy_box, .darkmode .privacy_box .tit, .darkmode .mns_appoint .poply_bgblueclose > span,
+.darkmode .up_mgallname, .darkmode .option_box li, .darkmode .integrate_schwrap .fix_txt,
+.darkmode .pop_tipbox.daum_tip .inner, .darkmode .content_box .tit .sub, .darkmode .bottom_cont_box .inner_txt,
+.darkmode .btn_cash, .darkmode .mall_con a, .darkmode .all_bottom .list a, .darkmode .all_list dl dt, .darkmode .all_list dl dt a, .darkmode .notice a, .darkmode .all_bottom a, .darkmode .visit .page_num, .darkmode .content_box h3,
+.darkmode .page_num, .darkmode .new_gall .box_bottom .page_num, .darkmode  .select_area, .darkmode .option_sort.mandu .select_arraybox, .darkmode .phone .option_sort .select_arraybox,
+.darkmode .minicate_wrap .catehead h3, .darkmode .minor_wrap.gallmain .visit_list li a, .darkmode .power_link h3, .darkmode .pop_add_nopengall .tiptxt.no, .darkmode .pop_add_nopengall .tiptxt,
+.darkmode .center_box .subject_morelist li a, .darkmode .dccon_infobox, .darkmode .vote_wrap.voteingbox .box_head, .darkmode .dcon_seller, .darkmode .vote_wrap.voteingbox .result_num, .darkmode .vote_period,
+.darkmode .miniinfo_pop .function .bg, .darkmode .integrate_cont_list li a.restriction, .darkmode .vote_content .dayin, .darkmode .subject_select.small .option_box, .darkmode .login_set .checkbox,
+.darkmode .file_txtinfo p, .darkmode .comment_box .nickname, .darkmode .box_bottom, .darkmode .page_num, .darkmode .pop_info, .darkmode .part_setting .gall_sel_tit,
+.darkmode .tabcontent, .darkmode .gallog_setting .gall_name, .darkmode .mandu_pop .pop_radio .radiobox, .darkmode .pop_content.ipinbox .max_txt,
+.darkmode .empty_ytube, .darkmode .pop_wrap.file.youtube .youtube_lst > li, .darkmode .info_img, .darkmode .woman_infobox,
+.darkmode .file_txtinfo.bg a, .darkmode .ly_restriction_off .sauce_inbox textarea, .darkmode .url_list li,
+/***갤로그***/
+.darkmode .gallog_set .del, .darkmode .gallog_bgset .setting_onoff .tit,
+/*어드민*/
+.darkmode .minor_admin .tiptxt, .darkmode .minor_uadmin_top .uadmin_top_tit .num, .darkmode .guide_cont .gcont_head.txt .subtxt, .darkmode .guide_cont.mng .bg_box, .darkmode .guide_cont.mng .codein .info,
+.darkmode .btn_mgall_closing,
+/*만들기*/
+.darkmode .minor_make_chk .agree_chk, .darkmode .minor_make .tiptxt, .darkmode .minor_make_info,
+/*210225*/
+.darkmode .best_info, .darkmode .cont_list.img .info,
+.darkmode .research .result ol, .darkmode .research_listbox ul, .darkmode .research_listbox ul label, .darkmode .research .count, .darkmode .research .result_num,
+.darkmode .under_catelist.newvisit_layer .pop_head, .darkmode .newvisit_list li a, .darkmode .newvisit_history,
+.darkmode .pop_content.mngsetbox .smng_info, .darkmode .mng_reportlist .tiptxt, .darkmode .select_info, .darkmode .dayall, .darkmode .pop_tipbox.hitsel_allday .daylist a, .darkmode .daylist li a,
+.darkmode.dgallog .select_box + .num, .darkmode .pop_content.mng_reportlist .minor_block_list .day,
+.darkmode .svc_overcheck .checkbox label,
+.darkmode .pop_dcseries .btn_box .srs_temlist .fl,
+.darkmode .ly_atvt_index .guide_txtbox,
+.darkmode .cmt_txt_cont textarea, .darkmode.dgallog .search .in_keyword, .darkmode.dgallog  .cmt_write_box.gallog .checkbox label,
+.darkmode .link_dsc_txt, .darkmode .pwlink_list .link_txt,/*220315 추가*/
+.darkmode .icon_minor,
+.darkmode .nlist_sns .urlcopy_box .btn,
+.darkmode .wallet_state .btn_prcancle, .darkmode .nftpublish_box .left .set_cont, .darkmode .nftpublish_box .left .set_cont .cont_tit,
+.darkmode .nftpublish_box .left .set_cont input, .darkmode .nftpublish_box .left .box.explain textarea,
+.darkmode .nftpublish_box .agree_chk .checkbox label, .darkmode .nftpublish_box .agree_chk .chkbox,
+.darkmode .nftpublish_box .txtbtn_cancle, .darkmode .nft_complete .smallt,
+.darkmode .nftsale_wrap .operating, .darkmode .precautions_list p,
+.darkmode .nftsale_wrap .price, .darkmode .feeprice, .darkmode .nftsale_wrap .pop_tipbox .inner, .darkmode .per_info_tipbox .tit, .darkmode .nftsale_wrap .cmstable th,
+.darkmode .nftsale_wrap .cmstable td, .darkmode .btn_my_nftset, .darkmode .btn_wallet_infochk, .darkmode .lynft_onoffset .cont_tit, .darkmode .lynft_onoffset .location_set,
+.darkmode .my_totalnft, .darkmode .sorta button, .darkmode .nftsearch .in_keyword, .darkmode .dcnftlist .empty_box, .darkmode .mynft .dcnftlist .unit,
+.darkmode .dcnftlist .geolae_list table.list .geolaeprice, .darkmode .dcnftlist .geolae_list table.list .fee, .darkmode .dcnftlist .geolae_list table.list .total,
+.darkmode .btn_jean_onoff, .darkmode .btn_refuse, .darkmode .mynft .nftsale_wrap table.cmstable td,
+.darkmode .dcnftlist .send table.list .wantprice, .darkmode .dcnftlist .send table.list .fee,
+.darkmode .dcnftlist .send table.list .total, .darkmode .sogae_txtbox, .darkmode .nft_descript, .darkmode .ly_sogae .box textarea, .darkmode .lynft_annae .bg_box
+{color:#bbb}/*220315 999-> bbb*/
+
+.darkmode .auto_wordwrap .restriction ~ .sch_ranking{color:rgba(187,187,187,0.5)}/*{color:rgba(153,153,153,0.5)}*/
+
+
+
+.darkmode .video_wrap .btn_share, .darkmode .video_wrap .btn_down, .darkmode .video_wrap .viewnum,
+.darkmode .pop_dcseries .infotxt p,
+.darkmode .calendar_wrap .day, .darkmode .calendar_box thead th, .darkmode .autodel_msg, .darkmode .btn_type_cancel, .darkmode .daylist li a, .darkmode .minor_make .make_guide_txt,/*220315 추가*/
+.darkmode .txtbtn_more, .darkmode .txtbtn_more:after, .darkmode .auto_wordwrap .btn_latelydel,
+.darkmode .integrate_schwrap .gall_result_more
+{color:#aaa}/*220315 888-> aaa*/
+
+.darkmode .all_list dl a, .darkmode .vote_box, .darkmode .wonbon_box .inner p, .darkmode .darkonoff,
+.darkmode .tx-attach-box .tx-attach-list li.tx-clicked, .darkmode .tx-attach-box .tx-attach-list li.tx-existed .tx-name,
+/*만들기*/
+.darkmode .srs_box,
+.darkmode .sch_comment tbody tr.tic .reply_num, .darkmode .pop_wrap .my_minor_mini .tab_menubox button, .darkmode .visitab_box > button, .darkmode .miniinfo_pop .function p,
+.darkmode .pop_dcseries .btn_listsort, .darkmode .miniinfo_pop .function .bg:first-of-type,/*220315 추가*/
+.darkmode .auto_wordwrap .sch_ranking,
+.darkmode .r_dcmedia .dcissue .ranking.grey, .darkmode .dcmedia .dcissue .ranking.grey,/*220509*/
+.darkmode .tx-attach-box .tx-attach-list li .tx-name,/*220520 야간모드 개선*/
+.darkmode .btn_mynft, .darkmode .nftpublish_box .annae_box .step_txt > p, .darkmode .klip_qrbox .bunch_box .font_grey,/*nft*/
+.darkmode .summary_infobox
+{color:#999}/*220315 777 -> 999*/
+
+.darkmode .info_num, .darkmode .info_policy a, .darkmode .copyright, .darkmode a.wikimore, .darkmode a.wiki_random_go, .darkmode .area_links a,
+.darkmode .original_gall, .darkmode .original_gall a, .darkmode .writing_view_box .autodel, .darkmode .gallview_head .title.autodel,
+.darkmode input[type="checkbox"]:disabled, .darkmode input[type="radio"]:disabled, .darkmode input[type="checkbox"]:disabled ~ label,
+.darkmode input[type="radio"]:disabled ~ label, .darkmode .disabled, .darkmode .disabled ~ label,
+.darkmode .vote_wrap.makebox.edit .left_box  input, .darkmode .vote_wrap.makebox.edit .moreset *,
+ .darkmode .vote_wrap.makebox.edit .targetset *, .darkmode .vote_wrap.makebox.edit .timeset .inner:last-child input,
+.darkmode .vote_wrap.makebox.edit .timeset .inner:last-child, .darkmode .vote_wrap.makebox.edit .imgbox .icon_imgup_del,
+ .darkmode .vote_wrap.makebox.edit .imgbox .imgup, .darkmode .votetxt_addbox,
+.darkmode .vote_content .nocheck .dayin, .darkmode .subject_list .not, .darkmode .miniwrap #write_wrap .put_inquiry[readonly="readonly"],
+ .darkmode input[type="checkbox"]:disabled ~ label, .darkmode .nocheck *,
+.darkmode .miniwrap .view_comment .user_info_input input[readonly="readonly"],
+.darkmode .miniwrap .user_info_input.id input, .darkmode .user_info_input.id label, .darkmode .date_time,
+ .darkmode .empty_box, .darkmode .viewtxt_cont .inner_info, .darkmode .voteshare_source .infotxt,
+.darkmode .sch_result_list  .date_time, .darkmode .join_question .inner .tip, .darkmode .pop_content.error_report .tip,
+.darkmode .pop_content.ipinbox .info_txt, .darkmode .video_box, .darkmode .absence, .darkmode .no_mintro_txt, .darkmode .rankgallshow.font_grey,
+.darkmode .ly_restriction_off .info_txt,
+/***갤로그***/
+.darkmode .gallog_empty, .darkmode.dgallog .cont_listbox li.secret a,
+/*어드민*/
+.darkmode .nonmember .btn_cancel, .darkmode .nonmember .cont_inr .tiptxt.off, .darkmode .fixed .authority_set .select_area, .darkmode .authority_set.off .select_area,
+/*만들기*/
+.darkmode .ex_cont .set_content.desc .max_txt, .darkmode .minor_make .page_head h2 .stxt,
+.darkmode .con.center.nohave .txt, .darkmode .pop_content.mngsetbox .tip,
+.darkmode .permit_list .line_box.off, .darkmode .miniwrap  .permit_list .line_box.off,.darkmode .permit_list .line_box.off + .txt,
+.darkmode .minor_block_list .blockcontent span > em, .darkmode.dgallog .hidetxt p, .darkmode.dgallog .font_grey,
+.darkmode .integrate_cont.video_result .viewnum, .darkmode .write_div .source_share .infotxt,
+.darkmode .comment_box .nickname .ip,/*220315 추가*/
+.darkmode .del_reply, .darkmode .direct_infotxt, .darkmode .source_share .infotxt, .darkmode .ex_cont .set_content.name .t_input, .darkmode .relation_wrap .pop_info,
+.darkmode .minor_make_chk .agree_chk.chk3 .txt,
+.darkmode .minor_make .placeholder, .darkmode .cate .under_listbox li a, .darkmode .research .description, .darkmode .bottom_paging_box a,
+.darkmode .integrate_gallinfo,
+.darkmode .og-txt,/*220926*/
+.darkmode .nftsale_wrap .price .decimal, .darkmode .feeprice .decimal, .darkmode .pricewon .decimal, .darkmode .won .decimal, .dcnft_wrap .copyright,/*nft*/
+.darkmode.dgallog .dcnftbox .empty_box, .darkmode .gallog_wrap.guestbook.nft .dcnftlist .empty_box,
+.darkmode .price_info > span, .darkmode .per_info, .darkmode .klip_qrbox .bunch .tabbox .tab/*nft*/
+{color:#888}/*220315 666->888*/
+
+.darkmode .r_hit .tit:last-of-type:before, .darkmode .btn_hitgall.not, .darkmode .mandu_count .total_num::before, .darkmode .btn_noti_setting::before, .darkmode .pop_content.error_report .btn_box .stxt, .darkmode .pop_add_nopengall .tiptxt,
+.darkmode .file.moviecast .setting .group .select_arraybox .placeholder, .darkmode .inp_txt.txt_placeholder, .darkmode .lab_login, .darkmode .pop_wrap .mini_out, .darkmode .pop_wrap .my_minor_mini li a.mini_out, .darkmode .my_minor_list .sub_mng,
+.darkmode .set_element::after, .darkmode .result_word::before, .darkmode .prevent_code .cont_inr.result::before, .darkmode .nonmember .cont_inr.result::before, .darkmode .concept_range .cont_inr.fl::before,
+.darkmode .pop_hotmgall_listbox li a.restriction, .darkmode .pop_hotgall_listbox li a.restriction,
+/*만들기*/
+.darkmode .input_box label, .darkmode .pop_content.mng_reportlist .tablist_head .menu li::before, .darkmode .r_dcmedia .tit:last-of-type:before,
+.darkmode .r_dcmedia .tit::before,.darkmode .dcmedia .box_tit h3::before,
+.darkmode .btn_nhitgall.not,
+.darkmode .down_num_box, .darkmode .power_click .top_link,
+.darkmode .ex_cont .t_area, .darkmode .ex_cont .set_content.name .t_input, .darkmode .srs_list .srsinfo > span,
+.darkmode .srs_temday,/*220315 추가*/
+.darkmode .integrate_cont_list li a.restriction,
+.darkmode .word_list li a.restriction, .darkmode .auto_wordwrap .restriction .wordmark, .darkmode .restriction ~ .sch_ranking,
+.darkmode .integrate_cont_list li a.restriction,
+.darkmode .integrate_cont_list li a.restriction *,
+.darkmode .btn_silbechu.not,/*220614 추가*/
+.darkmode .left_content.result .result_guide,
+.darkmode .nlist_sns .urlcopy_box .intxt,
+.darkmode .dcnftlist .geolae_list table.list tr.del .name a, .darkmode .dcnftlist .geolae_list table.list tr.del .geolaeprice, .darkmode .dcnftlist .geolae_list table.list tr.del .fee,
+.darkmode .dcnftlist .geolae_list table.list tr.del .total, .darkmode .jean_list.del .thumb, .darkmode .sort_infotxt, .darkmode .mynft table.list .txtgrey, .darkmode .mynft .day .btn_detail,
+.darkmode .dcnftbox .infobox .state .uning, .darkmode .another_nft .infobox .state .uning, .darkmode .lynft_onoffset .empty_box,
+.darkmode .lynft_onoffset .codelist .code, .darkmode .nftfoot .inr,
+.darkmode .per_info_tipbox .tit .info, .darkmode .per_info_tipbox p, .darkmode .my_klayinfo .krw, .darkmode .wallet_state .state.no, .darkmode .nftpublish_infobox .wallet_statebox .period,
+.darkmode .gallog_wrap.nft .gallog_empty .infotxt,
+.darkmode .nftpublish_box .right .annae_box .txtbox > p.font_grey,
+.darkmode .nftpublish_box .left .box.klip .tip.font_grey, .darkmode .geolae_list table.list .fee .decimal, .darkmode .mynft .dcnftlist .jean_infobox .unit,
+.darkmode .send table.list .total .decimal, .darkmode .btn_sogae, .darkmode .lynft_annae .infotxt
+{color:#777}/*220315 555 -> 777*/
+
+.darkmode .dcnftlist .geolae_list table.list tr.del .geolaeprice .decimal,
+.darkmode .dcnftlist .geolae_list table.list tr.del .fee .decimal,
+.darkmode .dcnftlist .geolae_list table.list tr.del .total .decimal
+{color:rgba(119,119,119, 0.6)}
+
+
+/* Change 자동완성*/
+.darkmode input:-webkit-autofill,
+.darkmode input:-webkit-autofill:hover,
+.darkmode input:-webkit-autofill:focus,
+.darkmode input:-webkit-autofill:active {
+transition: background-color 5000s ease-in-out 0s;
+-webkit-transition: background-color 9999s ease-out;
+-webkit-box-shadow: 0 0 0px 1000px #151515 inset!important;
+-webkit-text-fill-color: #999!important;
+}
+
+.darkmode .top_search .in_keyword::placeholder {color:#999}/*220315 777 -> 999*/
+.darkmode .top_search .in_keyword::placeholder::-webkit-input-placeholder{color:#999}
+.darkmode .top_search .in_keyword::placeholder:-moz-placeholder{color:#999}
+.darkmode .top_search .in_keyword::placeholder::-moz-placeholder{color:#999}
+.darkmode .top_search .in_keyword::placeholder:-ms-input-placeholder{color:#999}
+.darkmode .top_search .in_keyword::placeholder::-ms-input-placeholder{color:#999}
+
+.darkmode .minor_make textarea::-webkit-input-placeholder{color:#888}
+.darkmode .minor_make textarea:-moz-placeholder{color:#888}
+.darkmode .minor_make textarea::-moz-placeholder {color:#888}
+.darkmode .minor_make textarea:-ms-input-placeholder{color:#888}
+.darkmode .minor_make input::-webkit-input-placeholder{color:#888}
+.darkmode .minor_make input:-moz-placeholder{color:#888}
+.darkmode .minor_make input::-moz-placeholder {color:#888}
+.darkmode .minor_make input:-ms-input-placeholder{color:#888}
+
+.darkmode .pop_dcseries .srs_intit input::-webkit-input-placeholder, .darkmode .pop_dcseries .srs_intxt  textarea::-webkit-input-placeholder{color:#777}
+.darkmode .pop_dcseries .srs_intit input:-moz-placeholder, .darkmode .pop_dcseries .srs_intxt  textarea:-moz-placeholder{color:#777}
+.darkmode .pop_dcseries .srs_intit input:-ms-input-placeholder,.darkmode .pop_dcseries .srs_intxt  textarea:-ms-input-placeholder{color:#777}
+
+.darkmode ::placeholder {color:#777}/*220315 555 -> 777*/
+.darkmode ::placeholder::-webkit-input-placeholder{color:#777}
+.darkmode ::placeholder:-moz-placeholder{color:#777}
+.darkmode ::placeholder::-moz-placeholder{color:#777}
+.darkmode ::placeholder:-ms-input-placeholder{color:#777}
+.darkmode ::placeholder::-ms-input-placeholder{color:#777}
+
+.darkmode  input::placeholder, .darkmode  input.catetxt_input::placeholder{color:#777}/*220315 555 -> 777*/
+.darkmode  input::placeholder::-webkit-input-placeholder, .darkmode  input.catetxt_input::placeholder::-webkit-input-placeholder{color:#777}
+.darkmode  input::placeholder:-moz-placeholder , .darkmode  input.catetxt_input::placeholder:-moz-placeholder{color:#777}
+.darkmode  input::placeholder::-moz-placeholder, .darkmode  input.catetxt_input::placeholder::-moz-placeholder{color:#777}
+.darkmode  input::placeholder:-ms-input-placeholder, .darkmode  input.catetxt_input::placeholder:-ms-input-placeholder{color:#777}
+.darkmode  input::placeholder::-ms-input-placeholder, .darkmode  input.catetxt_input::placeholder::-ms-input-placeholder{color:#777}
+.darkmode .cmt_textarea_label{color:#777}/*220315 추가*/
+
+
+.darkmode .file.moviecast .setting .inbox textarea::-webkit-input-placeholder, .darkmode .setting .inbox input::-webkit-input-placeholder{color:#777}/*220315 555 -> 777*/
+.darkmode .file.moviecast .setting .inbox textarea:-moz-placeholder, .darkmode .setting .inbox input:-moz-placeholder{color:#777}
+.darkmode .file.moviecast .setting .inbox textarea::-moz-placeholder, .darkmode .setting .inbox input::-moz-placeholder {color:#777}
+.darkmode .file.moviecast .setting .inbox textarea:-ms-input-placeholder, .darkmode .setting .inbox input:-ms-input-placeholder{color:#777}
+
+.darkmode textarea::-webkit-input-placeholder, .darkmode .ext_upload textarea::-webkit-input-placeholder{color:#777}/*220315 555 -> 777*/
+.darkmode textarea:-moz-placeholder ,.darkmode .ext_upload textarea:-moz-placeholder{color:#777}
+.darkmode textarea::-moz-placeholder ,.darkmode .ext_upload textarea::-moz-placeholder {color:#777}
+.darkmode textarea:-ms-input-placeholder, .darkmode .ext_upload textarea:-ms-input-placeholder{color:#777}
+
+.darkmode .pop_content.ipinbox .ip_inr textarea::-webkit-input-placeholder{color:#666}/*220315 444 -> 666*/
+.darkmode .pop_content.ipinbox .ip_inr textarea:-moz-placeholder{color:#666}
+.darkmode .pop_content.ipinbox .ip_inr textarea::-moz-placeholder {color:#666}
+.darkmode .pop_content.ipinbox .ip_inr textarea:-ms-input-placeholder{color:#666}
+
+.darkmode .toast_msg span{color:#666}
+.darkmode .prevday .day{color:#666!important}/*220315 추가*/
+.darkmode .ai_make textarea:disabled::placeholder{color:#666}/*230214 ai*/
+
+
+.darkmode .area_links li::before, .darkmode .gall_issuebox button::before, .darkmode .user_option span::before,
+/*만들기*/
+.darkmode .cont_list.img .info > span::before,
+.darkmode.dgallog .nameday span::before,
+.darkmode .mini_openset .box_con.rd.chk .infotxt .gray/*220315 777에서 이동*/
+{color:#555}/*220315 333->555*/
+
+.darkmode .miniwrap .minor_uadmin_setting .tab_box button > .bar{color:#35393b}
+
+.darkmode .phone .deco{color:#484848}
+
+.darkmode .btn_hitgall, .darkmode .btn_snsmore, .darkmode .btn_report, .darkmode .btn_user_control, .darkmode .mng_subject_sel .select_area, .darkmode .btn_user_control,
+.darkmode .pop_content.ltrdate .btn_box button,
+.darkmode .btn_nhitgall,
+.darkmode .btn_silbechu/*220530*/
+{color:#d3d3d3}
+
+.darkmode .list .gall_tit a:visited{color:#6d459e}
+
+.darkmode .pop_tipbox.join_tip .inner, .darkmode .secret_tip .txt, .darkmode .pop_wrap.file .pop_head h2, .darkmode .pop_wrap .pop_head.bg h3,
+.darkmode .dcheader.bg .area_links a, .darkmode .dcheader.bg .area_links li::before,
+.darkmode .pop_tipbox.hitgalltip .inner
+{color:#eee}
+
+
+/*통합검색*/
+.darkmode .integrate_cont_list li a, .darkmode .integrate_relation_list li a, .darkmode .gallname_txt, .darkmode .tit_txt,
+.darkmode .integrate_cont_list .icon_minor
+{color:#6699cc}
+
+.darkmode .sub_txt {color:#669933}
+
+.darkmode .miniwrap .guide_cont.mng .btn_codeok{color:#e5e4f1}
+
+/*메인테마색 */
+.darkmode .font_blue,
+.darkmode .pop_wrap.type3 .pop_head,
+.darkmode .rank_gall, .darkmode .info_details .num, .darkmode .tab_comm li a.on, .darkmode .tab_comm li a:hover, .darkmode .tab_comm li a.on:hover, .darkmode .dc_all .tit, .darkmode .head_tit a, .darkmode .word_tit,
+.darkmode .user_name, .darkmode .head_tit, .darkmode .visit_history .tit, .darkmode .visitab_box > button.on, .darkmode .result_tit, .darkmode .cate_tit, .darkmode .pop_wrap .pop_head.dashed,
+.darkmode .tab_menubox button.on, .darkmode .tab_menubox button:first-child.on, .darkmode .block_tab button.on, .darkmode .block_tab button:first-child.on, .darkmode .power_link .link_upinfo, .darkmode .content_box  .rank_gall,
+.darkmode .user_info, .darkmode .bottom_array .select_area, .darkmode .page_head h2 a, .darkmode .bottom_array .option_box li, .darkmode .list_result_tit, .darkmode .pop_dccon_tit, .darkmode .no_memberwrap .no_member_cont .inner .txt,
+.darkmode .mandu_tab_box > button, .darkmode .pop_wrap .my_minor_mini .tab_menubox button.on, .darkmode .pop_wrap .my_minor_mini .tab_menubox button:first-child.on, .darkmode .font_lightblue, .darkmode button.font_lightblue, .darkmode .txt_dc, .darkmode .state_txt,
+.darkmode .file.moviecast .statustxt, .darkmode .relation_wrap .newtxt, .darkmode .btn_temporary_save, .darkmode .viewtxt_top .useday, .darkmode .mgall_makelink, .darkmode .mini_makelink, .darkmode .pop_content.error_report .tit,
+.darkmode .pop_add_nopengall .tiptxt.ok, .darkmode .pop_add_nopengall .tiptxt.ok b, .darkmode .pop_wrap.file.youtube .youtube_lst .yt-dc-content .yt-dc-title, .darkmode .miniwrap .my_minor_list .ing,
+.darkmode .file_txtinfo.bg a.font_lightblue, .darkmode .restriction_off .btn_type_cancel,
+/***갤로그***/
+.darkmode .gallog_blockset .infotxt, .darkmode.dgallog .choice_sect button, .darkmode .minor_admin .cont_box .tit,
+/*어드민*/
+.darkmode .guide_cont .gcont_head.txt .tit, .darkmode .guide_cont.mng .bg_box .email,
+/*만들기*/
+.darkmode .minor_make_info .tit, .darkmode .pop_content.up_mgall_infoly .pop_head,
+.darkmode .new_gallery .cate ul li a,
+.darkmode .result ol:first-child li:first-child .result_num,
+.darkmode .newvisit_history .tit, .darkmode .bnt_newvisit_more, .darkmode .under_catelist.newvisit_layer .list_alldel,
+.darkmode .pop_content.mng_reportlist .tablist_head .menu li.on button,
+.darkmode .pop_content.hitgall .inner,
+.darkmode.dgallog .nomem_comment_info,
+.darkmode .permit_list .line_box,
+.darkmode.dgallog .gallog_setting.three .tab_menubox button:nth-child(2).on,
+.darkmode .btn_write_type.btn_adult.on,
+.darkmode .write_div .video_tag,
+.darkmode .video_tag, .darkmode a.video_tag, .darkmode a.video_tag:hover, .darkmode a.video_tag:link, .darkmode a.video_tag:active, .darkmode a.video_tag:visited,
+.darkmode .pop_dcseries .headbox .fl, .darkmode .pop_dcseries .btn_srsnum,
+.darkmode .minor_admin .con.center.twostepw .tit,
+.darkmode .no_memberwrap.vote .no_member_cont .inner .txt,
+.darkmode .status .left .num, .darkmode .voteingbox .vote_categorybox.output.sel, .darkmode .btnvote_finish,.darkmode .vote_content .result_txt .num,
+.darkmode .vote_wrap .calendar_wrap.type1 .tit_box > strong, .darkmode .vote_wrap .calendar_wrap.type1 tr td .daybox.sel .day,
+.darkmode .integrate_cont .sortoption .option.on, .darkmode .integrate_cont .sortoption .option:hover,
+.darkmode .saveonfo .checkbox.round.blue .round_label .inr,
+.darkmode .btn_write.txt,
+.darkmode .visit_bookmark .list_modi, .darkmode .visit_bookmark .tabslist li.on button,
+.darkmode .pop_content.bookmk .paging_btnbox .list_modi,/*220503*/
+.darkmode .r_dcmedia .dcissue .ranking, .darkmode .dcmedia .dcissue .ranking,/*220509*/
+.darkmode .time_best .tab_btn,/*220530*/
+.darkmode .time_best .con_head .allview_go,
+.darkmode .newarea.user_info a,
+.darkmode .user_info .user_name a,
+.darkmode .another_go a,
+.darkmode .txtmark_setting_wrap .setdel button,/*220913*/
+.darkmode .nftsale_wrap .nft_precautions .tit, .darkmode .btn_salecancle, .darkmode .calendar_wrap.type1.blue tr td .daybox.sel .day, .darkmode .calendar_wrap.type1.blue .tit_box > strong,/*nft*/
+.darkmode .nftsale_wrap .dayset > button.sel,
+.darkmode .dcnftbox .infobox .gallname, .darkmode .dcnftbox .infobox .gallname .icon_minor, .darkmode .another_nft .infobox .gallname, .darkmode .another_nft .infobox .gallname .icon_minor,
+.darkmode .btn_mynft.on.activate, .darkmode .sorta button.on, .darkmode .sortb .box .inr button.on, .darkmode .jean_onoffbox.on .txt, .darkmode .another_nft .tit,
+.darkmode .nftpublish_infobox .nfttem .btn_nftdeal, .darkmode .gallog_wrap.nft .gallog_empty .infotxt a, .darkmode .lynft_annae .box h4.tit
+{color:#7a86af}/*717baf */
+
+.darkmode .og-lnk, .darkmode .og-url{color:#7a86af!important}/*220926 갤러리펌(오픈 그래프)*/
+
+.darkmode .concept_wrap .page_num, .darkmode.dgallog .choice_sect button{color:#3b4890}/*3f498a*/
+.darkmode .bnt_album_more, .darkmode .new_gall, .darkmode .my_minor_list .mng, .darkmode .pop_wrap .minni_waiting{color:#3b4890}
+
+.darkmode.dgallog .calendar_wrap .tit_box > strong,
+/*어드민*/
+.darkmode .uadmin_top_tit, .darkmode .btn_upmgall_info, .darkmode .tiptxt .link_visit, .darkmode .nonmember .cont_inr .tiptxt.on, .darkmode .btn_ip, .darkmode .closing_cont_box.show .btn_mgall_closing, .darkmode .error_go,
+/*만들기*/
+.darkmode .make_form_cont .tiptxt  .font_blue, .darkmode .basic_tit, .darkmode .cal_topbox .tit_box > strong,
+.darkmode .nftpublish_box .right .annae_box .txtbox .go/*nft*/
+{color:#525b88 /*525ea9*/}/*626da6에서 투명도80적용한색*/
+
+.darkmode .srs_tem .pop_head > h3, .darkmode .srs_tem .pop_head .num, .darkmode .mynft .btn_txtblue{color:#626da6}
+
+
+/*빨간색*/
+/*메인빨강 c33333 서브레드 cc3300 보더 990000*/
+/*버튼,탭 배경c33333 보더 990000
+핫 뉴 아이콘 c33333
+n아이콘 기타  cc3300*/
+
+.darkmode .font_red,
+.darkmode .bottom_paging_box em, .darkmode .absence .txt, .darkmode .integrate_subtit,
+.darkmode .calendar_box thead th:first-child,
+.darkmode .calendar_wrap.type1 tr td:first-child .day,
+.darkmode .appoint_txtbox .font_red,
+.darkmode .block_setting_wrap .font_red,
+.darkmode .mandu_pop_tit,
+.darkmode .file .font_red,
+.darkmode .cont_head .tit,
+.darkmode.dgallog .choice_sect button.on,
+.darkmode .writing_info .num,
+.darkmode .dcmain_go,
+.darkmode .cont_listbox li.my .writer_info,
+.darkmode .besttxt .num,
+.darkmode .research_titbox h4,
+.darkmode .srs_list .srsinfo .not,
+.darkmode .integrate_cont .btn_sort.txt.new, .darkmode .integrate_cont .btn_sort.txt.accuracy,
+.darkmode .minor_admin .tiptxt.red,
+.darkmode .minor_admin .font_red,
+.darkmode .minor_admin .con.center .tit,
+.darkmode .deco_redround,
+.darkmode .minor_make .font_red,
+.darkmode .required_input,
+.darkmode .btn_guide_view,
+.darkmode .ex_cont .tit,
+.darkmode .minor_make .tiptxt.red,
+.darkmode .minor_make .make_guide_tit,
+.darkmode .pw_seting .impossible,
+.darkmode .step_box.impossible .step_txt,
+.darkmode .dccon_shop_list .link_product:hover .dcon_cash,
+.darkmode .dcconlayer .dcon_cash,
+.darkmode .cont_head .tit,
+.darkmode .choice_sect button.on,
+.darkmode .cont_listbox li.my .writer_info,
+.darkmode .mns_appoint .self_certify.chk_opt .endtxt,
+.darkmode .dccon_popinfo .btn_cont_report,
+.darkmode .empty_ytube.font_red,
+.darkmode .red .btn_tab,/*디시콘레이어*/
+.darkmode .fix_listbox li.sel/*공지 등록 갤러리지정*/
+{color:#c33333}
+
+.darkmode .mandu_pop .bottom_paging_box a.on, .darkmode .list .gall_tit a:visited.font_red, .darkmode .hint_txt.font_red{color:#c33333!important}
+
+.darkmode .font_lightred,
+.darkmode .sch_comment tbody .gall_writer em.font_lightred,/*댓글 검색 결과*/
+.darkmode .mns_closing .font_lightred,/*마이너 폐쇄 신청 중 레이어*/
+.darkmode .gallog_menu .icon_new,
+.darkmode .info_mandu .num,
+.darkmode .reply .num.font_lightred
+{color:#cc3300}
+
+/*보라*/
+.darkmode .miniwrap .page_head h2 a, .darkmode .miniwrap .page_head .fixtit{color:#b8b7e9}
+
+.darkmode a.rank_mini, .darkmode .pop_wrap.lightpurple .pop_hot_gall .pop_head.dashed, .darkmode .btn_write_type.on,
+.darkmode .pop_tipbox.minor_tip.mini h3, .darkmode .pop_wrap.lightpurple .result_tit, .darkmode .font_jinlightpurple, .darkmode .lightpurple .pop_content.error_report .tit, .darkmode .lightpurple  .pop_add_nopengall .tiptxt.ok,
+.darkmode .lightpurple .pop_add_nopengall .tiptxt.ok b, .darkmode .font_lightpurple,
+/*어드민*/
+.darkmode .miniwrap .visit_history .tit, .darkmode .pop_wrap.type3.lightpurple .pop_head, .darkmode .lightpurple .pop_content.access_restrict .pop_head,
+.darkmode .pop_wrap.lightpurple .pop_head.dashed, .darkmode .miniwrap .minor_uadmin_setting .font_lightblue, .darkmode .miniwrap .m_relate .word_tit,
+.darkmode .miniwrap .minor_uadmin_top .uadmin_top_tit, .darkmode .mini .choice_sort, .darkmode .miniwrap .minor_uadmin_setting .tab_box button.on, .darkmode .question_box .btn_q, .darkmode .miniwrap .closing_cont_box.show .btn_mgall_closing,
+.darkmode .mini_complete_reason,
+.darkmode .miniwrap .minor_admin .cont_box .tit,
+/*만들기*/
+.darkmode .lightpurple .pop_content.self_certify .pop_head h3,
+.darkmode .miniwrap .bnt_newvisit_more, .darkmode .miniwrap .newvisit_history .tit,
+.darkmode .miniwrap .under_catelist.newvisit_layer .list_alldel,
+.darkmode .miniwrap .pop_content.mng_reportlist .tablist_head .menu li.on button,
+.darkmode .miniwrap .permit_list .line_box,
+.darkmode .miniwrap .btn_write_type.btn_adult.on,
+.darkmode .miniwrap .guide_cont .gcont_head.txt .tit,
+.darkmode .miniwrap .con.center.twostepw .tit,
+.darkmode .miniwrap .btn_write.txt,
+.darkmode .miniwrap .visit_bookmark .list_modi,
+.darkmode .miniwrap .visit_bookmark .tabslist li.on button
+ {color:#938bc0}/*220509 .darkmode .miniwrap .visit_bookmark .list_modi  .darkmode .miniwrap .visit_bookmark .tabslist li.on button 추가*/
+
+.darkmode .anonymity_in::after{color:#6f6dd9}
+.darkmode .miniwrap .bottom_array .select_area, .darkmode .miniwrap .bottom_array .option_box li{color:#7271d1}
+.darkmode .miniwrap .basic_tit, .darkmode .miniwrap .btn_ip{color:#5c5bb1}
+
+.darkmode .txt_wiki{color:#1ba275}/*녹색*/
+
+.darkmode .gnb_list li a, .darkmode .gall_exposure, .darkmode .btn_depth, .darkmode .gall_exposure a{color:#eee}/*e2e3eb color:rgba(255,255,255,0.9)*//*220502 */
+
+.darkmode .gnb_list li a.on, .darkmode .gnb_list li a.on.deco span{color:#eee222}/*220315e2d72b*/
+
+.darkmode .gall_exposure .posts .num{color:#dcdc88}
+.darkmode .gall_exposure .reply .num{color:#6fb8c4}
+
+
+.darkmode a.rank_mgall{color:#d05504}
+.darkmode .integrate_schwrap .posts .num{color:#d05504}
+.darkmode .integrate_schwrap .reply .num{color:#0066bb}
+
+.darkmode .sch_comment tbody .gall_tit a, .darkmode .sch_comment tbody .gall_writer em, .darkmode .sch_comment tbody .gall_writer .nickname,
+.darkmode .sch_comment tbody .gall_date, .darkmode .sch_comment tbody  .gall_count,
+.darkmode .sch_comment tbody .gall_recommend, .darkmode .sch_comment tbody .reply_num, .darkmode .list .sch_comment tbody .ip,
+.darkmode .sch_comment tbody .gall_writer b
+{color:rgba(204,204,204,0.6)}/*220315 170 -> 204*/
+
+.darkmode .dclottery .ltrmoney{color:#ffcc33}
+.darkmode .dclottery.ver1 .ltrmoney{color:#fff}
+
+.darkmode .calendar_wrap.type1 tr td .daybox.sel .day{color:#4f4dc6}
+
+
+.darkmode .time_best .tab_btn.light > span{color:rgba(255, 153, 0, 0.9)}/*실베라이트*/
+.darkmode .time_best .tab_btn.night > span{color:rgba(133, 95, 137, 0.9)}/*실베나이트*/
+
+.darkmode .gallview_contents .lnk, .darkmode .gallview_contents .lnk > *{color:#fda145}
+
+.darkmode .tx-content-container .lnk, .darkmode .tx-content-container .lnk *{color:#025eba!important}/*221202 게시물 펌 글쓰기 페이지*/
+
+
+.darkmode .klip_connectwan{color:#3563d4}/*80% 315bbf*/
+.darkmode .font_jajusaeg, .darkmode .nft .state .inr .txt, .darkmode .txtdcnft_go, .darkmode .ly_sogae .tipinfobox{color:#8c308c}/*90%*/
+.darkmode .txtdcnft_go.cheon, .darkmode .btnline_turquoise, .darkmode .font_turquoise{color:#025e5e}
+.darkmode .font_turquoise .decimal{color:#93abab}
+.darkmode .font_orange, .darkmode .dcnftbox .infobox .state .ing, .darkmode .another_nft .infobox .state .ing, .darkmode .mynft table.list td.price{color:#dd5a37}
+.darkmode .font_orange .decimal{color:#e8ae9f}
+.darkmode .nftdealwrap .list td.price{color:#f3623b}
+.darkmode .price .decimal {color:#e8a28f}
+.darkmode .nftsale_wrap .total .klay > span.font_lightblue/*, .dcnftlist .division .font_lightblue*/{color:#333d77}
+.darkmode .font_lightblue .decimal{color:#999fbf}
+
+.darkmode .ai_make .btn_aipp_recom{color:#507950}/*305e30%*//*230214 ai*/
+
+
+/*************************** //폰트컬러 ***************************/
+
+
+/*************************** border ***************************/
+.darkmode .ex_cont .form_group{border:none}
+/*갤로그*/
+.darkmode .bar{border-color:#121212}
+
+.darkmode .btn_hitgall, .darkmode .btn_snsmore, .darkmode .btn_report, .darkmode .mng_subject_sel, .darkmode .tab_btnlist li, .darkmode .minor_uadmin_wrap .right_content,
+.darkmode.dgallog .innerbox::after, .darkmode.dgallog .wrap_right::after,
+.darkmode .btn_evtsns .icon,
+.darkmode .btn_nhitgall,
+.darkmode .btn_silbechu,/*220530*/
+.darkmode .nfttem.noimg2 .thumb::before
+{border-color:#282828}
+.darkmode .btn_dccon_setting {border-left-color:#282828}
+.darkmode .btn_dccon_prev, .darkmode .btn_user_control, .darkmode .miniwrap .mng_subject_sel, .darkmode .miniwrap .btn_user_control{border-right-color:#282828}
+/*210225*/
+.darkmode .wk_content .tit:after{border-color:#252525 transparent}/*220315*/
+
+
+.darkmode td, .darkmode textarea, .darkmode input,
+.darkmode .select_area, .darkmode .pop_content.ipinbox .ip_inr textarea, .darkmode #write_wrap, .darkmode .write_subject,
+.darkmode .notice, .darkmode .dc_all, .darkmode .content_box, .darkmode .img_box, .darkmode .box_tit, .darkmode .section_cate, .darkmode .cate_tit, .darkmode .severalcan .cate, .darkmode .block_line, .darkmode .under_paging,
+.darkmode .pop_wrap.type3 .pop_head, .darkmode .pop_wrap .favorite_list .btn_box, .darkmode .result_list li a, .darkmode .result_list .result_box, .darkmode .input_box.input_kcapcode, .darkmode .kap_codeimg,
+.darkmode .minicate_wrap .catehead, .darkmode .option_box, .darkmode .select_box.array_latest, .darkmode .select_arraybox, .darkmode .integrate_relation, .darkmode .pop_tipbox .inner, .darkmode .integrate_schwrap .fix_element,
+.darkmode .pop_wrap.type4, .darkmode .visit_history, .darkmode .minor_wrap.gallmain .visit_history, .darkmode .hot_gall_box, .darkmode .hotcate_list .top_cate_wrap .cate_box, .darkmode .up_mgall_box, .darkmode .new_magll_box,
+.darkmode .integrate_cont, .darkmode .rcont_sec .txt,
+.darkmode .btn_cash, .darkmode .pop_wrap .btn_box, .darkmode .word_list li .dot_line, .darkmode .category_solt_area ul, .darkmode .user_data_list, .darkmode .user_data_list li, .darkmode .login_box,
+.darkmode .miniwrap .img_contbox, .darkmode .block_sel, .darkmode .reason_input, .darkmode .pop_wrap.gray2px,
+.darkmode .cmt_info, .darkmode .reply_box, .darkmode .reply_list li, .darkmode .user_info_input, .darkmode .comment_wrap .bottom_paging_box, .darkmode .cmt_bg_box,
+.darkmode .btn_recommend_box, .darkmode .recom_bottom_box, .darkmode .appending_file_box, .darkmode .subject_morelist, .darkmode .subject_inner, .darkmode .intxt,
+.darkmode .pop_content.mns_closing .btn_bottom, .darkmode .secret_set .pwset input, .darkmode .set_cont, .darkmode .block_sch_gall, .darkmode .minor_ranking_box, .darkmode .issuebox.open .visit_history, .darkmode .user_control,
+.darkmode .mng_subject_sel, .darkmode .recommend_kapcode, .darkmode .select_box.dccon_use, .darkmode .dccon_search .inner_search, .darkmode .relation_wrap .inner:last-of-type, .darkmode .pin_num, .darkmode .pin_num th,
+.darkmode .pin_num td, .darkmode .mandu_pop .pin_pw, .darkmode .mandu_pop .cate_group, .darkmode .gallview_head, .darkmode .power_click .top_link, .darkmode .pw_goods_list ul, .darkmode .over_alt, .darkmode .gallview_head .gall_comment a,
+.darkmode .dcon_frame, .darkmode .vote_wrap.voteingbox, .darkmode .no_memberwrap input, .darkmode .btn_dccon_hot, .darkmode .user_control + .mng_subject_sel, .darkmode .pop_content.error_report .box.b, .darkmode .vote_wrap .btnbox, .darkmode .vote_content,
+.darkmode .vote_content .group, .darkmode .vote_tit .catetit_input, .darkmode .vote_categorybox, .darkmode .votetxt_addbox, .darkmode .vote_content .dayin, .darkmode .voteingbox .vote_categorybox.output, .darkmode .cont_list.img .img_box,
+.darkmode .vote_wrap .left_box, .darkmode .btn_search_nickid, .darkmode .btn_recent_list, .darkmode .btn_enroll, .darkmode .empty_sch_gall, .darkmode .subject_select.small .option_box, .darkmode .adult_report, .darkmode .gall_report,
+.darkmode .autodeltime_set .select_arraybox, .darkmode .autodeltime_set .dayin, .darkmode .uplink_inbox, .darkmode .btn_add, .darkmode .img_uplist li, .darkmode .file_upbox, .darkmode .video_box, .darkmode .local_search,
+.darkmode .local_search .top_search, .darkmode .bnt_ytube_up, .darkmode .youtube_search .inner, .darkmode .file.moviecast .setting .inbox, .darkmode .file.moviecast .setting .group .select_arraybox, .darkmode .file.moviecast .setting .group .option_box,
+.darkmode .content_box .secimg_box .img_box, .darkmode .info_viewbox, .darkmode .dccon_popinfo .dccon_infobox, .darkmode .file.moviecast .mvsetbox .thum_img::after, .darkmode .key_search_area li,
+.darkmode .sch_result_imgbox > a, .darkmode .restriction_off, .darkmode .fileupbox, .darkmode .file_urlbox,
+/***갤로그***/
+.darkmode.dgallog .cont_listbox li, .darkmode.dgallog .up_bgimg, .darkmode.dgallog .gallog_set .int, .darkmode .gallog_set .btn_fileup,
+/*어드민*/
+.darkmode .minor_uadmin_menu li a, .darkmode .uadmin_cont_box, .darkmode .complete_txt, .darkmode .bg_greybox, .darkmode .cloreason_write_box, .darkmode .form_group,
+.darkmode .relate_wordlist.set li, .darkmode .tiptxt.dot_line, .darkmode .mini_slow div.dot_line, .darkmode .concept_range .recomn, .darkmode .set_write_subject, .darkmode .btn_submng_out,
+.darkmode .btn_addsubject, .darkmode .mininame_reason, .darkmode .miniwrap .mini_member div.dot_line, .darkmode .miniwrap .mini_anonymity div.dot_line, .darkmode .miniwrap .modify_img, .darkmode .m_relate,
+.darkmode .error_report .error_textarea,
+.darkmode .nonmember .imgadd,
+/*만들기*/
+.darkmode .mini_openset .box, .darkmode .miniwrap .set_content.category .select_arraybox, .darkmode .minor_make_chk .scroll, .darkmode .make_guidetxt_box,
+/*210225*/
+.darkmode .time_best .typet_list li, .darkmode .img_box::after,
+.darkmode .rcont_imgtxt_box .txt, .darkmode .content_box .rcontimg_box .img_box::after,
+.darkmode .cont_list.img li,
+.darkmode .research .description,
+.darkmode .newvisit_history::before, .darkmode .view_wrap .newvisit_history::before,
+.darkmode .dccon_txtarea, .darkmode .cmt_txt_cont textarea.dccon_txtarea,
+.darkmode .pop_content.mngsetbox.submng .mng_option, .darkmode .search_box.grey.small .box .inner_search,
+.darkmode.dgallog .option_sort.gallog + .cont_listbox li:first-child, .darkmode.dgallog .search .inner_search, .darkmode .pop_content.guestblock .ip_inr,
+.darkmode .set_permit .bg_greybox> div::before,
+.darkmode.dgallog .option_sort.gallog ~ .cont_listbox li:first-child,
+.darkmode.dgallog .guestbook .cont_listbox li.comments, .darkmode.dgallog .guestbook .replys .inr, .darkmode.dgallog .guestbook .replys.line .inr,
+.darkmode .dcmedia .txt, .darkmode .sch_cmt, .darkmode .pop_content .moveset input,
+.darkmode .taginput, .darkmode .vdo_formbox .con_inr textarea, .darkmode .vdo_thumlist li a::after, .darkmode .vdo_thumsel::after, .darkmode .integrate_cont.video_result .sch_result_imgbox span,
+.darkmode .mandudel .user_option li > span,
+.darkmode .pop_wrap.srs .inner, .darkmode .pop_dcseries .srs_intxt textarea, .darkmode .pop_dcseries .con_box.top, .darkmode .pop_dcseries .srs_intit input, .darkmode .srs_list li,
+.darkmode .pop_dcseries .headbox,
+.darkmode .ltrwrap .validchk input, .darkmode .btn_evtsns.btn_snsmore, .darkmode .btn_evtsns .txt,
+.darkmode .validchk_box input:disabled,
+.darkmode .pop_wrap.gray1px,
+.darkmode .list_wrap .visit_bookmark + .wrap_inner #container .concept_wrap,
+.darkmode .list_wrap .visit_bookmark + .wrap_inner  #container .issue_contentbox,
+.darkmode .integrate_schwrap .power_link,/*220502 추가*/
+.darkmode .nlist_sns .urlcopy_box .btn,
+.darkmode .txtmark_gallset li, .darkmode .pop_tipbox.setting_list li,/*220913*/
+.darkmode .nftpublish_box .left .box.explain textarea, .darkmode .nftpublish_box .agree_chk .operatingbox,/*nft*/
+.darkmode .nftsale_wrap .optionbox, .darkmode .nftsale_wrap .operating, .darkmode .informationbox, .darkmode .nft_publishban, .darkmode .nftdealwrap,
+.darkmode .nftdealwrap .list, .darkmode .nftdealwrap .list td, .darkmode .nftsale_wrap .inputbox,
+.darkmode .pop_content.nftsale_wrap .calendar_wrap .cal_option.select .select_arraybox, .darkmode .nftsale_wrap .cmstable td, .darkmode .nftsale_wrap .cmstable th,
+.darkmode .nftsearch .in_keyword, .darkmode .lynft_onoffset .codelist li, .darkmode .mynft table.list td, .darkmode .jean_list.get,
+.darkmode .mynft table.list .nftsale_wrap .cmstable th, .darkmode .my_klayinfo, .darkmode .nftpublish_infobox, .darkmode .nftpublish_infobox .wallet_state .group,
+.darkmode .ly_sogae .box textarea, .darkmode .nftsale_wrap .set,
+.darkmode .ai_wrap, .darkmode .ai_wrap .area .box, .darkmode .ai_wrap .area, .darkmode .ai_make .btn_imgup,/*230214 ai*/
+.darkmode .tx-canvas .ai_make textarea, .darkmode .ai_make textarea, .darkmode .ai_make .inr3 .info_txt, .darkmode .ai_make .inr,/*230214 ai*/
+.darkmode .ai_refer_wrap .list li, .darkmode .ai_refer_wrap .list, .darkmode .pop_wrap.type6 .inner, .darkmode .aiguide_img,/*230214 ai*/
+.darkmode .lynft_annae .box, .darkmode .sorta button/*nft*/
+{border-color:#484848}
+
+.darkmode .dc_series,
+.darkmode .og-wrap,/*220926*/
+.darkmode div.og-img/*221108 추가*/
+{border-color:#484848!important}
+
+
+.darkmode .all_list dl, .darkmode .mng_subject_sel.mini_mng_adminset, .darkmode .tab_btnlist li, .darkmode .tab_btnlist li, .darkmode .btn_dccon_next{border-left-color:#484848}
+.darkmode .all_list{border-bottom-color:#484848}
+.darkmode .hotcate_list .cate_wrap{border:1px #484848 solid}
+
+.darkmode .viewtxt_cont .tbox{border-color:#585858}
+
+.darkmode .under_catelist .pop_head, .darkmode .con_list.txt, .darkmode .cont_list.txt, .darkmode .pop_wrap .pop_head.dashed, .darkmode .category_solt_area .tit,
+.darkmode .miniinfo_pop .function, .darkmode .content_box header, .darkmode .user_mandu, .darkmode .options, .darkmode .con_list.txt,
+.darkmode .integrate_cont.gallsch_result_all .integrate_cont_head,
+.darkmode .re .integrate_cont_head
+{border-color:#4f4f4f}
+
+.darkmode .wk_box,/*디시위키 디자인 수정*/
+.darkmode .nfttem .thumb::before, .darkmode .jean_list.get .jean_thumb .thumb_box::after, .darkmode .nftsale_wrap .nft_img span::after/*nft*/
+{border-color:#333}
+.darkmode .wk_content.list .wk_box{border:1px solid #333}/*디시위키 디자인 수정*/
+
+.darkmode .vote_box button.modify{border-color:#444}
+
+.darkmode .key_search_area li a{border-color:#777}
+.darkmode .permit_list .line_box.off, .darkmode .miniwrap .permit_list .line_box.off{border-color:#666}
+
+.darkmode .integrate_cont.gallsch_result_all .gallname_txt::after, .darkmode .integrate_cont.integrate_recom .gallname_txt::after{border-color:#6699cc}
+.darkmode .integrate_cont.gallsch_result_all .gallname_txt.restriction::after, .darkmode .integrate_cont.integrate_recom .gallname_txt.restriction::after{border-color:#555}
+
+/*파랑*/
+.darkmode .bottom_array .option_box, .darkmode .pop_wrap.type1, .darkmode .btn_dccon_infoview, .darkmode .allgall_sch_cont .right_cont,
+.darkmode .auto_wordwrap, .darkmode .allgall_search, .darkmode .bottom_search,
+.darkmode .bottom_array, .darkmode .calendar_wrap .inner, .darkmode .autodeltime_set .calendar_wrap .inner, .darkmode .dcwiki > button,
+/*어드민*/
+.darkmode .guide_cont.mng .code_inputbox, .darkmode .minor_uadmin_menu li a:hover,
+.darkmode .pop_wrap.type3, .darkmode .pop_wrap.file, .darkmode .minor_uadmin_wrap, .darkmode th, .darkmode .gall_list, .darkmode .issue_wrap,
+.darkmode .tab_btnlist li.on .frame, .darkmode .hot_inner.dw_hot > .clear, .darkmode .hot_inner.sch_con > .clear,
+.darkmode .area_links .btn_top_loginout, .darkmode .minor_make_wrap, .darkmode .minor_make_form,
+.darkmode .login_wrap, .darkmode .integrate_schwrap .info_policy, .darkmode .mandu_tab_box > button,
+.darkmode .con_box.bluebrd,
+.darkmode .join_wrap .dcfoot, .darkmode .login_wrap .dcfoot, .darkmode .policy_wrap .dcfoot, .darkmode .adult_wrap .dcfoot, .darkmode .noaccess_wrap .dcfoot, .darkmode .delet_wrap .dcfoot, .darkmode .report_wrap .dcfoot, .darkmode .woman_wrap .dcfoot, .darkmode .pwcam_wrap .dcfoot,
+.darkmode .visitab_box > button:first-child, .darkmode .visitab_box > button,
+.darkmode .con_head, .darkmode .cont_head, .darkmode .mgall_list_wrap,
+.darkmode .gallog_empty, .darkmode .cmt_write_box.gallog,
+.darkmode .rank_list.blue .rank_num,
+.darkmode.dgallog .cont_listbox, .darkmode .pop_wrap.type2, .darkmode .pop_wrap.type5, .darkmode .brd_topblue td,
+.darkmode .time_best .typet_list,
+.darkmode .issuebox.open,
+.darkmode.dgallog .cont_box,
+.darkmode .vote_wrap.makebox, .darkmode .calendar_wrap.type1 .inner,
+.darkmode .btn_write.txt,
+.darkmode .dcnftbox, .darkmode .nftfoot, .darkmode .btn_mynft.on.activate::after/*nft*/
+{border-color:#273272}/*테마 파랑*/
+
+/*.darkmode .gall .rank_num, .darkmode .btn_inout 220315삭제*/
+
+
+.darkmode .dc_all{border-top-color:#273272}
+.darkmode .dc_all, .darkmode .album_body td{border-bottom-color:#273272}
+.darkmode .integrate_schwrap .small_searchbox, .darkmode .integrate_schwrap .auto_wordwrap.small{border-color:#497dce}
+
+.darkmode .gnb_bar, .darkmode .integrate_schwrap .gnb_bar{border-color:#333d77}
+.darkmode .guide_cont, .darkmode .minor_block_list th, .darkmode .mini_member_list th, .darkmode .dccon_list_box .table_head, .darkmode .dccon_storage_table th,
+.darkmode .pop_wrap.yeonblue, .darkmode .tabcont_table, .darkmode .tabcont_table th, .darkmode .minor_block_list,
+.darkmode .all_ranklist, .darkmode .cmt_write_box, .darkmode .comment_box, .darkmode .view_comment .cmt_write_box,
+.darkmode .no_member_cont,
+.darkmode .ltrdate th, .darkmode .winnerchk th, .darkmode .applylist th,
+.darkmode .votetxt_addbox
+{border-color:#374384}
+
+.darkmode #opt_use_pop.pop_wrap.yeonblue{border-color:#3b4890}/*2단계 인증으로 보안을 강화하세요 otp안내 레이어*/
+
+.darkmode .pop_content.ltrdate tr:last-child td{border-bottom-color:#374384}
+
+.darkmode .voteingbox .vote_categorybox.output.sel::after{border-color:#525b88}
+
+
+.darkmode .miniwrap .comment_box, .darkmode .miniwrap .view_comment .cmt_write_box, .darkmode .miniwrap table th, .darkmode .miniwrap table,
+.darkmode .miniwrap .minor_make_wrap, .darkmode .miniwrap .minor_make_form,
+.darkmode .miniwrap .issue_wrap, .darkmode .miniwrap .minor_uadmin_wrap, .darkmode .miniwrap .issuebox.open,
+.darkmode .mini_catebox:first-child, .darkmode .mini_catebox, .darkmode .miniwrap .gallmain
+{border-color:#5c5bb1}/*미니 220315 6f6dd9,6f6dda */ /*220509 .darkmode .miniwrap .issuebox.open 추가*/
+
+.darkmode .pop_wrap.yeonpurple{border-color:#4341a2}
+
+.darkmode .pop_wrap.lightpurple, .darkmode .miniwrap .bottom_array .option_box, .darkmode .hot_minigall .rank_num,  .darkmode .miniwrap  .rank_num, .darkmode .minigall .rank_num, .darkmode .miniwrap .mgall .rank_num,
+.darkmode .lightpurple .allgall_search, .darkmode .lightpurple .allgall_sch_cont .right_cont, .darkmode .lightpurple .auto_wordwrap, .darkmode .miniwrap .bottom_search, .darkmode .miniwrap .bottom_array,
+.darkmode .miniwrap .minor_uadmin_menu li a:hover,
+.darkmode .miniwrap .guide_cont, .darkmode .miniwrap .guide_cont.mng .code_inputbox, .darkmode .miniwrap .guide_cont.mng .btn_codeok,
+.darkmode .autodeltime_set .calendar_wrap.type1 .inner,
+.darkmode .miniwrap .btn_write.txt
+{border-color:#4341a2}/*보라*/
+
+.darkmode .miniwrap .permit_list .line_box{border-color:#938bc0}
+
+.darkmode .permit_list .line_box{border-color:#7a86af}/*220315 717baf */
+.darkmode .vdo_thumlist li.sel a::after{border-color:#626da6}
+
+/*
+.darkmode .red .btn_tab{border-color:#ac1804}
+.darkmode .dcconlayer .dccon_shop_list .link_product:hover .dcon_frame.red_brd, .darkmode .dcconlayer .dccon_shop_list li.on .dcon_frame.red_brd{border-color:#c23420}
+.darkmode .list .gall_tit a:visited.font_red{color:#c33333!important}
+.darkmode .deco_redround{border-color:#cc3300}
+.darkmode .rank_list.red .rank_num{border-color:#990000}
+*/
+
+/*빨간색*/
+/*메인빨강 c33333 서브레드 cc3300 보더 990000*/
+/*버튼,탭 배경c33333 보더 990000
+핫 뉴 아이콘 c33333
+n아이콘 기타  cc3300*/
+.darkmode .red .btn_tab{border-color:#990000}/*디시콘 탭*/
+.darkmode .dcconlayer .dccon_shop_list .link_product:hover .dcon_frame.red_brd, .darkmode .dcconlayer .dccon_shop_list li.on .dcon_frame.red_brd{border-color:#990000}
+.darkmode .rank_list.red .rank_num{border-color:#990000}/*실시간 북적, 실시간 검색어*/
+.darkmode .deco_redround{border-color:#c33333}/*매니저 어드민 보안인증  보안강화 텍스트 라운드*/
+
+.darkmode .dcconlayer .dccon_shop_list .link_product:hover .dcon_frame.red_brd, .darkmode .dcconlayer .dccon_shop_list li.on .dcon_frame.red_brd{border-color:#990000}
+
+/*노랑*/
+.darkmode .mgall .rank_num{border-color:#e87302}
+.darkmode .btn_red.mgall_make_go{border-color:#e88c02; box-shadow: 0px 1px 0px 0px #585858;-webkit-box-shadow: 0px 1px 0px 0px #585858;border-width:1px}
+.darkmode .gnb_list li a.deco span, .darkmode .gnb_list li a[href*="https://h5.dcinside.com"]{border-color:#e2d72b}
+
+/*연두*/
+.darkmode .join_tip:after, .darkmode .hitgalltip::before, .darkmode .tip_box3:after{border-color:#80a636 transparent}
+.darkmode .mynft .right_box .tip_box2::after{border-color:transparent #80a636}
+
+
+.darkmode .ltrdate .icon_win.green, .darkmode .ltrdate .icon_win.gift{border-color:#045e1d}/*220818 추가*/
+
+/*카테고리 메인*/
+.darkmode .cate_wrap{border: 1px solid #484848;border-top: 3px solid #273272}
+
+.darkmode .mini_list_wrap{border: 1px solid #484848;border-top-color: #5c5bb1}
+.darkmode .minor_wrap.gallmain .mini_list_wrap{border-top-width:2px}
+
+/*탭*/
+.darkmode .mandu_tab_box > button.on{border-bottom:#121212}
+
+.darkmode .visitab_box > button.on{border-bottom-color:#151515}
+
+.darkmode .tab_menubox button, .darkmode .block_tab button{border-color:#35393b;border-bottom-color:#273272}/*0.8*/
+
+.darkmode .type3.lightpurple .tab_menubox button, .darkmode .type3.lightpurple .block_tab button{border-color:#35393b;border-bottom-color:#4341a2}
+
+.darkmode .tab_menubox button.on, .darkmode .tab_menubox button:first-child.on, .darkmode .block_tab button.on, .darkmode .block_tab button:first-child.on{border: 2px solid #273272;border-width:2px 2px 0px 2px}/*0.8*/
+.darkmode .miniwrap .minor_uadmin_setting .tab_box button{border-color:#35393b;border-bottom-color:#4f4dc6}
+.darkmode .miniwrap .minor_uadmin_setting .tab_box button.on{border-color:#4f4dc6}
+
+.darkmode .type3.lightpurple .tab_menubox button.on, .darkmode .type3.lightpurple .tab_menubox button:first-child.on, .darkmode .type3.lightpurple .block_tab button.on,
+.darkmode .type3.lightpurple .block_tab button:first-child.on
+{border-color:#4341a2;color:#938bc0}/*8684d7*/
+
+.darkmode .pop_wrap .my_minor_mini .tab_menubox button:first-child{border-left:0}
+
+/*220331*/
+.darkmode .txtbtn_more:after{border-color:transparent #888}
+
+.darkmode .wrap_inner.nft .issue_wrap, .darkmode .wallet_statebox, .darkmode .in_gallview.nft .view_content_wrap, .darkmode .dcnftbox .conwrap{border-color:#8c308c }
+
+.darkmode .btnline_turquoise{border-color:#025e5e}
+
+.darkmode .ai_make .pp_recom_box{border-color:rgba(73, 96, 73, 0.8)}/*230214 ai*/
+
+
+/*************************** //border ***************************/
+
+
+/**************************** outline *************************************/
+.darkmode .nftpublish_box .annae_box .step_tit{outline-color:#222 }
+/**************************** //outline ************************************/
+
+/*투명도*/
+.darkmode .badgeimg, .darkmode .pop_dcseries .icon_listsort,
+.darkmode .sp_sns, .darkmode .icon_img,
+.darkmode .sp_main.bnt_search, .darkmode .sp_img.bnt_search, .darkmode .writer_nikcon img, .darkmode .bottom_array .icon_option_more, .darkmode .checkmark, .darkmode .icon_memberout,
+.darkmode .sp_img.icon_dory, .darkmode .sp_img.icon_hitgall, .darkmode .btn_useradmin_go, .darkmode .sp_img.icon_cmtpw_close,
+.darkmode .icon_vote_tit, .darkmode .icon_voice_tit, .darkmode .icon_autodel_tit, .darkmode .icon_minilock, .darkmode .miniwrap .icon_favorite, .darkmode .icon_qmakr, .darkmode .icon_bigrestriction, .darkmode .noti.on,
+.darkmode .kap_codeimg, .darkmode .dccon_storage_table input, .darkmode .power_click .adicon,
+.darkmode .icon_binglock, .darkmode .icon_voteshare, .darkmode .robot_framebox iframe, .darkmode .btn_sort, .darkmode .tx-switchtoggle a, .darkmode .setting_onoff button,
+.darkmode .icon_adult_report, .darkmode .icon_gall_report, .darkmode .btn_close, .darkmode .btn_prev, .darkmode .btn_next, .darkmode .btn_blueprev, .darkmode .btn_bluenext,
+.darkmode .icon_hotmgall, .darkmode .icon_newmgall, .darkmode .miniinfo_pop .list .img_box img, .darkmode .upload_bgimg, .darkmode .loding_bar, .darkmode .mvcast_upbg,
+.darkmode .icon_favorite, .darkmode .icon_saveclose, .darkmode .icon_sfavorite, .darkmode .icon_lock2,
+.darkmode .con_box.bluebrd .btn_box .btn_blue, .darkmode .con_box.bluebrd .btn_box .btn_red, .darkmode .con_box.bluebrd .btn_box .btn_green, .darkmode .con_box.bluebrd .btn_box .btn_grey,
+.darkmode .noaccess_wrap .dc_logo img, .darkmode .woman_wrap .dc_logo img, .darkmode .adult_wrap .dc_logo img, .darkmode .tx-attach-box .tx-attach-list dd.tx-button,
+.darkmode .tx-attach-box .tx-attach-delete a,
+/*어드민*/
+.darkmode .icon_img_camera,
+/*만들기*/
+.darkmode .ex .basic_tit, .darkmode .round_check + .round_label::before, .darkmode .guide_wrap .dc_logo img, .darkmode .dcheader.bg .area_links a, .darkmode .dcheader.bg .area_links li::before,
+.darkmode .tx-attach-box .tx-attach-preview img,
+.darkmode .pushimg_box img,
+.darkmode .result_bar,
+.darkmode .reply_info .usertxt::before, .darkmode .reply_info .comment_dccon::before,
+.darkmode.dgallog .gallog_cont .replys .gall_linkbox .link::before, .darkmode.dgallog .guestbook .replys .cont.box1::before,
+.darkmode .inner_search .word_del .btn,
+.darkmode .sch_cmt::before,
+.darkmode .icon_nhitgall, .darkmode .icon_snsmore, .darkmode .icon_report,
+.darkmode .icon_slowrite_info, .darkmode .rtg_img,/*220315*/
+.darkmode .integrate_schwrap .gall_result_more:after, .darkmode .txtbtn_more:after,
+.darkmode .time_best .tab_btn.on:after,/*220530*/
+.darkmode .wallet_adr::before, .darkmode .wallet_adr::after
+{opacity:0.9}
+/*.darkmode .icon_recom_down, .darkmode .miniwrap .icon_recom_up, .darkmode .icon_recom_up 220530 삭제*/
+
+/*.darkmode .ico_ranking.same{opacity: 0.8}*/
+
+/*.darkmode .listwrap .time_best .tab_btn:after{opacity:0.6}220530*/
+
+.darkmode .restriction, .darkmode .icon_restriction, .darkmode .hot_mgall .restriction .rank_txt, .darkmode .hot_minigall .restriction .rank_txt, .darkmode .bnt_visit_prev .icon_prev, .darkmode .bnt_visit_next .icon_next,
+.darkmode .icon_more,
+.darkmode.dgallog .btn_listdel,
+.darkmode .icon_info,
+.darkmode .srs_list .srsinfo > span::before,
+.darkmode .visit_bookmark .newvisit_list .icon_visit_del
+{opacity:0.5}
+
+.darkmode .srs_list .srsinfo > span::before,
+.darkmode .integrate_cont .icon_restriction
+{opacity:0.3}/*220315 추가*/
+
+.darkmode .btn_hitgall.not .icon_hitgall, .darkmode .btn_nhitgall.not .icon_nhitgall, .darkmode .btn_silbechu.not .icon_silbechu{opacity:0.2}
+
+.darkmode .miniwrap .bottom_search .bnt_search, .darkmode .migall_state.restriction, .darkmode .bnt_visit_prev.on .icon_prev, .darkmode .bnt_visit_next.on .icon_next, .darkmode .hot_mgall .restriction, .darkmode .hot_minigall .restriction,
+.darkmode .secret_tip .btn_close, .darkmode .gallog_menu .icon_new, .darkmode .pop_hotgall_listbox .restriction,
+.darkmode .btn_sort.txt,
+.darkmode .dcheader .wrap_search .word_close .btn_close,
+.darkmode .ppchk .checkmark, .darkmode .icon_img.icon_ai/*230214  ai*/
+{opacity:1}
+
+
+/*그림자*/
+.darkmode .red .btn_tab.on{text-shadow:0px 1px #b42718}
+
+.darkmode .btn_hitgall, .darkmode .btn_snsmore, .darkmode .btn_report, .darkmode .btn_user_control, .darkmode .adult_report, .darkmode .gall_report,
+.darkmode .btn_nhitgall,
+.darkmode .btn_silbechu/*220530*/
+{text-shadow:0px 1px #363636}
+
+.darkmode .ltrdate .icon_win.green, .darkmode .ltrdate .icon_win.gift{text-shadow:0px -1px #045e1d}/*220818 추가*/
+
+.darkmode .kap_codewrap .inp_txt{width:198px}/*메인 캡차*/
+
+.darkmode .issue_inner{bottom:1px}
+
+
+/*글쓰기 에디터*/
+.darkmode .tx-sidebar-boundary, .darkmode .tx-toolbar-boundary, .darkmode .tx-resize-bar div.tx-resize-bar-bg, .darkmode .tx-attach-box{background:#ccc}
+.darkmode .tx-sidebar-boundary, .darkmode .tx-toolbar-boundary, .darkmode .tx-canvas, .darkmode .tx-resize-bar div.tx-resize-bar-bg, .darkmode .tx-attach-box .tx-attach-box-inner,
+.darkmode .tx-attach-box .tx-attach-box-inner
+{border-color:#ccc}
+
+.darkmode .tx-attach-box .tx-attach-list, .darkmode .tx-attach-box, .darkmode .tx-attach-box .tx-attach-preview{border-color:#999}
+.darkmode .tx-toolbar-boundary {border-top-color:#999}
+.darkmode .dayall::after{border-left-color:#999}
+.darkmode .tx-attach-div div.tx-attach-txt, .darkmode .sources{color:#ccc}/*220315 aaa-> ccc*/
+/*//글쓰기 에디터*/
+
+
+
+/*버튼*/
+.darkmode .btn_blue, .darkmode .pop_wrap .btn_apply, .darkmode .btn_visit,
+/*갤로그*/
+.darkmode.dgallog .state.on,
+/*어드민*/
+.darkmode .guide_cont.mng .btn_codeok,
+.darkmode.dgallog .bluebox
+{background:#333d77;border-color:#273272;text-shadow: 0px -1px #1b2351;color:#eee}
+.darkmode .btn_lightblue{background:#5a6694;border-color:#374384;text-shadow: 0px -1px #4b559c;color:#eee}
+.darkmode .btn_grey, .darkmode .pop_wrap .btn_cancle{background:#444;border-color:#333;text-shadow: 0px -1px #363636;color:#d3d3d3}
+.darkmode .btn_lightgrey{background:#343434;border-color:#262626;text-shadow: 0px -1px #363636;color:#d3d3d3}
+.darkmode .btn_jeangrey{background:#686868;border-color:#484848;text-shadow: 0px -1px #363636;color:#ccc}
+.darkmode .btn_yeongrey, .darkmode.dgallog .state, .darkmode .pwcam button.btn_grey,.darkmode .greybox{background:#444;border-color:#333;text-shadow: none;color:#d3d3d3}
+.darkmode .btn_mediumgrey{background:#777;border-color:#444;text-shadow: 0px -1px #535353;color:#eee}
+.darkmode .btn_white, .darkmode .miniwrap .dccon_guidebox .btn_white, .darkmode .btn_cont_report, .darkmode.dgallog .icon_secretsquare, .darkmode .whitebox,
+.darkmode .ai_make .btn_aiguide/*230214 ai*/
+{background:#666;border-color:#555;color:#eee}
+.darkmode .btn_white_ccc{background:#555;border-color:#333}
+.darkmode .btn_whitepurple{background:#666;border-color:#555;color:#eee}
+.darkmode .btn_red{display:inline-block;background:#c33333;border-color:#990000;color:#eee}/*220315*/
+.darkmode .btn_green{background:#005952;border-color:#003e39;color:#bbb;text-shadow: 0px -1px #1f6440}
+.darkmode .btn_lightpurple, .darkmode .miniwrap .nonmember .btn_blue{background:#5c5bb1;text-shadow: 0px -1px #46469e;color:#e5e4f1;border-color:#4341a2}/*mini*/
+.darkmode .btn_yeonpurple{background:#9392c9;text-shadow: 0px -1px #46469e;color:#e5e4f1;border-color:#5c5bb1}/*mini*/
+.darkmode .btn_lightgreen{background:#557e2c;color:#eee;border-color:#44782c}
+.darkmode .btn_blue_round{border:1px solid #273272;background:#333d77;text-shadow: 0px -1px #1b2351}
+.darkmode .btn_lightpurple_round, .darkmode .bg_round_blue{border:1px solid #4341a2;background:#5c5bb1;text-shadow: 0px -1px #46469e}/**/
+.darkmode .btn_blue_round, .darkmode .btn_lightpurple_round, .darkmode .bg_round_blue{color:#eee}
+.darkmode .btn_white_round, .darkmode .gall_issuebox .pop_content.gall_info button.btn_hotgall_allview{border:1px solid #585858;border-radius:50px;background:#383838;color:#aaa}/*220913 클래스 추가*/
+.darkmode .btn_white_round.font_jinlightpurple{color:#ccc}
+.darkmode .btn_white_round.line_blue{border-color:#273272}
+.darkmode .line_yeonblue{border-color:#3f498a;color:#343c77}
+.darkmode .btn_greybox{background:#f3f3f3}
+.darkmode .cmt_delpw_box, .darkmode .btn_boardlist{border-color:#273272}
+.darkmode .btn_cmtpw_close{background:#242f67}
+.darkmode .cmt_mdf_del .btn_ok, .darkmode .cont_btnbox .btn_ok{background:#333d77;color:#eee;text-shadow: 0px 1px #1b2351}
+.darkmode .btn_grey_roundbg{background:#686868;border:1px solid #484848;color:#ccc}
+
+.darkmode .btn_tyeonblue{background:#0455d0;border:1px solid #042da7;color:#eee;;text-shadow:none}/*#025de8 0230ba */
+.darkmode .ly_adult_certify .btn_red.smallest{text-shadow:none }
+
+.darkmode .btn_lighterblue{background:#6871a0;border-color:#5a6498;color:#eee}
+.darkmode .btn_turquoise{background:#025e5e;border-color:#024141}
+.darkmode .btn_orange{background:#dd5a37;border-color:#d2432c;text-shadow:0px -1px #d2432c}
+
+/*탭 버튼*/
+.darkmode .array_tab button.on,
+/***갤로그***/
+.darkmode .gallog_menu li.on a, .darkmode .minor_uadmin_menu li a.on,/*관리자 왼쪽 메뉴*/
+.darkmode .btn_estimatego.on,
+.darkmode .tradego.on, .darkmode .sorta button.on/*230106*/
+{background:#333d77;color:#eee;border-color:#273272}
+
+.darkmode .array_tab button,
+/***갤로그***/
+.darkmode .gallog_menu li a, .darkmode .minor_uadmin_menu li a,/*관리자 왼쪽 메뉴*/
+.darkmode .btn_estimatego,/*220728*/
+.darkmode .tradego,/*230106*/
+.darkmode .mynft .array_tab.left_box > button
+{background:#666;color:#eee;border-color:#555}
+
+.darkmode .mynft .array_tab.left_box > button.on{background:#333d77;color:#eee;border-color:#273272 }
+
+.darkmode .nftsale_wrap .dayset > button{background:#252525;color:#eee;border-color:#555}/*nft*/
+
+.darkmode .array_tab button:hover,
+.darkmode .btn_estimatego:hover,/*220728*/
+.darkmode .tradego:hover/*230106*/
+{border:1px solid #888}
+
+.darkmode .array_tab button.on:hover,.darkmode .btn_estimatego.on:hover,
+.darkmode .tradego.on:hover/*230106*/
+{border-color:#273272}
+.darkmode .cmt_delpw_box.nft{outline-color:#273272}
+.darkmode .miniwrap .array_tab button.on, .darkmode .miniwrap .minor_uadmin_menu li a.on, .darkmode .miniwrap .btn_estimatego.on,
+.darkmode .miniwrap .tradego.on
+{background:#5c5bb1;color:#e5e4f1;border-color:#4341a2}
+
+.darkmode .miniwrap .btn_estimatego.on:hover{border-color:#4341a2}
+/*//탭 버튼*/
+
+
+/*리스트 차단*/
+.darkmode .block-disable > *, .darkmode .block-disable a, .darkmode .block-disable .voice-box{opacity: 0.2;filter:alpha(opacity=20);color:#aaa;}
+.darkmode .block-disable td a{color:inherit;opacity:1}
+
+/*댓글 차단*/
+.darkmode .comment_wrap .block-disable > *, .darkmode .comment_wrap .block-disable a{opacity:1;filter:alpha(opacity=100);color:#aaa}
+.darkmode .comment_wrap .block-disable  .gall_writer > *,
+.darkmode .comment_wrap .block-disable  .date_time,
+.darkmode .comment_wrap .block-disable  p,
+.darkmode .comment_wrap .block-disable img,
+.darkmode .comment_wrap .block-disable .coment_dccon_info,
+.darkmode .comment_wrap .block-disable .cmt_txtbox > iframe,
+.darkmode .comment_wrap .block-disable  .cmt_mdf_del > *{opacity:0.2;filter:alpha(opacity=20);color:#aaa}/*220315 0.4->0.2*/
+
+/*답글 차단*/
+.darkmode .comment_wrap .reply .block-disable > *{opacity:0.2;filter:alpha(opacity=20);color:#aaa}/*220315 0.4->0.2*/
+.darkmode .comment_wrap .reply .block-disable .gall_writer > *,
+.darkmode .comment_wrap .block-disable .reply_info  .ip,
+.darkmode .comment_wrap .block-disable .reply_info  p,
+.darkmode .comment_wrap .block-disable .reply_info  img,
+.darkmode .comment_wrap .block-disable .reply_info .coment_dccon_info,
+.darkmode .comment_wrap .block-disable .reply_info .cmt_txtbox > iframe,
+.darkmode .comment_wrap .block-disable .reply_info  .cmt_mdf_del > *{opacity:1;filter:alpha(opacity=100);color:#aaa}
+
+.darkmode .mark{background:#f2e94f;color:#e44c1b}/*갤러리 내부 검색 단어*/
+.darkmode.dgallog  .mark,
+.darkmode .mini_openset .box .chk .checkbox, .darkmode .mini_openset .chk .rdbox .infotxt/*220315 555에서 이동 만들기*/
+{color:#333}
+.darkmode .write_div .dclottery .ltrtxtbox strong, .darkmode .write_div .dclottery .ltrtxtbox li{color:#333!important}/*220426 디시로터리 추가*/
+
+.darkmode .user_control .mng_subject_sel .option_box{width:124px}
+.darkmode .user_control .mng_subject_sel.mini_mng_adminset .option_box{width:123px;left:-1px!important}
+
+/*셀렉트*/
+.darkmode .select_box.array_latest .select_area, .darkmode .dccon_use .select_area, .darkmode .method .select_area, .darkmode .phone .option_sort .select_arraybox .select_area, .darkmode .option_sort.mandu .select_arraybox .select_area,
+.darkmode .hot_inner .option_sort.dccon .select_arraybox .select_area, .darkmode .vote_content .select_arraybox .select_area, .darkmode .mng_subject_sel .select_area,
+.darkmode .autodeltime_set .select_arraybox .select_area,
+.darkmode .option_sort .select_area, .darkmode .minor_admin .select_area, .darkmode .minor_make .select_area, .darkmode .scrap_wrap .select_area,
+.darkmode .add_subject_list li/*220520 야간모드 개선*/
+{background:transparent}
+
+.darkmode .cont_list.img .img_box .cover{background-color:transparent}
+
+
+.darkmode .gallog_menu .new{right:22px}
+
+/*보이스리플 아이프레임*/
+.darkmode .sp-voice{background-image:url(https://nstatic.dcinside.com/dc/m/img/dark/sp/sp_voiceripple_dark.png?1);}
+.darkmode .sp-splay{opacity: 70%}
+.darkmode .voice-box .btn-voice{background-color: #404a89;color:#ddd}
+.darkmode .voice-box .voice-player{background-color: #a2a3ac}
+.darkmode .voice-box .btn-svoice{background-color: #404a89;color: #ddd}
+.darkmode .voice-player .time{color:#ddd}
+.darkmode .voice-player .prograss{background-color: #ddd}
+.darkmode .voice-player .prograss .bar::after,
+.darkmode .voice-player .prograss .bar{background-color: #404a89}
+.darkmode .voice-lnk{color: #bbb}
+
+.darkmode .write_div *, .darkmode .write_div, .darkmode .album_cont p{color:#444}/*220315 555->333  --> 220923 가독성 문제로 333->444 */
+.darkmode .write_div .over_alt,.darkmode .write_div .btn_dccon_infoview,  .darkmode .btn_red.mgall_make_go,
+.darkmode .inwatermark, .darkmode .write_div .inwatermark, .darkmode .imgwrap .btn,
+.darkmode .vote_wrap .calendar_wrap.type1 .daybox.sel.end .day, .darkmode .calendar_wrap.type1 .daybox.sel.end .day,
+.darkmode .vote_wrap .calendar_wrap.type1 .daybox.sel.start .day, .darkmode .vote_wrap .calendar_wrap.type1 tr td:first-child .daybox.sel.start .day,
+.darkmode .calendar_wrap.type1 tr td .daybox.sel.start .day, .darkmode .pop_content.schmove .writing_day,/*220520 야간모드 개선*/
+.darkmode .calendar_wrap.type1.blue .daybox.sel.end .day
+{color:#fff}
+
+.darkmode .imgwrap .num{color:#29367c}
+
+.darkmode .write_div, .darkmode .album_cont p,
+.darkmode .inwatermark, .darkmode .write_div .inwatermark, .darkmode .imgwrap .num, .darkmode .tip_box2, .darkmode .imgwrap .btn,
+.darkmode .txtmark_setting_wrap .sel_color
+{filter: invert(100%)}
+
+.darkmode .mynft .right_box .tip_box2{filter:invert(0);}/*nft*/
+
+.darkmode .write_div,
+.darkmode .write_div > p div,
+.darkmode .write_div img,
+.darkmode .write_div video,
+.darkmode .write_div iframe,
+.darkmode .write_div embed,
+.darkmode .write_div object,
+.darkmode .write_div .over_alt,
+.darkmode .write_div .btn_dccon_infoview,
+/*.darkmode .write_div a,*/
+.darkmode .write_div #vr_share_lyr,
+/*.darkmode .album_cont p,*/
+.darkmode .write_div .tit_info,
+/*.darkmode .writing_view_box .write_div .writing_view_box a[href*="stibee"].tx-link,*/
+.darkmode .writing_view_box .writing_view_box .writing_view_box .write_div .writing_view_box a[href*="stibee"].tx-link,
+.darkmode .writing_view_box > .write_div > .linkbox_view > .tx-link,
+.darkmode .writing_view_box .writing_view_box > div > .linkbox_view > .tx-link,
+.darkmode a[href*="bemil"] .inner_info,
+.darkmode a[href*="stibee"] .inner_info,
+.darkmode a[href*="stibee"] .thumb_g,
+.darkmode a[href*="stibee"].tx-link .info_g
+{filter: invert(100%)}
+
+.darkmode .btn_recommend_box .sup_num,
+.darkmode .album_cont p > span > strong,
+.darkmode .write_div p > span > strong > span > a,
+.darkmode .write_div p > strong > span a[href*="bemil"], .darkmode .write_div p > span > strong > a[href*="bemil"]
+{filter:none}
+.darkmode .writing_view_box > .write_div > .writing_view_box > .write_div .linkbox_view > a[href*="stibee"] .thumb_g img
+{filter: initial}
+.darkmode .writing_view_box > .write_div > .writing_view_box > .write_div .linkbox_view > a[href*="stibee"] .box_info,
+.darkmode .album_cont p > img,
+.darkmode .og-div/*221108 추가*/
+{filter:inherit}
+
+.darkmode .album_cont .compos_section, .darkmode .compos_section
+{background:none!important}
+
+.darkmode .dc_mv:fullscreen, .darkmode .write_div iframe:fullscreen{filter: none!important}
+.darkmode .dc_mv:-webkit-full-screen, .darkmode .write_div iframe:-webkit-full-screen{filter: none!important}
+
+/*210825*/
+.darkmode .write_div .video_infobox, .darkmode .write_div .pop_wrap.type3{filter:invert(1)}
+.video_infobox::before{border-color:#484848;opacity:0.5}
+
+.darkmode .gall_writer .user_data  .user_data_list .icon_go{filter:invert(0.3)}
+.darkmode .imgwrap{filter:inherit!important}
+.darkmode p .imgwrap  .tip_box2 .inner .txt{filter:inherit!important}
+
+.darkmode .dc_series{filter:invert(1);}
+
+.darkmode .ltrwrap .write_div,
+.darkmode .ltrwrap .write_div img,
+.darkmode .ltrwrap .write_div .pop_wrap.type3
+{filter:invert(0)}/*디시로터리*/
+
+/*본문 게시물펌용 야간모드*/
+.darkmode .gallview_contents .og-url{filter:invert(1);}
+.darkmode .gallview_contents .og-img img{filter:invert(0);}
+.darkmode .gallview_contents .og-div{filter:invert(1)!important; }
+
+.darkmode .gallview_contents .write_div .ai_contbox p,
+.darkmode .gallview_contents .write_div .ai_wrap .area .box .inr,
+.darkmode .gallview_contents .write_div .ai_wrap .area .box .cont,
+.darkmode .gallview_contents .ai_wrap .area .box .tit, .darkmode .gallview_contents .write_div .ai_wrap .cont a
+{color:#ccc}
+/*//본문 게시물펌용 야간모드*/
+
+/*230214 ai*/
+.darkmode .gallview_contents .ai_wrap{filter:invert(100%)}
+.darkmode .gallview_contents .ai_wrap .area .box .tit,
+.darkmode .gallview_contents .ai_wrap .ai_imgbox .ai_img,
+.darkmode .gallview_contents .write_div .ai_wrap img, .ai_sign,
+.darkmode .gallview_contents .ai_wrap .imgwrap .num, .darkmode .gallview_contents .ai_wrap .imgwrap .btn, .darkmode .gallview_contents .ai_wrap .tip_box2
+{filter:none}
+.darkmode .gallview_contents .ai_wrap .ai_contbox .tip_box2 p{color:#fff}
+
+
+.darkmode .ltrdate .icon_win{background: #333d77;border-color: #273272;color: #eee}
+.darkmode .ltrdate .icon_cancel{background:#666;border-color:#555;color:#eee}
+.darkmode .ly_atvt_index  + .poply_close .icon_greyclose {background-position:-102px -136px}
+
+/*익스*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+.darkmode .write_div *, .darkmode .write_div, .darkmode .album_cont p{color:#aaa!important}
+}
+
+/*210831 검색 자동완성 박스*/
+.darkmode .dchead .auto_wordwrap .word_list .search_key{background-color:#151515!important}
+.darkmode .dchead .auto_wordwrap .word_list .search_key.on{background-color:#222!important}
+/*//210831 검색 자동완성 박스*/
+
+
+/*설문*/
+.darkmode .nrschwrap .bottom_logo{
+background:url(https://nstatic.dcinside.com/dc/w/images/dark/dclgo_dark.png)no-repeat left top;background-size:166px 100%;
+}
+
+.darkmode .sp_research,
+.darkmode .nrschwrap .btn_close::after
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_research_dark.png?100)}
+
+.darkmode .nrschwrap .catebox::before, .darkmode .nrschwrap.result .list.win1 .catebox::before, .darkmode .nrschwrap.result .list.win2 .catebox::before, .darkmode .nrschwrap.result .list.win3 .catebox::before
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/bg1_dark.png)}
+
+.darkmode .nrschwrap .catebox::after, .darkmode .nrschwrap.result .list.win1 .catebox::after, .darkmode .nrschwrap.result .list.win2 .catebox::after, .darkmode .nrschwrap.result .list.win3 .catebox::after
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/bg2_dark.png)}
+
+.darkmode .nrschwrap .catebox, .darkmode .nrschwrap.result .list.win1 .catebox, .darkmode .nrschwrap.result .list.win2 .catebox, .darkmode .nrschwrap.result .list.win3 .catebox
+{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/bg_dark.png)}
+
+
+.darkmode .nrsch, .darkmode .nrsch_top{background-color:#121212}
+.darkmode .nrsch_content, .darkmode .pop_content.gall_info .imgbox{background-color:#282828}
+
+
+.darkmode .nrschwrap .inr{
+background:#ddd;
+background: -moz-linear-gradient(top, rgba(238,238,238,1) 45%, rgba(204,204,204, 1) 200%);
+background: -webkit-linear-gradient(top, rgba(238,238,238,1) 45%,rgba(204,204,204, 1) 200%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(238,238,238, 1) 45%, rgba(204,204,204, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+}
+
+.darkmode .nrschwrap .selchk .inr::before{
+background:#fff;
+background: -moz-linear-gradient(bottom, rgba(238,238,238,1) 35%, rgba(204,204,204, 1) 200%);
+background: -webkit-linear-gradient(bottom, rgba(238,238,238,1) 35%,rgba(204,204,204, 1) 200%);
+background: linear-gradient(to top, rgba(238,238,238,1) 35%,rgba(204,204,204, 1) 200%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#ffffff',GradientType=0 );
+}
+
+
+.darkmode .nrsch_content,
+.darkmode .nrschwrap .btn_close
+{border-color:#484848}
+
+.darkmode .nrschwrap .inr{border-color:#8c8c8c}
+.darkmode .nrschwrap .selchk .inr,
+.darkmode .nrschwrap.result .list.win1 .inr
+{border-color:#d22227}
+.darkmode .nrsch{border-color:#273272}
+
+.darkmode .nrsch_top > h4{color:#ddd}
+.darkmode .resultxt .txt, .darkmode .rank .resulperinfo{color:#777}
+
+.darkmode .win1 .resultxt .txt, .darkmode .win2 .resultxt .txt, .darkmode .win3 .resultxt .txt{color:#000}
+.darkmode .nrsch_top > .info span{color:#888}
+.darkmode .nrsch_head > h3{color:#7a86af}
+
+.darkmode .nrsch_top > .info span::before{opacity:0.5}
+
+.darkmode .nrschwrap .btn_blue{background:#333d77;border-color:#273272;text-shadow: 0px -1px #1b2351;color:#eee}
+.darkmode .nrschwrap .btn_grey{background:#444;border-color:#333;text-shadow: 0px -1px #363636;color:#eee}
+
+/*******************************/

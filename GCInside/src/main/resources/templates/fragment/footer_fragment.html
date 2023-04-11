@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+
     <!-- 2023/03/09 // 라성준 // terms 약관 페이지 푸터 -->
     <!-- 2023/03/18 // 심규영 // 경로 수정 및 board/write 공통 사용 -->
     <footer class="gcfoot" th:fragment="termsFooter">
@@ -89,8 +90,18 @@
                         <a href="#" target="_blank" class="link_info">프로모션</a>
                         <a href="#" target="_blank" class="link_info">광고문의</a>
                     </span>
+              <script>
+                  function toggleDarkMode() {
+  const body = document.querySelector('html');
+  if (body.classList.contains('darkmode')) {
+    body.classList.remove('darkmode');
+  } else {
+    body.classList.add('darkmode');
+  }
+}
+              </script>
             <span class="bottom_menu">
-                        <a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a>
+                        <button onclick="toggleDarkMode()"><a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a></button>
                         <a class="menu_link menu_fold" href="javascript:void(0);" style="display:block"><em class="sp_img icon_fold"></em>닫기</a>
                         <a class="menu_link menu_open" href="javascript:void(0);" style="display:none"><em class="sp_img icon_open"></em>열기</a>
                         <a class="menu_link" href="#top" ><em class="sp_img icon_up"></em>맨위로</a>

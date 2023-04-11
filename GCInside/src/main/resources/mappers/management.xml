@@ -7,13 +7,19 @@
 
     <!-- create -->
     <!-- read -->
-    <!-- 2023.03.28 // 라성준 // 매니지먼트 address 값 불러오기-->
+    <!-- 2023.03.28 // 라성준 // 매니지먼트 address 값 불러오기 -->
     <select id="selectArticleAndSetting" resultType="hashmap">
         SELECT a.*, b.*, c.`gell_cate2_name` FROM `gc_gell` AS a
         JOIN `gc_gell_setting` AS b ON a.`gell_num` = b.`setting_gell_num`
         JOIN `gc_gell_cate2` AS c ON a.`gell_cate` = c.`gell_cate2`
         WHERE `gell_address` = #{gell_address};
     </select>
+
+    <!-- 2023.04.11 // 라성준 // 매니지먼트 갤러리 이름 중복 검사 -->
+    <select id="equalsGell" parameterType="kr.co.gcInside.vo.galleryVO" resultType="int">
+        SELECT COUNT(*) FROM `gc_gell` WHERE `gell_name` = #{gell_name}
+    </select>
+
 
     <!-- upload -->
     <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
@@ -44,6 +50,7 @@
         UPDATE gc_gell SET gell_name=#{gell_name} WHERE gell_num=#{gell_num}
     </update>
 
+    <!-- 2023.04.10 // 라성준 // 갤러리 셋팅 -->
     <select id="selectGellSetting" parameterType="int" resultType="kr.co.gcInside.vo.Gell_SettingVO">
         SELECT *
         FROM gell_setting

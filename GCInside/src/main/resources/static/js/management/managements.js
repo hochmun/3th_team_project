@@ -188,44 +188,6 @@ function chk_all(elm, chk_elm) {
 	}
 }
 
-//갤러리 이름 체크
-function chk_name() {
-	var mgall_name_new	= $("#mg_name").val();
-	var mgall_name_org	= $("#mg_name").attr('data-org');
-	var reason			= $("#reason").val();
-	
-	if(mgall_name_new == ''){
-		return;
-	}
-
-	if(mgall_name_org === mgall_name_new) {
-		$('.name_fail_msg').hide().siblings('.tiptxt').show();
-		return;
-	}
-
-	$.ajax({
-		type: "POST",
-		url: "/GCInside/gall/management/index",
-		dataType : 'json',
-		cache : false,
-		async : false,
-		success: function(ajaxData) {
-			if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
-				if(ajaxData.msg == '이미 존재합니다.') {
-					if(_GALLERY_TYPE_ == 'M') {
-						var pathname = location.pathname.split('/');
-						ajaxData.msg += ' <a href="/'+ pathname[1] +'/board/lists/?id=' + ajaxData.exists_info['NAME']+ '" class="link_visit golnk" href="" target="_blank">방문하기></a>';
-					}
-				}
-				$('.name_fail_msg').html('<b class="font_red point-red">X</b> ' + ajaxData.msg).show().siblings('.tiptxt').hide();
-			}
-			else {
-				$('.name_fail_msg').hide().siblings('.tiptxt').show();
-			}
-		}
-	});
-}
-
 // 갤러리 이름 변경
 function update_name() {
     var mgall_name_new = $("#mg_name").val();
@@ -252,15 +214,17 @@ function update_name() {
     };
 
     console.log(data);
+    console.log(JSON.stringify(data));
 
     $.ajax({
-        url: "/GCInside/gall/management/index",
+        url: '/GCInside/gall/management/index',
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
         dataType: 'json',
         success: function(ajaxData) {
-        if(ajaxData.result == false) location.href =  location.href;
+        if(ajaxData.result == true) location.href =  location.href;
+        if(ajaxData.result == -1) alert('이름이 중복 입니다.')
         /*
             if(ajaxData.result == "success") {
                 if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {

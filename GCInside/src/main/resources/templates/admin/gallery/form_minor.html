@@ -167,11 +167,13 @@
                     <div class="admin_info_content">
                         <!-- 카테고리별 검색 기능 -->
                         <div class="category_search_box">
-                            <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
-                                <option value="" selected>카테고리 전체</option>
-                                <option th:each="cate:${cates}" th:data-value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}"></option>
-                            </select>
-                            <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
+                            <form th:action="@{/admin/gallery/form_minor}" method="get">
+                                <select class="admin_member_search_select_box" id="category_search_select_box" name="category">
+                                    <option value="" th:selected="${selectedCategory == null}">카테고리 전체</option>
+                                    <option th:each="cate:${cates}" th:value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}" th:selected="${cate.gell_cate2 == selectedCategory}"></option>
+                                </select>
+                                <button type="submit" class="btn_lightgreen" id="category-submit-button">검색</button>
+                            </form>
                         </div>
 
                         <table class="admin_table admin_member_list">
@@ -196,19 +198,19 @@
                                 <th>관리</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr th:each="list:${list}">
-                                <td th:text="${list.gell_create_num}" hidden></td>
-                                <td th:text="${list.gell_create_name}"></td>
-                                <td th:text="${list.gell_create_address}"></td>
-                                <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
-                                <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
-                                <td th:text="${list.gell_create_uid}"></td>
-                                <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
-                                <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
-                                <td th:text="${list.gell_create_status}"hidden></td>
-                                <td><button class="approval">[관리]</button></td>
-                            </tr>
+                            <tbody th:each="list:${list}">
+                                <tr>
+                                    <td th:text="${list.gell_create_num}" hidden></td>
+                                    <td th:text="${list.gell_create_name}"></td>
+                                    <td th:text="${list.gell_create_address}"></td>
+                                    <td th:data-value="${list.gell_cate2}" th:text="${list.gell_cate2}"></td>
+                                    <td th:text="${#strings.substring(list.gell_create_rdate, 2, 10)}"></td>
+                                    <td th:text="${list.gell_create_uid}"></td>
+                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_intro}" th:text="${list.gell_create_intro}"></button></td>
+                                    <td><button class="truncate show-details" th:attr="data-full-text=${list.gell_create_reason}" th:text="${list.gell_create_reason}"></button></td>
+                                    <td th:text="${list.gell_create_status}"hidden></td>
+                                    <td><button class="approval">[관리]</button></td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="popup">
@@ -253,9 +255,9 @@
                     </div>
 
                     <!-- 페이징 -->
-                    <div class="admin_pageing" th:data-current-page="${pagingDTO.currentPage}">
+                    <div class="admin_pageing">
                       <span class="admin_pageing_prev" th:if="${pagingDTO.currentPage > 1}">
-                        <a th:href="@{${'/admin/gallery/form_minor'}(pg=${pagingDTO.currentPage - 1})}">
+                        <a th:href="@{${'/admin/gallery/form_minor'}(pg=${pagingDTO.currentPage - 1}, category=${param.category})}">
                           &lt; 이전
                         </a>
                       </span>
@@ -267,13 +269,13 @@
                                 th:text="${pageNumber}">
                           </span>
                           <a th:if="${pageNumber} != ${pagingDTO.currentPage}"
-                             th:href="@{${'/admin/gallery/form_minor'}(pg=${pageNumber})}"
+                             th:href="@{${'/admin/gallery/form_minor'}(pg=${pageNumber}, category=${param.category})}"
                              th:text="${pageNumber}">
                           </a>
                         </th:block>
                       </span>
                         <span class="admin_pageing_next" th:if="${pagingDTO.currentPage < pagingDTO.lastPage}">
-                        <a th:href="@{${'/admin/gallery/form_minor'}(pg=${pagingDTO.currentPage + 1})}">
+                        <a th:href="@{${'/admin/gallery/form_minor'}(pg=${pagingDTO.currentPage + 1}, category=${param.category})}">
                           다음 &gt;
                         </a>
                       </span>
@@ -283,96 +285,6 @@
             </div>
         </div>
     </main>
-    <script>
-        $("#category-submit-button").on("click", function() {
-            var selectedCategory = $("#category_search_select_box option:selected").data("value");
-            if (!selectedCategory) {
-                selectedCategory = "";
-            }
-            var currentPage = $(".admin_pageing").data("current-page");
-            $.ajax({
-                url: "form_minor/searchByCategory",
-                type: "POST",
-                data: {category: selectedCategory, pg: currentPage},
-                dataType: "json",
-                success: function(data) {
-                    updateTable(data);
-                },
-                error: function(xhr, status, error) {
-                    console.log("Error: " + error);
-                }
-            });
-        });
-
-        function updateTable(data) {
-            var tableBody = $(".admin_table.admin_member_list").empty();
-            var tableHeader = `
-                <tr>
-                  <th>갤러리 이름</th>
-                  <th>주소값</th>
-                  <th>카테고리</th>
-                  <th>신청일</th>
-                  <th>신청자</th>
-                  <th>갤러리 설명</th>
-                  <th>개설이유</th>
-                  <th>관리</th>
-                </tr>`;
-            tableBody.append(tableHeader);
-
-            $.each(data.list, function(_, item) {
-                if (item.gell_create_status === 0) {
-                    var row = `
-                        <tr>
-                          <td class='gell_create_num' hidden>${item.gell_create_num}</td>
-                          <td class='gell_create_name'>${item.gell_create_name}</td>
-                          <td class='gell_create_address'>${item.gell_create_address}</td>
-                          <td data-value='${item.gell_cate2}' class='gell_create_cate'>${item.gell_cate2}</td>
-                          <td class='gell_create_rdate'>${item.gell_create_rdate.substring(2, 10)}</td>
-                          <td class='gell_create_uid'>${item.gell_create_uid}</td>
-                          <td><button class='truncate show-details' data-full-text='${item.gell_create_intro}'>${item.gell_create_intro}</button></td>
-                          <td><button class='truncate show-details' data-full-text='${item.gell_create_reason}'>${item.gell_create_reason}</button></td>
-                          <td class='gell_create_status' hidden>${item.gell_create_status}</td>
-                          <td><button class='approval'>[관리]</button></td>
-                        </tr>`;
-                    tableBody.append(row);
-                }
-            });
-
-            truncateText('.truncate', 7);
-            $(".show-details").click(showDetails);
-            $(".approval").click(showApprovalPopup);
-
-            // Update pagination
-            var pagingDTO = data.pagingDTO;
-            var pagination = $(".admin_pageing");
-            pagination.attr("data-current-page", pagingDTO.currentPage);
-            var prevButton = pagination.find(".admin_pageing_prev a");
-            var nextButton = pagination.find(".admin_pageing_next a");
-
-            if (pagingDTO.currentPage > 1) {
-                prevButton.attr("href", "/admin/gallery/form_minor?pg=" + (pagingDTO.currentPage - 1));
-            } else {
-                prevButton.removeAttr("href");
-            }
-
-            if (pagingDTO.currentPage < pagingDTO.lastPage) {
-                nextButton.attr("href", "/admin/gallery/form_minor?pg=" + (pagingDTO.currentPage + 1));
-            } else {
-                nextButton.removeAttr("href");
-            }
-
-            var pageNumbers = pagination.find(".admin_pageing_num");
-            pageNumbers.empty();
-            for (var i = pagingDTO.groupStart; i <= pagingDTO.groupEnd; i++) {
-                if (i === pagingDTO.currentPage) {
-                    pageNumbers.append(`<span class="on">${i}</span>`);
-                } else {
-                    pageNumbers.append(`<a href="/admin/gallery/form_minor?pg=${i}">${i}</a>`);
-                }
-            }
-        }
-        </script>
-
     <footer class="admin_footer gcfoot">
         <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
     </footer>

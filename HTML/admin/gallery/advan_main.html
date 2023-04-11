@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/basic.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/admin/gnb.js"></script>
+    <script type="text/javascript" src="/js/admin/member.js"></script>
+</head>
+<body>
+    <div class="gcwrap">
+        <header class="admin_header">
+            <div class="gchead typea">
+                <h1 class="gc_logo">
+                    <div>
+                        <img src="/img/gcin_logo3.png" alt="">
+                        <a class="_blank" href="/admin/index.html"></a>
+                    </div>
+                </h1>
+                <div class="admin_info">
+                    <ul class="admin_ul">
+                        <li><a href="/index.html">홈</a></li>
+                        <li><a href="javascript:;"> | </a></li>
+                        <li><a href="#">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main id="container" class="admin_main">
+            <div class="main_content">
+                <div class="admin_left">
+                    <aside class="admin_aside">
+                        <ul id="admin_gnb">
+                            <li>
+                                <a href="#">환경설정</a>
+                                <ol>
+                                    <li><a href="/admin/config/banner.html">배너 관리</a></li>
+                                    <li><a href="/admin/config/terms.html">약관 관리</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">신고 관리</a>
+                                <ol>
+                                    <li><a href="#">서비스 신고 관리</a></li>
+                                    <li><a href="#">서비스 신청 목록</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">갤러리 관리</a>
+                                <ol>
+                                    <li><a href="/admin/gallery/gallery_list.html">갤러리 목록</a></li>
+                                    <li><a href="/admin/gallery/create_main.html">메인 갤러리 생성</a></li>
+                                    <li><a href="/admin/gallery/form_minor.html">갤러리 개설 신청</a></li>
+                                    <li><a href="/admin/gallery/advan_main.html">갤러리 승급 신청</a></li>
+                                </ol>
+                            </li>
+                            <li>
+                                <a href="">회원 관리</a>
+                                <ol>
+                                    <li><a href="/admin/member/search.html">회원 조회</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+
+                <!-- 상세보기 / 개설관리 팝업 창 -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+
+                        var showApprovalButtons = document.querySelectorAll('.approval');
+                        for (var i = 0; i < showApprovalButtons.length; i++) {
+                            showApprovalButtons[i].addEventListener('click', showApprovalPopup);
+                        }
+
+                        var closeApprovalPopupButton = document.querySelector('.close-approval-popup');
+                        closeApprovalPopupButton.addEventListener('click', closeApprovalPopup);
+
+                    });
+
+                    function showApprovalPopup(event) {
+                        event.preventDefault();
+                        var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'block';
+                    }
+
+                    function closeApprovalPopup() {
+                        var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'none';
+                    }
+                </script>
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>메인 갤러리 승급</h2></div>
+                        <div class="admin_info_content">
+                            <div class="member_search_box">
+                                <input type="text" id="input-box" name="input-box" placeholder="갤러리명 검색">
+                                <button type="button" class="btn_lightgreen" id="submit-button">검색</button>
+                            </div>
+
+                            <!-- 카테고리별 검색 기능 -->
+                            <div class="category_search_box">
+                                <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
+                                    <option value="">카테고리 전체</option>
+                                    <option data-value="26">연예</option>
+                                    <option data-value="22">국내방송</option>
+                                    <option data-value="31">해외방송</option>
+                                    <option data-value="21">게임</option>
+                                    <option data-value="12">취미</option>
+                                    <option data-value="39">만화/애니</option>
+                                    <option data-value="24">스포츠</option>
+                                    <option data-value="25">스포츠스타</option>
+                                    <option data-value="8">디지털/IT</option>
+                                    <option data-value="15">교통/운송</option>
+                                    <option data-value="7">음식</option>
+                                    <option data-value="16">패션</option>
+                                    <option data-value="23">음악</option>
+                                    <option data-value="6">여행/풍경</option>
+                                    <option data-value="9">합성</option>
+                                    <option data-value="4">생물</option>
+                                    <option data-value="40">건강/심리</option>
+                                    <option data-value="13">학술</option>
+                                    <option data-value="14">교육</option>
+                                    <option data-value="27">대학</option>
+                                    <option data-value="11">수능</option>
+                                    <option data-value="20">직업</option>
+                                    <option data-value="28">정치인/유명인</option>
+                                    <option data-value="17">밀리터리</option>
+                                    <option data-value="41">금융/재테크 </option>
+                                    <option data-value="29">성공/계발</option>
+                                    <option data-value="19">생활</option>
+                                    <option data-value="30">지역</option>
+                                    <option data-value="37">쇼핑/장터</option>
+                                    <option data-value="10">정부/기관</option>
+                                    <option data-value="35">기업</option>
+                                    <option data-value="38">미디어</option>
+                                    <option data-value="5">이슈</option>
+                                    <option data-value="18">성인</option>
+                                    <option data-value="34">기타</option>
+                                    <option data-value="42">공무원</option>
+                                </select>
+                                <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
+                            </div>
+
+                            <table class="admin_table admin_member_list">
+                                <colgroup>
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.8%;">
+                                </colgroup>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>갤러리 이름</th>
+                                    <th>주소값</th>
+                                    <th>카테고리</th>
+                                    <th>개설일</th>
+                                    <th>매니저</th>
+                                    <th>갤러리 링크</th>
+                                    <th>관리</th>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>강호동</td>
+                                    <td>ghd</td>
+                                    <td>연예</td>
+                                    <td>23-03-14</td>
+                                    <td>놔줘스크립트</td>
+                                    <td><a href="#">바로가기</a></td>
+                                    <td><button class="approval">[승급관리]</button></td>
+                                </tr>
+                            </table>
+                            <div class="approval-popup" style="display:none;">
+                                <h3>메인 갤러리 승급</h3>
+                                <p>마이너 갤러리를 메인 갤러리로 승급하려면 승급 버튼을 클릭하세요.</p>
+                                <button class="advance">승급</button>
+                                <button class="close-approval-popup">닫기</button>
+                            </div>
+                        </div>
+
+                        <!-- 페이징 -->
+                        <div class="admin_pageing">
+                            <span class="admin_pageing_prev"><a href="#"><&nbsp;이전</a></span>
+
+                            <span class="admin_pageing_num">
+                                <a href="#" class="on">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#">7</a>
+                                <a href="#">8</a>
+                                <a href="#">9</a>
+                                <a href="#">10</a>
+                            </span>
+
+                            <span class="admin_pageing_next">다음&nbsp;></span>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>

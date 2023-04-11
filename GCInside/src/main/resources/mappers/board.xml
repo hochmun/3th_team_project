@@ -293,7 +293,7 @@
         <if test='type.equals("R")'> <!-- 댓글 많은 순 -->
             LEFT JOIN `gc_gell_comment` AS c ON a.`comment_num` = c.`comment_num`
         </if>
-        WHERE a.`comment_article_num` = #{article_num}
+        WHERE a.`comment_article_num` = #{article_num} AND a.`comment_status` = 0
         ORDER BY
             <if test='type.equals("R")'>`re_count` DESC,`comment_num` DESC,`comment_rdate` ASC</if>
             <if test='type.equals("D")'>`comment_num` DESC,`comment_rdate` DESC</if>
@@ -310,6 +310,15 @@
         </if>
         `comment_rdate` ASC
         ;
+    </select>
+
+    <!-- 2023/04/11 // 심규영 // 댓글 정보 가져오는 쿼리문 -->
+    <select id="selectCommentInfo" resultType="kr.co.gcInside.vo.Gell_commentVO">
+        SELECT
+            `${re}comment_login_status`,
+            `${re}comment_uid`
+        FROM `gc_gell_${re}comment`
+        WHERE `${re}comment_num` = #{comment_no};
     </select>
 
     <!-- 2023/04/06 // 심규영 // 추천 기록 조회 쿼리문 -->
@@ -350,17 +359,25 @@
         WHERE `article_num` = #{article_num} AND `articlel_gell_num` = #{gell_num}
     </update>
 
-    <!-- 2023/03/29 // 심규영 // 게시글 댓글 수 증가 쿼리문 -->
+    <!--
+    2023/03/29 // 심규영 // 게시글 댓글 수 증가 쿼리문
+    2023/04/11 // 심규영 // 게시글 댓글 수 감소 쿼리문 추가
+    -->
     <update id="updateArticleCommentCount">
         UPDATE `gc_gell_article` SET
-            `article_comment_count` = `article_comment_count` + 1
+        <if test='type.equals("up")'>`article_comment_count` = `article_comment_count` + 1</if>
+        <if test='type.equals("down")'>`article_comment_count` = `article_comment_count` - 1</if>
         WHERE `article_num` = #{article_num};
     </update>
 
-    <!-- 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 쿼리문 -->
+    <!--
+    2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 쿼리문
+    2023/04/11 // 심규영 // 댓글의 대댓글 수 감소 쿼리문 추가
+    -->
     <update id="updateCommentReCount">
         UPDATE `gc_gell_comment` SET
-            `comment_re_count` = `comment_re_count` + 1
+        <if test='type.equals("up")'>`comment_re_count` = `comment_re_count` + 1</if>
+        <if test='type.equals("down")'>`comment_re_count` = `comment_re_count` - 1</if>
         WHERE `comment_num` = #{comment_num};
     </update>
 
@@ -398,6 +415,21 @@
         UPDATE `gc_gell` SET
             `gell_article_count` = `gell_article_count` + 1
         WHERE `gell_num` = #{gell_num};
+    </update>
+
+    <!-- 2023/04/11 // 심규영 // 댓글 삭제 쿼리문 -->
+    <update id="updateCommentDelete" parameterType="map">
+        UPDATE `gc_gell_${re}comment` SET
+            `${re}comment_status` = 1
+        WHERE
+        <if test='type.equals("cmt")'>
+            `comment_num` = #{comment_no}
+        </if>
+        <if test='type.equals("rcmt")'>
+            `re_comment_num` = #{re_comment_no} AND
+            `re_comment_oir_num` = #{comment_no}
+        </if>
+            AND `comment_article_num` = #{articleNo};
     </update>
 
     <!-- delete -->

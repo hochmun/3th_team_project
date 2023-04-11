@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,11 @@ public class ManagementController {
 
     /**
      * 2023.04.04 // 라성준 //
+     *  data 들어오는 값
+     *      id          : 갤러리 주소
+     *      gell_name   : 이전 이름
+     *      mg_name     : 변경할 이름
+     *      grade       : 갤러리 등급
      * @param data
      * @return
      */
@@ -63,26 +69,34 @@ public class ManagementController {
         String grade = data.get("grade");
 
         // gell_name 갤러리 정보 가져옴
-        galleryVO stringObjectMap = service.selectArticleAndSetting(id, grade);
+        galleryVO galleryVO = service.selectArticleAndSetting(id, grade);
 
-        if (stringObjectMap == null) {
+
+        boolean equalsGell = service.equalsGell(galleryVO);
+        if(equalsGell){
+            int result = -1;
+            resultMap.put("result", result);
+            return resultMap;
+        }
+
+
+        if (galleryVO == null) {
             throw new RuntimeException("갤러리 정보가 존재하지 않습니다.");
         }
 
-        Gell_SettingVO settingVO = stringObjectMap.getGellSettingVO();
-        settingVO.setMg_name(mg_name);
+        Gell_SettingVO settingVO = galleryVO.getGellSettingVO();
+        galleryVO.setGell_name(mg_name);
 
-        boolean result = service.updateGellSetting(settingVO);
+        boolean result = service.updateGellSetting(settingVO, galleryVO );
         resultMap.put("result", result);
-
         /*
         if (!result) {
             throw new RuntimeException("갤러리 설정 업데이트에 실패했습니다.");
         }
          */
-
-        //return "redirect:/gall/management/index?id=" + id;
         return resultMap;
+
+
     }
 
     @GetMapping("gall/management/delete")

@@ -341,7 +341,7 @@ public class BoardController {
         int result = service.insertComment(commentVO);
 
         // 댓글 작성시 댓글 수 증가
-        service.updateArticleCommentCount(data.get("no"));
+        service.updateArticleCommentCount(data.get("no"), "up");
         
         // 닉네임 가져오기
         if(myUserDetails != null) commentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
@@ -391,8 +391,8 @@ public class BoardController {
         int result = service.insertReComment(reCommentVO);
 
         // 댓글 작성시 댓글 수 증가 및 댓글의 대댓글 수 증가
-        service.updateArticleCommentCount(data.get("re_comment_article_num"));
-        service.updateCommentReCount(data.get("re_comment_ori_num"));
+        service.updateArticleCommentCount(data.get("re_comment_article_num"), "up");
+        service.updateCommentReCount(data.get("re_comment_ori_num"), "up");
 
         // 닉네임 가져오기
         if(myUserDetails != null) reCommentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
@@ -593,6 +593,63 @@ public class BoardController {
 
         resultMap.put("result", result);
 
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/11 // 심규영 // 댓글, 대댓글 삭제 기능 포스트 맵핑
+     *  data 들어오는 값
+     *      type            : 댓글, 대댓글 종류 표시 {cmt:댓글, rcmt:대댓글}
+     *      comment_no      : 댓글 번호 or 대댓글의 부모 번호
+     *      re_comment_no   : 대댓글 번호
+     *      articleNo       : 게시물 번호
+     *      my              : 본인 인증 확인
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/CommentDelete")
+    public Map<String, Object> CommentDelete(@RequestBody Map<String,String> data,
+                                             HttpSession session,
+                                             @AuthenticationPrincipal MyUserDetails myUserDetails){
+        Map<String,Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        // 댓글 정보 가져오기
+        Gell_commentVO commentVO = service.selectCommentInfo(data);
+
+        // 댓글이 비회원 댓글 인 경우 세션에서 비밀번호 체크 확인여부 확인 (우회 체크)
+        if(commentVO.getComment_login_status() == 1 && !((Boolean) session.getAttribute("commentPassCheck"))) {
+            result = -1;
+            resultMap.put("result", result);
+            return resultMap; // 잘못된 접근, 비밀번호 체크를 올바르게 하십시오
+        }
+
+        // 댓글이 회원 댓글인 경우 본인 확인 (우회 체크)
+        if (commentVO.getComment_login_status() == 0) {
+            if(myUserDetails == null) { // 로그인 안 되어 있을 경우
+                result = -2;
+                resultMap.put("result", result);
+                return resultMap; // 비회원은 회원 댓글 삭제 불가능
+            }
+            if(!commentVO.getComment_uid().equals(myUserDetails.getUser().getMember_uid())) {
+                // 댓글 작성자와 로그인 한 유저가 다를 경우
+                result = -3;
+                resultMap.put("result", result);
+                return resultMap; // 자신이 작성한 글만 삭제 가능
+            }
+        }
+
+        // 전부 통과시 댓글 삭제
+        service.updateCommentDelete(data);
+
+        // 댓글,대댓글 삭제 후 해당 부모 게시글의 댓글 개수 감소
+        service.updateArticleCommentCount(data.get("articleNo"), "down");
+
+        // 대댓글일 삭제일 경우 해당 부모 댓글의 대댓글 갯수 감소
+        if(data.get("type").equals("rcmt")) service.updateCommentReCount(data.get("comment_no"), "down");
+
+        // 결과 값 리턴
         return resultMap;
     }
 }

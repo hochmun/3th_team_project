@@ -134,7 +134,7 @@
                                         <div class="cont_box clear">
                                             <div class="cont_input_box">
                                                 <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="미니 갤러리 이름을 간단히 넣어주세요."
-                                                       onfocusout="return chk_name()" th:data-id="${stringObjectMap.gell_address}" th:data-org="${stringObjectMap.gell_name}" th:value="${stringObjectMap.gell_name}" />
+                                                       th:data-id="${stringObjectMap.gell_address}" th:data-org="${stringObjectMap.gell_name}" th:value="${stringObjectMap.gell_name}" />
                                                 <span th:if="${stringObjectMap.gell_grade == 0}" th:text="메인갤러리" class="basic_tit"></span>
                                                 <span th:if="${stringObjectMap.gell_grade == 1}" th:text="마이너갤러리" class="basic_tit"></span>
                                                 <span th:if="${stringObjectMap.gell_grade == 2}" th:text="미니갤러리" class="basic_tit"></span>
