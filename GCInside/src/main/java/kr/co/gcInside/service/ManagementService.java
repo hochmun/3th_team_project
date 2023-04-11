@@ -39,6 +39,7 @@ public class ManagementService {
     }
 
 
+
     /**
      * 2023.03.29 // 라성준 //
      * @param data
@@ -61,10 +62,13 @@ public class ManagementService {
      * @param vo
      * @return
      */
-    public boolean updateGellSetting(Gell_SettingVO vo) {
+    public boolean updateGellSetting(Gell_SettingVO vo, galleryVO galleryVO) {
         int result = dao.updateGellSetting(vo);
-        //result += dao.updateGell(vo);
+        result += dao.updateGell(galleryVO);
         return result > 0;
     }
-
+    public boolean equalsGell(galleryVO galleryVO) {
+        int count = dao.equalsGell(galleryVO);
+        return count > 0;
+    }
 }
