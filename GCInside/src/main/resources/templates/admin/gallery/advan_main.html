@@ -56,83 +56,54 @@
 
                             <!-- 카테고리별 검색 기능 -->
                             <div class="category_search_box">
-                                <select class="admin_member_search_select_box" id="category_search_select_box" name="category-select-box">
-                                    <option value="">카테고리 전체</option>
-                                    <option data-value="26">연예</option>
-                                    <option data-value="22">국내방송</option>
-                                    <option data-value="31">해외방송</option>
-                                    <option data-value="21">게임</option>
-                                    <option data-value="12">취미</option>
-                                    <option data-value="39">만화/애니</option>
-                                    <option data-value="24">스포츠</option>
-                                    <option data-value="25">스포츠스타</option>
-                                    <option data-value="8">디지털/IT</option>
-                                    <option data-value="15">교통/운송</option>
-                                    <option data-value="7">음식</option>
-                                    <option data-value="16">패션</option>
-                                    <option data-value="23">음악</option>
-                                    <option data-value="6">여행/풍경</option>
-                                    <option data-value="9">합성</option>
-                                    <option data-value="4">생물</option>
-                                    <option data-value="40">건강/심리</option>
-                                    <option data-value="13">학술</option>
-                                    <option data-value="14">교육</option>
-                                    <option data-value="27">대학</option>
-                                    <option data-value="11">수능</option>
-                                    <option data-value="20">직업</option>
-                                    <option data-value="28">정치인/유명인</option>
-                                    <option data-value="17">밀리터리</option>
-                                    <option data-value="41">금융/재테크 </option>
-                                    <option data-value="29">성공/계발</option>
-                                    <option data-value="19">생활</option>
-                                    <option data-value="30">지역</option>
-                                    <option data-value="37">쇼핑/장터</option>
-                                    <option data-value="10">정부/기관</option>
-                                    <option data-value="35">기업</option>
-                                    <option data-value="38">미디어</option>
-                                    <option data-value="5">이슈</option>
-                                    <option data-value="18">성인</option>
-                                    <option data-value="34">기타</option>
-                                    <option data-value="42">공무원</option>
-                                </select>
-                                <button type="button" class="btn_lightgreen" id="category-submit-button">검색</button>
+                                <form th:action="@{/admin/gallery/form_minor}" method="get">
+                                    <select class="admin_member_search_select_box" id="category_search_select_box" name="category">
+                                        <option value="" th:selected="${selectedCategory == null}">카테고리 전체</option>
+                                        <option th:each="cate:${cates}" th:value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}" th:selected="${cate.gell_cate2 == selectedCategory}"></option>
+                                    </select>
+                                    <button type="submit" class="btn_lightgreen" id="category-submit-button">검색</button>
+                                </form>
                             </div>
 
                             <table class="admin_table admin_member_list">
                                 <colgroup>
                                     <col style="width: 9.2%;">
                                     <col style="width: 14.2%;">
-                                    <col style="width: 14.2%;">
                                     <col style="width: 9.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 14.2%;">
                                     <col style="width: 14.8%;">
                                 </colgroup>
-                                <tr>
-                                    <th>번호</th>
-                                    <th>갤러리 이름</th>
-                                    <th>주소값</th>
-                                    <th>카테고리</th>
-                                    <th>개설일</th>
-                                    <th>매니저</th>
-                                    <th>갤러리 링크</th>
-                                    <th>관리</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>강호동</td>
-                                    <td>ghd</td>
-                                    <td>연예</td>
-                                    <td>23-03-14</td>
-                                    <td>놔줘스크립트</td>
-                                    <td><a href="#">바로가기</a></td>
-                                    <td><button class="approval">[승급관리]</button></td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>갤러리 이름</th>
+                                        <th>카테고리</th>
+                                        <th>개설일</th>
+                                        <th>매니저</th>
+                                        <th>갤러리 링크</th>
+                                        <th>관리</th>
+                                    </tr>
+                                </thead>
+                                <tbody th:each="hot,i:${hot}" th:if="${i.index} <= 99">
+                                    <tr>
+                                        <td th:text="${hot.gell_num}" hidden></td>
+                                        <td th:text="${i.count}"></td>
+                                        <td th:text="${hot.gell_name}"></td>
+                                        <td th:text="${hot.gell_cate}"></td>
+                                        <td th:text="${#strings.substring(hot.gell_rdate, 2, 10)}"></td>
+                                        <td th:text="${hot.gell_manager}"></td>
+                                        <td><a th:href="@{/mgall/board/lists?id={gell_address}(gell_address=${hot.gell_address})}">바로가기</a></td>
+                                        <td><button class="approval">[승급관리]</button></td>
+                                    </tr>
+                                </tbody>
                             </table>
                             <div class="approval-popup" style="display:none;">
                                 <h3>메인 갤러리 승급</h3>
-                                <p>마이너 갤러리를 메인 갤러리로 승급하려면 승급 버튼을 클릭하세요.</p>
-                                <button class="advance">승급</button>
+                                <form th:action="@{/admin/gallery/advan_main/advance}" method="post">
+                                    <p>마이너 갤러리를 메인 갤러리로 승급하려면 승급 버튼을 클릭하세요.</p>
+                                    <button class="advance" type="submit">승급</button>
+                                </form>
                                 <button class="close-approval-popup">닫기</button>
                             </div>
                         </div>
