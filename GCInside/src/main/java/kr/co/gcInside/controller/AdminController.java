@@ -4,6 +4,8 @@ import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.entity.UserEntity;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.AdminService;
+import kr.co.gcInside.service.MainService;
+import kr.co.gcInside.service.MinorService;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
@@ -246,8 +248,32 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    @Autowired
+    private MinorService minorService;
+
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급대상 list
+     */
     @GetMapping("admin/gallery/advan_main")
-    public String advanceToMainList(){
+    public String advanceToMainList(Model model) {
+        minorService.minorinit();
+        List<galleryVO> hot_mgall = minorService.selecthotmgall();
+
+        model.addAttribute("rankdiff",minorService.rankdiff());
+        model.addAttribute("hot",hot_mgall);
         return "admin/gallery/advan_main";
+    }
+
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    @PostMapping("admin/gallery/advan_main/advance")
+    public String advanceToMainList(galleryVO gvo) {
+        service.updateMinorGalleryStatus(gvo);
+
+        return "redirect:/admin/gallery/advan_main";
     }
 }

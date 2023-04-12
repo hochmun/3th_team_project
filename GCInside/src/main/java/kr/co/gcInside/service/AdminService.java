@@ -166,6 +166,13 @@ public class AdminService {
         dao.updaterejectReason(cvo);
     }
 
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    public void updateMinorGalleryStatus(galleryVO gvo) {
+        dao.updateMinorGalleryStatus(gvo);
+    }
+
     // delete
     // service
 }
