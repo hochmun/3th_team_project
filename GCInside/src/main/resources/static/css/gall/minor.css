@@ -53,3 +53,22 @@
 .issue_contentbox{display:none}
 .issuebox.open .issue_contentbox{display:block}
 .listwrap .issue_contentbox{display:block}
+
+/*아이콘*/
+.icon_binglock{display:inline-block;width:53px;height:61px;background-position:-54px -744px}
+.icon_lock{display:inline-block;width:12px;height:14px;background-position:-276px -379px;vertical-align:-1px}/*비공개*/
+.icon_minilock{display:inline-block;width:16px;height:18px;background-position:-195px -793px;vertical-align:-7px;margin-left:5px}/*200915 비공개아이콘 추가*//*211118 폰트 버그 vertical-align:-9px*/
+.icon_membernum{display:inline-block;width:12px;height:13px;background-position:-260px -379px }/*멤버수*/
+.icon_memberout{display:inline-block;width:14px;height:13px;background-position:-213px -793px}/*200915 탈퇴아이콘 추가*/
+.icon_qmakr{display:inline-block;width:14px;height:13px;background-position:-285px -321px }/*물음표*/
+.rankgallshow .icon_deco{display:inline-block;width:4px;height:7px;background-position:-294px -200px;margin-left:2px}/*전체 보기*/
+
+.mini_info .icon_bighot,.mini_info .icon_hot,.mini_info .icon_darkness,.mini_info .icon_normal,.mini_info .icon_newgall{margin-left:-2px}
+.icon_bighot{background-position:-258px -400px}/*대흥갤*/
+.icon_hot{background-position:-277px -400px}/*흥한갤*/
+.icon_darkness{background-position:-282px -419px}/*정전갤*/
+.icon_newgall{background-position:-260px -418px}/*신규갤*/
+.icon_normal{background-position:-261px -435px}/*흔한갤*/
+
+.icon_favorite{display:block;width:23px;height:24px;background-position:-154px -15px}
+button.on .icon_favorite{background-position:-121px -15px}

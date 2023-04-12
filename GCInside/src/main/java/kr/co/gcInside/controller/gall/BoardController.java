@@ -7,6 +7,7 @@ import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.type.SerializableToBlobType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -92,6 +93,9 @@ public class BoardController {
         data.put("start", pagingDTO.getStart()+"");
         data.put("total", galleryVO.getGell_article_count()+"");
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
+        
+        // 유저가 로그인 중 일 경우 서브 매니저 정보에서 매니저 체크
+        if(myUserDetails != null) model.addAttribute("UserSubMangerCheck", service.UserSubManagerCheck(gellSubManagerVOS,myUserDetails.getUser().getMember_uid()));
 
         // model 전송
         model.addAttribute("galleryVO", galleryVO);
@@ -186,10 +190,14 @@ public class BoardController {
             
             // 해당 게시글 조회 수 증가
             service.updateArticleHitCount(articleVO.getArticle_num());
+
+            // 갤러리 서브 매니저 정보 가져오기
+            List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());
             
             // 모델
             model.addAttribute("gellArticleVOS", gellArticleVOS);
             model.addAttribute("pagingDTO", pagingDTO);
+            model.addAttribute("gellSubManagerVOS", gellSubManagerVOS);
         }
 
         // 페이지 종류 전송

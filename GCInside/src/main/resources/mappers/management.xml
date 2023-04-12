@@ -20,7 +20,6 @@
         SELECT COUNT(*) FROM `gc_gell` WHERE `gell_name` = #{gell_name}
     </select>
 
-
     <!-- upload -->
     <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
     <update id="updateGellSetting" parameterType="kr.co.gcInside.vo.Gell_SettingVO">
@@ -56,6 +55,14 @@
         FROM gell_setting
         WHERE setting_gell_num = #{gellNum};
     </select>
+
+    <!-- insert -->
+    <!-- 2023.04.12 // 라성준 // 갤러리 업데이트시 상태값 로그 -->
+    <insert id="insertGellManageLog" parameterType="kr.co.gcInside.vo.gell_manage_logVO">
+        INSERT INTO gell_manage_log(gell_m_l_n, gell_m_l_g_n, gell_m_l_uid, gell_m_l_cate, gell_m_l_content, gell_m_l_data)
+        VALUES(#{gell_m_l_n}, #{gell_m_l_g_n}, #{gell_m_l_uid}, #{gell_m_l_cate}, #{gell_m_l_content}, #{gell_m_l_data})
+    </insert>
+
     <!-- delete -->
 
 </mapper>
