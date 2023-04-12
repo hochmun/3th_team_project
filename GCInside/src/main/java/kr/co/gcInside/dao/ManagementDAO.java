@@ -3,6 +3,7 @@ package kr.co.gcInside.dao;
 
 import kr.co.gcInside.vo.Gell_SettingVO;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_manage_logVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,8 @@ public interface ManagementDAO {
      */
     public int updateGellSetting(Gell_SettingVO setting);
     public int updateGell(galleryVO vo);
-    public  int equalsGell(galleryVO galleryVO);
+    public int equalsGell(@Param("gell_name") String gell_name);
+    public List<gell_manage_logVO> managerlog();
 
 }
 

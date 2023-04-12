@@ -4,6 +4,7 @@ import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dao.ManagementDAO;
 import kr.co.gcInside.vo.Gell_SettingVO;
 import kr.co.gcInside.vo.galleryVO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.Map;
 /**
  * 2023.03.28 // 라성준 // 매니지먼트 서비스
  */
+@Slf4j
 @Service
 public class ManagementService {
 
@@ -22,6 +24,7 @@ public class ManagementService {
     private ManagementDAO dao;
     @Autowired
     private BoardDAO boardDAO;
+
 
     //read
 
@@ -38,7 +41,7 @@ public class ManagementService {
         return boardDAO.selectGellInfo(gell_address, grade.equals("0") ? "m" : grade.equals("1") ? "mgall" : "mini");
     }
 
-
+    // update
 
     /**
      * 2023.03.29 // 라성준 //
@@ -65,10 +68,15 @@ public class ManagementService {
     public boolean updateGellSetting(Gell_SettingVO vo, galleryVO galleryVO) {
         int result = dao.updateGellSetting(vo);
         result += dao.updateGell(galleryVO);
+        log.info("result : "+result);
         return result > 0;
     }
-    public boolean equalsGell(galleryVO galleryVO) {
-        int count = dao.equalsGell(galleryVO);
+    public boolean equalsGell(String gell_name) {
+        int count = dao.equalsGell(gell_name);
         return count > 0;
     }
+
+    // insert
+
+
 }

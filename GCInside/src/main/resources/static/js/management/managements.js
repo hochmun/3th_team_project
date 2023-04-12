@@ -223,8 +223,12 @@ function update_name() {
         data: JSON.stringify(data),
         dataType: 'json',
         success: function(ajaxData) {
-        if(ajaxData.result == true) location.href =  location.href;
-        if(ajaxData.result == -1) alert('이름이 중복 입니다.')
+        console.log("ajaxData.result : ",ajaxData.result);
+        if(ajaxData.result == true) {
+            console.log('확인');
+            location.reload();
+        }
+        if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.')
         /*
             if(ajaxData.result == "success") {
                 if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
