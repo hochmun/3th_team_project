@@ -8,11 +8,17 @@ import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,6 +34,9 @@ public class BoardService {
      */
     @Autowired
     private BoardDAO dao;
+
+    @Value("${spring.servlet.multipart.location}")
+    private String uploadPath;
 
     private DeduplicationUtils deduplicationUtils;
 
@@ -524,10 +533,54 @@ public class BoardService {
         return reCommentVO;
     }
 
+    /** 2023/04/12 // 심규영 // 회원 접속시 부매니저 확인 메소드 */
     public boolean UserSubManagerCheck(List<Gell_sub_managerVO> gellSubManagerVOS, String uid){
         for(Gell_sub_managerVO gellSubManagerVO : gellSubManagerVOS) {
             if(gellSubManagerVO.getSub_manager_uid().equals(uid)) return true;
         }
         return false;
+    }
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 업로드 기능
+     * @param file -> 업로드 하는 파일
+     * @param fileMap -> 저장된 파일 url 담을 맵
+     */
+    public void fileUpload(MultipartFile file, Map<String, Object> fileMap) {
+        // 시스템 경로
+        String path = new File(uploadPath).getAbsolutePath();
+
+        // 이름 변경
+        String oName = file.getOriginalFilename();
+        String ext = oName.substring(oName.lastIndexOf("."));
+        String nName = UUID.randomUUID().toString()+ext;
+
+        // 날짜 구하기
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formatedNow = now.format(formatter);
+        
+        // 경로 생성
+        dirCreate(String.format("%s/%s/", path, formatedNow));
+
+        // 파일 저장
+        try {
+            file.transferTo(new File(String.format("%s/%s/", path, formatedNow), nName));
+        } catch(Exception e) {
+            log.error(e.getMessage());
+        }
+
+        // Map에 이미지 경로 저장
+        fileMap.put("url", "/GCInside/thumb/"+formatedNow+"/"+nName);
+    }
+
+    /**
+     * 2022/12/09 해당 디렉토리가 없을시 디렉토리 생성
+     * @author 심규영
+     * @param targetDir
+     */
+    public void dirCreate(String targetDir) {
+        File Directory = new File(targetDir);
+        if(!Directory.exists()) Directory.mkdirs();
     }
 }

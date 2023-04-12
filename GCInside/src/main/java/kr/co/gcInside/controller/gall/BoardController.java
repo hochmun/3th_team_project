@@ -7,20 +7,26 @@ import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.hibernate.type.SerializableToBlobType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 2023/03/18 // 심규영 // 갤러리 글 컨트롤러 생성
@@ -34,6 +40,12 @@ public class BoardController {
      */
     @Autowired
     private BoardService service;
+
+    /**
+     * 2023/04/13 // 심규영 // 이미지 파일 업로드 경로
+     */
+    @Value("${spring.servlet.multipart.location}")
+    private String uploadPath;
 
     /**
      * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료
@@ -95,7 +107,8 @@ public class BoardController {
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
         
         // 유저가 로그인 중 일 경우 서브 매니저 정보에서 매니저 체크
-        if(myUserDetails != null) model.addAttribute("UserSubMangerCheck", service.UserSubManagerCheck(gellSubManagerVOS,myUserDetails.getUser().getMember_uid()));
+        if(myUserDetails != null) model.addAttribute("UserSubManagerCheck", service.UserSubManagerCheck(gellSubManagerVOS,myUserDetails.getUser().getMember_uid()));
+        else model.addAttribute("UserSubManagerCheck", false);
 
         // model 전송
         model.addAttribute("galleryVO", galleryVO);
@@ -658,6 +671,32 @@ public class BoardController {
         if(data.get("type").equals("rcmt")) service.updateCommentReCount(data.get("comment_no"), "down");
 
         // 결과 값 리턴
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 업로드
+     *  리턴 되는 형식
+     *      success
+     *      file : {
+     *          url : 업로드 된 파일 주소
+     *      }
+     * @return
+     */
+    @ResponseBody
+    @PostMapping( value = "gall/board/uploadFile", consumes = "multipart/form-data")
+    public Map<String, Object> uploadFile(@Param("image")MultipartFile image){
+        Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> fileMap = new HashMap<>();
+
+        // 파일 저장
+        service.fileUpload(image, fileMap);
+
+        // 결과 저장
+        resultMap.put("success", 1);
+        resultMap.put("file", fileMap);
+
+        // 리턴
         return resultMap;
     }
 }
