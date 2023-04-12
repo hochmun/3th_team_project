@@ -170,3 +170,8 @@ const goDelete = function($this) {
     const no = $this.data("no");
     location.href = '/GCInside/'+grade+'/board/delete/?id='+id+'&no='+no;
 }
+
+const goAdmin = ($this) => {
+    const id = $this.data("id");
+    location.href = '/GCInside/gall/management/index?id='+id;
+};
