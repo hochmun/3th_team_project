@@ -46,9 +46,11 @@ const removeCommentClick = async ($this) => {
         // 댓글 일 경우
         if($('#comment_li_'+comment_no).data('rcnt') > 0){
             // 삭제하는 글이 댓글이고 해당 댓글의 대댓글 개수가 0보다 클때
+            // 삭제된 댓글 표시
             $this.closest('.cmt_info').html('<div><p>삭제된 댓글 입니다.</p></div>');
         } else {
             // 해당 댓글의 대댓글이 없을 경우
+            // 댓글 완전 제거
             $this.closest('li').remove();
         }
     } else {
@@ -57,9 +59,13 @@ const removeCommentClick = async ($this) => {
             // 대댓글의 개수가 1보다 클 경우 해당 li만 삭제
             $this.closest('li').remove();
         } else {
-            // 개수가 1개일 경우
+            // 개수가 1개일 경우 대댓글 완전 삭제
+            $this.closest('.reply_box').closest('li').remove();
         }
     }
+
+    // 삭제 후 댓글 최대 갯수 줄이기
+    $('#comment_total').text(parseInt($('#comment_total').text())-1);
 };
 
 /** 2023/04/11 // 심규영 // 댓글 삭제 ajax 함수 */
@@ -141,24 +147,35 @@ const removeCommentCheckAjax = (jsonData) => {
 const removeCommentPasswordCheckBoxOpen = ($this, type) => {
     $('#cmt_delpw_box').remove(); // 이미 띄워저 있는 팝업창 삭제
 
-    const $div = $('<div>');
-    $div.attr('id', 'cmt_delpw_box');
-    $div.attr('class', 'cmt_delpw_box');
-    $div.attr('style', 'margin: -16px 0 0 -242px;')
-    $div.data('type', type);
-
-    if(type == 'cmt') $div.data('re_no', $this.parent().data('comment_no'));
-    else $div.data('re_no', $this.parent().data('re_comment_no'));
-
-    $('<input>').attr('type','password').attr('title', '비밀번호').attr('placeholder','비밀번호').attr('id','cmt_password').attr('class','cmt_delpw').appendTo($div);
-    $('<button>').attr('type','button').attr('class','btn_ok').text('확인').click(function(){removeCommentPassCheck($(this))}).appendTo($div);
-
-    const $button = $('<button>').attr('type','button').attr('class','btn_cmtpw_close').click(()=>{$('#cmt_delpw_box').remove()})
-    $('<em>').attr('class','sp_img icon_cmtpw_close').appendTo($button);
-    $button.appendTo($div);
-
-    $div.appendTo($this.parent());
-    $div.find('#cmt_password').focus();
+    $('<div>')
+    .attr('id', 'cmt_delpw_box')
+    .attr('class', 'cmt_delpw_box')
+    .attr('style', 'margin: -16px 0 0 -242px;')
+    .data('type', type)
+    .data('re_no', type == 'cmt' ? $this.parent().data('comment_no') : $this.parent().data('re_comment_no'))
+    .append(
+        $('<input>')
+        .attr('type','password')
+        .attr('title', '비밀번호')
+        .attr('placeholder','비밀번호')
+        .attr('id','cmt_password')
+        .attr('class','cmt_delpw')
+    ).append(
+        $('<button>')
+        .attr('type','button')
+        .attr('class','btn_ok')
+        .text('확인')
+        .click(function(){removeCommentPassCheck($(this))})
+    ).append(
+        $('<button>')
+        .attr('type','button')
+        .attr('class','btn_cmtpw_close')
+        .click(()=>{$('#cmt_delpw_box').remove()})
+        .append(
+            $('<em>').attr('class','sp_img icon_cmtpw_close')
+        )
+    ).appendTo($this.parent())
+    .find('#cmt_password').focus();
 };
 
 /** 2023/04/06 // 심규영 // 게시글 추천 및 비추천 클릭 함수 */
