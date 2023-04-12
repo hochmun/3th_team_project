@@ -79,3 +79,23 @@ function getCookie(cookieName) {
     return unescape(cookieValue);
 }
 
+// 다크모드 함수
+function toggleDarkMode() {
+    const body = document.querySelector('html');
+        if (body.classList.contains('darkmode')) {
+            body.classList.remove('darkmode');
+            setCookie("darkmode", "0", 7);
+        } else {
+            body.classList.add('darkmode');
+            setCookie("darkmode", "1", 7);
+        }
+}
+// 페이지 로딩 시 다크 모드 쿠키 값에 따라 적용 여부 결정(1일때 다크모드적용 , 0일때 기본 (white))
+$(document).ready(function() {
+    const darkModeCookie = getCookie("darkmode");
+    if (darkModeCookie !== null && darkModeCookie === "1") {
+        const body = document.querySelector('html');
+        body.classList.add('darkmode');
+    }
+});
+
