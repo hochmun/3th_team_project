@@ -523,4 +523,11 @@ public class BoardService {
 
         return reCommentVO;
     }
+
+    public boolean UserSubManagerCheck(List<Gell_sub_managerVO> gellSubManagerVOS, String uid){
+        for(Gell_sub_managerVO gellSubManagerVO : gellSubManagerVOS) {
+            if(gellSubManagerVO.getSub_manager_uid().equals(uid)) return true;
+        }
+        return false;
+    }
 }

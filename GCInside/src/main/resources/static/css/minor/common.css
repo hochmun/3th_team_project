@@ -1399,6 +1399,8 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .iconpaging .page_next{background-position:-1px -24px;margin:0 10px 0 19px}
 .iconpaging .page_end{background-position:-23px -24px;margin-left:0}
 
+.useradmin_go{float:left;margin-top:4px}/*마이너 갤러리 관리*/
+.btn_useradmin_go{width:54px;height:24px;background-position:-111px -241px}
 
 .output_array .option_box{padding:6px 5px 4px;background:#f3f3f3;border:1px solid #ccc}
 .output_array .option_box li{line-height:16px;font-size:11px;color:#555}
