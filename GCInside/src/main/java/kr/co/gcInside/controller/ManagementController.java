@@ -68,17 +68,18 @@ public class ManagementController {
         String id = data.get("id");
         String grade = data.get("grade");
 
-        // gell_name 갤러리 정보 가져옴
-        galleryVO galleryVO = service.selectArticleAndSetting(id, grade);
-
-
-        boolean equalsGell = service.equalsGell(galleryVO);
+        // 이름 중복 확인 기능
+        boolean equalsGell = service.equalsGell(mg_name);
         if(equalsGell){
             int result = -1;
             resultMap.put("result", result);
             return resultMap;
         }
+        
+        // 7일 이내 변경 내역 확인
 
+        // gell_name 갤러리 정보 가져옴
+        galleryVO galleryVO = service.selectArticleAndSetting(id, grade);
 
         if (galleryVO == null) {
             throw new RuntimeException("갤러리 정보가 존재하지 않습니다.");
@@ -94,6 +95,11 @@ public class ManagementController {
             throw new RuntimeException("갤러리 설정 업데이트에 실패했습니다.");
         }
          */
+        
+        if(result) {
+            // 변경 이력 남기는 기능
+        }
+        
         return resultMap;
 
 
