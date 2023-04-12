@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*배경 이미지*/
 .darkmode .sp_main{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_main_dark.png?0524)}
-.darkmode .sp_loginout, .darkmode .login_wrap .checkmark{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_loginout_dark.png?0524)}
+.darkmode .sp_loginout, .darkmode .login_wrap .checkmark{}
 .darkmode .sp_img,
 .darkmode .power_link .link_upinfo::after,
 .darkmode .temsave_info_box p:before,
@@ -269,7 +269,7 @@ html.darkmode, .darkmode body,
 .darkmode .album_head .gall_date::before, .darkmode .minigall_infobox span::before, .darkmode .vote_optioninfo span::before,
 .darkmode .vote_content .result_box .barbox, .darkmode .mini_autodeltime::before,  .darkmode .integrate_schwrap .fix_txt:after,
 .darkmode .btn_cmt_refresh::before, .darkmode .btn_cmt_refresh::before, .darkmode .comment_count > .fr > *::before,  .darkmode .bottom_paging_box > .cmt_inner > *::before,
-.darkmode .main_content .options > a:after, .darkmode .main_content .user_option > span:before, .darkmode .minicate_wrap .catehead h3 ::after,
+.darkmode .main_content .options > a:after, .darkmode .main_content .user_option > span:before{background:black}, .darkmode .minicate_wrap .catehead h3 ::after,
 .darkmode .minor_uadmin_setting .mini_slow_time .cont_boxtit::before,
 .darkmode .best_info span::before,
 .darkmode .result .result_box .bar,
@@ -776,7 +776,7 @@ transition: background-color 5000s ease-in-out 0s;
 .darkmode .ai_make textarea:disabled::placeholder{color:#666}/*230214 ai*/
 
 
-.darkmode .area_links li::before, .darkmode .gall_issuebox button::before, .darkmode .user_option span::before,
+.darkmode .area_links li::before, .darkmode .gall_issuebox button::before, .darkmode .user_option span::before {color#ccc}/*다크모드 로그인시 갤로그 즐겨찾기 before부분 색수정*/,
 /*만들기*/
 .darkmode .cont_list.img .info > span::before,
 .darkmode.dgallog .nameday span::before,
