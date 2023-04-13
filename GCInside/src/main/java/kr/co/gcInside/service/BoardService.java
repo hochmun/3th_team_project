@@ -1,5 +1,6 @@
 package kr.co.gcInside.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.utill.DeduplicationUtils;
@@ -15,10 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -92,6 +90,15 @@ public class BoardService {
      */
     public int insertGellHitLog(int gell_num) {
         return dao.insertGellHitLog(gell_num);
+    }
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 등록 기능
+     * @param vo
+     * @return
+     */
+    public int insertArticleFile(Gell_fileVO vo){
+        return dao.insertArticleFile(vo);
     }
 
     // read
@@ -546,7 +553,7 @@ public class BoardService {
      * @param file -> 업로드 하는 파일
      * @param fileMap -> 저장된 파일 url 담을 맵
      */
-    public void fileUpload(MultipartFile file, Map<String, Object> fileMap) {
+    public int fileUpload(MultipartFile file, Map<String, Object> fileMap) {
         // 시스템 경로
         String path = new File(uploadPath).getAbsolutePath();
 
@@ -572,6 +579,16 @@ public class BoardService {
 
         // Map에 이미지 경로 저장
         fileMap.put("url", "/GCInside/thumb/"+formatedNow+"/"+nName);
+        
+        // vo에 저장
+        Gell_fileVO vo = new Gell_fileVO().builder()
+                .file_ori_name(oName)
+                .file_new_name(nName)
+                .file_url(String.format("%s/%s/%s",path,formatedNow,nName))
+                .build();
+        
+        // 데이터 베이스에 저장 및 결과 리턴
+        return insertArticleFile(vo);
     }
 
     /**
@@ -582,5 +599,29 @@ public class BoardService {
     public void dirCreate(String targetDir) {
         File Directory = new File(targetDir);
         if(!Directory.exists()) Directory.mkdirs();
+    }
+
+    public void imageUpdate(String content) {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Object> contentMap = new HashMap<>();
+        try {
+            contentMap = mapper.readValue(content, Map.class);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
+        log.info("article_content : "+content);
+        log.info("content Map : "+contentMap.toString());
+        log.info("blocks : "+contentMap.get("blocks").toString());
+        log.info("blocks : "+contentMap.get("blocks").getClass().getName());
+        ArrayList<LinkedHashMap> blocks = (ArrayList) contentMap.get("blocks");
+        for(LinkedHashMap block : blocks) {
+            log.info("block type : "+ block.get("type"));
+            String type = (String) block.get("type");
+            if(type.equals("image")) {
+                String url = (String) ((LinkedHashMap)((LinkedHashMap) block.get("data")).get("file")).get("url");
+                log.info("url : "+url);
+            }
+        }
     }
 }

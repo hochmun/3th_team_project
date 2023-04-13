@@ -58,6 +58,13 @@ public interface BoardDAO {
      */
     public int insertGellHitLog(@Param("gell_num") int gell_num);
 
+    /**
+     * 2023/04/13 // 심규영 // 파일 등록 기능
+     * @param vo
+     * @return
+     */
+    public int insertArticleFile(Gell_fileVO vo);
+
     // read
 
     /**

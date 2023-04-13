@@ -82,6 +82,15 @@
             hit_rdate = NOW();
     </insert>
 
+    <!-- 2023/04/13 // 심규영 // 게시글 파일 미리보기 저장 -->
+    <insert id="insertArticleFile" parameterType="kr.co.gcInside.vo.Gell_fileVO">
+        INSERT INTO `gc_gell_file` SET
+            `file_ori_name` = #{file_ori_name},
+            `file_new_name` = #{file_new_name},
+            `file_rdate` = CURDATE(),
+            `file_url` = #{file_url};
+    </insert>
+
     <!-- read -->
 
     <!-- 2023/03/20 // 심규영 // 갤러리 정보 불러오기 -->
