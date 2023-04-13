@@ -558,7 +558,7 @@ html.darkmode, .darkmode body,
 .darkmode .mynft table.list td.day, .darkmode .mynft .btn_nftmore, .darkmode .jean_infobox .infobox .nftname .name,
 .darkmode .mynft .btn_tbsort, .darkmode .mynft .btn_txtgrey, .darkmode .lymy_wallet .inner h4, .darkmode .my_klayinfo .klay,
 .darkmode .nftpublish_infobox > h3, .darkmode .nftpublish_infobox .nfttem, .darkmode .nftpublish_infobox .wallet_statebox .stat_tit, .darkmode .ly_sogae .tit,
-.darkmode .lynft_annae .bunch
+.darkmode .lynft_annae .bunch, .darkmode .options a
 {color:#ccc}/*220315 aaa->ccc*/
 
 .darkmode .dc_series div, .darkmode .dc_series, .darkmode .og-txt, .darkmode .og-gallname, .darkmode .og-inr{color:#ccc!important}/*220315 aaa->ccc*/
@@ -1504,7 +1504,8 @@ n아이콘 기타  cc3300*/
 .darkmode .voice-player .prograss .bar{background-color: #404a89}
 .darkmode .voice-lnk{color: #bbb}
 
-.darkmode .write_div *, .darkmode .write_div, .darkmode .album_cont p{color:#444}/*220315 555->333  --> 220923 가독성 문제로 333->444 */
+.darkmode .write_div *,.darkmode .codex-editor,.darkmode .codex-editor__redactor,.darkmode .ce-block,.darkmode .ce-paragraph cdx-block,.darkmode .codex-editor-overlay,.darkmode .ce-block--selected .ce-block__content [contenteditable],.darkmode .view_content_wrap,
+.darkmode .gallview_contents,.darkmode .inner clear,.darkmode .writing_view_box,.darkmode .write_div, .darkmode .album_cont p{color:#444}/*220315 555->333  --> 220923 가독성 문제로 333->444 */
 .darkmode .write_div .over_alt,.darkmode .write_div .btn_dccon_infoview,  .darkmode .btn_red.mgall_make_go,
 .darkmode .inwatermark, .darkmode .write_div .inwatermark, .darkmode .imgwrap .btn,
 .darkmode .vote_wrap .calendar_wrap.type1 .daybox.sel.end .day, .darkmode .calendar_wrap.type1 .daybox.sel.end .day,
@@ -1515,7 +1516,7 @@ n아이콘 기타  cc3300*/
 
 .darkmode .imgwrap .num{color:#29367c}
 
-.darkmode .write_div, .darkmode .album_cont p,
+.darkmode .write_div, .darkmode .album_cont p,.darkmode .codex-editor,.darkmode .codex-editor__redactor,.darkmode .ce-block,.darkmode .ce-paragraph cdx-block,.darkmode .codex-editor-overlay,.darkmode .gallview_contents,.darkmode .inner clear,.darkmode .writing_view_box,.darkmode .ce-block--selected .ce-block__content [contenteditable],.darkmode .view_content_wrap,
 .darkmode .inwatermark, .darkmode .write_div .inwatermark, .darkmode .imgwrap .num, .darkmode .tip_box2, .darkmode .imgwrap .btn,
 .darkmode .txtmark_setting_wrap .sel_color
 {filter: invert(100%)}
@@ -1523,6 +1524,7 @@ n아이콘 기타  cc3300*/
 .darkmode .mynft .right_box .tip_box2{filter:invert(0);}/*nft*/
 
 .darkmode .write_div,
+.darkmode .codex-editor,.darkmode .codex-editor__redactor,.darkmode .ce-block,.darkmode .ce-paragraph cdx-block,.darkmode .codex-editor-overlay,.darkmode .gallview_contents,.darkmode .inner clear,.darkmode .writing_view_box,.darkmode .ce-block--selected .ce-block__content [contenteditable],.darkmode .view_content_wrap,/*다크모드때 글자가 안보여서 수정*/
 .darkmode .write_div > p div,
 .darkmode .write_div img,
 .darkmode .write_div video,
