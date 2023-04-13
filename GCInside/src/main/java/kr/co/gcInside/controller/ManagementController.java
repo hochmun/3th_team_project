@@ -90,18 +90,18 @@ public class ManagementController {
             return resultMap;
         }
 
-        // 7일 이내 변경 내역 확인
-//        if (service.checkRecentGellManageLog(galleryVO.getGell_num())) {
-//            int result = -3;
-//            resultMap.put("result", result);
-//            return resultMap;
-//        }
-
         // gell_name 갤러리 정보 가져옴
         galleryVO galleryVO = service.selectArticleAndSetting(id, grade);
 
         if (galleryVO == null) {
             throw new RuntimeException("갤러리 정보가 존재하지 않습니다.");
+        }
+
+        // 7일 이내 변경 내역 확인
+        if (service.checkRecentGellManageLog(galleryVO.getGell_num())) {
+            int result = -3;
+            resultMap.put("result", result);
+            return resultMap;
         }
 
         Gell_SettingVO settingVO = galleryVO.getGellSettingVO();
@@ -130,7 +130,7 @@ public class ManagementController {
 
         resultMap.put("logResult", logResult);
         }
-        
+
         return resultMap;
     }
 

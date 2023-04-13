@@ -230,6 +230,8 @@ function update_name() {
         }
         if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.');
         if(ajaxData.result == -2) alert('로그인 하셔야 합니다.');
+        if(ajaxData.result == -3) alert('7일 이내 변경하실 수 없습니다.');
+
         /*
             if(ajaxData.result == "success") {
                 if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {

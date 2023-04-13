@@ -24,7 +24,7 @@
     <select id="selectRecentGellManageLog" parameterType="kr.co.gcInside.vo.galleryVO" resultType="int">
         SELECT COUNT(*) FROM gc_gell_manage_log
         WHERE gell_m_l_n = #{gell_num}
-        AND DATE_SUB(NOW(), INTERVAL 7 DAY) &lt; gell_m_l_data
+        AND DATE_SUB(NOW(), INTERVAL 7 DAY) &lt; gell_m_l_date
     </select>
 
     <!-- upload -->
