@@ -1,6 +1,7 @@
 package kr.co.gcInside.controller.gall;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
@@ -40,12 +41,6 @@ public class BoardController {
      */
     @Autowired
     private BoardService service;
-
-    /**
-     * 2023/04/13 // 심규영 // 이미지 파일 업로드 경로
-     */
-    @Value("${spring.servlet.multipart.location}")
-    private String uploadPath;
 
     /**
      * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료
@@ -327,6 +322,9 @@ public class BoardController {
         // 게시글 작성 완료시 갤러리 게시글 개수 증가
         if(result > 0) service.updateGellArticleCount(data.get("article_gell_num"));
 
+        //
+        service.imageUpdate(data.get("article_content"));
+
         return resultMap;
     }
 
@@ -458,6 +456,9 @@ public class BoardController {
         // 게시글 업데이트
         int result = service.updateArticle(data);
         resultMap.put("result", result);
+
+        //
+        service.imageUpdate(data.get("content"));
 
         return resultMap;
     }
@@ -690,10 +691,10 @@ public class BoardController {
         Map<String, Object> fileMap = new HashMap<>();
 
         // 파일 저장
-        service.fileUpload(image, fileMap);
+        int result = service.fileUpload(image, fileMap);
 
         // 결과 저장
-        resultMap.put("success", 1);
+        resultMap.put("success", result);
         resultMap.put("file", fileMap);
 
         // 리턴
