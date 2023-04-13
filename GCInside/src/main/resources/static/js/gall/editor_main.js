@@ -9,7 +9,7 @@ $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/raw');
 //$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest');
 // 이미지 저장 기능 
 // 서버 필요
-//$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0');
+$.getScript('https://cdn.jsdelivr.net/npm/@editorjs/image@2.8.1/dist/bundle.min.js');
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest');
 /** 2023/03/27 // 심규영 // embed 수정 (최신화) */
 $.getScript('https://cdn.jsdelivr.net/npm/@editorjs/embed@2.5.3/dist/bundle.min.js');
@@ -48,17 +48,16 @@ function editor_start(type) {
                 },
                 raw: RawTool,
                 //simpleImage: SimpleImage,
-                /*
                 image: {
                     class: ImageTool,
                     config: {
                         endpoints: {
-                            byFile: 'http://127.0.0.1:5500/gall/board/uploadFile',
-                            byUrl: 'http://127.0.0.1:5500/gall/board/fetchUrl',
-                        }
+                            byFile: '/GCInside/gall/board/uploadFile',
+                            byUrl: '/GCInside/gall/board/fetchUrl',
+                        },
+                        //types: ["image/png", "image/jpg", "image/bmp"]
                     }
-                }
-                */
+                },
                 checklist: {
                     class: Checklist,
                     inlineToolbar: true,

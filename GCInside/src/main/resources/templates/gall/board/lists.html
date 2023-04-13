@@ -50,7 +50,7 @@
 
 								<!-- 관리자 유저 또는 부매니저 일 경우 관리자 페이지 버튼 표시 -->
 								<th:block th:if="${authorize.isAuthenticated}">
-									<div th:if="${galleryVO.gell_manager eq user.member_uid} || ${UserSubMangerCheck}" class="useradmin_go" style="margin-left:7px;">
+									<div th:if="${galleryVO.gell_manager eq user.member_uid || UserSubManagerCheck}" class="useradmin_go" style="margin-left:7px;">
 										<button type="button" class="sp_img btn_useradmin_go" onclick="goAdmin($(this))" th:data-id="${galleryVO.gell_address}"></button>
 									</div>
 								</th:block>
