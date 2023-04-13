@@ -259,11 +259,17 @@ public class AdminController {
      */
     @GetMapping("admin/gallery/advan_main")
     public String advanceToMainList(Model model) {
+        // 카테고리명 불러오기용
+        List<gall_cate2VO> cates = service.selectGalleryCates();
+
+        // 메인 갤러리 승급대상 리스트 불러오기
         minorService.minorinit();
         List<galleryVO> hot_mgall = minorService.selecthotmgall();
 
         model.addAttribute("rankdiff",minorService.rankdiff());
         model.addAttribute("hot",hot_mgall);
+        model.addAttribute("cates", cates);
+
         return "admin/gallery/advan_main";
     }
 
