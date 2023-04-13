@@ -77,6 +77,14 @@ public class ManagementService {
     }
 
     // insert
-
+    /**
+     * 2023.04.12 // 라성준 // 갤러리 업데이트시 상태값 로그
+     * @param
+     * @return
+     */
+    public boolean insertGellManageLog(String gell_manage_logVO) {
+        int result = dao.insertGellManageLog(gell_manage_logVO);
+        return result > 0;
+    }
 
 }

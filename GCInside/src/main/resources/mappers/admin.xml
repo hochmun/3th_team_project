@@ -251,7 +251,7 @@
 
     <!-- 2023/04/12 // 김재준 // 마이너 갤러리 메인 갤러리로 승급 status값 변경 -->
     <update id="updateMinorGalleryStatus" parameterType="kr.co.gcInside.vo.CreateVO">
-        UPDATE `gc_gell` SET `gell_status` = 0
+        UPDATE `gc_gell` SET `gell_grade` = 0
         WHERE `gell_num` = #{gell_num};
     </update>
 

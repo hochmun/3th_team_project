@@ -3,6 +3,7 @@ package kr.co.gcInside.controller;
 import kr.co.gcInside.service.ManagementService;
 import kr.co.gcInside.vo.Gell_SettingVO;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_manage_logVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
@@ -97,7 +98,18 @@ public class ManagementController {
          */
         
         if(result) {
-            // 변경 이력 남기는 기능
+//            // 변경 이력 남기는 기능
+//            gell_manage_logVO gellManageLog = new gell_manage_logVO();
+//            gellManageLog.setGell_m_l_n("");
+//            gellManageLog.setGell_m_l_g_n("");
+//            gellManageLog.setGell_m_l_uid("user_id");
+//            gellManageLog.setGell_m_l_cate("category");
+//            gellManageLog.setGell_m_l_content("content");
+//            gellManageLog.setGell_m_l_data(new Date());
+//
+//            boolean logResult = service.insertGellManageLog(gellManageLog);
+//
+//            resultMap.put("logResult", logResult);
         }
         
         return resultMap;
