@@ -45,8 +45,8 @@ public class BoardService {
      * @param data
      * @return
      */
-    public int insertArticle(Map<String, String> data) {
-        return dao.insertArticle(data);
+    public int insertArticle(gell_articleVO vo) {
+        return dao.insertArticle(vo);
     }
 
     /**
@@ -398,6 +398,16 @@ public class BoardService {
         return dao.updateCommentDelete(data);
     }
 
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 게시글 설정 기능
+     * @param url
+     * @param article_num
+     * @return
+     */
+    public int updateFileArticleNum(String url, int article_num){
+        return dao.updateFileArticleNum(url, article_num);
+    }
+
 
     // delete
     // service
@@ -474,7 +484,7 @@ public class BoardService {
     }
 
     /**
-     * 2023/03/29 // 심규영 // VO에 담기
+     * 2023/03/29 // 심규영 // 댓글 VO에 담기
      * <pre>     data 들어오는 값
      *          no                  : 게시물 번호
      *          login_info          : 로그인 상태
@@ -507,7 +517,7 @@ public class BoardService {
     }
 
     /**
-     * 2023/03/29 // 심규영 // VO에 담기
+     * 2023/03/29 // 심규영 // 대댓글 VO에 담기
      * <pre>     data 들어오는 값
      *          re_comment_ori_num              : 댓글 번호
      *          re_comment_article_num          : 게시글 번호
@@ -538,6 +548,40 @@ public class BoardService {
         reCommentVO.setRe_comment_regip(data.get("regip"));
 
         return reCommentVO;
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // aritcleVO에 담기
+     *      <p>들어오는 값</p><pre>
+     *          article_gell_num    : 게시물이 올라가는 갤러리 번호
+     *          userLogin           : 유저 로그인 정보 (0:회원,1:비회원)
+     *          sub_cate_info       : 말머리 사용 정보 (0:사용안함)
+     *          article_title       : 게시물 제목
+     *          article_content     : 게시물 내용
+     *
+     *          nonmember_uid       : 비회원 아이디
+     *          nonmember_pass      : 비회원 비밀번호
+     *          article_uid         : 회원 아이디
+     *
+     *          sub_cate            : 말머리 번호</pre>
+     * @param data
+     * @return
+     */
+    public gell_articleVO articleVOInsert(Map<String, String> data) {
+        gell_articleVO vo = new gell_articleVO();
+
+        vo.setArticlel_gell_num(Integer.parseInt(data.get("article_gell_num")));
+        vo.setArticle_login_status(Integer.parseInt(data.get("userLogin")));
+
+        vo.setArticle_uid(data.get("article_uid"));
+        vo.setArticle_nonmember_uid(data.get("nonmember_uid"));
+        vo.setArticle_nonmember_pass(data.get("nonmember_pass"));
+
+        vo.setArticle_sub_cate(Integer.parseInt(data.get("sub_cate")));
+        vo.setArticle_title(data.get("article_title"));
+        vo.setArticle_content(data.get("article_content"));
+
+        return vo;
     }
 
     /** 2023/04/12 // 심규영 // 회원 접속시 부매니저 확인 메소드 */
@@ -601,26 +645,35 @@ public class BoardService {
         if(!Directory.exists()) Directory.mkdirs();
     }
 
-    public void imageUpdate(String content) {
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성 또는 수정시 관련 이미지 정보 수정
+     * @param content
+     * @param article_num
+     * @param type
+     */
+    public void imageUpdate(String content, int article_num, int type) {
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Object> contentMap = new HashMap<>();
+
+        // 수정일 경우 진행전
+
         try {
+            // 게시글 내용 String 에서 Map(key, value) 형태로 변경
             contentMap = mapper.readValue(content, Map.class);
         } catch (Exception e) {
             log.error(e.getMessage());
         }
 
-        log.info("article_content : "+content);
-        log.info("content Map : "+contentMap.toString());
-        log.info("blocks : "+contentMap.get("blocks").toString());
-        log.info("blocks : "+contentMap.get("blocks").getClass().getName());
+        // 내용이 담기 blocks 분리
         ArrayList<LinkedHashMap> blocks = (ArrayList) contentMap.get("blocks");
         for(LinkedHashMap block : blocks) {
-            log.info("block type : "+ block.get("type"));
+            // block을 반복 하면서 내용이 image인 block 찾기
             String type = (String) block.get("type");
             if(type.equals("image")) {
+                // 이미지의 url을 추출
                 String url = (String) ((LinkedHashMap)((LinkedHashMap) block.get("data")).get("file")).get("url");
-                log.info("url : "+url);
+                // url과 게시글 번호로 관련 파일 설정 변경
+                updateFileArticleNum(url, article_num);
             }
         }
     }

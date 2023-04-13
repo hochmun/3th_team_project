@@ -7,20 +7,21 @@
     <!-- create -->
 
     <!-- 2023/03/22 // 심규영 // 게시물 작성 쿼리문 -->
-    <insert id="insertArticle" parameterType="map">
+    <insert id="insertArticle" parameterType="kr.co.gcInside.vo.gell_articleVO"
+    keyProperty="article_num" useGeneratedKeys="true">
         INSERT INTO `gc_gell_article` SET
-        `articlel_gell_num` = #{article_gell_num},
-        `article_login_status` = #{userLogin},
+        `articlel_gell_num` = #{articlel_gell_num},
+        `article_login_status` = #{article_login_status},
         <if test="userLogin eq 0">
             `article_uid` = #{article_uid},
         </if>
         <if test="userLogin eq 1">
-            `article_nonmember_uid` = #{nonmember_uid},
-            `article_nonmember_pass` = #{nonmember_pass},
+            `article_nonmember_uid` = #{article_nonmember_uid},
+            `article_nonmember_pass` = #{article_nonmember_pass},
         </if>
 
         <if test="sub_cate_info eq 1">
-            `article_sub_cate` = #{sub_cate},
+            `article_sub_cate` = #{article_sub_cate},
         </if>
         `article_title` = #{article_title},
         `article_content` = #{article_content},
@@ -439,6 +440,13 @@
             `re_comment_oir_num` = #{comment_no}
         </if>
             AND `comment_article_num` = #{articleNo};
+    </update>
+
+    <!-- 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 쿼리문 -->
+    <update id="updateFileArticleNum">
+        UPDATE `gc_gell_file` SET
+            `file_article_num` = #{article_num}
+        WHERE `file_url` = #{url};
     </update>
 
     <!-- delete -->

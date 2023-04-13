@@ -314,16 +314,19 @@ public class BoardController {
             return resultMap;
         }
         
+        // vo입력
+        gell_articleVO articleVO = service.articleVOInsert(data);
+        articleVO.setArticle_regip(req.getRemoteAddr());
+        
         // 게시글 작성
-        data.put("article_regip", req.getRemoteAddr());
-        result = service.insertArticle(data);
+        result = service.insertArticle(articleVO);
         resultMap.put("result", result);
         
         // 게시글 작성 완료시 갤러리 게시글 개수 증가
         if(result > 0) service.updateGellArticleCount(data.get("article_gell_num"));
 
-        //
-        service.imageUpdate(data.get("article_content"));
+        // 이미지 등록 확인 후 등록
+        service.imageUpdate(data.get("article_content"), articleVO.getArticle_num(), 0);
 
         return resultMap;
     }
@@ -458,7 +461,7 @@ public class BoardController {
         resultMap.put("result", result);
 
         //
-        service.imageUpdate(data.get("content"));
+        service.imageUpdate(data.get("content"), Integer.parseInt(data.get("modify_no")), 1);
 
         return resultMap;
     }
