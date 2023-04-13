@@ -29,7 +29,7 @@ public interface ManagementDAO {
     public int updateGellSetting(Gell_SettingVO setting);
     public int updateGell(galleryVO vo);
     public int equalsGell(@Param("gell_name") String gell_name);
-    public List<gell_manage_logVO> managerlog();
+    public int insertGellManageLog(String gell_manage_logVO);
 
 }
 
