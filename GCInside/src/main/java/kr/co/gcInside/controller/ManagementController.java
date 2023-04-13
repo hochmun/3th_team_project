@@ -1,5 +1,6 @@
 package kr.co.gcInside.controller;
 
+import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.ManagementService;
 import kr.co.gcInside.vo.Gell_SettingVO;
 import kr.co.gcInside.vo.galleryVO;
@@ -9,8 +10,12 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -61,7 +66,8 @@ public class ManagementController {
      */
     @ResponseBody
     @PostMapping("gall/management/index")
-    public Map<String, Object> index(@RequestBody Map<String, String> data) {
+    public Map<String, Object> index(@RequestBody Map<String, String> data,
+                                     @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Map<String, Object> resultMap = new HashMap<>();
 
         String gell_name = data.get("gell_name");
@@ -76,8 +82,20 @@ public class ManagementController {
             resultMap.put("result", result);
             return resultMap;
         }
-        
+
+        // 유저 로그인 안함
+        if(myUserDetails == null){
+            int result = -2;
+            resultMap.put("result", result);
+            return resultMap;
+        }
+
         // 7일 이내 변경 내역 확인
+//        if (service.checkRecentGellManageLog(galleryVO.getGell_num())) {
+//            int result = -3;
+//            resultMap.put("result", result);
+//            return resultMap;
+//        }
 
         // gell_name 갤러리 정보 가져옴
         galleryVO galleryVO = service.selectArticleAndSetting(id, grade);
@@ -96,25 +114,24 @@ public class ManagementController {
             throw new RuntimeException("갤러리 설정 업데이트에 실패했습니다.");
         }
          */
-        
         if(result) {
-//            // 변경 이력 남기는 기능
-//            gell_manage_logVO gellManageLog = new gell_manage_logVO();
-//            gellManageLog.setGell_m_l_n("");
-//            gellManageLog.setGell_m_l_g_n("");
-//            gellManageLog.setGell_m_l_uid("user_id");
-//            gellManageLog.setGell_m_l_cate("category");
-//            gellManageLog.setGell_m_l_content("content");
-//            gellManageLog.setGell_m_l_data(new Date());
-//
-//            boolean logResult = service.insertGellManageLog(gellManageLog);
-//
-//            resultMap.put("logResult", logResult);
+        // 변경 이력 로그 기능
+        gell_manage_logVO gellManageLog = new gell_manage_logVO();
+        gellManageLog.setGell_m_l_g_n(galleryVO.getGell_num());
+        gellManageLog.setGell_m_l_uid(myUserDetails.getUser().getMember_uid());
+        gellManageLog.setGell_m_l_cate("gell_cate");
+        gellManageLog.setGell_m_l_content("content");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = sdf.format(new Date());
+        gellManageLog.setGell_m_l_data(dateString);
+
+        boolean logResult = service.insertGellManageLog(gellManageLog);
+
+        resultMap.put("logResult", logResult);
         }
         
         return resultMap;
-
-
     }
 
     @GetMapping("gall/management/delete")

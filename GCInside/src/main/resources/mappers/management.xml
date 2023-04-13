@@ -20,6 +20,13 @@
         SELECT COUNT(*) FROM `gc_gell` WHERE `gell_name` = #{gell_name}
     </select>
 
+    <!-- 2023.04.13 // 라성준 // 매니지먼트 수정시 7일 이내 조회 -->
+    <select id="selectRecentGellManageLog" parameterType="kr.co.gcInside.vo.galleryVO" resultType="int">
+        SELECT COUNT(*) FROM gc_gell_manage_log
+        WHERE gell_m_l_n = #{gell_num}
+        AND DATE_SUB(NOW(), INTERVAL 7 DAY) &lt; gell_m_l_data
+    </select>
+
     <!-- upload -->
     <!-- 2023.04.03 // 라성준 // 매니지먼트 갤러리 설정 업데이트 -->
     <update id="updateGellSetting" parameterType="kr.co.gcInside.vo.Gell_SettingVO">
@@ -59,8 +66,8 @@
     <!-- insert -->
     <!-- 2023.04.12 // 라성준 // 갤러리 업데이트시 상태값 로그 -->
     <insert id="insertGellManageLog" parameterType="kr.co.gcInside.vo.gell_manage_logVO">
-        INSERT INTO gell_manage_log(gell_m_l_n, gell_m_l_g_n, gell_m_l_uid, gell_m_l_cate, gell_m_l_content, gell_m_l_data)
-        VALUES(#{gell_m_l_n}, #{gell_m_l_g_n}, #{gell_m_l_uid}, #{gell_m_l_cate}, #{gell_m_l_content}, #{gell_m_l_data})
+        INSERT INTO gc_gell_manage_log(gell_m_l_g_n, gell_m_l_uid, gell_m_l_cate, gell_m_l_content, gell_m_l_date)
+        VALUES(#{gell_m_l_g_n}, #{gell_m_l_uid}, #{gell_m_l_cate}, #{gell_m_l_content}, NOW());
     </insert>
 
     <!-- delete -->

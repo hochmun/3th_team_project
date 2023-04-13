@@ -4,6 +4,7 @@ import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dao.ManagementDAO;
 import kr.co.gcInside.vo.Gell_SettingVO;
 import kr.co.gcInside.vo.galleryVO;
+import kr.co.gcInside.vo.gell_manage_logVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,15 +20,12 @@ import java.util.Map;
 @Slf4j
 @Service
 public class ManagementService {
-
     @Autowired
     private ManagementDAO dao;
     @Autowired
     private BoardDAO boardDAO;
 
-
     //read
-
     /**
      * 2023.03.28 // 라성준 // 매니지먼트 서비스
      * @param gell_address
@@ -37,12 +35,27 @@ public class ManagementService {
         return dao.selectArticleAndSetting(gell_address);
     }
 
+    /**
+     * 2023.04.12 // 라성준 //
+     * @param gell_address
+     * @param grade
+     * @return
+     */
     public galleryVO selectArticleAndSetting(String gell_address, String grade) {
         return boardDAO.selectGellInfo(gell_address, grade.equals("0") ? "m" : grade.equals("1") ? "mgall" : "mini");
     }
 
-    // update
+    /**
+     * 2023.04.13 // 라성준 // 매니지먼트 수정시 7일 이내 조회
+     * @param gell_num
+     * @return
+     */
+    public boolean checkRecentGellManageLog(int gell_num) {
+        int count = dao.selectRecentGellManageLog(gell_num);
+        return count > 0;
+    }
 
+    // update
     /**
      * 2023.03.29 // 라성준 //
      * @param data
@@ -71,6 +84,12 @@ public class ManagementService {
         log.info("result : "+result);
         return result > 0;
     }
+
+    /**
+     * 2023.04.12 // 라성준 //
+     * @param gell_name
+     * @return
+     */
     public boolean equalsGell(String gell_name) {
         int count = dao.equalsGell(gell_name);
         return count > 0;
@@ -82,9 +101,8 @@ public class ManagementService {
      * @param
      * @return
      */
-    public boolean insertGellManageLog(String gell_manage_logVO) {
+    public boolean insertGellManageLog(gell_manage_logVO gell_manage_logVO) {
         int result = dao.insertGellManageLog(gell_manage_logVO);
         return result > 0;
     }
-
 }
