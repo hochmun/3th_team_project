@@ -18,10 +18,10 @@ public interface BoardDAO {
 
     /**
      * 2023/03/22 // 심규영 // 게시물 작성 DAO
-     * @param data
+     * @param vo
      * @return
      */
-    public int insertArticle(Map<String, String> data);
+    public int insertArticle(gell_articleVO vo);
 
     /**
      * 2023/03/28 // 심규영 // 댓글 작성 DAO
@@ -302,6 +302,14 @@ public interface BoardDAO {
      * @return
      */
     public int updateCommentDelete(Map<String,String> data);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 게시글 설정 기능
+     * @param url
+     * @param article_num
+     * @return
+     */
+    public int updateFileArticleNum(@Param("url") String url, @Param("article_num") int article_num);
 
     // delete
 }
