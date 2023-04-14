@@ -18,10 +18,10 @@ public interface BoardDAO {
 
     /**
      * 2023/03/22 // 심규영 // 게시물 작성 DAO
-     * @param data
+     * @param vo
      * @return
      */
-    public int insertArticle(Map<String, String> data);
+    public int insertArticle(gell_articleVO vo);
 
     /**
      * 2023/03/28 // 심규영 // 댓글 작성 DAO
@@ -57,6 +57,13 @@ public interface BoardDAO {
      * @return
      */
     public int insertGellHitLog(@Param("gell_num") int gell_num);
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 등록 기능
+     * @param vo
+     * @return
+     */
+    public int insertArticleFile(Gell_fileVO vo);
 
     // read
 
@@ -295,6 +302,29 @@ public interface BoardDAO {
      * @return
      */
     public int updateCommentDelete(Map<String,String> data);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 게시글 설정 기능
+     * @param url
+     * @param article_num
+     * @return
+     */
+    public int updateFileArticleNum(@Param("url") String url, @Param("article_num") int article_num);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 전 null 설정 기능
+     * @param article_num -> 게시글 번호
+     * @return
+     */
+    public int updateFileArticleNumNull(@Param("article_num") int article_num);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 첨부 파일 개수 업데이트
+     * @param article_num -> 게시글 번호
+     * @param count -> 첨부파일 개수
+     * @return
+     */
+    public int updateArticleFileCount(@Param("aritcle_num") int article_num, @Param("count") int count);
 
     // delete
 }

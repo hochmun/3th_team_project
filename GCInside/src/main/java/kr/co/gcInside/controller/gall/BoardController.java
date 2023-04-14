@@ -1,6 +1,7 @@
 package kr.co.gcInside.controller.gall;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
@@ -11,15 +12,21 @@ import org.apache.ibatis.annotations.Param;
 import org.hibernate.type.SerializableToBlobType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -40,12 +47,6 @@ public class BoardController {
      */
     @Autowired
     private BoardService service;
-
-    /**
-     * 2023/04/13 // 심규영 // 이미지 파일 업로드 경로
-     */
-    @Value("${spring.servlet.multipart.location}")
-    private String uploadPath;
 
     /**
      * 2023/03/18 // 심규영  // 글 목록 화면 불러오기 완료
@@ -319,13 +320,19 @@ public class BoardController {
             return resultMap;
         }
         
+        // vo입력
+        gell_articleVO articleVO = service.articleVOInsert(data);
+        articleVO.setArticle_regip(req.getRemoteAddr());
+        
         // 게시글 작성
-        data.put("article_regip", req.getRemoteAddr());
-        result = service.insertArticle(data);
+        result = service.insertArticle(articleVO);
         resultMap.put("result", result);
         
         // 게시글 작성 완료시 갤러리 게시글 개수 증가
         if(result > 0) service.updateGellArticleCount(data.get("article_gell_num"));
+
+        // 이미지 등록 확인 후 등록
+        service.imageUpdate(data.get("article_content"), articleVO.getArticle_num(), 0);
 
         return resultMap;
     }
@@ -458,6 +465,9 @@ public class BoardController {
         // 게시글 업데이트
         int result = service.updateArticle(data);
         resultMap.put("result", result);
+
+        //
+        service.imageUpdate(data.get("content"), Integer.parseInt(data.get("modify_no")), 1);
 
         return resultMap;
     }
@@ -690,13 +700,20 @@ public class BoardController {
         Map<String, Object> fileMap = new HashMap<>();
 
         // 파일 저장
-        service.fileUpload(image, fileMap);
+        int result = service.fileUpload(image, fileMap);
 
         // 결과 저장
-        resultMap.put("success", 1);
+        resultMap.put("success", result);
         resultMap.put("file", fileMap);
 
         // 리턴
+        return resultMap;
+    }
+
+    @PostMapping("gall/board/fetchUrl")
+    public Map<String, Object> fetchUrl(@Param("url") String urlString) {
+        Map<String, Object> resultMap = new HashMap<>();
+
         return resultMap;
     }
 }
