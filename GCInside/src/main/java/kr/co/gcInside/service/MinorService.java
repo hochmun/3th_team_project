@@ -111,6 +111,18 @@ public class MinorService {
             List<galleryVO> resultList = new ArrayList<>();
 
                 log.info("yesterday",yesterday.toString());
+                if(yesterday.isEmpty()) {
+                    for (galleryVO to : today) {
+                        log.info("else1");
+                        galleryVO gelldiff = new galleryVO();
+                        gelldiff.setGell_num(to.getGell_num());
+                        gelldiff.setGell_today_rank(to.getGell_today_rank());
+                        gelldiff.setGell_rank_diff(0);
+                        resultList.add(gelldiff);
+                        log.info("today :", gelldiff.toString());
+                    }
+                    }
+                else{
                     for (galleryVO yes : yesterday) {
                         for (galleryVO to : today) {
                             if (yes.getGell_num() == to.getGell_num()) {
@@ -121,7 +133,7 @@ public class MinorService {
                                 gelldiff.setGell_today_rank(to.getGell_today_rank());
                                 gelldiff.setGell_rank_diff(diff);
                                 resultList.add(gelldiff);
-                            }else{
+                            } else {
                                 galleryVO gelldiff = new galleryVO();
                                 gelldiff.setGell_num(to.getGell_num());
                                 gelldiff.setGell_today_rank(to.getGell_today_rank());
@@ -130,7 +142,8 @@ public class MinorService {
                             }
                         }
                     }
-                
+                        }
+
 
             return resultList;
         }
