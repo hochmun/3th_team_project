@@ -102,6 +102,11 @@ public interface AdminDAO {
     public int galleryRequestTotal();
 
     /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 리스트 총 개수
+     */
+    public int selectTargetmgalltotal();
+
+    /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 
      */
     public List<CreateVO> searchByCategory(@Param("category") int category, @Param("start") int start);
@@ -113,9 +118,19 @@ public interface AdminDAO {
     public int searchByCategoryTotal(int category);
 
     /**
-     * 2023/04/03 // 김재준 // 관리자 갤러리 개설신청 키워드 검색 총 개수
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색
      */
-    public int searchByKeywordTotal(String keyword, String option);
+    public List<galleryVO> searchByMinorCategory(@Param("category") int category, @Param("start") int start);
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색 총 개수
+     */
+    public int searchByMinorCategoryTotal(int category);
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 불러오기
+     */
+    public List<galleryVO> selectTargethotmgall(@Param("start") int start);
 
     // upload
 

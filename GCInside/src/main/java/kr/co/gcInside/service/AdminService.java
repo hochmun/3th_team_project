@@ -130,6 +130,13 @@ public class AdminService {
     }
 
     /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 리스트 총 개수
+     */
+    public int selectTargetmgalltotal() {
+        return dao.selectTargetmgalltotal();
+    }
+
+    /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색
      */
     public List<CreateVO> searchByCategory(int category, int start) {
@@ -141,6 +148,28 @@ public class AdminService {
      */
     public int searchByCategoryTotal(int category) {
         return dao.searchByCategoryTotal(category);
+    }
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색
+     */
+    public List<galleryVO> searchByMinorCategory(int category, int start) {
+        return dao.searchByMinorCategory(category, start);
+    }
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색 총 개수
+     */
+    public int searchByMinorCategoryTotal(int category) {
+        return dao.searchByMinorCategoryTotal(category);
+    }
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 불러오기
+     */
+    public List<galleryVO> selectTargethotmgall(int start) {
+
+        return dao.selectTargethotmgall(start);
     }
 
     // upload

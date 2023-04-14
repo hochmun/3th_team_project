@@ -258,17 +258,33 @@ public class AdminController {
      * 2023/04/11 // 김재준 // 메인 갤러리 승급대상 list
      */
     @GetMapping("admin/gallery/advan_main")
-    public String advanceToMainList(Model model) {
+    public String advanceToMainList(Model model,
+                                    @RequestParam Map<String, String> data) {
         // 카테고리명 불러오기용
         List<gall_cate2VO> cates = service.selectGalleryCates();
 
         // 메인 갤러리 승급대상 리스트 불러오기
         minorService.minorinit();
-        List<galleryVO> hot_mgall = minorService.selecthotmgall();
+        List<galleryVO> hot_mgall = null;
+        int category = 0;
+
+        if (data.get("category") != null && !data.get("category").isEmpty()){
+            category = Integer.parseInt(data.get("category"));
+            int totalCount = service.searchByMinorCategoryTotal(category);
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            hot_mgall = service.searchByMinorCategory(Integer.parseInt(data.get("category")), pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }else{
+            int totalCount = service.selectTargetmgalltotal();
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            hot_mgall = service.selectTargethotmgall(pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }
 
         model.addAttribute("rankdiff",minorService.rankdiff());
-        model.addAttribute("hot",hot_mgall);
+        model.addAttribute("hot", hot_mgall);
         model.addAttribute("cates", cates);
+        model.addAttribute("selectedCategory", category);
 
         return "admin/gallery/advan_main";
     }
