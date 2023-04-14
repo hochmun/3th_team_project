@@ -12,15 +12,21 @@ import org.apache.ibatis.annotations.Param;
 import org.hibernate.type.SerializableToBlobType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -701,6 +707,13 @@ public class BoardController {
         resultMap.put("file", fileMap);
 
         // 리턴
+        return resultMap;
+    }
+
+    @PostMapping("gall/board/fetchUrl")
+    public Map<String, Object> fetchUrl(@Param("url") String urlString) {
+        Map<String, Object> resultMap = new HashMap<>();
+
         return resultMap;
     }
 }

@@ -311,5 +311,20 @@ public interface BoardDAO {
      */
     public int updateFileArticleNum(@Param("url") String url, @Param("article_num") int article_num);
 
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 전 null 설정 기능
+     * @param article_num -> 게시글 번호
+     * @return
+     */
+    public int updateFileArticleNumNull(@Param("article_num") int article_num);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 첨부 파일 개수 업데이트
+     * @param article_num -> 게시글 번호
+     * @param count -> 첨부파일 개수
+     * @return
+     */
+    public int updateArticleFileCount(@Param("aritcle_num") int article_num, @Param("count") int count);
+
     // delete
 }

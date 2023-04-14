@@ -7,18 +7,25 @@ import kr.co.gcInside.utill.DeduplicationUtils;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URL;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 2023/03/20 // 심규영 // 보드 서비스 생성
@@ -42,7 +49,8 @@ public class BoardService {
 
     /**
      * 2023/03/22 // 심규영 // 게시물 작성 DAO
-     * @param data
+     * 2023/04/14 // 심규영 // vo로 변경
+     * @param vo
      * @return
      */
     public int insertArticle(gell_articleVO vo) {
@@ -405,9 +413,28 @@ public class BoardService {
      * @return
      */
     public int updateFileArticleNum(String url, int article_num){
-        return dao.updateFileArticleNum(url, article_num);
+        String cuttingUrl = "%"+url.substring(url.indexOf("thumb"))+"%";
+        return dao.updateFileArticleNum(cuttingUrl, article_num);
     }
 
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 전 null 설정 기능
+     * @param article_num -> 게시글 번호
+     * @return
+     */
+    public int updateFileArticleNumNull(int article_num){
+        return dao.updateFileArticleNumNull(article_num);
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 첨부 파일 개수 업데이트
+     * @param article_num -> 게시글 번호
+     * @param count -> 첨부파일 개수
+     * @return
+     */
+    public int updateArticleFileCount(int article_num, int count){
+        return dao.updateArticleFileCount(article_num, count);
+    }
 
     // delete
     // service
@@ -577,7 +604,9 @@ public class BoardService {
         vo.setArticle_nonmember_uid(data.get("nonmember_uid"));
         vo.setArticle_nonmember_pass(data.get("nonmember_pass"));
 
-        vo.setArticle_sub_cate(Integer.parseInt(data.get("sub_cate")));
+        vo.setSub_cate_info(Integer.parseInt(data.get("sub_cate_info")));
+        if(data.get("sub_cate_info").equals("1")) vo.setArticle_sub_cate(Integer.parseInt(data.get("sub_cate")));
+
         vo.setArticle_title(data.get("article_title"));
         vo.setArticle_content(data.get("article_content"));
 
@@ -635,6 +664,23 @@ public class BoardService {
         return insertArticleFile(vo);
     }
 
+    public void urlfileDownload(String urlStr) {
+        BufferedImage image = null;
+
+        // 파일 받기
+        try {
+            image = ImageIO.read(new URL(urlStr));
+        } catch (Exception e) {
+            log.error("URL에서 이미지 파일 읽어오기 에러");
+            log.error(e.getMessage());
+        }
+
+        String fileName = urlStr.substring(urlStr.lastIndexOf("/")+1);
+        File file = new File(uploadPath+fileName);
+
+        log.info("file : "+file.toString());
+    }
+
     /**
      * 2022/12/09 해당 디렉토리가 없을시 디렉토리 생성
      * @author 심규영
@@ -647,15 +693,17 @@ public class BoardService {
 
     /**
      * 2023/04/14 // 심규영 // 게시글 작성 또는 수정시 관련 이미지 정보 수정
-     * @param content
-     * @param article_num
-     * @param type
+     * @param content -> 글 내용
+     * @param article_num -> 게시글 번호
+     * @param mode -> 글쓰기, 글 수정 {0:글쓰기, 1:글수정}
      */
-    public void imageUpdate(String content, int article_num, int type) {
+    public void imageUpdate(String content, int article_num, int mode) {
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Object> contentMap = new HashMap<>();
+        int count = 0; // 이미지 파일 개수
 
-        // 수정일 경우 진행전
+        // 수정일 경우 진행전 이미지 파일 관련 게시글 null로 변경
+        if(mode == 1) updateFileArticleNumNull(article_num);
 
         try {
             // 게시글 내용 String 에서 Map(key, value) 형태로 변경
@@ -674,7 +722,13 @@ public class BoardService {
                 String url = (String) ((LinkedHashMap)((LinkedHashMap) block.get("data")).get("file")).get("url");
                 // url과 게시글 번호로 관련 파일 설정 변경
                 updateFileArticleNum(url, article_num);
+                // 이미지 파일 개수 증가
+                count++;
             }
         }
+        
+        // 게시글 이미지 개수 업데이트
+        // 파일이 1개 이상 있을 경우에
+        if(count > 0) updateArticleFileCount(article_num, count);
     }
 }

@@ -12,10 +12,10 @@
         INSERT INTO `gc_gell_article` SET
         `articlel_gell_num` = #{articlel_gell_num},
         `article_login_status` = #{article_login_status},
-        <if test="userLogin eq 0">
+        <if test="article_login_status eq 0">
             `article_uid` = #{article_uid},
         </if>
-        <if test="userLogin eq 1">
+        <if test="article_login_status eq 1">
             `article_nonmember_uid` = #{article_nonmember_uid},
             `article_nonmember_pass` = #{article_nonmember_pass},
         </if>
@@ -380,8 +380,7 @@
         WHERE `article_num` = #{article_num};
     </update>
 
-    <!--
-    2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 쿼리문
+    <!-- 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 쿼리문
     2023/04/11 // 심규영 // 댓글의 대댓글 수 감소 쿼리문 추가
     -->
     <update id="updateCommentReCount">
@@ -446,7 +445,21 @@
     <update id="updateFileArticleNum">
         UPDATE `gc_gell_file` SET
             `file_article_num` = #{article_num}
-        WHERE `file_url` = #{url};
+        WHERE `file_url` LIKE #{url};
+    </update>
+
+    <!-- 2023/0414 // 심규영 // 게시글 작성시 관련 파일 설정 전 null 변경 쿼리문-->
+    <update id="updateFileArticleNumNull">
+        UPDATE `gc_gell_file` SET
+            `file_article_num` = null
+        WHERE `file_article_num` = #{article_num};
+    </update>
+
+    <!-- 2023/04/14 // 심규영 // 게시글 작성시 첨부 파일 개수 업데이트 -->
+    <update id="updateArticleFileCount">
+        UPDATE `gc_gell_article` SET
+            `article_file` = #{count}
+        WHERE `article_num` = #{aritcle_num};
     </update>
 
     <!-- delete -->
