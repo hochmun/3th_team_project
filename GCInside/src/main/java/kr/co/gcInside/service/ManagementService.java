@@ -74,16 +74,31 @@ public class ManagementService {
 
     /**
      * 2023.04.03 // 라성준 //
-     * 갤러리 업데이트 서비스
+     * 갤러리 업데이트 서비스 이름
      * @param vo
      * @return
      */
     public boolean updateGellSetting(Gell_SettingVO vo, galleryVO galleryVO) {
         int result = dao.updateGellSetting(vo);
         result += dao.updateGell(galleryVO);
+        result += dao.updateGellInfo(galleryVO);
         log.info("result : "+result);
         return result > 0;
     }
+
+    /**
+     * 2023.04.14 // 라성준
+     * 갤러리 업데이트 서비스 설명
+     * @param vo
+     * @param galleryVO
+     * @return
+     */
+//    public boolean updateGellSettingInfo(Gell_SettingVO vo, galleryVO galleryVO) {
+//        int result = dao.updateGellSetting(vo);
+//        result += dao.updateGellInfo(galleryVO);
+//        log.info("result "+result);
+//        return result > 0;
+//    }
 
     /**
      * 2023.04.12 // 라성준 //
@@ -94,6 +109,8 @@ public class ManagementService {
         int count = dao.equalsGell(gell_name);
         return count > 0;
     }
+
+
 
     // insert
     /**

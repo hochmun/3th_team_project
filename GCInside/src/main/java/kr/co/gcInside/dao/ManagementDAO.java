@@ -28,13 +28,24 @@ public interface ManagementDAO {
      */
     public int updateGellSetting(Gell_SettingVO setting);
 
+
     /**
-     * 2023.04.03 // 라성준
-     * 갤러리 정보 업데이트
+     * 2023.04.03 // 라성준 //
+     * 갤러리 이름 업데이트
      * @param vo
      * @return
      */
     public int updateGell(galleryVO vo);
+
+
+    /**
+     * 2023.04.14 // 라성준
+     * 갤러리 설명 업데이트
+     * @param vo
+     * @return
+     */
+    public int updateGellInfo(galleryVO vo);
+
 
     /**
      * 2023.04.03 // 라성준 //
@@ -44,12 +55,14 @@ public interface ManagementDAO {
      */
     public int equalsGell(@Param("gell_name") String gell_name);
 
+
     /**
      * 2023.04.13 // 라성준 // 갤러리 상태값 변경 로그 삽입
      * @param gell_manage_logVO
      * @return
      */
     public int insertGellManageLog(gell_manage_logVO gell_manage_logVO);
+
 
     /**
      * 2023.04.13 // 라성준 // 최근 7일간의 갤러리 로그 개수 조회
