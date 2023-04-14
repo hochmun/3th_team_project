@@ -228,7 +228,10 @@ function update_name() {
             console.log('확인');
             location.reload();
         }
-        if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.')
+        if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.');
+        if(ajaxData.result == -2) alert('로그인 하셔야 합니다.');
+        if(ajaxData.result == -3) alert('7일 이내 변경하실 수 없습니다.');
+
         /*
             if(ajaxData.result == "success") {
                 if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
@@ -254,18 +257,18 @@ function chk_desc() {
 	}
 	
 	$.ajax({
-      type: "POST",
-      url: "/ajax/minor_ajax/chk_description",
-      data: { 'ci_t' : csrf_token, 'description': strGalleryDesc },
+      url: '/GCInside/gall/management/index',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(data),
 	  dataType : 'json',
-      cache : false,
-      async : false,
       success: function(ajaxData) {
+      console.log("ajaxData.result : ",ajaxData.result);
 			$(".desc .alert_txt").remove();
-        	
+
 			if(typeof(ajaxData.msg) != 'undefined') {
 				var tmpl = $('#error_msg-tmpl').tmpl([{'icon' : 'X', 'msg' : ajaxData.msg}]);
-				
+
 				if($('.alert-ct-box').index() < 0) {
 					$('.desc .max_txt').before(tmpl);
 				}
@@ -274,13 +277,13 @@ function chk_desc() {
 				}
 			}
 			
-			if(ajaxData.result == "success") {
-				$(".mdesc_alert_txt").hide();
-				$('#mg_desc').attr('data-checked', strGalleryDesc);
-			}
-			else {
-				return false;
-			}
+//			if(ajaxData.result == "success") {
+//				$(".mdesc_alert_txt").hide();
+//				$('#mg_desc').attr('data-checked', strGalleryDesc);
+//			}
+//			else {
+//				return false;
+//			}
 		}
   });
 	
@@ -298,13 +301,13 @@ function update_desc() {
     }
     
     $.ajax({
-        type: "POST",
-        url: "/ajax/managements_ajax/update_desc",
-        data: { 'ci_t' : csrf_token, 'gallery_id': mgall_id, '_GALLTYPE_': _GALLERY_TYPE_, 'desc': mgall_desc },
-		dataType : 'json',
-        cache : false,
-        async : false,
-        success: function(ajaxData) {
+          url: '/GCInside/gall/management/index',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+    	  dataType : 'json',
+          success: function(ajaxData) {
+          console.log("ajaxData.result : ",ajaxData.result);
 			$(".desc .alert_txt").remove();
         	
 			if(ajaxData.result == "success") {
