@@ -7,14 +7,85 @@ $(function(){
         ck_l_f = 'l';
     }
 
+    /** 2023/04/18 // 심규영 // 최근 접속 갤러리 표시 */
+    const value = localStorage.getItem('lately_gallery');
+    const strg_galls = $.parseJSON(value);
+
+    if(strg_galls && strg_galls.length > 0) { // 최근 접속 갤러리 기록이 있을 경우
+        if(strg_galls && strg_galls.length > 50) { // 기록의 길이가 50개가 넘을 경우
+            strg_galls = strg_galls.slice(0, 50); // 자르기
+        }
+
+        strg_galls.forEach((strg_gall)=>{
+            const $li = $('<li>').attr('class','lately_gall_'+strg_gall.id)
+            .append(
+                $('<a>').attr('href',strg_gall.link).attr('class','lately_log').text(strg_gall.name)
+            ).append(
+                $('<em>').attr('class', strg_gall.type == 'mgall' ? 'icon_minor' : strg_gall.type == 'mini' ? 'icon_mini' : '')
+            ).append(
+                $('<button>').attr('type','button').attr('class','btn_visit_del').data('id',strg_gall.id).data('gtype',strg_gall.type).append(
+                    $('<em>').attr('class','icon_visit_del')
+                ).click(function(){lately_gall_delete($(this))})
+            );
+
+            $('#visit_history .vst_listbox').append($li.clone(true)); // 간단히 보기 표시
+            $('.visit_tablist .under_listbox').append($li.clone(true));
+        });
+
+        // 전체 삭제
+        $('.visit_tablist .list_modi').click(()=>{
+            if(confirm('최근 방문 갤러리 목록을 모두 삭제하시겠습니까?')) {
+                localStorage.removeItem('lately_gallery');
+                $('.vst_listbox li').remove();
+                $('.vst_list li').remove();
+                $('#visit_history_lyr .visit_div').html('<p class="empty_visit empty_vi">최근 방문 목록이 없습니다.</p>');
+                $('.vst_title').text('최근 방문 갤러리');
+                btn_hide();
+            }
+        });
+    } else {
+        $('#visit_history_lyr .visit_div').html('<p class="empty_visit empty_vi">최근 방문 목록이 없습니다.</p>');
+        $('.vst_title').text('최근 방문 갤러리');
+    }
+
     //즐겨찾기
     if(ck_l_f == 'f') {
         tabLately('favorite');
     } else {
         tabLately('lately');
-
     }
 });
+
+/** 2023/04/18 // 심규영 // 방문 기록 삭제 */
+const lately_gall_delete = ($this) => {
+    const id = $this.data('id');
+    const gall_type = $this.data('gtype');
+
+    $('.lately_gall_'+id).remove();
+
+    const value = localStorage.getItem('lately_gallery');
+    const strg_galls = modify_storage_json(value, id, gall_type);
+    localStorage.setItem('lately_gallery',JSON.stringify(strg_galls));
+    if(strg_galls.length <= 0){
+        $('#visit_history_lyr .visit_div').html('<p class="empty_visit empty_vi">최근 방문 목록이 없습니다.</p>');
+        $('.vst_title').text('최근 방문 갤러리');
+        btn_hide();
+    }
+};
+
+/** 2023/04/18 // 심규영 // 방문 목록 수정 */
+const modify_storage_json = (jsonData, id, type) => {
+    const new_data = new Array();
+    const strg_galls = $.parseJSON(jsonData);
+
+    for(let i in strg_galls) {
+        if(strg_galls[i] && typeof(strg_galls[i].id) != 'undefined' && (strg_galls[i].id != id || strg_galls[i].type != type)) {
+            new_data.push(strg_galls[i]);
+        }
+    }
+
+    return new_data;
+};
 
 var btn_show = function (){
 	$('.bnt_visit_prev').show();
