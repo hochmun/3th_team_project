@@ -299,6 +299,12 @@ function update_desc() {
         alert($("#mg_desc").attr('placeholder'));
         return;
     }
+    // data 변수 선언
+    var data = {
+        "mg_name": mgall_desc,
+        "mg_desc": mgall_desc,
+        "id": $("#mg_name").data('id')
+    };
     
     $.ajax({
           url: '/GCInside/gall/management/index',
@@ -328,7 +334,10 @@ function update_desc() {
 			}
 			
 			result = ajaxData.result;
-        }
+        },
+        error: function(xhr, textStatus, errorThrown) {
+                    console.log("Error: ", errorThrown);
+         }
     });
     
     return result == "success";

@@ -61,6 +61,7 @@ public class ManagementController {
      *      gell_name   : 이전 이름
      *      mg_name     : 변경할 이름
      *      grade       : 갤러리 등급
+     *      info        : 설명
      * @param data
      * @return
      */
@@ -74,6 +75,7 @@ public class ManagementController {
         String mg_name = data.get("mg_name");
         String id = data.get("id");
         String grade = data.get("grade");
+        String mg_desc = data.get("mg_desc");
 
         // 이름 중복 확인 기능
         boolean equalsGell = service.equalsGell(mg_name);
