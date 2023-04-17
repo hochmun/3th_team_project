@@ -1,0 +1,1 @@
+let ck_l_f = get_cookie('ck_l_f');

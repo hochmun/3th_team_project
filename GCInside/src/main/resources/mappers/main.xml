@@ -152,6 +152,24 @@
         select `gell_num`,`gell_yesterday_rank` from `gc_gell` WHERE `gell_yesterday_rank`>='1' and `gell_grade`='0';
     </select>
 
+    <!-- 2023/04/17 // 심규영 // 전날 게시글 갯수, 댓글 갯수 가져오는 쿼리문 -->
+    <select id="selectYesterdayCount" resultType="map">
+        SELECT
+            (SELECT COUNT(*)
+                FROM `gc_gell_article` AS d
+            WHERE d.`article_rdate` >= STR_TO_DATE(DATE_FORMAT(DATE_ADD(now(), Interval -1 Day), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
+            AND d.`article_rdate` &lt; STR_TO_DATE(DATE_FORMAT(now(), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')) AS `article_count`,
+            COUNT(*) AS `comment_count`
+        FROM
+            (SELECT a.`comment_rdate`
+                FROM `gc_gell_comment` AS a
+            UNION ALL
+            SELECT b.`re_comment_rdate`
+                FROM `gc_gell_re_comment` AS b) AS c
+            WHERE c.`comment_rdate` >= STR_TO_DATE(DATE_FORMAT(DATE_ADD(now(), Interval -1 Day), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
+            AND c.`comment_rdate` &lt; STR_TO_DATE(DATE_FORMAT(now(), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T');
+    </select>
+    
     <!-- 2023/04/17 // 김동민 // 갤러리 select-->
     <select id="selectgall" resultType="kr.co.gcInside.vo.galleryVO">
         select * from `gc_gell` where `gell_grade`='0';

@@ -13,6 +13,10 @@ import org.hibernate.type.SerializableToBlobType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,12 +25,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -208,6 +214,11 @@ public class BoardController {
             // 갤러리 서브 매니저 정보 가져오기
             List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());
             
+            // 파일 개수가 1이상일 경우 게시글 관련 이미지 파일 정보 가져오기
+            List<Gell_fileVO> fileVOS = null;
+            if(articleVO.getArticle_file() > 0) fileVOS = service.selectFiles(articleVO.getArticle_num());
+            model.addAttribute("fileVOS", fileVOS);
+
             // 모델
             model.addAttribute("gellArticleVOS", gellArticleVOS);
             model.addAttribute("pagingDTO", pagingDTO);
@@ -710,10 +721,55 @@ public class BoardController {
         return resultMap;
     }
 
+    /**
+     * 2023/04/17 // 심규영 // url로 파일 다운로드 기능
+     * @param data {<br>
+     *             "url"                    : "이미지 주소",<br>
+     *             "additionalRequestData"  : "몰루(additional request data from configuration)"<br>
+     * }
+     * @return
+     */
+    @ResponseBody
     @PostMapping("gall/board/fetchUrl")
-    public Map<String, Object> fetchUrl(@Param("url") String urlString) {
+    public Map<String, Object> fetchUrl(@RequestBody Map<String,String> data) {
         Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> fileMap = new HashMap<>();
+
+        // 파일 저장
+        int result = service.urlfileDownload(data.get("url"), fileMap);
+
+        // 결과 저장
+        resultMap.put("success", result);
+        resultMap.put("file", fileMap);
 
         return resultMap;
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // 파일명 클릭시 파일 다운로드 기능
+     * @param data {
+     *             "url" : 다운로드 주소
+     *             "oName" : 원본 이름
+     * }
+     * @return
+     */
+    @GetMapping("gall/board/fileDownload")
+    public ResponseEntity<Object> fileDownload(@RequestParam Map<String, String> data){
+        String url = data.get("url");
+        try {
+            Path filePath = Paths.get(url);
+            Resource resource = new InputStreamResource(Files.newInputStream(filePath));
+
+            File file = new File(url);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentDisposition(ContentDisposition.builder("attachment").filename(data.get("oName")).build());
+
+            return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+        } catch (Exception e){
+            log.error("파일 다운로드 에러!");
+            log.error(e.getMessage());
+            return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
+        }
     }
 }

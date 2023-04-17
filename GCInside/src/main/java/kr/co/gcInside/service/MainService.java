@@ -63,6 +63,14 @@ public class MainService {
     }
 
     /**
+     * 2023/04/17 // 심규영 // 전날 게시글 갯수 및 댓글 갯수 가져오는 기능
+     * @return
+     */
+    public Map<String, Object> selectYesterdayCount(){
+        return dao.selectYesterdayCount();
+    }
+
+    /**
      * 2023/04/07 // 김동민 // 개념글(임시로 추천수1이상 글) 출력
      */
     public List<gell_articleVO> selecthotarticle(){

@@ -56,6 +56,13 @@ public interface MainDAO {
     public List<gell_articleVO> selecthotarticle();
 
     /**
+     * 2023/04/17 // 심규영 // 전날 게시글 갯수 및 댓글 갯수 가져오는 기능
+     * @return
+     */
+    public Map<String, Object> selectYesterdayCount();
+
+
+    /**
      * 2023/04/07 // 김동민 // 흥한갤러리 관련 minor에서 사용했던 코드 메인에 적용
      */
     public List<galleryVO>selecthotgall();      // 흥한 갤러리 불러오기

@@ -206,6 +206,13 @@ public interface BoardDAO {
      */
     public Gell_commentVO selectCommentInfo(@Param("re") String re, @Param("comment_no") String comment_no);
 
+    /**
+     * 2023/04/17 // 심규영 // 게시글 관련 이미지 파일 불러오는 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_fileVO> selectFiles(@Param("article_num") int article_num);
+
     // upload
 
     /**

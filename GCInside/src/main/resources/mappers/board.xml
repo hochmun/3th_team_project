@@ -347,6 +347,12 @@
         WHERE `${re}comment_num` = #{re_no} AND `${re}comment_nonmember_password` = #{password};
     </select>
 
+    <!-- 2023/04/17 // 심규영 // 게시글 관련 파일 목록 불러오는 쿼리문 -->
+    <select id="selectFiles" resultType="kr.co.gcInside.vo.Gell_fileVO">
+        SELECT * FROM `gc_gell_file`
+        WHERE `file_article_num` = #{article_num};
+    </select>
+
     <!-- upload -->
     <!-- 2023/03/28 // 심규영 // 게시글 수정 쿼리문 -->
     <update id="updateArticle" parameterType="map">

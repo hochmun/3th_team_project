@@ -126,4 +126,21 @@ public class MainController {
 
         return resultMap;
     }
+
+    /**
+     * 2023/04/17 // 심규영 // 전날 게시글 갯수, 댓글 개수 구하는 기능
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("mainIndex/yesterdayCount")
+    public Map<String, Object> yesterdayCount() {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        Map<String, Object> count = service.selectYesterdayCount();
+
+        resultMap.put("article_count", count.get("article_count"));
+        resultMap.put("comment_count", count.get("comment_count"));
+
+        return resultMap;
+    }
 }

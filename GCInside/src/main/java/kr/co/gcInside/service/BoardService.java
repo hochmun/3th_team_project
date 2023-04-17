@@ -7,6 +7,7 @@ import kr.co.gcInside.utill.DeduplicationUtils;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
@@ -288,6 +289,15 @@ public class BoardService {
         String re = type.equals("cmt") ? "" : "re_"; // 댓글, 대댓글 구분
         String comment_no = type.equals("cmt") ? data.get("comment_no") : data.get("re_comment_no"); // 댓글,대댓글에 따라 번호 가져오기
         return dao.selectCommentInfo(re, comment_no);
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // 게시글 관련 이미지 파일 불러오는 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_fileVO> selectFiles(int article_num){
+        return dao.selectFiles(article_num);
     }
 
     // upload
@@ -664,21 +674,56 @@ public class BoardService {
         return insertArticleFile(vo);
     }
 
-    public void urlfileDownload(String urlStr) {
-        BufferedImage image = null;
+    /**
+     * 2023/04/17 // 심규영 // URL로 파일 다운로드 기능
+     * @param urlStr
+     * @param fileMap
+     * @return
+     */
+    public int urlfileDownload(String urlStr, Map<String, Object> fileMap) {
+        // 시스템 경로
+        String path = new File(uploadPath).getAbsolutePath();
+
+        // url에서 이름 가져와서 이름 변경
+        String oName = urlStr.substring(urlStr.lastIndexOf("/")+1);
+        String ext = oName.substring(oName.lastIndexOf(".")+1);
+        String nName = UUID.randomUUID().toString()+"."+ext;
+
+        log.info("oName : "+oName);
+        log.info("ext : "+ext);
+        log.info("nName : "+nName);
+
+        // 날짜 구하기
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formatedNow = now.format(formatter);
+
+        // 경로 생성
+        dirCreate(String.format("%s/%s/", path, formatedNow));
+        File file = new File(String.format("%s/%s/", path, formatedNow), nName);
 
         // 파일 받기
+        BufferedImage image = null;
         try {
-            image = ImageIO.read(new URL(urlStr));
+            image = ImageIO.read(new URL(urlStr)); // 이미지 읽어오기
+            ImageIO.write(image, ext, file); // 이미지 저장
         } catch (Exception e) {
             log.error("URL에서 이미지 파일 읽어오기 에러");
             log.error(e.getMessage());
         }
 
-        String fileName = urlStr.substring(urlStr.lastIndexOf("/")+1);
-        File file = new File(uploadPath+fileName);
+        // Map에 이미지 경로 저장
+        fileMap.put("url", "/GCInside/thumb/"+formatedNow+"/"+nName);
 
-        log.info("file : "+file.toString());
+        // vo에 저장
+        Gell_fileVO vo = new Gell_fileVO().builder()
+                .file_ori_name(oName)
+                .file_new_name(nName)
+                .file_url(String.format("%s/%s/%s",path,formatedNow,nName))
+                .build();
+
+        // 데이터 베이스에 저장 및 결과 리턴
+        return insertArticleFile(vo);
     }
 
     /**
