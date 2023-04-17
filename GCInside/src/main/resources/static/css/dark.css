@@ -1,3 +1,6 @@
+.darkmode #comment_content{
+background:black;
+}
 @charset "utf-8";
 /*배경 이미지*/
 .darkmode .sp_main{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_main_dark.png?0524)}
@@ -1504,7 +1507,7 @@ n아이콘 기타  cc3300*/
 .darkmode .voice-player .prograss .bar{background-color: #404a89}
 .darkmode .voice-lnk{color: #bbb}
 
-.darkmode .write_div *,.darkmode .codex-editor,.darkmode .codex-editor__redactor,.darkmode .ce-block,.darkmode .ce-paragraph cdx-block,.darkmode .codex-editor-overlay,.darkmode .ce-block--selected .ce-block__content [contenteditable],.darkmode .view_content_wrap,
+.darkmode .write_div *,
 .darkmode .gallview_contents,.darkmode .inner clear,.darkmode .writing_view_box,.darkmode .write_div, .darkmode .album_cont p{color:#444}/*220315 555->333  --> 220923 가독성 문제로 333->444 */
 .darkmode .write_div .over_alt,.darkmode .write_div .btn_dccon_infoview,  .darkmode .btn_red.mgall_make_go,
 .darkmode .inwatermark, .darkmode .write_div .inwatermark, .darkmode .imgwrap .btn,
@@ -1516,7 +1519,7 @@ n아이콘 기타  cc3300*/
 
 .darkmode .imgwrap .num{color:#29367c}
 
-.darkmode .write_div, .darkmode .album_cont p,.darkmode .codex-editor,.darkmode .codex-editor__redactor,.darkmode .ce-block,.darkmode .ce-paragraph cdx-block,.darkmode .codex-editor-overlay,.darkmode .gallview_contents,.darkmode .inner clear,.darkmode .writing_view_box,.darkmode .ce-block--selected .ce-block__content [contenteditable],.darkmode .view_content_wrap,
+.darkmode .write_div, .darkmode .album_cont p,
 .darkmode .inwatermark, .darkmode .write_div .inwatermark, .darkmode .imgwrap .num, .darkmode .tip_box2, .darkmode .imgwrap .btn,
 .darkmode .txtmark_setting_wrap .sel_color
 {filter: invert(100%)}
@@ -1524,7 +1527,6 @@ n아이콘 기타  cc3300*/
 .darkmode .mynft .right_box .tip_box2{filter:invert(0);}/*nft*/
 
 .darkmode .write_div,
-.darkmode .codex-editor,.darkmode .codex-editor__redactor,.darkmode .ce-block,.darkmode .ce-paragraph cdx-block,.darkmode .codex-editor-overlay,.darkmode .gallview_contents,.darkmode .inner clear,.darkmode .writing_view_box,.darkmode .ce-block--selected .ce-block__content [contenteditable],.darkmode .view_content_wrap,/*다크모드때 글자가 안보여서 수정*/
 .darkmode .write_div > p div,
 .darkmode .write_div img,
 .darkmode .write_div video,
