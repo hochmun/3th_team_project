@@ -710,9 +710,23 @@ public class BoardController {
         return resultMap;
     }
 
+    /**
+     * 2023/04/17 // 심규영 // url로 파일 다운로드 기능
+     * @param urlString
+     * @return
+     */
+    @ResponseBody
     @PostMapping("gall/board/fetchUrl")
-    public Map<String, Object> fetchUrl(@Param("url") String urlString) {
+    public Map<String, Object> fetchUrl(@RequestBody Map<String,String> data) {
         Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> fileMap = new HashMap<>();
+
+        // 파일 저장
+        int result = service.urlfileDownload(data.get("url"), fileMap);
+
+        // 결과 저장
+        resultMap.put("success", result);
+        resultMap.put("file", fileMap);
 
         return resultMap;
     }

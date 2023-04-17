@@ -664,21 +664,56 @@ public class BoardService {
         return insertArticleFile(vo);
     }
 
-    public void urlfileDownload(String urlStr) {
-        BufferedImage image = null;
+    /**
+     * 2023/04/17 // 심규영 // URL로 파일 다운로드 기능
+     * @param urlStr
+     * @param fileMap
+     * @return
+     */
+    public int urlfileDownload(String urlStr, Map<String, Object> fileMap) {
+        // 시스템 경로
+        String path = new File(uploadPath).getAbsolutePath();
+
+        // url에서 이름 가져와서 이름 변경
+        String oName = urlStr.substring(urlStr.lastIndexOf("/")+1);
+        String ext = oName.substring(oName.lastIndexOf(".")+1);
+        String nName = UUID.randomUUID().toString()+"."+ext;
+
+        log.info("oName : "+oName);
+        log.info("ext : "+ext);
+        log.info("nName : "+nName);
+
+        // 날짜 구하기
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formatedNow = now.format(formatter);
+
+        // 경로 생성
+        dirCreate(String.format("%s/%s/", path, formatedNow));
+        File file = new File(String.format("%s/%s/", path, formatedNow), nName);
 
         // 파일 받기
+        BufferedImage image = null;
         try {
-            image = ImageIO.read(new URL(urlStr));
+            image = ImageIO.read(new URL(urlStr)); // 이미지 읽어오기
+            ImageIO.write(image, ext, file); // 이미지 저장
         } catch (Exception e) {
             log.error("URL에서 이미지 파일 읽어오기 에러");
             log.error(e.getMessage());
         }
 
-        String fileName = urlStr.substring(urlStr.lastIndexOf("/")+1);
-        File file = new File(uploadPath+fileName);
+        // Map에 이미지 경로 저장
+        fileMap.put("url", "/GCInside/thumb/"+formatedNow+"/"+nName);
 
-        log.info("file : "+file.toString());
+        // vo에 저장
+        Gell_fileVO vo = new Gell_fileVO().builder()
+                .file_ori_name(oName)
+                .file_new_name(nName)
+                .file_url(String.format("%s/%s/%s",path,formatedNow,nName))
+                .build();
+
+        // 데이터 베이스에 저장 및 결과 리턴
+        return insertArticleFile(vo);
     }
 
     /**
