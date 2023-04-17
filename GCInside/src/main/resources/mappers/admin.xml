@@ -238,6 +238,79 @@
         <result property="gell_cate2_name" column="gell_cate2_name"/>
     </resultMap>
 
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 카테고리 검색 결과 count -->
+    <select id="searchByMinorCategoryTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM gc_gell AS a
+        JOIN gc_gell_cate2 AS b ON a.gell_cate = b.gell_cate2
+        <where>
+            <choose>
+                <when test="category == ''">
+                    a.gell_grade = 1
+                </when>
+                <when test="category != ''">
+                    a.gell_cate = #{category} AND a.gell_grade = 1
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 카테고리별 검색 -->
+    <select id="searchByMinorCategory" resultMap="galleryResultMap">
+        select * from `gc_gell` as a
+        JOIN `gc_gell_cate2` AS b ON a.gell_cate = b.gell_cate2
+        <where>
+            `gell_today_rank`>='1' and `gell_grade`='1'
+            <choose>
+                <when test="category == ''">
+                    a.gell_grade = 1
+                </when>
+                <when test="category != ''">
+                    a.gell_cate = #{category} AND a.gell_grade = 1
+                </when>
+            </choose>
+        </where>
+        ORDER BY `gell_today_rank` ASC LIMIT {start}, 10;
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 리스트 총 개수  -->
+    <select id="selectTargetmgalltotal" resultType="int">
+        select count(`gell_num`) from `gc_gell` WHERE `gell_today_rank`>='1' and `gell_grade`='1' ORDER BY `gell_today_rank`;
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 리스트  -->
+    <select id="selectTargethotmgall" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT a.*, b.*
+        FROM `gc_gell` as a
+        JOIN `gc_gell_cate2` as b on a.gell_cate = b.gell_cate2
+        WHERE a.gell_today_rank >= '1' AND a.gell_grade = '1'
+        ORDER BY a.gell_today_rank ASC
+        LIMIT ${start}, 10;
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // galleryVO resultMap -->
+    <resultMap id="galleryResultMap" type="kr.co.gcInside.vo.galleryVO">
+        <result property="gell_num" column="gell_num"/>
+        <result property="gell_cate" column="gell_cate"/>
+        <result property="gell_name" column="gell_name"/>
+        <result property="gell_address" column="gell_address"/>
+        <result property="gell_main_img" column="gell_main_img"/>
+        <result property="gell_info" column="gell_info"/>
+        <result property="gell_manager" column="gell_manager"/>
+        <result property="gell_grade" column="gell_grade"/>
+        <result property="gell_status" column="gell_status"/>
+        <result property="gell_hit" column="gell_hit"/>
+        <result property="gell_article_count" column="gell_article_count"/>
+        <result property="gell_rdate" column="gell_rdate"/>
+        <result property="gell_wdate" column="gell_wdate"/>
+        <result property="gell_sancitons_rdate" column="gell_sancitons_rdate"/>
+        <result property="gell_sancitons_wdate" column="gell_sancitons_wdate"/>
+        <result property="gell_sancitons_grade" column="gell_sancitons_grade"/>
+        <result property="gell_cate1" column="gell_cate1"/>
+        <result property="gell_cate2" column="gell_cate2"/>
+        <result property="gell_cate2_name" column="gell_cate2_name"/>
+    </resultMap>
+
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};
