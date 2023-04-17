@@ -7,6 +7,7 @@ import kr.co.gcInside.utill.DeduplicationUtils;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
@@ -288,6 +289,15 @@ public class BoardService {
         String re = type.equals("cmt") ? "" : "re_"; // 댓글, 대댓글 구분
         String comment_no = type.equals("cmt") ? data.get("comment_no") : data.get("re_comment_no"); // 댓글,대댓글에 따라 번호 가져오기
         return dao.selectCommentInfo(re, comment_no);
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // 게시글 관련 이미지 파일 불러오는 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_fileVO> selectFiles(int article_num){
+        return dao.selectFiles(article_num);
     }
 
     // upload

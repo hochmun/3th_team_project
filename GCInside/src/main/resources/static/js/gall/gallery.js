@@ -175,3 +175,8 @@ const goAdmin = ($this) => {
     const id = $this.data("id");
     location.href = '/GCInside/gall/management/index?id='+id;
 };
+
+const goFileDownload = ($this) => {
+    const url = $this.data("url");
+    location.href = '/GCInside/gall/board/fileDownload?url='+url;
+};

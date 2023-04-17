@@ -551,10 +551,16 @@
                 <!-- //본문 하단 광고 -->
 
                 <!-- 원본 첨부 파일 -->
-                <div class="appending_file_box">
-                  <strong>원본 첨부파일 <em class="font_red">1</em></strong
-                  ><ul class="appending_file"><li><a href="#">210413 - Javy Error.gif</a></li></ul>
-                </div>
+                <th:block th:if="${articleVO.article_file gt 0}">
+                  <div class="appending_file_box">
+                    <strong>원본 첨부파일 <em class="font_red" th:text="${articleVO.article_file}">1</em></strong>
+                    <ul class="appending_file">
+                      <th:block th:each="fileVO:${fileVOS}">
+                        <li><a th:href="@{/gall/board/fileDownload(url=${fileVO.file_url},oName=${fileVO.file_ori_name})}" th:text="${fileVO.file_ori_name}">210413 - Javy Error.gif</a></li>
+                      </th:block>
+                    </ul>
+                  </div>
+                </th:block>
                 <!-- //원본 첨부 파일 -->
 
                 <!-- 댓글 -->
