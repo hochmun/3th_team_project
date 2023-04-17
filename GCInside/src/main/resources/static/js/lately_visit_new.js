@@ -1,10 +1,10 @@
-
-var ck_l_f = '1'; // 고치기
+let ck_l_f = get_cookie('ck_l_f');
 
 
 $(function(){
+    // 쿠키가 없을 경우
     if(ck_l_f == 'undefined' || ! ck_l_f) {
-        ck_l_f = '1';
+        ck_l_f = 'l';
     }
 
     //즐겨찾기
