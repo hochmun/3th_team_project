@@ -1,5 +1,6 @@
-div .ce-paragraph{
-filter:invert(100%)}
+.darkmode #comment_content{
+background:black;
+}
 @charset "utf-8";
 /*배경 이미지*/
 .darkmode .sp_main{background-image:url(https://nstatic.dcinside.com/dc/w/images/dark/sp_main_dark.png?0524)}
