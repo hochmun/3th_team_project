@@ -78,26 +78,44 @@ public class MainService {
     public List<galleryVO> selectnewgall() {
         return dao.selectnewgall();
     } /* 신설 갤러리 불러오기*/
+
     public List<galleryVO> rankdiff() {
         List<galleryVO> today = dao.mtodayrank();
         List<galleryVO> yesterday = dao.myesterdayrank();
         List<galleryVO> resultList = new ArrayList<>();
 
-        for (galleryVO yes : yesterday) {
+        if(yesterday.isEmpty()) {
             for (galleryVO to : today) {
-                if (yes.getGell_num() == to.getGell_num()) {
-                    int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
-                    galleryVO gelldiff = new galleryVO();
-                    gelldiff.setGell_num(yes.getGell_num());
-                    gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
-                    gelldiff.setGell_today_rank(to.getGell_today_rank());
-                    gelldiff.setGell_rank_diff(diff);
-                    resultList.add(gelldiff);
+                galleryVO gelldiff = new galleryVO();
+                gelldiff.setGell_num(to.getGell_num());
+                gelldiff.setGell_today_rank(to.getGell_today_rank());
+                gelldiff.setGell_rank_diff(0);
+                resultList.add(gelldiff);
+            }
+        }
+        else{
+            for (galleryVO yes : yesterday) {
+                for (galleryVO to : today) {
+                    if (yes.getGell_num() == to.getGell_num()) {
+                        int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
+                        galleryVO gelldiff = new galleryVO();
+                        gelldiff.setGell_num(yes.getGell_num());
+                        gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
+                        gelldiff.setGell_today_rank(to.getGell_today_rank());
+                        gelldiff.setGell_rank_diff(diff);
+                        resultList.add(gelldiff);
+                    } else {
+                        galleryVO gelldiff = new galleryVO();
+                        gelldiff.setGell_num(to.getGell_num());
+                        gelldiff.setGell_today_rank(to.getGell_today_rank());
+                        gelldiff.setGell_rank_diff(0);
+                        resultList.add(gelldiff);
+                    }
                 }
             }
         }
         return resultList;
-    } /* 갤러리 랭크차 구하기 */
+    }
     public void gallinit(){
         dao.initrank(); /* gc_gell 테이블 랭크 칼럼 초기화 */
         log.info("initrank");
@@ -113,4 +131,24 @@ public class MainService {
         log.info("updatetorank");
 
     } /* 불러오기 전 초기 작업 */
+    /* 카테고리별 갤러리 개수 */
+    public List<Integer> gallcate1cnt() {
+
+        List<Integer> counts = new ArrayList<>();
+
+        for (int cate = 1; cate <= 2; cate++) {
+            int count = dao.gallcate1cnt(cate);
+            counts.add(count);
+        }
+
+        return counts;
+    }
+
+    /**
+     * 2023/04/17 // 김동민 // 갤러리 불러오기
+     * @return
+     */
+    public List<galleryVO> selectgall() {
+        return dao.selectgall();
+    }
 }

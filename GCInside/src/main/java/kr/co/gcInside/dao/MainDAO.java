@@ -67,4 +67,14 @@ public interface MainDAO {
     public void initrank();                     // rank칼럼 초기화
     public void resetrank();                    // sql rank초기화
     public void todayarticlecount();            // 랭킹확인용 오늘의 게시글 개수
+
+    /**
+     * 2023/04/17 // 김동민 // 갤러리 불러오기
+     */
+    public List<galleryVO>selectgall();
+    /**
+     * 2023/04/17 // 김동민 // 갤러리 수 불러오기
+     * for문에서 cate 값을 갤러리 수만큼 늘리면 된다
+     */
+    public int gallcate1cnt(int cate);
 }

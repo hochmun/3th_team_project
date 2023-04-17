@@ -22,6 +22,8 @@ public class MainGallController {
     /**
      * 2023.03.27 // 라성준 //
      * 갤러리 메인화면 맵핑
+     * 2023.04.17 // 김동민 //
+     * 갤러리 랭킹, 흥한 갤러리 불러오기, 신설 갤러리 불러오기, 갤러리 카테고리별 분류
      */
     @GetMapping(value = {"m/","m/index"})
     public String m(Model model) {
@@ -29,9 +31,14 @@ public class MainGallController {
         log.info("! gall rank update !");
         List<galleryVO> hot_gall = service.selecthotgall();
         List<galleryVO> new_gall = service.selectnewgall();
+        List<galleryVO> gall=service.selectgall();
+        List<Integer> gallcate1cnt = service.gallcate1cnt();
+        model.addAttribute("cate1cnt",gallcate1cnt);
+        model.addAttribute("rankdiff",service.rankdiff());
         model.addAttribute("hotarticle",service.selecthotarticle());
-        model.addAttribute("hot",hot_gall);
-        model.addAttribute("new",new_gall);
+        model.addAttribute("hot_gall",hot_gall);
+        model.addAttribute("new_gall",new_gall);
+        model.addAttribute("gall",gall);
         return "gall/m/index";
 
     }

@@ -86,7 +86,7 @@
         FROM `gc_gell`
         WHERE `gell_rdate` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE() and `gell_grade`='0'
         ORDER BY ABS(DATEDIFF(CURDATE(), gell_rdate))
-        LIMIT 12;
+        LIMIT 5;
     </select>
     <!-- 2023/04/07 // 김동민 //  랭킹확인용 오늘의 게시글 개수-->
     <update id="todayarticlecount">
@@ -151,6 +151,16 @@
     <select id="myesterdayrank" resultType="kr.co.gcInside.vo.galleryVO">
         select `gell_num`,`gell_yesterday_rank` from `gc_gell` WHERE `gell_yesterday_rank`>='1' and `gell_grade`='0';
     </select>
+
+    <!-- 2023/04/17 // 김동민 // 갤러리 select-->
+    <select id="selectgall" resultType="kr.co.gcInside.vo.galleryVO">
+        select * from `gc_gell` where `gell_grade`='0';
+    </select>
+    <!-- 2023/04/17 // 김동민 // 갤러리 카테고리별 갤러리 갯수-->
+    <select id="gallcate1cnt" resultType="int">
+        select count(*) from `gc_gell` where `gell_grade`='0' and `gell_cate`=#{cate};
+    </select>
+
     <!-- upload -->
     <!-- delete -->
 </mapper>

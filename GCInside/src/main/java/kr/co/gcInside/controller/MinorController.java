@@ -51,7 +51,6 @@ public class MinorController{
         model.addAttribute("cate1cnt",mgallcate1cnt);
 
         model.addAttribute("rankdiff",service.rankdiff());
-        model.addAttribute("cate1cnt",service.mgallcate1cnt());
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
         model.addAttribute("mgall",mgall);
