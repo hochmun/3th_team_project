@@ -50,8 +50,8 @@ public class ManagementService {
      * @param gell_num
      * @return
      */
-    public boolean checkRecentGellManageLog(int gell_num) {
-        int count = dao.selectRecentGellManageLog(gell_num);
+    public boolean checkRecentGellManageLog(int gell_num, String cate, String content) {
+        int count = dao.selectRecentGellManageLog(gell_num, cate, content);
         return count > 0;
     }
 
@@ -75,6 +75,8 @@ public class ManagementService {
     /**
      * 2023.04.03 // 라성준 //
      * 갤러리 업데이트 서비스 이름
+     * 2023.04.14 // 라성준 //
+     * 갤러리 업데이트 서비스 설명
      * @param vo
      * @return
      */

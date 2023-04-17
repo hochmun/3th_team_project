@@ -84,10 +84,11 @@ document.addEventListener("DOMContentLoaded", function() {
     if (darkModeCookie !== null && darkModeCookie === "1") {
         const body = document.querySelector('html');
         body.classList.add('darkmode');
+        /* 페이지이동시 콘솔창 오류가 계속떠서 주석처리
         const link = document.createElement('link');
           link.rel = 'stylesheet';
           link.href = 'dark.css';
-          document.body.appendChild(link);
+          document.body.appendChild(link);*/
     }
 });
 

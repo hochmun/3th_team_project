@@ -133,7 +133,7 @@
                                                     대흥갤)</span>
                                         </div>
                                         <ul class="pop_hotmgall_listbox" data-heunggall-page="1">
-                                            <li th:each="hot,i:${hot}" th:if="${i.index}<=99"><a th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span
+                                            <li th:each="hot,i:${hot}" th:if="${i.index}<=99"><a th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span
                                                     class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
                                         </ul>
 
@@ -170,19 +170,19 @@
                         <div class="hot_gall">
                             <div class="rank_list_box clear hot_gallery_list">
                                 <ol class="rank_list red fl">
-                                    <li th:each="hot,i:${hot}" th:if="${i.index}<5"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                    <li th:each="hot,i:${hot_gall}" th:if="${i.index}<5"><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
                                             class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li th:each="hot,i:${hot}" th:if="${i.index}>=5 and ${i.index}<10"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                    <li th:each="hot,i:${hot_gall}" th:if="${i.index}>=5 and ${i.index}<10"><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
                                             class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li th:each="hot,i:${hot}" th:if="${i.index}>=10 and ${i.index}<15"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                    <li th:each="hot,i:${hot_gall}" th:if="${i.index}>=10 and ${i.index}<15"><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
                                             class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li th:each="hot,i:${hot}" th:if="${i.index}>=15 and ${i.index}<20"><a class="" th:href="@{/m/board/lists/?id={gell_address}(gell_address=${hot.gell_address}}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                    <li th:each="hot,i:${hot_gall}" th:if="${i.index}>=15 and ${i.index}<20"><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
                                             class="rank_txt">[[${hot.gell_name}]]</span></a></li>
                                 </ol>
 
@@ -196,7 +196,7 @@
                                     <h4 class="cate_tit">
                                         게시판/강좌
                                         <span class="list_num">(10)</span>
-                                        <button type="button" class="btn_cate_more" onclick="show_layer('Layer43')">
+                                        <button type="button" class="btn_cate_more" onclick="showLayer('Layer43')">
                                             <span class="blind">더보기</span>
                                             <em class="sp_img icon_listmore"></em>
                                         </button>
@@ -248,7 +248,7 @@
                                             </ul>
                                         </div>
                                         <button type="button" class="under poply_close"
-                                                onclick="show_layer('Layer43')">
+                                                onclick="showLayer('Layer43')">
                                             <span class="blind">갤러리 전체보기 레이어 닫기</span>
                                             <em class="sp_img icon_lyclose"></em>
                                         </button>
@@ -263,14 +263,11 @@
                                                 <em class="sp_img icon_newgall"></em>
                                             </span>
                                         신설 갤러리
-                                        <span class="list_num">(1)</span>
                                     </h4>
                                     <div class="cate">
                                         <ul>
-                                            <li>
-                                                <a href="#" class="colortxt" title="신설갤" target="_parent"
-                                                   onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();">신설갤</a>
+                                            <li th:each="newgall:${new_gall}">
+                                                <a th:href="@{/m/board/lists/(id=${hot.gell_address})}">[[${newgall.gell_name}]]</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -280,7 +277,6 @@
                     </div>
                 </div>
                 <div class="allandrank clear">
-                    <button type="button" class="btn_blue_round">갤러리 전체보기</button>
                     <span class="deco_txt check">
                                 <em class="sp_img"></em>
                                 인기순
@@ -291,16 +287,18 @@
                             <!-- 실시간 북적 갤러리 한줄 노출 -->
                             <div class="one_ranklist">
                                 <ol class="rank_list gall">
-                                    <li id="rank_no">
-                                        <a id="rank_num_1" href="#">
-                                            <span class="rank_num"><em>1</em></span>
-                                            <span class="rank_txt">실시간북적 1</span>
-                                            <span class="sp_img ico_ranking same"></span>
-                                        </a>
-                                        <a id="rank_num_2" href="#">
-                                            <span class="rank_num"><em>2</em></span>
-                                            <span class="rank_txt">실시간북적 2</span>
-                                            <span class="sp_img ico_ranking same"></span>
+                                    <li id="rank_no" th:each="hot,i:${hot_gall}">
+                                        <a id="rank_num" th:href="@{/m/board/lists/(id=${hot.gell_address})}">
+                                            <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                            <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                            <div th:each="diff, j : ${rankdiff}">
+                                                <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                    <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                    <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                    <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                    <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                                </div>
+                                            </div>
                                         </a>
                                     </li>
                                 </ol>
@@ -313,40 +311,38 @@
                                 <h3 class="tit">갤러리</h3>
                             </div>
                             <ol class="rank_list gall g_1" style="display:blcok"><!--1~10위-->
-                                <li>
-                                    <a href="#" class="logClass" depth1="topframe" depth2="busygall"
-                                       depth3="gallmain_count">
-                                        <span class="rank_num"><em>1</em></span>
-                                        <span class="rank_txt">실시간북적 1</span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="logClass" depth1="topframe" depth2="busygall"
-                                       depth3="gallmain_count">
-                                        <span class="rank_num"><em>2</em></span>
-                                        <span class="rank_txt">실시간북적 2</span>
-                                        <span class="sp_img ico_ranking same"></span>
+                                <li th:each="hot,i:${hot_gall}" th:if="${i.count} < 11">
+                                    <a th:href="@{/m/board/lists/(id=${hot.gell_address})}">
+                                        <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                        <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                        <div th:each="diff, j : ${rankdiff}">
+                                            <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                            </div>
+                                        </div>
                                     </a>
                                 </li>
                             </ol>
                             <ol class="rank_list gall g_2" style="display:none"><!--11~20위-->
-                                <li>
-                                    <a href="#">
-                                        <span class="rank_num"><em>3</em></span>
-                                        <span class="rank_txt">실시간북적 3</span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="rank_num"><em>4</em></span>
-                                        <span class="rank_txt">실시간북적 4</span>
-                                        <span class="sp_img ico_ranking same"></span>
+                                <li th:each="hot,i:${hot_gall}" th:if="${i.count} >= 11 and ${i.count} < 21">
+                                    <a th:href="@{/m/board/lists/(id=${hot.gell_address})}">
+                                        <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                        <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                        <div th:each="diff, j : ${rankdiff}">
+                                            <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                            </div>
+                                        </div>
                                     </a>
                                 </li>
                             </ol>
-                            <div class="box_bottom rank_more" gall_type="g" page="1">11위 - 20위</div>
+                            <div class="box_bottom rank_more" rank_type="high">다음</div>
                         </div>
                         <!-- //실시간 북적 갤러리 1~20위 10개씩 리스트 -->
                     </div>
@@ -357,7 +353,7 @@
                 <!-- 로그인 -->
                 <div id="login_box" class="login_box">
                     <div class="user_info newarea" data-alarmId="">
-                        <strong onclick="location='/member/login.html'" style="cursor:pointer">로그인해 주세요.</strong>
+                        <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
                     </div>
                     <div class="user_option ">
                             <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em
