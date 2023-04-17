@@ -69,7 +69,9 @@ public interface ManagementDAO {
      * @param gell_num
      * @return
      */
-    public int selectRecentGellManageLog(@Param("gell_num") int gell_num);
+    public int selectRecentGellManageLog(@Param("gell_num") int gell_num,
+                                         @Param("cate") String cate,
+                                         @Param("content") String content);
 }
 
 

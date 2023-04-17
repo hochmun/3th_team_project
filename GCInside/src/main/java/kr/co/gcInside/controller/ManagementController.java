@@ -57,10 +57,12 @@ public class ManagementController {
     /**
      * 2023.04.04 // 라성준 //
      *  data 들어오는 값
-     *      id          : 갤러리 주소
+     *      id          : 갤러리 주소 (필수)
      *      gell_name   : 이전 이름
      *      mg_name     : 변경할 이름
-     *      grade       : 갤러리 등급
+     *      grade       : 갤러리 등급 (필수)
+     *      cate        : 처리 종류 (필수)
+     *      content     : 처리 내용 (필수)
      *      info        : 설명
      * @param data
      * @return
@@ -76,6 +78,8 @@ public class ManagementController {
         String id = data.get("id");
         String grade = data.get("grade");
         String mg_desc = data.get("mg_desc");
+        String cate = data.get("cate");
+        String content = data.get("content");
 
         // 이름 중복 확인 기능
         boolean equalsGell = service.equalsGell(mg_name);
@@ -100,7 +104,7 @@ public class ManagementController {
         }
 
         // 7일 이내 변경 내역 확인
-        if (service.checkRecentGellManageLog(galleryVO.getGell_num())) {
+        if (service.checkRecentGellManageLog(galleryVO.getGell_num(), cate, content)) {
             int result = -3;
             resultMap.put("result", result);
             return resultMap;

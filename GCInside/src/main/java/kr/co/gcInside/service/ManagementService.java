@@ -50,8 +50,8 @@ public class ManagementService {
      * @param gell_num
      * @return
      */
-    public boolean checkRecentGellManageLog(int gell_num) {
-        int count = dao.selectRecentGellManageLog(gell_num);
+    public boolean checkRecentGellManageLog(int gell_num, String cate, String content) {
+        int count = dao.selectRecentGellManageLog(gell_num, cate, content);
         return count > 0;
     }
 
