@@ -158,7 +158,7 @@
     </select>
     <!-- 2023/04/17 // 김동민 // 갤러리 카테고리별 갤러리 갯수-->
     <select id="gallcate1cnt" resultType="int">
-        select count(*) from `gc_gell` where `gell_grade`='0' and `gell_cate`=#{cate};
+            select count(*) from `gc_gell` where `gell_grade`='0' and `gell_cate`=#{cate};
     </select>
 
     <!-- upload -->
