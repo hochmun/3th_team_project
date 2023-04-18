@@ -169,6 +169,11 @@
             WHERE c.`comment_rdate` >= STR_TO_DATE(DATE_FORMAT(DATE_ADD(now(), Interval -1 Day), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
             AND c.`comment_rdate` &lt; STR_TO_DATE(DATE_FORMAT(now(), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T');
     </select>
+
+    <!-- 2023/04/18 // 심규영 // 실시간 베스트 게시글 리스트 가져오는 쿼리문 -->
+    <select id="selectRealtimeGetArticleList" resultType="kr.co.gcInside.vo.gell_articleVO">
+
+    </select>
     
     <!-- 2023/04/17 // 김동민 // 갤러리 select-->
     <select id="selectgall" resultType="kr.co.gcInside.vo.galleryVO">
