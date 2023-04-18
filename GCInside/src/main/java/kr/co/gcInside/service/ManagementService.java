@@ -82,8 +82,8 @@ public class ManagementService {
      */
     public boolean updateGellSetting(Gell_SettingVO vo, galleryVO galleryVO) {
         int result = dao.updateGellSetting(vo);
+        log.info("result : "+result);
         result += dao.updateGell(galleryVO);
-        result += dao.updateGellInfo(galleryVO);
         log.info("result : "+result);
         return result > 0;
     }

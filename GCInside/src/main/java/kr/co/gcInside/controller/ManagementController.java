@@ -58,8 +58,8 @@ public class ManagementController {
      * 2023.04.04 // 라성준 //
      *  data 들어오는 값
      *      id          : 갤러리 주소 (필수)
-     *      gell_name   : 이전 이름
-     *      mg_name     : 변경할 이름
+     *      oriDetail   : 변경전 내용
+     *      newDetail   : 변경할 내용
      *      grade       : 갤러리 등급 (필수)
      *      cate        : 처리 종류 (필수)
      *      content     : 처리 내용 (필수)
@@ -73,21 +73,27 @@ public class ManagementController {
                                      @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Map<String, Object> resultMap = new HashMap<>();
 
-        String gell_name = data.get("gell_name");
-        String mg_name = data.get("mg_name");
+        String oriDetail = data.get("oriDetail");
+        String newDetail = data.get("newDetail");
         String id = data.get("id");
         String grade = data.get("grade");
         String mg_desc = data.get("mg_desc");
         String cate = data.get("cate");
         String content = data.get("content");
 
+        log.info("newDetail : "+newDetail);
+        log.info("content : "+content);
+
         // 이름 중복 확인 기능
-        boolean equalsGell = service.equalsGell(mg_name);
-        if(equalsGell){
-            int result = -1;
-            resultMap.put("result", result);
-            return resultMap;
+        if(content.equals("content")){
+            boolean equalsGell = service.equalsGell(newDetail);
+            if(equalsGell){
+                int result = -1;
+                resultMap.put("result", result);
+                return resultMap;
+            }
         }
+
 
         // 유저 로그인 안함
         if(myUserDetails == null){
@@ -111,7 +117,8 @@ public class ManagementController {
         }
 
         Gell_SettingVO settingVO = galleryVO.getGellSettingVO();
-        galleryVO.setGell_name(mg_name);
+        if(content.equals("content")) galleryVO.setGell_name(newDetail);
+        if(content.equals("info")) galleryVO.setGell_info(newDetail);
 
         boolean result = service.updateGellSetting(settingVO, galleryVO );
         resultMap.put("result", result);
@@ -125,8 +132,8 @@ public class ManagementController {
         gell_manage_logVO gellManageLog = new gell_manage_logVO();
         gellManageLog.setGell_m_l_g_n(galleryVO.getGell_num());
         gellManageLog.setGell_m_l_uid(myUserDetails.getUser().getMember_uid());
-        gellManageLog.setGell_m_l_cate("gell_cate");
-        gellManageLog.setGell_m_l_content("content");
+        gellManageLog.setGell_m_l_cate(cate);
+        gellManageLog.setGell_m_l_content(content);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = sdf.format(new Date());

@@ -12,13 +12,7 @@
 
             <div class="gchead">
                 <!-- 메인 로고 -->
-                <h1 class="gc_logo">
-                    <div>
-                        <img th:src="@{/img/gcinside_main_logo.png}" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
-                    </div>
-                </h1>
+                <th:block th:replace="~{fragment/header_fragment::minorHeader}"></th:block>
 
                 <div class="wrap_search">
                     <!-- 갤러리 통합검색-->

@@ -187,7 +187,9 @@ function chk_all(elm, chk_elm) {
 		$(chk_elm).prop('checked', false);
 	}
 }
-
+/////////////////////////////////////////////////////////////////////////
+/////////                                          //////////////////////
+/////////////////////////////////////////////////////////////////////////
 // 갤러리 이름 변경
 function update_name() {
     var mgall_name_new = $("#mg_name").val();
@@ -207,8 +209,8 @@ function update_name() {
 
     var data = {
         "id": $("#mg_name").data('id'),
-        "gell_name": mgall_name_org,
-        "mg_name": mgall_name_new, // 변경된 이름을 전달
+        "oriDetail": mgall_name_org,
+        "newDetail": mgall_name_new, // 변경된 이름을 전달
         "reason": reason,
         "grade":grade,
         "cate" : "gell_cate",
@@ -252,9 +254,13 @@ function update_name() {
 
 // 갤러리 설명 변경
 function update_desc() {
-    var mgall_desc = $("#mg_desc").val();
+    var mgall_name = $("#mg_name").text();
+    var mgall_desc = $("#mg_desc").val(); // 설명
     var result = null;
     const grade = $('#grade').val();
+
+    console.log('mg_name: ' + mgall_desc);
+    console.log('mg_desc: ' + mgall_desc);
 
     if(mgall_desc.trim() == ''){
         alert($("#mg_desc").attr('placeholder'));
@@ -262,8 +268,8 @@ function update_desc() {
     }
     // data 변수 선언
     var data = {
-        "mg_name": mgall_desc,
-        "mg_desc": mgall_desc,
+        "oriDetail": mgall_desc,
+        "newDetail": mgall_desc,
         "id": $("#mg_name").data('id'),
         "grade" : grade,
         "cate" : "gell_cate",
@@ -278,9 +284,14 @@ function update_desc() {
     	  dataType : 'json',
           success: function(ajaxData) {
           console.log("ajaxData.result : ",ajaxData.result);
+          if(ajaxData.result == true) {
+                      console.log('확인');
+                      location.reload();
+                  }
 			$(".desc .alert_txt").remove();
 			if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.');
         	if(ajaxData.result == -2) alert('로그인 하셔야 합니다.');
+        	if(ajaxData.result == -3) alert('7일 이내 변경하실 수 없습니다.');
 			if(ajaxData.result == "success") {
 				$('.set_enable .set_cancel').click();
 				$('#mg_desc').val(mgall_desc);
