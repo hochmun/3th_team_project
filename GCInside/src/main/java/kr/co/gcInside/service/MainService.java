@@ -92,7 +92,7 @@ public class MainService {
         List<galleryVO> yesterday = dao.myesterdayrank();
         List<galleryVO> resultList = new ArrayList<>();
 
-        if(yesterday.isEmpty()) {
+        if (yesterday.isEmpty()) {
             for (galleryVO to : today) {
                 galleryVO gelldiff = new galleryVO();
                 gelldiff.setGell_num(to.getGell_num());
@@ -100,10 +100,10 @@ public class MainService {
                 gelldiff.setGell_rank_diff(0);
                 resultList.add(gelldiff);
             }
-        }
-        else{
-            for (galleryVO yes : yesterday) {
-                for (galleryVO to : today) {
+        } else {
+            for (galleryVO to : today) {
+                boolean found = false;
+                for (galleryVO yes : yesterday) {
                     if (yes.getGell_num() == to.getGell_num()) {
                         int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
                         galleryVO gelldiff = new galleryVO();
@@ -112,13 +112,16 @@ public class MainService {
                         gelldiff.setGell_today_rank(to.getGell_today_rank());
                         gelldiff.setGell_rank_diff(diff);
                         resultList.add(gelldiff);
-                    } else {
-                        galleryVO gelldiff = new galleryVO();
-                        gelldiff.setGell_num(to.getGell_num());
-                        gelldiff.setGell_today_rank(to.getGell_today_rank());
-                        gelldiff.setGell_rank_diff(0);
-                        resultList.add(gelldiff);
+                        found = true;
+                        break;
                     }
+                }
+                if (!found) {
+                    galleryVO gelldiff = new galleryVO();
+                    gelldiff.setGell_num(to.getGell_num());
+                    gelldiff.setGell_today_rank(to.getGell_today_rank());
+                    gelldiff.setGell_rank_diff(0);
+                    resultList.add(gelldiff);
                 }
             }
         }
@@ -144,9 +147,16 @@ public class MainService {
 
         List<Integer> counts = new ArrayList<>();
 
-        for (int cate = 1; cate <= 2; cate++) {
-            int count = dao.gallcate1cnt(cate);
-            counts.add(count);
+        for (int cate = 1; cate <= 36; cate++) {
+            if(dao.gallcate1cnt(cate) == '0'){
+                int count = 0;
+                counts.add(count);
+            }else {
+                int count = dao.gallcate1cnt(cate);
+                counts.add(count);
+            }
+
+
         }
 
         return counts;
