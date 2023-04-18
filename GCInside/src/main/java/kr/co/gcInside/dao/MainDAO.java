@@ -61,6 +61,8 @@ public interface MainDAO {
      */
     public Map<String, Object> selectYesterdayCount();
 
+    public List<gell_articleVO> selectRealtimeGetArticleList(Map<String,String> data);
+
 
     /**
      * 2023/04/07 // 김동민 // 흥한갤러리 관련 minor에서 사용했던 코드 메인에 적용

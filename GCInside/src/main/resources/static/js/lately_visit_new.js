@@ -8,6 +8,18 @@ $(function(){
     }
 
     /** 2023/04/18 // 심규영 // 최근 접속 갤러리 표시 */
+    lately_gall_list();
+
+    //즐겨찾기
+    if(ck_l_f == 'f') {
+        tabLately('favorite');
+    } else {
+        tabLately('lately');
+    }
+});
+
+/** 2023/04/18 // 심규영 // 최근 접속 갤러리 표시 */
+const lately_gall_list = () => {
     const value = localStorage.getItem('lately_gallery');
     const strg_galls = $.parseJSON(value);
 
@@ -22,6 +34,7 @@ $(function(){
                 $('<a>').attr('href',strg_gall.link).attr('class','lately_log').text(strg_gall.name)
             ).append(
                 $('<em>').attr('class', strg_gall.type == 'mgall' ? 'icon_minor' : strg_gall.type == 'mini' ? 'icon_mini' : '')
+                .text(strg_gall.type == 'mgall' ? 'ⓜ' : '')
             ).append(
                 $('<button>').attr('type','button').attr('class','btn_visit_del').data('id',strg_gall.id).data('gtype',strg_gall.type).append(
                     $('<em>').attr('class','icon_visit_del')
@@ -47,14 +60,7 @@ $(function(){
         $('#visit_history_lyr .visit_div').html('<p class="empty_visit empty_vi">최근 방문 목록이 없습니다.</p>');
         $('.vst_title').text('최근 방문 갤러리');
     }
-
-    //즐겨찾기
-    if(ck_l_f == 'f') {
-        tabLately('favorite');
-    } else {
-        tabLately('lately');
-    }
-});
+};
 
 /** 2023/04/18 // 심규영 // 방문 기록 삭제 */
 const lately_gall_delete = ($this) => {

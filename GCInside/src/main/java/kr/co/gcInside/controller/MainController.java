@@ -148,4 +148,19 @@ public class MainController {
 
         return resultMap;
     }
+
+    /**
+     * 2023/04/18 // 심규영 // 실시간 베스트 게시글 가져오는 기능
+     * @param data => {
+     *             "pg" : 페이지 번호
+     * }
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("mainIndex/realtimeGetArticleList")
+    public Map<String, Object> realtimeGetArticleList(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        return resultMap;
+    }
 }

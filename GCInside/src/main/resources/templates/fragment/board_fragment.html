@@ -81,7 +81,7 @@
       <div class="list_bottom_btnbox">
           <div class="fl">
               <button type="button" class="list_bottom btn_blue" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="writeAndModifyPageHref($(this));">전체글</button>
-              <button type="button" class="list_bottom btn_white" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" data-exception_mode="recommend" onclick="articlePageHerf($(this))">개념글</button>
+              <button type="button" class="list_bottom btn_white" th:if="${galleryVO.gell_num ne 135}" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" data-exception_mode="recommend" onclick="articlePageHerf($(this))">개념글</button>
           </div>
           <div class="fr">
               <button type="button" id="btn_write" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
