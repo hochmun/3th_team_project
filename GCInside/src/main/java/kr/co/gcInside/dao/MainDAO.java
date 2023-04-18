@@ -84,4 +84,10 @@ public interface MainDAO {
      * for문에서 cate 값을 갤러리 수만큼 늘리면 된다
      */
     public int gallcate1cnt(int cate);
+
+    /**
+     * 2023/04/18 // 전인준 // hit갤러리 가져오기
+     */
+
+    public List<gell_articleVO> hitgall();
 }

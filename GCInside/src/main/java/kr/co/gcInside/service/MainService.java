@@ -169,4 +169,12 @@ public class MainService {
     public List<galleryVO> selectgall() {
         return dao.selectgall();
     }
+
+    /**
+     * 2023/04/18 // 전인준 // hit갤러리 가져오기
+     */
+    public List<gell_articleVO> hitgall(){
+        return dao.hitgall();
+    }
+
 }

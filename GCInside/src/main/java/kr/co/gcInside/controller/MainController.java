@@ -5,6 +5,7 @@ import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.MainService;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.utill.SecurityCheckUtil;
+import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -52,6 +53,10 @@ public class MainController {
         // 페이징 처리
         List<galleryVO> newMgellCommunityList = service.MainIndexNewmgellCommunity(newgellPagingDTO.getStart());
 
+        // HIT 갤러리
+        List<gell_articleVO> article = service.hitgall();
+
+        model.addAttribute("article", article);
         model.addAttribute("newMgellCommunityList", newMgellCommunityList);
         model.addAttribute("newgellPagingDTO", newgellPagingDTO);
         model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
