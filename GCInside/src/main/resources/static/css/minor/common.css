@@ -1624,7 +1624,7 @@ li:first-child .reply_box{margin:0px 0 0px 30px}
 .reply_info .usertxt,.del_reply,.reply_info .comment_dccon{position:relative;width:774px;padding-left:16px;cursor:default}
 .reply .comment_dccon{padding-left:16px}
 .reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
-background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat;background-position:-283px -200px}
+background:url(/GCInside/img/sp_img.png) no-repeat;background-position:-283px -200px}
 .del_reply{color:#999;line-height:20px;padding-left:0;float:left}
 .album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
 .comment_box .reply{overflow:hidden;height:0}
@@ -1634,3 +1634,46 @@ li:first-child .reply_box{margin:0px 0 0px 30px}
 .reply_list li:first-child{margin-top:0px}
 
 .reply  .cmt_cont_bottm{margin-top:7px}
+
+.icon_visit_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(/GCInside/img/sp_img.png) no-repeat -127px -153px;cursor:pointer}
+/*최근방문*/
+.visit_history{position:absolute;overflow:hidden;width:1134px;height:36px;line-height:36px;padding:0 12px;background:#f3f3f3;border:1px solid #d5d5d5;border-width:0 1px 1px 1px}
+.listwrap .visit_history{position:relative;width:814px;margin-top:0;border-width:1px 1px 1px 1px}
+.visit_history .tit{float:left;font-size:12px;color:#29367c}
+.visit_list{overflow:hidden;float:left;width:997px;height:37px;padding:0px 0px 0 12px}/*201215*/
+.listwrap .visit_list{width:689px}/*201215*/
+.visit_list li{float:left;height:36px;margin-left:18px;width:127px;position:relative}/*201215-1 width position */
+.visit_list li:first-child{margin-left:0}
+.visit_list .icon_mini{vertical-align:top;height:24px;line-height:100%;margin-top:12px;margin-left:0}/*201215-1 추가*/
+.btn_visit_del{height:36px;vertical-align:top;outline:none;position:absolute;top:0;right:0}/*201215 position:absolute;top:0;right:0 추가*/
+.icon_visit_del{display:inline-block;width:7px;height:7px;vertical-align:1px;background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat -127px -153px;cursor:pointer}/*churl*/
+.visit_list li a{display:inline-block;width:114px;margin-right:5px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.visit_list li a.mini{max-width:96px;width:auto;margin-right:2px}/*201215-1 추가*/
+.left_content .visit_list li{width:121px}/*201215-1 추가*/
+.left_content .visit_list li a{width:115px}/*201215*/
+.left_content .visit_list li  a.mini{max-width:88px;width:auto}/*210224 width84수정*/
+
+.bnt_visit_prev,.bnt_visit_next{position:absolute;top:12px;line-height:12px;outline:none}/*200521 크롬업데이트 이슈로 outline 추가*/
+.bnt_visit_prev{position:relative;left:0;float:left;margin-left:4px }/*0201*/
+.bnt_visit_next{right:10px}
+.bnt_visit_prev .icon_prev,.bnt_visit_next .icon_next{width:5px;height:11px}
+.bnt_visit_prev .icon_prev{background-position:-119px -56px}/*211118 폰트 버그 background-position:-119px -57px*/
+.bnt_visit_next .icon_next{background-position:-110px -56px}/*211118 폰트 버그 background-position:-110px -57px*/
+.bnt_visit_prev.on .icon_prev{background-position:-105px -56px}/*211118 폰트 버그 background-position:-105px -57px*/
+.bnt_visit_next.on .icon_next{background-position:-124px -56px}/*211118 폰트 버그 background-position:-124px -57px*/
+.empty_visit{float:left;padding-left:19px;font-size:12px;color:#999}
+
+/*220419 최근방문/즐겨찾기*/
+.visit_bookmark{width:1050px;margin:0 auto}
+.width1160 .visit_bookmark{width:1160px}
+.width868 .visit_bookmark{width:868px}
+.width1000 .visit_bookmark{width:1000px}
+.visit_bookmark .newvisit_history{margin:0 0 10px;width:100%!important;position:relative!important}
+.visit_bookmark .newvisit_history::before{border-width:0 1px 1px}
+.visit_bookmark .newvisit_history .btn_open{position:relative;left:0;top:12px;float:left;display:block;width:15px;height:15px;margin-left:10px}
+.visit_bookmark .newvisit_history .btn_open .icon_listmore{display:inline-block;width:15px;height:15px;background-position:-56px -168px;margin-top:0;vertical-align:top }
+.visit_bookmark .newvisit_history .open .icon_listmore{background-position:-73px -168px }
+.visit_bookmark .empty_visit a{color:#999}
+.visit_bookmark .empty_visit a:hover{text-decoration:none}
+.visit_bookmark .empty_visit a > span{text-decoration:underline}
+.visit_bookmark .newvisit_list .icon_visit_del{background-position:-264px -961px }

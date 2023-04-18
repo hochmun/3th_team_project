@@ -532,5 +532,8 @@
 		<!-- 푸터 -->
         <footer class="gcfoot" th:replace="~{fragment/footer_fragment::boardFooter}"></footer>
 	</div>
+<input type="hidden" id="grade" th:value="${grade}">
+<input type="hidden" id="id" th:value="${galleryVO.gell_address}">
+<input type="hidden" id="gell_name" th:value="${galleryVO.gell_name}">
 </body>
 </html>

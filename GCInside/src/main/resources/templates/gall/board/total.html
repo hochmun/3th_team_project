@@ -975,6 +975,7 @@
     <footer class="gcfoot" th:replace="~{fragment/footer_fragment::boardFooter}"></footer>
   </div>
 </body>
+<input type="hidden" id="gell_name" th:value="${galleryVO.gell_name}">
 <th:block th:if="${type} == 'view'">
   <!-- id="comment_li_${no}" -->
   <li id="comment_sample" class="ub-content" style="display:none;">
