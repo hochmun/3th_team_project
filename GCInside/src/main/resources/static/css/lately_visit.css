@@ -42,3 +42,5 @@
 .visit_bookmark .newvisit_list .icon_visit_del{background-position:-264px -961px }
 
 .under_catelist.newvisit_layer .under_listbox li {float:left;}
+
+.icon_minor{display:inline-block;height:12px;line-height:12px;margin-top:1px;margin-left:3px;vertical-align:text-top;font-size:13px;color:#555}
