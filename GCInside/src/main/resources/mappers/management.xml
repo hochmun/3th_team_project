@@ -55,12 +55,15 @@
 
     <!-- 2023.04.10 // 라성준 // 갤러리 이름 업데이트 -->
     <update id="updateGell" parameterType="kr.co.gcInside.vo.galleryVO">
-        UPDATE gc_gell SET gell_name=#{gell_name} WHERE gell_num=#{gell_num}
+        UPDATE gc_gell SET
+            gell_name = #{gell_name},
+            `gell_info` = #{gell_info}
+        WHERE gell_num = #{gell_num}
     </update>
 
     <!-- 2023.04.14 // 라성준 // 갤러리 설명 업데이트 -->
     <update id="updateGellInfo" parameterType="kr.co.gcInside.vo.galleryVO">
-        UPDATE gc_gell SET gell_name=#{gell_info} WHERE gell_num=#{gell_num}
+        UPDATE gc_gell SET gell_info=#{gell_info} WHERE gell_num=#{gell_num}
     </update>
 
     <!-- 2023.04.10 // 라성준 // 갤러리 셋팅 -->
