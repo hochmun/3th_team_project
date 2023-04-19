@@ -1,3 +1,5 @@
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=지시인사이드&fontSize=90" />
+
 # GCINSIDE team portfolio
 
 ## 프로젝트 개요
@@ -36,6 +38,18 @@
 아니라 쉬운 접근, 더 나은 사용자 경험을 제공 하는 것에 방점을 두었음.</p>
 
 ## 프로젝트 상세 정보
+
+### 기술 스텍
+<div align="center">
+	<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
+	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
+  <img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=flat&logo=Visual Studio Code&logoColor=white"/>
+  <img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=IntelliJ&logoColor=white">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
+  
+</div>
 
 ### 스토리 보드
 <a href="스토리 보드 v.1.0.pdf" target="_blank">스토리 보드</a>
