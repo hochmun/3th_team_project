@@ -61,7 +61,12 @@ public interface MainDAO {
      */
     public Map<String, Object> selectYesterdayCount();
 
-    public List<gell_articleVO> selectRealtimeGetArticleList(Map<String,String> data);
+    /**
+     * 2023/04/19 // 심규영 // 실시간 게시물 불러오는 기능
+     * @param start
+     * @return
+     */
+    public List<gell_articleVO> selectRealtimeGetArticleList(@Param("start") int start);
 
 
     /**

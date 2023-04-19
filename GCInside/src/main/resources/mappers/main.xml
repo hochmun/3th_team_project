@@ -172,7 +172,12 @@
 
     <!-- 2023/04/18 // 심규영 // 실시간 베스트 게시글 리스트 가져오는 쿼리문 -->
     <select id="selectRealtimeGetArticleList" resultType="kr.co.gcInside.vo.gell_articleVO">
-
+        SELECT * FROM `gc_gell_article` AS a
+        LEFT JOIN `gc_gell_file` AS b ON a.`article_num` = b.`file_article_num`
+        WHERE a.`articlel_gell_num` = 135
+        GROUP BY a.`article_num`
+        ORDER BY a.`article_rdate` DESC
+        LIMIT #{start}, 25;
     </select>
     
     <!-- 2023/04/17 // 김동민 // 갤러리 select-->
