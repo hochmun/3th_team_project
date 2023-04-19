@@ -63,6 +63,15 @@ const realtimeFunction = (mode) => {
         });
     };
 
+    // 버튼 체크 함수
+    const btnCheck = (pg) => {
+        if(pg > 1) $('.realtime_prev').addClass('on');
+        else $('.realtime_prev').removeClass('on');
+
+        if(pg < 6) $('.realtime_next').addClass('on');
+        else $('.realtime_next').removeClass('on');
+    };
+
     // 페이지 이동 함수
     const pageMove = (mode) => {
         const pg = $('.realtimeNum')[0].innerText; // 페이지 현재 번호
@@ -81,6 +90,9 @@ const realtimeFunction = (mode) => {
         if($('.time_best .typet_list.p_'+nextPg+' > li').length == 0) {
             PgGetArticle(nextPg);
         }
+
+        // 버튼 체크
+        btnCheck(nextPg);
     };
 
     // 외부 출력 함수 리턴
