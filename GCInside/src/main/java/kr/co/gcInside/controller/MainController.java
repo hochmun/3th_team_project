@@ -161,6 +161,9 @@ public class MainController {
     public Map<String, Object> realtimeGetArticleList(@RequestBody Map<String, String> data) {
         Map<String, Object> resultMap = new HashMap<>();
 
+        List<gell_articleVO> articleVOS = service.selectRealtimeGetArticleList(data.get("pg"));
+        resultMap.put("articleVOS", articleVOS);
+
         return resultMap;
     }
 }

@@ -4,6 +4,7 @@ import kr.co.gcInside.dao.MainDAO;
 import kr.co.gcInside.vo.galleryVO;
 import kr.co.gcInside.vo.gell_articleVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,6 +69,16 @@ public class MainService {
      */
     public Map<String, Object> selectYesterdayCount(){
         return dao.selectYesterdayCount();
+    }
+
+    /**
+     * 2023/04/19 // 심규영 // 실시간 게시물 불러오는 기능
+     * @param start
+     * @return
+     */
+    public List<gell_articleVO> selectRealtimeGetArticleList(String pg) {
+        int start = (Integer.parseInt(pg) - 1) * 25;
+        return dao.selectRealtimeGetArticleList(start);
     }
 
     /**
