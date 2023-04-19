@@ -89,3 +89,41 @@ const realtimeFunction = () => {
     };
 };
 
+/* 2023-04-19 // 전인준 // hit갤러리 */
+const hitpage = 4; // 한 페이지에 보여줄 게시물 수
+let currentPg = 1; // 현재 페이지 번호
+
+//pageNum에 따라 페이지 출력
+function showPg(pageNum){
+    const start = (pageNum - 1) * hitpage; // 시작 인덱스
+    const end = start + hitpage;           // 끝 인덱스
+    // 모든리스트 숨김,start에서 end까지만 출력
+    $('.con_list li').hide().slice(start,end).show();
+}
+$(document).ready(function(){
+    showPg(currentPg); // 초기에 첫번째 페이지 출력
+    // 이전 버튼 클릭 이벤트
+    $('#hit_prev').click(function(){
+        if(currentPg > 1){
+            currentPg--;
+            showPg(currentPg);
+            updatebtn();
+        }
+    });
+    // 다음 버튼 클릭 이벤트
+    $('#hit_next').click(function(){
+        if(currentPg < 3){
+            currentPg++;
+            showPg(currentPg);
+            updatebtn();
+        }
+    });
+});
+// 버튼상태 갱신하는 함수
+function updatebtn(){
+    $('#hitNum').text(currentPg); // 페이지 번호 갱신
+    // 페이지 1일때 이전버튼 비활성화 나머진 다 활성화
+    $('#hit_prev').toggleClass('on',currentPg !== 1);
+    // 페이지 3일때 다음버튼 비활성화 ""
+    $('#hit_next').toggleClass('on',currentPg !== 3);
+}

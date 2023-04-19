@@ -46,43 +46,13 @@
                                 </div>
                             </header>
                             <ul class="con_list">
-                                <li class="hitL">
+                                <li class="hitL" th:each="article : ${article}">
                                     <a href="#" class="link_thumb main_logo">
                                         <span class="img_box">
                                             <img src="https://via.placeholder.com/173x127" alt width="173">
                                         </span>
                                         <div class="txt_box">
-                                            <strong class="tit">제목</strong>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
-                                        </span>
-                                        <div class="txt_box">
-                                            <strong class="tit">제목</strong>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
-                                        </span>
-                                        <div class="txt_box">
-                                            <strong class="tit">제목</strong>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
-                                        </span>
-                                        <div class="txt_box">
-                                            <strong class="tit">제목</strong>
+                                            <strong class="tit" th:text="${article.article_title}"></strong>
                                         </div>
                                     </a>
                                 </li>
