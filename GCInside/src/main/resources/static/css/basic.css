@@ -53,11 +53,11 @@
     height: 100px;
 }
 .typea .gc_logo > div > img {
-    width: 300px;
-    height: 100px;
+    width: 250px;
+    height: 60px;
     position: absolute;
-    top: 9px;
-    left: -7px;
+    top: 30px;
+    left: 16px;
 }
 .typea .gc_logo > div > ._blank {
     position: absolute;

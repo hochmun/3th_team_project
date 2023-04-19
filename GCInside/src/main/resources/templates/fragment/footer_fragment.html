@@ -32,9 +32,9 @@
         <div class="all_box mandudel">
           <div class="all_list">
             <dl>
-              <dt><a href="#">갤러리</a></dt>
-              <dd><a href="#">HIT 갤러리</a></dd>
-              <dd><a href="#">실시간 베스트 갤러리</a></dd>
+              <dt><a th:href="@{/m/index}">갤러리</a></dt>
+              <dd><a th:href="@{/m/board/lists?id=HIT}">HIT 갤러리</a></dd>
+              <dd><a th:href="@{/m/board/lists?id=gcbest}">실시간 베스트 갤러리</a></dd>
             </dl>
             <dl class="rankingGall">
               <dt>인기갤러리</dt>
@@ -84,11 +84,11 @@
             </dl>
           </div>
           <div class="all_bottom">
-            <a href="#" target="_blank"><strong class="tit">광고안내</strong></a>
+            <a th:href="@{/ad/index}" target="_blank"><strong class="tit">광고안내</strong></a>
             <span class="list">
-                        <a href="#" target="_blank" class="link_info">디스플레이광고</a>
-                        <a href="#" target="_blank" class="link_info">프로모션</a>
-                        <a href="#" target="_blank" class="link_info">광고문의</a>
+                        <a th:href="@{/ad/index}" target="_blank" class="link_info">디스플레이광고</a>
+                        <a th:href="@{/ad/ad_guide_event}" target="_blank" class="link_info">프로모션</a>
+                        <a th:href="@{/ad/ad_guide_pc2}" target="_blank" class="link_info">광고문의</a>
                     </span>
             <span class="bottom_menu">
                         <button onclick="toggleDarkMode()"><a class="menu_link" href="javascript:;"><em class="sp_img icon_sdark"></em>야간모드</a></button>

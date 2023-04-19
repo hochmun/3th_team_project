@@ -1,0 +1,106 @@
+<!-- 2023/03/06 // 라성준 // -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{fragment/head_fragment::adHead}"></th:block>
+</head>
+<body>
+<!--스킵 내비게이션-->
+<div class="skip">
+  <a href="#gmenu_wrap"><span>메뉴바로가기</span></a>
+  <a href="#left_wrap"><span>서브 메뉴바로가기</span></a>
+  <a href="#right_wrap"><span>본문영역 바로가가기</span></a>
+</div>
+<!--//스킵 내비게이션-->
+<div class="gc_adwrap sub">
+  <!-- GNB -->
+  <div id="gmenu_wrap">
+    <div class="gnb_bar">
+      <div class="inner clear">
+        <h1 class="gc_logo">
+          <a th:href="@{/}">
+            <img th:src="@{/img/gcin_logo3.png}" alt="디시인사이드">
+          </a>
+        </h1>
+        <div style="position:relative;float:right">
+          <ul class="gmenu_list clear">
+            <li><a th:href="@{/ad/index}">광고안내</a></li>
+            <li><a th:href="@{/ad/ad_guide_pc2}"> 광고 상품 및 가이드</a></li>
+            <li><a th:href="@{#@gmail.com}">광고문의</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- //GNB -->
+
+  <!-- 본문 -->
+  <main id="container">
+    <div class="content clear">
+      <div id="left_wrap" class="fl">
+
+
+        <th:block th:replace="~{fragment/aside_fragment::adAside}"></th:block>
+      </div>
+      <div id="right_wrap" class="right_content">
+        <section>
+          <h2 class="cont_head">디시 이벤트</h2>
+          <div class="cont_body pm_ad">
+            <div class="cont_banbox">
+              <img th:src="@{/img/event_ad_img.png}" alt=""  usemap="#imgmap">
+              <map name="imgmap">
+                <area shape="rect" coords="70,501,278,538" href="#"  alt="" />
+              </map>
+            </div>
+
+            <div class="cont_banbox">
+              <img th:src="@{/img/nmoapp_ad_img1.png}" alt="">
+            </div>
+            <div class="infotxt_box">
+              <ol>
+                <li>
+                  <strong>1)Moblie web</strong>
+                  <ul>
+                    <li>- 사이즈 : 640px * Free</li>
+                    <li>- 용량 : 400K(html)</li>
+                    <li>- 가로모드를 고려하여 배경이미지는 단색 권장</li>
+                    <li>- 그라데이션 및 패턴을 사용할 경우 동일한 패턴 및 그라데이션 권장</li>
+                    <li>- 폰트 권장 사이즈 30pt ~ 34pt</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>2) PC</strong>
+                  <ul>
+                    <li>- 사이즈 : 770px * Free</li>
+                    <li>- CPU 점유율 50% 이하</li>
+                    <li>- 동영상 삽입시 재생/음향 제어버튼 삽입 및 자동재생 되지 않도록 설정</li>
+                    <li>- 동영상은 플래쉬로 변환하여 [object][embed] 태그부분을 외부 자바스크립트(js) 파일로 분리</li>
+                    <li>- 파일 인코딩 utf-8 필수</li>
+                    <li>- 최소 4개 브라우저(IE 9/10/11, 파이어폭스) 실행 가능해야 함</li>
+                  </ul>
+                </li>
+                <li>
+                  <strong>3) 이벤트 배너</strong>
+                  <ul>
+                    <li>- 진행 중 이벤트(640 * 200), 이벤트 상단(400 * 135)</li>
+                    <li>- 진행 중 이벤트 배너는 정지컷 이미지와 이벤트 제목, 기간, 발표, 내용 등 텍스트를 함께 전달</li>
+                    <li>- 확장자명 jpg, gif, png 파일로 전달</li>
+                  </ul>
+                </li>
+
+              </ol>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <!-- //본문 -->
+  <!-- 하단 -->
+  <footer th:replace="~{fragment/footer_fragment::adFooter}"></footer>
+  <!-- //하단 -->
+</div>
+</body>
+
+</html>
