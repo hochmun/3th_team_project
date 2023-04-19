@@ -1,22 +1,21 @@
 /** 2023/04/18 // 심규영 // 실시간 베스트 스크립트 */
 $(()=>{
-    realtimeFunction().pageMove(0); // 처음 페이지 로드 될시 1페이지 불러오기
-    $('.realtime_prev').click(()=>{realtimeFunction().pageMove(-1);});
-    $('.realtime_next').click(()=>{realtimeFunction().pageMove(1);});
+    realtimeFunction(0); // 처음 페이지 로드 될시 1페이지 불러오기
+    $('.realtime_prev').click(()=>{realtimeFunction(-1);});
+    $('.realtime_next').click(()=>{realtimeFunction(1);});
 });
 
 // 중첩 함수 생성
-const realtimeFunction = () => {
+const realtimeFunction = (mode) => {
 
     // 해당하는 장소에 데이터 집어 넣는 함수
     const insertArticles = (articleVOS, pg) => {
         articleVOS.forEach((articleVO)=>{
-            console.log("articleVO : ",articleVO);
             $('<li>').append(
                 $('<a>').attr('href','/GCInside/m/board/view/?id=gcbest&no='+articleVO.article_num)
                 .attr('class','main_log').append(
                     $('<div>').attr('class','box bestimg').append(
-                        articleVO.article_file > 0 ? $('<img>').attr('src',articleVO.file_url).attr('style','position: relative;') : ''
+                        articleVO.article_file > 0 ? $('<img>').attr('src',articleVO.file_url.substring(articleVO.file_url.indexOf('/GCInside'))).attr('style','position: relative;') : ''
                     )
                 ).append(
                     $('<div>').attr('class','box besttxt').append(
@@ -28,7 +27,9 @@ const realtimeFunction = () => {
                     $('<div>').attr('class','box best_info').append(
                         $('<span>').attr('class','name').text(articleVO.article_login_status == 0 ? articleVO.article_uid : articleVO.article_nonmember_uid)
                     ).append(
-                        $('<span>').attr('class','time').text(articleVO.article_rdate)
+                        $('<span>').attr('class','time').text(
+                            new Date(articleVO.article_rdate) > new Date(new Date().toLocaleDateString()) ? articleVO.article_rdate.substring(11,16) : articleVO.article_rdate.substring(5,10)
+                        )
                     )
                 )
             ).appendTo('.time_best .typet_list.p_'+pg);
@@ -39,7 +40,6 @@ const realtimeFunction = () => {
     const PgGetArticle = async (pg) => {
         // 페이지 번호에 따른 게시글 가져오기
         const articleVOS = await GetArticleListAjax({"pg":pg});
-        console.log("articleVOS : ",articleVOS);
 
         insertArticles(articleVOS, pg);
     };
@@ -84,9 +84,7 @@ const realtimeFunction = () => {
     };
 
     // 외부 출력 함수 리턴
-    return {
-        "pageMove":pageMove,
-    };
+    return pageMove(mode);
 };
 
 /* 2023-04-19 // 전인준 // hit갤러리 */
