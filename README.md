@@ -35,6 +35,26 @@
 카테고리 제공. 이를 통해 사용자들의 다양한 관심사에 따라 쉽게 커뮤니티를 찾아 활동할 수 있을 뿐
 아니라 쉬운 접근, 더 나은 사용자 경험을 제공 하는 것에 방점을 두었음.</p>
 
+## 프로젝트 상세 정보
+
+### 스토리 보드
+<a href="스토리 보드 v.1.0.pdf" target="_blank">스토리 보드</a>
+
+### 프로젝트 정보구조(IA)
+<a href="basic_IA_v.0.2.png" target="_blank">프로젝트 정보구조(IA)</a>
+
+### 데이터 플로우
+<a href="DATA_FLOW.png" target="_blank">데이터 플로우</a>
+
+### 테이블 명세서
+<a href="데이터베이스 테이블 명세서.pdf" target="_blank">테이블 명세서</a>
+
+### 발표 보고서
+<a href="GCInside 발표 보고서_v.1.0.pdf" target="_blank">발표 보고서</a>
+
+### 완료 보고서
+<a href="GCInside 완료 보고서 v.1.0.pdf" target="_blank">완료 보고서</a>
+
 ## 프로젝트 시연 영상
 
 ## 팀 구성
