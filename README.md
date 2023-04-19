@@ -48,26 +48,19 @@
   <img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=IntelliJ&logoColor=white">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
-  
 </div>
 
-### 스토리 보드
-<a href="스토리 보드 v.1.0.pdf" target="_blank">스토리 보드</a>
+### <a href="스토리 보드 v.1.0.pdf" target="_blank">스토리 보드</a>
 
-### 프로젝트 정보구조(IA)
-<a href="basic_IA_v.0.2.png" target="_blank">프로젝트 정보구조(IA)</a>
+### <a href="basic_IA_v.0.2.png" target="_blank">프로젝트 정보구조(IA)</a>
 
-### 데이터 플로우
-<a href="DATA_FLOW.png" target="_blank">데이터 플로우</a>
+### <a href="DATA_FLOW.png" target="_blank">데이터 플로우</a>
 
-### 테이블 명세서
-<a href="데이터베이스 테이블 명세서.pdf" target="_blank">테이블 명세서</a>
+### <a href="데이터베이스 테이블 명세서.pdf" target="_blank">테이블 명세서</a>
 
-### 발표 보고서
-<a href="GCInside 발표 보고서_v.1.0.pdf" target="_blank">발표 보고서</a>
+### <a href="GCInside 발표 보고서_v.1.0.pdf" target="_blank">발표 보고서</a>
 
-### 완료 보고서
-<a href="GCInside 완료 보고서 v.1.0.pdf" target="_blank">완료 보고서</a>
+### <a href="GCInside 완료 보고서 v.1.0.pdf" target="_blank">완료 보고서</a>
 
 ## 프로젝트 시연 영상
 
