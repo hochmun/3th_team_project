@@ -73,7 +73,7 @@
 
 ### 어드민
 
-#### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA"></a>
+#### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
 
 ### 갤러리
 
