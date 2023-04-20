@@ -69,6 +69,19 @@
 
 ## 프로젝트 시연 영상
 
+### 메인
+
+### 어드민
+
+#### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA"></a>
+
+### 갤러리
+
+### 회사 소개
+
+### 광고 안내
+
+
 ## 팀 구성
 팀장 심규영
 <a href="https://github.com/hochmun" target="_blank"><img src="https://img.shields.io/badge/-hochmun-blue?style=plastic&logo=github&logoColor=black"/></a>
