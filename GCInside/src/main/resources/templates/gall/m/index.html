@@ -40,7 +40,9 @@
                     <li class="bgcover" style="">
                         <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
                                 <span class="img_box ">
-                                    <span class="cover" style="background-image:url(https://via.placeholder.com/50x50)"></span>
+                                   <th:block th:if="${#strings.contains(hotarticle.file_url, '/GCInside')}">
+                                       <img th:src="${#strings.substring(hotarticle.file_url, hotarticle.file_url.indexOf('/GCInside'))}" style="position: relative;" />
+                                    </th:block>
                                     <em class="blind">소개 이미지</em>
                                 </span>
                             <div class="txt_box">
@@ -397,7 +399,7 @@
                                 class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
                     </div>
                 </div>
-                <img th:src="@{/img/new_maban8.png}" alt="">
+                <img th:src="@{/img/new_maban8.png}" style="width:300px;height:450px;" alt="">
             </section>
         </article>
         <!-- 갤러리  리스트 -->

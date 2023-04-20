@@ -118,4 +118,5 @@
     <select id="mgallcate1cnt" resultType="int">
         select count(*) from `gc_gell` where `gell_grade`='1' and `gell_cate`=#{cate};
     </select>
+
 </mapper>
