@@ -191,7 +191,13 @@
 
     <!-- 2023/04/18 // 전인준 // hit갤러리 게시물 가져오기-->
     <select id="hitgall" resultType="kr.co.gcInside.vo.gell_articleVO">
-        SELECT * FROM `gc_gell_article` WHERE `articlel_gell_num` = 134 AND `article_status` != 1 ORDER BY `article_rdate` DESC LIMIT 0,12;
+        SELECT *
+        FROM `gc_gell_article` AS a
+        LEFT JOIN `gc_gell_file` AS b ON a.`article_num` = b.`file_article_num`
+        WHERE a.`articlel_gell_num` = 134 AND a.article_status = 0
+        GROUP BY a.`article_num`
+        ORDER BY a.`article_rdate` DESC
+        LIMIT 0, 12;
     </select>
 
     <!-- upload -->
