@@ -118,7 +118,11 @@ public class MainController {
         return resultMap;
     }
 
-
+    /**
+     * 2023/03/25 // 라성준 //
+     * @param data
+     * @return
+     */
     @ResponseBody
     @PostMapping("/RollingGall")
     public Map<String, Object> RollingGall(@RequestBody Map<String, String> data) {
