@@ -83,6 +83,8 @@
 
 #### 게시글 등록 <a href="https://youtu.be/ap8V5fvCfK4">영상 링크</a>
 
+#### 게시글 수정 및 삭제 [영상 링크](https://youtu.be/BXls7cgZgMA)
+
 ### 기타
 
 #### 회사 소개 및 광고 안내 <a href="https://youtu.be/nnitNql7x_c">영상 링크</a>
