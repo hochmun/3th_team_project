@@ -325,8 +325,8 @@
     <!-- 2023/04/11 // 심규영 // 댓글 정보 가져오는 쿼리문 -->
     <select id="selectCommentInfo" resultType="kr.co.gcInside.vo.Gell_commentVO">
         SELECT
-            `${re}comment_login_status`,
-            `${re}comment_uid`
+            `${re}comment_login_status` as `comment_login_status`,
+            `${re}comment_uid` as `comment_uid`
         FROM `gc_gell_${re}comment`
         WHERE `${re}comment_num` = #{comment_no};
     </select>
@@ -444,7 +444,7 @@
             `re_comment_num` = #{re_comment_no} AND
             `re_comment_oir_num` = #{comment_no}
         </if>
-            AND `comment_article_num` = #{articleNo};
+            AND `${re}comment_article_num` = #{articleNo};
     </update>
 
     <!-- 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 쿼리문 -->
