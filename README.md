@@ -79,11 +79,15 @@
 
 #### 갤러리 목록 <a href="https://youtu.be/q88HcmSWT_0">영상 링크</a>
 
+### 회원
+
 ### 갤러리
 
 #### 게시글 등록 <a href="https://youtu.be/ap8V5fvCfK4">영상 링크</a>
 
 #### 게시글 수정 및 삭제 [영상 링크](https://youtu.be/BXls7cgZgMA)
+
+#### 게시글 댓글 및 대댓글 등록 [영상 링크](https://youtu.be/1cZj-BSjqfw)
 
 ### 기타
 
