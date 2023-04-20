@@ -67,11 +67,14 @@
     </select>
 
     <!-- 2023/04/07 // 김동민 // 개념글(임시로 추천수 1이상)불러오기 (수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
+    <!-- 2023/04/20 // 김동민 // 파일 불러오기 추가(수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
     <select id="selecthotarticle" resultType="kr.co.gcInside.vo.gell_articleVO">
-        SELECT a.gell_name,a.gell_address,  b.*
+        SELECT a.gell_name, a.gell_address, b.*, c.*
         FROM gc_gell AS a
-        JOIN gc_gell_article AS b
-        ON a.gell_num = b.articlel_gell_num where b.article_recommend_count >=1 and a.gell_grade = 0 ORDER BY `article_rdate` desc;
+        JOIN gc_gell_article AS b ON a.gell_num = b.articlel_gell_num
+        JOIN gc_gell_file AS c ON b.article_num = c.file_article_num
+        WHERE b.article_recommend_count >= 1 AND a.gell_grade = 0
+        ORDER BY b.article_rdate DESC;
     </select>
 
     <!-- 2023/04/07 // 김동민 // 메인 흥한 갤러리 불러오기 -->
@@ -182,7 +185,7 @@
     
     <!-- 2023/04/17 // 김동민 // 갤러리 select-->
     <select id="selectgall" resultType="kr.co.gcInside.vo.galleryVO">
-        select * from `gc_gell` where `gell_grade`='0';
+        select * from `gc_gell` where `gell_grade`='0' ORDER BY `gell_cate` asc;
     </select>
     <!-- 2023/04/17 // 김동민 // 갤러리 카테고리별 갤러리 갯수-->
     <select id="gallcate1cnt" resultType="int">

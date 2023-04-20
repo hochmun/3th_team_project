@@ -58,7 +58,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall create
+     * 2023/03/16 // 김동민 // minorgall create
      * @param model
      * @return
      */
@@ -74,7 +74,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall create
+     * 2023/03/16 // 김동민 // minorgall create
      * @param frmCreate
      * @param myUserDetails
      * @return
@@ -88,7 +88,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall validation
+     * 2023/03/16 // 김동민 // minorgall validation
      * @param gell_create_name
      * @return
      */
@@ -108,7 +108,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall validation
+     * 2023/03/16 // 김동민 // minorgall validation
      * @param gell_create_address
      * @return
      */
