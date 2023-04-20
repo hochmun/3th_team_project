@@ -79,6 +79,8 @@
 
 #### 갤러리 목록 <a href="https://youtu.be/q88HcmSWT_0">영상 링크</a>
 
+### 회원
+
 ### 갤러리
 
 #### 게시글 등록 <a href="https://youtu.be/ap8V5fvCfK4">영상 링크</a>
