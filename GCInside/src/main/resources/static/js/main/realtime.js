@@ -5,7 +5,7 @@ $(()=>{
     $('.realtime_next').click(()=>{realtimeFunction(1);});
 });
 
-// 중첩 함수 생성
+/** 2023/04/18 // 심규영 // 중첩 함수 생성 */
 const realtimeFunction = (mode) => {
 
     // 해당하는 장소에 데이터 집어 넣는 함수
@@ -108,7 +108,7 @@ function showPg(pageNum){
     const start = (pageNum - 1) * hitpage; // 시작 인덱스
     const end = start + hitpage;           // 끝 인덱스
     // 모든리스트 숨김,start에서 end까지만 출력
-    $('.con_list li').hide().slice(start,end).show();
+    $('.con_list li.hitL').hide().slice(start,end).show(); // 출력 에러 수정
 }
 $(document).ready(function(){
     showPg(currentPg); // 초기에 첫번째 페이지 출력
