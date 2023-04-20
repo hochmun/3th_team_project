@@ -75,13 +75,19 @@
 
 #### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
 
+#### 페이지 회원 조회 <a href="https://youtu.be/tZda_Dt6aiY">영상 링크</a>
+
+#### 갤러리 목록 <a href="https://youtu.be/q88HcmSWT_0">영상 링크</a>
+
 ### 갤러리
 
 #### 게시글 등록 <a href="https://youtu.be/ap8V5fvCfK4">영상 링크</a>
 
-### 회사 소개 <a href="">영상 링크</a>
+### 기타
 
-### 광고 안내 <a href="">영상 링크</a>
+#### 회사 소개 및 광고 안내 <a href="https://youtu.be/nnitNql7x_c">영상 링크</a>
+
+#### 이용 약관 <a href="https://youtu.be/5i63PxGmoPA">영상 링크</a>
 
 
 ## 팀 구성
