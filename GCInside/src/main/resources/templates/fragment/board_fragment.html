@@ -84,7 +84,10 @@
               <button type="button" class="list_bottom btn_white" th:if="${galleryVO.gell_num ne 135}" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" data-exception_mode="recommend" onclick="articlePageHerf($(this))">개념글</button>
           </div>
           <div class="fr">
+              <!-- 디시인사이드에선 실시간베스트,hit갤러리 글쓰기버튼이없어서 추가 // 필요할때 주석제거해서 사용가능-->
+              <!--<th:block th:if="!${#httpServletRequest.queryString.contains('id=HIT') or #httpServletRequest.queryString.contains('id=gcbest')}">-->
               <button type="button" id="btn_write" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
+              <!--</th:block>-->
           </div>
       </div>
 
