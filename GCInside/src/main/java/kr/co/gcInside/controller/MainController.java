@@ -44,26 +44,26 @@ public class MainController {
     /**
      * 2023.03.22 // 라성준 // 메인 신설갤 불러오기
      */
-    @GetMapping(value = {"/", "index"})
-    public String index(Model model, @AuthenticationPrincipal MyUserDetails myUserDetails) {
-        Map<String, String> data = new HashMap<>();
-        data.put("grade", "mgall");
+    @GetMapping(value = {"/", "index"})                        // HTTP GET 요청을 처리하는 메소드임을 나타냄
+    public String index(Model model, @AuthenticationPrincipal MyUserDetails myUserDetails) {  // Model 객체와 MyUserDetails 객체를 파라미터로 받음
+        Map<String, String> data = new HashMap<>();                                           // HashMap 객체 생성
+        data.put("grade", "mgall");                                                           // "grade"라는 key와 "mgall"라는 value를 가지는 데이터 추가
 
         // 신설 마이너 갤러리 페이징
-        PagingDTO newgellPagingDTO = new PagingUtil().getPagingDTO(null, service.MainIndexNewCommunityCount(data));
+        PagingDTO newgellPagingDTO = new PagingUtil().getPagingDTO(null, service.MainIndexNewCommunityCount(data)); // PagingUtil 객체를 이용하여 PagingDTO 객체 생성
 
         // 페이징 처리
-        List<galleryVO> newMgellCommunityList = service.MainIndexNewmgellCommunity(newgellPagingDTO.getStart());
+        List<galleryVO> newMgellCommunityList = service.MainIndexNewmgellCommunity(newgellPagingDTO.getStart());   // MainService의 MainIndexNewmgellCommunity 메소드를 호출하여 List<galleryVO> 타입의 데이터 가져오기
 
         // HIT 갤러리
-        List<gell_articleVO> article = service.hitgall();
+        List<gell_articleVO> article = service.hitgall();                                                           // MainService의 hitgall 메소드를 호출하여 List<gell_articleVO> 타입의 데이터 가져오기
 
-        model.addAttribute("article", article);
-        model.addAttribute("newMgellCommunityList", newMgellCommunityList);
-        model.addAttribute("newgellPagingDTO", newgellPagingDTO);
-        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));
+        model.addAttribute("article", article);                                                         // "article"이라는 이름으로 article 데이터 전달
+        model.addAttribute("newMgellCommunityList", newMgellCommunityList);                             // "newMgellCommunityList"라는 이름으로 newMgellCommunityList 데이터 전달
+        model.addAttribute("newgellPagingDTO", newgellPagingDTO);                                       // "newgellPagingDTO"라는 이름으로 newgellPagingDTO 데이터 전달
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));     // "authorize"라는 이름으로 MyUserDetails 객체를 이용하여 보안 정보 데이터 전달
 
-        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
+        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());                  // myUserDetails가 null이 아닐 경우 "user"라는 이름으로 myUserDetails의 user 객체 데이터 전달
 
         return "index";
     }
