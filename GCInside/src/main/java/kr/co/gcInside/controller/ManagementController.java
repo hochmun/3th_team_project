@@ -25,11 +25,11 @@ import java.util.Map;
 /**
  * 2023.03.28 // 라성준 // 매니지먼트 컨트롤러 생성
  */
-@Slf4j
-@Controller
+@Slf4j // Lombok 어노테이션으로 log 객체를 자동으로 생성해준다.
+@Controller // 해당 클래스가 스프링 MVC에서 컨트롤러로 사용됨을 선언한다.
 public class ManagementController {
 
-    @Autowired
+    @Autowired // Spring IoC 컨테이너가 ManagementService 클래스의 인스턴스를 자동으로 주입하도록 한다.
     private ManagementService service;
 
     /**
@@ -40,18 +40,19 @@ public class ManagementController {
      * @return
      */
     @GetMapping("gall/management/index")
-    public String index (@RequestParam Map<String, String> data, Model model) {
-        if(!service.modelInput(data, model)) return "error/wrongURL";
+    public String index (@RequestParam Map<String, String> data, Model model) { // modelInput 메서드를 이용해 데이터를 전달할 수 있는 경우에만 처리한다.
+        if(!service.modelInput(data, model)) return "error/wrongURL"; // 전달된 데이터가 없거나 잘못된 경우 에러 페이지를 반환한다.
 
+        // 전달받은 갤러리 주소를 이용해 게시글과 설정 정보를 가져온다.
         String gell_address = data.get("id");
         Map<String, Object> stringObjectMap = service.selectArticleAndSetting(gell_address);
         if (stringObjectMap == null) {
-            return "error/wrongURL";
+            return "error/wrongURL";  // 가져온 정보가 없는 경우 에러 페이지를 반환한다.
         }
-        stringObjectMap.put("gell_address", gell_address);
-        model.addAttribute("stringObjectMap", stringObjectMap);
+        stringObjectMap.put("gell_address", gell_address); // 가져온 정보에 갤러리 주소를 추가한다.
+        model.addAttribute("stringObjectMap", stringObjectMap); // 모델에 가져온 정보를 추가한다.
 
-        return "gall/management/index";
+        return "gall/management/index"; // 가져온 정보를 사용해 갤러리 관리 페이지를 반환한다.
     }
 
     /**
@@ -73,6 +74,7 @@ public class ManagementController {
                                      @AuthenticationPrincipal MyUserDetails myUserDetails) {
         Map<String, Object> resultMap = new HashMap<>();
 
+        // 파라미터 값들을 추출
         String oriDetail = data.get("oriDetail");
         String newDetail = data.get("newDetail");
         String id = data.get("id");
@@ -95,7 +97,7 @@ public class ManagementController {
         }
 
 
-        // 유저 로그인 안함
+        // 유저 로그인 안함 , -2를 반환
         if(myUserDetails == null){
             int result = -2;
             resultMap.put("result", result);
@@ -109,13 +111,14 @@ public class ManagementController {
             throw new RuntimeException("갤러리 정보가 존재하지 않습니다.");
         }
 
-        // 7일 이내 변경 내역 확인
+        // 7일 이내 변경 내역이 있으면, -3을 반환
         if (service.checkRecentGellManageLog(galleryVO.getGell_num(), cate, content)) {
             int result = -3;
             resultMap.put("result", result);
             return resultMap;
         }
 
+        // 갤러리 설정을 업데이트하고, 결과를 resultMap에 저장
         Gell_SettingVO settingVO = galleryVO.getGellSettingVO();
         if(content.equals("content")) galleryVO.setGell_name(newDetail);
         if(content.equals("info")) galleryVO.setGell_info(newDetail);

@@ -705,8 +705,10 @@
                       <button type="button" class="btn_grey modify" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goModify($(this));">수정</button>
                       <button type="button" class="btn_grey cancle" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" th:data-no="${articleVO.article_num}" onclick="goDelete($(this));">삭제</button>
                     </th:block>
-
+                    <!-- 디시인사이드에선 실시간베스트,hit갤러리 글쓰기버튼이없어서 추가 // 필요할때 주석제거해서 사용가능-->
+                    <!--<th:block th:if="!${#httpServletRequest.queryString.contains('id=HIT') or #httpServletRequest.queryString.contains('id=gcbest')}">-->
                     <button type="button" class="btn_blue write" th:data-grade="${grade}" th:data-id="${galleryVO.gell_address}" onclick="goWrite($(this))">글쓰기</button>
+                    <!--</th:block>-->
                   </div>
                 </div>
               </div>
