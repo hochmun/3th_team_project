@@ -172,4 +172,9 @@ public class MainController {
 
         return resultMap;
     }
+
+    /**
+     * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
+     */
+
 }

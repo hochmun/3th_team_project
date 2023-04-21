@@ -260,17 +260,17 @@
         select * from `gc_gell` as a
         JOIN `gc_gell_cate2` AS b ON a.gell_cate = b.gell_cate2
         <where>
-            `gell_today_rank`>='1' and `gell_grade`='1'
+            a.gell_today_rank >= '1' and a.gell_grade = '1'
             <choose>
                 <when test="category == ''">
-                    a.gell_grade = 1
+                    AND a.gell_grade = 1
                 </when>
                 <when test="category != ''">
-                    a.gell_cate = #{category} AND a.gell_grade = 1
+                    AND a.gell_cate = #{category} AND a.gell_grade = 1
                 </when>
             </choose>
         </where>
-        ORDER BY `gell_today_rank` ASC LIMIT {start}, 10;
+        ORDER BY a.gell_today_rank ASC LIMIT ${start}, 10;
     </select>
 
     <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 리스트 총 개수  -->
@@ -306,7 +306,6 @@
         <result property="gell_sancitons_rdate" column="gell_sancitons_rdate"/>
         <result property="gell_sancitons_wdate" column="gell_sancitons_wdate"/>
         <result property="gell_sancitons_grade" column="gell_sancitons_grade"/>
-        <result property="gell_cate1" column="gell_cate1"/>
         <result property="gell_cate2" column="gell_cate2"/>
         <result property="gell_cate2_name" column="gell_cate2_name"/>
     </resultMap>
