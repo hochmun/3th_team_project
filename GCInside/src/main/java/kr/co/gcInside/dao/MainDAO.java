@@ -68,6 +68,13 @@ public interface MainDAO {
      */
     public List<gell_articleVO> selectRealtimeGetArticleList(@Param("start") int start);
 
+    /**
+     * 2023/04/21 // 심규영 // 실시간 북적이는 갤러리 불러오는 기능
+     * @param gall_type
+     * @param page
+     */
+    public void selectHotLiveArticles(@Param("gall_type") String gall_type, @Param("page") int page);
+
 
     /**
      * 2023/04/07 // 김동민 // 흥한갤러리 관련 minor에서 사용했던 코드 메인에 적용

@@ -73,7 +73,7 @@ public class MainService {
 
     /**
      * 2023/04/19 // 심규영 // 실시간 게시물 불러오는 기능
-     * @param start
+     * @param pg
      * @return
      */
     public List<gell_articleVO> selectRealtimeGetArticleList(String pg) {
