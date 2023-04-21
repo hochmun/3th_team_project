@@ -80,6 +80,7 @@ public class MainController {
     /**
      * 2023/03/23 // 심규영 //
      * 2023/03/24 // 라성준 //
+     * 2023/04/21 // 심규영 // 페이지 이동 버그 fix
      * ajax용 페이징 처리
      *      가져오는 값
      *          type    : 종류 {new : 신설, hit: 흥한갤, live:실시간}
@@ -103,7 +104,7 @@ public class MainController {
             // 페이지 값이 있을 경우
             if(data.get("pg") != null) {
                 pagingDTO = new PagingDTO();
-                pagingDTO.setStart(Integer.parseInt(data.get("pg")));
+                pagingDTO.setStart((Integer.parseInt(data.get("pg")) - 1) * 10);
             }
 
             // 리스트 목록 불러오기
@@ -172,4 +173,20 @@ public class MainController {
 
         return resultMap;
     }
+
+    /**
+     * 2023/04/21 // 심규영 // 실시간 북적이는 갤러리 목록 가져오는 맵핑
+     * @param data {
+     *             gall_type : 갤러리 타입 {gall : 메인 , mgall: 마이너 , minigall: 미니 }
+     *             page : 페이지 번호
+     * }
+     */
+    @ResponseBody
+    @PostMapping("mainIndex/hotLiveGetList")
+    public Map<String, Object> hotLiveGetGellList(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        return resultMap;
+    }
+
 }

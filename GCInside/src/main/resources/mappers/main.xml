@@ -182,7 +182,12 @@
         ORDER BY a.`article_rdate` DESC
         LIMIT #{start}, 25;
     </select>
-    
+
+    <!-- 2023/04/21 // 심규영 // 실시간 북적이는 갤러리 리스트 가져오는 쿼리문 -->
+    <select id="selectHotLiveArticles" resultType="kr.co.gcInside.vo.gell_articleVO">
+
+    </select>
+
     <!-- 2023/04/17 // 김동민 // 갤러리 select-->
     <select id="selectgall" resultType="kr.co.gcInside.vo.galleryVO">
         select * from `gc_gell` where `gell_grade`='0' ORDER BY `gell_cate` asc;
