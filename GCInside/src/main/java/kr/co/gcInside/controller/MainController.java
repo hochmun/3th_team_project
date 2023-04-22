@@ -177,7 +177,7 @@ public class MainController {
     /**
      * 2023/04/21 // 심규영 // 실시간 북적이는 갤러리 목록 가져오는 맵핑
      * @param data {
-     *             gall_type : 갤러리 타입 {gall : 메인 , mgall: 마이너 , minigall: 미니 }
+     *             gall_type : 갤러리 타입 {g : 메인 , m: 마이너 , mi: 미니 }
      *             page : 페이지 번호
      * }
      */
@@ -185,6 +185,9 @@ public class MainController {
     @PostMapping("mainIndex/hotLiveGetList")
     public Map<String, Object> hotLiveGetGellList(@RequestBody Map<String, String> data) {
         Map<String, Object> resultMap = new HashMap<>();
+
+        List<Map<String, Object>> RankList = service.selectHotLiveArticles(data);
+        resultMap.put("RankList", RankList);
 
         return resultMap;
     }
