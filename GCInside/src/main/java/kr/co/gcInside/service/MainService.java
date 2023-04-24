@@ -82,6 +82,29 @@ public class MainService {
     }
 
     /**
+     * 2023/04/21 // 심규영 // 실시간 북적이는 갤러리 불러오는 기능<br/>
+     * 나열 방식 => 1: total 내림차순 DESC, 2: 이전 랭킹 올림차순 ASC
+     * @param data {
+     *             gall_type : 갤러리 타입 {g : 메인 , m: 마이너 , mi: 미니 }
+     *             page : 페이지 번호
+     * }
+     * @return [{
+     *     rank         : 랭킹
+     *     preRank      : 이전 랭킹
+     *     gell_name    : 갤러리 이름,
+     *     gell_address : 갤러리 주소,
+     *     total        : 1시간 내의 신규 게시글, 댓글, 대댓글 개수
+     *     preTotal     : 1시간 전 부터 2시간 전 이후의 게시글, 댓글 , 대댓글 개수
+     * }]
+     */
+    public List<Map<String, Object>> selectHotLiveArticles(Map<String, String> data){
+        int gall_type = data.get("gall_type").equals("g") ? 0 : data.get("gall_type").equals("m") ? 1 : 2;
+        int start = (Integer.parseInt(data.get("page")) - 1) * 10;
+
+        return dao.selectHotLiveArticles(gall_type, start);
+    }
+
+    /**
      * 2023/04/07 // 김동민 // 개념글(임시로 추천수1이상 글) 출력
      */
     public List<gell_articleVO> selecthotarticle(){

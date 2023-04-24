@@ -184,8 +184,50 @@
     </select>
 
     <!-- 2023/04/21 // 심규영 // 실시간 북적이는 갤러리 리스트 가져오는 쿼리문 -->
-    <select id="selectHotLiveArticles" resultType="kr.co.gcInside.vo.gell_articleVO">
-
+    <select id="selectHotLiveArticles" resultType="map">
+        SELECT
+            @rownum := @rownum + 1 AS `rank`,
+            e.*
+        FROM (
+            SELECT
+                @rownum2 := @rownum2 +1 AS `preRank`,
+                f.*
+            FROM (
+                SELECT
+                    d.gell_name,
+                    d.`gell_address`,
+                    COUNT(
+                    case when a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -1 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                    case when b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                    case when c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 HOUR) then 1 end
+                    ) AS `total`,
+                    COUNT(
+                    case when DATE_ADD(NOW(), INTERVAL -1 HOUR) > a.`article_rdate` AND a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -2 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                    case when DATE_ADD(NOW(), INTERVAL -1 HOUR) > b.`comment_rdate` AND b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                    case when DATE_ADD(NOW(), INTERVAL -1 HOUR) > c.`re_comment_rdate` AND c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 HOUR) then 1 end
+                    ) AS `preTotal`
+                FROM `gc_gell_article` AS a
+                left JOIN `gc_gell_comment` AS b ON a.article_num = b.comment_article_num
+                left JOIN `gc_gell_re_comment` AS c ON b.comment_num = c.re_comment_oir_num
+                JOIN `gc_gell` AS d ON a.articlel_gell_num = d.gell_num
+                WHERE d.gell_grade = #{gall_type}
+                GROUP BY a.articlel_gell_num
+                ORDER BY `preTotal` DESC
+            ) AS f,
+            (SELECT @rownum2 := 0) AS s
+        ) AS e,
+        (SELECT @rownum := ${start}) AS r
+        order BY `total` DESC, `preRank` ASC
+        LIMIT #{start}, 10
+        ;
     </select>
 
     <!-- 2023/04/17 // 김동민 // 갤러리 select-->
