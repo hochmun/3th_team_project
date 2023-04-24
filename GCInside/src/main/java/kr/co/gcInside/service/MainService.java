@@ -56,6 +56,14 @@ public class MainService {
     }
 
     /**
+     * 2023.04.24 // 라성준 // 메인 인덱스 인기갤러리 서비스
+     * @return
+     */
+    public List<galleryVO> MainIdexPopularityGell () {
+        return dao.MainIdexPopularityGell();
+    }
+
+    /**
      * 2023.03.24 // 라성준 // 마이너 갤러리 개수 가져오기
      * @return
      */
