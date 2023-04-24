@@ -51,9 +51,8 @@
                             <ul class="con_list">
                                 <li class="hitL" th:each="article : ${article}">
                                     <a th:href="@{/m/board/view/(id='HIT',no=${article.article_num})}" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img th:src="@{${#strings.substringAfter(article.file_url, '/GCInside')}}" />
-                                            <!--<img th:src="@{#strings.substring(article.file_url, '/GCInside')}" />-->
+                                        <span class="img_box" >
+                                            <img style="width:100%;" th:src="@{${#strings.substringAfter(article.file_url, '/GCInside')}}" />
                                         </span>
                                         <div class="txt_box">
                                             <strong class="tit" th:text="${article.article_title}"></strong>
