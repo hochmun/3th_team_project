@@ -16,11 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import kr.co.gcInside.vo.galleryVO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -195,5 +192,14 @@ public class MainController {
     /**
      * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
      */
+    @PostMapping("mainIndex/selectHotArticlesByCategory/{cate}")
+    public Map<String, Object> selectHotArticlesByCategory(@RequestBody Map<String, String> data) {
+    	Map<String, Object> resultMap = new HashMap<>();
+
+    	List<Map<String, Object>> hotarticlebycate = service.selectHotArticlesByCategory(data);
+    	resultMap.put("hotarticlebycate", hotarticlebycate);
+
+    	return resultMap;
+    }
 
 }

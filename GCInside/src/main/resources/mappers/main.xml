@@ -250,6 +250,23 @@
         LIMIT 0, 12;
     </select>
 
+    <!-- 2023/04/23 // 김재준 // 카테고리별 개념글 가져오기 -->
+    <select id="selectHotArticlesByCategory" parameterType="int" resultType="map">
+        WITH random_galleries AS (
+        SELECT gell_num
+        FROM gallery
+        WHERE gell_cate = #{cate}
+        ORDER BY RAND()
+        LIMIT 4
+        )
+        SELECT a.*
+        FROM gell_articleVO a
+        JOIN random_galleries rg ON a.articlel_gell_num = rg.gell_num
+        WHERE a.article_recommend_count >= 10
+        ORDER BY a.article_wdate DESC
+        LIMIT 5;
+    </select>
+
     <!-- upload -->
     <!-- delete -->
 </mapper>
