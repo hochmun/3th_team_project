@@ -79,6 +79,12 @@
 
 #### 갤러리 목록 <a href="https://youtu.be/q88HcmSWT_0">영상 링크</a>
 
+#### 메인 갤러리 승급 화면 [영상 링크](https://www.youtube.com/watch?v=tnzULnXnbHI)
+
+#### 갤러리 개설 신청 화면 [영상 링크](https://www.youtube.com/watch?v=wee0dBkpsT8)
+
+#### 메인 갤러리 생성 화면 [영상 링크](https://www.youtube.com/watch?v=YeLBrboCUt8)
+
 ### 회원
 
 ### 갤러리
