@@ -73,6 +73,8 @@
 
 #### 메인 index - 실시간 베스트 화면 및 코드 리뷰 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
 
+#### 메인 index - hit 갤러리 화면 [영상 링크](https://youtu.be/5DrsYEyenBA)
+
 #### 메인 갤러리 index 화면 [영상 링크](https://youtu.be/m1OGmW2l1Ms)
 
 #### 마이너 갤러리 index 화면, create 화면 [영상 링크](https://www.youtube.com/watch?v=1YMY5VE6_1I)
@@ -92,6 +94,12 @@
 #### 메인 갤러리 생성 화면 [영상 링크](https://www.youtube.com/watch?v=YeLBrboCUt8)
 
 ### 회원
+
+#### 회원가입 화면 [영상 링크](https://youtu.be/ZFMk7FDDPWs)
+
+#### 아이디 찾기 화면 [영상 링크](https://youtu.be/l5SSGEqpfSw)
+
+#### 비밀번호 찾기 화면 [영상 링크](https://youtu.be/SSn_tVNFYJM)
 
 ### 갤러리
 
