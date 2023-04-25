@@ -71,6 +71,8 @@
 
 ### 메인
 
+#### 실시간 베스트 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
+
 ### 어드민
 
 #### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
