@@ -73,6 +73,8 @@
 
 #### 실시간 베스트 화면 및 코드 리뷰 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
 
+#### 신설갤 , 갤러리 순회 동적 화면[영상 링크]https://youtu.be/r--tQlBxEDg)
+
 ### 어드민
 
 #### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
@@ -98,6 +100,8 @@
 #### 게시글 댓글 및 대댓글 등록 [영상 링크](https://youtu.be/1cZj-BSjqfw)
 
 #### 게시글 댓글 및 대댓글 삭제 [영상 링크](https://youtu.be/aTu2yHi7Jgk)
+
+#### 갤러리 기본 설정 [영상 링크](https://youtu.be/W8QlFZlhHY0)
 
 ### 기타
 
