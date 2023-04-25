@@ -117,5 +117,5 @@ public interface MainDAO {
     /**
      * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
      */
-    public List<gell_articleVO> selecthotarticlebycate(int cate);
+    public List<Map<String, Object>> selectHotArticlesByCategory(@Param("cate") int cate);
 }

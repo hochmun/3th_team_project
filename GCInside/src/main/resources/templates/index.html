@@ -189,14 +189,14 @@
                                             <span class="total_num" id="recomTotal">6</span>
                                         </div>
                                         <div class="btn_box">
-                                            <button type="button" class="sp_main btn_prev" id="recom_prev"></button>
-                                            <button type="button" class="sp_main btn_next on" id="recom_next"></button>
+                                            <button type="button" class="sp_main btn_prev" id="recom_prev"><span class="blind">이전</span></button>
+                                            <button type="button" class="sp_main btn_next on" id="recom_next"><span class="blind">다음</span></button>
                                         </div>
                                     </div>
                                 </div>
                             </header>
                             <section class="tab_container clear recomSection recom0">
-                                <h3 class="blind"></h3>
+                                <h3 class="blind">전체 개념글</h3>
                                 <div class="wraping">
                                     <div class="tab_content">
                                         <div class="tab_header">
@@ -277,9 +277,32 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </section>
                         </div>
+                        <script id="recom-tmpl" type="text/x-jquery-tmpl">
+                          <section class="tab_container clear recomSection recom${page}">
+                            <h3 class="blind">${cate_name} 개념글</h3>
+
+                            {{each(prop, values) data}}
+                            <div class="wraping">
+                              <div class="tab_content">
+                                <div class="tab_header">
+                                  <h4 class="tit"><a href="/GCInside/m/board/lists/?id=${values[0].gall_id}" class="main_log" section_code="recommend" target="_blank">${values[0].gallName} 갤러리<span class="sp_img img_deco"></span></a></h4>
+                                </div>
+                                <ul class="con_list txt">
+
+                                  {{each(i, val) values}}
+                                  <li><a href="${val.url}" target="_blank">${val.title}</a></li>
+                                  {{/each}}
+
+                                </ul>
+                              </div>
+                            </div>
+                            {{/each}}
+
+                          </section>
+                        </script>
                     </article>
                     <!-- 갤시콘 배너 -->
                     <article>
