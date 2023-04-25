@@ -79,6 +79,8 @@
 
 #### 마이너 갤러리 index 화면, create 화면 [영상 링크](https://www.youtube.com/watch?v=1YMY5VE6_1I)
 
+#### 신설갤 , 갤러리 순회 동적 화면[영상 링크]https://youtu.be/r--tQlBxEDg)
+
 ### 어드민
 
 #### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
@@ -110,6 +112,8 @@
 #### 게시글 댓글 및 대댓글 등록 [영상 링크](https://youtu.be/1cZj-BSjqfw)
 
 #### 게시글 댓글 및 대댓글 삭제, 코드 리뷰 [영상 링크](https://youtu.be/aTu2yHi7Jgk)
+
+#### 갤러리 기본 설정 [영상 링크](https://youtu.be/W8QlFZlhHY0)
 
 ### 기타
 
