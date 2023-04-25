@@ -71,7 +71,7 @@
 
 ### 메인
 
-#### 실시간 베스트 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
+#### 실시간 베스트 화면 및 코드 리뷰 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
 
 ### 어드민
 
