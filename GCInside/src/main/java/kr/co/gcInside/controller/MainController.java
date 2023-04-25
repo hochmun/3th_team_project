@@ -204,7 +204,25 @@ public class MainController {
 
         return resultMap;
     }
-    
+
+    /**
+     * 2023/04/26 // 심규영 // 갤러리 랭킹 목록 가져오는 맵핑
+     * @param data {
+     *             gall_type : 갤러리 타입 {g : 메인 , m: 마이너 , mi: 미니 }
+     *             page : 페이지 번호
+     * }
+     */
+    @ResponseBody
+    @PostMapping("mainIndex/hotGetList")
+    public Map<String, Object> hotGetGellList(@RequestBody Map<String, String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<Map<String, Object>> RankList = service.selectHotArticles(data);
+        resultMap.put("RankList", RankList);
+
+        return resultMap;
+    }
+
     /**
      * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
      */
