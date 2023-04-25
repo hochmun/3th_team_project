@@ -66,6 +66,19 @@
         LIMIT 0, 10;
     </select>
 
+    <!-- 2023/04/24 // 라성준 // 메인 인덱스 인기 갤러리 불러오기 -->
+    <select id="MainIdexPopularityGell" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT
+        gell_num, gell_cate, gell_name, gell_address, gell_grade, gell_hit
+        FROM
+        gc_gell
+        WHERE
+        gell_rdate >= DATE_SUB(NOW(), INTERVAL 14 DAY)
+        ORDER BY
+        gell_hit DESC
+        LIMIT 0, 10;
+    </select>
+
     <!-- 2023/04/07 // 김동민 // 개념글(임시로 추천수 1이상)불러오기 (수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
     <!-- 2023/04/20 // 김동민 // 파일 불러오기 추가(수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
     <select id="selecthotarticle" resultType="kr.co.gcInside.vo.gell_articleVO">

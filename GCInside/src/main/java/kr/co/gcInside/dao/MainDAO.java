@@ -43,6 +43,12 @@ public interface MainDAO {
     public List<galleryVO> MainIndexRollingGall();
 
     /**
+     * 2023.04.24 // 라성준 // 메인인덱스 인기갤러리 DAO
+     * @return
+     */
+    public List<galleryVO> MainIdexPopularityGell();
+
+    /**
      *  2023.03.22 // 라성준 // 
      *  페이징
      *  마이너 갤러리 개수 가져오기

@@ -38,9 +38,18 @@
             </dl>
             <dl class="rankingGall">
               <dt>인기갤러리</dt>
+                <!--
+                <a href="#" id="MainIdexPopularityGell" th:if="${PopularityGell}">
+                    <span class="rank_txt" th:each="gall : ${PopularityGell}" th:text="${gall.gell_name}"></span>
+                </a>
+                -->
             </dl>
             <dl>
               <dt>주요서비스</dt>
+                <dd><a href="javascript:;">갤로그</a></dd>
+                <dd><a href="javascript:;">지시위키</a></dd>
+                <dd><a href="javascript:;">이벤트</a></dd>
+                <dd><a href="javascript:;">지시콘</a></dd>
             </dl>
             <dl class="rollingGall">
               <dt><span>갤러리 순회</span></dt>
@@ -78,9 +87,11 @@
             </dl>
             <dl>
               <dt><a href="#" target="_blank">갤시뉴스</a></dt>
+                <dd><a href="/GCInside/m/board/lists?id=gcmedia" target="_blank">지시미디어</a></dd>
+                <dd><a href="/GCInside/m/board/lists?id=gcissue" target="_blank">지시이슈</a></dd>
             </dl>
             <dl>
-              <dt><a href="#">디시미디어</a></dt>
+              <dt><a href="#">지시미디어</a></dt>
             </dl>
           </div>
           <div class="all_bottom">

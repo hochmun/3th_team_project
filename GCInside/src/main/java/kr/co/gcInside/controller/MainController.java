@@ -119,7 +119,7 @@ public class MainController {
     }
 
     /**
-     * 2023/03/25 // 라성준 //
+     * 2023/03/25 // 라성준 // 순회 갤러리
      * @param data
      * @return
      */
@@ -132,6 +132,22 @@ public class MainController {
         resultMap.put("MainIndexRollingGall", MainIndexRollingGall);
 
         if(MainIndexRollingGall != null) resultMap.put("result", 1);
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/24 // 라성준 // 인기 갤러리
+     * @param
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("/PopularityGell")
+    public Map<String, Object> PopularityGell () {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        List<galleryVO> PopularityGell = service.MainIdexPopularityGell();
+        resultMap.put("PopularityGell", PopularityGell);
 
         return resultMap;
     }
