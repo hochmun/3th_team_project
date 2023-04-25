@@ -97,6 +97,8 @@
 
 #### 게시글 댓글 및 대댓글 등록 [영상 링크](https://youtu.be/1cZj-BSjqfw)
 
+#### 게시글 댓글 및 대댓글 삭제 [영상 링크](https://youtu.be/aTu2yHi7Jgk)
+
 ### 기타
 
 #### 회사 소개 및 광고 안내 <a href="https://youtu.be/nnitNql7x_c">영상 링크</a>
