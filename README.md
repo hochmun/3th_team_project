@@ -75,11 +75,13 @@
 
 #### 메인 index - hit 갤러리 화면 [영상 링크](https://youtu.be/5DrsYEyenBA)
 
+#### 메인 index - hotlive 화면 및 코드 리뷰 [영상 링크](https://youtu.be/Vxetxo97J48)
+
+#### 메인 index - 신설갤 , 갤러리 순회 동적 화면[영상 링크](https://youtu.be/r--tQlBxEDg)
+
 #### 메인 갤러리 index 화면 [영상 링크](https://youtu.be/m1OGmW2l1Ms)
 
 #### 마이너 갤러리 index 화면, create 화면 [영상 링크](https://www.youtube.com/watch?v=1YMY5VE6_1I)
-
-#### 신설갤 , 갤러리 순회 동적 화면[영상 링크]https://youtu.be/r--tQlBxEDg)
 
 ### 어드민
 
