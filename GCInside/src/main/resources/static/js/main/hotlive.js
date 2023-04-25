@@ -31,10 +31,6 @@ const hotLiveFunction = () => {
 
     // 페이지 빌드 함수
     const pageBuild = (RankList, gall_type, page) => {
-        console.log("RankList : ",RankList);
-        console.log("gall_type : ",gall_type);
-        console.log("page : ",page);
-
         // 불러온 리스트 가 없을 경우
         if(RankList.length == 0) {
             $('<li>').append(
