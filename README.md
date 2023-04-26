@@ -16,7 +16,7 @@
   </tr>
   <tr>
     <td>배포주소</td>
-    <td><a href="http://13.124.167.61:8082/GCInside/" target="_blank">http://13.124.167.61:8082/GCInside/</a></td>
+    <td><a href="http://52.79.118.135:8082/GCInside/" target="_blank">http://52.79.118.135:8082/GCInside/</a></td>
   </tr>
   <tr>
     <td>개발기간</td>
