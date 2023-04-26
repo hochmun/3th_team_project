@@ -93,18 +93,18 @@
     </select>
     <!-- 2023/04/07 // 김동민 //  랭킹확인용 오늘의 게시글 개수-->
     <update id="todayarticlecount">
-        UPDATE `gc_gell`
-        SET `gell_today_article_count` = (
-        SELECT COUNT(*)
-        FROM `gc_gell_article`
-        WHERE DATE(`article_rdate`) = CURDATE()
-        AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
-        );
+            UPDATE `gc_gell`
+            SET `gell_today_article_count` = (
+            SELECT COUNT(*)
+            FROM `gc_gell_article`
+            WHERE DATE(`article_rdate`) = CURDATE()
+            AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
+            );
     </update>
     <!-- 2023/04/07 // 김동민 // rank칼럼 초기화-->
     <update id="initrank">
         UPDATE `gc_gell` SET
-        `gell_today_rank` = NULL , `gell_yesterday_rank` = NULL where `gell_grade`='1';
+        `gell_today_rank` = NULL , `gell_yesterday_rank` = NULL where `gell_grade`='0';
     </update>
     <!-- 2023/04/07 // 김동민 // sql rank초기화 -->
     <update id ="resetrank">
