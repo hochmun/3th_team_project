@@ -243,7 +243,57 @@
                 ORDER BY `preTotal` DESC, d.`gell_rdate` ASC
             ) AS f,
             (SELECT @rownum2 := 0) AS s
+        ) AS e,
+        (SELECT @rownum := ${start}) AS r
+        order BY `total` DESC, `preRank` ASC, `gell_rdate` ASC
+        LIMIT #{start}, 10
+        ;
+    </select>
 
+    <!-- 2023/04/26 // 심규영 // 갤러리 랭킹 불러오는 쿼리문 -->
+    <select id="selectHotArticles" resultType="map">
+        SELECT
+            @rownum := @rownum + 1 AS `rank`,
+            e.*
+        FROM (
+            SELECT
+                @rownum2 := @rownum2 +1 AS `preRank`,
+                f.*
+            FROM (
+                SELECT
+                    d.gell_name,
+                    d.`gell_address`,
+                    d.`gell_rdate`,
+                    COUNT(
+                        case when a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -1 DAY) then 1 end
+                     ) +
+                    COUNT(
+                        case when b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 DAY) then 1 end
+                    ) +
+                    COUNT(
+                        case when c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 DAY) then 1 end
+                    ) AS `total`,
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 DAY) > a.`article_rdate`
+                            AND a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -2 DAY) then 1 end
+                    ) +
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 DAY) > b.`comment_rdate`
+                            AND b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 DAY) then 1 end
+                    ) +
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 DAY) > c.`re_comment_rdate`
+                            AND c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 DAY) then 1 end
+                    ) AS `preTotal`
+                FROM `gc_gell` AS d
+                LEFT JOIN `gc_gell_article` AS a ON a.`articlel_gell_num` = d.`gell_num`
+                left JOIN `gc_gell_comment` AS b ON a.article_num = b.comment_article_num
+                left JOIN `gc_gell_re_comment` AS c ON b.comment_num = c.re_comment_oir_num
+                WHERE d.gell_grade = #{gall_type} AND d.`gell_status` = 0
+                GROUP BY d.`gell_num`
+                ORDER BY `preTotal` DESC, d.`gell_rdate` ASC
+            ) AS f,
+            (SELECT @rownum2 := 0) AS s
         ) AS e,
         (SELECT @rownum := ${start}) AS r
         order BY `total` DESC, `preRank` ASC, `gell_rdate` ASC
