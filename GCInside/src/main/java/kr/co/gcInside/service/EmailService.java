@@ -27,7 +27,7 @@ public class EmailService {
         email.setSmtpPort(587);
         email.setAuthenticator(new DefaultAuthenticator("aowlrxm14@gmail.com", "sblqlxuvyupqvjgf"));
         email.setSSLOnConnect(true);
-        email.setFrom("aowlrxm14@gmail.com", "관리자");
+        email.setFrom("aowlrxm14@gmail.com", "관리자"); //메일발송시 보내는이메일,이름
         email.addTo(toEmail);
         email.setSubject(subject);
         email.setCharset("utf-8"); 
