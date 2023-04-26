@@ -5,15 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/dark.css}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/minor/common.css}">
     <link rel="stylesheet" th:href="@{/css/popup.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/ctr_cookie.js}"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/lately_visit_new.js"></script>
-    <script type="text/javascript" src="/js/ctr_cookie.js"></script>
+<!--    <script type="text/javascript" src="/js/ctr_cookie.js"></script>-->
     <script src="/js/minor/minor.js"></script>
 </head>
 <body>
@@ -287,7 +289,7 @@
                     <!-- 로그인 -->
                     <div id="login_box" class="login_box">
                         <div class="user_info newarea" data-alarmId="">
-                          <strong onclick="location='/member/login.html'" style="cursor:pointer">로그인해 주세요.</strong> 
+                            <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
                         </div>
                         <div class="user_option ">
                           <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a></span>
@@ -295,7 +297,7 @@
                                 <span><a href="javascript:;" onclick="alarmList($('.icon_noti', this), 'new')"><em class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
                         </div>
                     </div>
-                    <img src="https://via.placeholder.com/300x150" alt="">
+                    <img th:src="@{/img/new_maban7.png}" alt="">
                     </section>
                 </article>
                  <!-- 미니 갤러리  리스트 -->

@@ -53,11 +53,11 @@
     height: 100px;
 }
 .typea .gc_logo > div > img {
-    width: 300px;
-    height: 100px;
+    width: 250px;
+    height: 60px;
     position: absolute;
-    top: 9px;
-    left: -7px;
+    top: 30px;
+    left: 16px;
 }
 .typea .gc_logo > div > ._blank {
     position: absolute;
@@ -559,7 +559,7 @@ background-image:url(../img/sp_img.png);background-repeat:no-repeat;background-p
 .concept_con .con_list.txt a{width:347px}
 
 /* 광고 */
-.leftbanner{overflow:hidden;width:728px;height:90px;margin-top:15px}
+.leftbanner{overflow:hidden;width:728px;height:125px;margin-top:15px}
 .rightbanner{overflow:hidden;width:250px;height:250px;margin-top:15px}
 
 /* 갤시 콘 */

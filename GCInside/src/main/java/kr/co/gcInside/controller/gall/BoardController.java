@@ -1,23 +1,45 @@
 package kr.co.gcInside.controller.gall;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.BoardService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
+import org.hibernate.type.SerializableToBlobType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 2023/03/18 // 심규영 // 갤러리 글 컨트롤러 생성
@@ -46,7 +68,7 @@ public class BoardController {
      *              id              : 갤러리 주소
      *              search_head     : 말머리 번호
      *              sort_type       : 정렬 타입 (안 씀)
-     *              page            : 페이지 번호
+     *              pg            : 페이지 번호
      *              list_num        : 출력하는 게시물 개수 번호
      *              exception_mode  : 출력 모드 {recommmend:개념글,notice:공지}
      *              s_type          : 검색 타입 {title+content:제목+내용,title:제목,content:내용,user:글쓴이,comment:댓글}
@@ -56,6 +78,7 @@ public class BoardController {
      *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
      *          start                       : 페이지 시작 값
      *          gell_num                    : 겔러리 번호
+     *          total                       : 전체 게시글 개수
      *
      * @param grade
      * @return
@@ -70,6 +93,10 @@ public class BoardController {
 
         // 해당 id의 갤러리 정보가 없을 경우 잘못된 접근 페이지 이동
         if(galleryVO == null) return "error/wrongURL";
+
+        // 갤러리 조회 수 증가
+        service.insertGellHitLog(galleryVO.getGell_num());
+        service.updateGellHitCount(galleryVO.getGell_num());
         
         // 갤러리 서브 매니저 정보 가져오기
         List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());
@@ -78,12 +105,17 @@ public class BoardController {
         data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
         
         // 페이징 처리
+        data.put("gell_num", galleryVO.getGell_num()+"");
         PagingDTO pagingDTO = service.listsPaging(data);
 
         // 게시글 정보 가져오기
         data.put("start", pagingDTO.getStart()+"");
-        data.put("gell_num", galleryVO.getGell_num()+"");
+        data.put("total", galleryVO.getGell_article_count()+"");
         List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
+        
+        // 유저가 로그인 중 일 경우 서브 매니저 정보에서 매니저 체크
+        if(myUserDetails != null) model.addAttribute("UserSubManagerCheck", service.UserSubManagerCheck(gellSubManagerVOS,myUserDetails.getUser().getMember_uid()));
+        else model.addAttribute("UserSubManagerCheck", false);
 
         // model 전송
         model.addAttribute("galleryVO", galleryVO);
@@ -167,24 +199,30 @@ public class BoardController {
             // data에 개념글 추천수 개수 설정 넣기
             data.put("setting_recommend_standard", galleryVO.getGellSettingVO().getSetting_recommend_standard()+"");
 
-            // 게시글 페이징 처리
+            // 게시글 목록 페이징 처리
             PagingDTO pagingDTO = service.listsPaging(data);
 
-            // 게시글 정보 가져오기
+            // 게시글 목록 정보 가져오기
             data.put("start", pagingDTO.getStart()+"");
             data.put("gell_num", galleryVO.getGell_num()+"");
+            data.put("total", galleryVO.getGell_article_count()+""); // 게시글 전체 갯수
             List<gell_articleVO> gellArticleVOS = service.selectArticles(data);
             
-            // 댓글, 대댓글 목록 페이징 처리
-            // 전체 댓글 수 가져오는 쿼리문 사용 할 필요 없음, 게시물 정보에 포함 되어 있음
+            // 해당 게시글 조회 수 증가
+            service.updateArticleHitCount(articleVO.getArticle_num());
+
+            // 갤러리 서브 매니저 정보 가져오기
+            List<Gell_sub_managerVO> gellSubManagerVOS = service.selectSubManagerInfo(galleryVO.getGell_num());
             
-            // 댓글 정보 가져오기
-            Map<String,List<Gell_commentVO>> commentMap = service.selectComments(articleVO.getArticle_num(),0,"D");
+            // 파일 개수가 1이상일 경우 게시글 관련 이미지 파일 정보 가져오기
+            List<Gell_fileVO> fileVOS = null;
+            if(articleVO.getArticle_file() > 0) fileVOS = service.selectFiles(articleVO.getArticle_num());
+            model.addAttribute("fileVOS", fileVOS);
 
             // 모델
             model.addAttribute("gellArticleVOS", gellArticleVOS);
             model.addAttribute("pagingDTO", pagingDTO);
-            model.addAttribute("commentMap", commentMap);
+            model.addAttribute("gellSubManagerVOS", gellSubManagerVOS);
         }
 
         // 페이지 종류 전송
@@ -293,10 +331,19 @@ public class BoardController {
             return resultMap;
         }
         
+        // vo입력
+        gell_articleVO articleVO = service.articleVOInsert(data);
+        articleVO.setArticle_regip(req.getRemoteAddr());
+        
         // 게시글 작성
-        data.put("article_regip", req.getRemoteAddr());
-        result = service.insertArticle(data);
+        result = service.insertArticle(articleVO);
         resultMap.put("result", result);
+        
+        // 게시글 작성 완료시 갤러리 게시글 개수 증가
+        if(result > 0) service.updateGellArticleCount(data.get("article_gell_num"));
+
+        // 이미지 등록 확인 후 등록
+        service.imageUpdate(data.get("article_content"), articleVO.getArticle_num(), 0);
 
         return resultMap;
     }
@@ -333,10 +380,13 @@ public class BoardController {
         int result = service.insertComment(commentVO);
 
         // 댓글 작성시 댓글 수 증가
-        service.updateArticleCommentCount(data.get("no"));
+        service.updateArticleCommentCount(data.get("no"), "up");
         
         // 닉네임 가져오기
         if(myUserDetails != null) commentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
+
+        // 현재 날짜 저장
+        commentVO.setComment_rdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         // resultMap 에 result 등록
         resultMap.put("result", result);
@@ -374,16 +424,20 @@ public class BoardController {
         
         // VO에 값 넣기
         Gell_re_commentVO reCommentVO = service.reCommentVOInsert(data);
+        log.info("re_comment_login_status : "+reCommentVO.getRe_comment_login_status());
         
         // 댓글 작성
         int result = service.insertReComment(reCommentVO);
 
         // 댓글 작성시 댓글 수 증가 및 댓글의 대댓글 수 증가
-        service.updateArticleCommentCount(data.get("re_comment_article_num"));
-        service.updateCommentReCount(data.get("re_comment_ori_num"));
+        service.updateArticleCommentCount(data.get("re_comment_article_num"), "up");
+        service.updateCommentReCount(data.get("re_comment_ori_num"), "up");
 
         // 닉네임 가져오기
         if(myUserDetails != null) reCommentVO.setMember_nick(myUserDetails.getUser().getMember_nick());
+
+        // 현재 날짜 저장
+        reCommentVO.setRe_comment_rdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         // resultMap 에 result 등록
         resultMap.put("result", result);
@@ -422,6 +476,9 @@ public class BoardController {
         // 게시글 업데이트
         int result = service.updateArticle(data);
         resultMap.put("result", result);
+
+        //
+        service.imageUpdate(data.get("content"), Integer.parseInt(data.get("modify_no")), 1);
 
         return resultMap;
     }
@@ -504,4 +561,215 @@ public class BoardController {
         return resultMap;
     }
 
+    /**
+     * 2023/04/06 // 심규영 // 추천, 비추천 처리 Post 맵핑
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *          
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/setRecommendArticle")
+    public Map<String, Object> setRecommendArticle(@RequestBody Map<String, String> data,
+                                                   @AuthenticationPrincipal MyUserDetails myUserDetails,
+                                                   HttpServletRequest req) {
+        Map<String, Object> resultMap = new HashMap<>();
+
+        // 추천 하는 유저의 로그인 상태 확인
+        if(myUserDetails != null) data.put("login_type", "0"); //회원
+        else data.put("login_type", "1"); // 비회원
+        
+        // 추천 하기전 24시간 이내 추천 기록 확인
+        data.put("regip", req.getRemoteAddr());
+        int result1 = service.selectCountRecommendLog(data);
+        if(result1 > 0){ // 오늘 추천 기록이 있으면
+            resultMap.put("result1",result1);
+            return resultMap; // 반환
+        }
+
+        // 추천, 비추천 처리
+        int result2 = service.updateArticleRecommendCount(data);
+        resultMap.put("result2", result2);
+        
+        if(result2 > 0) { // 추천 처리에 성공했을 경우 로그 남기기
+            service.insertRecommendLog(data);
+        }
+
+        resultMap.put("login_type", data.get("login_type")); // 로그인 상태 전송
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/10 // 심규영 // 댓글,대댓글 비밀번호 일치 확인
+     *  data 들어오는 값
+     *      password    : 비밀번호
+     *      type        : 댓글, 대댓글 확인
+     *      re_no       : 댓글, 대댓글 번호
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/commentPassCheck")
+    public Map<String, Object> CommentPassCheck(@RequestBody Map<String,String> data,
+                                                HttpSession session) {
+        Map<String, Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        try {
+            result = service.selectCommentPassCheck(data);
+        } catch (Exception e){
+            log.error(e.getMessage());
+            result = 0;
+        }
+
+        // 추가 유효성 검증 용
+        // html 내부에서의 조작 예방
+        if(result > 0) session.setAttribute("commentPassCheck", true);
+
+        resultMap.put("result", result);
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/11 // 심규영 // 댓글, 대댓글 삭제 기능 포스트 맵핑
+     *  data 들어오는 값
+     *      type            : 댓글, 대댓글 종류 표시 {cmt:댓글, rcmt:대댓글}
+     *      comment_no      : 댓글 번호 or 대댓글의 부모 번호
+     *      re_comment_no   : 대댓글 번호
+     *      articleNo       : 게시물 번호
+     *      my              : 본인 인증 확인
+     * @param data
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/CommentDelete")
+    public Map<String, Object> CommentDelete(@RequestBody Map<String,String> data,
+                                             HttpSession session,
+                                             @AuthenticationPrincipal MyUserDetails myUserDetails){
+        Map<String,Object> resultMap = new HashMap<>();
+        int result = 0;
+
+        // 댓글 정보 가져오기
+        Gell_commentVO commentVO = service.selectCommentInfo(data);
+
+        // 댓글이 비회원 댓글 인 경우 세션에서 비밀번호 체크 확인여부 확인 (우회 체크)
+        if(commentVO.getComment_login_status() == 1 && !((Boolean) session.getAttribute("commentPassCheck"))) {
+            result = -1;
+            resultMap.put("result", result);
+            return resultMap; // 잘못된 접근, 비밀번호 체크를 올바르게 하십시오
+        }
+
+        // 댓글이 회원 댓글인 경우 본인 확인 (우회 체크)
+        if (commentVO.getComment_login_status() == 0) {
+            if(myUserDetails == null) { // 로그인 안 되어 있을 경우
+                result = -2;
+                resultMap.put("result", result);
+                return resultMap; // 비회원은 회원 댓글 삭제 불가능
+            }
+            if(!commentVO.getComment_uid().equals(myUserDetails.getUser().getMember_uid())) {
+                // 댓글 작성자와 로그인 한 유저가 다를 경우
+                result = -3;
+                resultMap.put("result", result);
+                return resultMap; // 자신이 작성한 글만 삭제 가능
+            }
+        }
+
+        // 전부 통과시 댓글 삭제
+        service.updateCommentDelete(data);
+
+        // 댓글,대댓글 삭제 후 해당 부모 게시글의 댓글 개수 감소
+        service.updateArticleCommentCount(data.get("articleNo"), "down");
+
+        // 대댓글일 삭제일 경우 해당 부모 댓글의 대댓글 갯수 감소
+        if(data.get("type").equals("rcmt")) service.updateCommentReCount(data.get("comment_no"), "down");
+
+        // 결과 값 리턴
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 업로드
+     *  리턴 되는 형식
+     *      success
+     *      file : {
+     *          url : 업로드 된 파일 주소
+     *      }
+     * @return
+     */
+    @ResponseBody
+    @PostMapping( value = "gall/board/uploadFile", consumes = "multipart/form-data")
+    public Map<String, Object> uploadFile(@Param("image")MultipartFile image){
+        Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> fileMap = new HashMap<>();
+
+        // 파일 저장
+        int result = service.fileUpload(image, fileMap);
+
+        // 결과 저장
+        resultMap.put("success", result);
+        resultMap.put("file", fileMap);
+
+        // 리턴
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // url로 파일 다운로드 기능
+     * @param data {<br>
+     *             "url"                    : "이미지 주소",<br>
+     *             "additionalRequestData"  : "몰루(additional request data from configuration)"<br>
+     * }
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("gall/board/fetchUrl")
+    public Map<String, Object> fetchUrl(@RequestBody Map<String,String> data) {
+        Map<String, Object> resultMap = new HashMap<>();
+        Map<String, Object> fileMap = new HashMap<>();
+
+        // 파일 저장
+        int result = service.urlfileDownload(data.get("url"), fileMap);
+
+        // 결과 저장
+        resultMap.put("success", result);
+        resultMap.put("file", fileMap);
+
+        return resultMap;
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // 파일명 클릭시 파일 다운로드 기능
+     * @param data {
+     *             "url" : 다운로드 주소
+     *             "oName" : 원본 이름
+     * }
+     * @return
+     */
+    @GetMapping("gall/board/fileDownload")
+    public ResponseEntity<Object> fileDownload(@RequestParam Map<String, String> data){
+        String url = data.get("url");
+        try {
+            Path filePath = Paths.get(url);
+            Resource resource = new InputStreamResource(Files.newInputStream(filePath));
+
+            File file = new File(url);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentDisposition(ContentDisposition.builder("attachment").filename(data.get("oName")).build());
+
+            return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+        } catch (Exception e){
+            log.error("파일 다운로드 에러!");
+            log.error(e.getMessage());
+            return new ResponseEntity<Object>(null, HttpStatus.CONFLICT);
+        }
+    }
 }

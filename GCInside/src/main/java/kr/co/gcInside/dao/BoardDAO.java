@@ -18,10 +18,10 @@ public interface BoardDAO {
 
     /**
      * 2023/03/22 // 심규영 // 게시물 작성 DAO
-     * @param data
+     * @param vo
      * @return
      */
-    public int insertArticle(Map<String, String> data);
+    public int insertArticle(gell_articleVO vo);
 
     /**
      * 2023/03/28 // 심규영 // 댓글 작성 DAO
@@ -35,6 +35,35 @@ public interface BoardDAO {
      * @return
      */
     public int insertReComment(Gell_re_commentVO vo);
+
+    /**
+     * 2023/04/06 // 심규영 // 추천, 비추천 기록 남기는 기능
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     * @return
+     */
+    public int insertRecommendLog(Map<String,String> data);
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회 기록
+     * @param gell_num
+     * @return
+     */
+    public int insertGellHitLog(@Param("gell_num") int gell_num);
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 등록 기능
+     * @param vo
+     * @return
+     */
+    public int insertArticleFile(Gell_fileVO vo);
 
     // read
 
@@ -55,6 +84,22 @@ public interface BoardDAO {
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     *      Map data에 들어오는 값
+     *          기본 공통
+     *              id              : 갤러리 주소
+     *              search_head     : 말머리 번호
+     *              sort_type       : 정렬 타입 (안 씀)
+     *              page            : 페이지 번호
+     *              list_num        : 출력하는 게시물 개수 번호
+     *              exception_mode  : 출력 모드 {recommmend:개념글,notice:공지}
+     *              s_type          : 검색 타입 {title+content:제목+내용,title:제목,content:내용,user:글쓴이,comment:댓글}
+     *              s_keyword       : 검색어
+     *
+     *      Map data 에 넣는 값
+     *          setting_recommend_standard  : 추천 글 추천 갯수 설정 값 => 출력 모드 recommend에 사용
+     *          start                       : 페이지 시작 값
+     *          gell_num                    : 겔러리 번호
+     *          total                       : 전체 게시글 개수
      * @param data
      * @return
      */
@@ -126,6 +171,48 @@ public interface BoardDAO {
                                                @Param("start") int start,
                                                @Param("type") String type);
 
+    /**
+     * 2023/04/06 // 심규영 // 추천 기록 확인 기능
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     */
+    public int selectCountRecommendLog(Map<String, String> data);
+
+    /**
+     * 2023/04/10 // 심규영 // 댓글 비밀번호 확인
+     *  data 들어오는 값
+     *      password    : 비밀번호
+     *      type        : 댓글, 대댓글 확인
+     *      re_no       : 댓글, 대댓글 번호
+     *
+     *      re : 댓글일 경우 '', 대댓글 일 경우 "re_"
+     * @param data
+     * @return
+     */
+    public int selectCommentPassCheck(Map<String,String> data);
+
+    /**
+     * 2023/04/11 // 심규영 // 글 정보 가져오는 기능
+     * @param re => 댓글 대댓글 구분용
+     * @param comment_no => 댓글, 대댓글 번호
+     * @return
+     */
+    public Gell_commentVO selectCommentInfo(@Param("re") String re, @Param("comment_no") String comment_no);
+
+    /**
+     * 2023/04/17 // 심규영 // 게시글 관련 이미지 파일 불러오는 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_fileVO> selectFiles(@Param("article_num") int article_num);
+
     // upload
 
     /**
@@ -159,18 +246,92 @@ public interface BoardDAO {
     public int updateDeleteArticle(Map<String, String> data);
 
     /**
-     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능
+     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능<br>
+     * 2023/04/11 // 심규영 // 댓글 또는 대댓글 삭제시 댓글 개수 감소 기능 추가
      * @param article_num
      * @return
      */
-    public int updateArticleCommentCount(@Param("article_num") String article_num);
+    public int updateArticleCommentCount(@Param("article_num") String article_num, @Param("type") String type);
 
     /**
-     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능
+     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능<br>
+     * 2023/04/11 // 심규영 // 대댓글 삭제시 대댓글 수 갑소 기능 추가
      * @param comment_num
      * @return
      */
-    public int updateCommentReCount(@Param("comment_num") String comment_num);
+    public int updateCommentReCount(@Param("comment_num") String comment_num, @Param("type") String type);
+
+    /**
+     * 2023/04/05 // 심규영 // 게시물 조회수 증가 쿼리문
+     * @param article_num
+     * @return
+     */
+    public int updateArticleHitCount(@Param("article_num") int article_num);
+
+    /**
+     * 2023/04/06 // 심규영 // 게시글 추천, 비추천 증가 쿼리문
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}</pre>
+     * @param data
+     * @return
+     */
+    public int updateArticleRecommendCount(Map<String, String> data);
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문
+     * @param gell_num
+     * @return
+     */
+    public int updateGellHitCount(@Param("gell_num") int gell_num);
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 기능
+     * @param gell_num
+     * @return
+     */
+    public int updateGellArticleCount(@Param("gell_num") int gell_num);
+
+    /**
+     * 2023/04/11 // 심규영 // 갤러리 댓글 삭제 기능
+     *  data 들어오는 값
+     *      type            : 댓글, 대댓글 종류 표시 {cmt:댓글, rcmt:대댓글}
+     *      comment_no      : 댓글 번호 or 대댓글의 부모 번호
+     *      re_comment_no   : 대댓글 번호
+     *      articleNo       : 게시물 번호
+     *      my              : 본인 인증 확인
+     *      re              : re_,
+     * @param data
+     * @return
+     */
+    public int updateCommentDelete(Map<String,String> data);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 게시글 설정 기능
+     * @param url
+     * @param article_num
+     * @return
+     */
+    public int updateFileArticleNum(@Param("url") String url, @Param("article_num") int article_num);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 전 null 설정 기능
+     * @param article_num -> 게시글 번호
+     * @return
+     */
+    public int updateFileArticleNumNull(@Param("article_num") int article_num);
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 첨부 파일 개수 업데이트
+     * @param article_num -> 게시글 번호
+     * @param count -> 첨부파일 개수
+     * @return
+     */
+    public int updateArticleFileCount(@Param("aritcle_num") int article_num, @Param("count") int count);
 
     // delete
 }

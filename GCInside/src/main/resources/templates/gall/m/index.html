@@ -1,4 +1,3 @@
-
 <!-- 2023/03/14 // 김동민 // 갤러리 index 페이지 화면구현 중 -->
 <!-- 2023/03/15 // 김동민 // 갤러리 index 페이지 화면구현 완료 -->
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
                 <header class="cont_head">
                     <h3 class="head_tit"><a href="javascript:void(0);" class="recomTit">개념글</a></h3>
                 </header>
-                <div class="pageing_box gallmain">  
+                <div class="pageing_box gallmain">
                     <div class="page_num">
                         <strong class="now_num" id="recomNum">1</strong>/<span class="total_num"
                                                                                id="recomTotal">3</span>
@@ -37,158 +36,93 @@
                             class="sp_img icon_bluenext"></em></button>
                 </div>
                 <ul class="cont_list img recomImg">
+                    <th:block th:each="hotarticle,i :${hotarticle}" th:if="${i.index} &lt;= 5">
                     <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
                                 <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
+                                   <th:block th:if="${#strings.contains(hotarticle.file_url, '/GCInside')}">
+                                       <img th:src="${#strings.substring(hotarticle.file_url, hotarticle.file_url.indexOf('/GCInside'))}" style="position: relative;" />
+                                    </th:block>
                                     <em class="blind">소개 이미지</em>
                                 </span>
                             <div class="txt_box">
                                 <div class="box">
-                                    <strong class="tit">글 제목</strong>
+                                    <strong class="tit">[[${hotarticle.article_title}]]</strong>
                                     <div class="info">
-                                        <span>갤러리명</span><span>작성시간</span>
+                                        <span>[[${hotarticle.gell_name}]]</span><span>[[${hotarticle.article_rdate.substring(5,10)}]]</span>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </li>
-
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="bgcover" style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                                <span class="img_box ">
-                                    <span class="cover" style="background-image:url(#)"></span>
-                                    <em class="blind">소개 이미지</em>
-                                </span>
-                            <div class="txt_box">
-                                <div class="box">
-                                    <strong class="tit">글 제목</strong>
-                                    <div class="info">
-                                        <span>갤러리명</span><span>작성날짜</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-
+                    </th:block>
                 </ul>
                 <ul class="cont_list txt recomTxt">
+                    <th:block th:each="hotarticle,i:${hotarticle}" th:if="${i.index >= 6 and i.index <= 15}">
                     <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend" >
+                            <strong>[[|[${hotarticle.gell_name.substring(0,1)}갤]|]] </strong>
+                            [[${hotarticle.article_title}]] </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[ex] </strong>
-                            글제목 </a>
+                    </th:block>
+                </ul>
+                <ul class="cont_list img recomImg" style="display:none;">
+                    <th:block th:each="hotarticle, i: ${hotarticle}" th:if="${i.index >= 16 and i.index <= 21}">
+                    <li class="bgcover" style="" >
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
+                                <span class="img_box ">
+                                    <span class="cover" style="background-image:url(https://via.placeholder.com/50x50)"></span>
+                                    <em class="blind">소개 이미지</em>
+                                </span>
+                            <div class="txt_box">
+                                <div class="box">
+                                    <strong class="tit">[[${hotarticle.article_title}]]</strong>
+                                    <div class="info">
+                                        <span>[[${hotarticle.gell_name}]]</span><span>[[${hotarticle.article_rdate.substring(5,10)}]]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[동기] </strong>
-                            글제목 </a>
+                    </th:block>
+                </ul>
+                <ul class="cont_list txt recomTxt" style="display:none;">
+                    <th:block th:each="hotarticle,i:${hotarticle}" th:if="${i.index >= 22 and i.index <= 31}">
+                    <li>
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend" >
+                            <strong>[[|[${hotarticle.gell_name.substring(0,1)}갤]|]] </strong>
+                            [[${hotarticle.article_title}]] </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[동물,기타 갤러리] </strong>
-                            글제목 </a>
+                    </th:block>
+                </ul>
+                <ul class="cont_list img recomImg" style="display:none;">
+                    <th:block th:each="hotarticle, i: ${hotarticle}" th:if="${i.index >= 32 and i.index <= 37}">
+                    <li class="bgcover" style="">
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend">
+                                <span class="img_box ">
+                                    <span class="cover" style="background-image:url(https://via.placeholder.com/50x50)"></span>
+                                    <em class="blind">소개 이미지</em>
+                                </span>
+                            <div class="txt_box">
+                                <div class="box">
+                                    <strong class="tit">[[${hotarticle.article_title}]]</strong>
+                                    <div class="info">
+                                        <span>[[${hotarticle.gell_name}]]</span><span>[[${hotarticle.article_rdate.substring(5,10)}]]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
+                    </th:block>
+                </ul>
+                <ul class="cont_list txt recomTxt" style="display:none;">
+                    <th:block th:each="hotarticle,i:${hotarticle}" th:if="${i.index >= 38 and i.index <= 47}">
+                    <li>
+                        <a th:href="@{/m/board/view/(id=${hotarticle.gell_address},no=${hotarticle.article_num})}" class="main_log" section_code="toprecommend" >
+                            <strong>[[|[${hotarticle.gell_name.substring(0,1)}갤]|]] </strong>
+                            [[${hotarticle.article_title}]] </a>
                     </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
-                    <li style="">
-                        <a href="#" class="main_log" section_code="toprecommend">
-                            <strong>[갤러리명 간략하게] </strong>
-                            글제목 </a>
-                    </li>
+                    </th:block>
                 </ul>
                 <div class="hotcate_list clear">
                     <!-- 흥한 갤러리 -->
@@ -212,68 +146,11 @@
                                             <span class="inner_txt">전체 갤러리 순위 중 300위 이내는 흥한갤이 됩니다. (20위 이내는
                                                     대흥갤)</span>
                                         </div>
-                                        <ul class="pop_hotmgall_listbox" id="heung_list_ul" data-heunggall-page="1">
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">1.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">2.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">3.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">4.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">5.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">6.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">7.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">8.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">9.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">10.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">11.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">12.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">13.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">14.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">15.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">16.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">17.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">18.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">19.</span> 갤러리 명</a></li>
-                                            <li><a href="#" onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();"><span
-                                                    class="num font_red">20.</span> 갤러리 명</a></li>
+                                        <ul class="pop_hotmgall_listbox" data-heunggall-page="1">
+                                            <li th:each="hot,i:${hot_gall}" th:if="${i.index}<=99"><a th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span
+                                                    class="num font_red">[[${i.count}]]</span>[[${hot.gell_name}]]</a></li>
                                         </ul>
+
                                         <div class="btn_box" data-lyr="heung_gall_all_lyr">
                                             <button type="button" class="heung_gall_prev btn_prev on"><span
                                                     class="blind">이전</span><em
@@ -307,53 +184,31 @@
                         <div class="hot_gall">
                             <div class="rank_list_box clear hot_gallery_list">
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>1</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>2</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>3</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>4</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>5</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <th:block th:each="hot,i:${hot_gall}" th:if="${i.index}<5">
+                                    <li><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
+                                    </th:block>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>6</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>7</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>8</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>9</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>10</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <th:block th:each="hot,i:${hot_gall}" th:if="${i.index}>=5 and ${i.index}<10">
+                                    <li><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
+                                    </th:block>
                                 </ol>
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>11</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>12</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>13</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>14</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>15</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <th:block th:each="hot,i:${hot_gall}" th:if="${i.index}>=10 and ${i.index}<15">
+                                    <li><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
+                                    </th:block>
                                 </ol>
+
                                 <ol class="rank_list red fl">
-                                    <li><a class="" href="#"><span class="rank_num"><em>16</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>17</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>18</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>19</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
-                                    <li><a class="" href="#"><span class="rank_num"><em>20</em></span><span
-                                            class="rank_txt">흥한 갤러리 명</span></a></li>
+                                    <th:block th:each="hot,i:${hot_gall}" th:if="${i.index}>=15 and ${i.index}<20">
+                                    <li><a class="" th:href="@{/m/board/lists/(id=${hot.gell_address})}"><span class="rank_num"><em>[[${i.count}]]</em></span><span
+                                            class="rank_txt">[[${hot.gell_name}]]</span></a></li>
+                                    </th:block>
                                 </ol>
+
                             </div>
                         </div>
                     </div>
@@ -364,7 +219,7 @@
                                     <h4 class="cate_tit">
                                         게시판/강좌
                                         <span class="list_num">(10)</span>
-                                        <button type="button" class="btn_cate_more" onclick="show_layer('Layer43')">
+                                        <button type="button" class="btn_cate_more" onclick="showLayer('Layer43')">
                                             <span class="blind">더보기</span>
                                             <em class="sp_img icon_listmore"></em>
                                         </button>
@@ -396,16 +251,16 @@
                                                     <a href="#">유저라이프</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">어쩌구</a>
+                                                    <a href="#">게시판 만들기</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">저쩌구</a>
+                                                    <a href="#">웹사이트 만들기</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">주저리</a>
+                                                    <a href="#">커피 만들기</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">주저리</a>
+                                                    <a href="#">동영상 만들기</a>
                                                 </li>
                                                 <li>
                                                     <a href="#">힛갤 경품</a>
@@ -416,7 +271,7 @@
                                             </ul>
                                         </div>
                                         <button type="button" class="under poply_close"
-                                                onclick="show_layer('Layer43')">
+                                                onclick="showLayer('Layer43')">
                                             <span class="blind">갤러리 전체보기 레이어 닫기</span>
                                             <em class="sp_img icon_lyclose"></em>
                                         </button>
@@ -431,14 +286,11 @@
                                                 <em class="sp_img icon_newgall"></em>
                                             </span>
                                         신설 갤러리
-                                        <span class="list_num">(1)</span>
                                     </h4>
                                     <div class="cate">
                                         <ul>
-                                            <li>
-                                                <a href="#" class="colortxt" title="신설갤" target="_parent"
-                                                   onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view();">신설갤</a>
+                                            <li th:each="newgall:${new_gall}">
+                                                <a th:href="@{/m/board/lists/(id=${newgall.gell_address})}">[[${newgall.gell_name}]]</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -448,7 +300,6 @@
                     </div>
                 </div>
                 <div class="allandrank clear">
-                    <button type="button" class="btn_blue_round">갤러리 전체보기</button>
                     <span class="deco_txt check">
                                 <em class="sp_img"></em>
                                 인기순
@@ -459,18 +310,26 @@
                             <!-- 실시간 북적 갤러리 한줄 노출 -->
                             <div class="one_ranklist">
                                 <ol class="rank_list gall">
+                                    <th:block th:each="hot,i:${hot_gall}">
                                     <li id="rank_no">
-                                        <a id="rank_num_1" href="#">
-                                            <span class="rank_num"><em>1</em></span>
-                                            <span class="rank_txt">실시간북적 1</span>
-                                            <span class="sp_img ico_ranking same"></span>
-                                        </a>
-                                        <a id="rank_num_2" href="#">
-                                            <span class="rank_num"><em>2</em></span>
-                                            <span class="rank_txt">실시간북적 2</span>
-                                            <span class="sp_img ico_ranking same"></span>
+                                        <a id="rank_num" th:href="@{/m/board/lists/(id=${hot.gell_address})}">
+                                            <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                            <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                            <th:block th:each="diff, j : ${rankdiff}">
+                                                <th:block th:if="${hot.gell_num} == ${diff.gell_num}">
+                                            <div>
+                                                <div>
+                                                    <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                    <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                    <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                    <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                                </div>
+                                            </div>
+                                                </th:block>
+                                            </th:block>
                                         </a>
                                     </li>
+                                    </th:block>
                                 </ol>
                             </div>
                             <!-- //실시간 북적 갤러리 한줄 노출 -->
@@ -481,40 +340,44 @@
                                 <h3 class="tit">갤러리</h3>
                             </div>
                             <ol class="rank_list gall g_1" style="display:blcok"><!--1~10위-->
+                                <th:block th:each="hot,i:${hot_gall}" th:if="${i.count} < 11">
                                 <li>
-                                    <a href="#" class="logClass" depth1="topframe" depth2="busygall"
-                                       depth3="gallmain_count">
-                                        <span class="rank_num"><em>1</em></span>
-                                        <span class="rank_txt">실시간북적 1</span>
-                                        <span class="sp_img ico_ranking same"></span>
+                                    <a th:href="@{/m/board/lists/(id=${hot.gell_address})}">
+                                        <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                        <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                        <th:block th:each="diff, j : ${rankdiff}">
+                                            <th:block th:if="${hot.gell_num} == ${diff.gell_num}">
+                                        <div>
+                                            <div>
+                                                <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                            </div>
+                                        </div>
+                                            </th:block>
+                                        </th:block>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="logClass" depth1="topframe" depth2="busygall"
-                                       depth3="gallmain_count">
-                                        <span class="rank_num"><em>2</em></span>
-                                        <span class="rank_txt">실시간북적 2</span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
+                                </th:block>
                             </ol>
                             <ol class="rank_list gall g_2" style="display:none"><!--11~20위-->
-                                <li>
-                                    <a href="#">
-                                        <span class="rank_num"><em>3</em></span>
-                                        <span class="rank_txt">실시간북적 3</span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="rank_num"><em>4</em></span>
-                                        <span class="rank_txt">실시간북적 4</span>
-                                        <span class="sp_img ico_ranking same"></span>
+                                <li th:each="hot,i:${hot_gall}" th:if="${i.count} >= 11 and ${i.count} < 21">
+                                    <a th:href="@{/m/board/lists/(id=${hot.gell_address})}">
+                                        <span class="rank_num"><em>[[${i.count}]]</em></span>
+                                        <span class="rank_txt">[[${hot.gell_name}]]</span>
+                                        <div th:each="diff, j : ${rankdiff}">
+                                            <div th:if="${hot.gell_num} == ${diff.gell_num}">
+                                                <span class="rank_state" th:text="${diff.gell_rank_diff}"></span>
+                                                <span th:if="${diff.gell_rank_diff}>=1" class="sp_img ico_ranking up"></span>
+                                                <span th:if="${diff.gell_rank_diff}==0" class="sp_img ico_ranking same"></span>
+                                                <span th:if="${diff.gell_rank_diff}<=-1" class="sp_img ico_ranking down"></span>
+                                            </div>
+                                        </div>
                                     </a>
                                 </li>
                             </ol>
-                            <div class="box_bottom rank_more" gall_type="g" page="1">11위 - 20위</div>
+                            <div class="box_bottom rank_more" rank_type="high">다음</div>
                         </div>
                         <!-- //실시간 북적 갤러리 1~20위 10개씩 리스트 -->
                     </div>
@@ -525,7 +388,7 @@
                 <!-- 로그인 -->
                 <div id="login_box" class="login_box">
                     <div class="user_info newarea" data-alarmId="">
-                        <strong onclick="location='/member/login.html'" style="cursor:pointer">로그인해 주세요.</strong>
+                        <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
                     </div>
                     <div class="user_option ">
                             <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em
@@ -536,7 +399,7 @@
                                 class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
                     </div>
                 </div>
-                <img src="https://via.placeholder.com/300x600" alt="">
+                <img th:src="@{/img/new_maban8.png}" style="width:300px;height:450px;" alt="">
             </section>
         </article>
         <!-- 갤러리  리스트 -->
@@ -549,28 +412,17 @@
                             <div class="section_cate" id="cateList2">
                                 <h4 class="cate_tit">
                                     스페셜
-                                    <span class="list_num">(17)</span>
-                                    <button type="button" class="btn_cate_more" onclick="show_layer('Layer2')"
+                                    <span class="list_num">([[${cate1cnt[28]}]])</span>
+                                    <button type="button" class="btn_cate_more" onclick="showLayer('Layer2')"
                                             data-lyr="Layer2" data-type="G">
                                         <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
                                     </button>
                                 </h4>
-                                <div class="cate p_1" style="height: 326px;">
+                                <div class="cate p_1"   >
                                     <ul>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('hit');">HIT</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view('hit');">실시간
-                                                베스트</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view('hit');">김유식
-                                                대표 에세이</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '29'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -578,31 +430,30 @@
                                     <div class="pop_content under_catelist ">
                                         <div class="pop_head"><strong class="font_blue">스페셜 갤러리 전체보기</strong></div>
                                         <ul class="under_listbox p_1">
-                                            <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                                   onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view('study_listN');">월간디시</a></li>
+                                            <li th:each="g:${gall}" th:if="${g.gell_cate} == '29'">
+                                                <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                                   onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <button type="button" class="under poply_close"
-                                            onclick="show_layer('Layer2')"><span class="blind">갤러리 전체보기 레이어 닫기</span><em
+                                            onclick="showLayer('Layer2')"><span class="blind">갤러리 전체보기 레이어 닫기</span><em
                                             class="sp_img icon_lyclose"></em></button>
                                 </div>
                             </div>
                             <div class="section_cate" id="cateList46">
-                                <h4 class="cate_tit">디시미디어<span class="list_num">(16)</span>
+                                <h4 class="cate_tit">디시미디어<span class="list_num">([[${cate1cnt[33]}]])</span>
                                     <button type="button" class="btn_cate_more" onclick="show_layer('Layer46')"
                                             data-lyr="Layer46" data-type="G">
                                         <span class="blind">더보기</span><em class="sp_img icon_listmore"></em>
                                     </button>
                                 </h4>
-                                <div class="cate p_1" style="height: 326px;">
+                                <div class="cate p_1"   >
                                     <ul> <!--ul-->
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view('');">유용원의
-                                            군사세계</a></li>
-                                        <li class="new-gall-nolist"><a href="#" target="_parent"
-                                                                       onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                                                       onmouseover="gallery_view('');">디시이슈</a></li>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '34'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                        </li>
                                     </ul>
                                 </div>
 
@@ -612,21 +463,14 @@
                                         <div class="pop_head"><strong class="font_blue">디시미디어 갤러리 전체보기</strong>
                                         </div>
                                         <ul class="under_listbox p_1">
-                                            <li>
-                                                <a href="#" target="_self">콘텐츠랩</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" target="_self">오토트리뷴</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                                   onmousemove="gallery_xy();"
-                                                   onmouseover="gallery_view('autotribune');"></a>
+                                            <li th:each="g:${gall}" th:if="${g.gell_cate} == '34'">
+                                                <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                                   onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                             </li>
                                         </ul>
                                     </div>
                                     <button type="button" class="under poply_close"
-                                            onclick="show_layer('Layer46')"><span class="blind">갤러리 전체보기 레이어
+                                            onclick="showLayer('Layer46')"><span class="blind">갤러리 전체보기 레이어
                                                 닫기</span><em class="sp_img icon_lyclose"></em></button>
                                 </div><!--Layer_END46-->
                             </div>
@@ -635,64 +479,20 @@
                                     data-newgall-pos="0" data-newgall-cnt="0" data-cateno data-cate-gall-count="37"
                                     data-cate-gall-showcnt="70">
                                     연예 <span class="list_num">
-                                            (550)
+                                            ([[${cate1cnt[1]}]])
                                         </span>
                                 </h4>
-                                <div class="cate p_1" style="height: 326px;">
+                                <div class="cate p_1"   >
                                     <ul> <!--ul-->
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('m_entertainer_new1');">남자 연예인</a>
-                                        </li>
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('bts');">방탄소년단</a>
-                                        </li>
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('w_entertainer');">여자 연예인</a>
-                                        </li>
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('yunha');">윤하</a>
-                                        </li>
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('akb48');">AKB48</a>
-                                        </li>
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view('gf');">걸그룹
-                                            여자친구</a>
-                                        </li>
-                                        <li><a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('blackpink');">블랙핑크</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '2'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div class="cate p_1" style="height: 326px;">
+                                <div class="cate p_1"   >
                                     <ul> <!--ul-->
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
                                         <li>
                                             <a href="#" target="_parent" onmouseout="gallery_hide();"
                                                onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
@@ -700,14 +500,8 @@
                                     </ul>
                                 </div>
 
-                                <div class="cate more_uls p_1" style="height: 326px;">
+                                <div class="cate more_uls p_1"   >
                                     <ul> <!--ul-->
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="under_listbox">
                                         <li>
                                             <a href="#" target="_parent" onmouseout="gallery_hide();"
                                                onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
@@ -715,7 +509,7 @@
                                     </ul>
                                 </div>
 
-                                <div class="cate p_1" style="height: 326px;">
+                                <div class="cate p_1"   >
                                     <ul class="under_listbox"> <!--ul-->
                                         <li>
                                             <a href="#" target="_parent" onmouseout="gallery_hide();"
@@ -723,110 +517,63 @@
                                         </li>
                                     </ul>
                                 </div>
-
-                                <div class="cate p_1" style="height: 326px;">
-                                    <ul class="under_listbox"> <!--ul-->
-                                        <li>
-                                            <a href="#" target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();" onmouseover="gallery_view();">연예인</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
                             </div>
                         </div>
                         <div class="cate_box block_line" id="underList26" style="display:block">
-                            <!--190604 지하갤 block_line 클래스 추가 -->
                             <div class="section_cate severalcan">
-                                <div class="cate p_1 firstcell" style="height: 238px; display: none;">
-                                    <ul class="under_listbox">
+                                <h4 class="cate_tit">
+                                    게임 <span class="list_num">
+                                            ([[${cate1cnt[0]}]])
+                                        </span>
+                                </h4>
+                                <div class="cate p_1" style="height: 238px;">
+                                    <ul>
+                                        <li th:each="g,a:${gall}" th:if="${g.gell_cate} == '1' and ${a.index} <= '9'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                        </li>
+                                    </ul>
+                                </div>
 
+                                <div class="cate p_2" style="height: 238px;">
+                                    <ul>
+                                        <li th:each="g,a:${gall}" th:if="${g.gell_cate} == '1' and ${a.index} > '9' and ${a.index} <= '19'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                        </li>
                                     </ul>
                                 </div>
-                                <div class="cate p_1" style="height: 238px; display: none;">
-                                    <ul class="under_listbox">
 
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=changwook"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('changwook');">지창욱</a></li>
+                                <div class="cate p_3" style="height: 238px;">
+                                    <ul>
+                                        <li th:each="g,a:${gall}" th:if="${g.gell_cate} == '1' and ${a.index} > '19' and ${a.index} <= '29'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                        </li>
                                     </ul>
                                 </div>
-                                <div class="cate p_2 firstcell" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=siyoon"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('siyoon');">윤시윤</a></li>
+
+                                <div class="cate p_4" style="height: 238px;">
+                                    <ul>
+                                        <li th:each="g,a:${gall}" th:if="${g.gell_cate} == '1' and ${a.index} > '29' and ${a.index} <= '39'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                        </li>
                                     </ul>
                                 </div>
-                                <div class="cate p_2" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=inna"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('inna');">유인나</a></li>
+                                <div class="cate p_5" style="height: 238px;">
+                                    <ul>
                                     </ul>
                                 </div>
-                                <div class="cate p_2" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=pyc" target="_parent"
-                                               onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('pyc');">박유천</a></li>
+                                <div class="cate p_6" style="height: 238px;">
+                                    <ul>
                                     </ul>
                                 </div>
-                                <div class="cate p_2" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=joowon"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('joowon');">주원</a></li>
+                                <div class="cate p_7" style="height: 238px;">
+                                    <ul>
                                     </ul>
                                 </div>
-                                <div class="cate p_2" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=2NE1"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('2NE1');">2NE1</a></li>
-                                    </ul>
-                                </div>
-                                <div class="cate p_2" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=pwk" target="_parent"
-                                               onmouseout="gallery_hide();" onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('pwk');">박완규</a></li>
-                                    </ul>
-                                </div>
-                                <div class="cate p_2" style="height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=kimdongryul"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('kimdongryul');">김동률</a></li>
-                                    </ul>
-                                </div>
-                                <div class="cate p_3" style="display: none; height: 238px;">
-                                    <ul class="under_listbox">
-                                        <li><a href="https://gall.dcinside.com/board/lists/?id=ukiss"
-                                               target="_parent" onmouseout="gallery_hide();"
-                                               onmousemove="gallery_xy();"
-                                               onmouseover="gallery_view('ukiss');">유키스</a></li>
-                                    </ul>
-                                </div>
-                                <div class="cate p_7" style="display: none; height: 238px;"></div>
-                                <div class="btn_box under_paging">
-                                    <button type="button" class="btn_prev prev_underList26 on"
-                                            onclick="prevLayer('underList26')"><span class="blind">이전</span><em
-                                            class="sp_img icon_prev"></em></button>
-                                    <div class="page_num">
-                                        <strong class="now_num now_underList26">1</strong>/<span
-                                            class="total_num total_underList26">7</span>
-                                    </div>
-                                    <button type="button" class="btn_next on next_underList26"
-                                            onclick="nextLayer('underList26')"><span class="blind">다음</span><em
-                                            class="sp_img icon_next"></em></button>
-                                </div>
+
                             </div>
                         </div>
                         <div class="cate_box ">
@@ -835,35 +582,23 @@
                                     data-newgall-pos="0" data-newgall-cnt="0" data-cateno="12"
                                     data-cate-gall-count="18" data-cate-gall-showcnt="16">
                                     취미 <span class="list_num">
-                                            (80)
+                                           ([[${cate1cnt[14]}]])
                                         </span>
                                 </h4>
-                                <div class="cate p_1" style="height: 194px;">
+                                <div class="cate p_1"  >
                                     <ul> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="12"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=ib_new2"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('ib_new2');">인터넷방송</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '15' and ${g.count} <= '10'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div class="cate more_uls p_1" style="height: 194px;">
+                                <div class="cate more_uls p_1"  >
                                     <ul> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="12"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=webtoon"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('webtoon');">웹툰</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="under_listbox">
-                                        <li data-isnewgall="" data-isnewgall-cate="12"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=book"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('book');">도서</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '15' and ${g.count} > '10' and ${g.count} <= '20'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -873,34 +608,24 @@
                                             class="sp_img icon_prev"></em></button>
                                     <div class="page_num">
                                         <strong class="now_num now_cateList12">1</strong>/<span
-                                            class="total_num total_cateList12">5</span>
+                                            class="total_num total_cateList12">1</span>
                                     </div>
                                     <button type="button" class="btn_next on next_cateList12"
                                             onclick="nextLayer('cateList12')"><span class="blind">다음</span><em
                                             class="sp_img icon_next"></em></button>
                                 </div>
-                            </div><!--adafd-->
+                            </div>
                             <div class="section_cate" id="cateList31">
                                 <h4 class="cate_tit">
                                     해외방송 <span class="list_num">
-                                            (25)
+                                           ([[${cate1cnt[3]}]])
                                         </span>
                                 </h4>
-                                <div class="cate more_uls p_1" style="height: 194px;">
+                                <div class="cate more_uls p_1"  >
                                     <ul> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="31"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=f_drama"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('f_drama');">기타 미국드라마</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="under_listbox">
-                                        <li data-isnewgall="" data-isnewgall-cate="31"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=japan_drama"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('japan_drama');">일본드라마</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '4' and ${g.count} <= '10'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -910,36 +635,26 @@
                                             class="sp_img icon_prev"></em></button>
                                     <div class="page_num">
                                         <strong class="now_num now_cateList31">1</strong>/<span
-                                            class="total_num total_cateList31">4</span>
+                                            class="total_num total_cateList31">1</span>
                                     </div>
                                     <button type="button" class="btn_next on next_cateList31"
                                             onclick="nextLayer('cateList31')"><span class="blind">다음</span><em
                                             class="sp_img icon_next"></em></button>
                                 </div>
-                            </div><!--adafd-->
+                            </div>
                             <div class="section_cate" id="cateList7">
                                 <h4 class="cate_tit" data-cate-tab-num="4" data-cate-pos="Layer7"
                                     data-newgall-pos="0" data-newgall-cnt="0" data-cateno="7"
                                     data-cate-gall-count="5" data-cate-gall-showcnt="8">
                                     음식 <span class="list_num">
-                                            (20)
+                                         ([[${cate1cnt[12]}]])
                                         </span>
                                 </h4>
-                                <div class="cate more_uls p_1" style="height: 194px;">
+                                <div class="cate more_uls p_1"  >
                                     <ul> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="7"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=cs_new1"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('cs_new1');">편의점</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="under_listbox">
-                                        <li data-isnewgall="" data-isnewgall-cate="7"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=pizza"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('pizza');">피자</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '13' and ${g.count} <= '10'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -949,34 +664,24 @@
                                             class="sp_img icon_prev"></em></button>
                                     <div class="page_num">
                                         <strong class="now_num now_cateList7">1</strong>/<span
-                                            class="total_num total_cateList7">3</span>
+                                            class="total_num total_cateList7">1</span>
                                     </div>
                                     <button type="button" class="btn_next on next_cateList7"
                                             onclick="nextLayer('cateList7')"><span class="blind">다음</span><em
                                             class="sp_img icon_next"></em></button>
                                 </div>
-                            </div><!--adafd-->
+                            </div>
                             <div class="section_cate" id="cateList23">
                                 <h4 class="cate_tit">
                                     음악 <span class="list_num">
-                                            (17)
+                                            ([[${cate1cnt[18]}]])
                                         </span>
                                 </h4>
-                                <div class="cate more_uls p_1" style="height: 194px;">
+                                <div class="cate more_uls p_1"  >
                                     <ul> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="23"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=hiphop_new1"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('hiphop_new1');">힙합</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="under_listbox">
-                                        <li data-isnewgall="" data-isnewgall-cate="23"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=classic"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('classic');">클래식</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '19' and ${g.count} <= '10'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -986,37 +691,34 @@
                                             class="sp_img icon_prev"></em></button>
                                     <div class="page_num">
                                         <strong class="now_num now_cateList23">1</strong>/<span
-                                            class="total_num total_cateList23">3</span>
+                                            class="total_num total_cateList23">1</span>
                                     </div>
                                     <button type="button" class="btn_next on next_cateList23"
                                             onclick="nextLayer('cateList23')"><span class="blind">다음</span><em
                                             class="sp_img icon_next"></em></button>
                                 </div>
-                            </div><!--adafd-->
+                            </div>
                             <div class="section_cate severalcan" id="cateList39">
                                 <h4 class="cate_tit">
                                     만화/애니 <span class="list_num">
-                                            (28)
+                                            ([[${cate1cnt[16]}]])
                                         </span>
                                 </h4>
-                                <div class="cate p_1" style="height: 194px;">
+                                <div class="cate p_1"  >
                                     <ul> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="39"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=cartoon"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('cartoon');">카툰-연재</a>
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '17' and ${g.count} <= '10'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
                                         </li>
                                     </ul>
                                 </div>
 
-                                <div class="cate p_1" style="height: 194px;">
-                                    <ul class="under_listbox"> <!--ul-->
-                                        <li data-isnewgall="" data-isnewgall-cate="39"><a
-                                                href="https://gall.dcinside.com/board/lists/?id=keion"
-                                                target="_parent" onmouseout="gallery_hide();"
-                                                onmousemove="gallery_xy();"
-                                                onmouseover="gallery_view('keion');">케이온</a>
+                                <div class="cate p_1"  >
+                                    <ul> <!--ul-->
+                                        <li th:each="g:${gall}" th:if="${g.gell_cate} == '15' and ${g.count} > '10' and ${g.count} <= '20'">
+                                            <a class="colortxt" th:href="@{/m/board/lists/(id=${g.gell_address})}" target="_parent" onmouseout="thumb_hide();"
+                                               onmouseover="thumb_view(e,'https://via.placeholder.com/50x50');">[[${g.gell_name}]]</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="btn_box under_paging">
@@ -1025,13 +727,13 @@
                                             class="sp_img icon_prev"></em></button>
                                     <div class="page_num">
                                         <strong class="now_num now_cateList39">1</strong>/<span
-                                            class="total_num total_cateList39">2</span>
+                                            class="total_num total_cateList39">1</span>
                                     </div>
                                     <button type="button" class="btn_next on next_cateList39"
                                             onclick="nextLayer('cateList39')"><span class="blind">다음</span><em
                                             class="sp_img icon_next"></em></button>
                                 </div>
-                            </div><!--adafd-->
+                            </div>  
                         </div>
                     </div>
                 </div>

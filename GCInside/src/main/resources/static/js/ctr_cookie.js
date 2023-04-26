@@ -79,3 +79,41 @@ function getCookie(cookieName) {
     return unescape(cookieValue);
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    const darkModeCookie = getCookie("darkmode");
+    if (darkModeCookie !== null && darkModeCookie === "1") {
+        const body = document.querySelector('html');
+        body.classList.add('darkmode');
+        /* 페이지이동시 콘솔창 오류가 계속떠서 주석처리
+        const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'dark.css';
+          document.body.appendChild(link);*/
+    }
+});
+
+function toggleDarkMode() {
+    const body = document.querySelector('html');
+    if (body.classList.contains('darkmode')) {
+        body.classList.remove('darkmode');
+        setCookie("darkmode", "0", 7);
+    } else {
+        body.classList.add('darkmode');
+        setCookie("darkmode", "1", 7);
+        // 기본 스타일시트보다 dark.css를 먼저 적용시키는 코드
+        const linkEl = document.querySelector('link[href="dark.css"]');
+        if (linkEl) {
+            linkEl.parentNode.insertBefore(linkEl, linkEl.parentNode.firstChild);
+        }
+    }
+}
+
+function get_cookie(e) {
+    for (var t = e + "=", o = document.cookie.split(";"), i = 0; i < o.length; i++) {
+        for (var n = o[i]; " " == n.charAt(0); )
+            n = n.substring(1);
+        if (0 == n.indexOf(t))
+            return n.substring(t.length, n.length)
+    }
+    return ""
+}

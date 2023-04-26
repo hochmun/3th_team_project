@@ -56,6 +56,14 @@ $(()=>{
     })
 })
 
+/** 2023/04/05 // 심규영 // 댓글 열기 및 닫기 */
+function CommentOpen($this){
+    if($this.attr('class') == 'btn_cmt_close') $this.attr('class', 'btn_cmt_open');
+    else $this.attr('class', 'btn_cmt_close');
+
+    layerOpen($('.comment_box'));
+}
+
 /** 2023/04/03 // 심규영 // 레이어 창 열고 닫기 함수 */
 function layerOpen ($layer) {
     if($layer.css('display') == 'none') $layer.show();
@@ -125,6 +133,16 @@ const gt_toggle_issue = function(btn_elm) {
 }
 
 // 페이지 리스트 이동 함수
+const articlePageHerf = ($this) => {
+    const grade = $this.data("grade");
+    const id = $this.data("id");
+    const exception_mode = $this.data("exception_mode");
+
+    let href = '/GCInside/'+grade+'/board/lists?id='+id+'&exception_mode='+exception_mode;
+
+    location.href = href;
+};
+
 const writeAndModifyPageHref = function($this) {
     const grade = $this.data("grade");
     const id = $this.data("id");
@@ -152,3 +170,13 @@ const goDelete = function($this) {
     const no = $this.data("no");
     location.href = '/GCInside/'+grade+'/board/delete/?id='+id+'&no='+no;
 }
+
+const goAdmin = ($this) => {
+    const id = $this.data("id");
+    location.href = '/GCInside/gall/management/index?id='+id;
+};
+
+const goFileDownload = ($this) => {
+    const url = $this.data("url");
+    location.href = '/GCInside/gall/board/fileDownload?url='+url;
+};

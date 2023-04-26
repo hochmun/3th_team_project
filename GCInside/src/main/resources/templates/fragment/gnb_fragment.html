@@ -30,17 +30,18 @@
             </ul>
 
             <!-- 어제 게시글, 댓글 등록 수 -->
+            <script type="text/javascript" th:src="@{/js/main/gnb_bar.js}"></script>
             <div class="gall_exposure">
-                <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
-                <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
-                <div class="ltr"><a href="#">로터리 응모</a></div>
+                <div class="posts"><a href="javascript:;">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
+                <div class="reply"><a href="javascript:;">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
+                <div class="ltr"><a href="javascript:;">로터리 응모</a></div>
             </div>
 
         </nav>
     </div>
 
     <!-- 2023/03/10 // 심규영 // 메인 최근 방문 갤, 즐겨찾기 -->
-    <div class="visit_bookmark" th:fragment="mainVisit">
+    <div class="visit_bookmark" id="visit_history" th:fragment="mainVisit">
         <div class="newvisit_history vst">
             <h3 class="tit vst_title l_div_style">최근 방문</h3>
             <h3 class="tit bookmark_title f_div_style" style="display: none;">즐겨찾기 갤러리</h3>
@@ -85,6 +86,8 @@
                 </div>
             </div>
         </div>
+        <link rel="stylesheet" th:href="@{/css/lately_visit.css}">
+        <script type="text/javascript" th:src="@{/js/lately_visit_new.js}"></script>
     </div>
 
     <!-- 2023/03/10 // 심규영 // 관리자 gnb -->
@@ -109,8 +112,8 @@
                 <ol>
                     <li><a th:href="@{/admin/gallery/gallery_list}">갤러리 목록</a></li>
                     <li><a th:href="@{/admin/gallery/create_main}">메인 갤러리 생성</a></li>
+                    <li><a th:href="@{/admin/gallery/advan_main}">메인 갤러리 승급</a></li>
                     <li><a th:href="@{/admin/gallery/form_minor}">갤러리 개설 신청</a></li>
-                    <li><a href="javascript:;">갤러리 승급 신청</a></li>
                 </ol>
             </li>
             <li>

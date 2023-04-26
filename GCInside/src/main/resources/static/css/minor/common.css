@@ -1399,6 +1399,8 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .iconpaging .page_next{background-position:-1px -24px;margin:0 10px 0 19px}
 .iconpaging .page_end{background-position:-23px -24px;margin-left:0}
 
+.useradmin_go{float:left;margin-top:4px}/*마이너 갤러리 관리*/
+.btn_useradmin_go{width:54px;height:24px;background-position:-111px -241px}
 
 .output_array .option_box{padding:6px 5px 4px;background:#f3f3f3;border:1px solid #ccc}
 .output_array .option_box li{line-height:16px;font-size:11px;color:#555}
@@ -1622,7 +1624,7 @@ li:first-child .reply_box{margin:0px 0 0px 30px}
 .reply_info .usertxt,.del_reply,.reply_info .comment_dccon{position:relative;width:774px;padding-left:16px;cursor:default}
 .reply .comment_dccon{padding-left:16px}
 .reply_info .usertxt::before,.reply_info .comment_dccon::before{content:" ";position:absolute;left:-0px;top:3px;display:block;width:8px;height:8px;
-background:url(https://nstatic.dcinside.com/dc/w/images/sp/sp_img.png) no-repeat;background-position:-283px -200px}
+background:url(/GCInside/img/sp_img.png) no-repeat;background-position:-283px -200px}
 .del_reply{color:#999;line-height:20px;padding-left:0;float:left}
 .album .reply_info .usertxt,.album .reply_info .comment_dccon{width:468px}
 .comment_box .reply{overflow:hidden;height:0}

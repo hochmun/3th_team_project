@@ -12,13 +12,7 @@
 
             <div class="gchead">
                 <!-- 메인 로고 -->
-                <h1 class="gc_logo">
-                    <div>
-                        <img th:src="@{/img/gcinside_main_logo.png}" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
-                    </div>
-                </h1>
+                <th:block th:replace="~{fragment/header_fragment::minorHeader}"></th:block>
 
                 <div class="wrap_search">
                     <!-- 갤러리 통합검색-->
@@ -83,7 +77,9 @@
 
 
                         <div class="useradmin_go">
-                            <button type="button" class="sp_img btn_useradmin_go" onclick="location.href='/gall/management';"><span class="blind">관리</span></button>
+                            <button type="button" class="sp_img btn_useradmin_go" th:onclick="|location.href='@{/gall/management/index(id=${stringObjectMap.gell_address})}'|">
+                                <span class="blind">관리</span>
+                            </button>
                         </div>
 
                     </div>
@@ -134,7 +130,7 @@
                                         <div class="cont_box clear">
                                             <div class="cont_input_box">
                                                 <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="미니 갤러리 이름을 간단히 넣어주세요."
-                                                       onfocusout="return chk_name()" data-org="[[${stringObjectMap.gell_name}]]" th:value="${stringObjectMap.gell_name}" />
+                                                       th:data-id="${stringObjectMap.gell_address}" th:data-org="${stringObjectMap.gell_name}" th:value="${stringObjectMap.gell_name}" />
                                                 <span th:if="${stringObjectMap.gell_grade == 0}" th:text="메인갤러리" class="basic_tit"></span>
                                                 <span th:if="${stringObjectMap.gell_grade == 1}" th:text="마이너갤러리" class="basic_tit"></span>
                                                 <span th:if="${stringObjectMap.gell_grade == 2}" th:text="미니갤러리" class="basic_tit"></span>
@@ -172,7 +168,7 @@
                                 </div>
                                 <div class="set_enable" style="display:none;">
                                     <div class="cont_box">
-                                        <textarea class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요." onfocusout="return chk_desc()">~~~~하기 위한 갤러리</textarea>
+                                        <textarea th:text="${stringObjectMap.gell_info}" class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요.">~~~~하기 위한 갤러리</textarea>
                                         <div class="clear">
                                             <span class="max_txt"><span>20</span>/<b>200</b></span>
                                         </div>
@@ -342,9 +338,9 @@
                                             <script id="relate_word-tmpl" type="text/x-jquery-tmpl">
                                             <li class="result_word">${ko_name}</li>
                                             </script>
-                                            <script type="text/javascript">
-                                            $('#relate_word-tmpl').tmpl({"ko_name":"\uc0ac\uc6a9\uc548\ud568"}).appendTo('.relate_wordlist.result');
-                                            </script>
+<!--                                            <script type="text/javascript">-->
+<!--                                            $('#relate_word-tmpl').tmpl({"ko_name":"\uc0ac\uc6a9\uc548\ud568"}).appendTo('.relate_wordlist.result');-->
+<!--                                            </script>-->
 
                                         </div>
                                         <div class="fr set_btn">
@@ -447,5 +443,6 @@
         <th:block th:replace="~{fragment/footer_fragment::adFooter}"></th:block>
 
     </div>
+<input type="hidden" id="grade" th:value="${stringObjectMap.gell_grade}">
 </body>
 </html>

@@ -5,8 +5,10 @@ import com.sun.istack.NotNull;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.EmailService;
 import kr.co.gcInside.service.MemberService;
+import kr.co.gcInside.service.TermsService;
 import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.MemberVO;
+import kr.co.gcInside.vo.TermsVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.EmailException;
 import org.apache.coyote.Request;
@@ -41,6 +43,8 @@ public class MemberContoller {
     @Autowired
     private MemberService service;
     @Autowired
+    private TermsService tservice;
+    @Autowired
     private EmailService emailService;
 
     @GetMapping("member/login")
@@ -49,7 +53,11 @@ public class MemberContoller {
     }
 
     @GetMapping("member/terms")
-    public String terms() {
+    public String terms(Model model) {
+        TermsVO data1 = tservice.selectTerm(100);
+        TermsVO data2 = tservice.selectTerm(101);
+        model.addAttribute("data1", data1);
+        model.addAttribute("data2", data2);
         return "member/terms";
     }
 
@@ -175,7 +183,7 @@ public class MemberContoller {
     @PostMapping("member/AuthCode")
     public ResponseEntity<String> AuthCode(@RequestParam("code") String code, HttpSession session,HttpServletRequest req) {
         String sessionCode = (String) session.getAttribute("code");
-        System.out.println("sessionCode: " + sessionCode + ", code: " + code);//
+//        System.out.println("sessionCode: " + sessionCode + ", code: " + code);
         if (sessionCode != null && sessionCode.equals(code)) { // 인증코드 일치
             session.removeAttribute("code"); // 인증성공시 세션에서 인증코드 제거
             return ResponseEntity.ok("success");

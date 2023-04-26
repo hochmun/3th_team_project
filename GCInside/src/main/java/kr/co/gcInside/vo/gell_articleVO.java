@@ -37,6 +37,12 @@ public class gell_articleVO {
     // 추가 필드
     private String member_nick;
     private String article_regip_sub;
+    private int num; /** 2023/04/07 // 심규영 // 게시글 번호 입력 */
+
+    private String gell_name; /* 2023/04/07 // 김동민 // 인덱스 페이지 게시물 출력시 필요한 갤러리명 */
+    private String gell_address; /* 2023/04/07 // 김동민 // 인덱스 페이지 게시물 출력시 필요한 갤러리명 */
+    private int sub_cate_info; /* 2023/04/14 // 심규영 // 말머리 사용 정보 */
+    private String file_url; /* 2023/04/19 // 심규영 // 파일 위치 정보 */
 
     // Getter
 

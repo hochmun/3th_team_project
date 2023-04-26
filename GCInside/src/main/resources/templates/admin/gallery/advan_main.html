@@ -1,0 +1,163 @@
+<!--23/04/11 // 김재준 // 메인 갤러리 승급 -->
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragment/head_fragment::adminHead}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/popup.css}">
+</head>
+<body>
+<div class="gcwrap">
+
+    <header th:replace="~{fragment/header_fragment::adminHeader}"></header>
+
+    <main id="container" class="admin_main">
+        <div class="main_content">
+            <div class="admin_left">
+
+                <!-- 사이드 gnb -->
+                <aside th:replace="~{fragment/gnb_fragment::adminGnb}"></aside>
+
+            </div>
+            <!-- 상세보기 / 개설관리 팝업 창 -->
+            <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+
+                        var showApprovalButtons = document.querySelectorAll('.approval');
+                        for (var i = 0; i < showApprovalButtons.length; i++) {
+                            showApprovalButtons[i].addEventListener('click', showApprovalPopup);
+                        }
+                        document.querySelector('.approval').addEventListener('click', function() {
+                            const gellNum = this.parentElement.parentElement.querySelector('.gell_num').innerText;
+                            document.querySelector('[name="gell_num"]').value = gellNum;
+                        });
+
+                        var closeApprovalPopupButton = document.querySelector('.close-approval-popup');
+                        closeApprovalPopupButton.addEventListener('click', closeApprovalPopup);
+                    });
+
+                    function showApprovalPopup(event) {
+                        event.preventDefault();
+                        var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'block';
+
+                        // 클릭된 행의 정보 추출
+                        var row = event.target.closest('tr');
+                        var num = row.querySelector('td:nth-child(1)').textContent;
+                        var grade = row.querySelector('td:nth-child(8)').textContent;
+
+                        // 추출된 정보를 팝업 내부로 전달
+                        popup.querySelector('.num').textContent = num;
+                        popup.querySelector('#gell_num').value = num;
+
+                        popup.querySelector('.grade').textContent = grade;
+                        popup.querySelector('#gell_grade').value = grade;
+
+                        popup.style.display = 'block';
+                    }
+
+                    function closeApprovalPopup() {
+                        var popup = document.querySelector('.approval-popup');
+                        popup.style.display = 'none';
+                    }
+                </script>
+                <div class="admin_right">
+                    <section class="admin_main_info">
+                        <div class="cont_head"><h2>메인 갤러리 승급</h2></div>
+                        <div class="admin_info_content">
+                            <!-- 카테고리별 검색 기능 -->
+                            <div class="category_search_box">
+                                <form th:action="@{/admin/gallery/advan_main}" method="get">
+                                    <select class="admin_member_search_select_box" id="category_search_select_box" name="category">
+                                        <option value="" th:selected="${selectedCategory == null}">카테고리 전체</option>
+                                        <option th:each="cate:${cates}" th:value="${cate.gell_cate2}" th:text="${cate.gell_cate2_name}" th:selected="${cate.gell_cate2 == selectedCategory}"></option>
+                                    </select>
+                                    <button type="submit" class="btn_lightgreen" id="category-submit-button">검색</button>
+                                </form>
+                            </div>
+
+                            <table class="admin_table admin_member_list">
+                                <colgroup>
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 9.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.2%;">
+                                    <col style="width: 14.8%;">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>순위</th>
+                                        <th>갤러리 이름</th>
+                                        <th>카테고리</th>
+                                        <th>개설일</th>
+                                        <th>매니저</th>
+                                        <th>갤러리 링크</th>
+                                        <th>관리</th>
+                                    </tr>
+                                </thead>
+                                <tbody th:each="hot,i:${hot}" th:if="${i.index} <= 99 and ${hot.gell_grade} == 1">
+                                    <tr>
+                                        <td th:text="${hot.gell_num}" hidden></td>
+                                        <td th:text="${i.count}"></td>
+                                        <td th:text="${hot.gell_name}"></td>
+                                        <td th:text="${hot.gell_cate}"></td>
+                                        <td th:text="${#strings.substring(hot.gell_rdate, 2, 10)}"></td>
+                                        <td th:text="${hot.gell_manager}"></td>
+                                        <td><a th:href="@{/mgall/board/lists/?id={gell_address}(gell_address=${hot.gell_address})}">바로가기</a></td>
+                                        <td th:text="${hot.gell_grade}"hidden></td>
+                                        <td><button class="approval">[승급관리]</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="approval-popup" style="display:none;">
+                                <h3>메인 갤러리 승급</h3>
+                                <form th:action="@{/admin/gallery/advan_main/advance}" method="post">
+                                    <p>마이너 갤러리를 메인 갤러리로 승급하려면 승급 버튼을 클릭하세요.</p>
+                                    <p hidden>번호: <span class="num"></span></p>
+                                    <input type="hidden" name="gell_num" id="gell_num" value=""/>
+                                    <p hidden>등급: <span class="grade"></span></p>
+                                    <input type="hidden" name="gell_grade" id="gell_grade" value=""/>
+                                    <button class="advance" type="submit">승급</button>
+                                </form>
+                                <button class="close-approval-popup">닫기</button>
+                            </div>
+                        </div>
+
+                        <!-- 페이징 -->
+                        <div class="admin_pageing">
+                      <span class="admin_pageing_prev" th:if="${pagingDTO.currentPage > 1}">
+                        <a th:href="@{${'/admin/gallery/advan_main'}(pg=${pagingDTO.currentPage - 1}, category=${param.category})}">
+                          &lt; 이전
+                        </a>
+                      </span>
+
+                            <span class="admin_pageing_num">
+                        <th:block th:each="pageNumber : ${#numbers.sequence(1, pagingDTO.lastPage)}"
+                                  th:classappend="${pageNumber} == ${pagingDTO.currentPage} ? 'on'">
+                          <span th:if="${pageNumber} == ${pagingDTO.currentPage}"
+                                th:text="${pageNumber}">
+                          </span>
+                          <a th:if="${pageNumber} != ${pagingDTO.currentPage}"
+                             th:href="@{${'/admin/gallery/advan_main'}(pg=${pageNumber}, category=${param.category})}"
+                             th:text="${pageNumber}">
+                          </a>
+                        </th:block>
+                      </span>
+                            <span class="admin_pageing_next" th:if="${pagingDTO.currentPage < pagingDTO.lastPage}">
+                        <a th:href="@{${'/admin/gallery/advan_main'}(pg=${pagingDTO.currentPage + 1}, category=${param.category})}">
+                          다음 &gt;
+                        </a>
+                      </span>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        <footer class="admin_footer gcfoot">
+            <div class="copyright">Copyright ⓒ 2023 gcinside. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -88,4 +88,9 @@ public class AdController {
     public String ad_guide_wm4(){
         return "ad/ad_guide_wm4";
     }
+
+    @GetMapping("ad/ad_guide_event")
+    public String ad_guide_event(){
+        return "ad/ad_guide_event";
+    }
 }

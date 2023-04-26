@@ -1,5 +1,6 @@
 package kr.co.gcInside.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.utill.DeduplicationUtils;
@@ -7,14 +8,25 @@ import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 2023/03/20 // 심규영 // 보드 서비스 생성
@@ -29,17 +41,21 @@ public class BoardService {
     @Autowired
     private BoardDAO dao;
 
+    @Value("${spring.servlet.multipart.location}")
+    private String uploadPath;
+
     private DeduplicationUtils deduplicationUtils;
 
     // create
 
     /**
      * 2023/03/22 // 심규영 // 게시물 작성 DAO
-     * @param data
+     * 2023/04/14 // 심규영 // vo로 변경
+     * @param vo
      * @return
      */
-    public int insertArticle(Map<String, String> data) {
-        return dao.insertArticle(data);
+    public int insertArticle(gell_articleVO vo) {
+        return dao.insertArticle(vo);
     }
 
     /**
@@ -57,6 +73,41 @@ public class BoardService {
      */
     public int insertReComment(Gell_re_commentVO vo) {
         return dao.insertReComment(vo);
+    }
+
+    /**
+     * 2023/04/06 // 심규영 // 추천, 비추천 기록 남기는 기능
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     * @return
+     */
+    public int insertRecommendLog(Map<String,String> data) {
+        return dao.insertRecommendLog(data);
+    }
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회 기록
+     * @param gell_num
+     * @return
+     */
+    public int insertGellHitLog(int gell_num) {
+        return dao.insertGellHitLog(gell_num);
+    }
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 등록 기능
+     * @param vo
+     * @return
+     */
+    public int insertArticleFile(Gell_fileVO vo){
+        return dao.insertArticleFile(vo);
     }
 
     // read
@@ -82,6 +133,8 @@ public class BoardService {
 
     /**
      * 2023/03/23 // 심규영 // 갤러리 게시물 리스트 가져오기
+     *  출력 조건
+     *      1. 게시글 번호 지정 해야함
      * @param data
      * @return
      */
@@ -193,6 +246,60 @@ public class BoardService {
         return commentLists;
     }
 
+    /**
+     * 2023/04/06 // 심규영 // 추천 기록 확인 기능
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}
+     *          regip               : ip 기록</pre>
+     * @param data
+     */
+    public int selectCountRecommendLog(Map<String, String> data) {
+        return dao.selectCountRecommendLog(data);
+    }
+
+    /**
+     * 2023/04/10 // 심규영 // 댓글 비밀번호 확인
+     *  data 들어오는 값
+     *      password    : 비밀번호
+     *      type        : 댓글, 대댓글 확인
+     *      re_no       : 댓글, 대댓글 번호
+     *
+     *      re : 댓글일 경우 '', 대댓글 일 경우 "re_"
+     * @param data
+     * @return
+     */
+    public int selectCommentPassCheck(Map<String,String> data) {
+        if(data.get("type").equals("rcmt")) data.put("re","re_");
+        else data.put("re", "");
+
+        return dao.selectCommentPassCheck(data);
+    }
+
+    /**
+     * 2023/04/11 // 심규영 // 글 정보 가져오는 기능
+     * @return
+     */
+    public Gell_commentVO selectCommentInfo(Map<String,String> data){
+        String type = data.get("type"); // 타입 가져오기
+        String re = type.equals("cmt") ? "" : "re_"; // 댓글, 대댓글 구분
+        String comment_no = type.equals("cmt") ? data.get("comment_no") : data.get("re_comment_no"); // 댓글,대댓글에 따라 번호 가져오기
+        return dao.selectCommentInfo(re, comment_no);
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // 게시글 관련 이미지 파일 불러오는 기능
+     * @param article_num
+     * @return
+     */
+    public List<Gell_fileVO> selectFiles(int article_num){
+        return dao.selectFiles(article_num);
+    }
+
     // upload
 
     /**
@@ -227,21 +334,116 @@ public class BoardService {
     }
 
     /**
-     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능
-     * @param article_num
+     * 2023/03/29 // 심규영 // 댓글 또는 대댓글 작성시 comment 개수 증가 기능<br>
+     * 2023/04/11 // 심규영 // 댓글 또는 대댓글 삭제시 댓글 개수 감소 기능 추가
+     * @param article_num => 게시글 번호
+     * @param type => {"up","down"}
      * @return
      */
-    public int updateArticleCommentCount(String article_num) {
-        return dao.updateArticleCommentCount(article_num);
+    public int updateArticleCommentCount(String article_num, String type) {
+        return dao.updateArticleCommentCount(article_num, type);
     }
 
     /**
-     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능
-     * @param comment_num
+     * 2023/03/29 // 심규영 // 댓글의 대댓글 수 증가 기능<br>
+     * 2023/04/11 // 심규영 // 대댓글 삭제시 부모 댓글의 대댓글 수 감소 기능 추가
+     * @param comment_num => 부모 댓글 번호
+     * @param type => {"up","down"}
      * @return
      */
-    public int updateCommentReCount(String comment_num) {
-        return dao.updateCommentReCount(comment_num);
+    public int updateCommentReCount(String comment_num, String type) {
+        return dao.updateCommentReCount(comment_num, type);
+    }
+
+    /**
+     * 2023/04/05 // 심규영 // 게시물 조회수 증가 쿼리문
+     * @param article_num
+     * @return
+     */
+    public int updateArticleHitCount(int article_num) {
+        return dao.updateArticleHitCount(article_num);
+    }
+
+    /**
+     * 2023/04/06 // 심규영 // 게시글 추천, 비추천 증가 쿼리문
+     *<pre>       data 들어오는 값
+     *          article_num         : 게시물 번호
+     *          articlel_gell_num   : 게시글 갤러리 번호
+     *          type                : 추천, 비추천 구분 {0:추천,1:비추천}
+     *
+     *      data 에 넣는 값
+     *          login_type          : 로그인 상태 구분 {0:회원,1:비회원}</pre>
+     * @param data
+     * @return
+     */
+    public int updateArticleRecommendCount(Map<String, String> data) {
+        return dao.updateArticleRecommendCount(data);
+    }
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 조회수 증가 쿼리문
+     * @param gell_num
+     * @return
+     */
+    public int updateGellHitCount(int gell_num){
+        return dao.updateGellHitCount(gell_num);
+    }
+
+    /**
+     * 2023/04/07 // 심규영 // 갤러리 게시글 개수 증가 기능
+     * @param gell_num
+     * @return
+     */
+    public int updateGellArticleCount(String gell_num) {
+        return dao.updateGellArticleCount(Integer.parseInt(gell_num));
+    }
+
+    /**
+     * 2023/04/11 // 심규영 // 갤러리 댓글 삭제 기능
+     *  data 들어오는 값
+     *      type            : 댓글, 대댓글 종류 표시 {cmt:댓글, rcmt:대댓글}
+     *      comment_no      : 댓글 번호 or 대댓글의 부모 번호
+     *      re_comment_no   : 대댓글 번호
+     *      articleNo       : 게시물 번호
+     *      my              : 본인 인증 확인
+     *  data 에 넣는 값
+     *      re              : {"","re_"}
+     * @param data
+     * @return
+     */
+    public int updateCommentDelete(Map<String,String> data) {
+        data.put("re", data.get("type").equals("cmt") ? "" : "re_");
+        return dao.updateCommentDelete(data);
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 게시글 설정 기능
+     * @param url
+     * @param article_num
+     * @return
+     */
+    public int updateFileArticleNum(String url, int article_num){
+        String cuttingUrl = "%"+url.substring(url.indexOf("thumb"))+"%";
+        return dao.updateFileArticleNum(cuttingUrl, article_num);
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 관련 파일 설정 전 null 설정 기능
+     * @param article_num -> 게시글 번호
+     * @return
+     */
+    public int updateFileArticleNumNull(int article_num){
+        return dao.updateFileArticleNumNull(article_num);
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성시 첨부 파일 개수 업데이트
+     * @param article_num -> 게시글 번호
+     * @param count -> 첨부파일 개수
+     * @return
+     */
+    public int updateArticleFileCount(int article_num, int count){
+        return dao.updateArticleFileCount(article_num, count);
     }
 
     // delete
@@ -312,14 +514,14 @@ public class BoardService {
         PagingDTO pagingDTO = new PagingDTO();
 
         // 개수 값이 없을 경우 기본 불러오는 개수 50개
-        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), "50");
-        else pagingDTO = new PagingUtil().getPagingDTO(data.get("page"), selectCountArticles(data), count);
+        if(count == null) pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), selectCountArticles(data), "50", "15");
+        else pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), selectCountArticles(data), count, "15");
         
         return pagingDTO;
     }
 
     /**
-     * 2023/03/29 // 심규영 // VO에 담기
+     * 2023/03/29 // 심규영 // 댓글 VO에 담기
      * <pre>     data 들어오는 값
      *          no                  : 게시물 번호
      *          login_info          : 로그인 상태
@@ -352,7 +554,7 @@ public class BoardService {
     }
 
     /**
-     * 2023/03/29 // 심규영 // VO에 담기
+     * 2023/03/29 // 심규영 // 대댓글 VO에 담기
      * <pre>     data 들어오는 값
      *          re_comment_ori_num              : 댓글 번호
      *          re_comment_article_num          : 게시글 번호
@@ -375,7 +577,7 @@ public class BoardService {
         reCommentVO.setRe_comment_content(data.get("re_comment_content"));
         reCommentVO.setRe_comment_login_status(data.get("login_info").equals("true") ? 0 : 1);
         if(data.get("login_info").equals("true")) {
-            reCommentVO.setRe_comment_uid(data.get(""));
+            reCommentVO.setRe_comment_uid(data.get("re_comment_uid"));
         } else {
             reCommentVO.setRe_comment_nonmember_name(data.get("re_comment_nonmember_name"));
             reCommentVO.setRe_comment_nonmember_password(data.get("re_comment_nonmember_password"));
@@ -383,5 +585,195 @@ public class BoardService {
         reCommentVO.setRe_comment_regip(data.get("regip"));
 
         return reCommentVO;
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // aritcleVO에 담기
+     *      <p>들어오는 값</p><pre>
+     *          article_gell_num    : 게시물이 올라가는 갤러리 번호
+     *          userLogin           : 유저 로그인 정보 (0:회원,1:비회원)
+     *          sub_cate_info       : 말머리 사용 정보 (0:사용안함)
+     *          article_title       : 게시물 제목
+     *          article_content     : 게시물 내용
+     *
+     *          nonmember_uid       : 비회원 아이디
+     *          nonmember_pass      : 비회원 비밀번호
+     *          article_uid         : 회원 아이디
+     *
+     *          sub_cate            : 말머리 번호</pre>
+     * @param data
+     * @return
+     */
+    public gell_articleVO articleVOInsert(Map<String, String> data) {
+        gell_articleVO vo = new gell_articleVO();
+
+        vo.setArticlel_gell_num(Integer.parseInt(data.get("article_gell_num")));
+        vo.setArticle_login_status(Integer.parseInt(data.get("userLogin")));
+
+        vo.setArticle_uid(data.get("article_uid"));
+        vo.setArticle_nonmember_uid(data.get("nonmember_uid"));
+        vo.setArticle_nonmember_pass(data.get("nonmember_pass"));
+
+        vo.setSub_cate_info(Integer.parseInt(data.get("sub_cate_info")));
+        if(data.get("sub_cate_info").equals("1")) vo.setArticle_sub_cate(Integer.parseInt(data.get("sub_cate")));
+
+        vo.setArticle_title(data.get("article_title"));
+        vo.setArticle_content(data.get("article_content"));
+
+        return vo;
+    }
+
+    /** 2023/04/12 // 심규영 // 회원 접속시 부매니저 확인 메소드 */
+    public boolean UserSubManagerCheck(List<Gell_sub_managerVO> gellSubManagerVOS, String uid){
+        for(Gell_sub_managerVO gellSubManagerVO : gellSubManagerVOS) {
+            if(gellSubManagerVO.getSub_manager_uid().equals(uid)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * 2023/04/13 // 심규영 // 파일 업로드 기능
+     * @param file -> 업로드 하는 파일
+     * @param fileMap -> 저장된 파일 url 담을 맵
+     */
+    public int fileUpload(MultipartFile file, Map<String, Object> fileMap) {
+        // 시스템 경로
+        String path = new File(uploadPath).getAbsolutePath();
+
+        // 이름 변경
+        String oName = file.getOriginalFilename();
+        String ext = oName.substring(oName.lastIndexOf("."));
+        String nName = UUID.randomUUID().toString()+ext;
+
+        // 날짜 구하기
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formatedNow = now.format(formatter);
+        
+        // 경로 생성
+        dirCreate(String.format("%s/%s/", path, formatedNow));
+
+        // 파일 저장
+        try {
+            file.transferTo(new File(String.format("%s/%s/", path, formatedNow), nName));
+        } catch(Exception e) {
+            log.error(e.getMessage());
+        }
+
+        // Map에 이미지 경로 저장
+        fileMap.put("url", "/GCInside/thumb/"+formatedNow+"/"+nName);
+        
+        // vo에 저장
+        Gell_fileVO vo = new Gell_fileVO().builder()
+                .file_ori_name(oName)
+                .file_new_name(nName)
+                .file_url(String.format("%s/%s/%s",path,formatedNow,nName))
+                .build();
+        
+        // 데이터 베이스에 저장 및 결과 리턴
+        return insertArticleFile(vo);
+    }
+
+    /**
+     * 2023/04/17 // 심규영 // URL로 파일 다운로드 기능
+     * @param urlStr
+     * @param fileMap
+     * @return
+     */
+    public int urlfileDownload(String urlStr, Map<String, Object> fileMap) {
+        // 시스템 경로
+        String path = new File(uploadPath).getAbsolutePath();
+
+        // url에서 이름 가져와서 이름 변경
+        String oName = urlStr.substring(urlStr.lastIndexOf("/")+1);
+        String ext = oName.substring(oName.lastIndexOf(".")+1);
+        String nName = UUID.randomUUID().toString()+"."+ext;
+
+        log.info("oName : "+oName);
+        log.info("ext : "+ext);
+        log.info("nName : "+nName);
+
+        // 날짜 구하기
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formatedNow = now.format(formatter);
+
+        // 경로 생성
+        dirCreate(String.format("%s/%s/", path, formatedNow));
+        File file = new File(String.format("%s/%s/", path, formatedNow), nName);
+
+        // 파일 받기
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(new URL(urlStr)); // 이미지 읽어오기
+            ImageIO.write(image, ext, file); // 이미지 저장
+        } catch (Exception e) {
+            log.error("URL에서 이미지 파일 읽어오기 에러");
+            log.error(e.getMessage());
+        }
+
+        // Map에 이미지 경로 저장
+        fileMap.put("url", "/GCInside/thumb/"+formatedNow+"/"+nName);
+
+        // vo에 저장
+        Gell_fileVO vo = new Gell_fileVO().builder()
+                .file_ori_name(oName)
+                .file_new_name(nName)
+                .file_url(String.format("%s/%s/%s",path,formatedNow,nName))
+                .build();
+
+        // 데이터 베이스에 저장 및 결과 리턴
+        return insertArticleFile(vo);
+    }
+
+    /**
+     * 2022/12/09 해당 디렉토리가 없을시 디렉토리 생성
+     * @author 심규영
+     * @param targetDir
+     */
+    public void dirCreate(String targetDir) {
+        File Directory = new File(targetDir);
+        if(!Directory.exists()) Directory.mkdirs();
+    }
+
+    /**
+     * 2023/04/14 // 심규영 // 게시글 작성 또는 수정시 관련 이미지 정보 수정
+     * @param content -> 글 내용
+     * @param article_num -> 게시글 번호
+     * @param mode -> 글쓰기, 글 수정 {0:글쓰기, 1:글수정}
+     */
+    public void imageUpdate(String content, int article_num, int mode) {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Object> contentMap = new HashMap<>();
+        int count = 0; // 이미지 파일 개수
+
+        // 수정일 경우 진행전 이미지 파일 관련 게시글 null로 변경
+        if(mode == 1) updateFileArticleNumNull(article_num);
+
+        try {
+            // 게시글 내용 String 에서 Map(key, value) 형태로 변경
+            contentMap = mapper.readValue(content, Map.class);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
+        // 내용이 담기 blocks 분리
+        ArrayList<LinkedHashMap> blocks = (ArrayList) contentMap.get("blocks");
+        for(LinkedHashMap block : blocks) {
+            // block을 반복 하면서 내용이 image인 block 찾기
+            String type = (String) block.get("type");
+            if(type.equals("image")) {
+                // 이미지의 url을 추출
+                String url = (String) ((LinkedHashMap)((LinkedHashMap) block.get("data")).get("file")).get("url");
+                // url과 게시글 번호로 관련 파일 설정 변경
+                updateFileArticleNum(url, article_num);
+                // 이미지 파일 개수 증가
+                count++;
+            }
+        }
+        
+        // 게시글 이미지 개수 업데이트
+        // 파일이 1개 이상 있을 경우에
+        if(count > 0) updateArticleFileCount(article_num, count);
     }
 }

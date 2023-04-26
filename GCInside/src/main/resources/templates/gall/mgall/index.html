@@ -211,7 +211,7 @@
                     <!-- 로그인 -->
                     <div id="login_box" class="login_box">
                         <div class="user_info newarea" data-alarmId="">
-                          <strong onclick="location='/GCInside/member/login'" style="cursor:pointer">로그인해 주세요.</strong>
+                            <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
                         </div>
                         <div class="user_option ">
                           <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a></span>
@@ -219,7 +219,7 @@
                                 <span><a href="javascript:;" onclick="alarmList($('.icon_noti', this), 'new')"><em class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
                         </div>
                     </div>
-                    <img src="https://via.placeholder.com/300x150" alt="">
+                    <img th:src="@{/img/new_maban6.png}" alt="">
                     </section>
                 </article>
                  <!-- 마이너 갤러리  리스트 -->

@@ -2,7 +2,8 @@
 <!-- 2023/03/03 // 심규영 // 메인 인덱스 화면 구현 작업 시작 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      >
 <head>
     <!-- 헤드영역 -->
     <th:block th:replace="~{fragment/head_fragment::mainHead}"></th:block>
@@ -30,7 +31,7 @@
                         <div class="content hit_con" id="hit_content">
                             <header class="con_head">
                                 <h3 class="head_tit">
-                                    <a href="#">HIT 갤러리</a>
+                                    <a th:href="@{/m/board/lists?id=HIT}">HIT 갤러리</a>
                                 </h3>
                                 <div class="pageing">
                                     <div class="page_num">
@@ -44,44 +45,17 @@
                                     </div>
                                 </div>
                             </header>
+                            <script>
+
+                            </script>
                             <ul class="con_list">
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
+                                <li class="hitL" th:each="article : ${article}">
+                                    <a th:href="@{/m/board/view/(id='HIT',no=${article.article_num})}" class="link_thumb main_logo">
+                                        <span class="img_box" >
+                                            <img style="width:100%;" th:src="@{${#strings.substringAfter(article.file_url, '/GCInside')}}" />
                                         </span>
                                         <div class="txt_box">
-                                            <strong class="tit">제목</strong>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
-                                        </span>
-                                        <div class="txt_box">
-                                            <strong class="tit">제목</strong>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
-                                        </span>
-                                        <div class="txt_box">
-                                            <strong class="tit">제목</strong>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="hitL">
-                                    <a href="#" class="link_thumb main_logo">
-                                        <span class="img_box">
-                                            <img src="https://via.placeholder.com/173x127" alt="">
-                                        </span>
-                                        <div class="txt_box">
-                                            <strong class="tit">제목</strong>
+                                            <strong class="tit" th:text="${article.article_title}"></strong>
                                         </div>
                                     </a>
                                 </li>
@@ -89,7 +63,7 @@
                         </div>
                         <!-- 메인 광고 배너1 -->
                         <div class="leftbanner">
-                            <img src="https://via.placeholder.com/728x90" alt="">
+                            <img th:src="@{/img/new_maban1.png}" alt="">
                         </div>
                         <!-- 실시간 베스트 -->
                         <div class="time_best">
@@ -97,7 +71,7 @@
                                 <div class="tablist">
                                     <button type="button" class="tab_btn best main_tab_real_time_best on">실시간 베스트</button>
                                 </div>
-                                <a href="#" class="allview_go">실갤</a>
+                                <a th:href="@{/m/board/lists?id=gcbest}" class="allview_go">실갤</a>
                                 <div class="pageing">
                                     <div class="page_num">
                                         <strong class="now_num realtimeNum">1</strong>
@@ -112,408 +86,7 @@
                             </header>
                             <!-- 실시간 베스트 기준 => 추천 수 100 이상? -->
                             <!-- 최신순 25개씩 6페이지 -->
-                            <ul class="typet_list p_1">
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">17:30</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="main_log">
-                                        <div class="box bestimg">
-                                            <!-- 이미지 크기는 가로에 맞춰서 크기조절 세로 크기는 상관 없음 -->
-                                            <img src="https://via.placeholder.com/75x75" alt="" style="position: relative;">
-                                        </div>
-                                        <div class="box besttxt">
-                                            <p>제목</p>
-                                            <span class="num">[100]</span>
-                                        </div>
-                                        <div class="box best_info">
-                                            <span class="name">작성자 이름</span>
-                                            <span class="time">03-02</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
+                            <ul class="typet_list p_1"></ul>
                             <ul class="typet_list p_2" style="display:none;"></ul>
                             <ul class="typet_list p_3" style="display:none;"></ul>
                             <ul class="typet_list p_4" style="display:none;"></ul>
@@ -531,10 +104,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- 메인 광고 배너2 -->
                         <div class="leftbanner">
                             <div class="ad_top">
-                                <img src="https://via.placeholder.com/728x90" alt="">
+                                <img th:src="@{/img/new_maban2.png}" alt="">
                             </div>
                         </div>
                         <!-- 뉴스 -->
@@ -614,14 +188,14 @@
                                             <span class="total_num" id="recomTotal">6</span>
                                         </div>
                                         <div class="btn_box">
-                                            <button type="button" class="sp_main btn_prev" id="recom_prev"></button>
-                                            <button type="button" class="sp_main btn_next on" id="recom_next"></button>
+                                            <button type="button" class="sp_main btn_prev" id="recom_prev"><span class="blind">이전</span></button>
+                                            <button type="button" class="sp_main btn_next on" id="recom_next"><span class="blind">다음</span></button>
                                         </div>
                                     </div>
                                 </div>
                             </header>
                             <section class="tab_container clear recomSection recom0">
-                                <h3 class="blind"></h3>
+                                <h3 class="blind">전체 개념글</h3>
                                 <div class="wraping">
                                     <div class="tab_content">
                                         <div class="tab_header">
@@ -702,9 +276,32 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                             </section>
                         </div>
+                        <script id="recom-tmpl" type="text/x-jquery-tmpl">
+                          <section class="tab_container clear recomSection recom${page}">
+                            <h3 class="blind">${cate_name} 개념글</h3>
+
+                            {{each(prop, values) data}}
+                            <div class="wraping">
+                              <div class="tab_content">
+                                <div class="tab_header">
+                                  <h4 class="tit"><a href="/GCInside/m/board/lists/?id=${values[0].gall_id}" class="main_log" section_code="recommend" target="_blank">${values[0].gallName} 갤러리<span class="sp_img img_deco"></span></a></h4>
+                                </div>
+                                <ul class="con_list txt">
+
+                                  {{each(i, val) values}}
+                                  <li><a href="${val.url}" target="_blank">${val.title}</a></li>
+                                  {{/each}}
+
+                                </ul>
+                              </div>
+                            </div>
+                            {{/each}}
+
+                          </section>
+                        </script>
                     </article>
                     <!-- 갤시콘 배너 -->
                     <article>
@@ -712,7 +309,7 @@
                             <section class="tab_container clear">
                                 <div class="tab_content">
                                     <a href="#">
-                                        <img src="https://via.placeholder.com/728x125" alt="">
+                                        <img th:src="@{/img/new_maban5.png}" alt="">
                                     </a>
                                 </div>
                             </section>
@@ -795,101 +392,34 @@
                             <div class="box_tit">
                                 <h3 class="tit">실북갤</h3>
                                 <span class="box_menu">
-                                    <a href="javacript:void(0)" class="rank_gall gallRankTab on">메인</a>
-                                    <a href="javacript:void(0)" class="rank_mgall mgallRankTab">마이너</a>
-                                    <a href="javacript:void(0)" class="rank_mini minigallRankTab">미니</a>
+                                    <a href="#" class="rank_gall gallRankTab on">메인</a>
+                                    <a href="#" class="rank_mgall mgallRankTab">마이너</a>
+                                    <a href="#" class="rank_mini minigallRankTab">미니</a>
                                 </span>
                             </div>
                             <!-- 각 갤 마다 ol 5개 => 1위 부터 50위 까지 -->
                             <!-- 각 ol마다 li 10개 -->
-                            <ol class="rank_list gall g_1">
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>1</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>2</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state">1</span>
-                                        <span class="sp_img ico_ranking up"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>3</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state">1</span>
-                                        <span class="sp_img ico_ranking up"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>4</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state">2</span>
-                                        <span class="sp_img ico_ranking down"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>5</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>6</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>7</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>8</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>9</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num"><em>10</em></span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                        <span class="rank_state"> </span>
-                                        <span class="sp_img ico_ranking same"></span>
-                                    </a>
-                                </li>
-                            </ol>
-                            <div class="box_bottom rank_more">11위 - 20위</div>
+                            <ol class="rank_list gall g_1" style="display:none;"></ol>
+                            <ol class="rank_list gall g_2" style="display:none;"></ol>
+                            <ol class="rank_list gall g_3" style="display:none;"></ol>
+                            <ol class="rank_list gall g_4" style="display:none;"></ol>
+                            <ol class="rank_list gall g_5" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_1" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_2" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_3" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_4" style="display:none;"></ol>
+                            <ol class="rank_list mgall m_5" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_1" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_2" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_3" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_4" style="display:none;"></ol>
+                            <ol class="rank_list minigall mi_5" style="display:none;"></ol>
+                            <div class="box_bottom rank_more" data-gall_type="g" data-page="0">11위 - 20위</div>
                         </div>
                     </article>
                     <!-- 오른쪽 광고 배너 -->
                     <div class="rightbanner">
-                        <img src="https://via.placeholder.com/250x250" alt="">
+                        <img th:src="@{/img/new_maban4.png}" alt="">
                     </div>
                     <!-- 갤러리 랭킹 -->
                     <article>
@@ -900,136 +430,27 @@
                                 </span>
                                 <h3 class="tit">흥한갤</h3>
                                 <span class="box_menu">
-                                    <a href="javascript:void(0)" class="rank_gall on">메인</a>
-                                    <a href="javascript:void(0)" class="rank_mgall">마이너</a>
-                                    <a href="javascript:void(0)" class="rank_mini">미니</a>
+                                    <a href="#" class="rank_gall gallRankTab on">메인</a>
+                                    <a href="#" class="rank_mgall mgallRankTab">마이너</a>
+                                    <a href="#" class="rank_mini minigallRankTab">미니</a>
                                 </span>
                             </div>
-                            <ol class="rank_list gall g_1">
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">1</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">2</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">3</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">4</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">5</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">6</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">7</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">8</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">9</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">10</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                            </ol>
-                            <ol class="rank_list gall g_2" style="display: none;">
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">11</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">12</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">13</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">14</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">15</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">16</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">17</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">18</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">19</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busygall">
-                                        <span class="rank_num">20</span>
-                                        <span class="rank_txt">갤러리 이름</span>
-                                    </a>
-                                </li>
-                            </ol>
-                            <div class="box_bottom hot_more" gall_type="g" page="1" style="cursor: pointer;">11위 - 20위</div>
+                            <ol class="rank_list gall g_1" style="display: none;"></ol>
+                            <ol class="rank_list gall g_2" style="display: none;"></ol>
+                            <ol class="rank_list gall g_3" style="display: none;"></ol>
+                            <ol class="rank_list gall g_4" style="display: none;"></ol>
+                            <ol class="rank_list gall g_5" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_1" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_2" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_3" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_4" style="display: none;"></ol>
+                            <ol class="rank_list mgall m_5" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_1" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_2" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_3" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_4" style="display: none;"></ol>
+                            <ol class="rank_list minigall mi_5" style="display: none;"></ol>
+                            <div class="box_bottom hot_more" data-gall_type="g" data-page="0" style="cursor: pointer;">11위 - 20위</div>
                         </div>
                     </article>
                     <!-- 신생 갤 -->
@@ -1179,7 +600,7 @@
                     <!-- 오른쪽 하단 이벤트 배너-->
                     <article class="evt_content">
                         <a class="evt_box" href="#">
-                            <img src="https://via.placeholder.com/250x125" alt="">
+                            <img th:src="@{/img/new_maban3.png}" alt="">
                         </a>
                     </article>
                 </section>

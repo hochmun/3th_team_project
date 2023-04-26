@@ -50,10 +50,7 @@ public class MinorController{
 
         model.addAttribute("cate1cnt",mgallcate1cnt);
 
-        /** 2023/03/30 // 심규영 // 마이너 인텍스 접속에러 처리용 임시 주석
         model.addAttribute("rankdiff",service.rankdiff());
-         */
-        model.addAttribute("cate1cnt",service.mgallcate1cnt());
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
         model.addAttribute("mgall",mgall);
@@ -61,7 +58,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall create
+     * 2023/03/16 // 김동민 // minorgall create
      * @param model
      * @return
      */
@@ -77,7 +74,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall create
+     * 2023/03/16 // 김동민 // minorgall create
      * @param frmCreate
      * @param myUserDetails
      * @return
@@ -91,7 +88,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall validation
+     * 2023/03/16 // 김동민 // minorgall validation
      * @param gell_create_name
      * @return
      */
@@ -111,7 +108,7 @@ public class MinorController{
     }
 
     /**
-     * 2023/03/16~ // 김동민 // minorgall validation
+     * 2023/03/16 // 김동민 // minorgall validation
      * @param gell_create_address
      * @return
      */

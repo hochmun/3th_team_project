@@ -66,6 +66,288 @@
         LIMIT 0, 10;
     </select>
 
+    <!-- 2023/04/24 // 라성준 // 메인 인덱스 인기 갤러리 불러오기 -->
+    <select id="MainIdexPopularityGell" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT
+        gell_num, gell_cate, gell_name, gell_address, gell_grade, gell_hit
+        FROM
+        gc_gell
+        WHERE
+        gell_rdate >= DATE_SUB(NOW(), INTERVAL 14 DAY)
+        ORDER BY
+        gell_hit DESC
+        LIMIT 0, 10;
+    </select>
+
+    <!-- 2023/04/07 // 김동민 // 개념글(임시로 추천수 1이상)불러오기 (수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
+    <!-- 2023/04/20 // 김동민 // 파일 불러오기 추가(수정 방향: 개념글 개발 -> 오늘 작성된 개념글 불러오기 )-->
+    <select id="selecthotarticle" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT a.gell_name, a.gell_address, b.*, c.*
+        FROM gc_gell AS a
+        JOIN gc_gell_article AS b ON a.gell_num = b.articlel_gell_num
+        JOIN gc_gell_file AS c ON b.article_num = c.file_article_num
+        WHERE b.article_recommend_count >= 1 AND a.gell_grade = 0
+        ORDER BY b.article_rdate DESC;
+    </select>
+
+    <!-- 2023/04/07 // 김동민 // 메인 흥한 갤러리 불러오기 -->
+    <!--갤러리명만 출력한것을 gc_gell이랑 비교 후 cnt 가 높은 순으로 정렬  -->
+    <select id="selecthotgall" resultType="kr.co.gcInside.vo.galleryVO">
+        select * from `gc_gell` WHERE `gell_today_rank`>='1' and `gell_grade`='0' ORDER BY `gell_today_rank` ASC;
+    </select>
+    <!-- 2023/04/07 // 김동민 // 갤러리 신설 갤러리 불러오기 -->
+    <!-- BETWEEN 으로 오늘로부터 1주일 범위 행들을 선택 DATE_SUB는 오늘에서 1주일을 뺀 값, 절대값으로 오늘과 gell_rdate의 차를 구해 그 수가 적을 수록 가까운 날짜 -->
+    <select id="selectnewgall" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT *
+        FROM `gc_gell`
+        WHERE `gell_rdate` BETWEEN DATE_SUB(CURDATE(), INTERVAL 1 WEEK) AND CURDATE() and `gell_grade`='0'
+        ORDER BY ABS(DATEDIFF(CURDATE(), gell_rdate))
+        LIMIT 5;
+    </select>
+    <!-- 2023/04/07 // 김동민 //  랭킹확인용 오늘의 게시글 개수-->
+    <update id="todayarticlecount">
+        UPDATE `gc_gell`
+        SET `gell_today_article_count` = (
+        SELECT COUNT(*)
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = CURDATE()
+        AND `gc_gell`.`gell_num` = `gc_gell_article`.`articlel_gell_num`
+        );
+    </update>
+    <!-- 2023/04/07 // 김동민 // rank칼럼 초기화-->
+    <update id="initrank">
+        UPDATE `gc_gell` SET
+        `gell_today_rank` = NULL , `gell_yesterday_rank` = NULL where `gell_grade`='1';
+    </update>
+    <!-- 2023/04/07 // 김동민 // sql rank초기화 -->
+    <update id ="resetrank">
+        SET @RANK := 0;
+    </update>
+    <!-- 2023/04/07 // 김동민 // 오늘 갤러리 랭크 업데이트-->
+    <update id="updatehotgalltodayrank">
+        UPDATE gc_gell AS gell
+        INNER JOIN (
+        SELECT gell_num, @rank := @rank + 1 AS rank
+        FROM gc_gell
+        WHERE gell_today_article_count > 0 AND gell_grade = '0'
+        ORDER BY gell_today_article_count DESC
+        ) AS ranking
+        ON gell.gell_num = ranking.gell_num
+        SET gell.gell_today_rank = ranking.rank;
+    </update>
+    <!-- 2023/04/07 // 김동민 // 어제 갤러리 랭크 업데이트-->
+    <update id="updatehotgallyesterdayrank">
+        UPDATE `gc_gell` AS `gell`
+        INNER JOIN (
+        SELECT `gc_gell`.`gell_num`, `subquery`.`cnt`, @rank := @rank + 1 AS `rank`
+        FROM `gc_gell`
+        LEFT JOIN (
+        SELECT `articlel_gell_num`, COUNT(*) AS `cnt`
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY `articlel_gell_num`
+        ) AS `subquery`
+        ON `gc_gell`.`gell_num` = `subquery`.`articlel_gell_num`
+        WHERE `gc_gell`.`gell_num` IN (
+        SELECT `articlel_gell_num`
+        FROM `gc_gell_article`
+        WHERE DATE(`article_rdate`) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+        GROUP BY `articlel_gell_num`
+        ) AND `gc_gell`.`gell_grade` = '0'
+        ORDER BY `subquery`.`cnt` DESC
+        ) AS `ranking`
+        ON `gell`.`gell_num` = `ranking`.`gell_num`
+        SET `gell`.`gell_yesterday_rank` = `ranking`.`rank`;
+    </update>
+    <!-- 2023/04/07 // 김동민 // 오늘 갤러리 랭크 가져오기-->
+    <select id="mtodayrank" resultType="kr.co.gcInside.vo.galleryVO">
+        select `gell_num`,`gell_today_rank` from `gc_gell` WHERE `gell_today_rank`>='1' and `gell_grade`='0';
+    </select>
+    <!-- 2023/04/07 // 김동민 // 어제 갤러리 랭크 가져오기-->
+    <select id="myesterdayrank" resultType="kr.co.gcInside.vo.galleryVO">
+        select `gell_num`,`gell_yesterday_rank` from `gc_gell` WHERE `gell_yesterday_rank`>='1' and `gell_grade`='0';
+    </select>
+
+    <!-- 2023/04/17 // 심규영 // 전날 게시글 갯수, 댓글 갯수 가져오는 쿼리문 -->
+    <select id="selectYesterdayCount" resultType="map">
+        SELECT
+            (SELECT COUNT(*)
+                FROM `gc_gell_article` AS d
+            WHERE d.`article_rdate` >= STR_TO_DATE(DATE_FORMAT(DATE_ADD(now(), Interval -1 Day), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
+            AND d.`article_rdate` &lt; STR_TO_DATE(DATE_FORMAT(now(), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')) AS `article_count`,
+            COUNT(*) AS `comment_count`
+        FROM
+            (SELECT a.`comment_rdate`
+                FROM `gc_gell_comment` AS a
+            UNION ALL
+            SELECT b.`re_comment_rdate`
+                FROM `gc_gell_re_comment` AS b) AS c
+            WHERE c.`comment_rdate` >= STR_TO_DATE(DATE_FORMAT(DATE_ADD(now(), Interval -1 Day), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T')
+            AND c.`comment_rdate` &lt; STR_TO_DATE(DATE_FORMAT(now(), '%Y-%m-%d 00:00:00'), '%Y-%m-%d %T');
+    </select>
+
+    <!-- 2023/04/18 // 심규영 // 실시간 베스트 게시글 리스트 가져오는 쿼리문 -->
+    <select id="selectRealtimeGetArticleList" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT * FROM `gc_gell_article` AS a
+        LEFT JOIN `gc_gell_file` AS b ON a.`article_num` = b.`file_article_num`
+        WHERE a.`articlel_gell_num` = 135
+        GROUP BY a.`article_num`
+        ORDER BY a.`article_rdate` DESC
+        LIMIT #{start}, 25;
+    </select>
+
+    <!--
+    2023/04/21 // 심규영 // 실시간 북적이는 갤러리 리스트 가져오는 쿼리문
+    2023/04/24 // 심규영 // 모든 갤러리를 불러오지 않는 버그 수정
+    -->
+    <select id="selectHotLiveArticles" resultType="map">
+        SELECT
+            @rownum := @rownum + 1 AS `rank`,
+            e.*
+        FROM (
+            SELECT
+                @rownum2 := @rownum2 +1 AS `preRank`,
+                f.*
+            FROM (
+                SELECT
+                    d.gell_name,
+                    d.`gell_address`,
+                    d.`gell_rdate`,
+                    COUNT(
+                        case when a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -1 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                        case when b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                        case when c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 HOUR) then 1 end
+                    ) AS `total`,
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 HOUR) > a.`article_rdate`
+                            AND a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -2 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 HOUR) > b.`comment_rdate`
+                            AND b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 HOUR) then 1 end
+                    ) +
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 HOUR) > c.`re_comment_rdate`
+                            AND c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 HOUR) then 1 end
+                    ) AS `preTotal`
+                FROM `gc_gell` AS d
+                LEFT JOIN `gc_gell_article` AS a ON a.`articlel_gell_num` = d.`gell_num`
+                left JOIN `gc_gell_comment` AS b ON a.article_num = b.comment_article_num
+                left JOIN `gc_gell_re_comment` AS c ON b.comment_num = c.re_comment_oir_num
+                WHERE d.gell_grade = #{gall_type} AND d.`gell_status` = 0
+                GROUP BY d.`gell_num`
+                ORDER BY `preTotal` DESC, d.`gell_rdate` ASC
+            ) AS f,
+            (SELECT @rownum2 := 0) AS s
+        ) AS e,
+        (SELECT @rownum := ${start}) AS r
+        order BY `total` DESC, `preRank` ASC, `gell_rdate` ASC
+        LIMIT #{start}, 10
+        ;
+    </select>
+
+    <!-- 2023/04/26 // 심규영 // 갤러리 랭킹 불러오는 쿼리문 -->
+    <select id="selectHotArticles" resultType="map">
+        SELECT
+            @rownum := @rownum + 1 AS `rank`,
+            e.*
+        FROM (
+            SELECT
+                @rownum2 := @rownum2 +1 AS `preRank`,
+                f.*
+            FROM (
+                SELECT
+                    d.gell_name,
+                    d.`gell_address`,
+                    d.`gell_rdate`,
+                    COUNT(
+                        case when a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -1 DAY) then 1 end
+                     ) +
+                    COUNT(
+                        case when b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 DAY) then 1 end
+                    ) +
+                    COUNT(
+                        case when c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -1 DAY) then 1 end
+                    ) AS `total`,
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 DAY) > a.`article_rdate`
+                            AND a.`article_rdate` >= DATE_ADD(NOW(), INTERVAL -2 DAY) then 1 end
+                    ) +
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 DAY) > b.`comment_rdate`
+                            AND b.`comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 DAY) then 1 end
+                    ) +
+                    COUNT(
+                        case when DATE_ADD(NOW(), INTERVAL -1 DAY) > c.`re_comment_rdate`
+                            AND c.`re_comment_rdate` >= DATE_ADD(NOW(), INTERVAL -2 DAY) then 1 end
+                    ) AS `preTotal`
+                FROM `gc_gell` AS d
+                LEFT JOIN `gc_gell_article` AS a ON a.`articlel_gell_num` = d.`gell_num`
+                left JOIN `gc_gell_comment` AS b ON a.article_num = b.comment_article_num
+                left JOIN `gc_gell_re_comment` AS c ON b.comment_num = c.re_comment_oir_num
+                WHERE d.gell_grade = #{gall_type} AND d.`gell_status` = 0
+                GROUP BY d.`gell_num`
+                ORDER BY `preTotal` DESC, d.`gell_rdate` ASC
+            ) AS f,
+            (SELECT @rownum2 := 0) AS s
+        ) AS e,
+        (SELECT @rownum := ${start}) AS r
+        order BY `total` DESC, `preRank` ASC, `gell_rdate` ASC
+        LIMIT #{start}, 10
+        ;
+    </select>
+
+    <!-- 2023/04/17 // 김동민 // 갤러리 select-->
+    <select id="selectgall" resultType="kr.co.gcInside.vo.galleryVO">
+        select * from `gc_gell` where `gell_grade`='0' ORDER BY `gell_cate` asc;
+    </select>
+    <!-- 2023/04/17 // 김동민 // 갤러리 카테고리별 갤러리 갯수-->
+    <select id="gallcate1cnt" resultType="int">
+            select count(*) from `gc_gell` where `gell_grade`='0' and `gell_cate`=#{cate};
+    </select>
+
+    <!-- 2023/04/18 // 전인준 // hit갤러리 게시물 가져오기-->
+    <select id="hitgall" resultType="kr.co.gcInside.vo.gell_articleVO">
+        SELECT *
+        FROM `gc_gell_article` AS a
+        LEFT JOIN `gc_gell_file` AS b ON a.`article_num` = b.`file_article_num`
+        WHERE a.`articlel_gell_num` = 134 AND a.article_status = 0
+        GROUP BY a.`article_num`
+        ORDER BY a.`article_rdate` DESC
+        LIMIT 0, 12;
+        <!--SELECT *
+        FROM `gc_gell_article` AS a
+        LEFT JOIN `gc_gell_file` AS b ON a.`article_num` = b.`file_article_num`
+        WHERE a.`articlel_gell_num` = 134 AND a.article_status = 0
+        GROUP BY a.`article_num`
+        ORDER BY
+        CASE
+        WHEN a.`article_num` IN (4, 8, 12) THEN a.`article_rdate`
+        END ASC,
+        a.`article_rdate` DESC
+        LIMIT 0, 12;-->
+    </select>
+
+    <!-- 2023/04/23 // 김재준 // 카테고리별 개념글 가져오기 -->
+    <select id="selectHotArticlesByCategory" parameterType="int" resultType="map">
+        WITH random_galleries AS (
+        SELECT gell_num
+        FROM gallery
+        WHERE gell_cate = #{cate}
+        ORDER BY RAND()
+        LIMIT 4
+        )
+        SELECT a.*
+        FROM gell_articleVO a
+        JOIN random_galleries rg ON a.articlel_gell_num = rg.gell_num
+        WHERE a.article_recommend_count >= 10
+        ORDER BY a.article_wdate DESC
+        LIMIT 5;
+    </select>
 
     <!-- upload -->
     <!-- delete -->

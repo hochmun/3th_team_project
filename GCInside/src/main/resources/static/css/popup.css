@@ -412,3 +412,25 @@
 .robot_framebox{width:302px;margin:25px auto 0;line-height:100%}
 
 .pop_wrap.type5{border:3px solid #29367c}
+
+/*210310최근방문*/
+.newvisit_history #newvisit_more{z-index:4000}/*220303 추가*/
+.under_catelist.newvisit_layer{width:702px;min-height:212px;font-size:12px;line-height:1.5}
+.under_catelist.newvisit_layer .pop_head{color:#555;vertical-align:top;padding-left:2px}
+.under_catelist.newvisit_layer .list_alldel{position:static;color:#29367c;padding:0;margin-left:6px;vertical-align:text-top}/*211118 폰트 버그 vertical-align:text-top*/
+.miniwrap .under_catelist.newvisit_layer .list_alldel{color:#4f4dc6}
+.under_catelist.newvisit_layer .under_listbox{margin-left:-19px;margin-top:10px}
+.under_catelist.newvisit_layer .under_listbox li{position:relative;width:155px;margin-left:20px;margin-right:3px;color:#333}
+.under_catelist.newvisit_layer .under_listbox li .icon_restriction{position:static}
+.under_catelist.newvisit_layer .under_listbox li a{display:inline-block;max-width:95%;vertical-align:top ;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}/*210401*/
+.under_catelist.newvisit_layer .under_listbox li a.mini{max-width:77%}/*210401*/
+.under_catelist.newvisit_layer .under_listbox li .icon_mini{vertical-align:8px}
+.under_catelist.newvisit_layer .btn_visit_del{height:22px;vertical-align:top}
+.under_catelist.newvisit_layer .empty_visit{float:none;position:absolute;left:50%;top:50%;transform:translate(-50%, -50%);-ms-transform:translateY(-50%, -50%);padding-left:0;margin-top:19px}
+/*리스트 최근방문*/
+.list_wrap.width1160 .under_catelist.newvisit_layer{width:814px}
+.list_wrap.width1160 .under_catelist.newvisit_layer .under_listbox li{width:142px}
+/*본문, 글쓰기 최근방문*/
+.width1160 .under_catelist.newvisit_layer{width:1134px}
+.width1160 .under_catelist.newvisit_layer .under_listbox li{width:141px}
+.width1160 .issuebox.open .newvisit_history .pop_wrap.type2{left:-1px!important}

@@ -20,10 +20,9 @@
         <!-- //로고영역 -->
         <div class="area_links">
           <ul>
-            <li><a href="https://gall.dcinside.com/">갤러리</a></li>
-            <li><a href="https://gall.dcinside.com/m">마이너갤</a></li>
-            <li><a href="https://gall.dcinside.com/n">미니갤</a></li>
-
+            <li><a th:href="@{/m/index}">갤러리</a></li>
+            <li><a th:href="@{/mgall/index}">마이너갤</a></li>
+            <li><a th:href="@{/mini/index}">미니갤</a></li>
           </ul>
         </div>
       </div>
@@ -35,7 +34,7 @@
       <!-- 메인 로고 -->
       <h1 class="gc_logo">
         <div>
-          <img th:src="@{/img/gcinside,  s-1104992098.png}" alt="겔시인사이드">
+          <img th:src="@{/img/TestMainbanner.png}" alt="겔시인사이드">
           <a class="_blank" th:href="@{/}"></a>
           <a class="_top" th:href="@{/}"></a>
         </div>
@@ -85,7 +84,7 @@
         <!-- 메인 로고 -->
         <h1 class="gc_logo">
           <div>
-            <img th:src="@{/img/gcinside_main_logo.png}" alt="겔시인사이드">
+            <img th:src="@{/img/gcinside_main_logo2-removebg-preview.png}" alt="겔시인사이드" style="top:0px;left:0px;">
             <a class="_blank" th:href="@{/}"></a>
             <a class="_top" th:href="@{/}"></a>
           </div>
@@ -141,7 +140,6 @@
       </div>
     </div>
   </header>
-
 
 </body>
 </html>

@@ -435,3 +435,17 @@ CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_hit_log` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+
+
+## 2023/04/05 // 심규영 // 게시글 추천 로그 기록 테이블 생성 쿼리문
+CREATE TABLE IF NOT EXISTS `GC_Inside`.`gc_gell_recommend_log` (
+  `recommend_article_num` INT NOT NULL,
+  `recommend_regip` VARCHAR(100) NOT NULL,
+  `recommend_rdate` DATE NOT NULL,
+  `recommend_type` TINYINT(1) NOT NULL,
+  CONSTRAINT `fk_gc_gell_recommend_log_gc_gell_article1`
+    FOREIGN KEY (`recommend_article_num`)
+    REFERENCES `GC_Inside`.`gc_gell_article` (`article_num`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB

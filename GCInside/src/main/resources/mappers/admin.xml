@@ -170,7 +170,7 @@
 
     <!-- 2023/03/16 // 김재준 // 갤러리 개설신청 리스트 총 개수  -->
     <select id="galleryRequestTotal" resultType="int">
-        select count(`gell_create_num`) from `gc_admin_gell_create_approve` where gell_create_status = 0;
+        select count(`gell_create_num`) from `gc_admin_gell_create_approve` where `gell_create_status` = 0;
     </select>
 
     <!-- 2023/03/22 // 김재준 // 갤러리 개설 신청 list -->
@@ -179,31 +179,49 @@
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
         FROM gc_admin_gell_create_approve as a
         JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
-        ORDER BY gell_create_num desc;
+        WHERE a.gell_create_status = 0
+        ORDER BY `gell_create_num` DESC
+        LIMIT ${start}, 10;
     </select>
 
-    <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 category -->
+    <!-- 2023/04/08 // 김재준 // 갤러리 개설 신청 카테고리 검색 결과 count -->
+    <select id="searchByCategoryTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM gc_admin_gell_create_approve AS a
+        JOIN gc_gell_cate2 AS b ON a.gell_create_cate = b.gell_cate2
+        <where>
+            <choose>
+                <when test="category == ''">
+                    a.gell_create_status = 0
+                </when>
+                <when test="category != ''">
+                    a.gell_create_cate = #{category} AND a.gell_create_status = 0
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 2023/03/28 // 김재준 // 갤러리 개설 신청 카테고리별 검색 -->
     <select id="searchByCategory" resultMap="createResultMap">
         SELECT a.gell_create_num, a.gell_create_rdate, a.gell_create_uid, a.gell_create_name, a.gell_create_intro,
         a.gell_create_cate, a.gell_create_address, a.gell_create_reason, a.gell_create_status, b.*
-        FROM gc_admin_gell_create_approve as a
-        JOIN gc_gell_cate2 as b on a.gell_create_cate = b.gell_cate2
-        WHERE a.gell_create_cate = #{category}
-        ORDER BY gell_create_num desc;
+        FROM gc_admin_gell_create_approve AS a
+        JOIN gc_gell_cate2 AS b ON a.gell_create_cate = b.gell_cate2
+        <where>
+            <choose>
+                <when test="category == ''">
+                    a.gell_create_status = 0
+                </when>
+                <when test="category != ''">
+                    a.gell_create_cate = #{category} AND a.gell_create_status = 0
+                </when>
+            </choose>
+        </where>
+        ORDER BY gell_create_num DESC
+        LIMIT #{start}, 10;
     </select>
 
-    <!-- 23/03/28 // 김재준 // 관리자 갤러리 신청 리스트 검색 시 검색 결과 총 개수 가져오기
-    <select id="searchByCategoryTotal" resultType="int">
-        SELECT COUNT(`gell_create_num`) FROM `gc_admin_gell_create_approve`
-        WHERE
-        <if test="searchOption == 'option1'">
-            `gell_create_name` LIKE CONCAT('%',#{searchKeyword},'%')
-        </if>
-        <if test="searchOption == 'option2'">
-            `gell_create_uid` LIKE CONCAT('%',#{searchKeyword},'%')
-        </if>
-    </select>-->
-
+    <!-- 2023/03/22 // 김재준 // createVO resultMap -->
     <resultMap id="createResultMap" type="kr.co.gcInside.vo.CreateVO">
         <result property="gell_create_num" column="gell_create_num"/>
         <result property="gell_create_rdate" column="gell_create_rdate"/>
@@ -219,6 +237,79 @@
         <result property="gell_cate2" column="gell_cate2"/>
         <result property="gell_cate2_name" column="gell_cate2_name"/>
     </resultMap>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 카테고리 검색 결과 count -->
+    <select id="searchByMinorCategoryTotal" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM gc_gell AS a
+        JOIN gc_gell_cate2 AS b ON a.gell_cate = b.gell_cate2
+        <where>
+            <choose>
+                <when test="category == ''">
+                    a.gell_grade = 1
+                </when>
+                <when test="category != ''">
+                    a.gell_cate = #{category} AND a.gell_grade = 1
+                </when>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 카테고리별 검색 -->
+    <select id="searchByMinorCategory" resultMap="galleryResultMap">
+        select * from `gc_gell` as a
+        JOIN `gc_gell_cate2` AS b ON a.gell_cate = b.gell_cate2
+        <where>
+            a.gell_today_rank >= '1' and a.gell_grade = '1'
+            <choose>
+                <when test="category == ''">
+                    AND a.gell_grade = 1
+                </when>
+                <when test="category != ''">
+                    AND a.gell_cate = #{category} AND a.gell_grade = 1
+                </when>
+            </choose>
+        </where>
+        ORDER BY a.gell_today_rank ASC LIMIT ${start}, 10;
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 리스트 총 개수  -->
+    <select id="selectTargetmgalltotal" resultType="int">
+        select count(`gell_num`) from `gc_gell` WHERE `gell_today_rank`>='1' and `gell_grade`='1' ORDER BY `gell_today_rank`;
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // 갤러리 승급대상 리스트  -->
+    <select id="selectTargethotmgall" resultType="kr.co.gcInside.vo.galleryVO">
+        SELECT a.*, b.*
+        FROM `gc_gell` as a
+        JOIN `gc_gell_cate2` as b on a.gell_cate = b.gell_cate2
+        WHERE a.gell_today_rank >= '1' AND a.gell_grade = '1'
+        ORDER BY a.gell_today_rank ASC
+        LIMIT ${start}, 10;
+    </select>
+
+    <!-- 2023/04/14 // 김재준 // galleryVO resultMap -->
+    <resultMap id="galleryResultMap" type="kr.co.gcInside.vo.galleryVO">
+        <result property="gell_num" column="gell_num"/>
+        <result property="gell_cate" column="gell_cate"/>
+        <result property="gell_name" column="gell_name"/>
+        <result property="gell_address" column="gell_address"/>
+        <result property="gell_main_img" column="gell_main_img"/>
+        <result property="gell_info" column="gell_info"/>
+        <result property="gell_manager" column="gell_manager"/>
+        <result property="gell_grade" column="gell_grade"/>
+        <result property="gell_status" column="gell_status"/>
+        <result property="gell_hit" column="gell_hit"/>
+        <result property="gell_article_count" column="gell_article_count"/>
+        <result property="gell_rdate" column="gell_rdate"/>
+        <result property="gell_wdate" column="gell_wdate"/>
+        <result property="gell_sancitons_rdate" column="gell_sancitons_rdate"/>
+        <result property="gell_sancitons_wdate" column="gell_sancitons_wdate"/>
+        <result property="gell_sancitons_grade" column="gell_sancitons_grade"/>
+        <result property="gell_cate2" column="gell_cate2"/>
+        <result property="gell_cate2_name" column="gell_cate2_name"/>
+    </resultMap>
+
     <!-- upload -->
     <update id="updateTerms">
         UPDATE `gc_terms` SET term_content = #{content} WHERE term_type = ${type};
@@ -228,6 +319,12 @@
     <update id="updateGalleryCreateStatus" parameterType="kr.co.gcInside.vo.CreateVO">
         UPDATE `gc_admin_gell_create_approve` SET `gell_create_status` = 1
         WHERE `gell_create_num` = #{gell_create_num};
+    </update>
+
+    <!-- 2023/04/12 // 김재준 // 마이너 갤러리 메인 갤러리로 승급 status값 변경 -->
+    <update id="updateMinorGalleryStatus" parameterType="kr.co.gcInside.vo.CreateVO">
+        UPDATE `gc_gell` SET `gell_grade` = 0
+        WHERE `gell_num` = #{gell_num};
     </update>
 
     <!-- 2023/03/27 // 김재준 //  개설 신청 반려 사유 입력 -->

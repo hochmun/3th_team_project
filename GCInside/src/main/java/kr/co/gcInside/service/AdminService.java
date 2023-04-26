@@ -118,8 +118,8 @@ public class AdminService {
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 불러오기
      */
-    public List<CreateVO> galleryRequestList() {
-        return dao.galleryRequestList();
+    public List<CreateVO> galleryRequestList(int start) {
+        return dao.galleryRequestList(start);
     }
 
     /**
@@ -130,19 +130,46 @@ public class AdminService {
     }
 
     /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 리스트 총 개수
+     */
+    public int selectTargetmgalltotal() {
+        return dao.selectTargetmgalltotal();
+    }
+
+    /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색
      */
-    public List<CreateVO> searchByCategory(int category) {
-        return dao.searchByCategory(category);
+    public List<CreateVO> searchByCategory(int category, int start) {
+        return dao.searchByCategory(category, start);
     }
 
     /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 총 개수
-     * @param category
-     * @return
      */
     public int searchByCategoryTotal(int category) {
         return dao.searchByCategoryTotal(category);
+    }
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색
+     */
+    public List<galleryVO> searchByMinorCategory(int category, int start) {
+        return dao.searchByMinorCategory(category, start);
+    }
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색 총 개수
+     */
+    public int searchByMinorCategoryTotal(int category) {
+        return dao.searchByMinorCategoryTotal(category);
+    }
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 불러오기
+     */
+    public List<galleryVO> selectTargethotmgall(int start) {
+
+        return dao.selectTargethotmgall(start);
     }
 
     // upload
@@ -166,6 +193,13 @@ public class AdminService {
      */
     public void updaterejectReason(CreateVO cvo) {
         dao.updaterejectReason(cvo);
+    }
+
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    public void updateMinorGalleryStatus(galleryVO gvo) {
+        dao.updateMinorGalleryStatus(gvo);
     }
 
     // delete

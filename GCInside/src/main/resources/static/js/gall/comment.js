@@ -1,13 +1,241 @@
-$(()=>{
+/** 2023/04/05 // 심규영 // 글 보기 처음 로딩시 댓글 목록 처리 */
+$(()=>{commentPageMove(1);});
 
-    /** 2023/04/04 // 심규영 // 이벤트 함수 분리 */
-    $('.btn_reply_write_all').click(function(){
-        recommentWriteBoxOpen($(this));
+/**
+ 2023/04/10 // 심규영 // 댓글 삭제 버튼 클릭
+ 댓글 등록 할때 이벤트 리스너로 등록 하기
+*/
+const removeCommentClick = async ($this) => {
+    // 데이터 받기
+    const type = $this.parent().data('type');
+    const comment_no = $this.parent().data('comment_no');
+    const re_comment_no = $this.parent().data('re_comment_no');
+    const articleNo = $this.parent().data('articleNo');
+    const my = $this.parent().data('my');
+
+    // 유효성 검사
+
+    // 비회원 댓글일 경우 비밀번호 확인 창 출력
+    if(my == 'N') {removeCommentPasswordCheckBoxOpen($this, type);return;}
+
+    // 댓글 삭제 마지막 확인
+    const lastCheck = confirm('댓글을 삭제 하시겠습니까?');
+    if(!lastCheck) return; // 취소할 경우 리턴
+
+    // jsonData 생성
+    const jsonData = {
+        "type":type,
+        "comment_no":comment_no,
+        "re_comment_no":re_comment_no,
+        "articleNo":articleNo,
+        "my":my
+    };
+
+    // 회원 댓글 유저 동일 검사는 쿼리문 실행 하면서 확인
+    // 삭제 ajax 실행
+    const data = await removeCommentDeleteAjax(jsonData);
+
+    // 동적 처리
+    // 대댓글일 경우 해당 대댓글 개수 확인 필요
+    // 대댓글이 두개 이상일 경우 li만 삭제
+    // 대댓글이 한개 일 경우 대댓글들이 담긴 li 삭제
+    // 댓글일 경우 대댓글 존재 확인 필요
+    // 대댓글이 없을 경우 완전 삭제
+    // 대댓글이 있을 경우 '삭제된 댓글 입니다.' 표시
+    if(type == 'cmt'){
+        // 댓글 일 경우
+        if($('#comment_li_'+comment_no).data('rcnt') > 0){
+            // 삭제하는 글이 댓글이고 해당 댓글의 대댓글 개수가 0보다 클때
+            // 삭제된 댓글 표시
+            $this.closest('.cmt_info').html('<div><p>삭제된 댓글 입니다.</p></div>');
+        } else {
+            // 해당 댓글의 대댓글이 없을 경우
+            // 댓글 완전 제거
+            $this.closest('li').remove();
+        }
+    } else {
+        // 대댓글 일 경우
+        if($this.closest('ul').children().length > 1) {
+            // 대댓글의 개수가 1보다 클 경우 해당 li만 삭제
+            $this.closest('li').remove();
+        } else {
+            // 개수가 1개일 경우 대댓글 완전 삭제
+            $this.closest('.reply_box').closest('li').remove();
+        }
+    }
+
+    // 삭제 후 댓글 최대 갯수 줄이기
+    $('#comment_total').text(parseInt($('#comment_total').text())-1);
+};
+
+/** 2023/04/11 // 심규영 // 댓글 삭제 ajax 함수 */
+const removeCommentDeleteAjax = (jsonData) => {
+    return new Promise(function(resolve, reject){
+        $.ajax({
+            url:'/GCInside/gall/board/CommentDelete',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            dataType:'json',
+            success: function(data) {
+                if(data.result < 0) {
+                    alert("잘못됫 접근 입니다.");
+                }
+                return resolve(data);
+            },
+            error : function(request,status,error){
+                reject(new Error("code = "+ request.status + " message = " + request.responseText + " error = " + error));
+            },
+        });
     });
+};
 
-    /** 2023/04/04 // 심규영 // 처음 로딩시 페이징 처리 / comment.js */
-    comment_papging(1);
-});
+/** 2023/04/10 // 심규영 // 댓글, 대댓글 삭제 비밀번호 확인 함수 */
+const removeCommentPassCheck = async ($this) => {
+    const password = $this.parent().find('#cmt_password').val(); // 비밀번호
+    const type = $this.parent().data('type');
+    const re_no = $this.parent().data('re_no');
+
+    // 유효성 검사
+    if(password == "") {
+        alert("비밀번호를 입력 하세요");
+        return;
+    }
+
+    // jsonData
+    const jsonData = {
+        "password":password,
+        "type":type,
+        "re_no":re_no
+    }
+
+    // 비밀번호 확인용 ajax전송
+    const result = await removeCommentCheckAjax(jsonData);
+
+    // 결과 확인
+    if(result) { // 비번 맞음
+        $this.parent().parent().data('my','Y');
+        $this.parent().prev().click(); // 비번이 맞으면 삭제 이벤트 재실행
+        $('#cmt_delpw_box').remove(); // 창 닫기
+        return;
+    } else { // 비번 틀림
+        alert('비밀번호가 틀렸습니다.');
+        return;
+    }
+};
+
+/** 2023/04/10 // 심규영 // 댓글, 대댓글 삭제 비밀번호 검사 ajax 함수 */
+const removeCommentCheckAjax = (jsonData) => {
+    return new Promise(function(resolve, reject){
+        $.ajax({
+            url:'/GCInside/gall/board/commentPassCheck',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            dataType:'json',
+            success: function(data) {
+                return resolve(data.result > 0);
+            },
+            error : function(request,status,error){
+                reject(new Error("code = "+ request.status + " message = " + request.responseText + " error = " + error));
+            },
+        });
+    });
+};
+
+/** 2023/04/10 // 심규영 // 댓글, 대댓글 삭제 팝업창 여는 함수 */
+const removeCommentPasswordCheckBoxOpen = ($this, type) => {
+    $('#cmt_delpw_box').remove(); // 이미 띄워저 있는 팝업창 삭제
+
+    $('<div>')
+    .attr('id', 'cmt_delpw_box')
+    .attr('class', 'cmt_delpw_box')
+    .attr('style', 'margin: -16px 0 0 -242px;')
+    .data('type', type)
+    .data('re_no', type == 'cmt' ? $this.parent().data('comment_no') : $this.parent().data('re_comment_no'))
+    .append(
+        $('<input>')
+        .attr('type','password')
+        .attr('title', '비밀번호')
+        .attr('placeholder','비밀번호')
+        .attr('id','cmt_password')
+        .attr('class','cmt_delpw')
+    ).append(
+        $('<button>')
+        .attr('type','button')
+        .attr('class','btn_ok')
+        .text('확인')
+        .click(function(){removeCommentPassCheck($(this))})
+    ).append(
+        $('<button>')
+        .attr('type','button')
+        .attr('class','btn_cmtpw_close')
+        .click(()=>{$('#cmt_delpw_box').remove()})
+        .append(
+            $('<em>').attr('class','sp_img icon_cmtpw_close')
+        )
+    ).appendTo($this.parent())
+    .find('#cmt_password').focus();
+};
+
+/** 2023/04/06 // 심규영 // 게시글 추천 및 비추천 클릭 함수 */
+const reCommendClick = ($this, type) => {
+    const article_num = $('#no').val();
+    const articlel_gell_num = $('#gell_num').val();
+
+    // jsonData
+    const jsonData = {
+        "article_num":article_num,
+        "articlel_gell_num":articlel_gell_num,
+        "type":type
+    }
+
+    //ajax
+    $.ajax({
+            url:'/GCInside/gall/board/setRecommendArticle',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            dataType:'json',
+            success: function(data) {
+                console.log(data);
+                console.log(data.result2);
+
+                if(data.result1 > 0) {
+                    if(type == 0) alert('추천은 1일 1회만 가능합니다.');
+                    if(type == 1) alert('비추천은 1일 1회만 가능합니다.');
+                }
+
+                if(data.result2 != 'undefined' && data.result2 > 0) { // 추천, 비추천 성공
+                    if(type == 0){ // 추천 일 경우
+                        // 추천 값 동적 증가
+                        $('#recommend_view_up').text(parseInt($('#recommend_view_up').text())+1); // 추천 수 증가
+                        $('.gall_reply_num').text('추천 ' + $('#recommend_view_up').text()); // 페이지 상단 추천 수 증가
+                        if(data.login_type == '0') $('#recommend_view_up_fix').text(parseInt($('#recommend_view_up_fix').text())+1); // 회원 추천 수 증가
+                    } else { // 비추천 일 경우
+                        // 비추천 값 동적 증가
+                        $('#recommend_view_down').text(parseInt($('#recommend_view_down').text())+1); // 추천 수 증가
+                    }
+                }
+
+                if(data.result2 != 'undefined' && data.result2 == 0) { // 실패
+                    alert('오류!');
+                }
+            }
+        })
+}
+
+/** 2023/04/05 // 심규영 // 글 순서 선택 함수 */
+function comment_type_select($this) {
+    const sort = $this.data('sort'); // 정렬 값 가져오기
+    const sortName = $this.text(); // 정렬 이름 가져오기
+
+    $('#commentSortLayer').hide(); // 정렬 선택창 닫기
+
+    $('#comment_sort_txt').data('sort',sort).text(sortName); // 선택 값 변경
+
+    commentPageMove(1); // 1 페이지 로 새로고침
+}
 
 /** 2023/03/29 // 심규영 // 대댓글 등록 팝업창 띄우기 */
 /** 2023/04/02 // 심규영 // 대댓글 작성창 오류 fix */
@@ -53,9 +281,12 @@ const recommentWriteBoxOpen = function($this) {
     $('#comment_li_'+no).data("rcnt",$('#comment_li_'+no).data("rcnt") + 1); // 대댓글 갯수 증가
 }
 
-/** 2023/03/28 // 심규영 // 댓글 등록 함수 */
-/** 2023/04/04 // 심규영 // 댓글 동적 등록시 이벤트 실행 에러 해결 */
-// 댓글 등록 함수
+/**
+2023/03/28 // 심규영 // 댓글 등록 함수
+2023/04/04 // 심규영 // 댓글 동적 등록시 이벤트 실행 에러 해결
+2023/04/11 // 심규영 // 댓글 등록시 동적으로 댓글 개수 증가 추가
+댓글 등록 함수
+*/
 const commentWrite = function($this) {
     const no = $this.data("no"); // 게시물 번호
     const login_info = $this.data("login_info"); // 로그인 정보
@@ -105,35 +336,16 @@ const commentWrite = function($this) {
         success: function(data) {
             if(data.result > 0) {
                 // 성공
-                const $comment_li = $('#comment_sample').clone();
+                const $comment_li = setComment_box(data.commentVO);
 
-                $comment_li.attr('id','comment_li_'+data.commentVO.comment_num);
-                $comment_li.data('rcnt', 0); // 대댓글 개수 입력
-
-                $comment_li.find('.btn_reply_write_all').data("no",data.commentVO.comment_num); // 댓글 번호 입력
-                $comment_li.find('.btn_reply_write_all').click(function(){recommentWriteBoxOpen($(this));}); // 클릭 이벤트 함수 등록
-
-                if(data.commentVO.comment_login_status == 0) {
-                    $comment_li.find('.nickname').attr('title', data.commentVO.member_nick);
-                    $comment_li.find('.nickname > em').text(data.commentVO.member_nick);
-                    $comment_li.find('.ip').hide();
-                    $comment_li.find('.writer_nikcon > img').attr('title', data.commentVO.comment_uid_sub+' : 갤로그로 이동합니다.');
-                } else {
-                    $comment_li.find('.nickname').attr('title', data.commentVO.comment_nonmember_name);
-                    $comment_li.find('.nickname > em').text(data.commentVO.comment_nonmember_name);
-                    $comment_li.find('.nickname > span.ip').text('('+data.commentVO.comment_regip_sub+')');
-                    $comment_li.find('.writer_nikcon').html('');
-
-                    $('#comment_name').val('');
-                    $('#comment_password').val('');
-                }
-
-                $comment_li.find('.usertxt').text(data.commentVO.comment_content);
-                $comment_li.find('.date_time').text(new Date(new Date().getTime() + (9*60*60*1000)).toISOString().replace('T',' ').slice(0, -5));
-
-                $comment_li.show();
-
+                // 댓글 동적 등록
                 $('.cmt_list').append($comment_li);
+
+                // 게시물의 전체 댓글 개수 증가
+                $('#comment_total').text(parseInt($('#comment_total').text())+1);
+
+                // 동적 댓글 등록 전 현제 페이지가 1이 아닐 경우 1페이지로 돌아가기
+                if($('#cmt_paging > em').text != '1') commentPageMove(1);
 
                 $('#comment_content').val('');
             } else {
@@ -144,7 +356,10 @@ const commentWrite = function($this) {
     })
 }
 
-/** 2023/03/29 // 심규영 // 대댓글 등록 함수 */
+/**
+2023/03/29 // 심규영 // 대댓글 등록 함수
+2023/04/11 // 심규영 // 대댓글 동적 등록시 전체 댓글 개수 증가
+*/
 const re_comment_write = function($this) {
     const no = $this.data("no"); // 댓글 번호
     const login_info = $this.data("login_info"); // 로그인 정보
@@ -234,8 +449,19 @@ const re_comment_write = function($this) {
                 $re_comment.find('.usertxt').text(data.commentVO.re_comment_content);// 대댓글 내용
                 $re_comment.find('.date_time').text(new Date(new Date().getTime() + (9*60*60*1000)).toISOString().replace('T',' ').slice(0, -5));// 대댓글 작성 시간
 
+                $re_comment.find('.cmt_mdf_del').data('comment_no',data.commentVO.re_comment_oir_num); // 부모 댓글 번호
+                $re_comment.find('.cmt_mdf_del').data('re_comment_no',data.commentVO.re_comment_num); // 대댓글 번호
+                $re_comment.find('.cmt_mdf_del').data('article-no',data.commentVO.re_comment_article_num); // 댓글을 작성한 게시글 번호
+                $re_comment.find('.cmt_mdf_del').data('type', 'rcmt'); // 대댓글 타입
+                $re_comment.find('.cmt_mdf_del').data('my', 'Y');
+
+                $re_comment.find('.btn_cmt_delete').click(function(){removeCommentClick($(this));}); // 댓글 삭제 버튼 이벤트 등록
+
                 // 대댓글 동적 입력
                 $('#reply_list_'+no).append($re_comment);
+
+                // 대댓글 등록 후 전체 댓글 개수 증가
+                $('#comment_total').text(parseInt($('#comment_total').text())+1);
             } else {
                 // 실패
                 alert('실패!');
@@ -261,12 +487,15 @@ const commentPageMove = async function(pg){
     await setCommentLists(data);
 
     // 댓글 맨 위로 이동
-    location.href = '#focus_cmt';
+    //location.href = '#focus_cmt';
 }
 
-/** 2023/04/04 // 심규영 // 댓글 리스트 출력 함수 */
+/**
+2023/04/04 // 심규영 // 댓글 리스트 출력 함수
+2023/04/11 // 심규영 // 부모댓글이 삭제된 대댓글 처리
+*/
 async function setCommentLists(data){
-    for(const commentVO of data.commentLists.commentVOS){ // 댓글 반복 출력
+    data.commentLists.commentVOS.forEach((commentVO, index)=>{
         if(commentVO.comment_type == 0) { // 댓글 타입이 댓글 일때
             // 댓글 붙이기
             const $comment_li = setComment_box(commentVO);
@@ -291,6 +520,19 @@ async function setCommentLists(data){
                 $('#cmt_list').append($re_comment_none); // 대댓글 리스트 입력
             }
         } else { // 댓글 타입이 대댓글 일때
+            if(index != 0) { // 부모 댓글이 삭제 된 경우
+                $('<li>')
+                .append(
+                    $('<div>')
+                    .attr('class','cmt_info clear')
+                    .append(
+                        $('<div>').append(
+                            $('<p>').text('삭제된 댓글 입니다.')
+                        )
+                    )
+                ).appendTo('#cmt_list');
+            }
+
             const $re_comment_none = $('#re_comment_none_sample').clone(); // 대댓글 커버 샘플 복사
 
             $re_comment_none.attr('id',''); // id 지우기
@@ -306,7 +548,7 @@ async function setCommentLists(data){
 
             $('#cmt_list').append($re_comment_none);
         }
-    }
+    });
 }
 
 /** 2023/04/05 // 심규영 // 댓글 추가 함수 */
@@ -340,8 +582,19 @@ function setComment_box(commentVO){
 
     $comment_li.find('.date_time').text(commentVO.comment_rdate); // 작성 날짜 입력
 
-    $comment_li.find('.cmt_mdf_del').data('comment_no',commentVO.comment_num);
-    $comment_li.find('.cmt_mdf_del').data('article-no',commentVO.comment_article_num);
+    // 댓글이 회원 댓글이고 접속한 유저의 댓글일 경우
+    if(commentVO.comment_login_status == 0 && commentVO.comment_uid != $('#uid').val()){
+        $comment_li.find('.btn_cmt_delete').remove();
+        $comment_li.find('.cmt_mdf_del').data('my', 'Y');
+    } else {
+        $comment_li.find('.cmt_mdf_del').data('my', 'N');
+    }
+
+    $comment_li.find('.cmt_mdf_del').data('comment_no',commentVO.comment_num); // 댓글 번호
+    $comment_li.find('.cmt_mdf_del').data('article-no',commentVO.comment_article_num); // 댓글을 작성한 게시글 번호
+    $comment_li.find('.cmt_mdf_del').data('type', 'cmt'); // 댓글 타입
+
+    $comment_li.find('.btn_cmt_delete').click(function(){removeCommentClick($(this));}); // 댓글 삭제 버튼 이벤트 등록
 
     return $comment_li;
 }
@@ -372,6 +625,21 @@ function setRe_comment_box(reCommentVO){
 
     $re_comment_box.find('.usertxt').text(reCommentVO.comment_content); // 대댓글 내용 입력
     $re_comment_box.find('.date_time').text(reCommentVO.comment_rdate); // 대댓글 작성 날짜 입력
+
+    // 대댓글이 회원 대댓글이고 접속한 유저의 대댓글일 경우
+    if(reCommentVO.comment_login_status == 0 && reCommentVO.comment_uid != $('#uid').val()){
+        $re_comment_box.find('.btn_cmt_delete').remove();
+        $re_comment_box.find('.cmt_mdf_del').data('my', 'Y');
+    } else {
+        $re_comment_box.find('.cmt_mdf_del').data('my', 'N');
+    }
+
+    $re_comment_box.find('.cmt_mdf_del').data('comment_no',reCommentVO.comment_num); // 부모 댓글 번호
+    $re_comment_box.find('.cmt_mdf_del').data('re_comment_no',reCommentVO.re_comment_num); // 대댓글 번호
+    $re_comment_box.find('.cmt_mdf_del').data('article-no',reCommentVO.comment_article_num); // 댓글을 작성한 게시글 번호
+    $re_comment_box.find('.cmt_mdf_del').data('type', 'rcmt'); // 대댓글 타입
+
+    $re_comment_box.find('.btn_cmt_delete').click(function(){removeCommentClick($(this));}); // 댓글 삭제 버튼 이벤트 등록
 
     return $re_comment_box;
 }
@@ -410,7 +678,7 @@ const comment_papging = async function(pg) {
 
     for(let i = pagingDTO.groupStart; i <= pagingDTO.groupEnd; i++){
         if(pagingDTO.currentPage == i) $('<em>').text(i).appendTo('#cmt_paging');
-        else $('<a>').attr('href','javascript:commentPageMove('+i+')').text(i).appendTo('#cmt_paging');
+        else $('<a>').attr('href','#focus_cmt').attr('onclick','commentPageMove('+i+')').text(i).appendTo('#cmt_paging');
     }
 
     if(pagingDTO.groupEnd < pagingDTO.lastPage) { // 다음 페이지가 있을 경우

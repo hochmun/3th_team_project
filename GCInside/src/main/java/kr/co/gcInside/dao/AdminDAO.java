@@ -93,7 +93,7 @@ public interface AdminDAO {
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 불러오기
      */
-    public List<CreateVO> galleryRequestList();
+    public List<CreateVO> galleryRequestList(@Param("start") int start);
 
     /**
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설신청 리스트 총 개수
@@ -102,16 +102,35 @@ public interface AdminDAO {
     public int galleryRequestTotal();
 
     /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 리스트 총 개수
+     */
+    public int selectTargetmgalltotal();
+
+    /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 
      */
-    public List<CreateVO> searchByCategory(int category);
+    public List<CreateVO> searchByCategory(@Param("category") int category, @Param("start") int start);
 
     /**
      * 2023/03/28 // 김재준 // 관리자 갤러리 개설신청 카테고리 검색 총 개수
-     * @param category
      * @return
      */
     public int searchByCategoryTotal(int category);
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색
+     */
+    public List<galleryVO> searchByMinorCategory(@Param("category") int category, @Param("start") int start);
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 카테고리 검색 총 개수
+     */
+    public int searchByMinorCategoryTotal(int category);
+
+    /**
+     * 2023/04/14 // 김재준 // 관리자 갤러리 승급대상 불러오기
+     */
+    public List<galleryVO> selectTargethotmgall(@Param("start") int start);
 
     // upload
 
@@ -130,6 +149,11 @@ public interface AdminDAO {
      * 2023/03/27 // 김재준 // 갤러리 개설 반려사유 업데이트
      */
     public void updaterejectReason(CreateVO cvo);
+
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    public void updateMinorGalleryStatus(galleryVO gvo);
 
     // delete
 }

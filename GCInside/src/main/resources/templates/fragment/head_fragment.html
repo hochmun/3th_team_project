@@ -16,6 +16,7 @@
     <th:block th:fragment="mainHead">
         <meta charset="UTF-8">
         <title>CONNECTING HEARTS! 지시인사이드입니다.</title>
+        <link rel="stylesheet" th:href="@{/css/dark.css}">
         <link rel="stylesheet" th:href="@{/css/reset.css}">
         <link rel="stylesheet" th:href="@{/css/basic.css}">
         <link rel="stylesheet" th:href="@{/css/popup.css}">
@@ -23,10 +24,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-        <script th:src="@{/js/ctr_cookie.js}"></script>
         <script type="text/javascript" th:src="@{/js/navigation.js}"></script>
         <script type="text/javascript" th:src="@{/js/common.js}"></script>
+        <script type="text/javascript" th:src="@{/js/ctr_cookie.js}"></script>
         <script type="text/javascript" th:src="@{/js/lately_visit_new.js}"></script>
+        <script type="text/javascript" th:src="@{/js/main/realtime.js}"></script>
+        <script type="text/javascript" th:src="@{/js/main/hotlive.js}"></script>
+        <th:block th:replace="~{fragment/head_fragment::Gtag}"></th:block>
     </th:block>
 
     <!-- 2023/03/10 // 심규영 // 관리자 헤더 공통 -->
@@ -47,6 +51,7 @@
     <th:block th:fragment="minorHead">
         <meta charset="UTF-8">
         <title>Document</title>
+        <link rel="stylesheet" th:href="@{/css/dark.css}">
         <link rel="stylesheet" th:href="@{/css/minor/common.css}">
         <link rel="stylesheet" th:href="@{/css/popup.css}">
         <link rel="stylesheet" th:href="@{/css/reset.css}">
@@ -54,8 +59,10 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
         <script type="text/javascript" th:src="@{/js/navigation.js}"></script>
         <script type="text/javascript" th:src="@{/js/common.js}"></script>
+        <script type="text/javascript" th:src="@{/js/ctr_cookie.js}"></script>
         <script type="text/javascript" th:src="@{/js/minor/minorcreate.js}"></script>
         <script type="text/javascript" th:src="@{/js/minor/minorindex.js}"></script>
+        <th:block th:replace="~{fragment/head_fragment::Gtag}"></th:block>
     </th:block>
 
     <!-- 2023.03.17 // 라성준 // AD 헤드-->
@@ -71,6 +78,7 @@
     <!-- 2023/03/18 // 심규영 // 갤러리 board 헤더 공통 -->
     <th:block th:fragment="boardHead">
         <meta charset="UTF-8">
+        <link rel="stylesheet" th:href="@{/css/dark.css}">
         <link rel="shortcut icon" th:href="@{/img/logo_icon.png}" />
         <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}"/>
         <link rel="stylesheet" th:href="@{/css/minor/common.css}">
@@ -88,12 +96,15 @@
         <script type="text/javascript" th:src="@{/js/common.js}"></script>
         <script type="text/javascript" th:src="@{/js/lately_visit_new.js}"></script>
         <script type="text/javascript" th:src="@{/js/gall/gallery.js}"></script>
+        <script type="text/javascript" th:src="@{/js/gall/lately_visit_gallery.js}"></script>
+        <th:block th:replace="~{fragment/head_fragment::Gtag}"></th:block>
     </th:block>
 
     <!-- 2023.03.28 // 라성준 // 매니지먼트 헤드-->
     <th:block th:fragment="managementHead">
         <meta charset="UTF-8">
         <title>Document</title>
+        <link rel="stylesheet" th:href="@{/css/dark.css}">
         <link rel="stylesheet" th:href="@{/css/reset.css}">
         <link rel="stylesheet" th:href="@{/css/popup.css}">
         <link rel="stylesheet" th:href="@{/css/basic.css}">
@@ -115,8 +126,23 @@
         <script type="text/javascript" th:src="@{/js/navigation.js}"></script>
         <script type="text/javascript" th:src="@{/js/management/common.js}"></script>
         <script type="text/javascript" th:src="@{/js/lately_visit_new.js}"></script>
+        <script type="text/javascript" th:src="@{/js/ctr_cookie.js}"></script>
         <script type="text/javascript" th:src="@{/js/management/ctr_cookie.js}"></script>
         <script type="text/javascript" th:src="@{/js/management/managements.js}"></script>
+        <th:block th:replace="~{fragment/head_fragment::Gtag}"></th:block>
+    </th:block>
+
+    <!-- 2023/04/19 // 심규영 // 구글 애널리틱스 등록 헤드 -->
+    <th:block th:fragment="Gtag">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVLGGQ8XQG"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-TVLGGQ8XQG');
+        </script>
     </th:block>
 </head>
 <body>

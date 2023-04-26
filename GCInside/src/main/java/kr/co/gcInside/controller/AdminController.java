@@ -4,6 +4,8 @@ import kr.co.gcInside.dto.PagingDTO;
 import kr.co.gcInside.entity.UserEntity;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.AdminService;
+import kr.co.gcInside.service.MainService;
+import kr.co.gcInside.service.MinorService;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
 import lombok.extern.slf4j.Slf4j;
@@ -185,13 +187,30 @@ public class AdminController {
      * 2023/03/22 // 김재준 // 관리자 갤러리 개설 신청 list get 매핑
      */
     @GetMapping("admin/gallery/form_minor")
-    public String galleryRequestList(Model model) {
+    public String galleryRequestList(Model model,
+                                     @RequestParam Map<String, String> data) {
         // 카테고리명 불러오기용
         List<gall_cate2VO> cates = service.selectGalleryCates();
         // 갤러리 개설 신청 리스트 불러오기
-        List<CreateVO> list = service.galleryRequestList();
+        List<CreateVO> list = null;
+        int category = 0;
+
+        if (data.get("category") != null && !data.get("category").isEmpty()){
+            category = Integer.parseInt(data.get("category"));
+            int totalCount = service.searchByCategoryTotal(category);
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            list = service.searchByCategory(Integer.parseInt(data.get("category")), pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }else{
+            int totalCount = service.galleryRequestTotal();
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            list = service.galleryRequestList(pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }
+
         model.addAttribute("list", list);
         model.addAttribute("cates", cates);
+        model.addAttribute("selectedCategory", category);
 
         return "admin/gallery/form_minor";
     }
@@ -215,6 +234,9 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
+    /**
+     * 2023/03/27 // 김재준 // 갤러리 개설 반려사유 업데이트
+     */
     @PostMapping("admin/gallery/form_minor/reject")
     public String updaterejectReason(HttpServletRequest req, CreateVO cvo, Model model) {
 
@@ -226,13 +248,54 @@ public class AdminController {
         return "redirect:/admin/gallery/form_minor";
     }
 
-    @GetMapping("/admin/gallery/form_minor/searchByCategory")
-    @ResponseBody
-    public List<CreateVO> searchByCategory(@RequestParam("category") String category) {
-        if(category.isEmpty()) {
-            return service.galleryRequestList();
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    @Autowired
+    private MinorService minorService;
+
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급대상 list
+     */
+    @GetMapping("admin/gallery/advan_main")
+    public String advanceToMainList(Model model,
+                                    @RequestParam Map<String, String> data) {
+        // 카테고리명 불러오기용
+        List<gall_cate2VO> cates = service.selectGalleryCates();
+
+        // 메인 갤러리 승급대상 리스트 불러오기
+        minorService.minorinit();
+        List<galleryVO> hot_mgall = null;
+        int category = 0;
+
+        if (data.get("category") != null && !data.get("category").isEmpty()){
+            category = Integer.parseInt(data.get("category"));
+            int totalCount = service.searchByMinorCategoryTotal(category);
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            hot_mgall = service.searchByMinorCategory(Integer.parseInt(data.get("category")), pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
+        }else{
+            int totalCount = service.selectTargetmgalltotal();
+            PagingDTO pagingDTO = new PagingUtil().getPagingDTO(data.get("pg"), totalCount);
+            hot_mgall = service.selectTargethotmgall(pagingDTO.getStart());
+            model.addAttribute("pagingDTO", pagingDTO);
         }
 
-        return service.searchByCategory(Integer.parseInt(category));
+        model.addAttribute("rankdiff",minorService.rankdiff());
+        model.addAttribute("hot", hot_mgall);
+        model.addAttribute("cates", cates);
+        model.addAttribute("selectedCategory", category);
+
+        return "admin/gallery/advan_main";
+    }
+
+    /**
+     * 2023/04/11 // 김재준 // 메인 갤러리 승급
+     */
+    @PostMapping("admin/gallery/advan_main/advance")
+    public String advanceToMainList(galleryVO gvo) {
+        service.updateMinorGalleryStatus(gvo);
+
+        return "redirect:/admin/gallery/advan_main";
     }
 }

@@ -38,6 +38,8 @@ public class SecurityConfig {
 		.expiredUrl("/index") // 세션이 만료되었을때 리디렉션할 주소
 		.sessionRegistry(sessionRegistry());
 
+		// 최고관리자만 관리자페이지 접근가능
+		http.authorizeRequests().antMatchers("/admin/**").hasAnyRole("7");
 		// 전체 접근 가능
 		http.authorizeRequests().antMatchers("/index").permitAll();
 		

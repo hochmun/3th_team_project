@@ -187,51 +187,15 @@ function chk_all(elm, chk_elm) {
 		$(chk_elm).prop('checked', false);
 	}
 }
-
-//갤러리 이름 체크
-function chk_name() {
-	var mgall_name_new	= $("#mg_name").val();
-	var mgall_name_org	= $("#mg_name").attr('data-org');
-	var reason			= $("#reason").val();
-	
-	if(mgall_name_new == ''){
-		return;
-	}
-
-	if(mgall_name_org === mgall_name_new) {
-		$('.name_fail_msg').hide().siblings('.tiptxt').show();
-		return;
-	}
-
-	$.ajax({
-		type: "POST",
-		url: "/ajax/managements_ajax/chk_name",
-		data: { 'ci_t' : csrf_token, 'gallery_id': mgall_id, '_GALLTYPE_': _GALLERY_TYPE_, 'ko_name': mgall_name_new ,'reason' : reason },
-		dataType : 'json',
-		cache : false,
-		async : false,
-		success: function(ajaxData) {
-			if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
-				if(ajaxData.msg == '이미 존재합니다.') {
-					if(_GALLERY_TYPE_ == 'M') {
-						var pathname = location.pathname.split('/');
-						ajaxData.msg += ' <a href="/'+ pathname[1] +'/board/lists/?id=' + ajaxData.exists_info['NAME']+ '" class="link_visit golnk" href="" target="_blank">방문하기></a>';
-					}
-				}
-				$('.name_fail_msg').html('<b class="font_red point-red">X</b> ' + ajaxData.msg).show().siblings('.tiptxt').hide();
-			}
-			else {
-				$('.name_fail_msg').hide().siblings('.tiptxt').show();
-			}
-		}
-	});
-}
-
+/////////////////////////////////////////////////////////////////////////
+/////////              2023.04.17.라성준            //////////////////////
+/////////////////////////////////////////////////////////////////////////
 // 갤러리 이름 변경
 function update_name() {
-    var mgall_name_new	= $("#mg_name").val();
-    var mgall_name_org	= $("#mg_name").attr('data-org');
-    var reason			= $("#reason").val();
+    var mgall_name_new = $("#mg_name").val();
+    var mgall_name_org = $("#mg_name").attr('data-org');
+    var reason = $("#reason").val();
+    const grade = $('#grade').val();
 
     if(mgall_name_new == ''){
         alert('이름을 입력해주세요.');
@@ -239,100 +203,95 @@ function update_name() {
     }
 
     if(mgall_name_org === mgall_name_new) {
-        alert('기존 이름과 동일 합니다.');
+        alert('기존 이름과 동일합니다.');
         return;
     }
 
+    var data = {
+        "id": $("#mg_name").data('id'),
+        "oriDetail": mgall_name_org,
+        "newDetail": mgall_name_new, // 변경된 이름을 전달
+        "reason": reason,
+        "grade":grade,
+        "cate" : "gell_cate",
+        "content" : "content"
+    };
+
+    console.log(data);
+    console.log(JSON.stringify(data));
+
     $.ajax({
-        type: "POST",
-        url: "/ajax/managements_ajax/request_update_name",
-        data: { 'ci_t' : csrf_token, 'gallery_id': mgall_id, '_GALLTYPE_': _GALLERY_TYPE_, 'ko_name': mgall_name_new ,'reason' : reason },
-		dataType : 'json',
-        cache : false,
-        async : false,
+        url: '/GCInside/gall/management/index',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        dataType: 'json',
         success: function(ajaxData) {
-        	
-			if(ajaxData.result == "success") {
-				if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
-					alert(ajaxData.msg);
-				}
-				location.reload(true);
-			} else {
-				if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
-					if(ajaxData.msg == '이미 존재합니다.') {
-						if(_GALLERY_TYPE_ == 'M') {
-							ajaxData.msg += ' <a href="//gall.dcinside.com/' + ajaxData.exists_info['NAME']+ '" class="link_visit golnk" href="" target="_blank">방문하기></a>';
-						}
-					}
-					$( ".name_fail_msg" ).html( "<b class='font_red point-red'>X</b> " + ajaxData.msg).show();
-				}
-			}
-		}
+        console.log("ajaxData.result : ",ajaxData.result);
+        if(ajaxData.result == true) {
+            console.log('확인');
+            location.reload();
+        }
+        if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.');
+        if(ajaxData.result == -2) alert('로그인 하셔야 합니다.');
+        if(ajaxData.result == -3) alert('7일 이내 변경하실 수 없습니다.');
+
+        /*
+            if(ajaxData.result == "success") {
+                if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
+                    alert(ajaxData.msg);
+                }
+                location.reload(true);
+            } else {
+                if(typeof(ajaxData.msg) != 'undefined' && ajaxData.msg) {
+                    $( ".name_fail_msg" ).html( "<b class='font_red point-red'>X</b> " + ajaxData.msg).show();
+                }
+            }
+            */
+        }
     });
-}
-
-//설명 체크
-function chk_desc() {
-	var strGalleryDesc = $("#mg_desc").val();
-
-	if($('#mg_desc').attr('data-checked') == strGalleryDesc) {
-		return true;
-	}
-	
-	$.ajax({
-      type: "POST",
-      url: "/ajax/minor_ajax/chk_description",
-      data: { 'ci_t' : csrf_token, 'description': strGalleryDesc },
-	  dataType : 'json',
-      cache : false,
-      async : false,
-      success: function(ajaxData) {
-			$(".desc .alert_txt").remove();
-        	
-			if(typeof(ajaxData.msg) != 'undefined') {
-				var tmpl = $('#error_msg-tmpl').tmpl([{'icon' : 'X', 'msg' : ajaxData.msg}]);
-				
-				if($('.alert-ct-box').index() < 0) {
-					$('.desc .max_txt').before(tmpl);
-				}
-				else {
-					$('.alert-ct-box').append(tmpl);
-				}
-			}
-			
-			if(ajaxData.result == "success") {
-				$(".mdesc_alert_txt").hide();
-				$('#mg_desc').attr('data-checked', strGalleryDesc);
-			}
-			else {
-				return false;
-			}
-		}
-  });
-	
-  return true;
 }
 
 // 갤러리 설명 변경
 function update_desc() {
-    var mgall_desc = $("#mg_desc").val();
+    var mgall_name = $("#mg_name").text();
+    var mgall_desc = $("#mg_desc").val(); // 설명
     var result = null;
-	
+    const grade = $('#grade').val();
+
+    console.log('mg_name: ' + mgall_desc);
+    console.log('mg_desc: ' + mgall_desc);
+
     if(mgall_desc.trim() == ''){
         alert($("#mg_desc").attr('placeholder'));
         return;
     }
-    
+    // data 변수 선언
+    var data = {
+        "oriDetail": mgall_desc,
+        "newDetail": mgall_desc,
+        "id": $("#mg_name").data('id'),
+        "grade" : grade,
+        "cate" : "gell_cate",
+        "content" : "info"
+    };
+
     $.ajax({
-        type: "POST",
-        url: "/ajax/managements_ajax/update_desc",
-        data: { 'ci_t' : csrf_token, 'gallery_id': mgall_id, '_GALLTYPE_': _GALLERY_TYPE_, 'desc': mgall_desc },
-		dataType : 'json',
-        cache : false,
-        async : false,
-        success: function(ajaxData) {
+          url: '/GCInside/gall/management/index',
+          method: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+    	  dataType : 'json',
+          success: function(ajaxData) {
+          console.log("ajaxData.result : ",ajaxData.result);
+          if(ajaxData.result == true) {
+                      console.log('확인');
+                      location.reload();
+                  }
 			$(".desc .alert_txt").remove();
-        	
+			if(ajaxData.result == -1) alert('이미 사용된 갤러리명 입니다.');
+        	if(ajaxData.result == -2) alert('로그인 하셔야 합니다.');
+        	if(ajaxData.result == -3) alert('7일 이내 변경하실 수 없습니다.');
 			if(ajaxData.result == "success") {
 				$('.set_enable .set_cancel').click();
 				$('#mg_desc').val(mgall_desc);
@@ -341,7 +300,7 @@ function update_desc() {
 			}
 			else if(typeof(ajaxData.msg) != 'undefined') {
 				var tmpl = $('#error_msg-tmpl').tmpl([{'icon' : 'X', 'msg' : ajaxData.msg}]);
-				
+
 				if($('.alert-ct-box').index() < 0) {
 					$('.desc .max_txt').before(tmpl);
 				}
@@ -349,14 +308,17 @@ function update_desc() {
 					$('.alert-ct-box').append(tmpl);
 				}
 			}
-			
+
 			result = ajaxData.result;
-        }
+        },
+        error: function(textStatus, errorThrown) {
+                    console.log("Error: ", errorThrown);
+         }
     });
-    
+
     return result == "success";
 }
-
+///////////////////////2023.04.17.라성준end////////////////////////
 // 카테고리 변경
 function update_category() {
     var mgall_org_category = $('#category_ul').attr('data-org');
