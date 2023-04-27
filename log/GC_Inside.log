@@ -1,0 +1,28 @@
+2023-04-27 16:46:31.421  INFO 7760 --- [restartedMain] kr.co.gcInside.GcInsideApplication       : Starting GcInsideApplication using Java 17.0.4 on DESKTOP-1FFOQKL with PID 7760 (C:\Users\G\Desktop\workspace\3th_team_project\GCInside\build\classes\java\main started by G in C:\Users\G\Desktop\workspace\3th_team_project)
+2023-04-27 16:46:31.426  INFO 7760 --- [restartedMain] kr.co.gcInside.GcInsideApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-04-27 16:46:31.474  INFO 7760 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-27 16:46:31.475  INFO 7760 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-27 16:46:32.093  INFO 7760 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-27 16:46:32.146  INFO 7760 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 1 JPA repository interfaces.
+2023-04-27 16:46:32.862  INFO 7760 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-27 16:46:32.873  INFO 7760 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-27 16:46:32.874  INFO 7760 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-27 16:46:32.946  INFO 7760 --- [restartedMain] o.a.c.c.C.[.[localhost].[/GCInside]      : Initializing Spring embedded WebApplicationContext
+2023-04-27 16:46:32.946  INFO 7760 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1471 ms
+2023-04-27 16:46:33.137  INFO 7760 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-27 16:46:33.207  INFO 7760 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-27 16:46:33.385  INFO 7760 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-27 16:46:33.474  INFO 7760 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-27 16:46:33.698  INFO 7760 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-27 16:46:33.727  INFO 7760 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-04-27 16:46:34.534  INFO 7760 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-27 16:46:34.549  INFO 7760 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-27 16:46:35.225  INFO 7760 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2e56bb80, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23cb7a64, org.springframework.security.web.context.SecurityContextPersistenceFilter@7c5c5206, org.springframework.security.web.header.HeaderWriterFilter@7e5b3c8e, org.springframework.security.web.authentication.logout.LogoutFilter@218cb594, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@31b794ea, org.springframework.security.web.session.ConcurrentSessionFilter@7adbde14, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6688bd8d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2079fdb9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3b0d4077, org.springframework.security.web.session.SessionManagementFilter@41c65fe, org.springframework.security.web.access.ExceptionTranslationFilter@11caa4f6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@629ce9f]
+2023-04-27 16:46:35.270  WARN 7760 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-27 16:46:35.390  INFO 7760 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2023-04-27 16:46:35.585  INFO 7760 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-04-27 16:46:35.609  INFO 7760 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/GCInside'
+2023-04-27 16:46:35.618  INFO 7760 --- [restartedMain] kr.co.gcInside.GcInsideApplication       : Started GcInsideApplication in 4.539 seconds (JVM running for 4.889)
+2023-04-27 16:46:37.145  INFO 7760 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/GCInside]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-27 16:46:37.145  INFO 7760 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-04-27 16:46:37.146  INFO 7760 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

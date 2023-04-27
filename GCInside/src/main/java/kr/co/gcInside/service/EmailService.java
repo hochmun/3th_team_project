@@ -6,6 +6,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,10 @@ import javax.servlet.http.HttpSession;
 
 @Service
 public class EmailService {
+    @Value("${spring.mail.username}")
+    private String username;
+    @Value("${spring.mail.password}")
+    private String password;
     private final JavaMailSender javaMailSender;
     @Autowired
     private MemberService service;
@@ -25,10 +30,10 @@ public class EmailService {
         HtmlEmail email = new HtmlEmail();
         email.setHostName("smtp.gmail.com");
         email.setSmtpPort(587);
-        // username, password 로변경하면 더 깔끔함
-        email.setAuthenticator(new DefaultAuthenticator("aowlrxm14@gmail.com", "sblqlxuvyupqvjgf"));
+        // username, password 로변경하면 더 깔끔함 .gitignore에 제외파일설정할 필요 X
+        email.setAuthenticator(new DefaultAuthenticator(username, password));
         email.setSSLOnConnect(true);
-        email.setFrom("aowlrxm14@gmail.com", "관리자"); //메일발송시 보내는이메일,이름
+        email.setFrom(username, "관리자"); //메일발송시 보내는이메일,이름
         email.addTo(toEmail);
         email.setSubject(subject);
         email.setCharset("utf-8"); 
