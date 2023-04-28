@@ -77,7 +77,7 @@
 
 ##### 메인 index - hotlive 화면 및 코드 리뷰 [영상 링크](https://youtu.be/Vxetxo97J48)
 
-##### 메인 index - 신설갤 , 갤러리 순회 동적 화면[영상 링크](https://youtu.be/r--tQlBxEDg)
+##### 메인 index - 신설갤 , 갤러리 순회 동적 화면[영상 링크](https://youtu.be/hW6UC7NIQeU)
 
 ##### 메인 갤러리 index 화면 [영상 링크](https://youtu.be/m1OGmW2l1Ms)
 
