@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td>개발기간</td>
-    <td>2023.02.27 ~  (총 일)</td>
+    <td>2023.02.27 ~ 2023.04.28 (총 44 일)</td>
   </tr>
 </table>
 
@@ -63,9 +63,9 @@
 
 ### <a href="데이터베이스 테이블 명세서.pdf" target="_blank">테이블 명세서</a>
 
-### <a href="GCInside 발표 보고서_v.1.0.pdf" target="_blank">발표 보고서</a>
+### <a href="GCInside 발표 보고서_v.1.1.pdf" target="_blank">발표 보고서</a>
 
-### <a href="GCInside 완료 보고서 v.1.0.pdf" target="_blank">완료 보고서</a>
+### <a href="GCInside 완료 보고서 v.1.1.pdf" target="_blank">완료 보고서</a>
 
 ## 프로젝트 시연 영상
 
