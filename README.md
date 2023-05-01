@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td>개발기간</td>
-    <td>2023.02.27 ~  (총 일)</td>
+    <td>2023.02.27 ~ 2023.04.28 (총 44 일)</td>
   </tr>
 </table>
 
@@ -63,65 +63,65 @@
 
 ### <a href="데이터베이스 테이블 명세서.pdf" target="_blank">테이블 명세서</a>
 
-### <a href="GCInside 발표 보고서_v.1.0.pdf" target="_blank">발표 보고서</a>
+### <a href="GCInside 발표 보고서_v.1.1.pdf" target="_blank">발표 보고서</a>
 
-### <a href="GCInside 완료 보고서 v.1.0.pdf" target="_blank">완료 보고서</a>
+### <a href="GCInside 완료 보고서 v.1.1.pdf" target="_blank">완료 보고서</a>
 
 ## 프로젝트 시연 영상
 
 ### 메인
 
-#### 메인 index - 실시간 베스트 화면 및 코드 리뷰 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
+##### 메인 index - 실시간 베스트 화면 및 코드 리뷰 [영상 링크](https://youtu.be/uLfhJU0sn8Q)
 
-#### 메인 index - hit 갤러리 화면 [영상 링크](https://youtu.be/5DrsYEyenBA)
+##### 메인 index - hit 갤러리 화면 [영상 링크](https://youtu.be/5DrsYEyenBA)
 
-#### 메인 index - hotlive 화면 및 코드 리뷰 [영상 링크](https://youtu.be/Vxetxo97J48)
+##### 메인 index - hotlive 화면 및 코드 리뷰 [영상 링크](https://youtu.be/Vxetxo97J48)
 
-#### 메인 index - 신설갤 , 갤러리 순회 동적 화면[영상 링크](https://youtu.be/r--tQlBxEDg)
+##### 메인 index - 신설갤 , 갤러리 순회 동적 화면[영상 링크](https://youtu.be/hW6UC7NIQeU)
 
-#### 메인 갤러리 index 화면 [영상 링크](https://youtu.be/m1OGmW2l1Ms)
+##### 메인 갤러리 index 화면 [영상 링크](https://youtu.be/m1OGmW2l1Ms)
 
-#### 마이너 갤러리 index 화면, create 화면 [영상 링크](https://www.youtube.com/watch?v=1YMY5VE6_1I)
+##### 마이너 갤러리 index 화면, create 화면 [영상 링크](https://www.youtube.com/watch?v=1YMY5VE6_1I)
 
 ### 어드민
 
-#### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
+##### 약관 관리 <a href="https://youtu.be/K-pLIiRn1VA">영상 링크</a>
 
-#### 페이지 회원 조회 <a href="https://youtu.be/tZda_Dt6aiY">영상 링크</a>
+##### 페이지 회원 조회 <a href="https://youtu.be/tZda_Dt6aiY">영상 링크</a>
 
-#### 갤러리 목록 <a href="https://youtu.be/q88HcmSWT_0">영상 링크</a>
+##### 갤러리 목록 <a href="https://youtu.be/q88HcmSWT_0">영상 링크</a>
 
-#### 메인 갤러리 승급 화면 [영상 링크](https://www.youtube.com/watch?v=tnzULnXnbHI)
+##### 메인 갤러리 승급 화면 [영상 링크](https://www.youtube.com/watch?v=tnzULnXnbHI)
 
-#### 갤러리 개설 신청 화면 [영상 링크](https://www.youtube.com/watch?v=wee0dBkpsT8)
+##### 갤러리 개설 신청 화면 [영상 링크](https://www.youtube.com/watch?v=wee0dBkpsT8)
 
-#### 메인 갤러리 생성 화면 [영상 링크](https://www.youtube.com/watch?v=YeLBrboCUt8)
+##### 메인 갤러리 생성 화면 [영상 링크](https://www.youtube.com/watch?v=YeLBrboCUt8)
 
 ### 회원
 
-#### 회원가입 화면 [영상 링크](https://youtu.be/ZFMk7FDDPWs)
+##### 회원가입 화면 [영상 링크](https://youtu.be/ZFMk7FDDPWs)
 
-#### 아이디 찾기 화면 [영상 링크](https://youtu.be/l5SSGEqpfSw)
+##### 아이디 찾기 화면 [영상 링크](https://youtu.be/l5SSGEqpfSw)
 
-#### 비밀번호 찾기 화면 [영상 링크](https://youtu.be/SSn_tVNFYJM)
+##### 비밀번호 찾기 화면 [영상 링크](https://youtu.be/SSn_tVNFYJM)
 
 ### 갤러리
 
-#### 게시글 등록 <a href="https://youtu.be/ap8V5fvCfK4">영상 링크</a>
+##### 게시글 등록 <a href="https://youtu.be/ap8V5fvCfK4">영상 링크</a>
 
-#### 게시글 수정 및 삭제 [영상 링크](https://youtu.be/BXls7cgZgMA)
+##### 게시글 수정 및 삭제 [영상 링크](https://youtu.be/BXls7cgZgMA)
 
-#### 게시글 댓글 및 대댓글 등록 [영상 링크](https://youtu.be/1cZj-BSjqfw)
+##### 게시글 댓글 및 대댓글 등록 [영상 링크](https://youtu.be/1cZj-BSjqfw)
 
-#### 게시글 댓글 및 대댓글 삭제, 코드 리뷰 [영상 링크](https://youtu.be/aTu2yHi7Jgk)
+##### 게시글 댓글 및 대댓글 삭제, 코드 리뷰 [영상 링크](https://youtu.be/aTu2yHi7Jgk)
 
-#### 갤러리 기본 설정 [영상 링크](https://youtu.be/W8QlFZlhHY0)
+##### 갤러리 기본 설정 [영상 링크](https://youtu.be/W8QlFZlhHY0)
 
 ### 기타
 
-#### 회사 소개 및 광고 안내 <a href="https://youtu.be/nnitNql7x_c">영상 링크</a>
+##### 회사 소개 및 광고 안내 <a href="https://youtu.be/nnitNql7x_c">영상 링크</a>
 
-#### 이용 약관 <a href="https://youtu.be/5i63PxGmoPA">영상 링크</a>
+##### 이용 약관 <a href="https://youtu.be/5i63PxGmoPA">영상 링크</a>
 
 
 ## 팀 구성
