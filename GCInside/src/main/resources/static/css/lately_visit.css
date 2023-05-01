@@ -31,7 +31,7 @@
 .width1160 .visit_bookmark{width:1160px}
 .width868 .visit_bookmark{width:868px}
 .width1000 .visit_bookmark{width:1000px}
-.visit_bookmark .newvisit_history{margin:0 0 10px;width:100%!important;position:relative!important}
+.visit_bookmark .newvisit_history{margin:0 0 10px;width:100%!important;position:relative!important;float:left;}
 .visit_bookmark .newvisit_history::before{border-width:0 1px 1px}
 .visit_bookmark .newvisit_history .btn_open{position:relative;left:0;top:12px;float:left;display:block;width:15px;height:15px;margin-left:10px}
 .visit_bookmark .newvisit_history .btn_open .icon_listmore{display:inline-block;width:15px;height:15px;background-position:-56px -168px;margin-top:0;vertical-align:top }
