@@ -56,12 +56,13 @@
         ;
     </select>
 
-    <!-- 2023/03/27 // 라성준 // 메인 인덱스 갤러리 순회 무작위 불러오기 -->
+    <!-- 2023/03/27 // 라성준 // 메인 인덱스 갤러리 순회 무작위 불러오기
+         2023/05/02 // 심규영 // 조건을 한달 이내 갤러리에서 갤러리 상태가 공개인 갤러리로 변경 -->
     <select id="MainIndexRollingGall" resultType="kr.co.gcInside.vo.galleryVO">
         SELECT
         gell_num, gell_cate, gell_name, gell_address, gell_grade
         FROM gc_gell
-        WHERE gell_rdate >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+        WHERE gell_status = 0
         ORDER BY RAND()
         LIMIT 0, 10;
     </select>
