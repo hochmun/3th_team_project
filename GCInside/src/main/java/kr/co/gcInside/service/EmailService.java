@@ -14,13 +14,15 @@ import javax.servlet.http.HttpSession;
 
 @Service
 public class EmailService {
-    @Value("${spring.mail.username}")
-    private String username;
-    @Value("${spring.mail.password}")
-    private String password;
     private final JavaMailSender javaMailSender;
     @Autowired
     private MemberService service;
+
+    @Value("${spring.mail.username}")
+    private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
 
     @Autowired
     public EmailService(JavaMailSender javaMailSender) {

@@ -110,36 +110,39 @@ public class MinorService {
             List<galleryVO> yesterday = dao.mgallyesterdayrank();
             List<galleryVO> resultList = new ArrayList<>();
 
-                if(yesterday.isEmpty()) {
-                    for (galleryVO to : today) {
+            if (yesterday.isEmpty()) {
+                for (galleryVO to : today) {
+                    galleryVO gelldiff = new galleryVO();
+                    gelldiff.setGell_num(to.getGell_num());
+                    gelldiff.setGell_today_rank(to.getGell_today_rank());
+                    gelldiff.setGell_rank_diff(0);
+                    resultList.add(gelldiff);
+                }
+            } else {
+                for (galleryVO to : today) {
+                    boolean found = false;
+                    for (galleryVO yes : yesterday) {
+                        if (yes.getGell_num() == to.getGell_num()) {
+                            int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
+                            galleryVO gelldiff = new galleryVO();
+                            gelldiff.setGell_num(yes.getGell_num());
+                            gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
+                            gelldiff.setGell_today_rank(to.getGell_today_rank());
+                            gelldiff.setGell_rank_diff(diff);
+                            resultList.add(gelldiff);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
                         galleryVO gelldiff = new galleryVO();
                         gelldiff.setGell_num(to.getGell_num());
                         gelldiff.setGell_today_rank(to.getGell_today_rank());
                         gelldiff.setGell_rank_diff(0);
                         resultList.add(gelldiff);
                     }
-                    }
-                else{
-                    for (galleryVO yes : yesterday) {
-                        for (galleryVO to : today) {
-                            if (yes.getGell_num() == to.getGell_num()) {
-                                int diff = yes.getGell_yesterday_rank() - to.getGell_today_rank();
-                                galleryVO gelldiff = new galleryVO();
-                                gelldiff.setGell_num(yes.getGell_num());
-                                gelldiff.setGell_yesterday_rank(yes.getGell_yesterday_rank());
-                                gelldiff.setGell_today_rank(to.getGell_today_rank());
-                                gelldiff.setGell_rank_diff(diff);
-                                resultList.add(gelldiff);
-                            } else {
-                                galleryVO gelldiff = new galleryVO();
-                                gelldiff.setGell_num(to.getGell_num());
-                                gelldiff.setGell_today_rank(to.getGell_today_rank());
-                                gelldiff.setGell_rank_diff(0);
-                                resultList.add(gelldiff);
-                            }
-                        }
-                    }
                 }
+            }
             return resultList;
         }
 

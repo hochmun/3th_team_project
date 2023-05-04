@@ -15,7 +15,6 @@ $(()=>{
 
 /** 2023/04/21 // 심규영 // 실북갤 함수 생성 */
 const hotLiveFunction = () => {
-
     // 갤러리 리스트 호출 함수
     const pageLoadAjax = (jsonData) => {
         return new Promise(function(resolve, reject){
@@ -68,7 +67,6 @@ const hotLiveFunction = () => {
             ).appendTo('.hotlive .'+gall_type+'_'+page);
         });
     }
-
 
     // 페이지 출력 시작 함수
     const pageLoad = async (gall_type, page) => {
@@ -145,7 +143,6 @@ const hotLiveFunction = () => {
 
 /** 2023/04/26 // 심규영 // 갤러리 랭킹 함수 */
 const hotFunction = () => {
-
     // 갤러리 리스트 호출 함수
     const pageLoadAjax = (jsonData) => {
         return new Promise(function(resolve, reject){
