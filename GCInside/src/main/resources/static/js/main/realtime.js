@@ -21,7 +21,7 @@ const realtimeFunction = (mode) => {
                     $('<div>').attr('class','box besttxt').append(
                         $('<p>').text(articleVO.article_title)
                     ).append(
-                        $('<span>').attr('class','num').text('['+articleVO.article_comment_count+'}')
+                        $('<span>').attr('class','num').text('['+articleVO.article_comment_count+']')
                     )
                 ).append(
                     $('<div>').attr('class','box best_info').append(
