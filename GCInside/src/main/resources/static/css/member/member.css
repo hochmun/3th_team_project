@@ -1,5 +1,8 @@
 /* 헤더 */
 /* 23-03-08 로컬로 실행시 백그라운드 이미지적용안되서 경로수정 (../../img/) */
+/* 사용 되는 곳
+    이용 약관 페이지
+ */
 .gcheader.bg{background:#29367c}
 .gcheader.bg .gc_logo{top:30px}
 .gcheader.bg .area_links{top:47px}
@@ -7,7 +10,7 @@
 .gcheader.bg .gchead{height:85px}
 .width868 .gchead{width: 868px;}
 .gchead{position: relative; margin: 0 auto;}
-.gcheader.bg .gc_logo {top: 30px;}
+.gcheader.bg .gc_logo {top: 2px;}
 .gc_logo {
     overflow: hidden;
     position: absolute;
