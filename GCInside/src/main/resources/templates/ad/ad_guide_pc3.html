@@ -17,25 +17,7 @@
   <!--//스킵 내비게이션-->
   <div class="gc_adwrap sub">
     <!-- GNB -->
-    <div id="gmenu_wrap">
-      <div class="gnb_bar">
-  <div class="inner clear">
-    <h1 class="gc_logo">
-      <a th:href="@{/index}">
-        <img th:src="@{/img/gcin_logo3.png}" alt="디시인사이드">
-      </a>
-    </h1>
-    <div style="position:relative;float:right">
-      <ul class="gmenu_list clear">
-        <li><a th:href="@{/ad/index}">광고안내</a></li>
-        <li><a th:href="@{/ad/ad_guide_pc2}"> 광고 상품 및 가이드</a></li>
-        <li><a th:href="@{#@gmail.com}">광고문의</a></li>
-      </ul>
-    </div>
-  </div>
-
-</div>
-</div>
+    <div id="gmenu_wrap" th:replace="~{ad/ad_guide_app1::ad_gnb}"></div>
 <!-- //GNB -->
 
 <!-- 본문 -->
