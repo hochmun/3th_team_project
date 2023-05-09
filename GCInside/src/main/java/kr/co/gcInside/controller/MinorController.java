@@ -35,6 +35,7 @@ public class MinorController{
 
     /**
      * 2023/03/28 // 김동민 // 마이너 인덱스 순위변동 기능구현 중
+     * 2023/05/04 // 심규영 // 헤더 이름 구분 추가 // sName
      * @param model
      * @return
      */
@@ -54,6 +55,7 @@ public class MinorController{
         model.addAttribute("hot_mgall",hot_mgall);
         model.addAttribute("new_mgall",new_mgall);
         model.addAttribute("mgall",mgall);
+        model.addAttribute("sName","마이너 갤러리");
         return "gall/mgall/index";
     }
 
