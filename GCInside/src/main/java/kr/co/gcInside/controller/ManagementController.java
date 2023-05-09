@@ -49,6 +49,7 @@ public class ManagementController {
         if (stringObjectMap == null) {
             return "error/wrongURL";  // 가져온 정보가 없는 경우 에러 페이지를 반환한다.
         }
+
         stringObjectMap.put("gell_address", gell_address); // 가져온 정보에 갤러리 주소를 추가한다.
         model.addAttribute("stringObjectMap", stringObjectMap); // 모델에 가져온 정보를 추가한다.
 

@@ -68,6 +68,8 @@ public class ManagementService {
             return false;
         }
 
+        log.info(stringObjectMap.toString());
+
         model.addAttribute("stringObjectMap", stringObjectMap);
         return true;
     }
