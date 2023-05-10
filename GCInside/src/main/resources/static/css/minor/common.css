@@ -69,6 +69,7 @@ max-width:416px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;color:
 .page_head .fixtit{color:#585857}
 .rank_list a:after{display:table;clear:both;table-layout:fixed;content:""}
 /*마이너 갤러리 만들기 */
+.minor_make .page_head {height:60px;margin-bottom:3px;padding-top:4px} /* 23/05/10 김재준_마이너 갤러리 만들기 헤더수정 */
 .minor_make .page_head > .fl h2{width:100%}
 .page_head .img_txt{vertical-align:-3px}
 .minor_make_wrap{border-top:2px #29367c solid;border-bottom:2px #29367c solid}
