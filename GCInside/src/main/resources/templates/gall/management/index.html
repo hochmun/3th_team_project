@@ -64,12 +64,12 @@
                 <div class="page_head clear">
                     <div class="fl clear">
 
-                        <div class="lock"><em class="sp_img icon_minilock"></em><span class="blind">비공개</span></div>
+                        <div class="lock" th:if="stringObjectMap.gell_status == 1"><em class="sp_img icon_minilock"></em><span class="blind">비공개</span></div>
 
                         <h2>
-                            <a th:href="|@{/}mgall/board/lists?id=${stringObjectMap.gell_address}|">
+                            <a th:href="|@{/}${stringObjectMap.gell_grade == 0 ? 'm' : stringObjectMap.gell_grade == 1 ? 'mgall' : 'mini'}/board/lists?id=${stringObjectMap.gell_address}|">
                                 <span th:text="|${stringObjectMap.gell_name} 갤러리|">ㅇㅇㅇ  갤러리</span>
-                                <div class="pagehead_titicon ngall sp_img">
+                                <div class="pagehead_titicon sp_img" th:classappend="${stringObjectMap.gell_grade == 0 ? '' : stringObjectMap.gell_grade == 1 ? 'mgall' : 'ngall'}">
                                     <span class="blind">미니</span>
                                 </div>
                             </a>

@@ -848,3 +848,10 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 
   .login_box .newarea .logout_boxbtn{line-height:100%;padding-top:9px}
   .login_box .newarea .btn_inout{width:63px;height:27px;line-height:25px;font-size:12px;border:1px solid #29367c;background:#3b4890;text-align:center;color:#fff;font-weight:bold;text-shadow:0px 1px #1d2761}
+
+
+/* 2023/05/10 // 심규영 // 미니 갤러리 아이콘 추가 */
+.icon_mini{
+display:inline-block;width:16px;height:12px;color:transparent;font-size:0;margin-left:4px;
+background:url(/GCInside/img/icon_mini.gif) no-repeat 0 0;vertical-align:text-top;margin-top:3px
+}
