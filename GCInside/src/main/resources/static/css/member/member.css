@@ -2,6 +2,7 @@
 /* 23-03-08 로컬로 실행시 백그라운드 이미지적용안되서 경로수정 (../../img/) */
 /* 사용 되는 곳
     이용 약관 페이지
+    로그인 페이지
  */
 .gcheader.bg{background:#29367c}
 .gcheader.bg .gc_logo{top:30px}
@@ -11,6 +12,7 @@
 .width868 .gchead{width: 868px;}
 .gchead{position: relative; margin: 0 auto;}
 .gcheader.bg .gc_logo {top: 2px;}
+.gcheader.bg .gc_logo.login {top: 30px;} /* 2023/05/10 // 심규영 // 로그인 페이지 스타일 수정 */
 .gc_logo {
     overflow: hidden;
     position: absolute;

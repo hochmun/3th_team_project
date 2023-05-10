@@ -386,12 +386,28 @@
             <!-- 오른쪽 -->
             <section class="right_content">
                 <!-- 로그인 -->
-                <div id="login_box" class="login_box">
-                    <div class="user_info newarea" data-alarmId="">
+                <div id="login_box" class="login_box" th:fragment="galleryLogin">
+                    <!-- 비회원 -->
+                    <div class="user_info newarea" data-alarmId="" th:if="${authorize.isAnonymous}">
                         <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
                     </div>
+
+                    <!-- 회원 -->
+                    <div class="user_info newarea" data-alarmId="" th:if="${authorize.isAuthenticated}">
+                        <a href="#" class="fl"><strong class="nickname in"><em th:text="${user.member_nick}"></em></strong>님</a>
+                        <strong class="writer_nikcon"
+                                th:title="|${#strings.substring(user.member_uid,0, #strings.length(user.member_uid) - 2)}** : 갤로그로 이동합니다.|"
+                                style="cursor:pointer">
+                            <img th:src="@{/img/nik.gif}" border="0" width="12" height="11" style="margin-left:2px;">
+                        </strong>
+                        <a href="#"><span class="sp_img user_infogo"></span></a>
+                        <div class="logout_boxbtn fr">
+                            <button type="button" onclick="location.href='/GCInside/member/logout'" class="btn_inout logout">로그아웃</button>
+                        </div>
+                    </div>
+
                     <div class="user_option ">
-                            <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em
+                        <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em
                                     class="sp_loginout icon_visit"></em></a></span>
                         <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기<span class="blind">리스트
                                         보기</span></a></span>

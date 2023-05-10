@@ -3,6 +3,7 @@ package kr.co.gcInside.controller;
 import kr.co.gcInside.security.MyUserDetails;
 import kr.co.gcInside.service.MinorService;
 import kr.co.gcInside.service.TermsService;
+import kr.co.gcInside.utill.SecurityCheckUtil;
 import kr.co.gcInside.vo.CreateVO;
 import kr.co.gcInside.vo.TermsVO;
 import kr.co.gcInside.vo.galleryVO;
@@ -40,7 +41,7 @@ public class MinorController{
      * @return
      */
     @GetMapping(value = {"/mgall/","mgall/index"})
-    public String minorindex(Model model){
+    public String minorindex(Model model, @AuthenticationPrincipal MyUserDetails myUserDetails){
         service.minorinit();
         log.info("! minor rank update !");
         List<galleryVO> hot_mgall = service.selecthotmgall();
@@ -56,6 +57,10 @@ public class MinorController{
         model.addAttribute("new_mgall",new_mgall);
         model.addAttribute("mgall",mgall);
         model.addAttribute("sName","마이너 갤러리");
+        model.addAttribute("authorize", new SecurityCheckUtil().getSecurityInfoDTO(myUserDetails));     // "authorize"라는 이름으로 MyUserDetails 객체를 이용하여 보안 정보 데이터 전달
+
+        if(myUserDetails != null) model.addAttribute("user", myUserDetails.getUser());
+
         return "gall/mgall/index";
     }
 
