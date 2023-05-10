@@ -142,9 +142,9 @@
 
         <!-- 메인 -->
         <main id="container" class="minor_wrap gallmain">
-                <article class="clear">
-                    <h2 class="blind">미니 갤러리 메인 탑</h2>
-                    <section class="left_content">
+            <article class="clear">
+                <h2 class="blind">미니 갤러리 메인 탑</h2>
+                <section class="left_content">
                       <h2 class="blind">미니 갤러리 메인 탑 왼쪽</h2>
                       <div class="mgall_info clear">
                         <p class="txt">비공개, 멤버 가입, 익명 사용 등 차별화된 기능의 <span class="font_lightpurple">미니 갤러리</span><button onclick="open_mini_info()"><span class="blind">미니 갤러리란?</span><em class="sp_img icon_mgll_explain"></em></button>를 만들어보세요.</p>
@@ -286,23 +286,17 @@
                               <!-- //실시간 북적 갤러리 1~20위 10개씩 리스트 -->
                             </div>
                           </div>
-                    </section>
-                    <!-- 오른쪽 -->
-                    <section class="right_content">
+                </section>
+
+                <!-- 오른쪽 -->
+                <section class="right_content">
                     <!-- 로그인 -->
-                    <div id="login_box" class="login_box">
-                        <div class="user_info newarea" data-alarmId="">
-                            <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
-                        </div>
-                        <div class="user_option ">
-                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a></span>
-                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기<span class="blind">리스트 보기</span></a></span>
-                                <span><a href="javascript:;" onclick="alarmList($('.icon_noti', this), 'new')"><em class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
-                        </div>
-                    </div>
+                    <div id="login_box" class="login_box" th:replace="~{gall/m/index::galleryLogin}"></div>
+
+                    <!-- 광고 배너 -->
                     <img th:src="@{/img/new_maban7.png}" alt="">
-                    </section>
-                </article>
+                </section>
+            </article>
                  <!-- 미니 갤러리  리스트 -->
                  <article  class="category_listwrap" >
                   <h2 class="blind">카테고리별 갤러리 리스트</h2>

@@ -354,6 +354,7 @@
                                 </div>
                             </th:block>
 
+                            <!-- 회원 표시 -->
                             <th:block th:if="${authorize.isAuthenticated}">
                                 <div class="login_box">
                                     <div class="user_info newarea">
@@ -380,12 +381,10 @@
                                         <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기</a></span>
                                     </div>
                                 </div>
-
-
                             </th:block>
-
                         </div>
                     </div>
+
                     <!-- 실시간 조회수 많은 갤 -->
                     <article>
                         <div class="content_box hotlive gall_rank" id="rank_gall">
@@ -417,6 +416,7 @@
                             <div class="box_bottom rank_more" data-gall_type="g" data-page="0">11위 - 20위</div>
                         </div>
                     </article>
+
                     <!-- 오른쪽 광고 배너 -->
                     <div class="rightbanner">
                         <img th:src="@{/img/new_maban4.png}" alt="">

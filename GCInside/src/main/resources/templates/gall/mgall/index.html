@@ -206,20 +206,14 @@
                           </div>
                         </div>
                     </section>
+
                     <!-- 오른쪽 -->
                     <section class="right_content">
-                    <!-- 로그인 -->
-                    <div id="login_box" class="login_box">
-                        <div class="user_info newarea" data-alarmId="">
-                            <strong  th:onclick="|location='@{/member/login}'|" style="cursor: pointer;">로그인해 주세요.</strong>
-                        </div>
-                        <div class="user_option ">
-                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">MY갤로그<em class="sp_loginout icon_visit"></em></a></span>
-                          <span><a href="javascript:;" onclick="alert('로그인이 필요합니다.')">즐겨찾기<span class="blind">리스트 보기</span></a></span>
-                                <span><a href="javascript:;" onclick="alarmList($('.icon_noti', this), 'new')"><em class="sp_loginout icon_noti new"></em>알림</a></span><!-- 신규알림시 클래스 new -->
-                        </div>
-                    </div>
-                    <img th:src="@{/img/new_maban6.png}" alt="">
+                        <!-- 로그인 -->
+                        <div id="login_box" class="login_box" th:replace="~{gall/m/index::galleryLogin}"></div>
+
+                        <!-- 광고 배너 -->
+                        <img th:src="@{/img/new_maban6.png}" alt="">
                     </section>
                 </article>
                  <!-- 마이너 갤러리  리스트 -->
