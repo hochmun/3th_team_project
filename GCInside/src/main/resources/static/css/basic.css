@@ -412,14 +412,7 @@
     text-decoration: underline;
 }
 
-.newvisit_list{position:relative;white-space:nowrap}
-.newvisit_list li{display:inline-block;margin-left:15px;font-size:12px}
-.newvisit_list li:first-child{margin-left:0px}
-.newvisit_list li a{display:inline-block;color:#444;letter-spacing:-0.075em}
-.newvisit_list li .icon_mini{vertical-align:text-top;margin-top:3px}
-.newvisit_list .btn_visit_del{position:inherit;margin-left:12px;line-height:38px}
-.newvisit_list .btn_visit_del .blind{display: none}
-.newvisit_list .icon_visit_del{background-position:-264px -961px }
+
 
 
 /* 메인 영역 */
@@ -468,7 +461,7 @@
 
 .hit_con .con_list li, .news_con .con_list li{height:116px;;margin-left:12px;width:auto;}
 .hit_con .img_box, .news_con .img_box{height:116px;background-size:auto 116px}
-.img_box{overflow:hidden;display:block;width:173px;background:url(https://nstatic.dcinside.com/dc/w/images/img_none1.jpg) no-repeat center center}
+.img_box{overflow:hidden;display:block;width:173px;background:url(/GCInside/img/minorbg.png) no-repeat center center}
 .img_box img{display:block;min-height:116px;margin:0 auto}/*210225*/
 .img_box::after{content:"";display:block;position:absolute;left:0;top:0;width:171px;height:114px;border:1px #ccc solid }
 .txt_box{overflow:hidden;position:absolute;bottom:1px;left:1px;width:171px;height:42px;padding:6px 9px;font-size:12px;background:rgba(0,0,0,0.7);box-sizing:border-box;}/*210225*/
@@ -848,10 +841,3 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 
   .login_box .newarea .logout_boxbtn{line-height:100%;padding-top:9px}
   .login_box .newarea .btn_inout{width:63px;height:27px;line-height:25px;font-size:12px;border:1px solid #29367c;background:#3b4890;text-align:center;color:#fff;font-weight:bold;text-shadow:0px 1px #1d2761}
-
-
-/* 2023/05/10 // 심규영 // 미니 갤러리 아이콘 추가 */
-.icon_mini{
-display:inline-block;width:16px;height:12px;color:transparent;font-size:0;margin-left:4px;
-background:url(/GCInside/img/icon_mini.gif) no-repeat 0 0;vertical-align:text-top;margin-top:3px
-}
