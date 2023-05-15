@@ -44,3 +44,19 @@
 .under_catelist.newvisit_layer .under_listbox li {float:left;}
 
 .icon_minor{display:inline-block;height:12px;line-height:12px;margin-top:1px;margin-left:3px;vertical-align:text-top;font-size:13px;color:#555}
+
+/* 2023/05/11 // 심규영 // css 위치 변경 */
+.newvisit_list{position:relative;white-space:nowrap}
+.newvisit_list li{display:inline-block;margin-left:15px;font-size:12px}
+.newvisit_list li:first-child{margin-left:0px}
+.newvisit_list li a{display:inline-block;color:#444;letter-spacing:-0.075em}
+.newvisit_list li .icon_mini{vertical-align:text-top;margin-top:3px}
+.newvisit_list .btn_visit_del{position:inherit;margin-left:12px;line-height:38px}
+.newvisit_list .btn_visit_del .blind{display: none}
+.newvisit_list .icon_visit_del{background-position:-264px -961px }
+
+/* 2023/05/10 // 심규영 // 미니 갤러리 아이콘 추가 */
+.icon_mini{
+display:inline-block;width:16px;height:12px;color:transparent;font-size:0;margin-left:4px;
+background:url(/GCInside/img/icon_mini.gif) no-repeat 0 0;vertical-align:text-top;margin-top:3px
+}
