@@ -11,6 +11,7 @@ function showOptions() {
     selectArea.style.display = "block";
   });
 }
+
 /* 글자 수 확인 */
 $(function() {
   let countChar = function() {
@@ -25,14 +26,16 @@ $(function() {
 /* 갤러리 생성 이름 validation */
 $(function() {
     isnameok = false;
+
     $("input[name='gell_create_name']").focus(function(){
-             $('#nametip1').show();
-             $('#nametip2').show();
-             $('#gell_create_name_tip').hide();
-             $('#duplicationName').hide();
-             $('#noduplicationName').hide();
-             isnameok = false;
-        });
+         $('#nametip1').show();
+         $('#nametip2').show();
+         $('#gell_create_name_tip').hide();
+         $('#duplicationName').hide();
+         $('#noduplicationName').hide();
+         isnameok = false;
+    });
+
    $("input[name='gell_create_name']").focusout(function() {
      var selectname = document.getElementById("gell_create_name"); // var 키워드 추가
      var gell_create_name = $("input[name='gell_create_name']").val();
@@ -70,6 +73,7 @@ $(function() {
      }
    });
 });
+
 $(function() {
     isaddressok = false;
     let pattern1 = /[0-9]/;
@@ -109,6 +113,7 @@ $(function() {
     }
     });
 });
+
 /* 제출 validation */
 $(function() {
    let agree = function() {

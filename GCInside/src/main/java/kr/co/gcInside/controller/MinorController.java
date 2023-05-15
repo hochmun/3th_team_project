@@ -88,7 +88,12 @@ public class MinorController{
      */
     @PostMapping("mgall/create")
     public String minorcreate(CreateVO frmCreate,@AuthenticationPrincipal MyUserDetails myUserDetails){
-        if(myUserDetails != null)frmCreate.setGell_create_uid(myUserDetails.getUsername());
+        // 유저가 로그인 되어 있을 경우 관리자에 유저 이름 등록
+        if(myUserDetails != null) frmCreate.setGell_create_uid(myUserDetails.getUsername());
+
+        // 갤러리 생성 전 중복 확인
+        
+        // 갤러리 생성 신청
         service.creategall(frmCreate);
 
         return "redirect:/mgall/index";

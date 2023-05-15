@@ -27,14 +27,35 @@
     <select id="selectminorterms" resultType="kr.co.gcInside.vo.TermsVO">
         SELECT * FROM `gc_terms`;
     </select>
-    <!-- 2023/03/21 // 김동민 // validation -->
+
+    <!-- 2023/03/21 // 김동민 // validation
+         2023/05/15 // 심규영 // 쿼리문 수정, gc_admin_gell_create_approve 에서도 이름 중복 확인-->
     <select id="countBygellname" resultType="int" parameterType="String">
-        select count(*) from `gc_gell` where gell_name = #{gell_create_name};
+        SELECT COUNT(*)
+        FROM (
+            SELECT `gell_name`
+            FROM `gc_gell` AS b
+            UNION ALL
+            SELECT `gell_create_name`
+            FROM `gc_admin_gell_create_approve` AS c
+        ) AS a
+        WHERE `gell_name` = #{gell_create_name};
     </select>
-    <!-- 2023/03/22 // 김동민 // validation -->
+
+    <!-- 2023/03/22 // 김동민 // validation
+         2023/05/15 // 심규영 // 쿼리문 수정, gc_admin_gell_create_approve 에서도 주소 중복 확인-->
     <select id="countBygelladdress" resultType="int" parameterType="String">
-        select count(*) from `gc_gell` where gell_address = #{gell_create_address};
+        SELECT COUNT(*)
+        FROM (
+            SELECT `gell_address`
+            FROM `gc_gell` AS b
+            UNION ALL
+            SELECT `gell_create_address`
+            FROM `gc_admin_gell_create_approve` AS c
+        ) AS a
+        WHERE `gell_address` = #{gell_create_address};
     </select>
+
     <!-- 2023/03/23 // 김동민 // 마이너 갤러리 index 흥한 갤러리 select -->
     <!--갤러리명만 출력한것을 gc_gell이랑 비교 후 cnt 가 높은 순으로 정렬  -->
     <select id="selecthotmgall" resultType="kr.co.gcInside.vo.galleryVO">
