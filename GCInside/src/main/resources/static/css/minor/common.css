@@ -1130,6 +1130,7 @@ input.inp_txt:-webkit-autofill:active {-webkit-box-shadow: 0 0 0 100px #f3f3f3 i
 .all_box.mandudel .all_list dl{height:236px}
 
 .gc_all{width:1048px;margin:23px auto 0;border-left:1px solid #ccc;border-top:2px solid #29367c;border-right:1px solid #ccc;border-bottom:1px solid #29367c}
+.miniwrap .gc_all{border-top:none;border-bottom:none;}
 .info_policy{width:1050px;margin:28px auto 0;text-align:center}
 .copyright{width:1050px;margin:10px auto 0;text-align:center;font-family:tahoma,sans-serif;font-size:12px;color:#333}
 
