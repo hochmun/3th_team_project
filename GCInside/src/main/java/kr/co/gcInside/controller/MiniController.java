@@ -27,4 +27,12 @@ public class MiniController {
 
         return "gall/mini/index";
     }
+
+    /**
+     * 2023/05/15 // 심규영 // 경로 생성
+     */
+    @GetMapping("/mini/create")
+    public String miniCreate() {
+        return "gall/mini/create";
+    }
 }

@@ -1,7 +1,9 @@
 <!-- 2023/03/06 // 김동민 // 미니 갤러리 생성페이지 -->
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <th:block th:replace="~{fragment/head_fragment::minorHead}"></th:block>
+    <!--
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="/css/basic.css">
@@ -11,100 +13,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="/js/navigation.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
+    -->
 </head>
 <body>
     <div class="miniwrap">
-
         <!-- 헤더 -->
-        <header class="gcheader typea">
-
-            <div class="gchead">
-                <!-- 메인 로고 -->
-                <h1 class="gc_logo">
-                    <div>
-                        <img src="/img/gcinside_main_logo.png" alt="겔시인사이드">
-                        <a class="_blank" href="#"></a>
-                        <a class="_top" href="#"></a>
-                    </div>
-                </h1>
-
-                <div class="wrap_search">
-                    <!-- 갤러리 통합검색-->
-                    <form>
-                        <fieldset>
-                            <div class="top_search clear">
-                                <div class="inner_search">
-                                    <input class="in_keyword" type="text" name="search"
-                                    placeholder="갤러리 & 통합검색" autocomplete="off"
-                                    title="검색어 입력">
-                                </div>
-                                <button class="sp_main bnt_search"></button>
-                                <!-- 검색어 자동 완성 기능 -->
-                                <div class="auto_wordwrap" style="left: 0px; top: 46px; display: none;"></div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
-        </header>
+        <th:block th:replace="~{fragment/header_fragment::minorHeader}"></th:block>
 
         <!-- gnb -->
-        <div class="gnb_bar">
-            <nav class="gnb clear">
-                <ul class="gnb_list clear">
-                    <li>
-                        <a href="#" class="hover_gnb link_gnb">갤러리</a>
-                        <span class="gnb_area" style="display:block;width:77px;height:12px;position:absolute;left:0;bottom:0;"></span>
-                        <!-- 2차메뉴 -->
-                        <div class="depth2" style="left:0;display:none"><!--2차메뉴 열림 : display:block -->
-                            <span class="sp_img depth_bg"></span>
-                            <ul class="depth2_list" >
-                              <li><a href="#">게임</a></li>
-                              <li><a href="#">연예/방송</a></li>
-                              <li><a href="#">스포츠</a></li>
-                              <li><a href="#">교육/금융/IT</a></li>
-                              <li><a href="#">여행/음식/생물</a></li>
-                              <li><a href="#">취미/생활</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="#">마이너갤</a></li>
-                    <li><a href="#">미니갤</a></li>
-                </ul>
-
-                <!-- 어제 게시글, 댓글 등록 수 -->
-                <div class="gall_exposure">
-                    <div class="posts"><a href="#">어제 <em class="num">000,000개</em> 게시글 등록</a></div>
-                    <div class="reply"><a href="#">어제 <em class="num">0,000,000개</em> 댓글 등록</a></div>
-                    <div class="ltr"><a href="#">로터리 응모</a></div>
-                </div>
-
-            </nav>
-        </div>
+        <th:block th:replace="~{fragment/gnb_fragment::mainGnb}"></th:block>
 
         <!-- 최근 방문 탭 -->
-        <div class="visit_bookmark">
-            <div class="newvisit_history vst">
-                <h3 class="tit vst_title 1_div_style">최근 방문</h3>
-                <h3 class="tit bookmark_title f_div_style" style="display: none;">최근 방문</h3>
-                <button type="button" class="btn_open">
-                    <em class="sp_img icon_listmore"></em>
-                </button>
-                <button type="button" class="bnt_visit_prev">
-                    <em class="sp_img icon_prev"></em>
-                </button>
-                <div class="newvisit_box"></div>
-                <button type="button" class="bnt_visit_next">
-                    <em class="sp_img icon_next"></em>
-                </button>
-                <button type="button" class="bnt_newvisit_more">전체</button>
-                <!-- 최근방문 / 즐겨찾기 레이어 -->
-                <div class="pop_wrap gray1px" style="left: 0px; top: 37px; display: none;"></div>
-            </div>
-        </div>
-    <main id="container" class="minor_make">
-      <header>
+        <th:block th:replace="~{fragment/gnb_fragment::mainVisit}"></th:block>
+
+        <main id="container" class="minor_make">
+            <header>
         <div class="page_head clear">
           <div class="fl">
             <h2>
@@ -113,11 +36,13 @@
           </div>
         </div>
       </header>
-      <div class="minor_make_wrap">
-      	<form method="post" id="frmCreate" name="frmCreate">
-        <section>
-          <h2 class="blind">공개, 비공개 설정</h2>  
-          <div class="mini_openset">
+
+            <div class="minor_make_wrap">
+      	        <form method="post" id="frmCreate" name="frmCreate">
+                    <section>
+                        <h2 class="blind">공개, 비공개 설정</h2>
+
+                        <div class="mini_openset">
             <div class="clear">
               <div class="box" id="mg_hide_open_box">
                 <div class="inner">
@@ -182,130 +107,144 @@
             </div>
             <p class="tiptxt minimake_tip"><em class="sp_img tip_deco_black"></em>개설 후 공개/비공개 설정은 변경할 수 없습니다. 미니 갤러리는 메인 갤러리로 승격되지 않습니다.</p>
           </div>
-        </section>
-        <section>
-          <h2 class="blind">미니 갤러리 신청 정보입력</h2>
-          <div class="minor_make_form clear">
-            <div id="make_form_wrap" class="make_form_cont">
-              <fieldset>
-              	<legend class="blind">미니 갤러리 신청 정보입력</legend>
-    			<div class="form_group">
-    				<div class="set_content name clear">
-    					<div class="set_tit"><label for="mg_name">이름</label><em class="required_input">*</em></div>
-    					<div class="cont_box clear">
-                      		<div class="cont_input_box">
-      							<input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="미니 갤러리 이름을 간단히 넣어주세요.">
-                        		<span class="basic_tit">미니 갤러리</span>
-                      		</div>
-                      		<span class="max_txt"><span>0</span>/<b>12</b></span>
-                      		<p class="tiptxt red mname_alert_txt_fix"><em class="sp_img tip_deco"></em>이름은 개설 후, 7일 내 1회만 수정할 수 있습니다.</p>
-                      		<p class="tiptxt mname_alert_txt">
-                        		<b class="font_red"></b>
-                        		<span class="alert_msg"></span>
-                        	</p>
-                    	</div>
-    				</div>
-    			</div>
-                <div class="form_group">
-    				<div class="set_content desc clear">
-    					<div class="set_tit"><label for="migallery_desc">설명</label></div>
-    					<div class="cont_box">
-    						<textarea class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요."></textarea>
-                      		<div class="clear">
-                        		<p class="tiptxt mdesc_alert_txt">
-                          			<b class="font_red"></b>
-                          			<span class="alert_msg"></span>
-                        		</p>
-                        		<span class="max_txt fr"><span>0</span>/<b>200</b></span>
-                      		</div>
-    					</div>
-    				</div>
+                    </section>
+
+                    <section>
+                        <h2 class="blind">미니 갤러리 신청 정보입력</h2>
+
+                        <div class="minor_make_form clear">
+                            <div id="make_form_wrap" class="make_form_cont">
+                                <fieldset>
+              	                    <legend class="blind">미니 갤러리 신청 정보입력</legend>
+
+                                    <div class="form_group">
+                                        <div class="set_content name clear">
+                                            <div class="set_tit"><label for="mg_name">이름</label><em class="required_input">*</em></div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <input class="t_input chk_str_length" id="mg_name" name="mg_name" type="text" placeholder="미니 갤러리 이름을 간단히 넣어주세요.">
+                                                    <span class="basic_tit">미니 갤러리</span>
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>12</b></span>
+                                                <p class="tiptxt red mname_alert_txt_fix"><em class="sp_img tip_deco"></em>이름은 개설 후, 7일 내 1회만 수정할 수 있습니다.</p>
+                                                <p class="tiptxt mname_alert_txt">
+                                                    <b class="font_red"></b>
+                                                    <span class="alert_msg"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form_group">
+                                        <div class="set_content desc clear">
+                                            <div class="set_tit"><label for="mg_desc">설명</label></div>
+                                            <div class="cont_box">
+                                                <textarea class="t_area chk_str_length" id="mg_desc" name="mg_desc" placeholder="미니 갤러리에 대한 설명을 넣어주세요."></textarea>
+                                                <div class="clear">
+                                                    <p class="tiptxt mdesc_alert_txt">
+                                                        <b class="font_red"></b>
+                                                        <span class="alert_msg"></span>
+                                                    </p>
+                                                    <span class="max_txt fr"><span>0</span>/<b>200</b></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form_group">
+                                        <div class="set_content adr clear">
+                                            <div class="set_tit">주소<em class="required_input">*</em></div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <span class="basic_adr">https://gall.gcinside.com/mini/</span>
+                                                    <input class="t_input chk_str_length" id="mg_id" name="mg_id" type="text">
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>20</b></span>
+                                                <p class="tiptxt red mid_alert_txt_fix"><em class="sp_img tip_deco"></em>주소는 만들기 후 수정이 불가능합니다. 신중히 입력해주세요.</p>
+                                                <p class="tiptxt mid_alert_txt">
+                                                    <b class="font_red"></b>
+                                                    <span class="alert_msg"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form_group">
+                                        <div class="set_content category clear">
+                                            <div class="set_tit"><label>카테고리</label><em class="required_input">*</em></div>
+                                            <div class="cont_box">
+                                                <div class="select_box select_arraybox">
+                                                    <div class="select_area"><span class="placeholder">카테고리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form_group" id="create_reason_div" style="display:none">
+                                        <div class="set_content makereason clear">
+                                            <div class="set_tit"><label for="create_reason">개설이유</label><em class="required_input">*</em></div>
+                                            <div class="cont_box clear">
+                                                <div class="cont_input_box">
+                                                    <input class="t_input chk_str_length" id="create_reason" name="mg_reason" type="text" placeholder="운영자에게 전달되는 메세지입니다.">
+                                                </div>
+                                                <span class="max_txt"><span>0</span>/<b>100</b></span>
+                                                <p class="tiptxt"><em class="sp_img tip_deco"></em>미니 갤러리 개설은 이름, 설명, 주소, 개설 이유에 따라 승인 또는 반려될 수 있습니다.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+    		                    </fieldset>
+                            </div>
+
+                        </div>
+                    </section>
+                </form>
+
+                <div class="minor_make_chk clear">
+                      <!--mini 미니 갤러리  개인정보보호정책 / 미니 운영원칙-->
+                      <div class="fl agree_chk chk1">
+                        <span class="checkbox">
+                          <input type="checkbox" id="person_agree" name="person_agree" value="1">
+                          <em class="checkmark"></em>
+                          <label for="person_agree">미니 갤러리 개인정보보호정책에 동의합니다.</label>
+                        </span>
+
+                        <!-- 미니 갤러리 개인정보보호정책 -->
+                        <div class="scroll privacy">
+                        </div>
+                        <!--//미니 갤러리 개인정보보호정책 -->
+                      </div>
+
+                      <div class="fl agree_chk chk2">
+                        <span class="checkbox">
+                          <input type="checkbox" id="use_agree" name="use_agree" value="1">
+                          <em class="checkmark"></em>
+                          <label for="use_agree">미니 갤러리 운영원칙에 동의합니다.</label>
+                        </span>
+                        <!-- 미니 운영원칙-->
+                        <div class="scroll operating" >
+                        </div>
+                        <!-- //미니 운영원칙-->
+                      </div>
+                      <!--//mini 매니저의 개인정보보호의무 / 미니 운영원칙-->
                 </div>
-                <div class="form_group">
-    				<div class="set_content adr clear">
-    					<div class="set_tit">주소<em class="required_input">*</em></div>
-    					<div class="cont_box clear">
-                      		<div class="cont_input_box">
-                        		<span class="basic_adr">https://gall.gcinside.com/mini/</span>
-      							<input class="t_input chk_str_length" id="mg_id" name="mg_id" type="text">
-                      		</div>
-                      		<span class="max_txt"><span>0</span>/<b>20</b></span>
-                      		<p class="tiptxt red mid_alert_txt_fix"><em class="sp_img tip_deco"></em>주소는 만들기 후 수정이 불가능합니다. 신중히 입력해주세요.</p>
-                      		<p class="tiptxt mid_alert_txt">
-                        		<b class="font_red"></b>
-                        		<span class="alert_msg"></span>
-                      		</p>
-    					</div>
-    				</div>
-    			</div>
-                <div class="form_group">
-    				<div class="set_content category clear">
-    					<div class="set_tit"><label for="migallery_cate">카테고리</label><em class="required_input">*</em></div>
-    					<div class="cont_box">
-                      		<div class="select_box select_arraybox">
-                          		<div class="select_area"><span class="placeholder">카테고리를 선택해주세요.</span><em class="sp_img icon_option_more"></em></div>
-                      		</div>
-    					</div>
-    				</div>
+
+                <div class="make_guidetxt_box">
+                    <p class="tiptxt">
+                      <em class="tip_deco_dot"></em>게시물의 관리 의무와 권리는 매니저(개설자)에게 있으며, 운영원칙을 위반한 경우 폐쇄 또는 매니저 해임이 될 수 있습니다.<br>
+                      (음란물, 불량 게시물, 상업적 게시물, 댓글의 방치 등)
+                    </p>
+                    <p class="tiptxt"><em class="tip_deco_dot"></em>추가 개설은 개설일 기준으로 7일 이후 가능합니다.</p>
+                    <p class="tiptxt"><em class="tip_deco_dot"></em>미니 갤러리 개설은 총 6개까지 가능합니다.</p>
                 </div>
-                <div class="form_group" id="create_reason_div" style="display:none">
-    				<div class="set_content makereason clear">
-    					<div class="set_tit"><label for="create_reason">개설이유</label><em class="required_input">*</em></div>
-    					<div class="cont_box clear">
-                      		<div class="cont_input_box">
-      							<input class="t_input chk_str_length" id="create_reason" name="mg_reason" type="text" placeholder="운영자에게 전달되는 메세지입니다.">
-                      		</div>
-                      		<span class="max_txt"><span>0</span>/<b>100</b></span>
-                      		<p class="tiptxt"><em class="sp_img tip_deco"></em>미니 갤러리 개설은 이름, 설명, 주소, 개설 이유에 따라 승인 또는 반려될 수 있습니다.</p>
-    					</div>
-    				</div>
-    			</div>
-    		</fieldset>
+
+                <div class="make_bottom_btnbox">
+                    <button type="button" class="list_bottom btn_grey">취소</button>
+                    <button type="button" class="list_bottom btn_lightpurple">만들기</button>
+                </div>
             </div>
+        </main>
 
-          </div>
-          </form>
-          <div class="minor_make_chk clear">
-              <!--mini 미니 갤러리  개인정보보호정책 / 미니 운영원칙-->
-              <div class="fl agree_chk chk1">
-                <span class="checkbox">
-                  <input type="checkbox" id="person_agree" name="person_agree" value="1">
-                  <em class="checkmark"></em>
-                  <label for="comment_chk1">미니 갤러리 개인정보보호정책에 동의합니다.</label>
-                </span>
-                <!-- 미니 갤러리 개인정보보호정책 -->
-                <div class="scroll privacy">
-                </div>
-                <!--//미니 갤러리 개인정보보호정책 -->
-              </div>
-              <div class="fl agree_chk chk2">
-                <span class="checkbox">
-                  <input type="checkbox" id="use_agree" name="use_agree" value="1">
-                  <em class="checkmark"></em>
-                  <label for="comment_chk2">미니 갤러리 운영원칙에 동의합니다.</label>
-                </span>
-                <!-- 미니 운영원칙-->
-                <div class="scroll operating" >
-                </div>
-                <!-- //미니 운영원칙-->
-              </div>
-              <!--//mini 매니저의 개인정보보호의무 / 미니 운영원칙-->
-            </div>
-          <div class="make_guidetxt_box">
-            <p class="tiptxt">
-              <em class="tip_deco_dot"></em>게시물의 관리 의무와 권리는 매니저(개설자)에게 있으며, 운영원칙을 위반한 경우 폐쇄 또는 매니저 해임이 될 수 있습니다.<br>
-              (음란물, 불량 게시물, 상업적 게시물, 댓글의 방치 등)
-            </p>
-            <p class="tiptxt"><em class="tip_deco_dot"></em>추가 개설은 개설일 기준으로 7일 이후 가능합니다.</p>
-            <p class="tiptxt"><em class="tip_deco_dot"></em>미니 갤러리 개설은 총 6개까지 가능합니다.</p>
-          </div>
-
-          <div class="make_bottom_btnbox">
-            <button type="button" class="list_bottom btn_grey">취소</button>
-            <button type="button" class="list_bottom btn_lightpurple">만들기</button>
-          </div>
-
-        </section>
-
-      </div>
-    </main>
+        <!-- 푸터 -->
+        <footer th:replace="~{fragment/footer_fragment::gallFooter}"></footer>
+    </div>
+</body>

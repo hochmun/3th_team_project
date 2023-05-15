@@ -3,6 +3,7 @@ package kr.co.gcInside.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.gcInside.dao.BoardDAO;
 import kr.co.gcInside.dto.PagingDTO;
+import kr.co.gcInside.security.SecurityConfig;
 import kr.co.gcInside.utill.DeduplicationUtils;
 import kr.co.gcInside.utill.PagingUtil;
 import kr.co.gcInside.vo.*;
@@ -13,6 +14,7 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -45,6 +47,8 @@ public class BoardService {
     private String uploadPath;
 
     private DeduplicationUtils deduplicationUtils;
+
+    private PasswordEncoder encoder = new SecurityConfig().passwordEncoder();
 
     // create
 
@@ -206,7 +210,8 @@ public class BoardService {
      * @return
      */
     public int selectNonmemberCheck(Map<String, String> data) {
-        return dao.selectNonmemberCheck(data);
+        String encodePassword = dao.selectNonmemberCheck(data);
+        return encoder.matches(data.get("pass"), encodePassword) ? 1 : 0;
     }
 
     /**
@@ -277,7 +282,9 @@ public class BoardService {
         if(data.get("type").equals("rcmt")) data.put("re","re_");
         else data.put("re", "");
 
-        return dao.selectCommentPassCheck(data);
+        String encodePassword = dao.selectCommentPassCheck(data);
+
+        return encoder.matches(data.get("password"), encodePassword) ? 1 : 0;
     }
 
     /**
@@ -547,7 +554,8 @@ public class BoardService {
         } else {
             commentVO.setComment_login_status(1);
             commentVO.setComment_nonmember_name(data.get("comment_name"));
-            commentVO.setComment_nonmember_password(data.get("comment_password"));
+            //commentVO.setComment_nonmember_password(data.get("comment_password"));
+            commentVO.setComment_nonmember_password(encoder.encode(data.get("comment_password")));
         }
 
         return commentVO;
@@ -580,7 +588,8 @@ public class BoardService {
             reCommentVO.setRe_comment_uid(data.get("re_comment_uid"));
         } else {
             reCommentVO.setRe_comment_nonmember_name(data.get("re_comment_nonmember_name"));
-            reCommentVO.setRe_comment_nonmember_password(data.get("re_comment_nonmember_password"));
+            //reCommentVO.setRe_comment_nonmember_password(data.get("re_comment_nonmember_password"));
+            reCommentVO.setRe_comment_nonmember_password(encoder.encode(data.get("re_comment_nonmember_password")));
         }
         reCommentVO.setRe_comment_regip(data.get("regip"));
 
@@ -612,7 +621,8 @@ public class BoardService {
 
         vo.setArticle_uid(data.get("article_uid"));
         vo.setArticle_nonmember_uid(data.get("nonmember_uid"));
-        vo.setArticle_nonmember_pass(data.get("nonmember_pass"));
+        //vo.setArticle_nonmember_pass(data.get("nonmember_pass"));
+        vo.setArticle_nonmember_pass(encoder.encode(data.get("nonmember_pass")));
 
         vo.setSub_cate_info(Integer.parseInt(data.get("sub_cate_info")));
         if(data.get("sub_cate_info").equals("1")) vo.setArticle_sub_cate(Integer.parseInt(data.get("sub_cate")));

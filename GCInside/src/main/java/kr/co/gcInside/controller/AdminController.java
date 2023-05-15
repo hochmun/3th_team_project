@@ -226,7 +226,14 @@ public class AdminController {
         vo.setGell_info(req.getParameter("gell_create_intro"));
         vo.setGell_manager(req.getParameter("gell_create_uid"));
 
-        service.createMinorGallery(vo);
+        try {
+            service.createMinorGallery(vo);
+        } catch (Exception e) {
+            String error = e.getMessage();
+            log.error("마이너 갤러리 생성 에러");
+            log.error(e.getMessage());
+        }
+
         // 갤러리 셋팅 생성
         service.createMainGallerySetting(vo.getGell_num());
         service.updateGalleryCreateStatus(cvo);

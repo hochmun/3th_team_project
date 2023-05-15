@@ -421,6 +421,7 @@
                     <div class="rightbanner">
                         <img th:src="@{/img/new_maban4.png}" alt="">
                     </div>
+
                     <!-- 갤러리 랭킹 -->
                     <article>
                         <div class="content_box hot">
@@ -453,6 +454,7 @@
                             <div class="box_bottom hot_more" data-gall_type="g" data-page="0" style="cursor: pointer;">11위 - 20위</div>
                         </div>
                     </article>
+
                     <!-- 신생 갤 -->
                     <article>
                         <div class="content_box new_gall">
@@ -501,7 +503,7 @@
                                     <div class="page_num">
                                         <strong class="now_num">1</strong>
                                         /
-                                        <span class="total_num" th:text="${newgellPagingDTO.groupEnd}">2</span>
+                                        <span class="total_num" th:text="${newgellPagingDTO.groupEnd > 2 ? '2' : newgellPagingDTO.groupEnd}">2</span>
                                     </div>
                                     <div class="btn_box">
                                         <button type="button" class="sp_main btn_prev new_prev2 on" data-grade="mgall" data-type="new"></button>
@@ -510,8 +512,8 @@
                                 </div>
                             </div>
                         </div>
-                        
                     </article>
+
                     <!-- 미디어 -->
                     <article>
                         <div class="content_box dcmedia">
@@ -564,6 +566,7 @@
                             <div class="cont_imgtxt_box dcissue r_issue_box" style="display: none;"></div>
                         </div>
                     </article>
+
                     <!-- 위키 -->
                     <article>
                         <div class="content_box wiki">
@@ -597,6 +600,7 @@
                             </div>
                         </div>
                     </article>
+
                     <!-- 오른쪽 하단 이벤트 배너-->
                     <article class="evt_content">
                         <a class="evt_box" href="#">

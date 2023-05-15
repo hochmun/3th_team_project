@@ -156,7 +156,7 @@ public interface BoardDAO {
      * @param data
      * @return
      */
-    public int selectNonmemberCheck(Map<String, String> data);
+    public String selectNonmemberCheck(Map<String, String> data);
 
     /**
      * 2023/03/29 // 심규영 // 게시물 댓글 불러오기 기능
@@ -196,7 +196,7 @@ public interface BoardDAO {
      * @param data
      * @return
      */
-    public int selectCommentPassCheck(Map<String,String> data);
+    public String selectCommentPassCheck(Map<String,String> data);
 
     /**
      * 2023/04/11 // 심규영 // 글 정보 가져오는 기능

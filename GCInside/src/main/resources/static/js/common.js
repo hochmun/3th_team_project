@@ -335,10 +335,11 @@ const new_gall_list = function($this) {
 
                 // mini 갤러리일 경우 페이지 정보 업데이트
                 if(grade == 'mini' && data.pagingDTO != null) {
-                    $('.newPageMI .total_num').text(data.pagingDTO.lastPage); // mini 갤러리의 총 페이지 수 업데이트
+                    $('.newPageMI .total_num').text(data.pagingDTO.lastPage > 5 ? 5 : data.pagingDTO.lastPage); // mini 갤러리의 총 페이지 수 업데이트
                 }
                 if(grade == 'mgall' && data.pagingDTO != null) {
-                    $('.newPageMG .total_num').text(data.pagingDTO.lastPage); // mgall 갤러리의 총 페이지 수 업데이트
+                    //$('.newPageMG .total_num').text(data.pagingDTO.lastPage); // mgall 갤러리의 총 페이지 수 업데이트
+                    $('.newPageMG .total_num').text(1);
                 }
 
             } else { // 받아온 데이터가 null일 때
