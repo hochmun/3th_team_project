@@ -243,12 +243,12 @@ public class MainService {
     }
 
     /**
-     * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
+     * 2023/04/21 // 김재준 // 개념글 카테고리별 갤러리 이름 가져오기
      */
-    public List<Map<String, Object>> selectHotArticlesByCategory(Map<String, String> data) {
+    public List<Map<String, Object>> selectHotGallNameByCategory(Map<String, String> data) {
         int cate = Integer.parseInt(data.get("cate"));
 
-        return dao.selectHotArticlesByCategory(cate);
+        return dao.selectHotGallNameByCategory(cate);
     }
 
 }

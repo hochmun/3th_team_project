@@ -136,7 +136,7 @@ public interface MainDAO {
     public List<gell_articleVO> hitgall();
 
     /**
-     * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
+     * 2023/04/21 // 김재준 // 개념글 카테고리별 갤러리 이름 가져오기
      */
-    public List<Map<String, Object>> selectHotArticlesByCategory(@Param("cate") int cate);
+    public List<Map<String, Object>> selectHotGallNameByCategory(@Param("cate") int cate);
 }

@@ -224,13 +224,13 @@ public class MainController {
     }
 
     /**
-     * 2023/04/21 // 김재준 // 카테고리별 개념글 가져오기
+     * 2023/04/21 // 김재준 // 개념글 카테고리별 갤러리 이름 가져오기
      */
-    @PostMapping("mainIndex/selectHotArticlesByCategory/{cate}")
-    public Map<String, Object> selectHotArticlesByCategory(@RequestBody Map<String, String> data) {
+    @PostMapping("mainIndex/selectHotGallNameByCategory/{cate}")
+    public Map<String, Object> selectHotGallNameByCategory(@RequestBody Map<String, String> data) {
     	Map<String, Object> resultMap = new HashMap<>();
 
-    	List<Map<String, Object>> hotarticlebycate = service.selectHotArticlesByCategory(data);
+    	List<Map<String, Object>> hotarticlebycate = service.selectHotGallNameByCategory(data);
     	resultMap.put("hotarticlebycate", hotarticlebycate);
 
     	return resultMap;
