@@ -5,6 +5,8 @@
     z-index: 4001;
     text-align: left;
 }
+
+.term_preview {overflow: scroll; height: 500px;} /* 23/05/15 // 김재준 // admin 약관관리 미리보기 팝업 스크롤 구현 */
 .pop_wrap.gray1px {border: 1px solid #ccc;}
 .pop_content{overflow:hidden;position:relative}
 
