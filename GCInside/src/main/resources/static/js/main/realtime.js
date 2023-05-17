@@ -9,13 +9,14 @@ $(()=>{
 const realtimeFunction = (mode) => {
 
     // 해당하는 장소에 데이터 집어 넣는 함수
+    // 2023/05/17 // 심규영 // loading=lazy 추가
     const insertArticles = (articleVOS, pg) => {
         articleVOS.forEach((articleVO)=>{
             $('<li>').append(
                 $('<a>').attr('href','/GCInside/m/board/view/?id=gcbest&no='+articleVO.article_num)
                 .attr('class','main_log').append(
                     $('<div>').attr('class','box bestimg').append(
-                        articleVO.article_file > 0 ? $('<img>').attr('src',articleVO.file_url.substring(articleVO.file_url.indexOf('/GCInside'))).attr('style','position: relative;') : ''
+                        articleVO.article_file > 0 ? $('<img>').attr('src',articleVO.file_url.substring(articleVO.file_url.indexOf('/GCInside'))).attr('style','position: relative;').attr('loading','lazy') : ''
                     )
                 ).append(
                     $('<div>').attr('class','box besttxt').append(
