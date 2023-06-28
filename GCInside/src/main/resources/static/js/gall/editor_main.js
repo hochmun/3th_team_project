@@ -70,6 +70,13 @@ function editor_start(type) {
                             instagram: true,
                             facebook: true,
                             twitter: true,
+                            youtubeShorts: {
+                                regex: /https?:\/\/youtube.com\/shorts\/([^\/\?\&]*)\?feature=share/,
+                                embedUrl: 'https://youtube.com/shorts/<%= remote_id %>?height=300&theme-id=0&default-tab=css,result&embed-version=2',
+                                html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
+                                height: 300,
+                                width: 600,
+                            },
                         }
                     },
                     inlineToolbar: true,
